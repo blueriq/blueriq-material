@@ -33,6 +33,12 @@
   dependencies:
     tslib "^1.7.1"
 
+"@angular/cdk@^5.2.5":
+  version "5.2.5"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/cdk/-/cdk-5.2.5.tgz?dl=https://registry.yarnpkg.com/@angular/cdk/-/cdk-5.2.5.tgz#cae2b12e1990a692dd267a73fdb1d49db37f9604"
+  dependencies:
+    tslib "^1.7.1"
+
 "@angular/cli@1.6.7":
   version "1.6.7"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/cli/-/cli-1.6.7.tgz?dl=https://registry.yarnpkg.com/@angular/cli/-/cli-1.6.7.tgz#e2323753c144b5de6c699bbebee688105a394641"
@@ -139,6 +145,12 @@
   version "5.2.10"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/language-service/-/language-service-5.2.10.tgz?dl=https://registry.yarnpkg.com/@angular/language-service/-/language-service-5.2.10.tgz#5699af9d46033faccefeb21d4d168524d2180a8c"
 
+"@angular/material@^5.2.5":
+  version "5.2.5"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/material/-/material-5.2.5.tgz?dl=https://registry.yarnpkg.com/@angular/material/-/material-5.2.5.tgz#287af95d234e0644244d9db565f7a05c10b737f8"
+  dependencies:
+    tslib "^1.7.1"
+
 "@angular/platform-browser-dynamic@^5.2.0":
   version "5.2.10"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/platform-browser-dynamic/-/platform-browser-dynamic-5.2.10.tgz?dl=https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-5.2.10.tgz#bec4c0ca9fb16c34adee851caa187989953216ca"
@@ -156,6 +168,32 @@
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/router/-/router-5.2.10.tgz?dl=https://registry.yarnpkg.com/@angular/router/-/router-5.2.10.tgz#cb36c32de0a233a9b49789e11ca0f96c5304f25a"
   dependencies:
     tslib "^1.7.1"
+
+"@blueriq/angular@file:./blueriq-dist/blueriq-angular.tgz":
+  version "0.2.1-0"
+  resolved "file:./blueriq-dist/blueriq-angular.tgz#70b4a94ec7e579627b909b0b514a7fb423314c44"
+  dependencies:
+    date-fns "2.0.0-alpha.7"
+    stable "0.1.7"
+
+"@blueriq/core@file:./blueriq-dist/blueriq-core.tgz":
+  version "0.2.1-0"
+  resolved "file:./blueriq-dist/blueriq-core.tgz#b426cc898f1950fa916d24ab589384815b93fce0"
+  dependencies:
+    css-selector-parser "1.3.0"
+    date-fns "2.0.0-alpha.7"
+
+"@ngrx/effects@^4.1.1":
+  version "4.1.1"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@ngrx/effects/-/effects-4.1.1.tgz?dl=https://registry.yarnpkg.com/@ngrx/effects/-/effects-4.1.1.tgz#cb758b8527964b258ea41951f59aa144e3ef9fae"
+
+"@ngrx/store-devtools@^4.1.1":
+  version "4.1.1"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@ngrx/store-devtools/-/store-devtools-4.1.1.tgz?dl=https://registry.yarnpkg.com/@ngrx/store-devtools/-/store-devtools-4.1.1.tgz#20745c39c7560fdc05fa4f22638442a7ec7dd676"
+
+"@ngrx/store@^4.1.1":
+  version "4.1.1"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@ngrx/store/-/store-4.1.1.tgz?dl=https://registry.yarnpkg.com/@ngrx/store/-/store-4.1.1.tgz#680e34df2775e8852754ed777ffac95bd81b7de0"
 
 "@ngtools/json-schema@1.1.0", "@ngtools/json-schema@^1.1.0":
   version "1.1.0"
@@ -1521,6 +1559,10 @@ css-select@^1.1.0:
     domutils "1.5.1"
     nth-check "~1.0.1"
 
+css-selector-parser@1.3.0:
+  version "1.3.0"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/css-selector-parser/-/css-selector-parser-1.3.0.tgz?dl=https://registry.yarnpkg.com/css-selector-parser/-/css-selector-parser-1.3.0.tgz#5f1ad43e2d8eefbfdc304fcd39a521664943e3eb"
+
 css-selector-tokenizer@^0.7.0:
   version "0.7.0"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/css-selector-tokenizer/-/css-selector-tokenizer-0.7.0.tgz?dl=https://registry.yarnpkg.com/css-selector-tokenizer/-/css-selector-tokenizer-0.7.0.tgz#e6988474ae8c953477bf5e7efecfceccd9cf4c86"
@@ -1620,6 +1662,10 @@ dashdash@^1.12.0:
 data-uri-to-buffer@1:
   version "1.2.0"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/data-uri-to-buffer/-/data-uri-to-buffer-1.2.0.tgz?dl=https://registry.yarnpkg.com/data-uri-to-buffer/-/data-uri-to-buffer-1.2.0.tgz#77163ea9c20d8641b4707e8f18abdf9a78f34835"
+
+date-fns@2.0.0-alpha.7:
+  version "2.0.0-alpha.7"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/date-fns/-/date-fns-2.0.0-alpha.7.tgz?dl=https://registry.yarnpkg.com/date-fns/-/date-fns-2.0.0-alpha.7.tgz#245ad16f95764eababfb2c0a41fd5d033c20e57a"
 
 date-format@^1.2.0:
   version "1.2.0"
@@ -2739,6 +2785,10 @@ globule@^1.0.0:
 graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.6:
   version "4.1.11"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/graceful-fs/-/graceful-fs-4.1.11.tgz?dl=https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
+
+hammerjs@^2.0.8:
+  version "2.0.8"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/hammerjs/-/hammerjs-2.0.8.tgz?dl=https://registry.yarnpkg.com/hammerjs/-/hammerjs-2.0.8.tgz#04ef77862cff2bb79d30f7692095930222bf60f1"
 
 handle-thing@^1.2.5:
   version "1.2.5"
@@ -6312,6 +6362,10 @@ ssri@^5.2.4:
   dependencies:
     safe-buffer "^5.1.1"
 
+stable@0.1.7:
+  version "0.1.7"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/stable/-/stable-0.1.7.tgz?dl=https://registry.yarnpkg.com/stable/-/stable-0.1.7.tgz#06e1e4213460252e4f20da89a32cb4a0dbe5f2b2"
+
 static-extend@^0.1.1:
   version "0.1.2"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/static-extend/-/static-extend-0.1.2.tgz?dl=https://registry.yarnpkg.com/static-extend/-/static-extend-0.1.2.tgz#60809c39cbff55337226fd5e0b520f341f1fb5c6"
@@ -6740,11 +6794,7 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/typedarray/-/typedarray-0.0.6.tgz?dl=https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-typescript@~2.5.3:
-  version "2.5.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/typescript/-/typescript-2.5.3.tgz?dl=https://registry.yarnpkg.com/typescript/-/typescript-2.5.3.tgz#df3dcdc38f3beb800d4bc322646b04a3f6ca7f0d"
-
-typescript@~2.6.2:
+typescript@2.6.2, typescript@~2.6.2:
   version "2.6.2"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/typescript/-/typescript-2.6.2.tgz?dl=https://registry.yarnpkg.com/typescript/-/typescript-2.6.2.tgz#3c5b6fd7f6de0914269027f03c0946758f7673a4"
 
@@ -7350,6 +7400,10 @@ yargs@~3.10.0:
     cliui "^2.1.0"
     decamelize "^1.0.0"
     window-size "0.1.0"
+
+yarn@^1.6.0:
+  version "1.6.0"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/yarn/-/yarn-1.6.0.tgz?dl=https://registry.yarnpkg.com/yarn/-/yarn-1.6.0.tgz#9cec6f7986dc237d39ec705ce74d95155fe55d4b"
 
 yeast@0.1.2:
   version "0.1.2"
