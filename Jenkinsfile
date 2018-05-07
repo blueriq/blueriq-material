@@ -1,5 +1,5 @@
 #!groovy
-# TODO: this is a copy from the red cow jenkins file, rework this!
+// TODO: this is a copy from the red cow jenkins file, rework this!
 boolean canRelease = BRANCH_NAME == 'master'
 
 if (canRelease) properties([
