@@ -20,7 +20,7 @@
     <resources>
       <resource>
         <directory>dist/</directory>
-        <targetPath>META-INF/resources</targetPath>
+		<targetPath>webresources</targetPath>
         <includes>
           <include>**</include>
         </includes>

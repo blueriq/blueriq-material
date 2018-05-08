@@ -1,14 +1,15 @@
+import { APP_BASE_HREF } from '@angular/common';
 import { NgModule } from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {RouterModule} from '@angular/router';
-import {BlueriqModule} from '@blueriq/angular';
-import {V1BackendModule} from '@blueriq/angular/backend/v1';
-import {EffectsModule} from '@ngrx/effects';
-import {StoreModule} from '@ngrx/store';
-import {AppComponent} from './app.component';
-import {MaterialModule} from './material/material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
+import { BlueriqModule } from '@blueriq/angular';
+import { V1BackendModule } from '@blueriq/angular/backend/v1';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { AppComponent } from './app.component';
+import { MaterialModule } from './material/material.module';
 
 // const COMPONENTS = [
 //   PageComponent
@@ -34,8 +35,10 @@ import {MaterialModule} from './material/material.module';
     ReactiveFormsModule
   ],
   providers: [
-   // BlueriqComponents.register(COMPONENTS)
+    // BlueriqComponents.register(COMPONENTS)
+    {provide: APP_BASE_HREF, useValue: (window as any)['_app_base'] || '/'},
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

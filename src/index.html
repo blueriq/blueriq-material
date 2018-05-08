@@ -3,7 +3,12 @@
 <head>
   <meta charset="utf-8">
   <title>BlueriqMaterial</title>
-  <base href="/">
+
+  <script>
+    (function() {
+      window['_app_base'] = '/webresources/' + window.location.pathname.split('/')[2];
+    })();
+  </script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
