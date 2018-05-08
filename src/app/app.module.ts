@@ -1,23 +1,22 @@
-
 import { NgModule } from '@angular/core';
-import { AppComponent } from './app.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule} from '@angular/router';
 import {BlueriqModule} from '@blueriq/angular';
 import {V1BackendModule} from '@blueriq/angular/backend/v1';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {EffectsModule} from '@ngrx/effects';
 import {StoreModule} from '@ngrx/store';
+import {AppComponent} from './app.component';
 import {MaterialModule} from './material/material.module';
 
-const COMPONENTS = [
-
-]
+// const COMPONENTS = [
+//   PageComponent
+// ]
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
     // COMPONENTS
   ],
   imports: [

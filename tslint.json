@@ -91,7 +91,9 @@
       "@angular/core/testing",
       "@angular/common/http",
       "@blueriq/core/testing",
-      "@blueriq/angular/testing"
+      "@blueriq/angular/testing",
+      "@blueriq/angular/backend/v1",
+      "@angular/cdk"
     ],
     "no-this-assignment": [
       true,
