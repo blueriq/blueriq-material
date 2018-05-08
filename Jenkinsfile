@@ -55,20 +55,19 @@ node {
       )
     }
 
-    // TODO for making releases (via jar?)
-    // boolean shouldRelease = isMaster && params.isRelease
-//    if (shouldRelease) {
-//      stage('increment version') {
-//        bat "yarn release:version --yes --cd-version ${params.versionIncrement}"
-//        bat "git push origin ${BRANCH_NAME} && git push origin --tags"
-//      }
-//    }
-//
-//    stage('build packages') {
-//      bat 'yarn build:packages'
-//      archive 'dist\\*.tgz'
-//    }
-//
+    boolean shouldRelease = isMaster && params.isRelease
+    if (shouldRelease) {
+      stage('increment version') {
+        bat "yarn release:version --yes --cd-version ${params.versionIncrement}"
+        // bat "git push origin ${BRANCH_NAME} && git push origin --tags"
+      }
+
+      stage('build packages') {
+        bat "yarn build"
+        bat "yarn build:deploy"
+      }
+    }
+// From red-cow:
 //    if (shouldRelease) {
 //      stage('publish release') {
 //        bat "yarn release:publish"

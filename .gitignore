@@ -7,6 +7,7 @@
 /tmp
 /out-tsc
 .ng_build/
+/target
 
 # dependencies
 node_modules/
