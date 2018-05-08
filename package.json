@@ -12,7 +12,7 @@
   },
   "private": true,
   "engines": {
-    "yarn": "^1.4.0"
+    "yarn": "^1.6.0"
   },
   "dependencies": {
     "@angular/animations": "^5.2.0",
@@ -26,8 +26,8 @@
     "@angular/platform-browser": "^5.2.0",
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
-    "@blueriq/angular": "file:./blueriq-dist/blueriq-angular.tgz",
-    "@blueriq/core": "file:./blueriq-dist/blueriq-core.tgz",
+    "@blueriq/angular": "0.2.1-0",
+    "@blueriq/core": "0.2.1-0",
     "@ngrx/effects": "^5.2.0",
     "@ngrx/store": "^5.2.0",
     "@ngrx/store-devtools": "^5.2.0",
