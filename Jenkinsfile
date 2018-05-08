@@ -1,9 +1,17 @@
 #!groovy
-// TODO: this is a copy from the red cow jenkins file, rework this!
-boolean canRelease = BRANCH_NAME == 'master'
 
-if (canRelease)
+boolean isMaster = BRANCH_NAME == 'master'
+String triggerCron = isMaster ? "H 13 * * 7" : ""
+
+if (isMaster)
 properties([
+  [
+    $class  : 'BuildDiscarderProperty',
+    strategy: [$class: 'LogRotator', numToKeepStr: '5']
+  ],
+  pipelineTriggers([
+    cron(triggerCron)
+  ]),
   parameters([
     booleanParam(
       name: 'isRelease',
@@ -19,25 +27,12 @@ properties([
   ])
 ])
 
-//String triggerCron = BRANCH_NAME == "master" ? "H 13 * * 7" : ""
-//properties([
-//  [
-//    $class: 'BuildDiscarderProperty',
-//    strategy: [$class: 'LogRotator', numToKeepStr: '5']
-//  ],
-//  pipelineTriggers([
-//    cron(triggerCron)
-//  ])
-//])
-
 node {
   try {
     env.JAVA_HOME = tool 'jdk1.8.0_121';
     def mvnHome = tool "apache-maven-3.2.5";
     env.PATH = "${env.JAVA_HOME}\\bin;${env.PATH};${mvnHome}\\bin;${env.NODEJS_PATH}\"";
     env.SASS_BINARY_PATH = env.SASS_BINDING_PATH
-
-    boolean shouldRelease = canRelease && params.isRelease
 
     stage('checkout') {
       checkout scm
@@ -60,6 +55,8 @@ node {
       )
     }
 
+    // TODO for making releases (via jar?)
+    // boolean shouldRelease = isMaster && params.isRelease
 //    if (shouldRelease) {
 //      stage('increment version') {
 //        bat "yarn release:version --yes --cd-version ${params.versionIncrement}"
@@ -83,10 +80,7 @@ node {
     currentBuild.result = 'FAILURE'
   } finally {
     stage ("Publish results") {
-      step([$class: "JUnitResultArchiver", testResults: "**/target/surefire-reports/*.xml"])
-
-      // Methode from shared library
-      buildReports()
+      // TODO collect test and nglinting results
     }
 
     notifyBuildStatus()
