@@ -32,12 +32,12 @@
     <repository>
       <id>artifactory</id>
       <name>artifactory-releases</name>
-      <url>https://artifactory.blueriq.com/artifactory/libs-xxx-release-local</url>
+      <url>https://artifactory.blueriq.com/artifactory/libs-blueriq-material-release-local/</url>
     </repository>
     <snapshotRepository>
       <id>artifactory</id>
       <name>artifactory-snapshots</name>
-      <url>https://artifactory.blueriq.com/artifactory/libs-xxx-snapshot-local/</url>
+      <url>https://artifactory.blueriq.com/artifactory/libs-blueriq-material-snapshot-local/</url>
     </snapshotRepository>
   </distributionManagement>
 
