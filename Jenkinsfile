@@ -59,10 +59,6 @@ node {
 
     boolean shouldRelease = isMaster && params.isRelease
     if (shouldRelease) {
-      stage('increment version') {
-        // bat "yarn release:version --yes --cd-version ${params.versionIncrement}"
-        // bat "git push origin ${BRANCH_NAME} && git push origin --tags"
-      }
 
       stage('build packages') {
         dir('frontend'){
@@ -73,13 +69,6 @@ node {
         }
       }
     } // end if
-
-    // From red-cow:
-    //    if (shouldRelease) {
-    //      stage('publish release') {
-    //        bat "yarn release:publish"
-    //      }
-    //    }
 
   }catch(anyException) {
     echo "An error occured (${anyException}) marking build as failed."
