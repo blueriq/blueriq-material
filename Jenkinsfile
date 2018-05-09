@@ -48,7 +48,7 @@ node {
             stage('verify') {
                 parallel(
                         'test': {
-                            bat 'yarn test --watch false'
+                            bat 'yarn test --watch false --code-coverage'
                         },
                         'lint': {
                             bat 'yarn lint'
@@ -75,7 +75,8 @@ node {
         currentBuild.result = 'FAILURE'
     } finally {
         stage("Publish results") {
-            // TODO collect test and nglinting results
+            // TODO ng linting results
+            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: "frontend/coverage", reportFiles: 'index.html', reportName: "coverage", reportTitles: "coverage"]);
         }
 
         notifyBuildStatus()
