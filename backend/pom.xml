@@ -19,7 +19,7 @@
   <build>
     <resources>
       <resource>
-        <directory>dist/</directory>
+        <directory>../frontend/dist/</directory>
 		<targetPath>webresources</targetPath>
         <includes>
           <include>**</include>

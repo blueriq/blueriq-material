@@ -38,41 +38,48 @@ node {
       checkout scm
     }
 
-    stage('install') {
-      bat 'node -v'
-      bat 'yarn -v'
-      bat 'yarn install'
-    }
+    dir('frontend') {
+      stage('install') {
+        bat 'node -v'
+        bat 'yarn -v'
+        bat 'yarn install'
+      }
 
-    stage('verify') {
-      parallel(
-        'test': {
-          bat 'yarn ng test --watch false'
-        },
-        'lint': {
-          bat 'yarn ng lint'
-        }
-      )
-    }
+      stage('verify') {
+        parallel(
+          'test': {
+            bat 'yarn ng test --watch false'
+          },
+          'lint': {
+            bat 'yarn ng lint'
+          }
+        )
+      }
+    } // dir frontend
 
     boolean shouldRelease = isMaster && params.isRelease
     if (shouldRelease) {
       stage('increment version') {
-        bat "yarn release:version --yes --cd-version ${params.versionIncrement}"
+        // bat "yarn release:version --yes --cd-version ${params.versionIncrement}"
         // bat "git push origin ${BRANCH_NAME} && git push origin --tags"
       }
 
       stage('build packages') {
-        bat "yarn build"
-        bat "yarn build:deploy"
+        dir('frontend'){
+          bat "yarn build"
+        }
+        dir("backend") {
+          bat "mvn clean deploy"
+        }
       }
-    }
-// From red-cow:
-//    if (shouldRelease) {
-//      stage('publish release') {
-//        bat "yarn release:publish"
-//      }
-//    }
+    } // end if
+
+    // From red-cow:
+    //    if (shouldRelease) {
+    //      stage('publish release') {
+    //        bat "yarn release:publish"
+    //      }
+    //    }
 
   }catch(anyException) {
     echo "An error occured (${anyException}) marking build as failed."
