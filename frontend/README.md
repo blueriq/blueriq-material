@@ -49,7 +49,7 @@ for which we need to instruct NPM to apply the authentication token as well. Due
 are considered for such secondary registries, so only _authToken can be used properly. You can request your Bearer
 token by executing the following curl request
 ```
-curl -u<username>:<password> -XPOST http://artifactory.blueriq.com/artifactory/api/security/token -d "username=<username>" -d "expires_in=0"
+curl -u<username>:<password> -XPOST https://artifactory.blueriq.com:443/artifactory/api/security/token -d "username=<username>" -d "expires_in=0"
 ```
 
 ### Install dependencies
