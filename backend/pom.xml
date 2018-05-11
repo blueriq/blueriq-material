@@ -1,0 +1,51 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.blueriq</groupId>
+  <artifactId>blueriq-material</artifactId>
+  <packaging>jar</packaging>
+  <version>0.1-SNAPSHOT</version>
+
+  <name>TODO</name>
+  <description>TODO</description>
+
+  <properties>
+    <scm.connection>scm:git:git@bq-gitlab.everest.nl:blueriq/blueriq-material.git</scm.connection>
+    <scm.developerConnection>scm:git:git@bq-gitlab.everest.nl:blueriq/blueriq-material.git</scm.developerConnection>
+    <scm.url>https://git.blueriq.com/blueriq/blueriq-material/tree/master</scm.url>
+  </properties>
+
+  <build>
+    <resources>
+      <resource>
+        <directory>../frontend/dist/</directory>
+		<targetPath>webresources</targetPath>
+        <includes>
+          <include>**</include>
+        </includes>
+      </resource>
+    </resources>
+  </build>
+
+  <distributionManagement>
+    <repository>
+      <id>artifactory</id>
+      <name>artifactory-releases</name>
+      <url>https://artifactory.blueriq.com/artifactory/libs-blueriq-material-release-local/</url>
+    </repository>
+    <snapshotRepository>
+      <id>artifactory</id>
+      <name>artifactory-snapshots</name>
+      <url>https://artifactory.blueriq.com/artifactory/libs-blueriq-material-snapshot-local/</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <scm>
+    <connection>${scm.connection}</connection>
+    <developerConnection>${scm.developerConnection}</developerConnection>
+    <url>${scm.url}</url>
+    <tag>HEAD</tag>
+  </scm>
+
+</project>

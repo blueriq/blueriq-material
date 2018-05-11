@@ -1,0 +1,64 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "project": {
+    "name": "blueriq-material"
+  },
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "../test.ts",
+      "tsconfig": "../tsconfig.app.json",
+      "testTsconfig": "../tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "styles.css"
+      ],
+      "scripts": [],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    }
+  ],
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "lint": [
+    {
+      "project": "tsconfig.app.json",
+      "exclude": [
+        "**/node_modules/**",
+        "**/polyfills.ts",
+        "**/*.po.ts"
+      ]
+    },
+    {
+      "project": "tsconfig.spec.json",
+      "exclude": "**/node_modules/**"
+    }
+  ],
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "css",
+    "serve": {
+      "port": 1337,
+      "proxyConfig": "proxy.conf.json"
+    },
+    "component": {}
+  }
+}
