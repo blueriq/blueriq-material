@@ -1,6 +1,6 @@
-import { Component, Host, ViewEncapsulation } from '@angular/core';
-import { BlueriqComponent } from '@blueriq/angular';
-import { Input } from '@blueriq/core';
+import {Component, Host, ViewEncapsulation} from '@angular/core';
+import {BlueriqComponent} from '@blueriq/angular';
+import {TextItem} from '@blueriq/core';
 
 @Component({
   selector: 'app-input',
@@ -9,10 +9,11 @@ import { Input } from '@blueriq/core';
   encapsulation: ViewEncapsulation.None,
 })
 @BlueriqComponent({
-  type: Input
+  type: TextItem
 })
 export class InputComponent {
 
-  constructor(@Host() public input: Input) { }
+  constructor(@Host() public input: TextItem) {
+  }
 
 }
