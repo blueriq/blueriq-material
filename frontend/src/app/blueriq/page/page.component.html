@@ -1,0 +1,5 @@
+<h2 *ngIf="page.name">{{page.name}}</h2>
+
+<div *ngFor="let child of page.children" [bqElement]="child"></div>
+
+
