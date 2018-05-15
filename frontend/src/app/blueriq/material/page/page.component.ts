@@ -1,6 +1,6 @@
-import { Component, Host, ViewEncapsulation } from '@angular/core';
-import { BlueriqComponent } from '@blueriq/angular';
-import { Page } from '@blueriq/core';
+import {Component, Host, ViewEncapsulation} from '@angular/core';
+import {BlueriqComponent} from '@blueriq/angular';
+import {Page} from '@blueriq/core';
 
 @Component({
   selector: 'app-page',
@@ -13,6 +13,7 @@ import { Page } from '@blueriq/core';
 })
 export class PageComponent {
 
-  constructor(@Host() public page: Page) { }
+  constructor(@Host() public page: Page) {
+  }
 
 }
