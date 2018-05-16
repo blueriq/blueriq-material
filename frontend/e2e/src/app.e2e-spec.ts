@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('blueriq-material App', () => {
+describe('workspace-project App', () => {
   let page: AppPage;
 
   beforeEach(() => {
