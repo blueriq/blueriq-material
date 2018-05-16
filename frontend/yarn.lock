@@ -186,31 +186,33 @@
   dependencies:
     tslib "^1.9.0"
 
-"@blueriq/angular@0.2.1-0":
-  version "0.2.1-0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn-local/@blueriq/angular/-/@blueriq/angular-0.2.1-0.tgz#b161b642b300dde27a467949123f8f509ee4898e"
+"@blueriq/angular@^0.3.0-beta":
+  version "0.3.0-beta.1"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn-local/@blueriq/angular/-/@blueriq/angular-0.3.0-beta.1.tgz#48494d987a3543a844f80b79f7d80e25844b35fd"
   dependencies:
     date-fns "2.0.0-alpha.7"
     stable "0.1.7"
+    tslib "^1.7.1"
 
-"@blueriq/core@0.2.1-0":
-  version "0.2.1-0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn-local/@blueriq/core/-/@blueriq/core-0.2.1-0.tgz#8d34449d83ac70b8a87480ea209a1d1eddf8cff5"
+"@blueriq/core@^0.3.0-beta":
+  version "0.3.0-beta.1"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn-local/@blueriq/core/-/@blueriq/core-0.3.0-beta.1.tgz#bb94dee856df0bcd48c562bb4d06a65554c55722"
   dependencies:
     css-selector-parser "1.3.0"
     date-fns "2.0.0-alpha.7"
+    tslib "^1.7.1"
 
-"@ngrx/effects@^5.2.0":
-  version "5.2.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@ngrx/effects/-/effects-5.2.0.tgz?dl=https://registry.yarnpkg.com/@ngrx/effects/-/effects-5.2.0.tgz#aa762b69cb6fd4644d724a1cecd265caa42baf09"
+"@ngrx/effects@^6.0.0-beta":
+  version "6.0.0-beta.3"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@ngrx/effects/-/effects-6.0.0-beta.3.tgz?dl=https://registry.yarnpkg.com/@ngrx/effects/-/effects-6.0.0-beta.3.tgz#29e70a2fee0e793e9c08cbc7657232c043f9410b"
 
-"@ngrx/store-devtools@^5.2.0":
-  version "5.2.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@ngrx/store-devtools/-/store-devtools-5.2.0.tgz?dl=https://registry.yarnpkg.com/@ngrx/store-devtools/-/store-devtools-5.2.0.tgz#2fff916a9aa349375826772b359dbb64b9e5d622"
+"@ngrx/store-devtools@^6.0.0-beta":
+  version "6.0.0-beta.3"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@ngrx/store-devtools/-/store-devtools-6.0.0-beta.3.tgz?dl=https://registry.yarnpkg.com/@ngrx/store-devtools/-/store-devtools-6.0.0-beta.3.tgz#899836165b6554c0f981054610293f6d0958d4de"
 
-"@ngrx/store@^5.2.0":
-  version "5.2.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@ngrx/store/-/store-5.2.0.tgz?dl=https://registry.yarnpkg.com/@ngrx/store/-/store-5.2.0.tgz#627ed74c9cd95462930485d912a557117b23903e"
+"@ngrx/store@^6.0.0-beta":
+  version "6.0.0-beta.3"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@ngrx/store/-/store-6.0.0-beta.3.tgz?dl=https://registry.yarnpkg.com/@ngrx/store/-/store-6.0.0-beta.3.tgz#584e0bb69c2ea75637a2c2adfb27fc08db98dc92"
 
 "@ngtools/webpack@6.0.1":
   version "6.0.1"
