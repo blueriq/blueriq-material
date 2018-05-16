@@ -43,7 +43,7 @@ node {
                 bat 'node -v'
                 bat 'yarn -v'
                 bat 'yarn install'
-                bat 'ng --version'
+                bat 'yarn ng:version'
             }
 
             stage('verify') {
