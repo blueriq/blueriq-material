@@ -12,10 +12,14 @@ import {AppComponent} from './app.component';
 import {MaterialModule} from './material/material.module';
 import {ContainerComponent} from "./container/container.component";
 import {PageComponent} from "./page/page.component";
+import {TextItemComponent} from "./textitem/textitem.component";
+import {ButtonComponent} from "./button/button.component";
 
 const COMPONENTS = [
   PageComponent,
-  ContainerComponent
+  ContainerComponent,
+  TextItemComponent,
+  ButtonComponent
 ]
 
 @NgModule({
