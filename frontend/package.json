@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --open --host 0.0.0.0 --proxy-config proxy.conf.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -11,18 +11,17 @@
   },
   "private": true,
   "engines": {
-    "yarn": "^1.4.0"
+    "yarn": "^1.6.0"
   },
   "dependencies": {
     "@angular/cdk": "^6.0.1",
     "@angular/material": "^6.0.1",
-    "@blueriq/angular": "0.2.1-0",
-    "@blueriq/core": "0.2.1-0",
-    "@ngrx/effects": "^5.2.0",
-    "@ngrx/store": "^5.2.0",
-    "@ngrx/store-devtools": "^5.2.0",
+    "@blueriq/angular": "^0.3.0-beta",
+    "@blueriq/core": "^0.3.0-beta",
+    "@ngrx/effects": "^6.0.0-beta",
+    "@ngrx/store": "^6.0.0-beta",
+    "@ngrx/store-devtools": "^6.0.0-beta",
     "hammerjs": "^2.0.8",
-    "yarn": "^1.6.0",
     "@angular/animations": "^6.0.1",
     "@angular/common": "^6.0.1",
     "@angular/compiler": "^6.0.1",
