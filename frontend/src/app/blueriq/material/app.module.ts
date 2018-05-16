@@ -4,21 +4,28 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule} from '@angular/router';
+import {BlueriqComponents, BlueriqModule} from '@blueriq/angular';
+import {V1BackendModule} from '@blueriq/angular/backend/v1';
+import {EffectsModule} from '@ngrx/effects';
+import {StoreModule} from '@ngrx/store';
 import {AppComponent} from './app.component';
 import {MaterialModule} from './material/material.module';
-import {StoreModule} from '@ngrx/store';
-import {V1BackendModule} from "@blueriq/angular/backend/v1";
-import {BlueriqModule} from '@blueriq/angular';
-import {EffectsModule} from '@ngrx/effects';
+import {ContainerComponent} from "./container/container.component";
+import {PageComponent} from "./page/page.component";
+import {TextItemComponent} from "./textitem/textitem.component";
+import {ButtonComponent} from "./button/button.component";
 
-// const COMPONENTS = [
-//   PageComponent
-// ]
+const COMPONENTS = [
+  PageComponent,
+  ContainerComponent,
+  TextItemComponent,
+  ButtonComponent
+]
 
 @NgModule({
   declarations: [
-    AppComponent
-    // COMPONENTS
+    AppComponent,
+    COMPONENTS
   ],
   imports: [
     BrowserModule,
@@ -35,7 +42,7 @@ import {EffectsModule} from '@ngrx/effects';
     ReactiveFormsModule
   ],
   providers: [
-    // BlueriqComponents.register(COMPONENTS)
+    BlueriqComponents.register(COMPONENTS),
     {provide: APP_BASE_HREF, useValue: (window as any)['_app_base'] || '/'},
   ],
   bootstrap: [AppComponent]

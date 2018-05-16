@@ -1,12 +1,10 @@
-import {Component, Host, ViewEncapsulation} from '@angular/core';
+import {Component, Host} from '@angular/core';
 import {BlueriqComponent} from '@blueriq/angular';
 import {Page} from '@blueriq/core';
 
 @Component({
-  selector: 'app-page',
   templateUrl: './page.component.html',
-  styleUrls: ['./page.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./page.component.css']
 })
 @BlueriqComponent({
   type: Page

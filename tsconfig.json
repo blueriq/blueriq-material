@@ -1,13 +1,16 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    "baseUrl": "./frontend/src",
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "downlevelIteration": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
     "target": "es5",
     "typeRoots": [
       "node_modules/@types"
@@ -15,6 +18,18 @@
     "lib": [
       "es2017",
       "dom"
-    ]
-  }
+    ],
+    "paths": {
+      "@angular/*": [
+        "../node_modules/@angular/*"
+      ],
+      "@blueriq/*": [
+        "../packages/*/src/index"
+      ]
+    }
+  },
+  "exclude": [
+    "**/node_modules/*",
+    "dist"
+  ]
 }
