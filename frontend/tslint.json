@@ -3,14 +3,7 @@
     "node_modules/codelyzer"
   ],
   "rules": {
-    "array-type": [
-      true,
-      "array"
-    ],
-    "adjacent-overload-signatures": true,
     "arrow-return-shorthand": true,
-    "ban-comma-operator": true,
-    "binary-expression-operand-order": true,
     "callable-types": true,
     "class-name": true,
     "comment-format": [
@@ -18,11 +11,13 @@
       "check-space"
     ],
     "curly": true,
+    "deprecation": {
+      "severity": "warn"
+    },
     "eofline": true,
     "forin": true,
     "import-blacklist": [
       true,
-      "rxjs",
       "rxjs/Rx"
     ],
     "import-spacing": true,
@@ -32,10 +27,10 @@
     ],
     "interface-over-type-literal": true,
     "label-position": true,
-    /* "max-line-length": [
+    "max-line-length": [
       true,
       140
-    ], */
+    ],
     "member-access": false,
     "member-ordering": [
       true,
@@ -49,9 +44,7 @@
       }
     ],
     "no-arg": true,
-    "no-angle-bracket-type-assertion": true,
     "no-bitwise": true,
-    "no-consecutive-blank-lines": true,
     "no-console": [
       true,
       "debug",
@@ -61,111 +54,47 @@
       "trace"
     ],
     "no-construct": true,
-    "no-debugger": false,
-    "no-default-export": false,
+    "no-debugger": true,
     "no-duplicate-super": true,
-    "no-duplicate-switch-case": true,
-    "no-duplicate-imports": true,
     "no-empty": false,
     "no-empty-interface": true,
     "no-eval": true,
-    "no-for-in-array": true,
-    "no-implicit-dependencies": true,
     "no-inferrable-types": [
       true,
       "ignore-params"
     ],
-    "no-irregular-whitespace": true,
     "no-misused-new": true,
-    // "no-non-null-assertion": true,
-    "no-namespace": true,
+    "no-non-null-assertion": true,
     "no-shadowed-variable": true,
     "no-string-literal": false,
     "no-string-throw": true,
     "no-switch-case-fall-through": true,
-    "no-submodule-imports": [
-      true,
-      "rxjs",
-      "ngx-bootstrap",
-      "@angular/platform-browser",
-      "@angular/core/testing",
-      "@angular/common/http",
-      "@blueriq/core/testing",
-      "@blueriq/angular/testing",
-      "@blueriq/angular/backend/v1",
-      "@angular/cdk"
-    ],
-    "no-this-assignment": [
-      true,
-      "allow-destructuring"
-    ],
     "no-trailing-whitespace": true,
-    "no-redundant-jsdoc": true,
     "no-unnecessary-initializer": true,
-    "no-unnecessary-type-assertion": true,
-    "no-unnecessary-qualifier": true,
     "no-unused-expression": true,
-    "no-unbound-method": [
-      false,
-      "ignore-static"
-    ],
-    "no-use-before-declare": false,
+    "no-use-before-declare": true,
     "no-var-keyword": true,
-    "no-unused-variable": true,
     "object-literal-sort-keys": false,
-    "object-literal-key-quotes": [
-      true,
-      "consistent"
-    ],
-    "object-literal-shorthand": true,
     "one-line": [
       true,
       "check-open-brace",
       "check-catch",
-      "check-finally",
       "check-else",
       "check-whitespace"
     ],
-    "only-arrow-functions": [
-      true,
-      "allow-declarations",
-      "allow-named-functions"
-    ],
-    "ordered-imports": true,
     "prefer-const": true,
-    "prefer-for-of": true,
-    "prefer-method-signature": true,
-    "prefer-template": [
-      true,
-      "allow-single-concat"
-    ],
-    "prefer-readonly": false,
-    "promise-function-async": true,
     "quotemark": [
       true,
-      "single",
-      "avoid-template",
-      "avoid-escape"
+      "single"
     ],
     "radix": true,
-    "restrict-plus-operands": true,
     "semicolon": [
       true,
       "always"
     ],
-    "space-before-function-paren": [
-      true,
-      "never"
-    ],
-    "space-within-parens": 0,
     "triple-equals": [
       true,
       "allow-null-check"
-    ],
-    "type-literal-delimiter": true,
-    "typedef": [
-      true,
-      "call-signature"
     ],
     "typedef-whitespace": [
       true,
@@ -178,39 +107,21 @@
       }
     ],
     "unified-signatures": true,
-    "use-isnan": true,
-    "variable-name": [
-      true,
-      "ban-keywords",
-      "check-format",
-      "allow-leading-underscore"
-    ],
+    "variable-name": false,
     "whitespace": [
       true,
       "check-branch",
       "check-decl",
       "check-operator",
       "check-separator",
-      "check-rest-spread",
       "check-type"
     ],
-    /*"directive-selector": [
-      true,
-      "attribute",
-      "app",
-      "camelCase"
-    ],
-    "component-selector": [
-      true,
-      "element",
-      "app",
-      "kebab-case"
-    ],*/
+    "no-output-on-prefix": true,
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,
-    // "no-input-rename": true,
-    // "no-output-rename": true,
+    "no-input-rename": true,
+    "no-output-rename": true,
     "use-life-cycle-interface": true,
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
