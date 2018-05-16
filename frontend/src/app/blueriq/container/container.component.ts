@@ -1,5 +1,5 @@
-import {Component, Host, QueryList} from '@angular/core';
-import {BlueriqChild, BlueriqChildren, BlueriqComponent} from '@blueriq/angular';
+import {Component, Host} from '@angular/core';
+import {BlueriqChild, BlueriqComponent} from '@blueriq/angular';
 import {Container, Field} from '@blueriq/core';
 import {Observable} from 'rxjs/Observable';
 
@@ -12,12 +12,6 @@ import {Observable} from 'rxjs/Observable';
   type: Container,
 })
 export class ContainerComponent {
-
-  @BlueriqChildren(Field)
-  fields: QueryList<Field>;
-
-  @BlueriqChildren(Field, {descendants: true})
-  descendants: QueryList<Field>;
 
   @BlueriqChild(Field, {required: false})
   field: Field;
