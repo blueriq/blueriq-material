@@ -1,26 +1,26 @@
-import {APP_BASE_HREF} from '@angular/common';
-import {NgModule} from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {BrowserModule} from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {RouterModule} from '@angular/router';
-import {BlueriqComponents, BlueriqModule} from '@blueriq/angular';
-import {V1BackendModule} from '@blueriq/angular/backend/v1';
-import {EffectsModule} from '@ngrx/effects';
-import {StoreModule} from '@ngrx/store';
-import {AppComponent} from './app.component';
-import {MaterialModule} from './material/material.module';
-import {ContainerComponent} from "./container/container.component";
-import {PageComponent} from "./page/page.component";
-import {TextItemComponent} from "./textitem/textitem.component";
-import {ButtonComponent} from "./button/button.component";
+import { APP_BASE_HREF } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
+import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
+import { V1BackendModule } from '@blueriq/angular/backend/v1';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { AppComponent } from './app.component';
+import { ButtonComponent } from './button/button.component';
+import { ContainerComponent } from './container/container.component';
+import { MaterialModule } from './material/material.module';
+import { PageComponent } from './page/page.component';
+import { TextItemComponent } from './textitem/textitem.component';
 
 const COMPONENTS = [
   PageComponent,
   ContainerComponent,
   TextItemComponent,
   ButtonComponent
-]
+];
 
 @NgModule({
   declarations: [
