@@ -11,6 +11,7 @@ import { StoreModule } from '@ngrx/store';
 import { AppComponent } from './app.component';
 import { ButtonComponent } from './button/button.component';
 import { ContainerComponent } from './container/container.component';
+import { FieldComponent } from './field/field.component';
 import { MaterialModule } from './material/material.module';
 import { PageComponent } from './page/page.component';
 import { TextItemComponent } from './textitem/textitem.component';
@@ -19,7 +20,8 @@ const COMPONENTS = [
   PageComponent,
   ContainerComponent,
   TextItemComponent,
-  ButtonComponent
+  ButtonComponent,
+  FieldComponent
 ];
 
 @NgModule({
