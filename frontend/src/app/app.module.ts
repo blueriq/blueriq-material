@@ -15,8 +15,9 @@ import {FieldComponent} from './blueriq/material/field/field.component';
 import {MaterialModule} from './blueriq/material/material/material.module';
 import {PageComponent} from './blueriq/material/page/page.component';
 import {TextItemComponent} from './blueriq/material/textitem/textitem.component';
+import { FieldCharacteristicsComponent } from './blueriq/common/field-characteristics/field-characteristics.component';
 
-const COMPONENTS = [
+const BQ_COMPONENTS = [
   PageComponent,
   ContainerComponent,
   TextItemComponent,
@@ -24,10 +25,15 @@ const COMPONENTS = [
   FieldComponent
 ];
 
+const BQ_MAT_COMPONENTS = [
+  FieldCharacteristicsComponent
+];
+
 @NgModule({
   declarations: [
     AppComponent,
-    COMPONENTS
+    BQ_COMPONENTS,
+    BQ_MAT_COMPONENTS
   ],
   imports: [
     BrowserModule,
@@ -44,7 +50,7 @@ const COMPONENTS = [
     ReactiveFormsModule
   ],
   providers: [
-    BlueriqComponents.register(COMPONENTS),
+    BlueriqComponents.register(BQ_COMPONENTS),
     {provide: APP_BASE_HREF, useValue: (window as any)['_app_base'] || '/'},
   ],
   bootstrap: [AppComponent]

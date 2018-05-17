@@ -1,16 +1,11 @@
-<form class="field">
-  <mat-form-field class="field">
-    <input matInput placeholder= {{field.questionText}}
-           type="text"
-           [id]="field.key"
-           [required]="field.required"
-           value={{field.getValue()}}
-    >
-    <span class="explainicon">
-        <ng-container *ngIf="field.explainText"><i class="material-icons">info_outline</i></ng-container>
-      </span>
-    <span  class="errortext" *ngFor="let error of field.errors"><i class="fa fa-times-circle"></i> {{ error }}</span>
-    <span class="warningtext" *ngFor="let warning of field.warnings"><i class="fa fa-exclamation-circle"></i>{{ warning }}</span>
-    <span class="explaintext" *ngIf="field.explainText">Toelichting: {{field.explainText}}</span>
-  </mat-form-field>
-</form>
+<div class="field">
+	<mat-form-field> 
+	    <input matInput placeholder= {{field.questionText}}
+	           type="text"
+	           [id]="field.key"
+	           [required]="field.required"
+	           value={{field.getValue()}}
+	    >
+	<bq-mat-field-characteristics [field]="field"></bq-mat-field-characteristics>
+	</mat-form-field>
+</div>
