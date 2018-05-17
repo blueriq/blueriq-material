@@ -1,13 +1,5 @@
-<div bqClasses style="border:2px solid black;padding:12px;margin: 12px;background: rgba(0,0,0,.1)">
-
   <div bqClasses>
     <h2 *ngIf="container.displayName">{{ container.displayName }}</h2>
 
     <ng-container *ngFor="let child of container.children" [bqElement]="child"></ng-container>
-  </div>
-
-  <div *ngFor="let child of container.children">
-
-    {{child.type}}
-
   </div>
