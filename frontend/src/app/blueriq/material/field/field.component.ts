@@ -9,8 +9,7 @@ import {BlueriqFormBuilder} from '@blueriq/angular/forms';
 })
 
 @BlueriqComponent({
-  type: Field,
-  selector: '[dataType=text]'
+  type: Field
 })
 
 export class FieldComponent {
