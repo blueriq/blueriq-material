@@ -9,12 +9,12 @@ import {V1BackendModule} from '@blueriq/angular/backend/v1';
 import {EffectsModule} from '@ngrx/effects';
 import {StoreModule} from '@ngrx/store';
 import {AppComponent} from './app.component';
+import {ButtonComponent} from './blueriq/material/button/button.component';
+import {ContainerComponent} from './blueriq/material/container/container.component';
+import {FieldComponent} from './blueriq/material/field/field.component';
 import {MaterialModule} from './blueriq/material/material/material.module';
-import {ContainerComponent} from "./blueriq/material/container/container.component";
-import {PageComponent} from "./blueriq/material/page/page.component";
-import {TextItemComponent} from "./blueriq/material/textitem/textitem.component";
-import {ButtonComponent} from "./blueriq/material/button/button.component";
-import { FieldComponent } from './blueriq/material/field/field.component';
+import {PageComponent} from './blueriq/material/page/page.component';
+import {TextItemComponent} from './blueriq/material/textitem/textitem.component';
 
 const COMPONENTS = [
   PageComponent,
@@ -22,7 +22,7 @@ const COMPONENTS = [
   TextItemComponent,
   ButtonComponent,
   FieldComponent
-]
+];
 
 @NgModule({
   declarations: [
