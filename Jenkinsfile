@@ -38,36 +38,29 @@ node {
             checkout scm
         }
 
-        dir('frontend') {
-            stage('install') {
-                bat 'node -v'
-                bat 'yarn -v'
-                bat 'yarn install'
-                bat 'yarn ng:version'
-            }
+		stage('install') {
+			bat 'node -v'
+			bat 'yarn -v'
+			bat 'yarn install'
+			bat 'yarn ng:version'
+		}
 
-            stage('verify') {
-                parallel(
-                        'test': {
-                            bat 'yarn test --watch false --code-coverage'
-                        },
-                        'lint': {
-                            bat 'yarn lint'
-                        }
-                )
-            }
-        } // dir frontend
+		stage('verify') {
+			parallel(
+					'test': {
+						bat 'yarn test --watch false --code-coverage'
+					},
+					'lint': {
+						bat 'yarn lint'
+					}
+			)
+		}
 
         boolean shouldRelease = isMaster && params.isRelease
         if (shouldRelease) {
 
             stage('build packages') {
-                dir('frontend') {
-                    bat "yarn build"
-                }
-                dir("backend") {
-                    bat "mvn clean deploy"
-                }
+                bat "yarn build"
             }
         } // end if
 
@@ -77,7 +70,7 @@ node {
     } finally {
         stage("Publish results") {
             // TODO ng linting results
-            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: "frontend/coverage", reportFiles: 'index.html', reportName: "coverage", reportTitles: "coverage"]);
+            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: "coverage", reportFiles: 'index.html', reportName: "coverage", reportTitles: "coverage"]);
         }
 
         notifyBuildStatus()
