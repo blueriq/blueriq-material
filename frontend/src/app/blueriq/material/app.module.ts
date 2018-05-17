@@ -14,12 +14,14 @@ import {ContainerComponent} from "./container/container.component";
 import {PageComponent} from "./page/page.component";
 import {TextItemComponent} from "./textitem/textitem.component";
 import {ButtonComponent} from "./button/button.component";
+import { FieldComponent } from './field/field.component';
 
 const COMPONENTS = [
   PageComponent,
   ContainerComponent,
   TextItemComponent,
-  ButtonComponent
+  ButtonComponent,
+  FieldComponent
 ]
 
 @NgModule({
