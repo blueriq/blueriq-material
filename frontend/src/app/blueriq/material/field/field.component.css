@@ -1,0 +1,19 @@
+.field {
+  display: grid;
+  font-family: sans-serif;
+}
+
+.label {
+  grid-row: 1;
+  font-style: oblique;
+}
+
+input.mat-input-element {
+  grid-row: 2;
+  width: 50%;
+}
+
+.mat-input-underline.mat-form-field-underline {
+  width: 50%;
+}
+
