@@ -15,7 +15,6 @@ import {FieldComponent} from './blueriq/material/field/field.component';
 import {MaterialModule} from './blueriq/material/material/material.module';
 import {PageComponent} from './blueriq/material/page/page.component';
 import {TextItemComponent} from './blueriq/material/textitem/textitem.component';
-import { APP_BASE_HREF } from '@angular/common';
 
 const routes: Routes = [
   { path: 'session/:sessionId', component: ProjectComponent },
@@ -42,7 +41,7 @@ const COMPONENTS = [
     EffectsModule.forRoot([]),
     BlueriqModule.forRoot(),
     V1BackendModule.forRoot({
-      baseUrl: 'http://localhost:8080/server',
+      baseUrl: '../server',
     }),
     BrowserAnimationsModule,
     MaterialModule,
