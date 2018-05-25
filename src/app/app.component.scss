@@ -15,6 +15,7 @@
 .bq-outlet {
   max-width: 1024px;
   background: #fff;
+  padding: 24px;
 
   @include mat-elevation(1);
 
