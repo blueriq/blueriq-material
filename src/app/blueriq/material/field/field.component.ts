@@ -5,7 +5,7 @@ import {BlueriqFormBuilder} from '@blueriq/angular/forms';
 
 @Component({
   templateUrl: './field.component.html',
-  styleUrls: ['./field.component.css']
+  styleUrls: ['./field.component.scss']
 })
 
 @BlueriqComponent({

@@ -5,7 +5,7 @@ import {TextItem} from '@blueriq/core';
 @Component({
   selector: 'app-textitem',
   templateUrl: './textitem.component.html',
-  styleUrls: ['./textitem.component.css']
+  styleUrls: ['./textitem.component.scss']
 })
 
 @BlueriqComponent({

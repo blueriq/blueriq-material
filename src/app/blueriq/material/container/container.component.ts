@@ -5,7 +5,7 @@ import {Container, Field} from '@blueriq/core';
 import {Observable} from 'rxjs/Observable';
 
 @Component({
-  styleUrls: ['./container.component.css'],
+  styleUrls: ['./container.component.scss'],
   templateUrl: './container.component.html',
   animations: [
     trigger('animate', [
