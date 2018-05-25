@@ -1,0 +1,6 @@
+<div class="field">
+  <mat-checkbox [disabled]="field.disabled" [required]="field.required" [checked]="field.getValue()">
+    {{field.questionText}}
+  </mat-checkbox>
+  <bq-mat-field-characteristics [field]="field"></bq-mat-field-characteristics>
+</div>
