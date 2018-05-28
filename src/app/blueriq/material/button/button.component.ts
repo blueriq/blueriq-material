@@ -19,7 +19,7 @@ export class ButtonComponent {
   }
 
   onClick(): void {
-    if(this.button.enabled) {
+    if (this.button.enabled) {
       this.session.pressed(this.button);
     }
   }
