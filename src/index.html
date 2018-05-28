@@ -1,27 +1,14 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <script type="text/javascript">
-      function getBaseHref() {
-        var path = location.pathname;
-        var indexOfApp = path.indexOf('/app/');
-        if (indexOfApp > -1) {
-          path = path.substring(0, indexOfApp +'/app/'.length);
-        }
-       return path; 
+  <script type="text/javascript">
+    function getBaseHref() {
+      var path = location.pathname;
+      var indexOfApp = path.indexOf('/app/');
+      if (indexOfApp > -1) {
+        path = path.substring(0, indexOfApp +'/app/'.length);
       }
-      document.write("<base href='" + getBaseHref() + "' >");
-    </script>
-    
-    <meta charset="utf-8">
-    <title>BlueriqMaterial</title>
-   
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-  </head>
-  <body>
-	<app-root></app-root>
-  </body>
+     return path; 
+    }
+    document.write("<base href='" + getBaseHref() + "' >");
+  </script>
 </html>
