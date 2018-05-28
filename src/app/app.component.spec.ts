@@ -1,6 +1,7 @@
-import {async, TestBed} from '@angular/core/testing';
-import {AppComponent} from './app.component';
-import {BlueriqTestingModule} from '@blueriq/angular/testing';
+import { async, TestBed } from '@angular/core/testing';
+import { BlueriqTestingModule } from '@blueriq/angular/testing';
+import { AppComponent } from './app.component';
+import { MaterialModule } from './blueriq/material/material/material.module';
 
 describe('AppComponent', () => {
 
@@ -10,7 +11,8 @@ describe('AppComponent', () => {
         AppComponent
       ],
       imports: [
-        BlueriqTestingModule
+        BlueriqTestingModule,
+        MaterialModule
       ]
     }).compileComponents();
   }));
