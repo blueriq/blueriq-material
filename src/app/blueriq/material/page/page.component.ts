@@ -4,7 +4,7 @@ import {Page} from '@blueriq/core';
 
 @Component({
   templateUrl: './page.component.html',
-  styleUrls: ['./page.component.css']
+  styleUrls: ['./page.component.scss']
 })
 @BlueriqComponent({
   type: Page

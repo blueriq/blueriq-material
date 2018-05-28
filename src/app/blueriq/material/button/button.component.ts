@@ -5,7 +5,7 @@ import {Button} from '@blueriq/core';
 
 @Component({
   templateUrl: './button.component.html',
-  styleUrls: ['./button.component.css']
+  styleUrls: ['./button.component.scss']
 })
 
 @BlueriqComponent({
@@ -19,7 +19,7 @@ export class ButtonComponent {
   }
 
   onClick(): void {
-    if (this.button.enabled) {
+    if(this.button.enabled) {
       this.session.pressed(this.button);
     }
   }
