@@ -1,25 +1,19 @@
-import {async, TestBed} from '@angular/core/testing';
-import {AppComponent} from './app.component';
-import {BlueriqTestingModule} from '@blueriq/angular/testing';
-import {RouterModule} from '@angular/router';
-import {APP_BASE_HREF} from '@angular/common';
-import {ProjectComponent} from './blueriq/project/project.component';
+import { async, TestBed } from '@angular/core/testing';
+import { BlueriqTestingModule } from '@blueriq/angular/testing';
+import { AppComponent } from './app.component';
+import { MaterialModule } from './blueriq/material/material/material.module';
 
 describe('AppComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent,
-        ProjectComponent
+        AppComponent
       ],
       imports: [
         BlueriqTestingModule,
-        RouterModule.forRoot([]),
-      ],
-      providers: [
-        {provide: APP_BASE_HREF, useValue: '/'}
-      ],
+        MaterialModule
+      ]
     }).compileComponents();
   }));
   it('should create the app', async(() => {
