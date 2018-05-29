@@ -1,0 +1,9 @@
+<div class="field">
+  <mat-checkbox
+    [required]="field.required"
+    [checked]="field.getValue()"
+    [disabled]="isDisabled() || isReadonly()">
+    {{field.questionText}}
+  </mat-checkbox>
+
+</div>

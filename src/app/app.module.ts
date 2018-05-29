@@ -9,13 +9,13 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { AppComponent } from './app.component';
 import { ButtonComponent } from './blueriq/material/button/button.component';
-import { CheckboxComponent } from './blueriq/material/checkbox/checkbox.component';
 import { ContainerComponent } from './blueriq/material/container/container.component';
 import { FieldComponent } from './blueriq/material/field/field.component';
 import { MaterialModule } from './blueriq/material/material/material.module';
 import { PageComponent } from './blueriq/material/page/page.component';
 import { TextItemComponent } from './blueriq/material/textitem/textitem.component';
 import { ProjectComponent } from './blueriq/project/project.component';
+import { CheckboxComponent } from './blueriq/material/form-controls/checkbox/checkbox.component';
 
 const routes: Routes = [
   { path: 'session/:sessionId', component: ProjectComponent },

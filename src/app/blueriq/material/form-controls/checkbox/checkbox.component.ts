@@ -10,9 +10,18 @@ import { Field } from '@blueriq/core';
   type: Field,
   selector: '[dataType=boolean]'
 })
+
 export class CheckboxComponent {
 
   constructor(@Host() public field: Field) {
   }
+  /** Whether the checkbox has a presentation style Disabled */
+  isDisabled() {
+    return this.field.styles.has('Disabled');
+  }
 
+  /** Whether the checkbox is read only */
+  isReadonly() {
+    return this.field.readonly;
+  }
 }
