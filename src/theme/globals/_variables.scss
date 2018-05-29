@@ -1,0 +1,80 @@
+@import '~@angular/material/theming';
+
+$bq-primary: #0077e5;
+$bq-secondary: #7837d7;
+$bq-tertiary: #783b95;
+
+$bq-toolbar-background: #fff;
+
+/*
+ * Custom Material Palette need to be generated Manually.
+ *
+ * material palettes based on the colours that on hue 500 matches the most on the
+ * branding colour.
+ */
+$bq-mat-primary: (
+  50: #e0effc,
+  100: #b3d6f7,
+  200: #80bbf2,
+  300: #4da0ed,
+  400: #268be9,
+  500: $bq-primary,
+  600: #006fe2,
+  700: #0064de,
+  800: #005ada,
+  900: #0047d3,
+  A100: #fbfcff,
+  A200: #c8d7ff,
+  A400: #95b1ff,
+  A700: #7b9fff,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+$bq-mat-accent: (
+  50: #efe7fa,
+  100: #d7c3f3,
+  200: #bc9beb,
+  300: #a173e3,
+  400: #8c55dd,
+  500: $bq-secondary,
+  600: #7031d3,
+  700: #652acd,
+  800: #5b23c7,
+  900: #4816be,
+  A100: #f4f0ff,
+  A200: #cebdff,
+  A400: #a98aff,
+  A700: #9670ff,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $light-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+

@@ -20,12 +20,12 @@ if (isMaster) {
       ),
       string(
         name: 'releaseVersion',
-        defaultValue: '0.0.x',
+        defaultValue: '1.0.x',
         description: "In case of a release-build please provide the release version."
       ),
       string(
         name: 'developmentVersion',
-        defaultValue: '0.0.x-SNAPSHOT',
+        defaultValue: '1.0.x-SNAPSHOT',
         description: "In case of a release-build please provide the next development version."
       ),
     ])
