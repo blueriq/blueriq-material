@@ -8,7 +8,8 @@
     "build": "ng build",
     "deploy": "mvn clean deploy",
     "test": "ng test",
-    "lint": "ng lint",
+    "lint": "ng lint && yarn sass-lint",
+    "tslint": "ng lint",
     "sass-lint": "sass-lint --verbose --config sass-lint.yml src/**/*.scss",
     "e2e": "ng e2e"
   },
