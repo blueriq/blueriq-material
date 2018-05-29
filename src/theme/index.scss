@@ -1,9 +1,8 @@
-@import "globals/variables";
-@import "globals/basic-page-layout";
-
+@import 'globals/variables';
+@import 'globals/basic-page-layout';
 @import '~@angular/material/theming';
 
-@include mat-core();
+@include mat-core;
 
 $bq-primary-palette: mat-palette($bq-mat-primary);
 $bq-accent-palette: mat-palette($bq-mat-accent);
