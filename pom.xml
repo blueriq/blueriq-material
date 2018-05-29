@@ -16,9 +16,32 @@
   </properties>
 
   <build>
+	<plugins>
+		<plugin>
+			<artifactId>maven-resources-plugin</artifactId>
+			<version>3.1.0</version>
+			<executions>
+				<execution>
+					<id>copy-resources</id>
+					<phase>validate</phase>
+					<goals>
+						<goal>copy-resources</goal>
+					</goals>
+					<configuration>
+						<outputDirectory>${project.build.directory}/webresources/angular/material</outputDirectory>
+						<resources>
+							<resource>
+								<directory>dist/</directory>
+							</resource>
+						</resources>
+					</configuration>
+				</execution>
+			</executions>
+		</plugin>
+	</plugins>
     <resources>
       <resource>
-        <directory>dist/</directory>
+        <directory>${project.build.directory}/webresources/angular/material</directory>
         <targetPath>webresources/angular/material</targetPath>
         <includes>
           <include>**</include>
