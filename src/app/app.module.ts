@@ -16,6 +16,7 @@ import { PageComponent } from './blueriq/material/page/page.component';
 import { TextItemComponent } from './blueriq/material/textitem/textitem.component';
 import { ProjectComponent } from './blueriq/project/project.component';
 import { CheckboxComponent } from './blueriq/material/form-controls/checkbox/checkbox.component';
+import { SlideToggleComponent } from './blueriq/material/form-controls/slide-toggle/slide-toggle.component';
 
 const routes: Routes = [
   { path: 'session/:sessionId', component: ProjectComponent },
@@ -27,7 +28,8 @@ const COMPONENTS = [
   TextItemComponent,
   ButtonComponent,
   CheckboxComponent,
-  FieldComponent
+  FieldComponent,
+  SlideToggleComponent
 ];
 
 @NgModule({
@@ -43,7 +45,7 @@ const COMPONENTS = [
     EffectsModule.forRoot([]),
     BlueriqModule.forRoot(),
     V1BackendModule.forRoot({
-      baseUrl: '../server',
+      baseUrl: '/Runtime',
     }),
     BrowserAnimationsModule,
     MaterialModule,
