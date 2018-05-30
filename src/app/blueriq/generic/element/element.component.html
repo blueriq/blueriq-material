@@ -4,9 +4,10 @@
   <div class="col1">
     <ng-content>
     </ng-content>
-    <div *ngIf="hasMessages()">
-      <i class="material-icons">warning</i>
-      <p class="warningtext" *ngFor="let msg of getMessages()">{{ msg.text }}</p></span>
+    <i class="material-icons" *ngIf="hasMessages()">warning</i>
+    <mat-error *ngFor="let msg of getMessages()">
+      {{ msg.text }}
+    </mat-error>
   </div>
 
   <div class="col2">
