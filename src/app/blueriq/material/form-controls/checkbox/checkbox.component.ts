@@ -6,6 +6,7 @@ import { Field } from '@blueriq/core';
   selector: 'app-checkbox',
   templateUrl: './checkbox.component.html'
 })
+
 @BlueriqComponent({
   type: Field,
   selector: '[dataType=boolean]'
