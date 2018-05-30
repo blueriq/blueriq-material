@@ -28,8 +28,7 @@ const COMPONENTS = [
   TextItemComponent,
   ButtonComponent,
   CheckboxComponent,
-  FieldComponent,
-  SlideToggleComponent
+  FieldComponent
 ];
 
 @NgModule({
