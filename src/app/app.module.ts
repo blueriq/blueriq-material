@@ -8,7 +8,7 @@ import {V1BackendModule} from '@blueriq/angular/backend/v1';
 import {EffectsModule} from '@ngrx/effects';
 import {StoreModule} from '@ngrx/store';
 import {AppComponent} from './app.component';
-import {ButtonComponent} from './blueriq/material/button/button.component';
+import {ButtonComponent} from './blueriq/material/form-controls/button/button.component';
 import {CheckboxComponent} from './blueriq/material/form-controls/checkbox/checkbox.component';
 import {ContainerComponent} from './blueriq/material/container/container.component';
 import {FieldComponent} from './blueriq/material/field/field.component';
