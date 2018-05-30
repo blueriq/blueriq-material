@@ -1,7 +1,9 @@
-import { async, TestBed } from '@angular/core/testing';
-import { BlueriqTestingModule } from '@blueriq/angular/testing';
-import { AppComponent } from './app.component';
-import { MaterialModule } from './blueriq/material/material/material.module';
+import {async, TestBed} from '@angular/core/testing';
+import {BlueriqTestingModule} from '@blueriq/angular/testing';
+import {AppComponent} from './app.component';
+import {MaterialModule} from './blueriq/material/material/material.module';
+import {RouterModule} from '@angular/router';
+import {APP_BASE_HREF} from '@angular/common';
 
 describe('AppComponent', () => {
 
@@ -12,7 +14,11 @@ describe('AppComponent', () => {
       ],
       imports: [
         BlueriqTestingModule,
-        MaterialModule
+        MaterialModule,
+        RouterModule.forRoot([])
+      ],
+      providers: [
+        {provide: APP_BASE_HREF, useValue: '/'}
       ]
     }).compileComponents();
   }));
