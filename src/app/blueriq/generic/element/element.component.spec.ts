@@ -1,25 +1,69 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
 
 import {ElementComponent} from './element.component';
+import {BlueriqSessionTemplate, BlueriqTestingModule} from '@blueriq/angular/testing';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MaterialModule} from '../../material/material/material.module';
+import {FieldComponent} from '../../material/field/field.component';
+import {FieldTemplate} from '@blueriq/core/testing';
+import {BlueriqComponents, BlueriqModule} from '@blueriq/angular';
+import {FormsModule} from '@angular/forms';
 
 describe('ElementComponent', () => {
-  let component: ElementComponent;
-  let fixture: ComponentFixture<ElementComponent>;
+
+  const field = FieldTemplate.text();
+  let session;
+  let component;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ElementComponent ]
-    })
-    .compileComponents();
+      declarations: [FieldComponent, ElementComponent],
+      providers: [BlueriqComponents.register([FieldComponent])],
+      imports: [
+        MaterialModule,
+        BrowserAnimationsModule, // or NoopAnimationsModule
+        BlueriqModule.forRoot(),
+        BlueriqTestingModule,
+        FormsModule
+      ]
+    });
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ElementComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach( () => {
+    // Create a ElementComponent  based on a fieldComponent.
+    // FieldComponent is used, but any component that has a field should work
+    session = BlueriqSessionTemplate.create().build(field);
+    component = session.get(FieldComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should contain the FieldComponent', () => {
+    let selectedElement = component.nativeElement.querySelector('.col1').querySelector('.mat-form-field');
+    expect(selectedElement).toBeTruthy();
   });
+
+  it('should display explainText, if any', () => {
+    let selectedElement = component.nativeElement.querySelector('.col2').querySelector('span').innerHTML;
+    expect(selectedElement).not.toContain('some explain text');
+
+    session.update(
+      field.explainText('some explain text')
+    );
+
+    selectedElement = component.nativeElement.querySelector('.col2').querySelector('span').innerHTML;;
+    expect(selectedElement).toContain('some explain text');
+
+  });
+
+  it('should display messages, if any', () => {
+    session.update(
+      field.error('wrong IBAN'), field.error('wrong length'), field.warning('Some warning')
+    );
+
+    let selectedElements = component.nativeElement.querySelector('.col1').querySelectorAll('mat-error');
+    expect(selectedElements.length).toBe(3);
+    expect(selectedElements[0].innerHTML).toContain('wrong IBAN');
+    expect(selectedElements[1].innerHTML).toContain('wrong length');
+    expect(selectedElements[2].innerHTML).toContain('Some warning');
+  });
+
 });
