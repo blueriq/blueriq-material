@@ -16,6 +16,8 @@ import {MaterialModule} from './blueriq/material/material/material.module';
 import {PageComponent} from './blueriq/material/page/page.component';
 import {TextItemComponent} from './blueriq/material/textitem/textitem.component';
 import { FieldCharacteristicsComponent } from './blueriq/common/field-characteristics/field-characteristics.component';
+import {ElementComponent} from './blueriq/generic/element/element.component';
+import {BlueriqFormsModule} from '@blueriq/angular/forms';
 
 const BQ_COMPONENTS = [
   PageComponent,
@@ -26,7 +28,8 @@ const BQ_COMPONENTS = [
 ];
 
 const BQ_MAT_COMPONENTS = [
-  FieldCharacteristicsComponent
+  FieldCharacteristicsComponent,
+  ElementComponent
 ];
 
 @NgModule({
@@ -45,6 +48,7 @@ const BQ_MAT_COMPONENTS = [
       baseUrl: '/Runtime',
     }),
     BrowserAnimationsModule,
+    BlueriqFormsModule.forRoot(),
     MaterialModule,
     FormsModule,
     ReactiveFormsModule

@@ -1,0 +1,20 @@
+
+<div class="flex-grid-thirds">
+
+  <div class="col1">
+    <ng-content>
+    </ng-content>
+    <div *ngIf="hasMessages()">
+      <i class="material-icons">warning</i>
+      <p class="warningtext" *ngFor="let msg of getMessages()">{{ msg.text }}</p></span>
+  </div>
+
+  <div class="col2">
+    <span class="explainicon">
+      <ng-container *ngIf="field.explainText">
+        <i class="material-icons" matTooltip="{{field.explainText}}">info</i>
+      </ng-container>
+    </span>
+  </div>
+
+</div>

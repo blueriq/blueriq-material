@@ -1,11 +1,10 @@
-<div class="field">
-	<mat-form-field> 
-	    <input matInput placeholder= {{field.questionText}}
-	           type="text"
-	           [id]="field.key"
-	           [required]="field.required"
-	           value={{field.getValue()}}
-	    >
-	<bq-mat-field-characteristics [field]="field"></bq-mat-field-characteristics>
-	</mat-form-field>
-</div>
+<element [field]="field">
+  <mat-form-field>
+    <input matInput placeholder={{field.questionText}}
+           type="text"
+           [id]="field.key"
+           [required]="field.required"
+           [formControl]="formControl"
+           value={{field.getValue()}}>
+  </mat-form-field>
+</element>
