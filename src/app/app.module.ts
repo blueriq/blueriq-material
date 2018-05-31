@@ -43,7 +43,7 @@ const BQ_MAT_COMPONENTS = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes,),
+    RouterModule.forRoot(routes),
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     BlueriqModule.forRoot(),

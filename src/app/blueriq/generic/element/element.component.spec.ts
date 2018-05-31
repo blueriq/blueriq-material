@@ -37,7 +37,7 @@ describe('ElementComponent', () => {
   });
 
   it('should contain the FieldComponent', () => {
-    let selectedElement = component.nativeElement.querySelector('.col1').querySelector('.mat-form-field');
+    const selectedElement = component.nativeElement.querySelector('.col1').querySelector('.mat-form-field');
     expect(selectedElement).toBeTruthy();
   });
 
@@ -58,7 +58,7 @@ describe('ElementComponent', () => {
       field.error('wrong IBAN'), field.error('wrong length'), field.warning('Some warning')
     );
 
-    let selectedElements = component.nativeElement.querySelector('.col1').querySelectorAll('mat-error');
+    const selectedElements = component.nativeElement.querySelector('.col1').querySelectorAll('mat-error');
     expect(selectedElements.length).toBe(3);
     expect(selectedElements[0].innerHTML).toContain('wrong IBAN');
     expect(selectedElements[1].innerHTML).toContain('wrong length');
