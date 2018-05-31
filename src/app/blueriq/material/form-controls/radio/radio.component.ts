@@ -1,6 +1,6 @@
 import {Component, Host} from '@angular/core';
-import {BlueriqComponent} from "@blueriq/angular";
-import {Field} from "@blueriq/core";
+import {BlueriqComponent} from '@blueriq/angular';
+import {Field} from '@blueriq/core';
 
 @Component({
   selector: 'app-radio',
@@ -9,7 +9,7 @@ import {Field} from "@blueriq/core";
 })
 @BlueriqComponent({
   type: Field,
-  selector: '[hasDomain]'
+  selector: '.radio[hasDomain]'
 })
 export class RadioComponent {
 
@@ -31,7 +31,10 @@ export class RadioComponent {
    * @returns {string} denoting the direction in which the buttons are presented
    */
   determineDirection(): string {
-    if (this.field.styles.has('horizontal') || this.field.domain.options.length <= 2) {
+    if (this.field.styles.has('vertical')) {
+      return 'vertical';
+    }
+    if (this.field.styles.has('horizontal') || this.field.domain.options.length === 2) {
       return 'horizontal';
     }
     return 'vertical';
