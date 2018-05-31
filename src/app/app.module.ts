@@ -16,7 +16,8 @@ import {MaterialModule} from './blueriq/material/material/material.module';
 import {PageComponent} from './blueriq/material/page/page.component';
 import {TextItemComponent} from './blueriq/material/textitem/textitem.component';
 import {ProjectComponent} from './blueriq/project/project.component';
-import { SlideToggleComponent } from './blueriq/material/form-controls/slide-toggle/slide-toggle.component';
+import {RadioComponent} from './blueriq/material/form-controls/radio/radio.component';
+import {SlideToggleComponent} from './blueriq/material/form-controls/slide-toggle/slide-toggle.component';
 
 const routes: Routes = isDevMode() ?
   [{path: '**', component: ProjectComponent}] :
@@ -29,6 +30,7 @@ const COMPONENTS = [
   ButtonComponent,
   CheckboxComponent,
   FieldComponent,
+  RadioComponent,
   SlideToggleComponent
 ];
 
@@ -40,7 +42,7 @@ const COMPONENTS = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes,),
+    RouterModule.forRoot(routes),
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     BlueriqModule.forRoot(),
