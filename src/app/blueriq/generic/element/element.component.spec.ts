@@ -1,13 +1,13 @@
 import { async, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
+import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
+import { FieldTemplate } from '@blueriq/core/testing';
+import { FieldComponent } from '../../material/field/field.component';
+import { MaterialModule } from '../../material/material/material.module';
 
-import {ElementComponent} from './element.component';
-import {BlueriqSessionTemplate, BlueriqTestingModule} from '@blueriq/angular/testing';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MaterialModule} from '../../material/material/material.module';
-import {FieldComponent} from '../../material/field/field.component';
-import {FieldTemplate} from '@blueriq/core/testing';
-import {BlueriqComponents, BlueriqModule} from '@blueriq/angular';
-import {FormsModule} from '@angular/forms';
+import { ElementComponent } from './element.component';
 
 describe('ElementComponent', () => {
 
@@ -29,7 +29,7 @@ describe('ElementComponent', () => {
     });
   }));
 
-  beforeEach( () => {
+  beforeEach(() => {
     // Create a ElementComponent  based on a fieldComponent.
     // FieldComponent is used, but any component that has a field should work
     session = BlueriqSessionTemplate.create().build(field);
@@ -42,14 +42,13 @@ describe('ElementComponent', () => {
   });
 
   it('should display explainText, if any', () => {
-    let selectedElement = component.nativeElement.querySelector('.col2').querySelector('span').innerHTML;
+    let selectedElement = component.nativeElement.querySelector('.col2').innerHTML;
     expect(selectedElement).not.toContain('some explain text');
 
     session.update(
       field.explainText('some explain text')
     );
-
-    selectedElement = component.nativeElement.querySelector('.col2').querySelector('span').innerHTML;;
+    selectedElement = component.nativeElement.querySelector('.col2').innerHTML;
     expect(selectedElement).toContain('some explain text');
 
   });
