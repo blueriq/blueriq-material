@@ -1,6 +1,6 @@
-import {Component, Host} from '@angular/core';
-import {BlueriqComponent } from '@blueriq/angular';
-import {TextItem} from '@blueriq/core';
+import { Component, Host } from '@angular/core';
+import { BlueriqComponent } from '@blueriq/angular';
+import { TextItem } from '@blueriq/core';
 
 @Component({
   selector: 'app-textitem',
@@ -15,7 +15,6 @@ import {TextItem} from '@blueriq/core';
 export class TextItemComponent {
 
   constructor(@Host() public textItem: TextItem) {
-
   }
 
 }
