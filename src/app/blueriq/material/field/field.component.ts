@@ -17,8 +17,5 @@ export class FieldComponent {
 
   formControl = this.form.control(this.field, {updateOn: 'blur'});
 
-  constructor(@Host() public field: Field, private form: BlueriqFormBuilder) {
-    console.log(field);
-  }
-
+  constructor(@Host() public field: Field, private form: BlueriqFormBuilder) { }
 }
