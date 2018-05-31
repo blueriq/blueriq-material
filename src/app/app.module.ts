@@ -19,7 +19,7 @@ import { TextItemComponent } from './blueriq/material/textitem/textitem.componen
 import { ProjectComponent } from './blueriq/project/project.component';
 
 const routes: Routes = [
-  {path: 'session/:sessionId', component: ProjectComponent},
+  {path: 'session/:sessionId', component: ProjectComponent}
 ];
 
 const BQ_COMPONENTS = [
@@ -27,7 +27,7 @@ const BQ_COMPONENTS = [
   ContainerComponent,
   TextItemComponent,
   ButtonComponent,
-  FieldComponent,
+  FieldComponent
 ];
 
 const BQ_MAT_COMPONENTS = [
@@ -48,7 +48,7 @@ const BQ_MAT_COMPONENTS = [
     EffectsModule.forRoot([]),
     BlueriqModule.forRoot(),
     V1BackendModule.forRoot({
-      baseUrl: '/Runtime',
+      baseUrl: '../server',
     }),
     BrowserAnimationsModule,
     BlueriqFormsModule.forRoot(),
