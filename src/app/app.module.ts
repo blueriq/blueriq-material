@@ -5,9 +5,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
 import { V1BackendModule } from '@blueriq/angular/backend/v1';
+import { BlueriqFormsModule } from '@blueriq/angular/forms';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { AppComponent } from './app.component';
+import { ElementComponent } from './blueriq/generic/element/element.component';
 import { ButtonComponent } from './blueriq/material/button/button.component';
 import { ContainerComponent } from './blueriq/material/container/container.component';
 import { FieldComponent } from './blueriq/material/field/field.component';
@@ -20,7 +22,7 @@ const routes: Routes = [
   {path: 'session/:sessionId', component: ProjectComponent},
 ];
 
-const COMPONENTS = [
+const BQ_COMPONENTS = [
   PageComponent,
   ContainerComponent,
   TextItemComponent,
@@ -28,11 +30,16 @@ const COMPONENTS = [
   FieldComponent,
 ];
 
+const BQ_MAT_COMPONENTS = [
+  ElementComponent
+];
+
 @NgModule({
   declarations: [
     AppComponent,
     ProjectComponent,
-    COMPONENTS
+    BQ_COMPONENTS,
+    BQ_MAT_COMPONENTS
   ],
   imports: [
     BrowserModule,
@@ -41,15 +48,16 @@ const COMPONENTS = [
     EffectsModule.forRoot([]),
     BlueriqModule.forRoot(),
     V1BackendModule.forRoot({
-      baseUrl: '../server',
+      baseUrl: '/Runtime',
     }),
     BrowserAnimationsModule,
+    BlueriqFormsModule.forRoot(),
     MaterialModule,
     FormsModule,
     ReactiveFormsModule
   ],
   providers: [
-    BlueriqComponents.register(COMPONENTS)
+    BlueriqComponents.register(BQ_COMPONENTS)
   ],
   bootstrap: [AppComponent]
 })
