@@ -8,9 +8,9 @@ import { V1BackendModule } from '@blueriq/angular/backend/v1';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { AppComponent } from './app.component';
-import { ButtonComponent } from './blueriq/material/button/button.component';
 import { ContainerComponent } from './blueriq/material/container/container.component';
 import { FieldComponent } from './blueriq/material/field/field.component';
+import { ButtonComponent } from './blueriq/material/form-controls/button/button.component';
 import { CheckboxComponent } from './blueriq/material/form-controls/checkbox/checkbox.component';
 import { RadioComponent } from './blueriq/material/form-controls/radio/radio.component';
 import { SlideToggleComponent } from './blueriq/material/form-controls/slide-toggle/slide-toggle.component';
@@ -31,14 +31,14 @@ const COMPONENTS = [
   CheckboxComponent,
   FieldComponent,
   RadioComponent,
-  SlideToggleComponent,
+  SlideToggleComponent
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     ProjectComponent,
-    COMPONENTS,
+    COMPONENTS
   ],
   imports: [
     BrowserModule,
@@ -47,17 +47,17 @@ const COMPONENTS = [
     EffectsModule.forRoot([]),
     BlueriqModule.forRoot(),
     V1BackendModule.forRoot({
-      baseUrl: isDevMode ? '/Runtime' : '../server',
+      baseUrl: isDevMode ? '/Runtime' : '../server'
     }),
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   providers: [
-    BlueriqComponents.register(COMPONENTS),
+    BlueriqComponents.register(COMPONENTS)
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 
 export class AppModule {
