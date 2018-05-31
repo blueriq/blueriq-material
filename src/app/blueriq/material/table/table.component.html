@@ -1,0 +1,26 @@
+
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+
+
+<!--matSortDirection="desc"-->
+<mat-table [dataSource]="table.rows$" matSort >
+
+  <ng-container *ngFor="let column of table.columns$ | async" [matColumnDef]="column.name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      <ng-container [bqElement]="column.header"></ng-container>
+    </mat-header-cell>
+
+    <mat-cell *matCellDef="let row">
+      <span>Klaas de kaasbaas</span>
+      <!--<ng-container [bqElement]="row.cellFor(column).element"></ng-container>-->
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="table.columnNames$ | async"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: table.columnNames$ | async"></mat-row>
+
+</mat-table>
+
+<mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>

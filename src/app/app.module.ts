@@ -15,9 +15,11 @@ import {FieldComponent} from './blueriq/material/field/field.component';
 import {MaterialModule} from './blueriq/material/material/material.module';
 import {PageComponent} from './blueriq/material/page/page.component';
 import {TextItemComponent} from './blueriq/material/textitem/textitem.component';
+import {TableComponent} from './blueriq/material/table/table.component';
 
 const routes: Routes = [
   { path: 'session/:sessionId', component: ProjectComponent },
+  { path: '**', component: ProjectComponent }
 ];
 
 const COMPONENTS = [
@@ -26,6 +28,7 @@ const COMPONENTS = [
   TextItemComponent,
   ButtonComponent,
   FieldComponent,
+  TableComponent,
 ];
 
 @NgModule({
