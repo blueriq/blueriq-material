@@ -1,11 +1,11 @@
-import {async, TestBed} from '@angular/core/testing';
-import {CheckboxComponent} from './checkbox.component';
-import {BlueriqComponents, BlueriqModule} from '@blueriq/angular';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MaterialModule} from '../../material/material.module';
-import {FormsModule} from '@angular/forms';
-import {BlueriqSessionTemplate, BlueriqTestingModule} from '@blueriq/angular/testing';
-import {FieldTemplate} from '@blueriq/core/testing';
+import { async, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
+import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
+import { FieldTemplate } from '@blueriq/core/testing';
+import { MaterialModule } from '../../material/material.module';
+import { CheckboxComponent } from './checkbox.component';
 
 describe('CheckboxComponent', () => {
   const field = FieldTemplate.boolean();

@@ -1,6 +1,6 @@
 import { Component, Host } from '@angular/core';
-import {Field} from '@blueriq/core';
-import {BlueriqComponent} from '@blueriq/angular';
+import { BlueriqComponent } from '@blueriq/angular';
+import { Field } from '@blueriq/core';
 
 @Component({
   selector: 'app-slide-toggle',

@@ -1,10 +1,10 @@
-import {async, TestBed} from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
+import { BlueriqComponents } from '@blueriq/angular';
+import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
+import { FieldTemplate } from '@blueriq/core/testing';
+import { MaterialModule } from '../../material/material.module';
 
-import {RadioComponent} from './radio.component';
-import {FieldTemplate} from '@blueriq/core/testing';
-import {BlueriqComponents} from '@blueriq/angular';
-import {BlueriqSessionTemplate, BlueriqTestingModule} from '@blueriq/angular/testing';
-import {MaterialModule} from '../../material/material.module';
+import { RadioComponent } from './radio.component';
 
 describe('RadioComponent', () => {
   const field = FieldTemplate.text('muppets').domain({
@@ -21,7 +21,7 @@ describe('RadioComponent', () => {
       providers: [BlueriqComponents.register([RadioComponent])],
       imports: [
         MaterialModule,
-        BlueriqTestingModule,
+        BlueriqTestingModule
       ]
     });
   }));
@@ -94,7 +94,7 @@ describe('RadioComponent', () => {
   });
 
   it('default direction is `horizontal` when there are exactly 2 radio buttons', () => {
-    const two_options = FieldTemplate.text('two_options').domain({1: 'One', 2: 'Two'}).styles('radio');
+    const two_options = FieldTemplate.text('two_options').domain({ 1: 'One', 2: 'Two' }).styles('radio');
     session = BlueriqSessionTemplate.create().build(two_options);
     component = session.get(RadioComponent);
     let inputField = component.nativeElement.querySelector('.horizontal');

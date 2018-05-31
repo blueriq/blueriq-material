@@ -1,6 +1,6 @@
-import {Component, Host} from '@angular/core';
-import {BlueriqComponent} from '@blueriq/angular';
-import {Field} from '@blueriq/core';
+import { Component, Host } from '@angular/core';
+import { BlueriqComponent } from '@blueriq/angular';
+import { Field } from '@blueriq/core';
 
 @Component({
   selector: 'app-radio',

@@ -1,14 +1,11 @@
 <div class="field">
-  <div class="questionText">
+  <div class="question-text">
     {{field.questionText}}
   </div>
-  <div class="fieldInput">
+  <div class="field-input">
     <mat-radio-group [disabled]="isDisabled()" [value]="field.getValue()" *ngIf="!isReadonly()">
       <div [class]="determineDirection()">
-        <mat-radio-button
-          *ngFor="let option of field.domain.options"
-          [value]="option.value"
-        >
+        <mat-radio-button *ngFor="let option of field.domain.options" [value]="option.value">
           {{option.displayValue}}
         </mat-radio-button>
       </div>
