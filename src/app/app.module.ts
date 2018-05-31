@@ -16,6 +16,7 @@ import {MaterialModule} from './blueriq/material/material/material.module';
 import {PageComponent} from './blueriq/material/page/page.component';
 import {TextItemComponent} from './blueriq/material/textitem/textitem.component';
 import {ProjectComponent} from './blueriq/project/project.component';
+import {RadioComponent} from './blueriq/material/form-controls/radio/radio.component';
 
 const routes: Routes = isDevMode() ?
   [{path: '**', component: ProjectComponent}] :
@@ -27,7 +28,8 @@ const COMPONENTS = [
   TextItemComponent,
   ButtonComponent,
   CheckboxComponent,
-  FieldComponent
+  FieldComponent,
+  RadioComponent
 ];
 
 @NgModule({
@@ -38,7 +40,7 @@ const COMPONENTS = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes,),
+    RouterModule.forRoot(routes),
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     BlueriqModule.forRoot(),
