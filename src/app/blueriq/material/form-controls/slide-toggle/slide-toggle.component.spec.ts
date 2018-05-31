@@ -1,4 +1,3 @@
-///<reference path="../../../../../../node_modules/@types/jasminewd2/index.d.ts"/>
 import { async, TestBed } from '@angular/core/testing';
 import { SlideToggleComponent } from './slide-toggle.component';
 import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';

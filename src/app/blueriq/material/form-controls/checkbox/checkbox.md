@@ -39,3 +39,7 @@ The color of a <mat-checkbox> can be changed by using the color property. By def
 The `<mat-checkbox>` uses an internal `<input type="checkbox">` to provide an accessible experience. This internal checkbox receives focus and is automatically labelled by the text content of the `<mat-checkbox>` element.
 
 Checkboxes without text or labels should be given a meaningful label via aria-label or aria-labelledby.
+
+###Presentation styles Blueriq
+If the presentation style `toggle` is used, the component is showed as a slide-toggle
+If the presentation style `Disabled` is used, te component is grayed out.
