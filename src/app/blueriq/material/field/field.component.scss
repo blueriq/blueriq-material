@@ -1,4 +1,23 @@
-
-.mat-form-field {
-  display: block;
+.field {
+  display: grid;
+  font-family: sans-serif;
 }
+
+.label {
+  font-style: oblique;
+  grid-row: 1;
+}
+
+input {
+  .mat-input-element {
+    width: 50%;
+    grid-row: 2;
+  }
+}
+
+.mat-input-underline {
+  .mat-form-field-underline {
+    width: 50%;
+  }
+}
+
