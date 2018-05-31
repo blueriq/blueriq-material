@@ -49,7 +49,7 @@ const COMPONENTS = [
     ReactiveFormsModule
   ],
   providers: [
-    BlueriqComponents.register(COMPONENTS),
+    BlueriqComponents.register(COMPONENTS)
   ],
   bootstrap: [AppComponent]
 })
