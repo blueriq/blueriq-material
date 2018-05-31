@@ -5,6 +5,7 @@ import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../../material/material.module';
+import { PresentationStyles } from '../../presentationstyles/presentationstyles';
 import { SlideToggleComponent } from './slide-toggle.component';
 
 describe('SlideToggleComponent', () => {
@@ -27,7 +28,7 @@ describe('SlideToggleComponent', () => {
   }));
 
   beforeEach(() => {
-    field.styles('toggle');
+    field.styles(PresentationStyles.TOGGLE);
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(SlideToggleComponent);
   });
@@ -51,7 +52,7 @@ describe('SlideToggleComponent', () => {
   });
 
   it('should be disabled', () => {
-    field.styles('toggle', 'Disabled');
+    field.styles(PresentationStyles.TOGGLE, PresentationStyles.DISABLED);
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(SlideToggleComponent);
 

@@ -1,6 +1,7 @@
 import { Component, Host } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { Field } from '@blueriq/core';
+import { PresentationStyles } from '../../presentationstyles/presentationstyles';
 
 @Component({
   selector: 'app-slide-toggle',
@@ -10,8 +11,7 @@ import { Field } from '@blueriq/core';
 
 @BlueriqComponent({
   type: Field,
-  /** With .toggle we look if there is a match with the presentation style toggle*/
-  selector: '.toggle[dataType=boolean]'
+  selector: '.' + PresentationStyles.TOGGLE + '[dataType=boolean]'
 })
 
 export class SlideToggleComponent {
@@ -19,7 +19,7 @@ export class SlideToggleComponent {
   constructor(@Host() public field: Field) {
   }
 
-  /** Whether the slide toggle has a presentation style Disabled */
+  /** Whether the slide toggle has a presentation style {@link PresentationStyles.DISABLED} */
   isDisabled() {
     return this.field.styles.has('Disabled');
   }

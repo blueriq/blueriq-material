@@ -16,6 +16,7 @@ import { RadioComponent } from './blueriq/material/form-controls/radio/radio.com
 import { SlideToggleComponent } from './blueriq/material/form-controls/slide-toggle/slide-toggle.component';
 import { MaterialModule } from './blueriq/material/material/material.module';
 import { PageComponent } from './blueriq/material/page/page.component';
+import { PresentationStyles } from './blueriq/material/presentationstyles/presentationstyles';
 import { TextItemComponent } from './blueriq/material/textitem/textitem.component';
 import { ProjectComponent } from './blueriq/project/project.component';
 
@@ -55,7 +56,8 @@ const COMPONENTS = [
     ReactiveFormsModule
   ],
   providers: [
-    BlueriqComponents.register(COMPONENTS)
+    BlueriqComponents.register(COMPONENTS),
+    PresentationStyles
   ],
   bootstrap: [AppComponent]
 })

@@ -3,6 +3,7 @@ import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../../material/material.module';
+import { PresentationStyles } from '../../presentationstyles/presentationstyles';
 
 import { RadioComponent } from './radio.component';
 
@@ -28,7 +29,7 @@ describe('RadioComponent', () => {
 
   beforeEach(() => {
     // reset field to default
-    field.styles('radio').readonly(false).value(null);
+    field.styles(PresentationStyles.RADIO).readonly(false).value(null);
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(RadioComponent);
   });
@@ -53,7 +54,7 @@ describe('RadioComponent', () => {
     expect(inputField).toBeFalsy('by default nothing is disabled');
 
     session.update(
-      field.styles('radio', 'Disabled')
+      field.styles(PresentationStyles.RADIO, PresentationStyles.DISABLED)
     );
     inputField = component.nativeElement.querySelector('input[type=radio]').hasAttribute('disabled');
     expect(inputField).toBeTruthy();
@@ -86,7 +87,7 @@ describe('RadioComponent', () => {
 
     // override default with presentation style
     session.update(
-      field.styles('radio', 'horizontal')
+      field.styles(PresentationStyles.RADIO, PresentationStyles.HORIZONTAL)
     );
     inputField = component.nativeElement.querySelector('.horizontal');
     expect(inputField).toBeTruthy('settings presentation style `horizontal` overrides default behaviour');
@@ -94,7 +95,10 @@ describe('RadioComponent', () => {
   });
 
   it('default direction is `horizontal` when there are exactly 2 radio buttons', () => {
-    const two_options = FieldTemplate.text('two_options').domain({ 1: 'One', 2: 'Two' }).styles('radio');
+    const two_options = FieldTemplate.text('two_options').domain({
+      1: 'One',
+      2: 'Two'
+    }).styles(PresentationStyles.RADIO);
     session = BlueriqSessionTemplate.create().build(two_options);
     component = session.get(RadioComponent);
     let inputField = component.nativeElement.querySelector('.horizontal');
@@ -102,7 +106,7 @@ describe('RadioComponent', () => {
 
     // override default with presentation style
     session.update(
-      two_options.styles('radio', 'vertical')
+      two_options.styles(PresentationStyles.RADIO, PresentationStyles.VERTICAL)
     );
     inputField = component.nativeElement.querySelector('.vertical');
     expect(inputField).toBeTruthy('setting presentation style `vertical` overrides default behaviour');

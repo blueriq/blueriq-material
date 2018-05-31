@@ -5,6 +5,7 @@ import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../../material/material.module';
+import { PresentationStyles } from '../../presentationstyles/presentationstyles';
 import { CheckboxComponent } from './checkbox.component';
 
 describe('CheckboxComponent', () => {
@@ -52,7 +53,7 @@ describe('CheckboxComponent', () => {
   });
 
   it('should be disabled', () => {
-    field.styles('Disabled');
+    field.styles(PresentationStyles.DISABLED);
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(CheckboxComponent);
 
