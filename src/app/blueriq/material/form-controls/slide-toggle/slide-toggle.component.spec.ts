@@ -1,11 +1,11 @@
-import { async, TestBed } from '@angular/core/testing';
-import { SlideToggleComponent } from './slide-toggle.component';
-import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from '../../material/material.module';
-import { FormsModule } from '@angular/forms';
-import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
-import { FieldTemplate } from '@blueriq/core/testing';
+import {async, TestBed} from '@angular/core/testing';
+import {SlideToggleComponent} from './slide-toggle.component';
+import {BlueriqComponents, BlueriqModule} from '@blueriq/angular';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MaterialModule} from '../../material/material.module';
+import {FormsModule} from '@angular/forms';
+import {BlueriqSessionTemplate, BlueriqTestingModule} from '@blueriq/angular/testing';
+import {FieldTemplate} from '@blueriq/core/testing';
 
 describe('SlideToggleComponent', () => {
   const field = FieldTemplate.boolean();
@@ -14,8 +14,8 @@ describe('SlideToggleComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SlideToggleComponent ],
-      providers: [ BlueriqComponents.register([SlideToggleComponent])],
+      declarations: [SlideToggleComponent],
+      providers: [BlueriqComponents.register([SlideToggleComponent])],
       imports: [
         MaterialModule,
         BrowserAnimationsModule, // or NoopAnimationsModule
@@ -48,14 +48,14 @@ describe('SlideToggleComponent', () => {
     );
     inputField = component.nativeElement.querySelector('.mat-checked');
     expect(inputField).toBeFalsy();
-   });
+  });
 
   it('should be disabled', () => {
     field.styles('toggle', 'Disabled');
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(SlideToggleComponent);
 
-    let inputField = component.nativeElement.querySelector('.mat-disabled');
+    const inputField = component.nativeElement.querySelector('.mat-disabled');
     expect(inputField).toBeTruthy();
 
   });

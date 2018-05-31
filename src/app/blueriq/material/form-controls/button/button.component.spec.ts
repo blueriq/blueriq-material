@@ -1,11 +1,11 @@
-import { async, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
-import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
-import { ButtonTemplate } from '@blueriq/core/testing';
-import { MaterialModule } from '../../material/material.module';
-import { ButtonComponent } from './button.component';
+import {async, TestBed} from '@angular/core/testing';
+import {FormsModule} from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {BlueriqComponents, BlueriqModule} from '@blueriq/angular';
+import {BlueriqSessionTemplate, BlueriqTestingModule} from '@blueriq/angular/testing';
+import {ButtonTemplate} from '@blueriq/core/testing';
+import {MaterialModule} from '../../material/material.module';
+import {ButtonComponent} from './button.component';
 
 describe('ButtonComponent', () => {
   const button = ButtonTemplate.create();
@@ -31,11 +31,11 @@ describe('ButtonComponent', () => {
   });
 
   it('should display the button text', () => {
-    const text: string = 'Click me!';
+    const text = 'Click me!';
     button.caption(text);
     const session = BlueriqSessionTemplate.create().build(button);
     const component = session.get(ButtonComponent);
-    let buttonText: string = component.nativeElement.querySelector('.mat-button-wrapper').textContent.trim();
+    const buttonText: string = component.nativeElement.querySelector('.mat-button-wrapper').textContent.trim();
     expect(buttonText).toBe(text);
   });
 
@@ -59,7 +59,7 @@ describe('ButtonComponent', () => {
     const session = BlueriqSessionTemplate.create().build(button);
     const component = session.get(ButtonComponent);
 
-    let classes: string = component.nativeElement.querySelector('button').getAttribute('class');
+    const classes: string = component.nativeElement.querySelector('button').getAttribute('class');
     expect(classes).not.toContain('mat-primary');
     expect(classes).not.toContain('mat-accent');
   });
@@ -69,7 +69,7 @@ describe('ButtonComponent', () => {
     const session = BlueriqSessionTemplate.create().build(button);
     const component = session.get(ButtonComponent);
 
-    let classes: string = component.nativeElement.querySelector('button').getAttribute('class');
+    const classes: string = component.nativeElement.querySelector('button').getAttribute('class');
     expect(classes).toContain('mat-primary');
     expect(classes).not.toContain('mat-accent');
   });
@@ -79,7 +79,7 @@ describe('ButtonComponent', () => {
     const session = BlueriqSessionTemplate.create().build(button);
     const component = session.get(ButtonComponent);
 
-    let classes: string = component.nativeElement.querySelector('button').getAttribute('class');
+    const classes: string = component.nativeElement.querySelector('button').getAttribute('class');
     expect(classes).toContain('mat-accent');
     expect(classes).not.toContain('mat-primary');
   });
