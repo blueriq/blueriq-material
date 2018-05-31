@@ -17,6 +17,7 @@ import {PageComponent} from './blueriq/material/page/page.component';
 import {TextItemComponent} from './blueriq/material/textitem/textitem.component';
 import {ProjectComponent} from './blueriq/project/project.component';
 import {RadioComponent} from './blueriq/material/form-controls/radio/radio.component';
+import {SlideToggleComponent} from './blueriq/material/form-controls/slide-toggle/slide-toggle.component';
 
 const routes: Routes = isDevMode() ?
   [{path: '**', component: ProjectComponent}] :
@@ -29,7 +30,8 @@ const COMPONENTS = [
   ButtonComponent,
   CheckboxComponent,
   FieldComponent,
-  RadioComponent
+  RadioComponent,
+  SlideToggleComponent
 ];
 
 @NgModule({

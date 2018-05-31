@@ -1,8 +1,8 @@
 <div class="field">
-  <mat-checkbox
+  <mat-slide-toggle
     [required]="field.required"
     [checked]="field.getValue()"
     [disabled]="isDisabled() || isReadonly()">
     {{field.questionText}}
-  </mat-checkbox>
+  </mat-slide-toggle>
 </div>
