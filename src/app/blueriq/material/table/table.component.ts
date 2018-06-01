@@ -1,6 +1,6 @@
 import {Component, OnInit, Host} from '@angular/core';
 import {BlueriqComponent } from '@blueriq/angular';
-import {Table, TableRow} from '@blueriq/angular/lists';
+import {Table} from '@blueriq/angular/lists';
 import {Container} from '@blueriq/core';
 
 @Component({

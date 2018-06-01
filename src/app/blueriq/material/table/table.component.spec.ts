@@ -1,17 +1,16 @@
 import { async, TestBed } from '@angular/core/testing';
-
-import {ElementComponent} from './element.component';
 import {BlueriqSessionTemplate, BlueriqTestingModule} from '@blueriq/angular/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from '../../material/material/material.module';
-import {FieldTemplate} from '@blueriq/core/testing';
 import {BlueriqComponents, BlueriqModule} from '@blueriq/angular';
 import {FormsModule} from '@angular/forms';
 import {TableComponent} from './table.component';
+import {Table} from "@blueriq/angular/lists";
+import {ContainerTemplate} from "@blueriq/core/testing";
 
-describe('ElementComponent', () => {
+describe('TableComponent', () => {
 
-  const field = FieldTemplate.text();
+  let table = ContainerTemplate.create();
   let session;
   let component;
 
@@ -30,14 +29,21 @@ describe('ElementComponent', () => {
   }));
 
   beforeEach( () => {
-    // Create a ElementComponent  based on a fieldComponent.
-    // FieldComponent is used, but any component that has a field should work
-    session = BlueriqSessionTemplate.create().build(field);
+    // Create a ElementComponent  based on a TableComponent.
+    table.contentStyle('table');
+    session = BlueriqSessionTemplate.create().build(table);
     component = session.get(TableComponent);
   });
 
-  it('should contain the FieldComponent', () => {
-    let selectedElement = component.nativeElement.querySelector('.col1').querySelector('.mat-form-field');
+  it('should have a filter', () => {
+
+    let selectedElement = component.nativeElement.querySelector('.mat-form-field');
+    expect(selectedElement).toBeTruthy();
+  });
+
+  fit('should have a paginator', () => {
+
+    let selectedElement = component.nativeElement.querySelector('.mat-paginator');
     expect(selectedElement).toBeTruthy();
   });
 

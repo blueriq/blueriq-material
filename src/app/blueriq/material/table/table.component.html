@@ -13,8 +13,7 @@
     </mat-header-cell>
 
     <mat-cell *matCellDef="let row">
-      <span>Klaas de kaasbaas</span>
-      <!--<ng-container [bqElement]="row.cellFor(column).element"></ng-container>-->
+      <ng-container [bqElement]="row.cellFor(column).element"></ng-container>
     </mat-cell>
   </ng-container>
 
