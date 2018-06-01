@@ -16,12 +16,14 @@ import { MaterialModule } from './blueriq/material/material/material.module';
 import { PageComponent } from './blueriq/material/page/page.component';
 import { TextItemComponent } from './blueriq/material/textitem/textitem.component';
 import { ProjectComponent } from './blueriq/project/project.component';
+import {BlueriqFormsModule} from '@blueriq/angular/forms';
+import {ElementComponent} from './blueriq/generic/element/element.component';
 
 const routes: Routes = [
   {path: 'session/:sessionId', component: ProjectComponent},
 ];
 
-const COMPONENTS = [
+const BQ_COMPONENTS = [
   PageComponent,
   ContainerComponent,
   TextItemComponent,
@@ -30,15 +32,20 @@ const COMPONENTS = [
   SelectComponent
 ];
 
+const BQ_MAT_COMPONENTS = [
+  ElementComponent
+];
+
 @NgModule({
   declarations: [
     AppComponent,
     ProjectComponent,
-    COMPONENTS
+    BQ_COMPONENTS,
+    BQ_MAT_COMPONENTS
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes,),
+    RouterModule.forRoot(routes),
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     BlueriqModule.forRoot(),
@@ -46,12 +53,13 @@ const COMPONENTS = [
       baseUrl: '../Runtime',
     }),
     BrowserAnimationsModule,
+    BlueriqFormsModule.forRoot(),
     MaterialModule,
     FormsModule,
     ReactiveFormsModule
   ],
   providers: [
-    BlueriqComponents.register(COMPONENTS),
+    BlueriqComponents.register(BQ_COMPONENTS)
   ],
   bootstrap: [AppComponent]
 })

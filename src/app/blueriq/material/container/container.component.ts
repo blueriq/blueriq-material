@@ -1,8 +1,8 @@
-import {animateChild, query, transition, trigger} from '@angular/animations';
-import {Component, Host, QueryList} from '@angular/core';
-import {BlueriqChild, BlueriqChildren, BlueriqComponent} from '@blueriq/angular';
-import {Container, Field} from '@blueriq/core';
-import {Observable} from 'rxjs/Observable';
+import { animateChild, query, transition, trigger } from '@angular/animations';
+import { Component, Host, QueryList } from '@angular/core';
+import { BlueriqChild, BlueriqChildren, BlueriqComponent } from '@blueriq/angular';
+import { Container, Field } from '@blueriq/core';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   styleUrls: ['./container.component.scss'],
