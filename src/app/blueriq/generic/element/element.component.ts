@@ -10,11 +10,11 @@ export class ElementComponent {
 
   @Input() field: Field; // can be BaseElement?
 
-  private hasMessages(): boolean {
+  hasMessages(): boolean {
     return this.field.messages.hasMessages;
   }
 
-  private getMessages(): FieldMessages {
+  getMessages(): FieldMessages {
     return this.field.messages;
   }
 }

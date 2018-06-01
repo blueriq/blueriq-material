@@ -20,8 +20,13 @@ import {BlueriqFormsModule} from '@blueriq/angular/forms';
 import {ElementComponent} from './blueriq/generic/element/element.component';
 
 const routes: Routes = [
-  {path: 'session/:sessionId', component: ProjectComponent},
+  { path: 'session/:sessionId', component: ProjectComponent },
+  { path: 'shortcut/:shortcut', component: ProjectComponent },
+  { path: 'flow/:project/:flow', component: ProjectComponent },
+  { path: '**', redirectTo: 'shortcut/default', pathMatch: 'full' },
 ];
+
+const BASE_URL = '/Runtime';
 
 const BQ_COMPONENTS = [
   PageComponent,
