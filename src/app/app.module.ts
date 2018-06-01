@@ -25,7 +25,7 @@ const routes: Routes = [
   { path: '**', redirectTo: 'shortcut/default', pathMatch: 'full' },
 ];
 
-const BASE_URL = isDevMode() ? '/Runtime' : '../server';
+const BASE_URL = '/Runtime';
 
 const BQ_COMPONENTS = [
   PageComponent,
