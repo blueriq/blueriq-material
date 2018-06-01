@@ -8,12 +8,10 @@ import { PresentationStyles } from '../../presentationstyles/presentationstyles'
   templateUrl: './slide-toggle.component.html',
   styleUrls: ['./slide-toggle.component.scss']
 })
-
 @BlueriqComponent({
   type: Field,
   selector: '.' + PresentationStyles.TOGGLE + '[dataType=boolean]'
 })
-
 export class SlideToggleComponent {
 
   constructor(@Host() public field: Field) {
@@ -21,7 +19,7 @@ export class SlideToggleComponent {
 
   /** Whether the slide toggle has a presentation style {@link PresentationStyles.DISABLED} */
   isDisabled() {
-    return this.field.styles.has('Disabled');
+    return this.field.styles.has(PresentationStyles.DISABLED);
   }
 
   /** Whether the slide toggle is read only */

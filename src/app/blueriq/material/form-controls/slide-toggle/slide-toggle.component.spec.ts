@@ -58,6 +58,6 @@ describe('SlideToggleComponent', () => {
 
     const inputField = component.nativeElement.querySelector('.mat-disabled');
     expect(inputField).toBeTruthy();
-
   });
+
 });
