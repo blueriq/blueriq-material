@@ -5,9 +5,9 @@ import { FieldTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../../material/material.module';
 import { PresentationStyles } from '../../presentationstyles/presentationstyles';
 
-import { RadioComponent } from './radio.component';
+import { RadioButtonComponent } from './radio-button.component';
 
-describe('RadioComponent', () => {
+describe('RadioButtonComponent', () => {
   const field = FieldTemplate.text('muppets').domain({
     'kermit': 'Kermit',
     'miss_piggy': 'Miss Piggy',
@@ -18,8 +18,8 @@ describe('RadioComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [RadioComponent],
-      providers: [BlueriqComponents.register([RadioComponent])],
+      declarations: [RadioButtonComponent],
+      providers: [BlueriqComponents.register([RadioButtonComponent])],
       imports: [
         MaterialModule,
         BlueriqTestingModule
@@ -31,7 +31,7 @@ describe('RadioComponent', () => {
     // reset field to default
     field.styles(PresentationStyles.RADIO).readonly(false).value(null);
     session = BlueriqSessionTemplate.create().build(field);
-    component = session.get(RadioComponent);
+    component = session.get(RadioButtonComponent);
   });
 
   it('should create', () => {
@@ -77,7 +77,7 @@ describe('RadioComponent', () => {
     field.styles();
     session = BlueriqSessionTemplate.create().build(field);
     expect(function () {
-      session.get(RadioComponent);
+      session.get(RadioButtonComponent);
     }).toThrow();
   });
 
@@ -100,7 +100,7 @@ describe('RadioComponent', () => {
       2: 'Two'
     }).styles(PresentationStyles.RADIO);
     session = BlueriqSessionTemplate.create().build(two_options);
-    component = session.get(RadioComponent);
+    component = session.get(RadioButtonComponent);
     let inputField = component.nativeElement.querySelector('.horizontal');
     expect(inputField).toBeTruthy();
 

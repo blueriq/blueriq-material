@@ -12,7 +12,7 @@ import { ContainerComponent } from './blueriq/material/container/container.compo
 import { FieldComponent } from './blueriq/material/field/field.component';
 import { ButtonComponent } from './blueriq/material/form-controls/button/button.component';
 import { CheckboxComponent } from './blueriq/material/form-controls/checkbox/checkbox.component';
-import { RadioComponent } from './blueriq/material/form-controls/radio/radio.component';
+import { RadioButtonComponent } from './blueriq/material/form-controls/radio-button/radio-button.component';
 import { SlideToggleComponent } from './blueriq/material/form-controls/slide-toggle/slide-toggle.component';
 import { MaterialModule } from './blueriq/material/material/material.module';
 import { PageComponent } from './blueriq/material/page/page.component';
@@ -31,7 +31,7 @@ const COMPONENTS = [
   ButtonComponent,
   CheckboxComponent,
   FieldComponent,
-  RadioComponent,
+  RadioButtonComponent,
   SlideToggleComponent
 ];
 
