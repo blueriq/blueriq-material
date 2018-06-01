@@ -11,6 +11,7 @@ export class ProjectComponent implements OnInit {
 
   sessionId: Observable<SessionId>;
   shortcut: Observable<string>;
+  version: Observable<string>;
   project: Observable<string>;
   flow: Observable<string>;
 

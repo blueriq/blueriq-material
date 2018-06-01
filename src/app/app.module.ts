@@ -22,9 +22,14 @@ import { PresentationStyles } from './blueriq/material/presentationstyles/presen
 import { TextItemComponent } from './blueriq/material/textitem/textitem.component';
 import { ProjectComponent } from './blueriq/project/project.component';
 
-const routes: Routes = isDevMode() ?
-  [{ path: '**', component: ProjectComponent }] :
-  [{ path: 'session/:sessionId', component: ProjectComponent }];
+const routes: Routes = [
+  { path: 'session/:sessionId', component: ProjectComponent },
+  { path: 'shortcut/:shortcut', component: ProjectComponent },
+  { path: 'flow/:project/:flow', component: ProjectComponent },
+  { path: '**', redirectTo: 'shortcut/default', pathMatch: 'full' },
+];
+
+const BASE_URL = '/Runtime';
 
 const BQ_COMPONENTS = [
   PageComponent,
@@ -55,7 +60,7 @@ const BQ_MAT_COMPONENTS = [
     EffectsModule.forRoot([]),
     BlueriqModule.forRoot(),
     V1BackendModule.forRoot({
-      baseUrl: isDevMode() ? '/Runtime' : '../server'
+      baseUrl: BASE_URL,
     }),
     BrowserAnimationsModule,
     BlueriqFormsModule.forRoot(),
