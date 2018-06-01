@@ -6,9 +6,9 @@
       var path = location.pathname;
       var indexOfApp = path.indexOf('/app/');
       if (indexOfApp > -1) {
-        path = path.substring(0, indexOfApp +'/app/'.length);
+        return path.substring(0, indexOfApp +'/app/'.length);
       }
-     return path;
+     return '/';
     }
     document.write("<base href='" + getBaseHref() + "' >");
   </script>
