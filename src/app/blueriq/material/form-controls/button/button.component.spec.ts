@@ -10,6 +10,8 @@ import { ButtonComponent } from './button.component';
 
 describe('ButtonComponent', () => {
   const button = ButtonTemplate.create();
+  let component;
+  let session;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -25,26 +27,23 @@ describe('ButtonComponent', () => {
     });
   }));
 
+  beforeEach(() => {
+    button.caption('Click me!');
+    session = BlueriqSessionTemplate.create().build(button);
+    component = session.get(ButtonComponent);
+    })
+
   it('should be created', () => {
-    const session = BlueriqSessionTemplate.create().build(button);
-    const component = session.get(ButtonComponent);
     expect(component).toBeTruthy();
   });
 
   it('should display the button text', () => {
-    const text = 'Click me!';
-    button.caption(text);
-    const session = BlueriqSessionTemplate.create().build(button);
-    const component = session.get(ButtonComponent);
     const buttonText: string = component.nativeElement.querySelector('.mat-button-wrapper').textContent.trim();
-    expect(buttonText).toBe(text);
+    expect(buttonText).toBe('Click me!');
   });
 
   it('should be disabled', () => {
-    const session = BlueriqSessionTemplate.create().build(button);
-    const component = session.get(ButtonComponent);
-
-    let disabledAttributePresent = component.nativeElement.querySelector('button').hasAttribute('disabled');
+      let disabledAttributePresent = component.nativeElement.querySelector('button').hasAttribute('disabled');
     expect(disabledAttributePresent).toBeFalsy();
 
     // Disable
@@ -57,8 +56,6 @@ describe('ButtonComponent', () => {
 
   it('should be basic colored', () => {
     button.styles();
-    const session = BlueriqSessionTemplate.create().build(button);
-    const component = session.get(ButtonComponent);
 
     const classes: string = component.nativeElement.querySelector('button').getAttribute('class');
     expect(classes).not.toContain('mat-primary');
@@ -67,8 +64,8 @@ describe('ButtonComponent', () => {
 
   it('should be primary colored', () => {
     button.styles(PresentationStyles.PRIMARY);
-    const session = BlueriqSessionTemplate.create().build(button);
-    const component = session.get(ButtonComponent);
+    session = BlueriqSessionTemplate.create().build(button);
+    component = session.get(ButtonComponent);
 
     const classes: string = component.nativeElement.querySelector('button').getAttribute('class');
     expect(classes).toContain('mat-primary');
@@ -77,8 +74,8 @@ describe('ButtonComponent', () => {
 
   it('should be accent colored', () => {
     button.styles(PresentationStyles.ACCENT);
-    const session = BlueriqSessionTemplate.create().build(button);
-    const component = session.get(ButtonComponent);
+    session = BlueriqSessionTemplate.create().build(button);
+    component = session.get(ButtonComponent);
 
     const classes: string = component.nativeElement.querySelector('button').getAttribute('class');
     expect(classes).toContain('mat-accent');
