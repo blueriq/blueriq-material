@@ -4,15 +4,15 @@ import { Field } from '@blueriq/core';
 import { PresentationStyles } from '../../presentationstyles/presentationstyles';
 
 @Component({
-  selector: 'app-radio',
-  templateUrl: './radio.component.html',
-  styleUrls: ['./radio.component.scss']
+  selector: 'app-radio-button',
+  templateUrl: './radio-button.component.html',
+  styleUrls: ['./radio-button.component.scss']
 })
 @BlueriqComponent({
   type: Field,
   selector: '.radio[hasDomain]'
 })
-export class RadioComponent {
+export class RadioButtonComponent {
 
   constructor(@Host() public field: Field) {
   }
