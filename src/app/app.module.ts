@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { isDevMode, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,8 +21,12 @@ import {TableComponent} from './blueriq/material/table/table.component';
 
 const routes: Routes = [
   { path: 'session/:sessionId', component: ProjectComponent },
-  { path: '**', component: ProjectComponent }
+  { path: 'shortcut/:shortcut', component: ProjectComponent },
+  { path: 'flow/:project/:flow', component: ProjectComponent },
+  { path: '**', redirectTo: 'shortcut/default', pathMatch: 'full' }
 ];
+
+const BASE_URL = '/Runtime';
 
 const BQ_COMPONENTS = [
   PageComponent,
@@ -51,7 +55,7 @@ const BQ_MAT_COMPONENTS = [
     EffectsModule.forRoot([]),
     BlueriqModule.forRoot(),
     V1BackendModule.forRoot({
-      baseUrl: '../server',
+      baseUrl: BASE_URL,
     }),
     BrowserAnimationsModule,
     BlueriqFormsModule.forRoot(),
