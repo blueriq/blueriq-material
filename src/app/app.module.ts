@@ -48,7 +48,7 @@ const COMPONENTS = [
     EffectsModule.forRoot([]),
     BlueriqModule.forRoot(),
     V1BackendModule.forRoot({
-      baseUrl: isDevMode ? '/Runtime' : '../server'
+      baseUrl: isDevMode() ? '/Runtime' : '../server'
     }),
     BrowserAnimationsModule,
     MaterialModule,
