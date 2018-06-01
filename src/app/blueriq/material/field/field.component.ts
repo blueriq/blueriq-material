@@ -1,5 +1,6 @@
 import { Component, Host } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
+import { BlueriqFormBuilder } from '@blueriq/angular/forms';
 import { Field } from '@blueriq/core';
 
 @Component({
@@ -13,7 +14,9 @@ import { Field } from '@blueriq/core';
 
 export class FieldComponent {
 
-  constructor(@Host() public field: Field) {
+  formControl = this.form.control(this.field, {updateOn: 'blur'});
+
+  constructor(@Host() public field: Field, private form: BlueriqFormBuilder) {
   }
 
 }
