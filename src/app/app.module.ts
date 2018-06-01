@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {isDevMode, NgModule} from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,7 +17,10 @@ import { TextItemComponent } from './blueriq/material/textitem/textitem.componen
 import { ProjectComponent } from './blueriq/project/project.component';
 
 const routes: Routes = [
-  {path: 'session/:sessionId', component: ProjectComponent},
+  { path: 'session/:sessionId', component: ProjectComponent },
+  { path: 'shortcut/:shortcut', component: ProjectComponent },
+  { path: 'flow/:project/:flow', component: ProjectComponent },
+  { path: '**', redirectTo: 'shortcut/default', pathMatch: 'full' },
 ];
 
 const COMPONENTS = [
@@ -41,7 +44,7 @@ const COMPONENTS = [
     EffectsModule.forRoot([]),
     BlueriqModule.forRoot(),
     V1BackendModule.forRoot({
-      baseUrl: '../server',
+      baseUrl: isDevMode() ? '/Runtime' : '../server',
     }),
     BrowserAnimationsModule,
     MaterialModule,
