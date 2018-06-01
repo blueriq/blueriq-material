@@ -25,6 +25,8 @@ const routes: Routes = [
   { path: '**', redirectTo: 'shortcut/default', pathMatch: 'full' },
 ];
 
+const BASE_URL = isDevMode() ? '/Runtime' : '../server';
+
 const BQ_COMPONENTS = [
   PageComponent,
   ContainerComponent,
@@ -51,7 +53,7 @@ const BQ_MAT_COMPONENTS = [
     EffectsModule.forRoot([]),
     BlueriqModule.forRoot(),
     V1BackendModule.forRoot({
-      baseUrl: isDevMode() ? '/Runtime' : '../server',
+      baseUrl: BASE_URL,
     }),
     BrowserAnimationsModule,
     BlueriqFormsModule.forRoot(),
