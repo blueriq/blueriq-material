@@ -1,8 +1,5 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
-# Specific file that should not be changed anymore
-project.component.html
-
 # compiled output
 /dist
 /dist-server

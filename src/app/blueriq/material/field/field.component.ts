@@ -1,7 +1,7 @@
-import { Component, Host } from '@angular/core';
-import { BlueriqComponent } from '@blueriq/angular';
-import { BlueriqFormBuilder } from '@blueriq/angular/forms';
-import { Field } from '@blueriq/core';
+import {Component, Host} from '@angular/core';
+import {BlueriqComponent } from '@blueriq/angular';
+import {Field} from '@blueriq/core';
+import {BlueriqFormBuilder} from '@blueriq/angular/forms';
 
 @Component({
   templateUrl: './field.component.html',
@@ -13,10 +13,9 @@ import { Field } from '@blueriq/core';
 })
 
 export class FieldComponent {
+  // formControl = this.form.control(this.field, { updateOn: 'blur' });
 
-  formControl = this.form.control(this.field, {updateOn: 'blur'});
-
-  constructor(@Host() public field: Field, private form: BlueriqFormBuilder) {
+  constructor(@Host() public field: Field/*, private form: BlueriqFormBuilder*/) {
   }
 
 }

@@ -4,7 +4,6 @@
 .mat-toolbar {
   background: $bq-toolbar-background;
   color: $bq-primary;
-
   span {
     color: $bq-secondary;
   }
@@ -14,10 +13,11 @@
 
 //temp styling for demo
 .bq-outlet {
+  max-width: 1024px;
+  background: #fff;
+  padding: 24px;
+
   @include mat-elevation(1);
 
-  max-width: 1024px;
   margin: 24px auto;
-  padding: 24px;
-  background: $bq-toolbar-background;
 }
