@@ -36,7 +36,7 @@ describe('PercentageFieldComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('should contain percentage sign', () => {
+  it('should contain percentage sign', () => {
     const suffix = component.nativeElement.querySelector('mat-form-field').innerHTML;
     expect(suffix).toContain('matsuffix');
   });
