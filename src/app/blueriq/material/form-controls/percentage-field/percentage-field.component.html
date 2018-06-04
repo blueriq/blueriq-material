@@ -1,0 +1,11 @@
+<app-element [field]="field">
+  <mat-form-field>
+    <input matInput placeholder={{field.questionText}}
+           type="percentage"
+           [id]="field.key"
+           [required]="field.required"
+           [formControl]="formControl"
+           value={{field.getValue()}}>
+    <span matSuffix>%</span>
+  </mat-form-field>
+</app-element>

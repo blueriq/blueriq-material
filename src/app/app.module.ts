@@ -11,11 +11,15 @@ import { StoreModule } from '@ngrx/store';
 import { AppComponent } from './app.component';
 import { ElementComponent } from './blueriq/generic/element/element.component';
 import { ContainerComponent } from './blueriq/material/container/container.component';
-import { FieldComponent } from './blueriq/material/field/field.component';
 import { ButtonComponent } from './blueriq/material/form-controls/button/button.component';
 import { CheckboxComponent } from './blueriq/material/form-controls/checkbox/checkbox.component';
+import { CurrencyFieldComponent } from './blueriq/material/form-controls/currency-field/currency-field.component';
+import { IntegerFieldComponent } from './blueriq/material/form-controls/integer-field/integer-field.component';
+import { NumberFieldComponent } from './blueriq/material/form-controls/number-field/number-field.component';
+import { PercentageFieldComponent } from './blueriq/material/form-controls/percentage-field/percentage-field.component';
 import { RadioButtonComponent } from './blueriq/material/form-controls/radio-button/radio-button.component';
 import { SlideToggleComponent } from './blueriq/material/form-controls/slide-toggle/slide-toggle.component';
+import { StringFieldComponent } from './blueriq/material/form-controls/string-field/string-field.component';
 import { MaterialModule } from './blueriq/material/material/material.module';
 import { PageComponent } from './blueriq/material/page/page.component';
 import { PresentationStyles } from './blueriq/material/presentationstyles/presentationstyles';
@@ -23,11 +27,11 @@ import { TextItemComponent } from './blueriq/material/textitem/textitem.componen
 import { ProjectComponent } from './blueriq/project/project.component';
 
 const routes: Routes = [
-  { path: 'session/:sessionId', component: ProjectComponent },
-  { path: 'shortcut/:shortcut', component: ProjectComponent },
-  { path: 'flow/:project/:flow', component: ProjectComponent },
-  { path: 'flow/:project/:flow/:version', component: ProjectComponent },
-  { path: '**', redirectTo: 'shortcut/default', pathMatch: 'full' },
+  {path: 'session/:sessionId', component: ProjectComponent},
+  {path: 'shortcut/:shortcut', component: ProjectComponent},
+  {path: 'flow/:project/:flow', component: ProjectComponent},
+  {path: 'flow/:project/:flow/:version', component: ProjectComponent},
+  {path: '**', redirectTo: 'shortcut/default', pathMatch: 'full'},
 ];
 
 const BASE_URL = '/Runtime';
@@ -40,7 +44,11 @@ const BQ_COMPONENTS = [
   CheckboxComponent,
   RadioButtonComponent,
   SlideToggleComponent,
-  FieldComponent
+  CurrencyFieldComponent,
+  StringFieldComponent,
+  PercentageFieldComponent,
+  IntegerFieldComponent,
+  NumberFieldComponent
 ];
 
 const BQ_MAT_COMPONENTS = [

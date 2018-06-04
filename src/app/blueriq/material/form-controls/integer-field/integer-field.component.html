@@ -1,0 +1,12 @@
+<app-element [field]="field">
+  <mat-form-field>
+    <input matInput placeholder={{field.questionText}}
+           type="number"
+           step="1"
+           no-float
+           [id]="field.key"
+           [required]="field.required"
+           [formControl]="formControl"
+           value={{field.getValue()}}>
+  </mat-form-field>
+</app-element>
