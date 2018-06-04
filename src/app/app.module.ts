@@ -22,6 +22,7 @@ const routes: Routes = [
   { path: 'session/:sessionId', component: ProjectComponent },
   { path: 'shortcut/:shortcut', component: ProjectComponent },
   { path: 'flow/:project/:flow', component: ProjectComponent },
+  { path: 'flow/:project/:flow/:version', component: ProjectComponent },
   { path: '**', redirectTo: 'shortcut/default', pathMatch: 'full' },
 ];
 
