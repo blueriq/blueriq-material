@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { FieldComponent } from '../../material/field/field.component';
+import { StringFieldComponent } from '../../material/form-controls/string-field/string-field.component';
 import { MaterialModule } from '../../material/material/material.module';
 
 import { ElementComponent } from './element.component';
@@ -17,8 +17,8 @@ describe('ElementComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [FieldComponent, ElementComponent],
-      providers: [BlueriqComponents.register([FieldComponent])],
+      declarations: [StringFieldComponent, ElementComponent],
+      providers: [BlueriqComponents.register([StringFieldComponent])],
       imports: [
         MaterialModule,
         BrowserAnimationsModule, // or NoopAnimationsModule
@@ -33,7 +33,7 @@ describe('ElementComponent', () => {
     // Create a ElementComponent  based on a fieldComponent.
     // FieldComponent is used, but any component that has a field should work
     session = BlueriqSessionTemplate.create().build(field);
-    component = session.get(FieldComponent);
+    component = session.get(StringFieldComponent);
   });
 
   it('should contain the FieldComponent', () => {
