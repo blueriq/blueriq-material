@@ -26,5 +26,12 @@ export class ProjectComponent implements OnInit {
 
   ngOnInit(): void {
     this.sessionId = this.route.paramMap.pipe(map(params => params.get('sessionId') || ''));
+    this.shortcut = this.route.paramMap.pipe(map(params => params.get('shortcut') || ''));
+
+    this.version = this.route.paramMap.pipe(map(params => params.get('version') || '0.0-Trunk'));
+    this.project = this.route.paramMap.pipe(map(params => params.get('project') || ''));
+    this.flow = this.route.paramMap.pipe(map(params => params.get('flow') || ''));
   }
 }
+
+
