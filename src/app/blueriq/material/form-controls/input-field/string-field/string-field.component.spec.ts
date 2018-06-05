@@ -4,20 +4,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { ElementComponent } from '../../../generic/element/element.component';
-import { MaterialModule } from '../../material/material.module';
+import { ElementComponent } from '../../../../generic/element/element.component';
+import { MaterialModule } from '../../../material/material.module';
 
-import { CurrencyFieldComponent } from './currency-field.component';
+import { StringFieldComponent } from './string-field.component';
 
-describe('CurrencyFieldComponent', () => {
-  const field = FieldTemplate.currency();
+describe('StringFieldComponent', () => {
+  const field = FieldTemplate.text();
   let component;
   let session;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CurrencyFieldComponent, ElementComponent],
-      providers: [BlueriqComponents.register([CurrencyFieldComponent])],
+      declarations: [StringFieldComponent, ElementComponent],
+      providers: [BlueriqComponents.register([StringFieldComponent])],
       imports: [
         MaterialModule,
         BrowserAnimationsModule, // or NoopAnimationsModule
@@ -30,10 +30,11 @@ describe('CurrencyFieldComponent', () => {
 
   beforeEach(() => {
     session = BlueriqSessionTemplate.create().build(field);
-    component = session.get(CurrencyFieldComponent);
+    component = session.get(StringFieldComponent);
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 });
+

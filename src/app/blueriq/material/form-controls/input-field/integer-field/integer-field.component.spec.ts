@@ -4,19 +4,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { ElementComponent } from '../../../generic/element/element.component';
-import { MaterialModule } from '../../material/material.module';
-import { PercentageFieldComponent } from './percentage-field.component';
+import { ElementComponent } from '../../../../generic/element/element.component';
+import { MaterialModule } from '../../../material/material.module';
+import { IntegerFieldComponent } from './integer-field.component';
 
-describe('PercentageFieldComponent', () => {
-  const field = FieldTemplate.percentage();
+describe('IntegerFieldComponent', () => {
+  const field = FieldTemplate.integer();
   let component;
   let session;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [PercentageFieldComponent, ElementComponent],
-      providers: [BlueriqComponents.register([PercentageFieldComponent])],
+      declarations: [IntegerFieldComponent, ElementComponent],
+      providers: [BlueriqComponents.register([IntegerFieldComponent])],
       imports: [
         MaterialModule,
         BrowserAnimationsModule, // or NoopAnimationsModule
@@ -29,15 +29,10 @@ describe('PercentageFieldComponent', () => {
 
   beforeEach(() => {
     session = BlueriqSessionTemplate.create().build(field);
-    component = session.get(PercentageFieldComponent);
+    component = session.get(IntegerFieldComponent);
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should contain percentage sign', () => {
-    const suffix = component.nativeElement.querySelector('mat-form-field').innerHTML;
-    expect(suffix).toContain('matsuffix');
   });
 });

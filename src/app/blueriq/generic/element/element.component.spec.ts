@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { StringFieldComponent } from '../../material/form-controls/string-field/string-field.component';
+import { StringFieldComponent } from '../../material/form-controls/input-field/string-field/string-field.component';
 import { MaterialModule } from '../../material/material/material.module';
 
 import { ElementComponent } from './element.component';

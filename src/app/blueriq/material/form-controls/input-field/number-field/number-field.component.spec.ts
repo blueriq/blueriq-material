@@ -4,19 +4,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { ElementComponent } from '../../../generic/element/element.component';
-import { MaterialModule } from '../../material/material.module';
-import { IntegerFieldComponent } from './integer-field.component';
+import { ElementComponent } from '../../../../generic/element/element.component';
+import { MaterialModule } from '../../../material/material.module';
+import { NumberFieldComponent } from './number-field.component';
 
-describe('IntegerFieldComponent', () => {
-  const field = FieldTemplate.integer();
+describe('NumberFieldComponent', () => {
+  const field = FieldTemplate.number();
   let component;
   let session;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [IntegerFieldComponent, ElementComponent],
-      providers: [BlueriqComponents.register([IntegerFieldComponent])],
+      declarations: [NumberFieldComponent, ElementComponent],
+      providers: [BlueriqComponents.register([NumberFieldComponent])],
       imports: [
         MaterialModule,
         BrowserAnimationsModule, // or NoopAnimationsModule
@@ -29,7 +29,7 @@ describe('IntegerFieldComponent', () => {
 
   beforeEach(() => {
     session = BlueriqSessionTemplate.create().build(field);
-    component = session.get(IntegerFieldComponent);
+    component = session.get(NumberFieldComponent);
   });
 
   it('should create', () => {
