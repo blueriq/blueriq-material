@@ -8,7 +8,13 @@
            value={{field.getValue()}}>
   </mat-form-field>
 
-  <p *ngIf="isReadonly()">
-    {{field.getValue()}}
-  </p>
+  <mat-form-field *ngIf="isReadonly()" appearance="outline">
+    <input matInput placeholder={{field.questionText}}
+           type="text"
+           [id]="field.key"
+           [required]="field.required"
+           [formControl]="formControl"
+           value={{field.getValue()}}>
+  </mat-form-field>
+
 </app-element>
