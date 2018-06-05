@@ -25,7 +25,7 @@ export class SelectComponent {
   }
 
   /** Whether the value is changed, the field will be updated bij selected*/
-  onValueChanged(){
+  onValueChanged() {
     this.field.setValue(this.selected);
   }
 

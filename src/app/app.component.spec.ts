@@ -3,10 +3,10 @@ import { async, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { BlueriqModule } from '@blueriq/angular';
+import { BlueriqTestingModule } from '@blueriq/angular/testing';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './blueriq/material/material/material.module';
-import { BlueriqModule } from "@blueriq/angular";
-import { BlueriqTestingModule } from "@blueriq/angular/testing";
 
 describe('AppComponent', () => {
 

@@ -1,12 +1,12 @@
 import { async, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
+import { ElementComponent } from '../../../generic/element/element.component';
 import { MaterialModule } from '../../material/material.module';
-import { SelectComponent } from "./select.component";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { FormsModule } from "@angular/forms";
-import { ElementComponent } from "../../../generic/element/element.component";
+import { SelectComponent } from './select.component';
 
 describe('SelectComponent', () => {
   const field = FieldTemplate.text('colour').domain({
@@ -39,7 +39,7 @@ describe('SelectComponent', () => {
 
   it ('should create', () => {
     expect(component).toBeTruthy();
-  })
+  });
 
   it ('should be disabled', () => {
     let inputField = component.nativeElement.querySelector('.mat-select-disabled');
@@ -68,7 +68,7 @@ describe('SelectComponent', () => {
     expect(inputField).toBe('');
 
 
-    field.value(['blue'])
+    field.value(['blue']);
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(SelectComponent);
 
@@ -81,7 +81,7 @@ describe('SelectComponent', () => {
     let inputField = component.nativeElement.querySelector('.mat-select').getAttribute('ng-reflect-value');
     expect(inputField).toBe('blue');
 
-    field.value(['blue, pink, white'])
+    field.value(['blue, pink, white']);
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(SelectComponent);
 
