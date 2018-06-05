@@ -33,7 +33,12 @@ describe('CurrencyFieldComponent', () => {
     component = session.get(CurrencyFieldComponent);
   });
 
-  it('should create', () => {
+  it('should create CurrencyFieldComponent', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should contain euro sign', () => {
+    const suffix = component.nativeElement.querySelector('mat-form-field').innerHTML;
+    expect(suffix).toContain('matprefix');
   });
 });

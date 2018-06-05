@@ -32,7 +32,7 @@ describe('PercentageFieldComponent', () => {
     component = session.get(PercentageFieldComponent);
   });
 
-  it('should create', () => {
+  it('should create PercentageFieldComponent', () => {
     expect(component).toBeTruthy();
   });
 

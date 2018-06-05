@@ -32,7 +32,24 @@ describe('IntegerFieldComponent', () => {
     component = session.get(IntegerFieldComponent);
   });
 
-  it('should create', () => {
+  it('should create IntegerFieldComponent', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should validate integer, not validate float', () => {
+    // Change
+    session.update(
+      field.value('1'),
+      field.warning('Invalid integer')
+    );
+
+    let inputField = component.nativeElement.querySelector('.mat-form-field').innerHTML;
+    expect(inputField).not.toContain('mat-error');
+
+    session.update(
+      field.value('1.2')
+    );
+    inputField = component.nativeElement.querySelector('.mat-form-field').innerHTML;
+    expect(inputField).toContain('mat-error');
   });
 });
