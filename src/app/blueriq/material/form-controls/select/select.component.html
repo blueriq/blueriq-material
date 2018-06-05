@@ -1,10 +1,11 @@
-<div class="field">
-  <mat-form-field>
-    <mat-select [placeholder]="field.questionText" [required]="field.required" [disabled]="isDisabled()" [value]="field.getValue()">
-      <mat-option *ngIf="!field.required"></mat-option>
+<app-element [field]="field">
+  <div class="field">
+   <mat-form-field>
+    <mat-select [placeholder]="field.questionText" [required]="field.required" (selectionChange)="onValueChanged()" [disabled]="isDisabled() || isReadonly()" [(value)]="selected" [multiple]="field.multiValued" ng-change="onValueChange">
       <mat-option *ngFor="let option of getOptions()" [value]="option.value">
         {{ option.displayValue }}
       </mat-option>
     </mat-select>
-  </mat-form-field>
-</div>
+   </mat-form-field>
+  </div>
+</app-element>

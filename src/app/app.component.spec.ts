@@ -5,6 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './blueriq/material/material/material.module';
+import { BlueriqModule } from "@blueriq/angular";
+import { BlueriqTestingModule } from "@blueriq/angular/testing";
 
 describe('AppComponent', () => {
 
@@ -15,6 +17,8 @@ describe('AppComponent', () => {
         MaterialModule,
         BrowserAnimationsModule, // or NoopAnimationsModule
         FormsModule,
+        BlueriqModule.forRoot(),
+        BlueriqTestingModule,
         RouterModule.forRoot([])
       ],
       providers: [
