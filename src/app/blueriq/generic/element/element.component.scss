@@ -3,10 +3,15 @@
   display: flex;
   justify-content: space-between;
 }
+
 .flex-grid-thirds .col1 {
   width: 95%;
 }
 
 .flex-grid-thirds .col2 {
   width: 5%;
+}
+
+:host ::ng-deep .mat-form-field {
+  display: block;
 }
