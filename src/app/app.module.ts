@@ -19,7 +19,8 @@ import { TextItemComponent } from './blueriq/material/textitem/textitem.componen
 import { ProjectComponent } from './blueriq/project/project.component';
 import {TableComponent} from './blueriq/material/table/table.component';
 import {TableReadonlyComponent} from './blueriq/material/table/table.readonly.component';
-import {TableSearchComponent} from './blueriq/material/table/table.search.component';
+import {TableSearchComponent} from './blueriq/material/table/search/table.search.component';
+import {PaginationComponent} from './blueriq/material/table/pagination/table.pagination.component';
 
 const routes: Routes = [
   { path: 'session/:sessionId', component: ProjectComponent },
@@ -39,7 +40,8 @@ const BQ_COMPONENTS = [
   FieldComponent,
   TableComponent,
   TableReadonlyComponent,
-  TableSearchComponent
+  TableSearchComponent,
+  PaginationComponent
 ];
 
 const BQ_MAT_COMPONENTS = [

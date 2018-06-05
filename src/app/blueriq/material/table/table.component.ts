@@ -2,7 +2,6 @@ import {Component, OnInit, Host} from '@angular/core';
 import {BlueriqComponent } from '@blueriq/angular';
 import {Table} from '@blueriq/angular/lists';
 import {Container} from '@blueriq/core';
-import {BlueriqFormBuilder} from '@blueriq/angular/forms';
 
 @Component({
   templateUrl: './table.component.html',
@@ -13,13 +12,8 @@ import {BlueriqFormBuilder} from '@blueriq/angular/forms';
   type: Container,
   selector: 'table'
 })
-export class TableComponent implements OnInit {
+export class TableComponent {
 
   constructor(@Host() public table: Table) {
   }
-
-  ngOnInit(){
-    // table.filt
-  }
-
 }

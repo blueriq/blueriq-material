@@ -11,7 +11,7 @@ import {Container} from '@blueriq/core';
 })
 @BlueriqComponent({
   type: Container,
-  selector: '[name=searchContainert]'
+  selector: '[name=searchContainer]'
 })
 export class TableSearchComponent {
   constructor(@Host() public container: Container) {}

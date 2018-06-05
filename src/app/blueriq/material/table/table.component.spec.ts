@@ -1,7 +1,7 @@
 import { async, TestBed } from '@angular/core/testing';
 import {BlueriqSessionTemplate, BlueriqTestingModule} from '@blueriq/angular/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MaterialModule} from '../../material/material/material.module';
+import {MaterialModule} from '../material/material.module';
 import {BlueriqComponents, BlueriqModule} from '@blueriq/angular';
 import {FormsModule} from '@angular/forms';
 import {TableComponent} from './table.component';
