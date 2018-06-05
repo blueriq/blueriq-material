@@ -30,8 +30,8 @@ describe('ElementComponent', () => {
   }));
 
   beforeEach(() => {
-    // Create a ElementComponent  based on a fieldComponent.
-    // FieldComponent is used, but any component that has a field should work
+    // Create a ElementComponent  based on a StringFieldComponent.
+    // StringFieldComponent is used, but any component that has a field should work
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(StringFieldComponent);
   });
