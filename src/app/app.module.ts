@@ -18,13 +18,15 @@ import { PageComponent } from './blueriq/material/page/page.component';
 import { TextItemComponent } from './blueriq/material/textitem/textitem.component';
 import { ProjectComponent } from './blueriq/project/project.component';
 import {TableComponent} from './blueriq/material/table/table.component';
+import {TableReadonlyComponent} from './blueriq/material/table/table.readonly.component';
+import {TableSearchComponent} from './blueriq/material/table/table.search.component';
 
 const routes: Routes = [
   { path: 'session/:sessionId', component: ProjectComponent },
   { path: 'shortcut/:shortcut', component: ProjectComponent },
   { path: 'flow/:project/:flow', component: ProjectComponent },
   { path: 'flow/:project/:flow/:version', component: ProjectComponent },
-  { path: '**', redirectTo: 'shortcut/default', pathMatch: 'full' }
+  { path: '**', redirectTo: 'shortcut/default', pathMatch: 'full' },
 ];
 
 const BASE_URL = '/Runtime';
@@ -35,7 +37,9 @@ const BQ_COMPONENTS = [
   TextItemComponent,
   ButtonComponent,
   FieldComponent,
-  TableComponent
+  TableComponent,
+  TableReadonlyComponent,
+  TableSearchComponent
 ];
 
 const BQ_MAT_COMPONENTS = [

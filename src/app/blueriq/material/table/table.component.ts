@@ -2,6 +2,7 @@ import {Component, OnInit, Host} from '@angular/core';
 import {BlueriqComponent } from '@blueriq/angular';
 import {Table} from '@blueriq/angular/lists';
 import {Container} from '@blueriq/core';
+import {BlueriqFormBuilder} from '@blueriq/angular/forms';
 
 @Component({
   templateUrl: './table.component.html',
@@ -17,12 +18,8 @@ export class TableComponent implements OnInit {
   constructor(@Host() public table: Table) {
   }
 
-  applyFilter(e){
-    console.log('not implemented yet');
-  }
-
   ngOnInit(){
-
+    // table.filt
   }
 
 }

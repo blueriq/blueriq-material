@@ -1,9 +1,4 @@
 
-<mat-form-field>
-  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-</mat-form-field>
-
-
 <!--matSortDirection="desc"-->
 <mat-table [dataSource]="table.rows$" matSort >
 
