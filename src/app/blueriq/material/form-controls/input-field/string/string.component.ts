@@ -25,4 +25,8 @@ export class StringFieldComponent {
     return this.field.dataType;
   }
 
+  isReadonly() {
+    return this.field.readonly;
+  }
+
 }

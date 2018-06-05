@@ -1,5 +1,5 @@
 <app-element [field]="field">
-  <mat-form-field>
+  <mat-form-field *ngIf="!isReadonly()">
     <input matInput placeholder={{field.questionText}}
            type="text"
            [id]="field.key"
@@ -7,4 +7,8 @@
            [formControl]="formControl"
            value={{field.getValue()}}>
   </mat-form-field>
+
+  <p *ngIf="isReadonly()">
+    {{field.getValue()}}
+  </p>
 </app-element>
