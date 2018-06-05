@@ -5,16 +5,16 @@ import { Field } from '@blueriq/core';
 
 @Component({
   selector: 'app-integer-field',
-  templateUrl: './integer-field.component.html',
-  styleUrls: ['./integer-field.component.scss']
+  templateUrl: './number.component.html',
+  styleUrls: ['./number.component.scss']
 })
 
 @BlueriqComponent({
   type: Field,
-  selector: '[dataType=integer]'
+  selector: '[dataType=number]'
 })
 
-export class IntegerFieldComponent {
+export class NumberFieldComponent {
 
   formControl = this.form.control(this.field, {updateOn: 'blur'});
 

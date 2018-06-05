@@ -6,17 +6,18 @@ import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/t
 import { FieldTemplate } from '@blueriq/core/testing';
 import { ElementComponent } from '../../../../generic/element/element.component';
 import { MaterialModule } from '../../../material/material.module';
-import { PercentageFieldComponent } from './percentage-field.component';
 
-describe('PercentageFieldComponent', () => {
-  const field = FieldTemplate.percentage();
+import { StringFieldComponent } from './string.component';
+
+describe('StringFieldComponent', () => {
+  const field = FieldTemplate.text();
   let component;
   let session;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [PercentageFieldComponent, ElementComponent],
-      providers: [BlueriqComponents.register([PercentageFieldComponent])],
+      declarations: [StringFieldComponent, ElementComponent],
+      providers: [BlueriqComponents.register([StringFieldComponent])],
       imports: [
         MaterialModule,
         BrowserAnimationsModule, // or NoopAnimationsModule
@@ -29,15 +30,11 @@ describe('PercentageFieldComponent', () => {
 
   beforeEach(() => {
     session = BlueriqSessionTemplate.create().build(field);
-    component = session.get(PercentageFieldComponent);
+    component = session.get(StringFieldComponent);
   });
 
-  it('should create PercentageFieldComponent', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should contain percentage sign', () => {
-    const suffix = component.nativeElement.querySelector('mat-form-field').innerHTML;
-    expect(suffix).toContain('matsuffix');
-  });
 });
+

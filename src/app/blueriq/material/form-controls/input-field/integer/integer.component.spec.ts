@@ -6,18 +6,17 @@ import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/t
 import { FieldTemplate } from '@blueriq/core/testing';
 import { ElementComponent } from '../../../../generic/element/element.component';
 import { MaterialModule } from '../../../material/material.module';
+import { IntegerFieldComponent } from './integer.component';
 
-import { CurrencyFieldComponent } from './currency-field.component';
-
-describe('CurrencyFieldComponent', () => {
-  const field = FieldTemplate.currency();
+describe('IntegerFieldComponent', () => {
+  const field = FieldTemplate.integer();
   let component;
   let session;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CurrencyFieldComponent, ElementComponent],
-      providers: [BlueriqComponents.register([CurrencyFieldComponent])],
+      declarations: [IntegerFieldComponent, ElementComponent],
+      providers: [BlueriqComponents.register([IntegerFieldComponent])],
       imports: [
         MaterialModule,
         BrowserAnimationsModule, // or NoopAnimationsModule
@@ -30,15 +29,27 @@ describe('CurrencyFieldComponent', () => {
 
   beforeEach(() => {
     session = BlueriqSessionTemplate.create().build(field);
-    component = session.get(CurrencyFieldComponent);
+    component = session.get(IntegerFieldComponent);
   });
 
-  it('should create CurrencyFieldComponent', () => {
+  it('should create IntegerFieldComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should contain euro sign', () => {
-    const suffix = component.nativeElement.querySelector('mat-form-field').innerHTML;
-    expect(suffix).toContain('matprefix');
+  it('should validate integer, not validate float', () => {
+    // Change
+    session.update(
+      field.value('1'),
+      field.warning('Invalid integer')
+    );
+
+    let inputField = component.nativeElement.querySelector('.mat-form-field').innerHTML;
+    expect(inputField).not.toContain('mat-error');
+
+    session.update(
+      field.value('1.2')
+    );
+    inputField = component.nativeElement.querySelector('.mat-form-field').innerHTML;
+    expect(inputField).toContain('mat-error');
   });
 });

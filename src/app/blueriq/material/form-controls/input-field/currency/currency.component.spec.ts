@@ -7,17 +7,17 @@ import { FieldTemplate } from '@blueriq/core/testing';
 import { ElementComponent } from '../../../../generic/element/element.component';
 import { MaterialModule } from '../../../material/material.module';
 
-import { StringFieldComponent } from './string-field.component';
+import { CurrencyFieldComponent } from './currency.component';
 
-describe('StringFieldComponent', () => {
-  const field = FieldTemplate.text();
+describe('CurrencyFieldComponent', () => {
+  const field = FieldTemplate.currency();
   let component;
   let session;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [StringFieldComponent, ElementComponent],
-      providers: [BlueriqComponents.register([StringFieldComponent])],
+      declarations: [CurrencyFieldComponent, ElementComponent],
+      providers: [BlueriqComponents.register([CurrencyFieldComponent])],
       imports: [
         MaterialModule,
         BrowserAnimationsModule, // or NoopAnimationsModule
@@ -30,11 +30,15 @@ describe('StringFieldComponent', () => {
 
   beforeEach(() => {
     session = BlueriqSessionTemplate.create().build(field);
-    component = session.get(StringFieldComponent);
+    component = session.get(CurrencyFieldComponent);
   });
 
-  it('should create', () => {
+  it('should create CurrencyFieldComponent', () => {
     expect(component).toBeTruthy();
   });
-});
 
+  it('should contain euro sign', () => {
+    const suffix = component.nativeElement.querySelector('mat-form-field').innerHTML;
+    expect(suffix).toContain('matprefix');
+  });
+});

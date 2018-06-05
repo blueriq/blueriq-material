@@ -6,17 +6,17 @@ import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/t
 import { FieldTemplate } from '@blueriq/core/testing';
 import { ElementComponent } from '../../../../generic/element/element.component';
 import { MaterialModule } from '../../../material/material.module';
-import { IntegerFieldComponent } from './integer-field.component';
+import { NumberFieldComponent } from './number.component';
 
-describe('IntegerFieldComponent', () => {
-  const field = FieldTemplate.integer();
+describe('NumberFieldComponent', () => {
+  const field = FieldTemplate.number();
   let component;
   let session;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [IntegerFieldComponent, ElementComponent],
-      providers: [BlueriqComponents.register([IntegerFieldComponent])],
+      declarations: [NumberFieldComponent, ElementComponent],
+      providers: [BlueriqComponents.register([NumberFieldComponent])],
       imports: [
         MaterialModule,
         BrowserAnimationsModule, // or NoopAnimationsModule
@@ -29,27 +29,10 @@ describe('IntegerFieldComponent', () => {
 
   beforeEach(() => {
     session = BlueriqSessionTemplate.create().build(field);
-    component = session.get(IntegerFieldComponent);
+    component = session.get(NumberFieldComponent);
   });
 
-  it('should create IntegerFieldComponent', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should validate integer, not validate float', () => {
-    // Change
-    session.update(
-      field.value('1'),
-      field.warning('Invalid integer')
-    );
-
-    let inputField = component.nativeElement.querySelector('.mat-form-field').innerHTML;
-    expect(inputField).not.toContain('mat-error');
-
-    session.update(
-      field.value('1.2')
-    );
-    inputField = component.nativeElement.querySelector('.mat-form-field').innerHTML;
-    expect(inputField).toContain('mat-error');
   });
 });

@@ -4,17 +4,17 @@ import { BlueriqFormBuilder } from '@blueriq/angular/forms';
 import { Field } from '@blueriq/core';
 
 @Component({
-  selector: 'app-integer-field',
-  templateUrl: './number-field.component.html',
-  styleUrls: ['./number-field.component.scss']
+  selector: 'app-percentage-field',
+  templateUrl: './percentage.component.html',
+  styleUrls: ['./percentage.component.scss']
 })
 
 @BlueriqComponent({
   type: Field,
-  selector: '[dataType=number]'
+  selector: '[dataType=percentage]'
 })
 
-export class NumberFieldComponent {
+export class PercentageFieldComponent {
 
   formControl = this.form.control(this.field, {updateOn: 'blur'});
 

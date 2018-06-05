@@ -4,17 +4,17 @@ import { BlueriqFormBuilder } from '@blueriq/angular/forms';
 import { Field } from '@blueriq/core';
 
 @Component({
-  selector: 'app-string-field',
-  templateUrl: './string-field.component.html',
-  styleUrls: ['./string-field.component.scss']
+  selector: 'app-currency-field',
+  templateUrl: './currency.component.html',
+  styleUrls: ['./currency.component.scss']
 })
 
 @BlueriqComponent({
   type: Field,
-  selector: '[dataType=text]'
+  selector: '[dataType=currency]'
 })
 
-export class StringFieldComponent {
+export class CurrencyFieldComponent {
 
   formControl = this.form.control(this.field, {updateOn: 'blur'});
 
