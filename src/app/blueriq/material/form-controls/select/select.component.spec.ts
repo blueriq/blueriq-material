@@ -33,6 +33,7 @@ describe('SelectComponent', () => {
   }));
 
   beforeEach(() => {
+    field.value('').readonly(false).styles('');
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(SelectComponent);
   });
@@ -79,7 +80,7 @@ describe('SelectComponent', () => {
 
   it ('should selected more values', () => {
     let inputField = component.nativeElement.querySelector('.mat-select').getAttribute('ng-reflect-value');
-    expect(inputField).toBe('blue');
+    expect(inputField).toBe('');
 
     field.value(['blue, pink, white']);
     session = BlueriqSessionTemplate.create().build(field);
