@@ -1,5 +1,5 @@
 ### Button
-For an overview of the checkbox component you can find the information here: https://material.angular.io/components/button/overview
+For an overview of the button component you can find the information here: https://material.angular.io/components/button/overview
 
 ### Use Presentation styles Button Blueriq
 Add the presentation style `Disabled` on an attribute, the component is grayed out.  
