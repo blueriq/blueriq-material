@@ -1,7 +1,7 @@
 import { Component, Host } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { BlueriqComponent } from '@blueriq/angular';
 import { Page } from '@blueriq/core';
-import {Title} from '@angular/platform-browser';
 
 @Component({
   templateUrl: './page.component.html',
@@ -12,7 +12,7 @@ import {Title} from '@angular/platform-browser';
 })
 export class PageComponent {
 
-  constructor(@Host() public page: Page,private titleService: Title) {
+  constructor(@Host() public page: Page, private titleService: Title) {
     this.titleService.setTitle(page.name);
   }
 

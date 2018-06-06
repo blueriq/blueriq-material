@@ -1,6 +1,6 @@
 import { Component, Host } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
-import {Container} from '@blueriq/core';
+import { Container } from '@blueriq/core';
 
 @Component({
   template: `
@@ -16,7 +16,7 @@ import {Container} from '@blueriq/core';
 export class TableSearchComponent {
   constructor(@Host() public container: Container) {}
 
-  applyFilter(e){
+  applyFilter(e) {
     console.log('not implemented yet');
   }
 

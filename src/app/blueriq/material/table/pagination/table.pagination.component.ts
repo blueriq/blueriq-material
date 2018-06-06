@@ -1,7 +1,7 @@
-import {Component, Self} from '@angular/core';
+import { Component, Self } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
-import {Pagination} from '@blueriq/angular/lists';
-import {Container} from '@blueriq/core';
+import { Pagination } from '@blueriq/angular/lists';
+import { Container } from '@blueriq/core';
 
 @Component({
   templateUrl: './table.pagination.component.html',
@@ -14,6 +14,6 @@ import {Container} from '@blueriq/core';
 })
 export class PaginationComponent {
 
-  constructor(@Self() public readonly pagination: Pagination) { console.log(this.pagination) }
+  constructor(@Self() public readonly pagination: Pagination) { console.log(this.pagination); }
 
 }

@@ -12,7 +12,7 @@ import { Field } from '@blueriq/core';
 export class TableReadonlyComponent {
   constructor(@Host() public field: Field) {}
 
-  getDisplayValue(){
+  getDisplayValue() {
     return this.field.getValue();
   }
 

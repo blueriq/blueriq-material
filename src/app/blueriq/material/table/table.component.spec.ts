@@ -1,16 +1,15 @@
+///<reference path="../../../../../node_modules/@types/jasmine/index.d.ts"/>
 import { async, TestBed } from '@angular/core/testing';
-import {BlueriqSessionTemplate, BlueriqTestingModule} from '@blueriq/angular/testing';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MaterialModule} from '../material/material.module';
-import {BlueriqComponents, BlueriqModule} from '@blueriq/angular';
-import {FormsModule} from '@angular/forms';
-import {TableComponent} from './table.component';
-import {Table} from "@blueriq/angular/lists";
-import {ContainerTemplate} from "@blueriq/core/testing";
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
+import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
+import { ContainerTemplate } from '@blueriq/core/testing';
+import { MaterialModule } from '../material/material.module';
+import { TableComponent } from './table.component';
 
 describe('TableComponent', () => {
-
-  let table = ContainerTemplate.create();
+  const table = ContainerTemplate.create();
   let session;
   let component;
 
@@ -37,13 +36,13 @@ describe('TableComponent', () => {
 
   it('should have a filter', () => {
 
-    let selectedElement = component.nativeElement.querySelector('.mat-form-field');
+    const selectedElement = component.nativeElement.querySelector('.mat-form-field');
     expect(selectedElement).toBeTruthy();
   });
 
   fit('should have a paginator', () => {
 
-    let selectedElement = component.nativeElement.querySelector('.mat-paginator');
+    const selectedElement = component.nativeElement.querySelector('.mat-paginator');
     expect(selectedElement).toBeTruthy();
   });
 
