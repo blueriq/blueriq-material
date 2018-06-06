@@ -15,3 +15,9 @@
 :host ::ng-deep .mat-form-field {
   display: block;
 }
+
+.aligned-with-icon {
+  position: absolute;
+  margin-top: 5px;
+  margin-left: 5px; /* optional */
+}
