@@ -1,4 +1,5 @@
-.mat-input-element:disabled {
-  color: black;
+.mat-input-element {
+  &.disabled {
+    $black: #000;
+  }
 }
-
