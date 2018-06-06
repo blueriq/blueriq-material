@@ -14,6 +14,6 @@ import {Container} from '@blueriq/core';
 })
 export class PaginationComponent {
 
-  constructor(@Self() public readonly pagination: Pagination) { console.log(this.pagination) }
+  constructor(@Self() public readonly pagination: Pagination) {  }
 
 }

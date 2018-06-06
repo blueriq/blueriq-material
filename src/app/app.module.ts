@@ -15,12 +15,13 @@ import { ContainerComponent } from './blueriq/material/container/container.compo
 import { FieldComponent } from './blueriq/material/field/field.component';
 import { MaterialModule } from './blueriq/material/material/material.module';
 import { PageComponent } from './blueriq/material/page/page.component';
+import { PaginationComponent } from './blueriq/material/table/pagination/table.pagination.component';
+import { TableSearchComponent } from './blueriq/material/table/search/table.search.component';
+import { TableSortComponent } from './blueriq/material/table/sort/table.sort.component';
+import { TableComponent } from './blueriq/material/table/table.component';
+import { TableReadonlyComponent } from './blueriq/material/table/table.readonly.component';
 import { TextItemComponent } from './blueriq/material/textitem/textitem.component';
 import { ProjectComponent } from './blueriq/project/project.component';
-import {TableComponent} from './blueriq/material/table/table.component';
-import {TableReadonlyComponent} from './blueriq/material/table/table.readonly.component';
-import {TableSearchComponent} from './blueriq/material/table/search/table.search.component';
-import {PaginationComponent} from './blueriq/material/table/pagination/table.pagination.component';
 
 const routes: Routes = [
   { path: 'session/:sessionId', component: ProjectComponent },
@@ -41,11 +42,12 @@ const BQ_COMPONENTS = [
   TableComponent,
   TableReadonlyComponent,
   TableSearchComponent,
-  PaginationComponent
+  PaginationComponent,
+  TableSortComponent,
 ];
 
 const BQ_MAT_COMPONENTS = [
-  ElementComponent
+  ElementComponent,
 ];
 
 @NgModule({
@@ -53,7 +55,7 @@ const BQ_MAT_COMPONENTS = [
     AppComponent,
     ProjectComponent,
     BQ_COMPONENTS,
-    BQ_MAT_COMPONENTS
+    BQ_MAT_COMPONENTS,
   ],
   imports: [
     BrowserModule,
@@ -68,12 +70,12 @@ const BQ_MAT_COMPONENTS = [
     BlueriqFormsModule.forRoot(),
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
-    BlueriqComponents.register(BQ_COMPONENTS)
+    BlueriqComponents.register(BQ_COMPONENTS),
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 
 export class AppModule {

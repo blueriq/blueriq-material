@@ -1,9 +1,10 @@
-
-<mat-table [dataSource]="table.rows$" matSort >
+<mat-table [dataSource]="table.rows$">
 
   <ng-container *ngFor="let column of table.columns$ | async" [matColumnDef]="column.name">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>
+    <mat-header-cell *matHeaderCellDef>
       <ng-container [bqElement]="column.header"></ng-container>
+      <!-- sorting button -->
+      <ng-container [bqElement]="column.sort"></ng-container>
     </mat-header-cell>
 
     <mat-cell *matCellDef="let row">
@@ -14,4 +15,6 @@
   <mat-header-row *matHeaderRowDef="table.columnNames$ | async"></mat-header-row>
   <mat-row *matRowDef="let row; columns: table.columnNames$ | async"></mat-row>
 
+
 </mat-table>
+

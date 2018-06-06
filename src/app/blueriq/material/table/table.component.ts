@@ -1,16 +1,15 @@
-import {Component, OnInit, Host} from '@angular/core';
-import {BlueriqComponent } from '@blueriq/angular';
-import {Table} from '@blueriq/angular/lists';
-import {Container} from '@blueriq/core';
+import { Component, Host } from '@angular/core';
+import { BlueriqComponent } from '@blueriq/angular';
+import { Table } from '@blueriq/angular/lists';
+import { Container } from '@blueriq/core';
 
 @Component({
   templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss'],
-  providers: [Table]
+  providers: [Table],
 })
 @BlueriqComponent({
   type: Container,
-  selector: 'table'
+  selector: 'table',
 })
 export class TableComponent {
 

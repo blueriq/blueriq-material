@@ -1,0 +1,11 @@
+.material-icons {
+  cursor: pointer;
+}
+
+.material-icons.md1::before {
+  content: "nothing";
+}
+
+.material-icons.md1:hover::before {
+  content: "arrow_upward";
+}
