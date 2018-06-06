@@ -19,7 +19,7 @@ export class ElementComponent {
   }
 
   displayExplainText(): boolean {
-    if(this.field.readonly) {
+    if (this.field.readonly) {
       return false;
     }
     return this.field.explainText.length > 0;
