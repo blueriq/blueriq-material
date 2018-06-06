@@ -18,7 +18,7 @@ $bq-theme: mat-light-theme($bq-primary-palette, $bq-accent-palette, $bq-warn-pal
   font-weight: 400;
   src: local('Material Icons'),
   local('MaterialIcons-Regular'),
-  url('/node_modules/material-design-icons/iconfont/MaterialIcons-Regular.woff2') format('woff2');
+  url('node_modules/material-design-icons/iconfont/MaterialIcons-Regular.woff2') format('woff2');
 }
 
 .material-icons {

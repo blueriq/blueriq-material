@@ -56,7 +56,7 @@ const BQ_MAT_COMPONENTS = [
     EffectsModule.forRoot([]),
     BlueriqModule.forRoot(),
     V1BackendModule.forRoot({
-      baseUrl: '../Runtime',
+      baseUrl: BASE_URL,
     }),
     BrowserAnimationsModule,
     BlueriqFormsModule.forRoot(),

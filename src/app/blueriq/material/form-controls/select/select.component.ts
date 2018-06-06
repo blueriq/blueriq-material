@@ -5,7 +5,6 @@ import { DomainValue, Field } from '@blueriq/core';
 @Component({
   selector: 'app-select',
   templateUrl: './select.component.html',
-  styleUrls: ['./select.component.scss']
 })
 
 @BlueriqComponent({
@@ -19,21 +18,22 @@ export class SelectComponent {
    this.selected = field.getValue();
   }
 
-  /** Whether the checkbox has a presentation style Disabled */
+  /** Whether the select has a presentation style Disabled */
   isDisabled() {
     return this.field.styles.has('Disabled');
   }
 
-  /** Whether the value is changed, the field will be updated bij selected*/
+  /** Whether the value is changed, the field will be updated bij selected */
   onValueChanged() {
     this.field.setValue(this.selected);
   }
 
-  /** Whether the checkbox is read only */
+  /** Whether the select is read only */
   isReadonly() {
     return this.field.readonly;
   }
 
+  /** Returns all the available option from the field domain list */
   getOptions(): DomainValue[] {
     return this.field.domain.options;
   }
