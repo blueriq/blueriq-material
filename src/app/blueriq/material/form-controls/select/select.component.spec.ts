@@ -70,13 +70,17 @@ describe('SelectComponent', () => {
     let selectedOneValue = component.nativeElement.querySelector('.mat-select').getAttribute('ng-reflect-value');
     expect(selectedOneValue).toBe('');
 
-
     field.value(['blue']);
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(SelectComponent);
 
     selectedOneValue = component.nativeElement.querySelector('.mat-select').getAttribute('ng-reflect-value');
     expect(selectedOneValue).toBe('blue');
+  });
+
+  fit ('should only have one mat-select', () => {
+    let selectList = component.nativeElement.querySelectorAll('mat-select') as NodeListOf<HTMLElement>;
+    expect(selectList.length).toBe(1);
   });
 
   it ('should selected more values', () => {
@@ -91,24 +95,19 @@ describe('SelectComponent', () => {
     expect(selectedMoreValues).toBe('blue, pink, white');
   });
 
-  fit ('check all domain values', () => {
-    let trigger = component.debugElement.query(By.css('.mat-select-trigger')).nativeElement;;
-    trigger.click();
+  it ('should contain all options in select', () => {
+    component.debugElement.query(By.css('.mat-select-trigger')).nativeElement.click();
     component.detectChanges();
 
-    console.log(component.debugElement.query('mat-option'));
-    let domainValues = component.debugElement.querySelector(By.css('.mat-option'));
-      //console.log(domainValues);
-    expect(domainValues).toBe('');
+    let selectContent = component.debugElement.query(By.css('.mat-select-content')).nativeElement;
+    let selectOptions = selectContent.querySelectorAll('mat-option') as NodeListOf<HTMLElement>;
 
-    session.update(field.value(['blue, pink, white']));
-    // session = BlueriqSessionTemplate.create().build(field);
-    // component = session.get(SelectComponent);
-
-    domainValues = component.nativeElement.querySelector('.mat-select').getAttribute('ng-reflect-value');
-    expect(domainValues).toBe('blue, pink, white');
+    // Verify
+    expect(selectOptions.length).toBe(3);
+    expect(selectOptions[0].getAttribute('ng-reflect-value')).toBe('blue');
+    expect(selectOptions[1].getAttribute('ng-reflect-value')).toBe('pink');
+    expect(selectOptions[2].getAttribute('ng-reflect-value')).toBe('white');
     });
-
 });
 
 
