@@ -1,8 +1,7 @@
 <app-element [field]="field">
   <mat-form-field>
     <input matInput placeholder={{field.questionText}}
-           type="number"
-           step="1"
+           type="text"
            [id]="field.key"
            [required]="field.required"
            [formControl]="formControl"
