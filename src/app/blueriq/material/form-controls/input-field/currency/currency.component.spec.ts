@@ -10,7 +10,7 @@ import { MaterialModule } from '../../../material/material.module';
 import { CurrencyFieldComponent } from './currency.component';
 
 describe('CurrencyFieldComponent', () => {
-  const field = FieldTemplate.text();
+  let field;
   let component;
   let session;
 
@@ -31,6 +31,7 @@ describe('CurrencyFieldComponent', () => {
   beforeEach(() => {
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(CurrencyFieldComponent);
+    field = FieldTemplate.text();
   });
 
   it('should create CurrencyFieldComponent', () => {

@@ -9,7 +9,7 @@ import { MaterialModule } from '../../../material/material.module';
 import { NumberFieldComponent } from './number.component';
 
 describe('NumberFieldComponent', () => {
-  const field = FieldTemplate.text();
+  let field;
   let component;
   let session;
 
@@ -30,6 +30,7 @@ describe('NumberFieldComponent', () => {
   beforeEach(() => {
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(NumberFieldComponent);
+    field = FieldTemplate.text();
   });
 
   it('should create', () => {

@@ -9,7 +9,7 @@ import { MaterialModule } from '../../../material/material.module';
 import { PercentageFieldComponent } from './percentage.component';
 
 describe('PercentageFieldComponent', () => {
-  const field = FieldTemplate.text();
+  let field;
   let component;
   let session;
 
@@ -30,6 +30,7 @@ describe('PercentageFieldComponent', () => {
   beforeEach(() => {
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(PercentageFieldComponent);
+    field = FieldTemplate.text();
   });
 
   it('should create PercentageFieldComponent', () => {

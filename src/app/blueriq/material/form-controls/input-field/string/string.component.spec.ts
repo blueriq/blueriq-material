@@ -10,7 +10,7 @@ import { MaterialModule } from '../../../material/material.module';
 import { StringFieldComponent } from './string.component';
 
 describe('StringFieldComponent', () => {
-  const field = FieldTemplate.text();
+  let field;
   let component;
   let session;
 
@@ -31,6 +31,7 @@ describe('StringFieldComponent', () => {
   beforeEach(() => {
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(StringFieldComponent);
+    field = FieldTemplate.text();
   });
 
   it('should create', () => {
