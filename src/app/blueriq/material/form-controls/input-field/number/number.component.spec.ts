@@ -9,7 +9,7 @@ import { MaterialModule } from '../../../material/material.module';
 import { NumberFieldComponent } from './number.component';
 
 describe('NumberFieldComponent', () => {
-  const field = FieldTemplate.number();
+  const field = FieldTemplate.text();
   let component;
   let session;
 

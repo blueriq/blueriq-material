@@ -9,7 +9,7 @@ import { MaterialModule } from '../../../material/material.module';
 import { PercentageFieldComponent } from './percentage.component';
 
 describe('PercentageFieldComponent', () => {
-  const field = FieldTemplate.percentage();
+  const field = FieldTemplate.text();
   let component;
   let session;
 

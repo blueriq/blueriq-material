@@ -10,7 +10,7 @@ import { MaterialModule } from '../../../material/material.module';
 import { CurrencyFieldComponent } from './currency.component';
 
 describe('CurrencyFieldComponent', () => {
-  const field = FieldTemplate.currency();
+  const field = FieldTemplate.text();
   let component;
   let session;
 
