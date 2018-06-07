@@ -1,11 +1,11 @@
 <app-element [field]="field">
   <mat-form-field>
-    <input matInput placeholder={{field.questionText}}
-           type="text"
-           [id]="field.key"
-           [required]="field.required"
-           [formControl]="formControl"
-           value={{field.getValue()}}>
-    <span matPrefix><mat-icon>&euro;</mat-icon></span>
+    <input matInput placeholder="{{field.questionText}}"
+      type="text"
+      [id]="field.key"
+      [required]="field.required"
+      [formControl]="formControl"
+      value="{{field.getValue()}}">
+    <span matPrefix>&euro;&nbsp;</span>
   </mat-form-field>
 </app-element>
