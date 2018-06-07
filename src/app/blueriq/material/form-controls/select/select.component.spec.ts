@@ -108,6 +108,11 @@ describe('SelectComponent', () => {
     expect(selectOptions[1].getAttribute('ng-reflect-value')).toBe('pink');
     expect(selectOptions[2].getAttribute('ng-reflect-value')).toBe('white');
     });
+
+  it ('should contain explain en message support', () => {
+    const appElement = component.nativeElement.querySelector('app-element');
+    expect(appElement).toBeTruthy();
+  });
 });
 
 
