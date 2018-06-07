@@ -5,8 +5,7 @@ import { Field } from '@blueriq/core';
 
 @Component({
   selector: 'app-integer-field',
-  templateUrl: './number.component.html',
-  styleUrls: ['./number.component.scss']
+  templateUrl: './number.component.html'
 })
 
 @BlueriqComponent({
@@ -16,7 +15,7 @@ import { Field } from '@blueriq/core';
 
 export class NumberFieldComponent {
 
-  formControl = this.form.control(this.field, {updateOn: 'blur'});
+  formControl = this.form.control(this.field, { updateOn: 'blur' });
 
   constructor(@Host() public field: Field, private form: BlueriqFormBuilder) {
   }

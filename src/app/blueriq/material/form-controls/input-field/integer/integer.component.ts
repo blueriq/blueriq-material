@@ -6,8 +6,7 @@ import { PresentationStyles } from '../../../presentationstyles/presentationstyl
 
 @Component({
   selector: 'app-integer-field',
-  templateUrl: './integer.component.html',
-  styleUrls: ['./integer.component.scss']
+  templateUrl: './integer.component.html'
 })
 
 @BlueriqComponent({
@@ -17,7 +16,7 @@ import { PresentationStyles } from '../../../presentationstyles/presentationstyl
 
 export class IntegerFieldComponent {
 
-  formControl = this.form.control(this.field, {updateOn: 'blur'});
+  formControl = this.form.control(this.field, { updateOn: 'blur' });
 
   constructor(@Host() public field: Field, private form: BlueriqFormBuilder) {
     this.setIsDisabled();
