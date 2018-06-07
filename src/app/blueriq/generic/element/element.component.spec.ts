@@ -1,8 +1,8 @@
-import { async, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
-import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
+import { BlueriqComponents } from '@blueriq/angular';
+import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
 import { StringFieldComponent } from '../../material/form-controls/input-field/string/string.component';
 import { MaterialModule } from '../../material/material/material.module';
@@ -11,9 +11,9 @@ import { ElementComponent } from './element.component';
 
 describe('ElementComponent', () => {
 
-  const field = FieldTemplate.text();
-  let session;
-  let component;
+  let field: FieldTemplate;
+  let session: BlueriqTestSession;
+  let component: ComponentFixture<StringFieldComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -22,7 +22,6 @@ describe('ElementComponent', () => {
       imports: [
         MaterialModule,
         BrowserAnimationsModule, // or NoopAnimationsModule
-        BlueriqModule.forRoot(),
         BlueriqTestingModule,
         FormsModule
       ]
@@ -32,6 +31,7 @@ describe('ElementComponent', () => {
   beforeEach(() => {
     // Create a ElementComponent  based on a StringFieldComponent.
     // StringFieldComponent is used, but any component that has a field should work
+    field = FieldTemplate.text();
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(StringFieldComponent);
   });
