@@ -1,5 +1,7 @@
+import { detectChanges } from '@angular/core/src/render3';
 import { async, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
@@ -9,11 +11,7 @@ import { MaterialModule } from '../../material/material.module';
 import { SelectComponent } from './select.component';
 
 describe('SelectComponent', () => {
-  const field = FieldTemplate.text('colour').domain({
-    'blue': 'Blue',
-    'pink': 'Pink',
-    'white': 'White'
-  });
+  let field;
   let session;
   let component;
 
@@ -33,7 +31,11 @@ describe('SelectComponent', () => {
   }));
 
   beforeEach(() => {
-    field.value('').readonly(false).styles('');
+    field = FieldTemplate.text('colour').domain({
+      'blue': 'Blue',
+      'pink': 'Pink',
+      'white': 'White'
+    });
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(SelectComponent);
   });
@@ -43,53 +45,69 @@ describe('SelectComponent', () => {
   });
 
   it ('should be disabled', () => {
-    let inputField = component.nativeElement.querySelector('.mat-select-disabled');
-    expect(inputField).toBeFalsy();
+    let selectDisabled = component.nativeElement.querySelector('.mat-select-disabled');
+    expect(selectDisabled).toBeFalsy();
 
     session.update(
       field.styles('Disabled')
     );
-      inputField = component.nativeElement.querySelector('.mat-select-disabled');
-      expect(inputField).toBeTruthy();
+      selectDisabled = component.nativeElement.querySelector('.mat-select-disabled');
+      expect(selectDisabled).toBeTruthy();
   });
 
   it ('should be read only', () => {
-    let inputField = component.nativeElement.querySelector('.mat-select-value');
-    expect(inputField).toBeTruthy();
+    let selectReadonly = component.nativeElement.querySelector('.mat-select-disabled');
+    expect(selectReadonly).toBeFalsy();
 
     session.update(
       field.readonly(true)
     );
-    inputField = component.nativeElement.querySelector('.mat-select-value').getAttribute('aria-label');
-    expect(inputField).toBeFalsy();
+    selectReadonly = component.nativeElement.querySelector('.mat-select-disabled');
+    expect(selectReadonly).toBeTruthy();
   });
 
   it ('should selected one value', () => {
-    let inputField = component.nativeElement.querySelector('.mat-select').getAttribute('ng-reflect-value');
-    expect(inputField).toBe('');
+    let selectedOneValue = component.nativeElement.querySelector('.mat-select').getAttribute('ng-reflect-value');
+    expect(selectedOneValue).toBe('');
 
 
     field.value(['blue']);
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(SelectComponent);
 
-    inputField = component.nativeElement.querySelector('.mat-select').getAttribute('ng-reflect-value');
-    console.log(inputField);
-    expect(inputField).toBe('blue');
+    selectedOneValue = component.nativeElement.querySelector('.mat-select').getAttribute('ng-reflect-value');
+    expect(selectedOneValue).toBe('blue');
   });
 
   it ('should selected more values', () => {
-    let inputField = component.nativeElement.querySelector('.mat-select').getAttribute('ng-reflect-value');
-    expect(inputField).toBe('');
+    let selectedMoreValues = component.nativeElement.querySelector('.mat-select').getAttribute('ng-reflect-value');
+    expect(selectedMoreValues).toBe('');
 
     field.value(['blue, pink, white']);
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(SelectComponent);
 
-    inputField = component.nativeElement.querySelector('.mat-select').getAttribute('ng-reflect-value');
-    console.log(inputField);
-    expect(inputField).toBe('blue, pink, white');
+    selectedMoreValues = component.nativeElement.querySelector('.mat-select').getAttribute('ng-reflect-value');
+    expect(selectedMoreValues).toBe('blue, pink, white');
   });
+
+  fit ('check all domain values', () => {
+    let trigger = component.debugElement.query(By.css('.mat-select-trigger')).nativeElement;;
+    trigger.click();
+    component.detectChanges();
+
+    console.log(component.debugElement.query('mat-option'));
+    let domainValues = component.debugElement.querySelector(By.css('.mat-option'));
+      //console.log(domainValues);
+    expect(domainValues).toBe('');
+
+    session.update(field.value(['blue, pink, white']));
+    // session = BlueriqSessionTemplate.create().build(field);
+    // component = session.get(SelectComponent);
+
+    domainValues = component.nativeElement.querySelector('.mat-select').getAttribute('ng-reflect-value');
+    expect(domainValues).toBe('blue, pink, white');
+    });
 
 });
 
