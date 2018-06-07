@@ -1,8 +1,8 @@
-import { async, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
-import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
+import { BlueriqComponents } from '@blueriq/angular';
+import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
 import { ElementComponent } from '../../../../generic/element/element.component';
 import { MaterialModule } from '../../../material/material.module';
@@ -10,9 +10,9 @@ import { MaterialModule } from '../../../material/material.module';
 import { StringFieldComponent } from './string.component';
 
 describe('StringFieldComponent', () => {
-  let field;
-  let component;
-  let session;
+  let field: FieldTemplate;
+  let component: ComponentFixture<StringFieldComponent>;
+  let session: BlueriqTestSession;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -21,7 +21,6 @@ describe('StringFieldComponent', () => {
       imports: [
         MaterialModule,
         BrowserAnimationsModule, // or NoopAnimationsModule
-        BlueriqModule.forRoot(),
         BlueriqTestingModule,
         FormsModule
       ]
@@ -29,9 +28,9 @@ describe('StringFieldComponent', () => {
   }));
 
   beforeEach(() => {
+    field = FieldTemplate.text();
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(StringFieldComponent);
-    field = FieldTemplate.text();
   });
 
   it('should create', () => {
