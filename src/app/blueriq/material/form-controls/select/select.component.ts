@@ -12,10 +12,10 @@ import { DomainValue, Field } from '@blueriq/core';
   selector: '[hasDomain=true]'
 })
 export class SelectComponent {
-  selected: any;
+  selectedOptions: any;
 
   constructor(@Host() public field: Field) {
-   this.selected = field.getValue();
+   this.selectedOptions = field.getValue();
   }
 
   /** Whether the select has a presentation style Disabled */
@@ -25,7 +25,7 @@ export class SelectComponent {
 
   /** Whether the value is changed, the field will be updated bij selected */
   onValueChanged() {
-    this.field.setValue(this.selected);
+    this.field.setValue(this.selectedOptions);
   }
 
   /** Whether the select is read only */

@@ -1,19 +1,21 @@
 import { detectChanges } from '@angular/core/src/render3';
-import { async, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
-import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
+import { BlueriqComponents } from '@blueriq/angular';
+import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession} from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
 import { ElementComponent } from '../../../generic/element/element.component';
 import { MaterialModule } from '../../material/material.module';
 import { SelectComponent } from './select.component';
+import { Field } from "@blueriq/core";
 
 describe('SelectComponent', () => {
-  let field;
-  let session;
-  let component;
+  let field: FieldTemplate;
+  let session: BlueriqTestSession;
+  let component: ComponentFixture<SelectComponent>;
+  let fieldElement: Field;
 
 
   beforeEach(async(() => {
@@ -23,7 +25,6 @@ describe('SelectComponent', () => {
       imports: [
         MaterialModule,
         BrowserAnimationsModule, // or NoopAnimationsModule
-        BlueriqModule.forRoot(),
         BlueriqTestingModule,
         FormsModule
       ]
@@ -35,7 +36,7 @@ describe('SelectComponent', () => {
       'blue': 'Blue',
       'pink': 'Pink',
       'white': 'White'
-    });
+    }).assign(el => fieldElement = el);
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(SelectComponent);
   });
@@ -93,6 +94,20 @@ describe('SelectComponent', () => {
 
     selectedMoreValues = component.nativeElement.querySelector('.mat-select').getAttribute('ng-reflect-value');
     expect(selectedMoreValues).toBe('blue, pink, white');
+  });
+
+  it ('should set selected value to fieldValue', () => {
+    component.debugElement.query(By.css('.mat-select-trigger')).nativeElement.click();
+    component.detectChanges();
+
+    let selectContent = component.debugElement.query(By.css('.mat-select-content')).nativeElement;
+    let selectOptions = selectContent.querySelectorAll('mat-option') as NodeListOf<HTMLElement>;
+    selectOptions[0].click();
+    component.detectChanges();
+
+    // Verify
+    // TODO: fix assert?
+    expect(fieldElement.getValue()).toBe('blue');
   });
 
   it ('should contain all options in select', () => {

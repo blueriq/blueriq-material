@@ -5,8 +5,8 @@
       [required]="field.required"
       (selectionChange)="onValueChanged()"
       [disabled]="isDisabled() || isReadonly()"
-      [(value)]="selected"
-      [multiple]="field.multiValued">
+      [(value)]="selectedOptions" 
+      [multiple]="field.multiValued" >
       <mat-option *ngFor="let option of getOptions()" [value]="option.value">
         {{ option.displayValue }}
       </mat-option>
