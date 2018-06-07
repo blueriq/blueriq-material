@@ -78,7 +78,7 @@ describe('SelectComponent', () => {
     expect(selectedOneValue).toBe('blue');
   });
 
-  fit ('should only have one mat-select', () => {
+  it ('should only have one mat-select', () => {
     let selectList = component.nativeElement.querySelectorAll('mat-select') as NodeListOf<HTMLElement>;
     expect(selectList.length).toBe(1);
   });
