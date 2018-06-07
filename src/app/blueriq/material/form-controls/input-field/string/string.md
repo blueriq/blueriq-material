@@ -18,4 +18,4 @@ When the attribute has an explain text, this is shown to the right of the input 
 
 ### Validation messages
 
-When the attribute has a validation message and the validation fires, this is shown to the immediate right of the input field as a black triangular shaped icon with an exclamation mark in it. Further, the validation message shows up under the input field in red.
+When the attribute has a validation message and the validation fires, this is shown under the input field as a triangular shaped icon with an exclamation mark in it. Further, the validation message shows up next to the icon.
