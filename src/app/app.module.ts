@@ -19,6 +19,7 @@ import { NumberFieldComponent } from './blueriq/material/form-controls/input-fie
 import { PercentageFieldComponent } from './blueriq/material/form-controls/input-field/percentage/percentage.component';
 import { StringFieldComponent } from './blueriq/material/form-controls/input-field/string/string.component';
 import { RadioButtonComponent } from './blueriq/material/form-controls/radio-button/radio-button.component';
+import { SelectComponent } from './blueriq/material/form-controls/select/select.component';
 import { SlideToggleComponent } from './blueriq/material/form-controls/slide-toggle/slide-toggle.component';
 import { MaterialModule } from './blueriq/material/material/material.module';
 import { PageComponent } from './blueriq/material/page/page.component';
@@ -48,7 +49,8 @@ const BQ_COMPONENTS = [
   StringFieldComponent,
   PercentageFieldComponent,
   IntegerFieldComponent,
-  NumberFieldComponent
+  NumberFieldComponent,
+  SelectComponent
 ];
 
 const BQ_MAT_COMPONENTS = [
