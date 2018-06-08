@@ -45,7 +45,7 @@ describe('TablePaginationComponent', () => {
       btnNext.disabled(false),
       ButtonTemplate.create('first'),
       ButtonTemplate.create('last'),
-      FieldTemplate.integer('currentPageNumber').domain({ 1: '1', 2: '2' }),
+      FieldTemplate.integer('currentPageNumber').domain({ 1: '1', 2: '2' })
     );
     session = BlueriqSessionTemplate.create().build(pagination);
     component = session.get(PaginationComponent);

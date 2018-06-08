@@ -1,3 +1,1 @@
-<i *ngIf="isAscending()" class="material-icons" (click)="onClick()">arrow_downward</i>
-<i *ngIf="isDescending()" class="material-icons" (click)="onClick()">arrow_upward</i>
-<i *ngIf="hasNoDirection()" class="material-icons md1" (click)="onClick()"></i>
+<i class="material-icons" (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()" (click)="onClick()">{{getIconByDirection()}}</i>

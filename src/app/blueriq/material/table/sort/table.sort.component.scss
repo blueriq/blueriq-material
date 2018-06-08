@@ -1,13 +1,5 @@
 .material-icons {
   cursor: pointer;
-
-  &.md1 {
-    &::before {
-      content: 'nothing';
-    }
-
-    &:hover::before {
-      content: 'arrow_upward';
-    }
-  }
+  width: 20px;
+  height: 20px;
 }

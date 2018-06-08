@@ -12,6 +12,12 @@ import { Button } from '@blueriq/core';
 })
 export class TableSortComponent {
 
+  hovering: boolean = false;
+  iconMap = {
+    ascending: 'arrow_downward',
+    descending: 'arrow_upward',
+  };
+
   constructor(@Host() public button: Button, private session: BlueriqSession) {
   }
 
@@ -26,16 +32,27 @@ export class TableSortComponent {
     return direction ? direction : null;
   }
 
-  isAscending(): boolean {
-    return this.getDirection() === 'ascending';
-  }
-
-  isDescending(): boolean {
-    return this.getDirection() === 'descending';
-  }
-
   hasNoDirection(): boolean {
     return this.getDirection() === null;
   }
 
+  getIconByDirection() {
+    const icon = this.iconMap[this.getDirection()];
+    if (icon) {
+      return icon;
+    }
+    return this.hovering ? this.iconMap.ascending : '';
+  }
+
+  mouseEnter() {
+    if (this.hasNoDirection()) {
+      this.hovering = true;
+    }
+  }
+
+  mouseLeave() {
+    if (this.hasNoDirection()) {
+      this.hovering = false;
+    }
+  }
 }
