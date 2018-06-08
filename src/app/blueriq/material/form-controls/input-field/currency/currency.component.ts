@@ -11,7 +11,7 @@ import { Field } from '@blueriq/core';
 
 @BlueriqComponent({
   type: Field,
-  selector: '[dataType=currency]'
+  selector: '[dataType=currency]:not([hasDomain])'
 })
 
 export class CurrencyFieldComponent {

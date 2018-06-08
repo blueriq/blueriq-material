@@ -10,7 +10,7 @@ import { Field } from '@blueriq/core';
 
 @BlueriqComponent({
   type: Field,
-  selector: '[dataType=number]'
+  selector: '[dataType=number]:not([hasDomain])'
 })
 
 export class NumberFieldComponent {

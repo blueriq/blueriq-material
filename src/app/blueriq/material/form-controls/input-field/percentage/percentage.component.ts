@@ -11,7 +11,7 @@ import { Field } from '@blueriq/core';
 
 @BlueriqComponent({
   type: Field,
-  selector: '[dataType=percentage]'
+  selector: '[dataType=percentage]:not([hasDomain])'
 })
 
 export class PercentageFieldComponent {

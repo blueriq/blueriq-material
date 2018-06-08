@@ -11,7 +11,7 @@ import { Field } from '@blueriq/core';
 
 @BlueriqComponent({
   type: Field,
-  selector: '[dataType=text]'
+  selector: '[dataType=text]:not([hasDomain])'
 })
 
 export class StringFieldComponent {

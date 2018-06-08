@@ -11,7 +11,7 @@ import { PresentationStyles } from '../../../presentationstyles/presentationstyl
 
 @BlueriqComponent({
   type: Field,
-  selector: '[dataType=integer]'
+  selector: '[dataType=integer]:not([hasDomain])'
 })
 
 export class IntegerFieldComponent {
