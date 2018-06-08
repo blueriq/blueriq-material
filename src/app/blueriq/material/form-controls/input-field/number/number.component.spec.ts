@@ -35,4 +35,9 @@ describe('NumberFieldComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it ('should contain explain en message support', () => {
+    const appElement = component.nativeElement.querySelector('app-element');
+    expect(appElement).toBeTruthy();
+  });
 });

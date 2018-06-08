@@ -21,10 +21,12 @@ export class StringFieldComponent {
   constructor(@Host() public field: Field, private form: BlueriqFormBuilder) {
   }
 
-  getType() {
-    return this.field.dataType;
+  /** Whether the string field has a presentation style Disabled */
+  isDisabled() {
+    return this.field.styles.has('Disabled');
   }
 
+  /** Whether the string field is read only */
   isReadonly() {
     return this.field.readonly;
   }

@@ -40,4 +40,9 @@ describe('PercentageFieldComponent', () => {
     const suffix = component.nativeElement.querySelector('mat-form-field').innerHTML;
     expect(suffix).toContain('matsuffix');
   });
+
+  it ('should contain explain en message support', () => {
+    const appElement = component.nativeElement.querySelector('app-element');
+    expect(appElement).toBeTruthy();
+  });
 });

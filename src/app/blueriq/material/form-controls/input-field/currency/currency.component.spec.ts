@@ -6,6 +6,7 @@ import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from
 import { FieldTemplate } from '@blueriq/core/testing';
 import { ElementComponent } from '../../../../generic/element/element.component';
 import { MaterialModule } from '../../../material/material.module';
+import { PresentationStyles } from '../../../presentationstyles/presentationstyles';
 
 import { CurrencyFieldComponent } from './currency.component';
 
@@ -40,5 +41,10 @@ describe('CurrencyFieldComponent', () => {
   it('should contain euro sign', () => {
     const suffix = component.nativeElement.querySelector('mat-form-field').innerHTML;
     expect(suffix).toContain('matprefix');
+  });
+
+  it ('should contain explain en message support', () => {
+    const appElement = component.nativeElement.querySelector('app-element');
+    expect(appElement).toBeTruthy();
   });
 });

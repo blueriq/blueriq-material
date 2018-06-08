@@ -20,9 +20,4 @@ export class CurrencyFieldComponent {
 
   constructor(@Host() public field: Field, private form: BlueriqFormBuilder) {
   }
-
-  getType() {
-    return this.field.dataType;
-  }
-
 }
