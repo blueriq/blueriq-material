@@ -28,7 +28,7 @@ describe('CurrencyFieldComponent', () => {
   }));
 
   beforeEach(() => {
-    field = FieldTemplate.text();
+    field = FieldTemplate.currency();
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(CurrencyFieldComponent);
   });

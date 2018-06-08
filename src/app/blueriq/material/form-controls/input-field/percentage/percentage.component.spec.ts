@@ -27,7 +27,7 @@ describe('PercentageFieldComponent', () => {
   }));
 
   beforeEach(() => {
-    field = FieldTemplate.text();
+    field = FieldTemplate.percentage();
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(PercentageFieldComponent);
   });

@@ -1,6 +1,6 @@
-import { async, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BlueriqComponents } from '@blueriq/angular';
-import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
+import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../../material/material.module';
 import { PresentationStyles } from '../../presentationstyles/presentationstyles';
@@ -8,13 +8,9 @@ import { PresentationStyles } from '../../presentationstyles/presentationstyles'
 import { RadioButtonComponent } from './radio-button.component';
 
 describe('RadioButtonComponent', () => {
-  const field = FieldTemplate.text('muppets').domain({
-    'kermit': 'Kermit',
-    'miss_piggy': 'Miss Piggy',
-    'beaker': 'Beaker'
-  });
-  let session;
-  let component;
+  let field: FieldTemplate;
+  let session: BlueriqTestSession;
+  let component: ComponentFixture<RadioButtonComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -28,8 +24,13 @@ describe('RadioButtonComponent', () => {
   }));
 
   beforeEach(() => {
+    field = FieldTemplate.text('muppets').domain({
+      'kermit': 'Kermit',
+      'miss_piggy': 'Miss Piggy',
+      'beaker': 'Beaker'
+    });
     // reset field to default
-    field.styles(PresentationStyles.RADIO).readonly(false).value(null);
+    field.styles(PresentationStyles.RADIO).readonly(false).value('');
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(RadioButtonComponent);
   });
@@ -95,18 +96,19 @@ describe('RadioButtonComponent', () => {
   });
 
   it('default direction is `horizontal` when there are exactly 2 radio buttons', () => {
-    const two_options = FieldTemplate.text('two_options').domain({
-      1: 'One',
-      2: 'Two'
-    }).styles(PresentationStyles.RADIO);
-    session = BlueriqSessionTemplate.create().build(two_options);
-    component = session.get(RadioButtonComponent);
+    session.update(
+      field.name('two_options').domain({
+        1: 'One',
+        2: 'Two'
+      }).styles(PresentationStyles.RADIO)
+    );
+
     let inputField = component.nativeElement.querySelector('.horizontal');
     expect(inputField).toBeTruthy();
 
     // override default with presentation style
     session.update(
-      two_options.styles(PresentationStyles.RADIO, PresentationStyles.VERTICAL)
+      field.styles(PresentationStyles.RADIO, PresentationStyles.VERTICAL)
     );
     inputField = component.nativeElement.querySelector('.vertical');
     expect(inputField).toBeTruthy('setting presentation style `vertical` overrides default behaviour');

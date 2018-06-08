@@ -27,7 +27,7 @@ describe('IntegerFieldComponent', () => {
   }));
 
   beforeEach(() => {
-    field = FieldTemplate.text();
+    field = FieldTemplate.integer();
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(IntegerFieldComponent);
   });

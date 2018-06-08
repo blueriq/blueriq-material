@@ -27,7 +27,7 @@ describe('NumberFieldComponent', () => {
   }));
 
   beforeEach(() => {
-    field = FieldTemplate.text();
+    field = FieldTemplate.number();
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(NumberFieldComponent);
   });

@@ -1,17 +1,17 @@
-import { async, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
-import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
+import { BlueriqComponents } from '@blueriq/angular';
+import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../../material/material.module';
 import { PresentationStyles } from '../../presentationstyles/presentationstyles';
 import { CheckboxComponent } from './checkbox.component';
 
 describe('CheckboxComponent', () => {
-  const field = FieldTemplate.boolean();
-  let component;
-  let session;
+  let field: FieldTemplate;
+  let component: ComponentFixture<CheckboxComponent>;
+  let session: BlueriqTestSession;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -20,7 +20,6 @@ describe('CheckboxComponent', () => {
       imports: [
         MaterialModule,
         BrowserAnimationsModule, // or NoopAnimationsModule
-        BlueriqModule.forRoot(),
         BlueriqTestingModule,
         FormsModule
       ]
@@ -28,6 +27,7 @@ describe('CheckboxComponent', () => {
   }));
 
   beforeEach(() => {
+    field = FieldTemplate.boolean();
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(CheckboxComponent);
   });
@@ -53,9 +53,9 @@ describe('CheckboxComponent', () => {
   });
 
   it('should be disabled', () => {
-    field.styles(PresentationStyles.DISABLED);
-    session = BlueriqSessionTemplate.create().build(field);
-    component = session.get(CheckboxComponent);
+    session.update(
+      field.styles(PresentationStyles.DISABLED)
+    );
 
     const inputField = component.nativeElement.querySelector('.mat-checkbox-disabled');
     expect(inputField).toBeTruthy();

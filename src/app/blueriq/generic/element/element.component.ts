@@ -22,6 +22,9 @@ export class ElementComponent {
     if (this.field.readonly) {
       return false;
     }
-    return this.field.explainText.length > 0;
+    if (this.field.explainText) {
+      return this.field.explainText.length > 0;
+    }
+    return false;
   }
 }

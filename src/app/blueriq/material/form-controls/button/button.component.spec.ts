@@ -1,17 +1,17 @@
-import { async, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
-import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
+import { BlueriqComponents } from '@blueriq/angular';
+import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ButtonTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../../material/material.module';
 import { PresentationStyles } from '../../presentationstyles/presentationstyles';
 import { ButtonComponent } from './button.component';
 
 describe('ButtonComponent', () => {
-  const button = ButtonTemplate.create();
-  let component;
-  let session;
+  let button: ButtonTemplate;
+  let component: ComponentFixture<ButtonComponent>;
+  let session: BlueriqTestSession;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -20,7 +20,6 @@ describe('ButtonComponent', () => {
       imports: [
         MaterialModule,
         BrowserAnimationsModule, // or NoopAnimationsModule
-        BlueriqModule.forRoot(),
         BlueriqTestingModule,
         FormsModule
       ]
@@ -28,6 +27,7 @@ describe('ButtonComponent', () => {
   }));
 
   beforeEach(() => {
+    button = ButtonTemplate.create();
     button.caption('Click me!');
     session = BlueriqSessionTemplate.create().build(button);
     component = session.get(ButtonComponent);

@@ -17,7 +17,7 @@ export class ButtonComponent {
   constructor(@Host() public button: Button, private session: BlueriqSession) {
   }
 
-  getColor(): string {
+  getColor(): string | null {
     if (this.button.styles.has(PresentationStyles.PRIMARY || PresentationStyles.BUTTON_PRIMARY)) {
       return 'primary';
     } else if (this.button.styles.has(PresentationStyles.ACCENT)) {
