@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
@@ -59,11 +58,12 @@ describe('TablePaginationComponent', () => {
 
   it('should have working previous and next buttons', () => {
     const pageLabel = component.nativeElement.querySelector('.mat-paginator-range-label').innerHTML;
-    const previousButton = component.debugElement.query(By.css('.mat-paginator-navigation-previous')).nativeElement;
-    const nextButton = component.debugElement.query(By.css('.mat-paginator-navigation-next')).nativeElement;
+    const previousButton = component.nativeElement.querySelector('.mat-paginator-navigation-previous');
+    const nextButton = component.nativeElement.querySelector('.mat-paginator-navigation-next');
     expect(pageLabel).toBe('1 of 2');
-    expect(previousButton).toContain('disabled');
-    expect(nextButton).not.toContain('disabled');
+    expect(previousButton.hasAttribute('disabled')).toBeTruthy();
+    expect(nextButton.hasAttribute('disabled')).toBeFalsy();
+
     // TODO: this cant be test any further since this is a ContainerTemplate and
     // TODO: not of type Pagination and is missing the attributes of Pagination
   });

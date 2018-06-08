@@ -13,6 +13,7 @@ import { ElementComponent } from './blueriq/generic/element/element.component';
 import { ButtonComponent } from './blueriq/material/button/button.component';
 import { ContainerComponent } from './blueriq/material/container/container.component';
 import { FieldComponent } from './blueriq/material/field/field.component';
+import { SelectComponent } from './blueriq/material/form-controls/select/select.component';
 import { MaterialModule } from './blueriq/material/material/material.module';
 import { PageComponent } from './blueriq/material/page/page.component';
 import { PaginationComponent } from './blueriq/material/table/pagination/table.pagination.component';
@@ -44,6 +45,7 @@ const BQ_COMPONENTS = [
   TableSearchComponent,
   PaginationComponent,
   TableSortComponent,
+  SelectComponent,
 ];
 
 const BQ_MAT_COMPONENTS = [
