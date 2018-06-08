@@ -1,5 +1,5 @@
 import { Component, Host } from '@angular/core';
-import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
+import { BlueriqComponent } from '@blueriq/angular';
 import { Button } from '@blueriq/core';
 
 @Component({
@@ -12,47 +12,26 @@ import { Button } from '@blueriq/core';
 })
 export class TableSortComponent {
 
-  hovering: boolean = false;
-  iconMap = {
-    ascending: 'arrow_downward',
-    descending: 'arrow_upward',
-  };
+  hovering = false;
 
-  constructor(@Host() public button: Button, private session: BlueriqSession) {
+  constructor(@Host() public button: Button) {
   }
 
-  onClick(): void {
-    if (this.button.enabled) {
-      this.session.pressed(this.button);
+  getIconByDirection(): string {
+    if (this.button.styles.has('ascending')) {
+      return 'arrow_downward';
+    } else if (this.button.styles.has('descending')) {
+      return 'arrow_upward';
+    } else {
+      return this.hovering ? 'arrow_downward' : null;
     }
-  }
-
-  private getDirection(): string {
-    const direction = this.button.styles.all()[1];
-    return direction ? direction : null;
-  }
-
-  hasNoDirection(): boolean {
-    return this.getDirection() === null;
-  }
-
-  getIconByDirection() {
-    const icon = this.iconMap[this.getDirection()];
-    if (icon) {
-      return icon;
-    }
-    return this.hovering ? this.iconMap.ascending : '';
   }
 
   mouseEnter() {
-    if (this.hasNoDirection()) {
-      this.hovering = true;
-    }
+    this.hovering = true;
   }
 
   mouseLeave() {
-    if (this.hasNoDirection()) {
-      this.hovering = false;
-    }
+    this.hovering = false;
   }
 }
