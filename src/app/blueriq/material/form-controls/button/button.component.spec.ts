@@ -74,7 +74,7 @@ describe('ButtonComponent', () => {
     expect(classes).not.toContain('mat-accent');
   });
 
-  fit('should be accent colored', () => {
+  it('should be accent colored', () => {
     session.update(
       button.styles(PresentationStyles.ACCENT)
     );
