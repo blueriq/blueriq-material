@@ -11,7 +11,7 @@
   </div>
 
   <div class="col2">
-    <ng-container *ngIf="displayExplainText()">
+    <ng-container *ngIf="shouldDisplayExplainText()">
       <i class="material-icons" matTooltip="{{field.explainText}}">info</i>
     </ng-container>
   </div>

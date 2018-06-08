@@ -18,7 +18,7 @@ export class ElementComponent {
     return this.field.messages;
   }
 
-  displayExplainText(): boolean {
+  shouldDisplayExplainText(): boolean {
     if (this.field.readonly) {
       return false;
     }
