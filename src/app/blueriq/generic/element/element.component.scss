@@ -1,14 +1,14 @@
 .flex-grid-thirds {
   display: flex;
   justify-content: space-between;
-}
 
-.flex-grid-thirds .col1 {
-  width: 95%;
-}
+  .col1 {
+    width: 95%;
+  }
 
-.flex-grid-thirds .col2 {
-  width: 5%;
+  .col2 {
+    width: 5%;
+  }
 }
 
 :host ::ng-deep .mat-form-field {
@@ -18,5 +18,5 @@
 .aligned-with-icon {
   position: absolute;
   margin-top: 5px;
-  margin-left: 5px; /* optional */
+  margin-left: 5px;
 }
