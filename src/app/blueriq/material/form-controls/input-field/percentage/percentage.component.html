@@ -1,11 +1,14 @@
 <app-element [field]="field">
-  <mat-form-field>
+
+  <mat-form-field [appearance]="isReadonly() ? 'outline' : null">
     <input matInput placeholder="{{field.questionText}}"
       type="text"
       [id]="field.key"
       [required]="field.required"
       [formControl]="formControl"
-      value="{{field.getValue()}}">
+      [disabled]="isDisabled()"
+      [value]="field.getValue()">
     <span matSuffix>%</span>
   </mat-form-field>
+
 </app-element>

@@ -22,18 +22,20 @@ export class IntegerFieldComponent {
     this.setIsDisabled();
   }
 
-  getType() {
-    return this.field.dataType;
-  }
-
   setIsDisabled() {
     if (this.isDisabled()) {
       this.formControl.disable();
     }
   }
 
+  /** Whether the string field has a presentation style Disabled */
   isDisabled(): boolean {
     return this.field.styles.has(PresentationStyles.DISABLED);
+  }
+
+  /** Whether the string field is read only */
+  isReadonly() {
+    return this.field.readonly;
   }
 
 }

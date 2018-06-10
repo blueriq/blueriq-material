@@ -2,6 +2,7 @@ import { Component, Host } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { BlueriqFormBuilder } from '@blueriq/angular/forms';
 import { Field } from '@blueriq/core';
+import { PresentationStyles } from '../../../presentationstyles/presentationstyles';
 
 @Component({
   selector: 'app-integer-field',
@@ -20,8 +21,14 @@ export class NumberFieldComponent {
   constructor(@Host() public field: Field, private form: BlueriqFormBuilder) {
   }
 
-  getType() {
-    return this.field.dataType;
+  /** Whether the string field has a presentation style Disabled */
+  isDisabled() {
+    return this.field.styles.has(PresentationStyles.DISABLED);
+  }
+
+  /** Whether the string field is read only */
+  isReadonly() {
+    return this.field.readonly;
   }
 
 }

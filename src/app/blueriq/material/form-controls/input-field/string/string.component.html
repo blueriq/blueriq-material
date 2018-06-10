@@ -1,20 +1,14 @@
 <app-element [field]="field">
-  <mat-form-field *ngIf="!isReadonly()">
-    <input matInput placeholder={{field.questionText}}
-           type="text"
-           [id]="field.key"
-           [required]="field.required"
-           [formControl]="formControl"
-           value={{field.getValue()}}>
-  </mat-form-field>
 
-  <mat-form-field *ngIf="isReadonly()" appearance="outline">
-    <input matInput placeholder={{field.questionText}}
-           type="text"
-           [id]="field.key"
-           [required]="field.required"
-           [formControl]="formControl"
-           value={{field.getValue()}}>
+  <mat-form-field [appearance]="isReadonly() ? 'outline' : null">
+    <input matInput
+      type="text"
+      [placeholder]="field.questionText"
+      [id]="field.key"
+      [required]="field.required"
+      [formControl]="formControl"
+      [disabled]="isDisabled()"
+      [value]="field.getValue()">
   </mat-form-field>
 
 </app-element>
