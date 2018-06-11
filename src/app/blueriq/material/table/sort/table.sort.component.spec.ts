@@ -19,14 +19,14 @@ describe('TableSortComponent', () => {
     TestBed.configureTestingModule({
       declarations: [TableSortComponent, ButtonComponent],
       providers: [
-        BlueriqComponents.register([TableSortComponent, ButtonComponent]),
+        BlueriqComponents.register([TableSortComponent, ButtonComponent])
       ],
       imports: [
         MaterialModule,
         BrowserAnimationsModule, // or NoopAnimationsModule
         BlueriqTestingModule,
-        FormsModule,
-      ],
+        FormsModule
+      ]
     });
   });
 
@@ -47,13 +47,13 @@ describe('TableSortComponent', () => {
     expect(iconElement).not.toContain('arrow_downward');
 
     session.update(
-      button.styles('icon', 'descending'),
+      button.styles('icon', 'descending')
     );
     iconElement = component.nativeElement.querySelector('.material-icons').innerHTML;
     expect(iconElement).toContain('arrow_upward');
 
     session.update(
-      button.styles('icon', 'ascending'),
+      button.styles('icon', 'ascending')
     );
     component.detectChanges();
     iconElement = component.nativeElement.querySelector('.material-icons').innerHTML;
