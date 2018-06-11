@@ -24,14 +24,14 @@ describe('TableComponent', () => {
       providers: [BlueriqComponents.register([
         TableComponent, TableReadonlyComponent,
         TableSortComponent, TextItemComponent]),
-        Table,
+        Table
       ],
       imports: [
         MaterialModule,
         BrowserAnimationsModule, // or NoopAnimationsModule
         BlueriqTestingModule,
-        FormsModule,
-      ],
+        FormsModule
+      ]
     });
   }));
 
@@ -51,23 +51,23 @@ describe('TableComponent', () => {
         .children(
           TextItemTemplate.create('Name').plainText('Name'),
           /* 'descending' itself cannot be tested, since this is done by the backend */
-          ButtonTemplate.create().styles('sort', 'descending'),
-        ),
+          ButtonTemplate.create().styles('sort', 'descending')
+        )
       ),
       // ---------- Row #1 ----------
       ContainerTemplate
       .create('row')
       .contentStyle('tablerow')
       .children(
-        FieldTemplate.text('Person.Name').value('Mike').readonly(true),
+        FieldTemplate.text('Person.Name').value('Mike').readonly(true)
       ),
       // ---------- Row #2 ----------
       ContainerTemplate
       .create('row')
       .contentStyle('tablerow')
       .children(
-        FieldTemplate.text('Person.Name').value('Tilly').readonly(true),
-      ),
+        FieldTemplate.text('Person.Name').value('Tilly').readonly(true)
+      )
       // ---------- End ----------
     );
     session = BlueriqSessionTemplate.create().build(tableTemplate);
