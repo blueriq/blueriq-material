@@ -12,7 +12,7 @@ import { TableSortComponent } from './sort/table.sort.component';
 import { TableComponent } from './table.component';
 import { TableReadonlyComponent } from './table.readonly.component';
 
-fdescribe('TableComponent', () => {
+describe('TableComponent', () => {
   let tableTemplate: ContainerTemplate;
   let session: BlueriqTestSession;
   let component: ComponentFixture<TableComponent>;
@@ -75,7 +75,6 @@ fdescribe('TableComponent', () => {
   });
 
   it('should have been created', () => {
-    console.log(component.nativeElement);
     expect(component).toBeTruthy();
   });
 
