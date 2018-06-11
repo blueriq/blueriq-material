@@ -1,12 +1,11 @@
-import { Component, Host } from '@angular/core';
+import { Component } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
-import { BlueriqFormBuilder } from '@blueriq/angular/forms';
 import { Field } from '@blueriq/core';
-import { PresentationStyles } from '../../../presentationstyles/presentationstyles';
+import { InputFieldComponent } from '../input-field.component';
 
 @Component({
   selector: 'app-string-field',
-  templateUrl: './string.component.html',
+  templateUrl: '../input-field.component.html',
   styleUrls: ['./string.component.scss']
 })
 
@@ -15,21 +14,5 @@ import { PresentationStyles } from '../../../presentationstyles/presentationstyl
   selector: '[dataType=text]:not([hasDomain])'
 })
 
-export class StringFieldComponent {
-
-  formControl = this.form.control(this.field, { updateOn: 'blur' });
-
-  constructor(@Host() public field: Field, private form: BlueriqFormBuilder) {
-  }
-
-  /** Whether the string field has a presentation style Disabled */
-  isDisabled() {
-    return this.field.styles.has(PresentationStyles.DISABLED);
-  }
-
-  /** Whether the string field is read only */
-  isReadonly() {
-    return this.field.readonly;
-  }
-
+export class StringFieldComponent extends InputFieldComponent {
 }
