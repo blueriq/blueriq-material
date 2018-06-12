@@ -1,5 +1,5 @@
-<div class="field">
-  <mat-checkbox [required]="field.required" [checked]="field.getValue()" [disabled]="isDisabled() || isReadonly()">
+<app-element [field]="field">
+  <mat-checkbox [required]="field.required" [formControl]="formControl">
     {{field.questionText}}
   </mat-checkbox>
-</div>
+</app-element>
