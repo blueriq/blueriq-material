@@ -5,8 +5,7 @@ import { InputFieldComponent } from '../input-field.component';
 
 @Component({
   selector: 'app-string-field',
-  templateUrl: '../input-field.component.html',
-  styleUrls: ['./string.component.scss']
+  templateUrl: '../input-field.component.html'
 })
 
 @BlueriqComponent({

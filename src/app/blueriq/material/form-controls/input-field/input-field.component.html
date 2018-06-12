@@ -1,16 +1,9 @@
 <app-element [field]="field">
 
-  <mat-form-field [appearance]="isReadonly() ? 'outline' : null">
-    <span matPrefix *ngIf="fieldprefix">{{fieldprefix}}</span>
-    <input matInput
-      type="text"
-      [placeholder]="field.questionText"
-      [id]="field.key"
-      [required]="field.required"
-      [formControl]="formControl"
-      [disabled]="isDisabled()"
-      [value]="field.getValue()">
-    <span matSuffix *ngIf="fieldsuffix">{{fieldsuffix}}</span>
+  <mat-form-field>
+    <span matPrefix *ngIf="fieldPrefix">{{fieldPrefix}}</span>
+    <input matInput type="text" [placeholder]="field.questionText" [id]="field.key" [required]="field.required" [formControl]="formControl">
+    <span matSuffix *ngIf="fieldSuffix">{{fieldSuffix}}</span>
   </mat-form-field>
 
 </app-element>

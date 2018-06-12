@@ -15,5 +15,7 @@ import { InputFieldComponent } from '../input-field.component';
 })
 
 export class PercentageFieldComponent extends InputFieldComponent {
-  fieldsuffix = '%';
+
+  fieldSuffix = '%';
+
 }
