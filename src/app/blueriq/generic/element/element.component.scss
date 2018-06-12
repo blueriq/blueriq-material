@@ -11,8 +11,10 @@
   }
 }
 
-:host ::ng-deep .mat-form-field {
-  display: block;
+:host ::ng-deep {
+  .mat-form-field {
+    display: block;
+  }
 }
 
 .aligned-with-icon {
