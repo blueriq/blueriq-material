@@ -43,21 +43,56 @@ describe('TableSortComponent', () => {
 
   it('should display the right material icon', () => {
     let iconElement = component.debugElement.query(By.css('.material-icons')).nativeElement;
+    let currentIcon = component.componentInstance.getIconByDirection();
     expect(iconElement).not.toContain('arrow_upward');
     expect(iconElement).not.toContain('arrow_downward');
+    expect(currentIcon).toBe(null);
 
     session.update(
       button.styles('icon', 'descending')
     );
     iconElement = component.nativeElement.querySelector('.material-icons').innerHTML;
+    currentIcon = component.componentInstance.getIconByDirection();
     expect(iconElement).toContain('arrow_upward');
+    expect(currentIcon).toBe('arrow_upward');
 
     session.update(
       button.styles('icon', 'ascending')
     );
-    component.detectChanges();
     iconElement = component.nativeElement.querySelector('.material-icons').innerHTML;
+    currentIcon = component.componentInstance.getIconByDirection();
     expect(iconElement).toContain('arrow_downward');
+    expect(currentIcon).toBe('arrow_downward');
   });
 
+  it('should have a working hovering', () => {
+    let isHovering = component.componentInstance.hovering;
+    let currentIcon = component.componentInstance.getIconByDirection();
+    expect(isHovering).toBeFalsy();
+    expect(currentIcon).toBe(null);
+
+    fireEvent(component.nativeElement.querySelector('.material-icons'), 'mouseenter');
+    isHovering = component.componentInstance.hovering;
+    currentIcon = component.componentInstance.getIconByDirection();
+    expect(isHovering).toBeTruthy();
+    expect(currentIcon).toBe('arrow_downward');
+
+    fireEvent(component.nativeElement.querySelector('.material-icons'), 'mouseleave');
+    isHovering = component.componentInstance.hovering;
+    currentIcon = component.componentInstance.getIconByDirection();
+    expect(isHovering).toBeFalsy();
+    expect(currentIcon).toBe(null);
+  });
+
+  function fireEvent(element, event) {
+    console.log(element.fireEvent);
+    if (element.fireEvent) {
+      element.fireEvent('on' + event);
+    } else {
+      const evObj = document.createEvent('Events');
+      evObj.initEvent(event, true, false);
+      element.dispatchEvent(evObj);
+    }
+  }
+  
 });
