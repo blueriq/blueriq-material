@@ -9,7 +9,7 @@ import { MaterialModule } from '../../material/material.module';
 
 import { TableSearchComponent } from './table.search.component';
 
-fdescribe('TableSearchComponent', () => {
+describe('TableSearchComponent', () => {
   let tableTemplate: ContainerTemplate;
   let session: BlueriqTestSession;
   let component: ComponentFixture<TableSearchComponent>;
