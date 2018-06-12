@@ -85,7 +85,6 @@ describe('TableSortComponent', () => {
   });
 
   function fireEvent(element, event) {
-    console.log(element.fireEvent);
     if (element.fireEvent) {
       element.fireEvent('on' + event);
     } else {

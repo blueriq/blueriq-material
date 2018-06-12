@@ -28,52 +28,52 @@ describe('TablePaginationComponent', () => {
     TestBed.configureTestingModule({
       declarations: [PaginationComponent],
       providers: [
-        BlueriqComponents.register([PaginationComponent]),
+        BlueriqComponents.register([PaginationComponent])
       ],
       imports: [
         MaterialModule,
         BrowserAnimationsModule, // or NoopAnimationsModule
         BlueriqTestingModule,
-        FormsModule,
-      ],
+        FormsModule
+      ]
     });
   });
 
   beforeEach(() => {
     btnFirst = ButtonTemplate.create('first')
-      .caption('<<')
-      .disabled(true)
-      .styles('pagination');
+    .caption('<<')
+    .disabled(true)
+    .styles('pagination');
 
     btnPrevious = ButtonTemplate.create('previous')
-      .caption('<')
-      .disabled(true)
-      .styles('pagination');
+    .caption('<')
+    .disabled(true)
+    .styles('pagination');
 
     currentPageNumber = FieldTemplate.integer('InstanceListContainer_currentPageNumber')
-      .domain({ 1: '1', 2: '2', 3: '3' })
-      .styles('paginationNumber')
-      .value('1');
+    .domain({ 1: '1', 2: '2', 3: '3' })
+    .styles('paginationNumber')
+    .value('1');
 
     btnNext = ButtonTemplate.create('next')
-      .caption('>')
-      .styles('pagination');
+    .caption('>')
+    .styles('pagination');
 
     btnLast = ButtonTemplate.create('last')
-      .caption('>>')
-      .styles('pagination');
+    .caption('>>')
+    .styles('pagination');
 
     const pagination = ContainerTemplate.create()
-      .name('navigationContainer')
-      .displayName('DisplayName')
-      .styles('navigationContainer')
-      .contentStyle('tablenavigation')
-      .children(
-        btnFirst,
-        btnPrevious,
-        currentPageNumber,
-        btnNext,
-        btnLast
+    .name('navigationContainer')
+    .displayName('DisplayName')
+    .styles('navigationContainer')
+    .contentStyle('tablenavigation')
+    .children(
+      btnFirst,
+      btnPrevious,
+      currentPageNumber,
+      btnNext,
+      btnLast
     );
     session = BlueriqSessionTemplate.create().build(pagination);
     component = session.get(PaginationComponent);
@@ -83,7 +83,7 @@ describe('TablePaginationComponent', () => {
     expect(component).toBeTruthy();
   });
 
- it('should have a firstpage that cannot navigate to previous page', () => {
+  it('should have a firstpage that cannot navigate to previous page', () => {
     const pageLabel = component.nativeElement.querySelector(LABEL).innerHTML;
     const previousButton = component.nativeElement.querySelector(NAVIGATION_PREVIOUS);
     const nextButton = component.nativeElement.querySelector(NAVIGATION_NEXT);
