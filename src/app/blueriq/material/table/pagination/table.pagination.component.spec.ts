@@ -9,11 +9,19 @@ import { MaterialModule } from '../../material/material.module';
 import { PaginationComponent } from './table.pagination.component';
 
 describe('TablePaginationComponent', () => {
-  let pagination: ContainerTemplate;
+  const LABEL = '.mat-paginator-range-label';
+  const NAVIGATION_PREVIOUS = '.mat-paginator-navigation-previous';
+  const NAVIGATION_NEXT = '.mat-paginator-navigation-next';
+  const NAVIGATION_LAST = '.mat-paginator-navigation-last';
+  const NAVIGATION_FIRST = '.mat-paginator-navigation-first';
+
   let session: BlueriqTestSession;
   let component: ComponentFixture<PaginationComponent>;
 
+  let btnFirst: ButtonTemplate;
+  let btnLast: ButtonTemplate;
   let btnPrevious: ButtonTemplate;
+  let currentPageNumber: FieldTemplate;
   let btnNext: ButtonTemplate;
 
   beforeEach(() => {
@@ -32,40 +40,106 @@ describe('TablePaginationComponent', () => {
   });
 
   beforeEach(() => {
-    btnPrevious = ButtonTemplate.create('previous');
-    btnNext = ButtonTemplate.create('next');
-    pagination = ContainerTemplate.create();
-    pagination
-    .name('navigationContainer')
-    .displayName('DisplayName')
-    .styles('navigationContainer')
-    .contentStyle('tablenavigation')
-    .children(
-      btnPrevious.disabled(true),
-      btnNext.disabled(false),
-      ButtonTemplate.create('first'),
-      ButtonTemplate.create('last'),
-      FieldTemplate.integer('currentPageNumber').domain({ 1: '1', 2: '2' })
+    btnFirst = ButtonTemplate.create('first')
+      .caption('<<')
+      .disabled(true)
+      .styles('pagination');
+
+    btnPrevious = ButtonTemplate.create('previous')
+      .caption('<')
+      .disabled(true)
+      .styles('pagination');
+
+    currentPageNumber = FieldTemplate.integer('InstanceListContainer_currentPageNumber')
+      .domain({ 1: '1', 2: '2', 3: '3' })
+      .styles('paginationNumber')
+      .value('1');
+
+    btnNext = ButtonTemplate.create('next')
+      .caption('>')
+      .styles('pagination');
+
+    btnLast = ButtonTemplate.create('last')
+      .caption('>>')
+      .styles('pagination');
+
+    const pagination = ContainerTemplate.create()
+      .name('navigationContainer')
+      .displayName('DisplayName')
+      .styles('navigationContainer')
+      .contentStyle('tablenavigation')
+      .children(
+        btnFirst,
+        btnPrevious,
+        currentPageNumber,
+        btnNext,
+        btnLast
     );
     session = BlueriqSessionTemplate.create().build(pagination);
     component = session.get(PaginationComponent);
-    component.autoDetectChanges();
   });
 
   it('should have been created', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have working previous and next buttons', () => {
-    const pageLabel = component.nativeElement.querySelector('.mat-paginator-range-label').innerHTML;
-    const previousButton = component.nativeElement.querySelector('.mat-paginator-navigation-previous');
-    const nextButton = component.nativeElement.querySelector('.mat-paginator-navigation-next');
-    expect(pageLabel).toBe('1 of 2');
+ it('should have a firstpage that cannot navigate to previous page', () => {
+    const pageLabel = component.nativeElement.querySelector(LABEL).innerHTML;
+    const previousButton = component.nativeElement.querySelector(NAVIGATION_PREVIOUS);
+    const nextButton = component.nativeElement.querySelector(NAVIGATION_NEXT);
+    const lastButton = component.nativeElement.querySelector(NAVIGATION_LAST);
+    const firstButton = component.nativeElement.querySelector(NAVIGATION_FIRST);
+
+    // Verify
+    expect(pageLabel).toBe('1 of 3');
     expect(previousButton.hasAttribute('disabled')).toBeTruthy();
     expect(nextButton.hasAttribute('disabled')).toBeFalsy();
+    expect(lastButton.hasAttribute('disabled')).toBeFalsy();
+    expect(firstButton.hasAttribute('disabled')).toBeTruthy();
+  });
 
-    // TODO: this cant be test any further since this is a ContainerTemplate and
-    // TODO: not of type Pagination and is missing the attributes of Pagination
+  it('should have a middle page that can navigate', () => {
+    // Setup second(middle) page
+    session.update(currentPageNumber.value('2'));
+    session.update(btnNext.disabled(false));
+    session.update(btnPrevious.disabled(false));
+    session.update(btnFirst.disabled(false));
+    session.update(btnLast.disabled(false));
+
+    const pageLabel = component.nativeElement.querySelector(LABEL).innerHTML;
+    const previousButton = component.nativeElement.querySelector(NAVIGATION_PREVIOUS);
+    const nextButton = component.nativeElement.querySelector(NAVIGATION_NEXT);
+    const lastButton = component.nativeElement.querySelector(NAVIGATION_LAST);
+    const firstButton = component.nativeElement.querySelector(NAVIGATION_FIRST);
+
+    // Verify
+    expect(pageLabel).toBe('2 of 3');
+    expect(previousButton.hasAttribute('disabled')).toBeFalsy();
+    expect(nextButton.hasAttribute('disabled')).toBeFalsy();
+    expect(lastButton.hasAttribute('disabled')).toBeFalsy();
+    expect(firstButton.hasAttribute('disabled')).toBeFalsy();
+  });
+
+  it('should have a last page that cannot navigate forward', () => {
+    // Setup Last page
+    session.update(currentPageNumber.value('3'));
+    session.update(btnPrevious.disabled(false));
+    session.update(btnNext.disabled(true));
+    session.update(btnFirst.disabled(false));
+    session.update(btnLast.disabled(true));
+
+    const pageLabel = component.nativeElement.querySelector(LABEL).innerHTML;
+    const previousButton = component.nativeElement.querySelector(NAVIGATION_PREVIOUS);
+    const nextButton = component.nativeElement.querySelector(NAVIGATION_NEXT);
+    const lastButton = component.nativeElement.querySelector(NAVIGATION_LAST);
+    const firstButton = component.nativeElement.querySelector(NAVIGATION_FIRST);
+
+    // Verify
+    expect(pageLabel).toBe('3 of 3');
+    expect(previousButton.hasAttribute('disabled')).toBeFalsy();
+    expect(nextButton.hasAttribute('disabled')).toBeTruthy();
+    expect(lastButton.hasAttribute('disabled')).toBeTruthy();
+    expect(firstButton.hasAttribute('disabled')).toBeFalsy();
   });
 
 });

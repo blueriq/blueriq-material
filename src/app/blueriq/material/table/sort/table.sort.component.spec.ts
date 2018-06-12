@@ -94,5 +94,4 @@ describe('TableSortComponent', () => {
       element.dispatchEvent(evObj);
     }
   }
-  
 });
