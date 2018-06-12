@@ -1,15 +1,17 @@
-<div class="field">
-  <div class="question-text">
-    {{field.questionText}}
+<app-element [field]="field">
+  <div class="radio-field-container">
+    <div class="question-text">
+      {{field.questionText}}
+    </div>
+    <div class="field-input">
+      <mat-radio-group *ngIf="!isReadonly()" [required]="field.required" [formControl]="formControl">
+        <div [class]="determineDirection()">
+          <mat-radio-button *ngFor="let option of field.domain.options" [value]="option.value">
+            {{option.displayValue}}
+          </mat-radio-button>
+        </div>
+      </mat-radio-group>
+      <span *ngIf="isReadonly()">{{field.getValue()}}</span>
+    </div>
   </div>
-  <div class="field-input">
-    <mat-radio-group [disabled]="isDisabled()" [value]="field.getValue()" *ngIf="!isReadonly()">
-      <div [class]="determineDirection()">
-        <mat-radio-button *ngFor="let option of field.domain.options" [value]="option.value">
-          {{option.displayValue}}
-        </mat-radio-button>
-      </div>
-    </mat-radio-group>
-    <span *ngIf="isReadonly()">{{field.getValue()}}</span>
-  </div>
-</div>
+</app-element>

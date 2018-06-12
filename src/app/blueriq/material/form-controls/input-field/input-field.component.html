@@ -2,7 +2,7 @@
 
   <mat-form-field>
     <span matPrefix *ngIf="fieldPrefix">{{fieldPrefix}}</span>
-    <input matInput type="text" [placeholder]="field.questionText" [id]="field.key" [required]="field.required" [formControl]="formControl">
+    <input matInput type="text" [placeholder]="field.questionText" [required]="field.required" [formControl]="formControl">
     <span matSuffix *ngIf="fieldSuffix">{{fieldSuffix}}</span>
   </mat-form-field>
 
