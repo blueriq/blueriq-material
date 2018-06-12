@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
+import { ElementComponent } from '../../../generic/element/element.component';
 import { MaterialModule } from '../../material/material.module';
 import { PresentationStyles } from '../../presentationstyles/presentationstyles';
 import { CheckboxComponent } from './checkbox.component';
@@ -15,7 +16,7 @@ describe('CheckboxComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CheckboxComponent],
+      declarations: [CheckboxComponent, ElementComponent],
       providers: [BlueriqComponents.register([CheckboxComponent])],
       imports: [
         MaterialModule,
@@ -53,9 +54,9 @@ describe('CheckboxComponent', () => {
   });
 
   it('should be disabled', () => {
-    session.update(
-      field.styles(PresentationStyles.DISABLED)
-    );
+    field.styles(PresentationStyles.DISABLED);
+    session = BlueriqSessionTemplate.create().build(field);
+    component = session.get(CheckboxComponent);
 
     const inputField = component.nativeElement.querySelector('.mat-checkbox-disabled');
     expect(inputField).toBeTruthy();

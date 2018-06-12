@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
+import { ElementComponent } from '../../../generic/element/element.component';
 import { MaterialModule } from '../../material/material.module';
 import { PresentationStyles } from '../../presentationstyles/presentationstyles';
 
@@ -14,7 +15,7 @@ describe('RadioButtonComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [RadioButtonComponent],
+      declarations: [RadioButtonComponent, ElementComponent],
       providers: [BlueriqComponents.register([RadioButtonComponent])],
       imports: [
         MaterialModule,
@@ -54,9 +55,10 @@ describe('RadioButtonComponent', () => {
     let inputField = component.nativeElement.querySelector('input[type=radio]').hasAttribute('disabled');
     expect(inputField).toBeFalsy('by default nothing is disabled');
 
-    session.update(
-      field.styles(PresentationStyles.RADIO, PresentationStyles.DISABLED)
-    );
+    field.styles(PresentationStyles.RADIO, PresentationStyles.DISABLED);
+    session = BlueriqSessionTemplate.create().build(field);
+    component = session.get(RadioButtonComponent);
+
     inputField = component.nativeElement.querySelector('input[type=radio]').hasAttribute('disabled');
     expect(inputField).toBeTruthy();
   });
@@ -65,9 +67,10 @@ describe('RadioButtonComponent', () => {
     let inputField = component.nativeElement.querySelector('mat-radio-button');
     expect(inputField).toBeTruthy('by default nothing is rendered read only');
 
-    session.update(
-      field.readonly(true)
-    );
+    field.readonly(true);
+    session = BlueriqSessionTemplate.create().build(field);
+    component = session.get(RadioButtonComponent);
+
     inputField = component.nativeElement.querySelector('mat-radio-button');
     expect(inputField).toBeFalsy();
 

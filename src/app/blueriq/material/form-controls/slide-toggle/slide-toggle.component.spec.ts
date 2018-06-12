@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
+import { ElementComponent } from '../../../generic/element/element.component';
 import { MaterialModule } from '../../material/material.module';
 import { PresentationStyles } from '../../presentationstyles/presentationstyles';
 import { SlideToggleComponent } from './slide-toggle.component';
@@ -15,7 +16,7 @@ describe('SlideToggleComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SlideToggleComponent],
+      declarations: [SlideToggleComponent, ElementComponent],
       providers: [BlueriqComponents.register([SlideToggleComponent])],
       imports: [
         MaterialModule,
@@ -52,9 +53,9 @@ describe('SlideToggleComponent', () => {
   });
 
   it('should be disabled', () => {
-    session.update(
-      field.styles(PresentationStyles.TOGGLE, PresentationStyles.DISABLED)
-    );
+    field.styles(PresentationStyles.TOGGLE, PresentationStyles.DISABLED);
+    session = BlueriqSessionTemplate.create().build(field);
+    component = session.get(SlideToggleComponent);
 
     const inputField = component.nativeElement.querySelector('.mat-disabled');
     expect(inputField).toBeTruthy();
