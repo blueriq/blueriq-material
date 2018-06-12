@@ -1,4 +1,3 @@
-
 <div class="mat-paginator">
   <div class="paginator-container">
 
@@ -6,12 +5,19 @@
     <div class="mat-paginator-range-label">{{pagination.currentPageNumber}} of {{pagination.numberOfPages}}</div>
 
     <!-- Previous/Next -->
-    <button class="mat-paginator-navigation-previous mat-icon-button" [disabled]="pagination.previous.disabled" [bqButton]="pagination.previous">
-      <i class="material-icons">chevron_left</i>
+    <button mat-icon-button [disabled]="pagination.first.disabled" [bqButton]="pagination.first">
+      <mat-icon>first_page</mat-icon>
     </button>
-    <button class="mat-paginator-navigation-next mat-icon-button" [disabled]="pagination.next.disabled" [bqButton]="pagination.next">
-      <i class="material-icons">chevron_right</i>
+    <button mat-icon-button [disabled]="pagination.previous.disabled" [bqButton]="pagination.previous">
+      <mat-icon>navigate_before</mat-icon>
+    </button>
+    <button mat-icon-button [disabled]="pagination.next.disabled" [bqButton]="pagination.next">
+      <mat-icon>navigate_next</mat-icon>
+    </button>
+    <button mat-icon-button [disabled]="pagination.last.disabled" [bqButton]="pagination.last">
+      <mat-icon>last_page</mat-icon>
     </button>
 
   </div>
 </div>
+
