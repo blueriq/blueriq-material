@@ -62,6 +62,8 @@ node {
           bat 'yarn lint'
         }
       )
+
+      bat 'yarn e2e'
     }
 
     stage('build') {
