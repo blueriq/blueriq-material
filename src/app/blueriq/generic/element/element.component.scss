@@ -1,12 +1,24 @@
 .flex-grid-thirds {
   display: flex;
   justify-content: space-between;
+
+  .col1 {
+    width: 95%;
+  }
+
+  .col2 {
+    width: 5%;
+  }
 }
 
-.flex-grid-thirds .col1 {
-  width: 95%;
+:host ::ng-deep {
+  .mat-form-field {
+    display: block;
+  }
 }
 
-.flex-grid-thirds .col2 {
-  width: 5%;
+.aligned-with-icon {
+  position: absolute;
+  margin-top: 5px;
+  margin-left: 5px;
 }
