@@ -13,6 +13,9 @@ export class TableReadonlyComponent {
   constructor(@Host() public field: Field) {}
 
   getDisplayValue() {
+    if (this.field.hasDomain) {
+      return this.field.domain.getDisplayValue(this.field.getValue());
+    }
     return this.field.getValue();
   }
 
