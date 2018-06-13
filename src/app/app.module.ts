@@ -13,6 +13,9 @@ import { ElementComponent } from './blueriq/generic/element/element.component';
 import { ButtonComponent } from './blueriq/material/button/button.component';
 import { ContainerComponent } from './blueriq/material/container/container.component';
 import { DownloadComponent } from './blueriq/material/download/download.component';
+import { DownloadService } from './blueriq/material/download/download.service';
+import { DownloadEffect } from './blueriq/material/download/DownloadEffect';
+import { Link } from './blueriq/material/download/Link';
 import { FieldComponent } from './blueriq/material/field/field.component';
 import { SelectComponent } from './blueriq/material/form-controls/select/select.component';
 import { MaterialModule } from './blueriq/material/material/material.module';
@@ -67,7 +70,8 @@ const BQ_MAT_COMPONENTS = [
     ReactiveFormsModule
   ],
   providers: [
-    BlueriqComponents.register(BQ_COMPONENTS)
+    BlueriqComponents.register(BQ_COMPONENTS),
+    DownloadService
   ],
   bootstrap: [AppComponent]
 })
