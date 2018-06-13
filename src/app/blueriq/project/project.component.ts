@@ -14,6 +14,7 @@ export class ProjectComponent implements OnInit {
   version: Observable<string>;
   project: Observable<string>;
   flow: Observable<string>;
+  languageCode: Observable<string>;
 
   constructor(private readonly route: ActivatedRoute) {
   }
@@ -31,6 +32,7 @@ export class ProjectComponent implements OnInit {
     this.version = this.route.paramMap.pipe(map(params => params.get('version') || '0.0-Trunk'));
     this.project = this.route.paramMap.pipe(map(params => params.get('project') || ''));
     this.flow = this.route.paramMap.pipe(map(params => params.get('flow') || ''));
+    this.languageCode = this.route.paramMap.pipe(map(params => params.get('languageCode') || ''));
   }
 }
 

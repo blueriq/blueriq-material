@@ -33,6 +33,7 @@ const routes: Routes = [
   {path: 'shortcut/:shortcut', component: ProjectComponent},
   {path: 'flow/:project/:flow', component: ProjectComponent},
   {path: 'flow/:project/:flow/:version', component: ProjectComponent},
+  {path: 'flow/:project/:flow/:version/:languageCode', component: ProjectComponent},
   {path: '**', redirectTo: 'shortcut/default', pathMatch: 'full'},
 ];
 
