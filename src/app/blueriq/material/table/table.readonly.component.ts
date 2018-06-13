@@ -10,7 +10,8 @@ import { Field } from '@blueriq/core';
   selector: 'table [readonly]'
 })
 export class TableReadonlyComponent {
-  constructor(@Host() public field: Field) {}
+  constructor(@Host() public field: Field) {
+  }
 
   getDisplayValue() {
     return this.field.getValue();

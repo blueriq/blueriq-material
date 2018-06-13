@@ -6,7 +6,7 @@ import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
 import { BlueriqTestSession } from '@blueriq/angular/testing/src/test_session';
 import { ButtonTemplate } from '@blueriq/core/testing';
-import { ButtonComponent } from '../../button/button.component';
+import { ButtonComponent } from '../../form-controls/button/button.component';
 import { MaterialModule } from '../../material/material.module';
 import { TableSortComponent } from './table.sort.component';
 
@@ -46,7 +46,7 @@ describe('TableSortComponent', () => {
     let currentIcon = component.componentInstance.getIconByDirection();
     expect(iconElement).not.toContain('arrow_upward');
     expect(iconElement).not.toContain('arrow_downward');
-    expect(currentIcon).toBe(null);
+    expect(currentIcon).toBe('');
 
     session.update(
       button.styles('icon', 'descending')
@@ -69,7 +69,7 @@ describe('TableSortComponent', () => {
     let isHovering = component.componentInstance.hovering;
     let currentIcon = component.componentInstance.getIconByDirection();
     expect(isHovering).toBeFalsy();
-    expect(currentIcon).toBe(null);
+    expect(currentIcon).toBe('');
 
     fireEvent(component.nativeElement.querySelector('.material-icons'), 'mouseenter');
     isHovering = component.componentInstance.hovering;
@@ -81,7 +81,7 @@ describe('TableSortComponent', () => {
     isHovering = component.componentInstance.hovering;
     currentIcon = component.componentInstance.getIconByDirection();
     expect(isHovering).toBeFalsy();
-    expect(currentIcon).toBe(null);
+    expect(currentIcon).toBe('');
   });
 
   function fireEvent(element, event) {

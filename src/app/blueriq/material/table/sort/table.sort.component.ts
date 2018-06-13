@@ -4,11 +4,11 @@ import { Button } from '@blueriq/core';
 
 @Component({
   templateUrl: './table.sort.component.html',
-  styleUrls: ['./table.sort.component.scss'],
+  styleUrls: ['./table.sort.component.scss']
 })
 @BlueriqComponent({
   type: Button,
-  selector: '.sort',
+  selector: '.sort'
 })
 export class TableSortComponent {
 
@@ -23,7 +23,7 @@ export class TableSortComponent {
     } else if (this.button.styles.has('descending')) {
       return 'arrow_upward';
     } else {
-      return this.hovering ? 'arrow_downward' : null;
+      return this.hovering ? 'arrow_downward' : '';
     }
   }
 

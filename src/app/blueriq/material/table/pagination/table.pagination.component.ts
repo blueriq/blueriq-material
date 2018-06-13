@@ -6,11 +6,11 @@ import { Container } from '@blueriq/core';
 @Component({
   templateUrl: './table.pagination.component.html',
   styleUrls: ['./table.pagination.component.scss'],
-  providers: [Pagination],
+  providers: [Pagination]
 })
 @BlueriqComponent({
   type: Container,
-  selector: '[name=navigationContainer]',
+  selector: '#navigationContainer'
 })
 export class PaginationComponent {
 
