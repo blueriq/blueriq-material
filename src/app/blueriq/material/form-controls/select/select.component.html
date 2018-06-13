@@ -1,15 +1,10 @@
 <app-element [field]="field">
-   <mat-form-field>
-    <mat-select
-      [placeholder]="field.questionText"
-      [required]="field.required"
-      (selectionChange)="onValueChanged()"
-      [disabled]="isDisabled() || isReadonly()"
-      [(value)]="selectedOptions" 
-      [multiple]="field.multiValued" >
+  <mat-form-field>
+    <mat-select [placeholder]="field.questionText" [required]="field.required" [formControl]="formControl" [multiple]="field.multiValued">
+      <mat-option *ngIf="!field.multiValued"></mat-option>
       <mat-option *ngFor="let option of getOptions()" [value]="option.value">
         {{ option.displayValue }}
       </mat-option>
     </mat-select>
-   </mat-form-field>
+  </mat-form-field>
 </app-element>

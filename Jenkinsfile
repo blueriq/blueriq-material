@@ -56,7 +56,7 @@ node {
     stage('verify') {
       parallel(
         'test': {
-          bat 'yarn test --watch false --code-coverage'
+          bat 'yarn test --watch false --progress false --code-coverage'
         },
         'lint': {
           bat 'yarn lint'

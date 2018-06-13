@@ -186,17 +186,17 @@
   dependencies:
     tslib "^1.9.0"
 
-"@blueriq/angular@^0.3.0-beta":
-  version "0.3.0-beta.1"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn-local/@blueriq/angular/-/@blueriq/angular-0.3.0-beta.1.tgz#48494d987a3543a844f80b79f7d80e25844b35fd"
+"@blueriq/angular@^0.3.0-beta.2":
+  version "0.3.0-beta.2"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn-local/@blueriq/angular/-/@blueriq/angular-0.3.0-beta.2.tgz#6ef89fe6ea4b296de926a1ba66acb63bfc0486a2"
   dependencies:
     date-fns "2.0.0-alpha.7"
     stable "0.1.7"
     tslib "^1.7.1"
 
-"@blueriq/core@^0.3.0-beta":
-  version "0.3.0-beta.1"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn-local/@blueriq/core/-/@blueriq/core-0.3.0-beta.1.tgz#bb94dee856df0bcd48c562bb4d06a65554c55722"
+"@blueriq/core@^0.3.0-beta.2":
+  version "0.3.0-beta.2"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn-local/@blueriq/core/-/@blueriq/core-0.3.0-beta.2.tgz#34f4c605cdea2a1968c08e2a9c6a45cd1e19bf39"
   dependencies:
     css-selector-parser "1.3.0"
     date-fns "2.0.0-alpha.7"
