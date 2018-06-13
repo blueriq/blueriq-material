@@ -1,19 +1,22 @@
 import { Component, Host, OnInit } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { BlueriqFormBuilder } from '@blueriq/angular/forms';
-import { DomainValue, Field } from '@blueriq/core';
+import { Field } from '@blueriq/core';
+import { PresentationStyles } from '../../presentationstyles/presentationstyles';
 
 @Component({
-  selector: 'app-select',
-  templateUrl: './select.component.html'
+  selector: 'app-checkbox',
+  templateUrl: './checkbox.component.html'
 })
 
 @BlueriqComponent({
   type: Field,
-  selector: '[hasDomain=true]'
+  selector: '[dataType=boolean]'
 })
-export class SelectComponent implements OnInit {
-  formControl = this.form.control(this.field, { updateOn: 'blur' });
+
+export class CheckboxComponent implements OnInit {
+
+  formControl = this.form.control(this.field, { syncOn: 'update' });
 
   constructor(@Host() public field: Field, private form: BlueriqFormBuilder) {
   }
@@ -25,18 +28,14 @@ export class SelectComponent implements OnInit {
     this.formControl.setValue(this.field.getValue());
   }
 
-  /** Whether the select has a presentation style Disabled */
+  /** Whether the checkbox has a presentation style {@link PresentationStyles.DISABLED} */
   isDisabled() {
-    return this.field.styles.has('Disabled');
+    return this.field.styles.has(PresentationStyles.DISABLED);
   }
 
-  /** Whether the select is read only */
+  /** Whether the checkbox is read only */
   isReadonly() {
     return this.field.readonly;
   }
 
-  /** Returns all the available option from the field domain list */
-  getOptions(): DomainValue[] {
-    return this.field.domain.options;
-  }
 }

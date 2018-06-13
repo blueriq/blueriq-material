@@ -1,6 +1,7 @@
 @import 'globals/variables';
 @import 'globals/basic-page-layout';
 @import '~@angular/material/theming';
+@import '~material-design-icons/iconfont/material-icons.css';
 
 @include mat-core;
 
@@ -11,29 +12,4 @@ $bq-warn-palette: mat-palette($mat-red);
 $bq-theme: mat-light-theme($bq-primary-palette, $bq-accent-palette, $bq-warn-palette);
 
 @include angular-material-theme($bq-theme);
-
-@font-face {
-  font-family: 'Material Icons';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Material Icons'),
-  local('MaterialIcons-Regular'),
-  url('node_modules/material-design-icons/iconfont/MaterialIcons-Regular.woff2') format('woff2');
-}
-
-.material-icons {
-  display: inline-block;
-  font-family: 'Material Icons';
-  font-size: 24px;
-  font-style: normal;
-  font-weight: normal;
-  letter-spacing: normal;
-  line-height: 1;
-  text-transform: none;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-  -webkit-font-feature-settings: 'liga';
-  -webkit-font-smoothing: antialiased;
-}
 

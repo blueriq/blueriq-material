@@ -1,6 +1,7 @@
 import { Component, Host } from '@angular/core';
 import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
 import { Button } from '@blueriq/core';
+import { PresentationStyles } from '../../presentationstyles/presentationstyles';
 
 @Component({
   templateUrl: './button.component.html',
@@ -14,6 +15,20 @@ import { Button } from '@blueriq/core';
 export class ButtonComponent {
 
   constructor(@Host() public button: Button, private session: BlueriqSession) {
+  }
+
+  getColor(): string | null {
+    if (this.button.styles.has(PresentationStyles.PRIMARY || PresentationStyles.BUTTON_PRIMARY)) {
+      return 'primary';
+    } else if (this.button.styles.has(PresentationStyles.ACCENT)) {
+      return 'accent';
+    } else {
+      return null;
+    }
+  }
+
+  isDisabled(): boolean {
+    return this.button.disabled || this.button.styles.has(PresentationStyles.DISABLED);
   }
 
   onClick(): void {
