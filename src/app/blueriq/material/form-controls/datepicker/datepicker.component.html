@@ -1,0 +1,15 @@
+<app-element [field]="field">
+
+  <mat-form-field>
+    <span matPrefix *ngIf="fieldPrefix">{{fieldPrefix}}</span>
+    <input matInput
+      [placeholder]="field.questionText"
+      [matDatepicker]="picker"
+      [formControl]="formControl"
+      [required]="field.required">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <span matSuffix *ngIf="fieldSuffix">{{fieldSuffix}}</span>
+  </mat-form-field>
+
+</app-element>

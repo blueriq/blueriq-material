@@ -13,6 +13,7 @@ import { ElementComponent } from './blueriq/generic/element/element.component';
 import { ButtonComponent } from './blueriq/material/button/button.component';
 import { ContainerComponent } from './blueriq/material/container/container.component';
 import { FieldComponent } from './blueriq/material/field/field.component';
+import { DatepickerComponent } from './blueriq/material/form-controls/datepicker/datepicker.component';
 import { SelectComponent } from './blueriq/material/form-controls/select/select.component';
 import { MaterialModule } from './blueriq/material/material/material.module';
 import { PageComponent } from './blueriq/material/page/page.component';
@@ -35,7 +36,8 @@ const BQ_COMPONENTS = [
   TextItemComponent,
   ButtonComponent,
   FieldComponent,
-  SelectComponent
+  SelectComponent,
+  DatepickerComponent
 ];
 
 const BQ_MAT_COMPONENTS = [
