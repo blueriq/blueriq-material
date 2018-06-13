@@ -1,35 +1,35 @@
 import { Component, Host } from '@angular/core';
-import { BlueriqComponent } from '@blueriq/angular';
-import { UnknownElement } from '@blueriq/core';
+import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
+import { Link } from '@blueriq/core';
 import { Actions } from '@ngrx/effects';
+import { PresentationStyles } from '../presentationstyles/presentationstyles';
 import { DownloadService } from './download.service';
 
 @Component({
   templateUrl: './download.component.html'
 })
 @BlueriqComponent({
-  type: UnknownElement, // TODO use: Link
-  selector: '#document'
+  type: Link
+  // selector: '#document'
   // name: document
   // type: 'link'
 })
 export class DownloadComponent {
 
-  constructor(@Host() public unknownElement: UnknownElement, public downloadService: DownloadService, private actions$: Actions) {
-    console.log(unknownElement);
+  constructor(
+    @Host() public link: Link,
+    public downloadService: DownloadService,
+    private actions$: Actions,
+    private readonly blueriqSession: BlueriqSession) {
+    console.log(link);
   }
 
   hasButtonPresentationStyle() {
-    // TODO use as constant presentationstyle.ts
-    return this.unknownElement.styles.has('button_link');
+    return this.link.styles.has(PresentationStyles.BUTTON_LINK);
   }
 
-  getDownloadURL(): string {
-    return this.downloadService.getDownloadURL();
-  }
-
-  getStyles() {
-    return this.unknownElement.styles.toString();
+  getDownloadUrl(): string {
+    return this.downloadService.getDownloadUrl(this.link, this.blueriqSession);
   }
 
 }
