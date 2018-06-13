@@ -34,17 +34,35 @@ describe('CurrencyFieldComponent', () => {
     component = session.get(CurrencyFieldComponent);
   });
 
-  it('should create CurrencyFieldComponent', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 
   it('should contain euro sign', () => {
-    const suffix = component.nativeElement.querySelector('mat-form-field').innerHTML;
-    expect(suffix).toContain('matprefix');
+    const prefix = component.nativeElement.querySelector('.mat-form-field-prefix').innerText;
+    expect(prefix).toBe('€');
   });
 
-  it ('should contain explain en message support', () => {
+  it('should contain app-element (field wrapper)', () => {
     const appElement = component.nativeElement.querySelector('app-element');
     expect(appElement).toBeTruthy();
+  });
+
+  it('should be disabled', () => {
+    field.styles(PresentationStyles.DISABLED);
+    session = BlueriqSessionTemplate.create().build(field);
+    component = session.get(CurrencyFieldComponent);
+
+    const inputField = component.nativeElement.querySelector('.mat-form-field-disabled');
+    expect(inputField).toBeTruthy();
+  });
+
+  it('should be disabled', () => {
+    field.readonly();
+    session = BlueriqSessionTemplate.create().build(field);
+    component = session.get(CurrencyFieldComponent);
+
+    const inputField = component.nativeElement.querySelector('.mat-form-field-disabled');
+    expect(inputField).toBeTruthy();
   });
 });
