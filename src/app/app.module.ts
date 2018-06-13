@@ -10,12 +10,20 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { AppComponent } from './app.component';
 import { ElementComponent } from './blueriq/generic/element/element.component';
-import { ButtonComponent } from './blueriq/material/button/button.component';
 import { ContainerComponent } from './blueriq/material/container/container.component';
-import { FieldComponent } from './blueriq/material/field/field.component';
+import { ButtonComponent } from './blueriq/material/form-controls/button/button.component';
+import { CheckboxComponent } from './blueriq/material/form-controls/checkbox/checkbox.component';
+import { CurrencyFieldComponent } from './blueriq/material/form-controls/input-field/currency/currency.component';
+import { IntegerFieldComponent } from './blueriq/material/form-controls/input-field/integer/integer.component';
+import { NumberFieldComponent } from './blueriq/material/form-controls/input-field/number/number.component';
+import { PercentageFieldComponent } from './blueriq/material/form-controls/input-field/percentage/percentage.component';
+import { StringFieldComponent } from './blueriq/material/form-controls/input-field/string/string.component';
+import { RadioButtonComponent } from './blueriq/material/form-controls/radio-button/radio-button.component';
 import { SelectComponent } from './blueriq/material/form-controls/select/select.component';
+import { SlideToggleComponent } from './blueriq/material/form-controls/slide-toggle/slide-toggle.component';
 import { MaterialModule } from './blueriq/material/material/material.module';
 import { PageComponent } from './blueriq/material/page/page.component';
+import { PresentationStyles } from './blueriq/material/presentationstyles/presentationstyles';
 import { PaginationComponent } from './blueriq/material/table/pagination/table.pagination.component';
 import { TableSearchComponent } from './blueriq/material/table/search/table.search.component';
 import { TableSortComponent } from './blueriq/material/table/sort/table.sort.component';
@@ -29,27 +37,34 @@ const routes: Routes = [
   { path: 'shortcut/:shortcut', component: ProjectComponent },
   { path: 'flow/:project/:flow', component: ProjectComponent },
   { path: 'flow/:project/:flow/:version', component: ProjectComponent },
-  { path: '**', redirectTo: 'shortcut/default', pathMatch: 'full' },
+  { path: '**', redirectTo: 'shortcut/default', pathMatch: 'full' }
 ];
 
 const BASE_URL = '/Runtime';
 
 const BQ_COMPONENTS = [
-  PageComponent,
-  ContainerComponent,
-  TextItemComponent,
   ButtonComponent,
-  FieldComponent,
+  CheckboxComponent,
+  ContainerComponent,
+  CurrencyFieldComponent,
+  IntegerFieldComponent,
+  NumberFieldComponent,
+  PageComponent,
+  PaginationComponent,
+  PercentageFieldComponent,
+  RadioButtonComponent,
+  SelectComponent,
+  SlideToggleComponent,
+  StringFieldComponent,
   TableComponent,
   TableReadonlyComponent,
   TableSearchComponent,
-  PaginationComponent,
   TableSortComponent,
-  SelectComponent,
+  TextItemComponent
 ];
 
 const BQ_MAT_COMPONENTS = [
-  ElementComponent,
+  ElementComponent
 ];
 
 @NgModule({
@@ -57,7 +72,7 @@ const BQ_MAT_COMPONENTS = [
     AppComponent,
     ProjectComponent,
     BQ_COMPONENTS,
-    BQ_MAT_COMPONENTS,
+    BQ_MAT_COMPONENTS
   ],
   imports: [
     BrowserModule,
@@ -66,18 +81,19 @@ const BQ_MAT_COMPONENTS = [
     EffectsModule.forRoot([]),
     BlueriqModule.forRoot(),
     V1BackendModule.forRoot({
-      baseUrl: BASE_URL,
+      baseUrl: BASE_URL
     }),
     BrowserAnimationsModule,
     BlueriqFormsModule.forRoot(),
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     BlueriqComponents.register(BQ_COMPONENTS),
+    PresentationStyles
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 
 export class AppModule {
