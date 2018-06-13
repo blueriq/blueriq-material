@@ -17,4 +17,14 @@ export class ElementComponent {
   getMessages(): FieldMessages {
     return this.field.messages;
   }
+
+  shouldDisplayExplainText(): boolean {
+    if (this.field.readonly) {
+      return false;
+    }
+    if (this.field.explainText) {
+      return this.field.explainText.length > 0;
+    }
+    return false;
+  }
 }
