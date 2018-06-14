@@ -9,7 +9,7 @@ import { TextItem } from '@blueriq/core';
 })
 
 @BlueriqComponent({
-  type: TextItem,
+  type: TextItem
 })
 
 export class TextItemComponent {

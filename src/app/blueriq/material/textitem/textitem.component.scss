@@ -1,0 +1,20 @@
+div {
+  padding: 20px;
+  white-space: pre-line;
+
+  &.warning, &.Warning {
+    background-color: #f8c14b;
+  }
+
+  &.danger, &.Danger {
+    background-color: #dc4250;
+  }
+
+  &.info, &.Info {
+    background-color: #0077e5;
+  }
+
+  &.success, &.Success {
+    background-color: #00a482;
+  }
+}

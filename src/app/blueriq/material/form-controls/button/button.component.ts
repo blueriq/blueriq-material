@@ -18,7 +18,7 @@ export class ButtonComponent {
   }
 
   getColor(): string | null {
-    if (this.button.styles.has(PresentationStyles.PRIMARY || PresentationStyles.BUTTON_PRIMARY)) {
+    if (this.button.styles.has(PresentationStyles.PRIMARY)) {
       return 'primary';
     } else if (this.button.styles.has(PresentationStyles.ACCENT)) {
       return 'accent';
