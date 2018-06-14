@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Field, FieldMessages } from '@blueriq/core';
 
 @Component({
-  selector: 'app-element',
+  selector: 'bq-element',
   templateUrl: './element.component.html',
   styleUrls: ['./element.component.scss']
 })

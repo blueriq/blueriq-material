@@ -5,7 +5,7 @@ import { Field } from '@blueriq/core';
 import { PresentationStyles } from '../../presentationstyles/presentationstyles';
 
 @Component({
-  selector: 'app-slide-toggle',
+  selector: 'bq-slide-toggle',
   templateUrl: './slide-toggle.component.html',
   styleUrls: ['./slide-toggle.component.scss']
 })
