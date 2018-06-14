@@ -4,7 +4,7 @@ import { getBlueriqField, getFieldMessages } from '@blueriq/angular/forms';
 import { Field, FieldMessages } from '@blueriq/core';
 
 @Component({
-  selector: 'app-element',
+  selector: 'bq-element',
   templateUrl: './element.component.html',
   styleUrls: ['./element.component.scss']
 })

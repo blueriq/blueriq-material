@@ -7,19 +7,19 @@ Which also helps to always give the same look and feel for all components that h
 
 **Usage**
 ```
-<app-element [field]="field">
+<bq-element [field]="field">
   <!-- your element, like field.component -->
-</app-element>
+</bq-element>
 ```
 Example:
 ```
-<app-element [field]="field">
+<bq-element [field]="field">
     <mat-form-field>
       <input matInput placeholder={{field.questionText}}>
     </mat-form-field>
-</app-element>
+</bq-element>
 ```
 
 **[field] paramater**
 For ElementComponent to work it needs a field @Input
-like: ```<app-element [field]="field">```
+like: ```<bq-element [field]="field">```
