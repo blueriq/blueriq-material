@@ -6709,12 +6709,6 @@ trim-right@^1.0.1:
   dependencies:
     glob "^6.0.4"
 
-ts-mockito@^2.3.0:
-  version "2.3.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/ts-mockito/-/ts-mockito-2.3.0.tgz?dl=https://registry.yarnpkg.com/ts-mockito/-/ts-mockito-2.3.0.tgz#c1836f04ec037cad82cfd7b3b66d52fc75adfcc7"
-  dependencies:
-    lodash "^4.17.5"
-
 ts-node@~6.0.3:
   version "6.0.5"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/ts-node/-/ts-node-6.0.5.tgz?dl=https://registry.yarnpkg.com/ts-node/-/ts-node-6.0.5.tgz#977c1c931da7a2b09ae2930101f0104a5c2271e9"
