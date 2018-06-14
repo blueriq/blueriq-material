@@ -1,5 +1,4 @@
 <div bqClasses>
   <h2 *ngIf="container.displayName">{{ container.displayName }}</h2>
-
   <ng-container *ngFor="let child of container.children" [bqElement]="child"></ng-container>
 </div>
