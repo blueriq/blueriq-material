@@ -38,7 +38,7 @@ describe('DatepickerComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('should contain explain en message support', () => {
+  it('should be an app-element', () => {
     const appElement = component.nativeElement.querySelector('app-element');
     expect(appElement).toBeTruthy();
   });
