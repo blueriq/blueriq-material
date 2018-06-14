@@ -5,62 +5,49 @@ import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
 import { BlueriqFormBuilder } from '@blueriq/angular/forms';
 import { Field } from '@blueriq/core';
 
-export let MY_DATE_FORMATS: MatDateFormats = {
-  parse: {
-    dateInput: 'DD-MM-YYYY'
-  },
-  display: {
-    dateInput: 'DD-MM-YYYY',
-    monthYearLabel: 'MMM YYYY',
-    dateA11yLabel: '',
-    monthYearA11yLabel: 'MMMM YYYY'
-  }
-};
+export function dateFormatFactory(session: BlueriqSession): MatDateFormats {
 
-// export class MyDateFormat implements MatDateFormats {
-//   pattern;
-//   parse: {
-//     dateInput: this.pattern;
-//   };
-//   display: {
-//     dateInput: 'DD-MM-YYYY',
-//     monthYearLabel: 'MMM YYYY',
-//     dateA11yLabel: '',
-//     monthYearA11yLabel: 'MMMM YYYY'
-//   };
-//
-//   constructor(private readonly session: BlueriqSession) {
-//     this.pattern = session.language.patterns.date;
-//   }
-// }
+  return {
+    parse: {
+      dateInput: session.language.patterns.date.toUpperCase()
+    },
+    display: {
+      dateInput: session.language.patterns.date.toUpperCase(),
+      monthYearLabel: 'MMM YYYY',
+      dateA11yLabel: session.language.patterns.date.toUpperCase(),
+      monthYearA11yLabel: 'MMMM YYYY'
+    }
+  };
+}
 
 @Component({
   selector: 'app-datepicker',
   templateUrl: './datepicker.component.html',
   styleUrls: ['./datepicker.component.scss'],
   providers: [
-    // { provide: MAT_DATE_LOCALE, useValue: languageCode },
     { provide: DateAdapter, useClass: MomentDateAdapter },
-    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS }
+    {
+      provide: MAT_DATE_FORMATS,
+      useFactory: dateFormatFactory,
+      deps: [BlueriqSession]
+    }
   ]
 })
-
 @BlueriqComponent({
   type: Field,
   selector: '[dataType=date]'
 })
-
 export class DatepickerComponent implements OnInit {
 
   formControl = this.form.control(this.field, { updateOn: 'blur' });
 
-  constructor(@Host() public field: Field, private form: BlueriqFormBuilder, private readonly session: BlueriqSession, private adapter: DateAdapter<any>/*, private formats: MatDateFormats*/) {
+  constructor(@Host() public field: Field,
+              private form: BlueriqFormBuilder,
+              private readonly session: BlueriqSession,
+              private adapter: DateAdapter<any>) {
     if (session.language.languageCode !== undefined) {
       this.adapter.setLocale(session.language.languageCode);
     }
-    // formats.parse.dateInput = session.language.patterns.date;
-    // formats.display.dateInput = session.language.patterns.date;
-    // formats.display.dateA11yLabel = session.language.patterns.date;
   }
 
   ngOnInit(): void {
