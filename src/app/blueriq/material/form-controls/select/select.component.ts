@@ -4,7 +4,7 @@ import { BlueriqFormBuilder } from '@blueriq/angular/forms';
 import { DomainValue, Field } from '@blueriq/core';
 
 @Component({
-  selector: 'app-select',
+  selector: 'bq-select',
   templateUrl: './select.component.html'
 })
 @BlueriqComponent({

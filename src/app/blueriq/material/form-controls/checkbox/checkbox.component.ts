@@ -5,7 +5,7 @@ import { Field } from '@blueriq/core';
 import { PresentationStyles } from '../../presentationstyles/presentationstyles';
 
 @Component({
-  selector: 'app-checkbox',
+  selector: 'bq-checkbox',
   templateUrl: './checkbox.component.html'
 })
 @BlueriqComponent({

@@ -4,7 +4,7 @@ import { Field } from '@blueriq/core';
 import { InputFieldComponent } from '../input-field.component';
 
 @Component({
-  selector: 'app-integer-field',
+  selector: 'bq-integer-field',
   templateUrl: '../input-field.component.html'
 })
 @BlueriqComponent({
