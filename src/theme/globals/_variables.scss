@@ -1,8 +1,20 @@
 @import '~@angular/material/theming';
 
-$bq-primary: #0077e5;
-$bq-secondary: #7837d7;
-$bq-tertiary: #783b95;
+$bq-primary-blue: #0077e5;
+$bq-primary-purple: #7837d7;
+$bq-primary-violet: #783b95;
+
+$bq-secondary-teal: #007882;
+$bq-secondary-green: #00a482;
+$bq-secondary-mint: #2abfad;
+$bq-secondary-navy: #0d31bd;
+$bq-secondary-red: #dc4250;
+$bq-secondary-orange: #f87900;
+$bq-secondary-yellow: #f8c14b;
+
+$bq-grey-dark: #002554;
+$bq-grey-medium: #32455a;
+$bq-grey-light: #c2c8ce;
 
 $bq-toolbar-background: #fff;
 
@@ -18,7 +30,7 @@ $bq-mat-primary: (
   200: #80bbf2,
   300: #4da0ed,
   400: #268be9,
-  500: $bq-primary,
+  500: $bq-primary-blue,
   600: #006fe2,
   700: #0064de,
   800: #005ada,
@@ -51,7 +63,7 @@ $bq-mat-accent: (
   200: #bc9beb,
   300: #a173e3,
   400: #8c55dd,
-  500: $bq-secondary,
+  500: $bq-primary-purple,
   600: #7031d3,
   700: #652acd,
   800: #5b23c7,

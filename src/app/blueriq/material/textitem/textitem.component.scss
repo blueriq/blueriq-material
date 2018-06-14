@@ -1,20 +1,22 @@
+@import "../../../../theme/globals/variables";
+
 div {
   padding: 20px;
   white-space: pre-line;
 
   &.warning, &.Warning {
-    background-color: #f8c14b;
+    background-color: $bq-secondary-yellow;
   }
 
   &.danger, &.Danger {
-    background-color: #dc4250;
+    background-color: $bq-secondary-red;
   }
 
   &.info, &.Info {
-    background-color: #0077e5;
+    background-color: $bq-primary-blue;
   }
 
   &.success, &.Success {
-    background-color: #00a482;
+    background-color: $bq-secondary-green;
   }
 }

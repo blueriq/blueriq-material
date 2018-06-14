@@ -3,10 +3,10 @@
 
 .mat-toolbar {
   background: $bq-toolbar-background;
-  color: $bq-primary;
+  color: $bq-primary-blue;
 
   span {
-    color: $bq-secondary;
+    color: $bq-primary-purple;
   }
 
   @include mat-elevation(1);
