@@ -11,12 +11,10 @@ import { StoreModule } from '@ngrx/store';
 import { AppComponent } from './app.component';
 import { ElementComponent } from './blueriq/generic/element/element.component';
 import { ContainerComponent } from './blueriq/material/container/container.component';
+import { MomentTransformer } from './blueriq/material/datetime/datetime';
 import { ButtonComponent } from './blueriq/material/form-controls/button/button.component';
 import { CheckboxComponent } from './blueriq/material/form-controls/checkbox/checkbox.component';
-import {
-  DatepickerComponent,
-  MomentTransformer
-} from './blueriq/material/form-controls/datepicker/datepicker.component';
+import { DatepickerComponent } from './blueriq/material/form-controls/datepicker/datepicker.component';
 import { CurrencyFieldComponent } from './blueriq/material/form-controls/input-field/currency/currency.component';
 import { IntegerFieldComponent } from './blueriq/material/form-controls/input-field/integer/integer.component';
 import { NumberFieldComponent } from './blueriq/material/form-controls/input-field/number/number.component';
@@ -70,6 +68,7 @@ const BQ_MAT_COMPONENTS = [
     ProjectComponent,
     BQ_COMPONENTS,
     BQ_MAT_COMPONENTS
+
   ],
   imports: [
     BrowserModule,
@@ -88,7 +87,8 @@ const BQ_MAT_COMPONENTS = [
   ],
   providers: [
     BlueriqComponents.register(BQ_COMPONENTS),
-    PresentationStyles
+    PresentationStyles,
+    MomentTransformer
   ],
   bootstrap: [AppComponent]
 })

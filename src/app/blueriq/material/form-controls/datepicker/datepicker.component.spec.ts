@@ -5,6 +5,7 @@ import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
 import { ElementComponent } from '../../../generic/element/element.component';
+import { MomentTransformer } from '../../datetime/datetime';
 import { MaterialModule } from '../../material/material.module';
 
 import { DatepickerComponent } from './datepicker.component';
@@ -16,8 +17,8 @@ describe('DatepickerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DatepickerComponent, ElementComponent ],
-      providers: [ BlueriqComponents.register([DatepickerComponent])],
+      declarations: [DatepickerComponent, ElementComponent],
+      providers: [BlueriqComponents.register([DatepickerComponent]), MomentTransformer],
       imports: [
         MaterialModule,
         BrowserAnimationsModule, // or NoopAnimationsModule
@@ -37,7 +38,7 @@ describe('DatepickerComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  fit ('should contain explain en message support', () => {
+  fit('should contain explain en message support', () => {
     const appElement = component.nativeElement.querySelector('app-element');
     expect(appElement).toBeTruthy();
   });

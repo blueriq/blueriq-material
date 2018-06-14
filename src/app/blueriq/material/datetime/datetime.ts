@@ -3,25 +3,24 @@ import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { BlueriqSession } from '@blueriq/angular';
 import { ValueTransformer } from '@blueriq/angular/forms';
 import * as moment from 'moment';
-import { Moment } from 'moment';
 
-export class MomentTransformer implements ValueTransformer<Date, Moment> {
+export class MomentTransformer implements ValueTransformer<Date, moment.Moment> {
 
-  toControl(value: Date | null): Moment | null {
+  toControl(value: Date | null): moment.Moment | null {
     return value ? moment(value) : null;
   }
 
-  toField(value: Moment | null): Date | null {
+  toField(value: moment.Moment | null): Date | null {
     return value ? value.toDate() : null;
   }
-};
-
-function dateLocaleFactory(session: BlueriqSession): string {
-  return session.language.languageCode!;
 }
 
-function dateFormatFactory(session: BlueriqSession): MatDateFormats {
-  let datePattern = session.language.patterns.date!
+export function dateLocaleFactory(session: BlueriqSession): string {
+  return session.language.languageCode;
+}
+
+export function dateFormatFactory(session: BlueriqSession): MatDateFormats {
+  const datePattern = (session.language.patterns.date || 'dd-mm-yyyy')
   // year, month and date are all uppercase
   .toUpperCase();
   return {
@@ -37,8 +36,8 @@ function dateFormatFactory(session: BlueriqSession): MatDateFormats {
   };
 }
 
-function dateTimeFormatFactory(session: BlueriqSession): MatDateFormats {
-  let dateTimePattern = session.language.patterns.datetime!
+export function dateTimeFormatFactory(session: BlueriqSession): MatDateFormats {
+  const dateTimePattern = session.language.patterns.datetime!
   // transform lowercase hour (hh) to uppercase (HH)
   .replace('h', 'H');
   return {
@@ -54,22 +53,19 @@ function dateTimeFormatFactory(session: BlueriqSession): MatDateFormats {
   };
 }
 
-let dateLocaleProvider =
-  {
-    provide: MAT_DATE_LOCALE,
-    useFactory: dateLocaleFactory,
-    deps: [BlueriqSession]
-  };
+export const dateLocaleProvider = {
+  provide: MAT_DATE_LOCALE,
+  useFactory: dateLocaleFactory,
+  deps: [BlueriqSession]
+};
 
-let dateAdapterProvider =
-  {
+export const dateAdapterProvider = {
     provide: DateAdapter,
     useClass: MomentDateAdapter
   }
 ;
 
-export let dateFormatProvider = [
-    MomentTransformer,
+export const dateFormatProvider = [
     dateLocaleProvider,
     dateAdapterProvider,
     {
@@ -80,8 +76,7 @@ export let dateFormatProvider = [
   ]
 ;
 
-export let dateTimeFormatProvider = [
-  MomentTransformer,
+export const dateTimeFormatProvider = [
   dateLocaleProvider,
   dateAdapterProvider,
   {
