@@ -1,11 +1,8 @@
 import { Component, Host, OnInit } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
-import { BlueriqFormBuilder, ValueTransformer } from '@blueriq/angular/forms';
+import { BlueriqFormBuilder } from '@blueriq/angular/forms';
 import { Field } from '@blueriq/core';
-import * as momentNs from 'moment';
-import { dateFormatProvider } from '../../datetime/datetime';
-
-const moment = momentNs;
+import { dateFormatProvider, MomentTransformer } from '../../datetime/datetime';
 
 @Component({
   selector: 'app-datepicker',
@@ -29,7 +26,6 @@ export class DatepickerComponent implements OnInit {
     if (this.isDisabled()) {
       this.formControl.disable();
     }
-    // this.formControl.setValue(this.field.getValue());
   }
 
   /** Whether the select has a presentation style Disabled */
@@ -42,15 +38,4 @@ export class DatepickerComponent implements OnInit {
     return this.field.readonly;
   }
 
-}
-
-export class MomentTransformer implements ValueTransformer<Date, momentNs.Moment> {
-
-  toControl(value: Date | null): momentNs.Moment | null {
-    return value ? moment(value) : null;
-  }
-
-  toField(value: momentNs.Moment | null): Date | null {
-    return value ? value.toDate() : null;
-  }
 }

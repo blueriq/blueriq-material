@@ -1,6 +1,20 @@
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatDateFormats } from '@angular/material';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { BlueriqSession } from '@blueriq/angular';
+import { ValueTransformer } from '@blueriq/angular/forms';
+import * as moment from 'moment';
+import { Moment } from 'moment';
+
+export class MomentTransformer implements ValueTransformer<Date, Moment> {
+
+  toControl(value: Date | null): Moment | null {
+    return value ? moment(value) : null;
+  }
+
+  toField(value: Moment | null): Date | null {
+    return value ? value.toDate() : null;
+  }
+};
 
 function dateLocaleFactory(session: BlueriqSession): string {
   return session.language.languageCode!;
@@ -55,6 +69,7 @@ let dateAdapterProvider =
 ;
 
 export let dateFormatProvider = [
+    MomentTransformer,
     dateLocaleProvider,
     dateAdapterProvider,
     {
@@ -66,6 +81,7 @@ export let dateFormatProvider = [
 ;
 
 export let dateTimeFormatProvider = [
+  MomentTransformer,
   dateLocaleProvider,
   dateAdapterProvider,
   {

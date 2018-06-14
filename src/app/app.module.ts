@@ -88,8 +88,7 @@ const BQ_MAT_COMPONENTS = [
   ],
   providers: [
     BlueriqComponents.register(BQ_COMPONENTS),
-    PresentationStyles,
-    MomentTransformer
+    PresentationStyles
   ],
   bootstrap: [AppComponent]
 })
