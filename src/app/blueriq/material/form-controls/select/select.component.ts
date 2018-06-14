@@ -7,7 +7,6 @@ import { DomainValue, Field } from '@blueriq/core';
   selector: 'app-select',
   templateUrl: './select.component.html'
 })
-
 @BlueriqComponent({
   type: Field,
   selector: '[hasDomain=true]'

@@ -8,12 +8,10 @@ import { InputFieldComponent } from '../input-field.component';
   templateUrl: '../input-field.component.html',
   styleUrls: ['./currency.component.scss']
 })
-
 @BlueriqComponent({
   type: Field,
   selector: '[dataType=currency]:not([hasDomain])'
 })
-
 export class CurrencyFieldComponent extends InputFieldComponent {
 
   fieldPrefix = '€';

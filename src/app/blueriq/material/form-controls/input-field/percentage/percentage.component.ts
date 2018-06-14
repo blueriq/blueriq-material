@@ -8,12 +8,10 @@ import { InputFieldComponent } from '../input-field.component';
   templateUrl: '../input-field.component.html',
   styleUrls: ['./percentage.component.scss']
 })
-
 @BlueriqComponent({
   type: Field,
   selector: '[dataType=percentage]:not([hasDomain])'
 })
-
 export class PercentageFieldComponent extends InputFieldComponent {
 
   fieldSuffix = '%';

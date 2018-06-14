@@ -8,12 +8,10 @@ import { PresentationStyles } from '../../presentationstyles/presentationstyles'
   selector: 'app-checkbox',
   templateUrl: './checkbox.component.html'
 })
-
 @BlueriqComponent({
   type: Field,
   selector: '[dataType=boolean]'
 })
-
 export class CheckboxComponent implements OnInit {
 
   formControl = this.form.control(this.field, { syncOn: 'update' });

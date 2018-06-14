@@ -7,11 +7,9 @@ import { InputFieldComponent } from '../input-field.component';
   selector: 'app-string-field',
   templateUrl: '../input-field.component.html'
 })
-
 @BlueriqComponent({
   type: Field,
   selector: '[dataType=text]:not([hasDomain])'
 })
-
 export class StringFieldComponent extends InputFieldComponent {
 }

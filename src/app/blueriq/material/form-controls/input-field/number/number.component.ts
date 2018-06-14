@@ -7,11 +7,9 @@ import { InputFieldComponent } from '../input-field.component';
   selector: 'app-integer-field',
   templateUrl: '../input-field.component.html'
 })
-
 @BlueriqComponent({
   type: Field,
   selector: '[dataType=number]:not([hasDomain])'
 })
-
 export class NumberFieldComponent extends InputFieldComponent {
 }
