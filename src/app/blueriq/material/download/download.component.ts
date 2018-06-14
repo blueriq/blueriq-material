@@ -1,7 +1,6 @@
 import { Component, Host } from '@angular/core';
-import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
-import { Link } from '@blueriq/core';
-import { Actions } from '@ngrx/effects';
+import { BlueriqChild, BlueriqComponent, BlueriqSession } from '@blueriq/angular';
+import { Container, Link } from '@blueriq/core';
 import { PresentationStyles } from '../presentationstyles/presentationstyles';
 import { DownloadService } from './download.service';
 
@@ -9,23 +8,22 @@ import { DownloadService } from './download.service';
   templateUrl: './download.component.html'
 })
 @BlueriqComponent({
-  type: Link
-  // selector: '#document'
-  // name: document
-  // type: 'link'
+  type: Container,
+  selector: '*:has(* > [type=link])'
 })
 export class DownloadComponent {
 
+  @BlueriqChild(Link, { descendants: true, required: true })
+  public link: Link;
+
   constructor(
-    @Host() public link: Link,
+    @Host() public container: Container,
     public downloadService: DownloadService,
-    private actions$: Actions,
     private readonly blueriqSession: BlueriqSession) {
-    console.log(link);
   }
 
   hasButtonPresentationStyle() {
-    return this.link.styles.has(PresentationStyles.BUTTON_LINK);
+    return this.container.styles.has(PresentationStyles.BUTTON_LINK);
   }
 
   getDownloadUrl(): string {
