@@ -6,6 +6,6 @@ export class PresentationStyles {
   static PRIMARY = 'Primary';
   static ACCENT = 'Accent';
   static BUTTON_PRIMARY = 'button_primary';
-  static BUTTON_LINK = 'button_link';
+  static BUTTON_LINK = 'button';
   static TOGGLE = 'toggle';
 }
