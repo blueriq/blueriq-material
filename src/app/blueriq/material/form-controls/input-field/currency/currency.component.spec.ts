@@ -43,8 +43,8 @@ describe('CurrencyFieldComponent', () => {
     expect(prefix).toBe('€');
   });
 
-  it('should contain app-element (field wrapper)', () => {
-    const appElement = component.nativeElement.querySelector('app-element');
+  it('should contain bq-element (field wrapper)', () => {
+    const appElement = component.nativeElement.querySelector('bq-element');
     expect(appElement).toBeTruthy();
   });
 

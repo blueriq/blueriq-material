@@ -133,7 +133,7 @@ describe('SelectComponent', () => {
   });
 
   it('should contain explain and message support', () => {
-    const appElement = component.nativeElement.querySelector('app-element');
+    const appElement = component.nativeElement.querySelector('bq-element');
     expect(appElement).toBeTruthy();
   });
 });
