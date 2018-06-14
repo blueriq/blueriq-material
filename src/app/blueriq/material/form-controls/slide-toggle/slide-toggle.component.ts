@@ -15,7 +15,7 @@ import { PresentationStyles } from '../../presentationstyles/presentationstyles'
 })
 export class SlideToggleComponent implements OnInit {
 
-  formControl = this.form.control(this.field, { syncOn: 'update' });
+  formControl = this.form.control(this.field, { syncOn: 'update', ifUnknown: false });
 
   constructor(@Host() public field: Field, private form: BlueriqFormBuilder) {
   }
