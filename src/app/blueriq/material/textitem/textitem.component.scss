@@ -1,26 +1,30 @@
 @import '../../../../theme/globals/variables';
 
 div {
-  padding: 20px;
-  white-space: pre-line;
+  padding: 15px;
+  padding-bottom: 0px;
+
+  border-left-width: 10px;
+  border-style: solid;
+  border-color: transparent;
 
   &.warning,
   &.Warning {
-    background-color: $bq-mat-warning;
+    border-left-color: $bq-mat-warning;
   }
 
   &.danger,
   &.Danger {
-    background-color: $bq-mat-danger;
+    border-left-color: $bq-mat-danger;
   }
 
   &.info,
   &.Info {
-    background-color: $bq-mat-info;
+    border-left-color: $bq-mat-info;
   }
 
   &.success,
   &.Success {
-    background-color: $bq-mat-success;
+    border-left-color: $bq-mat-success;
   }
 }

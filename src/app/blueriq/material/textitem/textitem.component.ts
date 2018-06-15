@@ -3,7 +3,6 @@ import { BlueriqComponent } from '@blueriq/angular';
 import { TextItem } from '@blueriq/core';
 
 @Component({
-  selector: 'bq-textitem',
   templateUrl: './textitem.component.html',
   styleUrls: ['./textitem.component.scss']
 })

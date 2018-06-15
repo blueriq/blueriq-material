@@ -7,6 +7,7 @@ import { TextItemTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../material/material.module';
 import { PresentationStyles } from '../presentationstyles/presentationstyles';
 import { TextItemComponent } from './textitem.component';
+import { TextItemModule } from '@blueriq/angular/textitems';
 
 describe('TextItemComponent', () => {
   let textItem: TextItemTemplate;
@@ -21,7 +22,8 @@ describe('TextItemComponent', () => {
         MaterialModule,
         BrowserAnimationsModule, // or NoopAnimationsModule
         BlueriqTestingModule,
-        FormsModule
+        FormsModule,
+        TextItemModule
       ]
     });
   }));

@@ -280,7 +280,7 @@ $bq-mat-primary: $bq-mat-primary-blue;
 $bq-mat-accent: $bq-mat-accent-green;
 
 $bq-mat-danger: mat-color($bq-mat-accent-red, 100);
-$bq-mat-info: mat-color($bq-mat-accent-yellow, 100);
+$bq-mat-info: mat-color($bq-mat-primary-blue, 100);
 $bq-mat-success: mat-color($bq-mat-accent-green, 100);
 $bq-mat-warning: mat-color($bq-mat-accent-orange, 100);
 
