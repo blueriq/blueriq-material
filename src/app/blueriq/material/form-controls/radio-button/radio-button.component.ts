@@ -5,7 +5,7 @@ import { Field } from '@blueriq/core';
 import { PresentationStyles } from '../../presentationstyles/presentationstyles';
 
 @Component({
-  selector: 'app-radio-button',
+  selector: 'bq-radio-button',
   templateUrl: './radio-button.component.html',
   styleUrls: ['./radio-button.component.scss']
 })
