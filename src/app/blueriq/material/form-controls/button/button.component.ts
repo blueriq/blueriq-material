@@ -7,11 +7,9 @@ import { PresentationStyles } from '../../presentationstyles/presentationstyles'
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss']
 })
-
 @BlueriqComponent({
   type: Button
 })
-
 export class ButtonComponent {
 
   constructor(@Host() public button: Button, private session: BlueriqSession) {

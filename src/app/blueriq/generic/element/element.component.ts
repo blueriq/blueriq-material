@@ -1,21 +1,27 @@
 import { Component, Input } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { getBlueriqField, getFieldMessages } from '@blueriq/angular/forms';
 import { Field, FieldMessages } from '@blueriq/core';
 
 @Component({
-  selector: 'app-element',
+  selector: 'bq-element',
   templateUrl: './element.component.html',
   styleUrls: ['./element.component.scss']
 })
 export class ElementComponent {
 
-  @Input() field: Field; // can be BaseElement?
+  @Input() control: FormControl;
+
+  get field(): Field {
+    return getBlueriqField(this.control)!;
+  }
 
   hasMessages(): boolean {
-    return this.field.messages.hasMessages;
+    return getFieldMessages(this.control).hasMessages;
   }
 
   getMessages(): FieldMessages {
-    return this.field.messages;
+    return getFieldMessages(this.control);
   }
 
   shouldDisplayExplainText(): boolean {
@@ -27,4 +33,5 @@ export class ElementComponent {
     }
     return false;
   }
+
 }

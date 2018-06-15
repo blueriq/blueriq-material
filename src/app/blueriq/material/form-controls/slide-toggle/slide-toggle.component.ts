@@ -5,7 +5,7 @@ import { Field } from '@blueriq/core';
 import { PresentationStyles } from '../../presentationstyles/presentationstyles';
 
 @Component({
-  selector: 'app-slide-toggle',
+  selector: 'bq-slide-toggle',
   templateUrl: './slide-toggle.component.html',
   styleUrls: ['./slide-toggle.component.scss']
 })
@@ -15,7 +15,7 @@ import { PresentationStyles } from '../../presentationstyles/presentationstyles'
 })
 export class SlideToggleComponent implements OnInit {
 
-  formControl = this.form.control(this.field, { syncOn: 'update' });
+  formControl = this.form.control(this.field, { syncOn: 'update', ifUnknown: false });
 
   constructor(@Host() public field: Field, private form: BlueriqFormBuilder) {
   }

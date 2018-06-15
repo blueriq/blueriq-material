@@ -4,13 +4,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "app",
+      "bq",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "app",
+      "bq",
       "kebab-case"
     ],
     "encoding": true,
@@ -104,7 +104,6 @@
       "ignore-params"
     ],
     "no-misused-new": true,
-    "no-non-null-assertion": true,
     "no-shadowed-variable": true,
     "no-string-literal": false,
     "no-string-throw": true,
