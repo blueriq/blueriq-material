@@ -17,17 +17,14 @@ describe('DownloadService', () => {
     });
     const link = new Link(linkJson.toJson());
     const mockSession: any = { sessionId: '1234-5678-910' };
+    const expectedUrl = `http://${document.location.host}/Runtime/api/v2/session/1234-5678-910/document/downloadme/pdf`;
 
     // SUT
     const downloadUrl = downloadService.getDownloadUrl(link, mockSession);
 
     // Verify
-    // http://localhost:4200/Runtime/api/v2/session/1234-5678-910/document/downloadme/pdf
     expect(downloadUrl).not.toBeNull();
-    expect(downloadUrl).toContain('1234-5678-910');
-    expect(downloadUrl).toContain('downloadme');
-    expect(downloadUrl).toContain('pdf');
-    expect(downloadUrl).toContain('http://');
+    expect(downloadUrl).toBe(expectedUrl);
   });
 
 });
