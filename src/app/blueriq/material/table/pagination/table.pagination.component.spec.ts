@@ -100,11 +100,12 @@ describe('TablePaginationComponent', () => {
 
   it('should have a middle page that can navigate', () => {
     // Setup second(middle) page
-    session.update(currentPageNumber.value('2'));
-    session.update(btnNext.disabled(false));
-    session.update(btnPrevious.disabled(false));
-    session.update(btnFirst.disabled(false));
-    session.update(btnLast.disabled(false));
+    session.update(currentPageNumber.value('2'),
+      btnNext.disabled(false),
+      btnPrevious.disabled(false),
+      btnFirst.disabled(false),
+      btnLast.disabled(false)
+    );
 
     const pageLabel = component.nativeElement.querySelector(LABEL).innerHTML;
     const previousButton = component.nativeElement.querySelector(NAVIGATION_PREVIOUS);
@@ -122,11 +123,12 @@ describe('TablePaginationComponent', () => {
 
   it('should have a last page that cannot navigate forward', () => {
     // Setup Last page
-    session.update(currentPageNumber.value('3'));
-    session.update(btnPrevious.disabled(false));
-    session.update(btnNext.disabled(true));
-    session.update(btnFirst.disabled(false));
-    session.update(btnLast.disabled(true));
+    session.update(currentPageNumber.value('3'),
+      btnPrevious.disabled(false),
+      btnNext.disabled(true),
+      btnFirst.disabled(false),
+      btnLast.disabled(true)
+    );
 
     const pageLabel = component.nativeElement.querySelector(LABEL).innerHTML;
     const previousButton = component.nativeElement.querySelector(NAVIGATION_PREVIOUS);
