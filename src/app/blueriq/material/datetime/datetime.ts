@@ -17,12 +17,12 @@ export class MomentTransformer implements ValueTransformer<Date, moment.Moment> 
   }
 }
 
-export function dateLocaleFactory(session: BlueriqSession): string {
+export function localeFactory(session: BlueriqSession): string {
   return session.language.languageCode;
 }
 
 export function dateFormatFactory(session: BlueriqSession): MatDateFormats {
-  const datePattern = (session.language.patterns.date || 'dd-mm-yyyy')
+  const datePattern = (session.language.patterns.date || 'DD-MM-YYYY')
   // year, month and date are all uppercase
   .toUpperCase();
   return {
@@ -38,36 +38,16 @@ export function dateFormatFactory(session: BlueriqSession): MatDateFormats {
   };
 }
 
-export function dateTimeFormatFactory(session: BlueriqSession): OwlDateTimeFormats {
-  const dateTimePattern = session.language.patterns.datetime!
-  // transform lowercase hour (hh) to uppercase (HH)
-  .replace('h', 'H');
-  return {
-    parseInput: 'MM/YYYY',
-    fullPickerInput: 'l LT',
-    datePickerInput: 'MM/YYYY',
-    timePickerInput: 'LT',
-    monthYearLabel: 'MMM YYYY',
-    dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'MMMM YYYY'
-  };
-}
-
-export const dateLocaleProvider = {
-  provide: MAT_DATE_LOCALE,
-  useFactory: dateLocaleFactory,
-  deps: [BlueriqSession]
-};
-
-export const dateAdapterProvider = {
-    provide: DateAdapter,
-    useClass: MomentDateAdapter
-  }
-;
-
 export const dateFormatProvider = [
-    dateLocaleProvider,
-    dateAdapterProvider,
+    {
+      provide: MAT_DATE_LOCALE,
+      useFactory: localeFactory,
+      deps: [BlueriqSession]
+    },
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter
+    },
     {
       provide: MAT_DATE_FORMATS,
       useFactory: dateFormatFactory,
@@ -76,21 +56,32 @@ export const dateFormatProvider = [
   ]
 ;
 
-export const dateTimeLocaleProvider = {
-  provide: OWL_DATE_TIME_LOCALE,
-  useFactory: dateLocaleFactory,
-  deps: [BlueriqSession]
-};
-
-export const dateTimeAdapterProvider = {
-    provide: DateTimeAdapter,
-    useClass: MomentDateTimeAdapter
-  }
-;
+export function dateTimeFormatFactory(session: BlueriqSession): OwlDateTimeFormats {
+  const dateTimePattern = session.language.patterns.datetime || 'DD-MM-YYYY HH:mm:ss';
+  const parts = dateTimePattern.split(' ');
+  const datePattern = parts[0].toUpperCase();
+  const timePattern = parts[1].replace('hh', 'HH');
+  return {
+    parseInput: datePattern + ' ' + timePattern,
+    fullPickerInput: datePattern + ' ' + timePattern,
+    datePickerInput: datePattern,
+    timePickerInput: timePattern,
+    monthYearLabel: 'MMMM YYYY',
+    dateA11yLabel: datePattern + ' ' + timePattern,
+    monthYearA11yLabel: 'MMMM YYYY'
+  };
+}
 
 export const dateTimeFormatProvider = [
-  dateTimeLocaleProvider,
-  dateTimeAdapterProvider,
+  {
+    provide: OWL_DATE_TIME_LOCALE,
+    useFactory: localeFactory,
+    deps: [BlueriqSession]
+  },
+  {
+    provide: DateTimeAdapter,
+    useClass: MomentDateTimeAdapter
+  },
   {
     provide: OWL_DATE_TIME_FORMATS,
     useFactory: dateTimeFormatFactory,
