@@ -29,6 +29,11 @@ import { SlideToggleComponent } from './blueriq/material/form-controls/slide-tog
 import { MaterialModule } from './blueriq/material/material/material.module';
 import { PageComponent } from './blueriq/material/page/page.component';
 import { PresentationStyles } from './blueriq/material/presentationstyles/presentationstyles';
+import { PaginationComponent } from './blueriq/material/table/pagination/table.pagination.component';
+import { TableSearchComponent } from './blueriq/material/table/search/table.search.component';
+import { TableSortComponent } from './blueriq/material/table/sort/table.sort.component';
+import { TableComponent } from './blueriq/material/table/table.component';
+import { TableReadonlyComponent } from './blueriq/material/table/table.readonly.component';
 import { TextItemComponent } from './blueriq/material/textitem/textitem.component';
 import { ProjectComponent } from './blueriq/project/project.component';
 
@@ -44,22 +49,28 @@ const routes: Routes = [
 const BASE_URL = '/Runtime';
 
 const BQ_COMPONENTS = [
-  PageComponent,
-  ContainerComponent,
-  TextItemComponent,
   ButtonComponent,
   SelectComponent,
   DatepickerComponent,
   CheckboxComponent,
-  RadioButtonComponent,
-  SlideToggleComponent,
+  ContainerComponent,
   CurrencyFieldComponent,
-  StringFieldComponent,
-  PercentageFieldComponent,
   IntegerFieldComponent,
   NumberFieldComponent,
   SelectComponent,
-  DateTimepickerComponent
+  DateTimepickerComponent,
+  PageComponent,
+  PaginationComponent,
+  PercentageFieldComponent,
+  RadioButtonComponent,
+  SelectComponent,
+  SlideToggleComponent,
+  StringFieldComponent,
+  TableComponent,
+  TableReadonlyComponent,
+  TableSearchComponent,
+  TableSortComponent,
+  TextItemComponent
 ];
 
 const BQ_MAT_COMPONENTS = [
