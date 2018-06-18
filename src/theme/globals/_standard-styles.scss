@@ -1,35 +1,33 @@
 @import 'variables';
 
-/**
- * This file contains styles that have to be global due to use of elements that
- * do not have view encapsulation applied to themselves
- */
+// This file contains styles that have to be global due to use of elements that
+// do not have view encapsulation applied to themselves
 
 .text-item {
   span {
     &.warning,
-    &.Warning {
+    &.Warning { // sass-lint:disable-line class-name-format
       padding-top: 1px;
       padding-bottom: 1px;
       background-color: $bq-mat-bg-warning;
     }
 
     &.danger,
-    &.Danger {
+    &.Danger { // sass-lint:disable-line class-name-format
       padding-top: 1px;
       padding-bottom: 1px;
       background-color: $bq-mat-bg-danger;
     }
 
     &.info,
-    &.Info {
+    &.Info { // sass-lint:disable-line class-name-format
       padding-top: 1px;
       padding-bottom: 1px;
       background-color: $bq-mat-bg-info;
     }
 
     &.success,
-    &.Success {
+    &.Success { // sass-lint:disable-line class-name-format
       padding-top: 1px;
       padding-bottom: 1px;
       background-color: $bq-mat-bg-success;
