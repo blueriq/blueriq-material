@@ -86,6 +86,9 @@ node {
   } finally {
     stage("Publish results") {
       // TODO ng linting results
+      step(
+        [$class: 'JUnitResultArchiver', testResults: 'testresults/*.xml']
+      )
       publishHTML([
         allowMissing         : false,
         alwaysLinkToLastBuild: false,

@@ -8,7 +8,7 @@ import { MaterialModule } from '../../material/material.module';
 import { PresentationStyles } from '../../presentationstyles/presentationstyles';
 import { ButtonComponent } from './button.component';
 
-describe('ButtonComponent', () => {
+fdescribe('ButtonComponent', () => {
   let button: ButtonTemplate;
   let component: ComponentFixture<ButtonComponent>;
   let session: BlueriqTestSession;

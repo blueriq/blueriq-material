@@ -29,6 +29,12 @@ module.exports = function (config) {
     angularCli: {
       environment: 'dev'
     },
+    junitReporter: {
+      outputDir: '../testresults',
+      outputFile: 'karmatest.xml',
+      suite: 'unit',  // whichever prefix you wish to use
+      useBrowserName: false,
+    },
     reporters: ['progress', 'kjhtml', 'junit'],
     port: 9876,
     colors: true,
