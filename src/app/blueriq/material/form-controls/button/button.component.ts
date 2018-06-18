@@ -19,8 +19,9 @@ export class ButtonComponent {
     if (this.button.styles.has(PresentationStyles.PRIMARY || PresentationStyles.BUTTON_PRIMARY)) {
       return 'primary';
     } else if (this.button.styles.has(PresentationStyles.ACCENT)) {
-      return 'accent';
+       return "accent";
     } else {
+		
       return null;
     }
   }
