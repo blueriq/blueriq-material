@@ -81,15 +81,16 @@ describe('TableComponent', () => {
   it('should have a header displayed with the correct content', () => {
     const matRows = component.nativeElement.querySelectorAll('.mat-row');
     expect(matRows.length).toBe(2);
-    expect(matRows[0].innerHTML).toContain('Mike');
-    expect(matRows[1].innerHTML).toContain('Tilly');
+    expect(matRows[0].innerText.trim()).toBe('Mike');
+    expect(matRows[1].innerText.trim()).toBe('Tilly');
   });
 
   it('should have a row with the correct content', () => {
     const matHeaderCell = component.nativeElement.querySelectorAll('.mat-header-cell');
     expect(matHeaderCell.length).toBe(1);
-    const headerCellContent = matHeaderCell[0].querySelector('app-textitem').innerHTML;
-    expect(headerCellContent).toContain('Name');
+
+    const headerCellContent = matHeaderCell[0].querySelector('bq-textitem').innerText;
+    expect(headerCellContent.trim()).toBe('Name');
   });
 
 });
