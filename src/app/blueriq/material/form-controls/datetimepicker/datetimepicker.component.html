@@ -1,0 +1,17 @@
+<bq-element [control]="formControl">
+
+  <mat-form-field>
+    <!--&lt;!&ndash;<input matInput [placeholder]="field.questionText" [matTimepicker]="picker" [formControl]="formControl" [required]="field.required">&ndash;&gt;-->
+    <!--&lt;!&ndash;<mat-timepicker-toggle matSuffix [for]="picker"></mat-timepicker-toggle>&ndash;&gt;-->
+    <!--&lt;!&ndash;<mat-timepicker #picker></mat-timepicker>&ndash;&gt;-->
+    <div class="input-wrapper">
+      <input matInput [formControl]="formControl" [required]="field.required" [owlDateTimeTrigger]="dtPicker1" [owlDateTime]="dtPicker1" [placeholder]="field.questionText">
+      <span class="trigger" [owlDateTimeTrigger]="dtPicker1">
+        <i class="material-icons">calendar_today</i>
+    </span>
+      <owl-date-time #dtPicker1></owl-date-time>
+    </div>
+
+  </mat-form-field>
+
+</bq-element>

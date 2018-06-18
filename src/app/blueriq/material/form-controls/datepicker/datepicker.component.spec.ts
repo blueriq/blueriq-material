@@ -38,9 +38,9 @@ describe('DatepickerComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should be an app-element', () => {
-    const appElement = component.nativeElement.querySelector('app-element');
-    expect(appElement).toBeTruthy();
+  it('should be an bq-element', () => {
+    const bqElement = component.nativeElement.querySelector('bq-element');
+    expect(bqElement).toBeTruthy();
   });
 
 });

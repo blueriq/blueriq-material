@@ -3,6 +3,8 @@ import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { BlueriqSession } from '@blueriq/angular';
 import { ValueTransformer } from '@blueriq/angular/forms';
 import * as moment from 'moment';
+import { DateTimeAdapter, OWL_DATE_TIME_FORMATS, OWL_DATE_TIME_LOCALE, OwlDateTimeFormats } from 'ng-pick-datetime';
+import { MomentDateTimeAdapter } from 'ng-pick-datetime-moment';
 
 export class MomentTransformer implements ValueTransformer<Date, moment.Moment> {
 
@@ -36,20 +38,18 @@ export function dateFormatFactory(session: BlueriqSession): MatDateFormats {
   };
 }
 
-export function dateTimeFormatFactory(session: BlueriqSession): MatDateFormats {
+export function dateTimeFormatFactory(session: BlueriqSession): OwlDateTimeFormats {
   const dateTimePattern = session.language.patterns.datetime!
   // transform lowercase hour (hh) to uppercase (HH)
   .replace('h', 'H');
   return {
-    parse: {
-      dateInput: dateTimePattern
-    },
-    display: {
-      dateInput: dateTimePattern,
-      monthYearLabel: 'MMMM YYYY',
-      dateA11yLabel: dateTimePattern,
-      monthYearA11yLabel: 'MMMM YYYY'
-    }
+    parseInput: 'MM/YYYY',
+    fullPickerInput: 'l LT',
+    datePickerInput: 'MM/YYYY',
+    timePickerInput: 'LT',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY'
   };
 }
 
@@ -76,11 +76,23 @@ export const dateFormatProvider = [
   ]
 ;
 
+export const dateTimeLocaleProvider = {
+  provide: OWL_DATE_TIME_LOCALE,
+  useFactory: dateLocaleFactory,
+  deps: [BlueriqSession]
+};
+
+export const dateTimeAdapterProvider = {
+    provide: DateTimeAdapter,
+    useClass: MomentDateTimeAdapter
+  }
+;
+
 export const dateTimeFormatProvider = [
-  dateLocaleProvider,
-  dateAdapterProvider,
+  dateTimeLocaleProvider,
+  dateTimeAdapterProvider,
   {
-    provide: MAT_DATE_FORMATS,
+    provide: OWL_DATE_TIME_FORMATS,
     useFactory: dateTimeFormatFactory,
     deps: [BlueriqSession]
   }

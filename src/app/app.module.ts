@@ -8,6 +8,8 @@ import { V1BackendModule } from '@blueriq/angular/backend/v1';
 import { BlueriqFormsModule } from '@blueriq/angular/forms';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { OwlDateTimeModule } from 'ng-pick-datetime';
+import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
 import { AppComponent } from './app.component';
 import { ElementComponent } from './blueriq/generic/element/element.component';
 import { ContainerComponent } from './blueriq/material/container/container.component';
@@ -15,6 +17,7 @@ import { MomentTransformer } from './blueriq/material/datetime/datetime';
 import { ButtonComponent } from './blueriq/material/form-controls/button/button.component';
 import { CheckboxComponent } from './blueriq/material/form-controls/checkbox/checkbox.component';
 import { DatepickerComponent } from './blueriq/material/form-controls/datepicker/datepicker.component';
+import { DateTimepickerComponent } from './blueriq/material/form-controls/datetimepicker/datetimepicker.component';
 import { CurrencyFieldComponent } from './blueriq/material/form-controls/input-field/currency/currency.component';
 import { IntegerFieldComponent } from './blueriq/material/form-controls/input-field/integer/integer.component';
 import { NumberFieldComponent } from './blueriq/material/form-controls/input-field/number/number.component';
@@ -55,7 +58,8 @@ const BQ_COMPONENTS = [
   PercentageFieldComponent,
   IntegerFieldComponent,
   NumberFieldComponent,
-  SelectComponent
+  SelectComponent,
+  DateTimepickerComponent
 ];
 
 const BQ_MAT_COMPONENTS = [
@@ -83,7 +87,9 @@ const BQ_MAT_COMPONENTS = [
     BlueriqFormsModule.forRoot(),
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    OwlDateTimeModule,
+    OwlMomentDateTimeModule
   ],
   providers: [
     BlueriqComponents.register(BQ_COMPONENTS),

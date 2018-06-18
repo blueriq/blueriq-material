@@ -2,19 +2,19 @@ import { Component, Host, OnInit } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { BlueriqFormBuilder } from '@blueriq/angular/forms';
 import { Field } from '@blueriq/core';
-import { dateFormatProvider, MomentTransformer } from '../../datetime/datetime';
+import { dateTimeFormatProvider, MomentTransformer } from '../../datetime/datetime';
 
 @Component({
-  selector: 'bq-datepicker',
-  templateUrl: './datepicker.component.html',
-  styleUrls: ['./datepicker.component.scss'],
-  providers: [dateFormatProvider]
+  selector: 'bq-time',
+  templateUrl: './datetimepicker.component.html',
+  styleUrls: ['./datetimepicker.component.scss'],
+  providers: [dateTimeFormatProvider]
 })
 @BlueriqComponent({
   type: Field,
-  selector: '[dataType=date]'
+  selector: '[dataType=datetime]'
 })
-export class DatepickerComponent implements OnInit {
+export class DateTimepickerComponent implements OnInit {
 
   formControl = this.form.control(this.field, { updateOn: 'blur', transformer: MomentTransformer });
 

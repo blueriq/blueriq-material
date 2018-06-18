@@ -4396,6 +4396,14 @@ next-tick@1:
   version "1.0.0"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/next-tick/-/next-tick-1.0.0.tgz?dl=https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
 
+ng-pick-datetime-moment@^1.0.6:
+  version "1.0.6"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/ng-pick-datetime-moment/-/ng-pick-datetime-moment-1.0.6.tgz?dl=https://registry.yarnpkg.com/ng-pick-datetime-moment/-/ng-pick-datetime-moment-1.0.6.tgz#d8892e8f4fb86fb835b022927080e9400f6f71f1"
+
+ng-pick-datetime@^6.0.5:
+  version "6.0.5"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/ng-pick-datetime/-/ng-pick-datetime-6.0.5.tgz?dl=https://registry.yarnpkg.com/ng-pick-datetime/-/ng-pick-datetime-6.0.5.tgz#6b0300fc8dc2544a981157a5b5ce4a15ecafb50b"
+
 no-case@^2.2.0:
   version "2.3.2"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/no-case/-/no-case-2.3.2.tgz?dl=https://registry.yarnpkg.com/no-case/-/no-case-2.3.2.tgz#60b813396be39b3f1288a4c1ed5d1e7d28b464ac"
