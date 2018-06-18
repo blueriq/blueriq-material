@@ -1,13 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
-import { TextItemTemplate } from '@blueriq/core/testing';
+import { TextItemModule } from '@blueriq/angular/textitems';
+import { StaticNodeTemplate, StyleNodeTemplate, TextItemNodeTemplate, TextItemTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../material/material.module';
 import { PresentationStyles } from '../presentationstyles/presentationstyles';
 import { TextItemComponent } from './textitem.component';
-import { TextItemModule } from '@blueriq/angular/textitems';
 
 describe('TextItemComponent', () => {
   let textItem: TextItemTemplate;
@@ -39,12 +40,29 @@ describe('TextItemComponent', () => {
   });
 
   it('should display the text', () => {
-    session.update(
-      textItem.plainText('Lorem ipsum')
-    );
+    const staticNode: TextItemNodeTemplate = StaticNodeTemplate.create('Lorem ipsum');
+
+    session.update(textItem.nodes(staticNode));
+
     const textItemText: string = component.nativeElement.querySelector('div').textContent.trim();
     expect(textItemText).toBe('Lorem ipsum');
   });
+
+  it('should display the text with inline style', () => {
+    const staticNode: TextItemNodeTemplate = StaticNodeTemplate.create('Lorem ipsum');
+    const styleNode: TextItemNodeTemplate = StyleNodeTemplate.create('warning').nodes(staticNode);
+
+    session.update(
+      textItem.nodes(styleNode)
+    );
+
+    const textItemText: string = component.debugElement.query(By.css('span[class=warning]'))
+      .nativeElement
+      .textContent
+      .trim();
+    expect(textItemText).toBe('Lorem ipsum');
+  });
+
 
   it('should be basic colored', () => {
     session.update(
@@ -52,58 +70,58 @@ describe('TextItemComponent', () => {
     );
 
     const classes: string = component.nativeElement.querySelector('div').getAttribute('class');
-    expect(classes).not.toContain('Danger');
-    expect(classes).not.toContain('Warning');
-    expect(classes).not.toContain('Info');
-    expect(classes).not.toContain('Success');
+    expect(classes).not.toContain('danger');
+    expect(classes).not.toContain('darning');
+    expect(classes).not.toContain('info');
+    expect(classes).not.toContain('success');
   });
 
   it('should be danger colored', () => {
     session.update(
-      textItem.styles(PresentationStyles.DANGER)
+      textItem.styles(PresentationStyles.DANGER.toLowerCase())
     );
 
     const classes: string = component.nativeElement.querySelector('div').getAttribute('class');
-    expect(classes).toContain('Danger');
-    expect(classes).not.toContain('Warning');
-    expect(classes).not.toContain('Info');
-    expect(classes).not.toContain('Success');
+    expect(classes).toContain('danger');
+    expect(classes).not.toContain('warning');
+    expect(classes).not.toContain('info');
+    expect(classes).not.toContain('success');
   });
 
   it('should be warning colored', () => {
     session.update(
-      textItem.styles(PresentationStyles.WARNING)
+      textItem.styles(PresentationStyles.WARNING.toLowerCase())
     );
 
     const classes: string = component.nativeElement.querySelector('div').getAttribute('class');
-    expect(classes).toContain('Warning');
-    expect(classes).not.toContain('Danger');
-    expect(classes).not.toContain('Info');
-    expect(classes).not.toContain('Success');
+    expect(classes).toContain('warning');
+    expect(classes).not.toContain('danger');
+    expect(classes).not.toContain('info');
+    expect(classes).not.toContain('success');
   });
 
   it('should be success colored', () => {
     session.update(
-      textItem.styles(PresentationStyles.SUCCESS)
+      textItem.styles(PresentationStyles.SUCCESS.toLowerCase())
     );
 
     const classes: string = component.nativeElement.querySelector('div').getAttribute('class');
-    expect(classes).toContain('Success');
-    expect(classes).not.toContain('Danger');
-    expect(classes).not.toContain('Warning');
-    expect(classes).not.toContain('Info');
+    expect(classes).toContain('success');
+    expect(classes).not.toContain('danger');
+    expect(classes).not.toContain('warning');
+    expect(classes).not.toContain('info');
   });
 
   it('should be info colored', () => {
     session.update(
-      textItem.styles(PresentationStyles.INFO)
+      textItem.styles(PresentationStyles.INFO.toLowerCase())
     );
 
     const classes: string = component.nativeElement.querySelector('div').getAttribute('class');
-    expect(classes).toContain('Info');
-    expect(classes).not.toContain('Danger');
-    expect(classes).not.toContain('Warning');
-    expect(classes).not.toContain('Success');
+    expect(classes).toContain('info');
+    expect(classes).not.toContain('danger');
+    expect(classes).not.toContain('warning');
+    expect(classes).not.toContain('success');
   });
 
 });
