@@ -5,7 +5,14 @@ import { BlueriqComponents } from '@blueriq/angular';
 import { Table } from '@blueriq/angular/lists';
 import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
 import { BlueriqTestSession } from '@blueriq/angular/testing/src/test_session';
-import { ButtonTemplate, ContainerTemplate, FieldTemplate, TextItemTemplate } from '@blueriq/core/testing';
+import { TextItemModule } from '@blueriq/angular/textitems';
+import {
+  ButtonTemplate,
+  ContainerTemplate,
+  FieldTemplate,
+  StaticNodeTemplate,
+  TextItemTemplate
+} from '@blueriq/core/testing';
 import { MaterialModule } from '../material/material.module';
 import { TextItemComponent } from '../textitem/textitem.component';
 import { TableSortComponent } from './sort/table.sort.component';
@@ -30,7 +37,8 @@ describe('TableComponent', () => {
         MaterialModule,
         BrowserAnimationsModule, // or NoopAnimationsModule
         BlueriqTestingModule,
-        FormsModule
+        FormsModule,
+        TextItemModule
       ]
     });
   }));
@@ -49,7 +57,7 @@ describe('TableComponent', () => {
         .create('cell')
         .contentStyle('tablesortedheader')
         .children(
-          TextItemTemplate.create('Name').plainText('Name'),
+          TextItemTemplate.create('Name').nodes(StaticNodeTemplate.create('Name')),
           /* 'descending' itself cannot be tested, since this is done by the backend */
           ButtonTemplate.create().styles('sort', 'descending')
         )
@@ -89,7 +97,7 @@ describe('TableComponent', () => {
     const matHeaderCell = component.nativeElement.querySelectorAll('.mat-header-cell');
     expect(matHeaderCell.length).toBe(1);
 
-    const headerCellContent = matHeaderCell[0].querySelector('bq-textitem').innerText;
+    const headerCellContent = matHeaderCell[0].querySelector('bq-textitem-static').innerText;
     expect(headerCellContent.trim()).toBe('Name');
   });
 
