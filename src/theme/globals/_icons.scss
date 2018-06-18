@@ -1,0 +1,29 @@
+/**
+ * This file contains classes for all items that we use.
+ */
+
+.material-icons {
+  &.icon-info {
+    &:before {
+      content: 'info';
+    }
+  }
+
+  &.icon-success {
+    &:before {
+      content: 'check_circle';
+    }
+  }
+
+  &.icon-warning {
+    &:before {
+      content: 'warning';
+    }
+  }
+
+  &.icon-danger {
+    &:before {
+      content: 'error';
+    }
+  }
+}

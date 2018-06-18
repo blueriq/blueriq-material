@@ -279,10 +279,15 @@ $bq-toolbar-background: #fff;
 $bq-mat-primary: $bq-mat-primary-blue;
 $bq-mat-accent: $bq-mat-accent-green;
 
-$bq-mat-danger: mat-color($bq-mat-accent-red, 100);
-$bq-mat-info: mat-color($bq-mat-primary-blue, 100);
-$bq-mat-success: mat-color($bq-mat-accent-green, 100);
-$bq-mat-warning: mat-color($bq-mat-accent-orange, 100);
+$bq-mat-bg-danger: mat-color($bq-mat-accent-red, 100);
+$bq-mat-bg-info: mat-color($bq-mat-primary-blue, 100);
+$bq-mat-bg-success: mat-color($bq-mat-accent-green, 100);
+$bq-mat-bg-warning: mat-color($bq-mat-accent-orange, 100);
+
+$bq-mat-fg-danger: mat-color($bq-mat-accent-red, 800);
+$bq-mat-fg-info: mat-color($bq-mat-primary-blue, 800);
+$bq-mat-fg-success: mat-color($bq-mat-accent-green, 800);
+$bq-mat-fg-warning: mat-color($bq-mat-accent-orange, 800);
 
 $bq-mat-primary-500: mat-color($bq-mat-primary, 500);
 $bq-mat-accent-500: mat-color($bq-mat-accent, 500);

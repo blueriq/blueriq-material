@@ -1,0 +1,38 @@
+@import 'variables';
+
+/**
+ * This file contains styles that have to be global due to use of elements that
+ * do not have view encapsulation applied to themselves
+ */
+
+.text-item {
+  span {
+    &.warning,
+    &.Warning {
+      padding-top: 1px;
+      padding-bottom: 1px;
+      background-color: $bq-mat-bg-warning;
+    }
+
+    &.danger,
+    &.Danger {
+      padding-top: 1px;
+      padding-bottom: 1px;
+      background-color: $bq-mat-bg-danger;
+    }
+
+    &.info,
+    &.Info {
+      padding-top: 1px;
+      padding-bottom: 1px;
+      background-color: $bq-mat-bg-info;
+    }
+
+    &.success,
+    &.Success {
+      padding-top: 1px;
+      padding-bottom: 1px;
+      background-color: $bq-mat-bg-success;
+    }
+  }
+}

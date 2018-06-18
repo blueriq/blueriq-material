@@ -1,30 +1,57 @@
 @import '../../../../theme/globals/variables';
 
-div {
-  padding: 15px;
-  padding-bottom: 0px;
+/**
+ * This style uses double flex layout due to vertical alignment of icon and content
+ */
 
-  border-left-width: 10px;
-  border-style: solid;
-  border-color: transparent;
+.text-item {
+  padding: 15px 15px 0;
+  display: flex;
+
+  .gutter {
+    padding: 4px 6px;
+    margin-right: 15px;
+    font-size: 22px;
+    display: flex;
+  }
+
+  .text {
+    display: flex;
+  }
+
+  .aligner {
+    align-self: center;
+  }
 
   &.warning,
   &.Warning {
-    border-left-color: $bq-mat-warning;
+    .gutter {
+      color: $bq-mat-fg-warning;
+      background-color: $bq-mat-bg-warning;
+    }
   }
 
   &.danger,
   &.Danger {
-    border-left-color: $bq-mat-danger;
+    .gutter {
+      color: $bq-mat-fg-danger;
+      background-color: $bq-mat-bg-danger;
+    }
   }
 
   &.info,
   &.Info {
-    border-left-color: $bq-mat-info;
+    .gutter {
+      color: $bq-mat-fg-info;
+      background-color: $bq-mat-bg-info;
+    }
   }
 
   &.success,
   &.Success {
-    border-left-color: $bq-mat-success;
+    .gutter {
+      color: $bq-mat-fg-success;
+      background-color: $bq-mat-bg-success;
+    }
   }
 }

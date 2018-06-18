@@ -7,33 +7,3 @@ body {
   background: map-get($mat-gray, 200);
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
-
-span {
-  &.warning,
-  &.Warning {
-    padding-top: 1px;
-    padding-bottom: 1px;
-    background-color: $bq-mat-warning;
-  }
-
-  &.danger,
-  &.Danger {
-    padding-top: 1px;
-    padding-bottom: 1px;
-    background-color: $bq-mat-danger;
-  }
-
-  &.info,
-  &.Info {
-    padding-top: 1px;
-    padding-bottom: 1px;
-    background-color: $bq-mat-info;
-  }
-
-  &.success,
-  &.Success {
-    padding-top: 1px;
-    padding-bottom: 1px;
-    background-color: $bq-mat-success;
-  }
-}
