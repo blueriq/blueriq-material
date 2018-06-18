@@ -5,18 +5,16 @@ import { Field } from '@blueriq/core';
 import { PresentationStyles } from '../../presentationstyles/presentationstyles';
 
 @Component({
-  selector: 'app-checkbox',
+  selector: 'bq-checkbox',
   templateUrl: './checkbox.component.html'
 })
-
 @BlueriqComponent({
   type: Field,
   selector: '[dataType=boolean]'
 })
-
 export class CheckboxComponent implements OnInit {
 
-  formControl = this.form.control(this.field, { syncOn: 'update' });
+  formControl = this.form.control(this.field, { syncOn: 'update', ifUnknown: false });
 
   constructor(@Host() public field: Field, private form: BlueriqFormBuilder) {
   }
