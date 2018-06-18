@@ -37,6 +37,10 @@ describe('ButtonComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('SHOULD FAIL AND THIS TEST BE DELETED', () => {
+    expect(true).toBeFalsy();
+  });
+
   it('should display the button text', () => {
     const buttonText: string = component.nativeElement.querySelector('.mat-button-wrapper').textContent.trim();
     expect(buttonText).toBe('Click me!');
