@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
 import { V1BackendModule } from '@blueriq/angular/backend/v1';
 import { BlueriqFormsModule } from '@blueriq/angular/forms';
+import { TextItemModule } from '@blueriq/angular/textitems';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { AppComponent } from './app.component';
@@ -87,11 +88,12 @@ const BQ_MAT_COMPONENTS = [
     BlueriqFormsModule.forRoot(),
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TextItemModule
   ],
   providers: [
     BlueriqComponents.register(BQ_COMPONENTS),
-    PresentationStyles
+    PresentationStyles,
   ],
   bootstrap: [AppComponent]
 })

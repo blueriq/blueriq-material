@@ -1,10 +1,13 @@
 export class PresentationStyles {
-  static DISABLED = 'Disabled';
-  static RADIO = 'radio';
-  static HORIZONTAL = 'horizontal';
-  static VERTICAL = 'vertical';
-  static PRIMARY = 'Primary';
   static ACCENT = 'Accent';
-  static BUTTON_PRIMARY = 'button_primary';
+  static DANGER = 'Danger';
+  static DISABLED = 'Disabled';
+  static HORIZONTAL = 'horizontal';
+  static INFO = 'Info';
+  static PRIMARY = 'Primary';
+  static RADIO = 'radio';
+  static SUCCESS = 'Success';
   static TOGGLE = 'toggle';
+  static VERTICAL = 'vertical';
+  static WARNING = 'Warning';
 }
