@@ -8,11 +8,14 @@ import { dateTimeFormatProvider, MomentTransformer } from '../../datetime/dateti
   selector: 'bq-datetimepicker',
   templateUrl: './datetimepicker.component.html',
   styleUrls: ['./datetimepicker.component.scss'],
-  providers: [dateTimeFormatProvider]
+  providers: [
+    // dateFormatProvider,
+    dateTimeFormatProvider
+  ]
 })
 @BlueriqComponent({
   type: Field,
-  selector: '[dataType=datetime]'
+  selector: '[dataType=date],[dataType=datetime]'
 })
 export class DateTimepickerComponent implements OnInit {
 
@@ -36,6 +39,14 @@ export class DateTimepickerComponent implements OnInit {
   /** Whether the string field is read only */
   isReadonly() {
     return this.field.readonly;
+  }
+
+  /** Show only the datepicker when the field datatype is `date` */
+  getPickerType(): string {
+    if (this.field.dataType === 'date') {
+      return 'calendar';
+    }
+    return 'both';
   }
 
 }

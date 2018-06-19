@@ -12,7 +12,7 @@ import { dateFormatProvider, MomentTransformer } from '../../datetime/datetime';
 })
 @BlueriqComponent({
   type: Field,
-  selector: '[dataType=date]'
+  selector: '.material[dataType=date]'
 })
 export class DatepickerComponent implements OnInit {
 
