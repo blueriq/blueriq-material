@@ -5,7 +5,7 @@ import { Field } from '@blueriq/core';
 import { dateTimeFormatProvider, MomentTransformer } from '../../datetime/datetime';
 
 @Component({
-  selector: 'bq-time',
+  selector: 'bq-datetimepicker',
   templateUrl: './datetimepicker.component.html',
   styleUrls: ['./datetimepicker.component.scss'],
   providers: [dateTimeFormatProvider]
