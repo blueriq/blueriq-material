@@ -67,4 +67,24 @@ describe('DocumentLinkComponent', () => {
     expect(element.querySelector('span').innerHTML).toBe(LINK_TEXT);
   });
 
+  it('should contain the correct class when presentation styles "button" and "primary" are set', () => {
+    session.update(
+      container.styles(PresentationStyles.BUTTON, PresentationStyles.PRIMARY)
+    );
+    const element = component.nativeElement.querySelector('a');
+    expect(element.getAttribute('class')).toBe('mat-raised-button mat-primary');
+    expect(element.getAttribute('href')).not.toBeFalsy();
+    expect(element.querySelector('span').innerHTML).toBe(LINK_TEXT);
+  });
+
+  it('should contain the correct class when presentation styles "button" and "accent" are set', () => {
+    session.update(
+      container.styles(PresentationStyles.BUTTON, PresentationStyles.ACCENT)
+    );
+    const element = component.nativeElement.querySelector('a');
+    expect(element.getAttribute('class')).toBe('mat-raised-button mat-accent');
+    expect(element.getAttribute('href')).not.toBeFalsy();
+    expect(element.querySelector('span').innerHTML).toBe(LINK_TEXT);
+  });
+
 });
