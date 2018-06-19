@@ -2,16 +2,14 @@ import { Component, Host, OnInit } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { BlueriqFormBuilder } from '@blueriq/angular/forms';
 import { Field } from '@blueriq/core';
-import { dateTimeFormatProvider, MomentTransformer } from '../../datetime/datetime';
+import { MomentTransformer } from '../../../generic/moment/moment-transfer';
+import { dateTimeFormatProvider } from './datetime.owl';
 
 @Component({
   selector: 'bq-datetimepicker',
   templateUrl: './datetimepicker.component.html',
   styleUrls: ['./datetimepicker.component.scss'],
-  providers: [
-    // dateFormatProvider,
-    dateTimeFormatProvider
-  ]
+  providers: [dateTimeFormatProvider]
 })
 @BlueriqComponent({
   type: Field,

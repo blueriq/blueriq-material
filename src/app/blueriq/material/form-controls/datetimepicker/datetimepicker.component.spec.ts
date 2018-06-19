@@ -7,7 +7,7 @@ import { FieldTemplate } from '@blueriq/core/testing';
 import { OwlDateTimeModule } from 'ng-pick-datetime';
 import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
 import { ElementComponent } from '../../../generic/element/element.component';
-import { MomentTransformer } from '../../datetime/datetime';
+import { MomentTransformer } from '../../../generic/moment/moment-transfer';
 import { MaterialModule } from '../../material/material.module';
 import { PresentationStyles } from '../../presentationstyles/presentationstyles';
 

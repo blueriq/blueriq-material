@@ -5,7 +5,7 @@ import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
 import { ElementComponent } from '../../../generic/element/element.component';
-import { MomentTransformer } from '../../datetime/datetime';
+import { MomentTransformer } from '../../../generic/moment/moment-transfer';
 import { MaterialModule } from '../../material/material.module';
 import { PresentationStyles } from '../../presentationstyles/presentationstyles';
 
