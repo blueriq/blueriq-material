@@ -1,17 +1,19 @@
 {
   "name": "blueriq-material",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "ng:version": "ng --version",
     "start": "ng serve --open --host 0.0.0.0 --proxy-config proxy.conf.json",
     "build": "ng build --prod",
-    "deploy": "mvn clean deploy",
     "test": "ng test",
     "lint": "ng lint && yarn sass-lint",
     "tslint": "ng lint",
     "sass-lint": "sass-lint --verbose --config sass-lint.yml src/**/*.scss",
-    "e2e": "ng e2e"
+    "verify": "ng test --watch false --progress false --code-coverage",
+    "verify:all": "yarn verify && ng lint && yarn sass-lint",
+    "e2e": "ng e2e",
+    "version:increment": "npm version --allow-same-version"
   },
   "private": true,
   "engines": {
@@ -44,9 +46,10 @@
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.6.1",
-    "@angular/cli": "~6.0.1",
     "@angular/compiler-cli": "^6.0.1",
+    "@angular-devkit/build-angular": "~0.6.1",
+    "typescript": "~2.7.2",
+    "@angular/cli": "~6.0.1",
     "@angular/language-service": "^6.0.1",
     "@types/jasmine": "~2.8.7",
     "@types/jasminewd2": "~2.0.3",
@@ -62,7 +65,6 @@
     "protractor": "~5.3.2",
     "sass-lint": "~1.12.1",
     "ts-node": "~6.0.3",
-    "tslint": "~5.10.0",
-    "typescript": "~2.7.2"
+    "tslint": "~5.10.0"
   }
 }

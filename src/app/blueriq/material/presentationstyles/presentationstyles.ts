@@ -1,5 +1,6 @@
 export class PresentationStyles {
   static ACCENT = 'Accent';
+  static BUTTON = 'button';
   static DANGER = 'Danger';
   static DISABLED = 'Disabled';
   static HORIZONTAL = 'horizontal';

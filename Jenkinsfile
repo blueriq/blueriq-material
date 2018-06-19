@@ -4,35 +4,35 @@ boolean isMaster = BRANCH_NAME == 'master'
 String triggerCron = isMaster ? "H 13 * * 7" : ""
 
 properties([
-[
-  $class  : 'BuildDiscarderProperty',
-  strategy: [$class: 'LogRotator', numToKeepStr: '5']
-],
-pipelineTriggers([
-  cron(triggerCron)
-]),
-parameters([
-  booleanParam(
-	name: 'isRelease',
-	defaultValue: false,
-	description: 'Select if you want to do a release build.'
-  ),
-  string(
-	name: 'releaseVersion',
-	defaultValue: '1.0.x',
-	description: "In case of a release-build please provide the release version."
-  ),
-  string(
-	name: 'developmentVersion',
-	defaultValue: '1.0.x-SNAPSHOT',
-	description: "In case of a release-build please provide the next development version."
-  ),
-  booleanParam(
-	name: 'deploySnapshot',
-	defaultValue: false,
-	description: 'Select if you want to deploy a snapshot to artifactory.'
-  ),
-])
+  [
+    $class  : 'BuildDiscarderProperty',
+    strategy: [$class: 'LogRotator', numToKeepStr: '5']
+  ],
+  pipelineTriggers([
+    cron(triggerCron)
+  ]),
+  parameters([
+    booleanParam(
+      name: 'deploySnapshot',
+      defaultValue: false,
+      description: 'Select if you want to deploy a snapshot to artifactory.'
+    ),
+    booleanParam(
+      name: 'isRelease',
+      defaultValue: false,
+      description: 'Select if you want to do a release build.'
+    ),
+    string(
+      name: 'releaseVersion',
+      defaultValue: '1.0.x',
+      description: "In case of a release-build please provide the release version."
+    ),
+    string(
+      name: 'developmentVersion',
+      defaultValue: '1.0.x-SNAPSHOT',
+      description: "In case of a release-build please provide the next development version."
+    ),
+  ])
 ])
 
 node {
@@ -56,7 +56,7 @@ node {
     stage('verify') {
       parallel(
         'test': {
-          bat 'yarn test --watch false --progress false --code-coverage'
+          bat 'yarn verify'
         },
         'lint': {
           bat 'yarn lint'
@@ -64,17 +64,20 @@ node {
       )
     }
 
-    stage('build') {
-	  if(!params.isRelease){ // maven release executes the yarn build also
-	     bat "yarn build"
-	  }
+    if (!params.isRelease) {
+      stage('build') {
+        bat "yarn build" // maven release executes the yarn build also
+      }
     }
 
     if (params.deploySnapshot) {
       stage('deploy snapshot') {
-        bat "yarn deploy"
+        bat "mvn clean deploy"
       }
     } else if (params.isRelease) {
+      stage('increment version for release') {
+        bat "yarn version:increment ${params.releaseVersion}"
+      }
       stage('release') {
         bat "mvn -B -DdevelopmentVersion=${params.developmentVersion} -DreleaseVersion=${params.releaseVersion} -Dresume=false release:prepare release:perform"
       }
