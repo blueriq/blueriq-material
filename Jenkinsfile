@@ -88,6 +88,7 @@ node {
       // TODO ng linting results
       // Test results
       step([$class: 'JUnitResultArchiver', testResults: 'testresults/*.xml'])
+      step([/*$class: '???',*/ testResults: 'coverage/lcov-report/index.html'])
       // coverage results
       publishHTML([
         allowMissing         : false,
