@@ -5,21 +5,19 @@ import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
 import { ElementComponent } from '../../../generic/element/element.component';
-import { MomentTransformer } from '../../datetime/datetime';
 import { MaterialModule } from '../../material/material.module';
 import { PresentationStyles } from '../../presentationstyles/presentationstyles';
+import { CurrencyFieldComponent } from './currency/currency.component';
 
-import { DatepickerComponent } from './datepicker.component';
-
-describe('DatepickerComponent', () => {
+describe('InputFieldComponent', () => {
   let field: FieldTemplate;
-  let component: ComponentFixture<DatepickerComponent>;
+  let component: ComponentFixture<CurrencyFieldComponent>;
   let session: BlueriqTestSession;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [DatepickerComponent, ElementComponent],
-      providers: [BlueriqComponents.register([DatepickerComponent]), MomentTransformer],
+      declarations: [CurrencyFieldComponent, ElementComponent],
+      providers: [BlueriqComponents.register([CurrencyFieldComponent])],
       imports: [
         MaterialModule,
         BrowserAnimationsModule, // or NoopAnimationsModule
@@ -30,24 +28,20 @@ describe('DatepickerComponent', () => {
   }));
 
   beforeEach(() => {
-    field = FieldTemplate.date();
+    field = FieldTemplate.currency();
     session = BlueriqSessionTemplate.create().build(field);
-    component = session.get(DatepickerComponent);
+    component = session.get(CurrencyFieldComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('should be a bq-element', () => {
-    const bqElement = component.nativeElement.querySelector('bq-element');
-    expect(bqElement).toBeTruthy();
+  it('should contain bq-element (field wrapper)', () => {
+    const appElement = component.nativeElement.querySelector('bq-element');
+    expect(appElement).toBeTruthy();
   });
 
   it('should be disabled', () => {
     field.styles(PresentationStyles.DISABLED);
     session = BlueriqSessionTemplate.create().build(field);
-    component = session.get(DatepickerComponent);
+    component = session.get(CurrencyFieldComponent);
 
     const inputField = component.nativeElement.querySelector('.mat-form-field-disabled');
     expect(inputField).toBeTruthy();
@@ -56,7 +50,7 @@ describe('DatepickerComponent', () => {
   it('should be read only', () => {
     field.readonly();
     session = BlueriqSessionTemplate.create().build(field);
-    component = session.get(DatepickerComponent);
+    component = session.get(CurrencyFieldComponent);
 
     const inputField = component.nativeElement.querySelector('.mat-form-field-disabled');
     expect(inputField).toBeTruthy();
