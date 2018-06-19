@@ -1,5 +1,6 @@
 import { Link } from '@blueriq/core';
 import { LinkTemplate } from '@blueriq/core/testing';
+import { Options } from '../../../options';
 import { DocumentLinkService } from './document-link.service';
 
 describe('DocumentLinkService', () => {
@@ -17,7 +18,7 @@ describe('DocumentLinkService', () => {
     });
     const link = new Link(linkJson.toJson());
     const mockSession: any = { sessionId: '1234-5678-910' };
-    const expectedUrl = `http://${document.location.host}/Runtime/api/v2/session/1234-5678-910/document/downloadme/pdf`;
+    const expectedUrl = `${Options.BASE_URL}/api/v2/session/1234-5678-910/document/downloadme/pdf`;
 
     // SUT
     const downloadUrl = downloadService.getDownloadUrl(link, mockSession);
