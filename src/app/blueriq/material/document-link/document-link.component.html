@@ -1,1 +1,8 @@
-<a mat-button ngClass="{{hasButtonPresentationStyle() ? 'mat-raised-button': 'mat-button'}}" [href]="getDownloadUrl()">{{link.text}}</a>
+<div bqClasses>
+  <ng-container *ngIf="hasButtonPresentationStyle(); else displayLink">
+    <a mat-raised-button [href]="getDownloadUrl()">{{link.text}}</a>
+  </ng-container>
+  <ng-template #displayLink>
+    <a [href]="getDownloadUrl()">{{link.text}}</a>
+  </ng-template>
+</div>

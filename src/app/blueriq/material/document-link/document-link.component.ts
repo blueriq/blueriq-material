@@ -23,7 +23,7 @@ export class DocumentLinkComponent {
   }
 
   hasButtonPresentationStyle() {
-    return this.container.styles.has(PresentationStyles.BUTTON_LINK);
+    return this.container.styles.has(PresentationStyles.BUTTON);
   }
 
   getDownloadUrl(): string {

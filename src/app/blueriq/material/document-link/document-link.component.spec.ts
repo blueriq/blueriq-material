@@ -53,14 +53,13 @@ describe('DocumentLinkComponent', () => {
 
   it('should contain the correct data', () => {
     const element = component.nativeElement.querySelector('a');
-    expect(element.getAttribute('class')).toBe('mat-button');
     expect(element.getAttribute('href')).not.toBeFalsy();
-    expect(element.querySelector('span').innerHTML).toBe(LINK_TEXT);
+    expect(element.innerHTML).toBe(LINK_TEXT);
   });
 
-  it('should contain the correct data when presentationstyle "button_link" is set', () => {
+  it('should contain the correct data when presentation style "button" is set', () => {
     session.update(
-      container.styles(PresentationStyles.BUTTON_LINK)
+      container.styles(PresentationStyles.BUTTON)
     );
     const element = component.nativeElement.querySelector('a');
     expect(element.getAttribute('class')).toBe('mat-raised-button');
