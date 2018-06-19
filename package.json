@@ -7,11 +7,11 @@
     "start": "ng serve --open --host 0.0.0.0 --proxy-config proxy.conf.json",
     "build": "ng build --prod",
     "test": "ng test",
-    "lint": "ng lint && yarn sass-lint",
+    "lint": "yarn tslint && yarn sass-lint",
     "tslint": "ng lint",
     "sass-lint": "sass-lint --verbose --config sass-lint.yml src/**/*.scss",
     "verify": "ng test --watch false --progress false --code-coverage",
-    "verify:all": "yarn verify && ng lint && yarn sass-lint",
+    "verify:all": "yarn verify && yarn tslint && yarn sass-lint",
     "e2e": "ng e2e",
     "version:increment": "npm version --allow-same-version"
   },
