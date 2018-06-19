@@ -23,10 +23,12 @@ export class DocumentLinkComponent {
     private readonly blueriqSession: BlueriqSession) {
   }
 
+  /** Whether the container has the 'button' presentaton style */
   hasButtonPresentationStyle() {
     return this.container.styles.has(PresentationStyles.BUTTON);
   }
 
+  /** The button color, based on presentation styles 'Primary' and 'Accent' */
   getColor(): string | null {
     if (this.container.styles.has(PresentationStyles.PRIMARY)) {
       return 'primary';
@@ -37,6 +39,7 @@ export class DocumentLinkComponent {
     }
   }
 
+  /** The URL from which the document can be downloaded */
   getDownloadUrl(): string {
     return this.documentLinkService.getDownloadUrl(this.link, this.blueriqSession);
   }
