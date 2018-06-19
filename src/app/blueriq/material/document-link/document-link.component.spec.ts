@@ -6,24 +6,24 @@ import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from
 import { ContainerTemplate, LinkTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../material/material.module';
 import { PresentationStyles } from '../presentationstyles/presentationstyles';
-import { DownloadComponent } from './download.component';
-import { DownloadService } from './download.service';
+import { DocumentLinkComponent } from './document-link.component';
+import { DocumentLinkService } from './document-link.service';
 
-describe('DownloadComponent', () => {
+describe('DocumentLinkComponent', () => {
 
   const LINK_TEXT = 'clickme';
   const DOCUMENT_NAME = 'downloadme';
 
   let container: ContainerTemplate;
-  let component: ComponentFixture<DownloadComponent>;
+  let component: ComponentFixture<DocumentLinkComponent>;
   let session: BlueriqTestSession;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [DownloadComponent],
+      declarations: [DocumentLinkComponent],
       providers: [
-        BlueriqComponents.register([DownloadComponent]),
-        DownloadService
+        BlueriqComponents.register([DocumentLinkComponent]),
+        DocumentLinkService
       ],
       imports: [
         MaterialModule,
@@ -44,7 +44,7 @@ describe('DownloadComponent', () => {
       })
     );
     session = BlueriqSessionTemplate.create().build(container);
-    component = session.get(DownloadComponent);
+    component = session.get(DocumentLinkComponent);
   });
 
   it('should be created', () => {

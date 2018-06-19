@@ -2,23 +2,23 @@ import { Component, Host } from '@angular/core';
 import { BlueriqChild, BlueriqComponent, BlueriqSession } from '@blueriq/angular';
 import { Container, Link } from '@blueriq/core';
 import { PresentationStyles } from '../presentationstyles/presentationstyles';
-import { DownloadService } from './download.service';
+import { DocumentLinkService } from './document-link.service';
 
 @Component({
-  templateUrl: './download.component.html'
+  templateUrl: './document-link.component.html'
 })
 @BlueriqComponent({
   type: Container,
   selector: '*:has(* > [type=link])'
 })
-export class DownloadComponent {
+export class DocumentLinkComponent {
 
   @BlueriqChild(Link, { descendants: true, required: true })
   public link: Link;
 
   constructor(
     @Host() public container: Container,
-    public downloadService: DownloadService,
+    public documentLinkService: DocumentLinkService,
     private readonly blueriqSession: BlueriqSession) {
   }
 
@@ -27,7 +27,7 @@ export class DownloadComponent {
   }
 
   getDownloadUrl(): string {
-    return this.downloadService.getDownloadUrl(this.link, this.blueriqSession);
+    return this.documentLinkService.getDownloadUrl(this.link, this.blueriqSession);
   }
 
 }

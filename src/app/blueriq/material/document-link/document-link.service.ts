@@ -3,7 +3,7 @@ import { BlueriqSession } from '@blueriq/angular';
 import { Link } from '@blueriq/core';
 
 @Injectable()
-export class DownloadService {
+export class DocumentLinkService {
 
   getDownloadUrl(link: Link, blueriqSession: BlueriqSession): string {
     let url = 'http://' + document.location.host + '/Runtime/api/v2/';

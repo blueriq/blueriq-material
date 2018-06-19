@@ -11,8 +11,8 @@ import { StoreModule } from '@ngrx/store';
 import { AppComponent } from './app.component';
 import { ElementComponent } from './blueriq/generic/element/element.component';
 import { ContainerComponent } from './blueriq/material/container/container.component';
-import { DownloadComponent } from './blueriq/material/download/download.component';
-import { DownloadService } from './blueriq/material/download/download.service';
+import { DocumentLinkComponent } from './blueriq/material/document-link/document-link.component';
+import { DocumentLinkService } from './blueriq/material/document-link/document-link.service';
 import { ButtonComponent } from './blueriq/material/form-controls/button/button.component';
 import { CheckboxComponent } from './blueriq/material/form-controls/checkbox/checkbox.component';
 import { CurrencyFieldComponent } from './blueriq/material/form-controls/input-field/currency/currency.component';
@@ -30,12 +30,12 @@ import { TextItemComponent } from './blueriq/material/textitem/textitem.componen
 import { ProjectComponent } from './blueriq/project/project.component';
 
 const routes: Routes = [
-    { path: 'session/:sessionId', component: ProjectComponent },
-    { path: 'shortcut/:shortcut', component: ProjectComponent },
-    { path: 'flow/:project/:flow', component: ProjectComponent },
-    { path: 'flow/:project/:flow/:version', component: ProjectComponent },
-    { path: '**', redirectTo: 'shortcut/default', pathMatch: 'full' }
-  ];
+  { path: 'session/:sessionId', component: ProjectComponent },
+  { path: 'shortcut/:shortcut', component: ProjectComponent },
+  { path: 'flow/:project/:flow', component: ProjectComponent },
+  { path: 'flow/:project/:flow/:version', component: ProjectComponent },
+  { path: '**', redirectTo: 'shortcut/default', pathMatch: 'full' }
+];
 
 const BASE_URL = '/Runtime';
 
@@ -44,7 +44,7 @@ const BQ_COMPONENTS = [
   CheckboxComponent,
   ContainerComponent,
   CurrencyFieldComponent,
-  DownloadComponent,
+  DocumentLinkComponent,
   IntegerFieldComponent,
   NumberFieldComponent,
   PageComponent,
@@ -84,7 +84,7 @@ const BQ_MAT_COMPONENTS = [
   ],
   providers: [
     BlueriqComponents.register(BQ_COMPONENTS),
-    DownloadService,
+    DocumentLinkService,
     PresentationStyles
   ],
   bootstrap: [AppComponent]

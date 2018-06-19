@@ -1,12 +1,12 @@
 import { Link } from '@blueriq/core';
 import { LinkTemplate } from '@blueriq/core/testing';
-import { DownloadService } from './download.service';
+import { DocumentLinkService } from './document-link.service';
 
-describe('DownloadService', () => {
-  let downloadService: DownloadService;
+describe('DocumentLinkService', () => {
+  let downloadService: DocumentLinkService;
 
   beforeEach(() => {
-    downloadService = new DownloadService();
+    downloadService = new DocumentLinkService();
   });
 
   it('should have a url containing document name, type and sessionId', () => {
