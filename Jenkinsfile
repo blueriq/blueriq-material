@@ -88,9 +88,8 @@ node {
       // TODO ng linting results
       // Test results
       step([$class: 'JUnitResultArchiver', testResults: 'testresults/*.xml'])
-      step([$class: 'JacocoPublisher', testResults: 'coverage/lcov-report/*.xml'])
       // coverage results
-      publishHTML([
+      publishHTML(target: [
         allowMissing         : false,
         alwaysLinkToLastBuild: false,
         keepAll              : true,
