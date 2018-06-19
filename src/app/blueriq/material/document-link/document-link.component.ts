@@ -26,6 +26,16 @@ export class DocumentLinkComponent {
     return this.container.styles.has(PresentationStyles.BUTTON);
   }
 
+  getColor(): string | null {
+    if (this.container.styles.has(PresentationStyles.PRIMARY)) {
+      return 'primary';
+    } else if (this.container.styles.has(PresentationStyles.ACCENT)) {
+      return 'accent';
+    } else {
+      return null;
+    }
+  }
+
   getDownloadUrl(): string {
     return this.documentLinkService.getDownloadUrl(this.link, this.blueriqSession);
   }
