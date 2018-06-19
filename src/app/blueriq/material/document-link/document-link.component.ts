@@ -5,7 +5,8 @@ import { PresentationStyles } from '../presentationstyles/presentationstyles';
 import { DocumentLinkService } from './document-link.service';
 
 @Component({
-  templateUrl: './document-link.component.html'
+  templateUrl: './document-link.component.html',
+  styleUrls: ['./document-link.component.scss']
 })
 @BlueriqComponent({
   type: Container,
