@@ -11,7 +11,9 @@
     "lint": "ng lint && yarn sass-lint",
     "tslint": "ng lint",
     "sass-lint": "sass-lint --verbose --config sass-lint.yml src/**/*.scss",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "verify": "ng test --watch false --progress false --code-coverage",
+    "verify:all": "yarn verify && yarn tslint && yarn sass-lint"
   },
   "private": true,
   "engines": {
