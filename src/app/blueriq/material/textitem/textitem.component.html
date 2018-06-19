@@ -1,1 +1,8 @@
-<span>{{textItem.plainText}}</span>
+<div bqClasses class="text-item">
+  <div class="gutter" *ngIf="shouldDisplayGutter()">
+    <div class="aligner material-icons {{getGutterIcon()}}"></div>
+  </div>
+    <div class="aligner">
+      <ng-container [bqTextItemNode]="textItem.rootNode"></ng-container>
+    </div>
+</div>
