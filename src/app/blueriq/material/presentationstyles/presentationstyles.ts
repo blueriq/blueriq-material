@@ -4,6 +4,7 @@ export class PresentationStyles {
   static DISABLED = 'Disabled';
   static HORIZONTAL = 'horizontal';
   static INFO = 'Info';
+  static MATERIAL = 'material';
   static PRIMARY = 'Primary';
   static RADIO = 'radio';
   static SUCCESS = 'Success';

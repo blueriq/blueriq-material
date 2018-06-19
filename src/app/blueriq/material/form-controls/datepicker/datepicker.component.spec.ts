@@ -30,7 +30,7 @@ describe('DatepickerComponent', () => {
   }));
 
   beforeEach(() => {
-    field = FieldTemplate.date();
+    field = FieldTemplate.date().styles(PresentationStyles.MATERIAL);
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(DatepickerComponent);
   });
@@ -45,7 +45,7 @@ describe('DatepickerComponent', () => {
   });
 
   it('should be disabled', () => {
-    field.styles(PresentationStyles.DISABLED);
+    field.styles(PresentationStyles.DISABLED, PresentationStyles.MATERIAL);
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(DatepickerComponent);
 

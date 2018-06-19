@@ -3,8 +3,15 @@ import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { BlueriqSession } from '@blueriq/angular';
 import { ValueTransformer } from '@blueriq/angular/forms';
 import * as moment from 'moment';
-import { DateTimeAdapter, OWL_DATE_TIME_FORMATS, OWL_DATE_TIME_LOCALE, OwlDateTimeFormats } from 'ng-pick-datetime';
+import {
+  DateTimeAdapter,
+  OWL_DATE_TIME_FORMATS,
+  OWL_DATE_TIME_LOCALE,
+  OwlDateTimeFormats,
+  OwlDateTimeIntl
+} from 'ng-pick-datetime';
 import { MomentDateTimeAdapter } from 'ng-pick-datetime-moment';
+import { DefaultDateTimeIntl, DutchIntl, TestInl } from '../form-controls/datetimepicker/localization';
 
 export class MomentTransformer implements ValueTransformer<Date, moment.Moment> {
 
@@ -72,6 +79,27 @@ export function dateTimeFormatFactory(session: BlueriqSession): OwlDateTimeForma
   };
 }
 
+export function DateTimeIntlFactory(session: BlueriqSession): any {
+  const locale = localeFactory(session);
+  if (locale.endsWith('NL')) {
+    return DutchIntl;
+  }
+  return DefaultDateTimeIntl;
+}
+
+export function intlFactory(locale: string): any {
+  if (locale !== undefined) {
+    return {
+      provide: OwlDateTimeIntl,
+      useClass: DefaultDateTimeIntl
+    };
+  }
+  return {
+    provide: OwlDateTimeIntl,
+    useClass: DutchIntl
+  };
+}
+
 export const dateTimeFormatProvider = [
   {
     provide: OWL_DATE_TIME_LOCALE,
@@ -86,5 +114,15 @@ export const dateTimeFormatProvider = [
     provide: OWL_DATE_TIME_FORMATS,
     useFactory: dateTimeFormatFactory,
     deps: [BlueriqSession]
+  },
+  // {
+  //   provide: OwlDateTimeIntl,
+  //   useClass: DutchIntl
+  // }
+  // intlFactory()
+  {
+    provide: OwlDateTimeIntl,
+    useClass: TestInl,
+    deps: [OWL_DATE_TIME_LOCALE]
   }
 ];
