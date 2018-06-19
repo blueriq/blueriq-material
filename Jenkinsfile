@@ -93,7 +93,7 @@ node {
         allowMissing         : false,
         alwaysLinkToLastBuild: false,
         keepAll              : true,
-        reportDir            : "coverage",
+        reportDir            : "coverage/lcov-report",
         reportFiles          : 'index.html',
         reportName           : "coverage",
         reportTitles         : "coverage"
