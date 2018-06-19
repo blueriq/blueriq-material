@@ -41,6 +41,7 @@
     "moment": "^2.22.2",
     "ng-pick-datetime": "^6.0.5",
     "ng-pick-datetime-moment": "^1.0.6",
+    "roboto-fontface": "^0.9.0",
     "rxjs": "^6.1.0",
     "rxjs-compat": "^6.1.0",
     "web-animations-js": "^2.3.1",
