@@ -5810,6 +5810,10 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
     hash-base "^3.0.0"
     inherits "^2.0.1"
 
+roboto-fontface@^0.9.0:
+  version "0.9.0"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/roboto-fontface/-/roboto-fontface-0.9.0.tgz?dl=https://registry.yarnpkg.com/roboto-fontface/-/roboto-fontface-0.9.0.tgz#4829eeffc0502f09b88c7f3980fa3b304eda4c49"
+
 run-async@^0.1.0:
   version "0.1.0"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/run-async/-/run-async-0.1.0.tgz?dl=https://registry.yarnpkg.com/run-async/-/run-async-0.1.0.tgz#c8ad4a5e110661e402a7d21b530e009f25f8e389"

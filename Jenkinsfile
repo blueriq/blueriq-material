@@ -13,6 +13,11 @@ properties([
   ]),
   parameters([
     booleanParam(
+      name: 'deploySnapshot',
+      defaultValue: false,
+      description: 'Select if you want to deploy a snapshot to artifactory.'
+    ),
+    booleanParam(
       name: 'isRelease',
       defaultValue: false,
       description: 'Select if you want to do a release build.'
@@ -26,12 +31,7 @@ properties([
       name: 'developmentVersion',
       defaultValue: '1.0.x-SNAPSHOT',
       description: "In case of a release-build please provide the next development version."
-    ),
-    booleanParam(
-      name: 'deploySnapshot',
-      defaultValue: false,
-      description: 'Select if you want to deploy a snapshot to artifactory.'
-    ),
+    )
   ])
 ])
 
@@ -56,7 +56,7 @@ node {
     stage('verify') {
       parallel(
         'test': {
-          bat 'yarn test --watch false --progress false --code-coverage'
+          bat 'yarn verify'
         },
         'lint': {
           bat 'yarn lint'
@@ -72,9 +72,12 @@ node {
 
     if (params.deploySnapshot) {
       stage('deploy snapshot') {
-        bat "yarn deploy"
+        bat "mvn clean deploy"
       }
     } else if (params.isRelease) {
+      stage('increment version for release') {
+        bat "yarn version:increment ${params.releaseVersion}"
+      }
       stage('release') {
         bat "mvn -B -DdevelopmentVersion=${params.developmentVersion} -DreleaseVersion=${params.releaseVersion} -Dresume=false release:prepare release:perform"
       }
