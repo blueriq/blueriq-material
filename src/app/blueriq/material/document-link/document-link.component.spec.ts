@@ -54,6 +54,7 @@ describe('DocumentLinkComponent', () => {
   it('should contain the correct data', () => {
     const element = component.nativeElement.querySelector('a');
     expect(element.getAttribute('href')).not.toBeFalsy();
+    expect(element.getAttribute('class')).toBe('plain-link');
     expect(element.innerHTML).toBe(LINK_TEXT);
   });
 
