@@ -31,6 +31,21 @@ export class DateTimepickerComponent implements OnInit {
     }
   }
 
+  /**
+   * This function is executed every time a user has input a date(time), either through the picker or
+   * by typing it directly (onblur). In the latter case, the user input is transformed to a valid date
+   * object (Moment instance) or null if it is invalid. By explicitly setting its value (if valid), the
+   * formatting is applied to the user input. If invalid, the user input will remain, but the field will
+   * be marked as invalid.
+   * @param event the change event that contains the user input date and (if valid) the transformed date
+   * object (a Moment instance)
+   */
+  formatOnChange(event: any): void {
+    if (event.value) {
+      event.source.value = event.value;
+    }
+  }
+
   /** Whether the select has a presentation style Disabled */
   isDisabled() {
     return this.field.styles.has('Disabled');
