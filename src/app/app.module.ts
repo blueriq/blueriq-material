@@ -34,7 +34,7 @@ import { TableComponent } from './blueriq/material/table/table.component';
 import { TableReadonlyComponent } from './blueriq/material/table/table.readonly.component';
 import { TextItemComponent } from './blueriq/material/textitem/textitem.component';
 import { ProjectComponent } from './blueriq/project/project.component';
-import { Options } from './options';
+import { Configuration } from './configuration';
 
 const routes: Routes = [
   { path: 'session/:sessionId', component: ProjectComponent },
@@ -84,7 +84,7 @@ const BQ_MAT_COMPONENTS = [
     EffectsModule.forRoot([]),
     BlueriqModule.forRoot(),
     V1BackendModule.forRoot({
-      baseUrl: Options.BASE_URL
+      baseUrl: Configuration.BASE_URL
     }),
     BrowserAnimationsModule,
     BlueriqFormsModule.forRoot(),
