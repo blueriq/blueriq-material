@@ -13,6 +13,8 @@ import { PresentationStyles } from '../../presentationstyles/presentationstyles'
 export class ButtonComponent {
 
   constructor(@Host() public button: Button, private session: BlueriqSession) {
+	    let b;
+		 let x;
   }
 
   getColor(): string | null {
