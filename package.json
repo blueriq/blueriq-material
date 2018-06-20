@@ -10,7 +10,7 @@
     "lint": "yarn tslint && yarn sass-lint",
     "tslint": "ng lint",
     "sass-lint": "sass-lint --verbose --config sass-lint.yml src/**/*.scss",
-    "verify": "ng test --watch=false --code-coverage=true",
+    "verify": "ng test --watch false --code-coverage true",
     "verifyold": "ng test --watch false --progress false --code-coverage",
     "verify:all": "yarn verify && yarn tslint && yarn sass-lint",
     "e2e": "ng e2e",
@@ -18,7 +18,7 @@
   },
   "private": true,
   "engines": {
-    "yarn": "1.6.0"
+    "yarn": "^1.4.0"
   },
   "dependencies": {
     "@angular/animations": "^6.0.1",
@@ -59,7 +59,7 @@
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "2.0.3",
     "karma-chrome-launcher": "2.2.0",
-    "karma-coverage-istanbul-reporter": "1.4.2",
+    "karma-coverage-istanbul-reporter": "2.0.1",
     "karma-jasmine": "1.1.2",
     "karma-jasmine-html-reporter": "1.1.0",
     "karma-junit-reporter": "^1.2.0",
