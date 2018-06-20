@@ -59,8 +59,12 @@ node {
           bat 'yarn verify'
         },
         'lint': {
+          // tslint
           bat 'yarn tslint > tslint_results.xml'
+          bat 'findstr /b /L "<pmd" tslint_results.xml > tslint_results_pmd.xml'
+          // sass-lint
           bat 'yarn sass-lint > sasslint_results.xml'
+          bat 'findstr /b /L "<pmd" sasslint_results.xml > sasslint_results_pmd.xml'
         }
       )
     }
@@ -104,18 +108,13 @@ node {
       ])
 
       // lint results
-//      step([$class                   : 'hudson.plugins.checkstyle.CheckStylePublisher',
-//            pattern                  : 'tslint_results.xml',
-//            useStableBuildAsReference: true,
-//            shouldDetectModules      : true,
-//            canRunOnFailed           : true])
       step([$class                   : 'PmdPublisher',
-            pattern                  : 'tslint_results.xml',
+            pattern                  : 'tslint_results_pmd.xml',
             useStableBuildAsReference: true,
             shouldDetectModules      : true,
             canRunOnFailed           : true])
 
-
+      // sasslint_results_pmd TODO
     }
 
     notifyBuildStatus()
