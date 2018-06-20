@@ -15,6 +15,8 @@ import { AppComponent } from './app.component';
 import { ElementComponent } from './blueriq/generic/element/element.component';
 import { MomentTransformer } from './blueriq/generic/moment/moment-transfer';
 import { ContainerComponent } from './blueriq/material/container/container.component';
+import { DocumentLinkComponent } from './blueriq/material/document-link/document-link.component';
+import { DocumentLinkService } from './blueriq/material/document-link/document-link.service';
 import { ButtonComponent } from './blueriq/material/form-controls/button/button.component';
 import { CheckboxComponent } from './blueriq/material/form-controls/checkbox/checkbox.component';
 import { DatepickerComponent } from './blueriq/material/form-controls/datepicker/datepicker.component';
@@ -37,6 +39,7 @@ import { TableComponent } from './blueriq/material/table/table.component';
 import { TableReadonlyComponent } from './blueriq/material/table/table.readonly.component';
 import { TextItemComponent } from './blueriq/material/textitem/textitem.component';
 import { ProjectComponent } from './blueriq/project/project.component';
+import { Configuration } from './configuration';
 
 const routes: Routes = [
   { path: 'session/:sessionId', component: ProjectComponent },
@@ -47,8 +50,6 @@ const routes: Routes = [
   { path: '**', redirectTo: 'shortcut/default', pathMatch: 'full' }
 ];
 
-const BASE_URL = '/Runtime';
-
 const BQ_COMPONENTS = [
   ButtonComponent,
   SelectComponent,
@@ -56,6 +57,7 @@ const BQ_COMPONENTS = [
   CheckboxComponent,
   ContainerComponent,
   CurrencyFieldComponent,
+  DocumentLinkComponent,
   IntegerFieldComponent,
   NumberFieldComponent,
   SelectComponent,
@@ -93,7 +95,7 @@ const BQ_MAT_COMPONENTS = [
     EffectsModule.forRoot([]),
     BlueriqModule.forRoot(),
     V1BackendModule.forRoot({
-      baseUrl: BASE_URL
+      baseUrl: Configuration.BASE_URL
     }),
     BrowserAnimationsModule,
     BlueriqFormsModule.forRoot(),
@@ -106,8 +108,9 @@ const BQ_MAT_COMPONENTS = [
   ],
   providers: [
     BlueriqComponents.register(BQ_COMPONENTS),
-    PresentationStyles,
-    MomentTransformer
+    DocumentLinkService,
+    MomentTransformer,
+    PresentationStyles
   ],
   bootstrap: [AppComponent]
 })
