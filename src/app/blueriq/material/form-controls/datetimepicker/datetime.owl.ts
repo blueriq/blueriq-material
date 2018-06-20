@@ -1,6 +1,13 @@
 import { BlueriqSession } from '@blueriq/angular';
-import { OWL_DATE_TIME_FORMATS, OWL_DATE_TIME_LOCALE, OwlDateTimeFormats, OwlDateTimeIntl } from 'ng-pick-datetime';
-import { DefaultDateTimeIntl, DutchIntl, TestInl } from './localization';
+import {
+  DateTimeAdapter,
+  OWL_DATE_TIME_FORMATS,
+  OWL_DATE_TIME_LOCALE,
+  OwlDateTimeFormats,
+  OwlDateTimeIntl
+} from 'ng-pick-datetime';
+import { MomentDateTimeAdapter } from 'ng-pick-datetime-moment';
+import { OwlDateTimeIntlFactory } from '../../../generic/owl/owl-datetime-intl-factory';
 
 export function localeFactory(session: BlueriqSession): string {
   return session.language.languageCode;
@@ -22,27 +29,6 @@ export function dateTimeFormatFactory(session: BlueriqSession): OwlDateTimeForma
   };
 }
 
-export function DateTimeIntlFactory(session: BlueriqSession): any {
-  const locale = localeFactory(session);
-  if (locale.endsWith('NL')) {
-    return DutchIntl;
-  }
-  return DefaultDateTimeIntl;
-}
-
-export function intlFactory(locale: string): any {
-  if (locale !== undefined) {
-    return {
-      provide: OwlDateTimeIntl,
-      useClass: DefaultDateTimeIntl
-    };
-  }
-  return {
-    provide: OwlDateTimeIntl,
-    useClass: DutchIntl
-  };
-}
-
 export const dateTimeFormatProvider = [
   {
     provide: OWL_DATE_TIME_LOCALE,
@@ -50,18 +36,17 @@ export const dateTimeFormatProvider = [
     deps: [BlueriqSession]
   },
   {
+    provide: DateTimeAdapter,
+    useClass: MomentDateTimeAdapter
+  },
+  {
     provide: OWL_DATE_TIME_FORMATS,
     useFactory: dateTimeFormatFactory,
     deps: [BlueriqSession]
   },
-  // {
-  //   provide: OwlDateTimeIntl,
-  //   useClass: DutchIntl
-  // }
-  // intlFactory()
   {
     provide: OwlDateTimeIntl,
-    useClass: TestInl,
+    useFactory: OwlDateTimeIntlFactory,
     deps: [OWL_DATE_TIME_LOCALE]
   }
 ];

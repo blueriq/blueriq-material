@@ -1,48 +1,23 @@
-// here is the default text string
-
 import { OwlDateTimeIntl } from 'ng-pick-datetime';
 
-export class DefaultDateTimeIntl implements OwlDateTimeIntl {
-  upSecondLabel = 'Add a second';
-  downSecondLabel = 'Minus a second';
-  upMinuteLabel = 'Add a minute';
-  downMinuteLabel = 'Minus a minute';
-  upHourLabel = 'Add a hour';
-  downHourLabel = 'Minus a hour';
-  prevMonthLabel = 'Previous month';
-  nextMonthLabel = 'Next month';
-  prevYearLabel = 'Previous year';
-  nextYearLabel = 'Next year';
-  prevMultiYearLabel = 'Previous 21 years';
-  nextMultiYearLabel = 'Next 21 years';
-  switchToMonthViewLabel = 'Change to month view';
-  switchToMultiYearViewLabel = 'Choose month and year';
-  cancelBtnLabel = 'Cancel';
-  setBtnLabel = 'Set';
-  rangeFromLabel = 'From';
-  rangeToLabel = 'To';
-  hour12AMLabel = 'AM';
-  hour12PMLabel = 'PM';
-}
-
-export class DutchIntl implements OwlDateTimeIntl {
+export class OwlDatetimeIntlNL implements OwlDateTimeIntl {
   /** A label for the up second button (used by screen readers).  */
-  upSecondLabel = 'Eén seconde meer';
+  upSecondLabel = 'Voeg een seconde toe';
 
   /** A label for the down second button (used by screen readers).  */
-  downSecondLabel = 'Eén seconde minder';
+  downSecondLabel = 'Trek er een seconde af';
 
   /** A label for the up minute button (used by screen readers).  */
-  upMinuteLabel = 'Eén minuut meer';
+  upMinuteLabel = 'Voeg een minuut toe';
 
   /** A label for the down minute button (used by screen readers).  */
-  downMinuteLabel = 'Eén minuut minder';
+  downMinuteLabel = 'Trek er een minuut af';
 
   /** A label for the up hour button (used by screen readers).  */
-  upHourLabel = 'Eén uur meer';
+  upHourLabel = 'Voeg een uur toe';
 
   /** A label for the down hour button (used by screen readers).  */
-  downHourLabel = 'Eén uur minder';
+  downHourLabel = 'Trek er een uur af';
 
   /** A label for the previous month button (used by screen readers). */
   prevMonthLabel = 'Vorige maand';
@@ -54,7 +29,7 @@ export class DutchIntl implements OwlDateTimeIntl {
   prevYearLabel = 'Vorig jaar';
 
   /** A label for the next year button (used by screen readers). */
-  nextYearLabel = 'l\'Volgend jaar';
+  nextYearLabel = 'Volgend jaar';
 
   /** A label for the previous multi-year button (used by screen readers). */
   prevMultiYearLabel = 'Vorige 21 jaar';
@@ -72,7 +47,7 @@ export class DutchIntl implements OwlDateTimeIntl {
   cancelBtnLabel = 'Annuleer';
 
   /** A label for the set button */
-  setBtnLabel = 'Oké';
+  setBtnLabel = 'Ok';
 
   /** A label for the range 'from' in picker info */
   rangeFromLabel = 'Van';
@@ -81,15 +56,8 @@ export class DutchIntl implements OwlDateTimeIntl {
   rangeToLabel = 'Naar';
 
   /** A label for the hour12 button (AM) */
-  hour12AMLabel = 'Dag';
+  hour12AMLabel = 'AM';
 
   /** A label for the hour12 button (PM) */
-  hour12PMLabel = 'Nacht';
-}
-
-export class TestInl {
-  constructor(public locale: string) {
-  }
-
-  setBtnLabel = (this.locale.endsWith('NL')) ? 'Okee' : 'ok';
+  hour12PMLabel = 'PM';
 }
