@@ -59,7 +59,8 @@ node {
           bat 'yarn verify'
         },
         'lint': {
-          bat 'yarn lint'
+          bat 'yarn tslint > tslint_results'
+          bat 'yarn sass-lint > sasslint_results'
         }
       )
     }
@@ -88,9 +89,9 @@ node {
     currentBuild.result = 'FAILURE'
   } finally {
     stage("Publish results") {
-      // TODO ng linting results
       // Test results
       step([$class: 'JUnitResultArchiver', testResults: 'testresults/*.xml'])
+
       // coverage results
       publishHTML(target: [
         allowMissing         : false,
@@ -101,6 +102,14 @@ node {
         reportName           : "coverage",
         reportTitles         : "coverage"
       ])
+
+      // lint results
+      step([$class                   : 'hudson.plugins.checkstyle.CheckStylePublisher',
+            pattern                  : 'tslint_results.xml',
+            useStableBuildAsReference: true,
+            shouldDetectModules      : true,
+            canRunOnFailed           : true])
+
     }
 
     notifyBuildStatus()
