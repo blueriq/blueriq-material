@@ -88,6 +88,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
+            "format": "checkstyle",
             "tsConfig": [
               "src/tsconfig.app.json",
               "src/tsconfig.spec.json"

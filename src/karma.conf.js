@@ -42,12 +42,12 @@ module.exports = function (config) {
       dir: 'coverage',
       fixWebpackSourcePaths: true,
       combineBrowserReports: true,
-      verbose: true,
+      verbose: false, // set true for debugging purpose
       reports: [
         'cobertura',
         'lcov'
         // 'html',
-      ],
+      ], //echo error %errorlevel%
       skipFilesWithNoCoverage: false,
       thresholds: {
         emitWarning: false,
