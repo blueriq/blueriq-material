@@ -2,6 +2,8 @@ import { Component, Host, OnInit } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { BlueriqFormBuilder } from '@blueriq/angular/forms';
 import { Field } from '@blueriq/core';
+import { Moment } from 'moment';
+import { DateTimeAdapter } from 'ng-pick-datetime';
 import { MomentTransformer } from '../../../generic/moment/moment-transfer';
 import { dateTimeFormatProvider } from './datetime.owl';
 
@@ -20,12 +22,26 @@ export class DateTimepickerComponent implements OnInit {
   formControl = this.form.control(this.field, { updateOn: 'blur', transformer: MomentTransformer });
 
   constructor(@Host() public field: Field,
-              private form: BlueriqFormBuilder) {
+              private form: BlueriqFormBuilder,
+              private adapter: DateTimeAdapter<Moment>) {
   }
 
   ngOnInit(): void {
     if (this.isDisabled()) {
       this.formControl.disable();
+    }
+  }
+
+  /**
+   * Retrieves the first day of the week based on the locale set for this component. The
+   * default is 1 (Monday).
+   * @returns {number} the first day of the week (0 = Sunday, 1 = Monday ... 6 = Saturday)
+   */
+  getFirstDayOfWeek(): number {
+    try {
+      return this.adapter.now().creationData().locale.firstDayOfWeek();
+    } catch (error) {
+      return 1;
     }
   }
 
@@ -47,11 +63,6 @@ export class DateTimepickerComponent implements OnInit {
   /** Whether the select has a presentation style Disabled */
   isDisabled() {
     return this.field.styles.has('Disabled');
-  }
-
-  /** Whether the string field is read only */
-  isReadonly() {
-    return this.field.readonly;
   }
 
   /** Show only the datepicker when the field datatype is `date` */
