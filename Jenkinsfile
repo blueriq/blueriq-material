@@ -59,8 +59,8 @@ node {
           bat 'yarn verify'
         },
         'lint': {
-          bat 'yarn tslint > tslint_results'
-          bat 'yarn sass-lint > sasslint_results'
+          bat 'yarn tslint > tslint_results.xml'
+          bat 'yarn sass-lint > sasslint_results.xml'
         }
       )
     }
