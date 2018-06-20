@@ -104,11 +104,17 @@ node {
       ])
 
       // lint results
-      step([$class                   : 'hudson.plugins.checkstyle.CheckStylePublisher',
+//      step([$class                   : 'hudson.plugins.checkstyle.CheckStylePublisher',
+//            pattern                  : 'tslint_results.xml',
+//            useStableBuildAsReference: true,
+//            shouldDetectModules      : true,
+//            canRunOnFailed           : true])
+      step([$class                   : 'PmdPublisher',
             pattern                  : 'tslint_results.xml',
             useStableBuildAsReference: true,
             shouldDetectModules      : true,
             canRunOnFailed           : true])
+
 
     }
 
