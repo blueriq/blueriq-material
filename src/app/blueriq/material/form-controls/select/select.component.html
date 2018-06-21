@@ -1,4 +1,4 @@
-<bq-element [field]="field">
+<bq-element [control]="formControl" bqClasses>
   <mat-form-field>
     <mat-select [placeholder]="field.questionText" [required]="field.required" [formControl]="formControl" [multiple]="field.multiValued">
       <mat-option *ngIf="!field.multiValued"></mat-option>

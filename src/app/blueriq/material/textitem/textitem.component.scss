@@ -1,0 +1,54 @@
+@import '../../../../theme/globals/variables';
+
+// This style uses double flex layout due to vertical alignment of icon and content
+
+.text-item {
+  display: flex;
+
+  .gutter {
+    display: flex;
+    margin-right: 15px;
+    padding: 4px 6px;
+    font-size: 22px;
+  }
+
+  .text {
+    display: flex;
+  }
+
+  .aligner {
+    align-self: center;
+  }
+
+  &.warning,
+  &.Warning { // sass-lint:disable-line class-name-format
+    .gutter {
+      background-color: $bq-mat-bg-warning;
+      color: $bq-mat-fg-warning;
+    }
+  }
+
+  &.danger,
+  &.Danger { // sass-lint:disable-line class-name-format
+    .gutter {
+      background-color: $bq-mat-bg-danger;
+      color: $bq-mat-fg-danger;
+    }
+  }
+
+  &.info,
+  &.Info { // sass-lint:disable-line class-name-format
+    .gutter {
+      background-color: $bq-mat-bg-info;
+      color: $bq-mat-fg-info;
+    }
+  }
+
+  &.success,
+  &.Success { // sass-lint:disable-line class-name-format
+    .gutter {
+      background-color: $bq-mat-bg-success;
+      color: $bq-mat-fg-success;
+    }
+  }
+}
