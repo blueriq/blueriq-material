@@ -52,7 +52,7 @@
     "@types/jasmine": "~2.8.7",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
-    "chromedriver": "~2.4.0",
+    "chromedriver": "~2.40.0",
     "codelyzer": "~4.3.0",
     "jasmine-core": "~3.1.0",
     "jasmine-spec-reporter": "~4.2.1",
