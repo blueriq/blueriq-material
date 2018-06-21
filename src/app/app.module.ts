@@ -13,7 +13,7 @@ import { OwlDateTimeModule } from 'ng-pick-datetime';
 import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
 import { AppComponent } from './app.component';
 import { ElementComponent } from './blueriq/generic/element/element.component';
-import { MomentTransformer } from './blueriq/generic/moment/moment-transfer';
+import { MomentTransformer } from './blueriq/generic/moment/moment-transformer';
 import { ContainerComponent } from './blueriq/material/container/container.component';
 import { DocumentLinkComponent } from './blueriq/material/document-link/document-link.component';
 import { DocumentLinkService } from './blueriq/material/document-link/document-link.service';

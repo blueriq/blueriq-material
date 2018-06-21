@@ -4,10 +4,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
+import * as moment from 'moment';
 import { OwlDateTimeModule } from 'ng-pick-datetime';
-import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
+import { MomentDateTimeAdapter, OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
 import { ElementComponent } from '../../../generic/element/element.component';
-import { MomentTransformer } from '../../../generic/moment/moment-transfer';
+import { MomentTransformer } from '../../../generic/moment/moment-transformer';
 import { MaterialModule } from '../../material/material.module';
 import { PresentationStyles } from '../../presentationstyles/presentationstyles';
 
@@ -43,6 +44,17 @@ describe('DateTimepickerComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should render date and time picker for datetime fields', () => {
+    expect(component.componentInstance.getPickerType()).toEqual('both');
+  });
+
+  it('should render only datepicker for date fields', () => {
+    field = FieldTemplate.date();
+    session = BlueriqSessionTemplate.create().build(field);
+    component = session.get(DateTimepickerComponent);
+    expect(component.componentInstance.getPickerType()).toEqual('calendar');
+  });
+
   it('should be a bq-element', () => {
     const bqElement = component.nativeElement.querySelector('bq-element');
     expect(bqElement).toBeTruthy();
@@ -64,5 +76,22 @@ describe('DateTimepickerComponent', () => {
 
     const inputField = component.nativeElement.querySelector('.mat-form-field-disabled');
     expect(inputField).toBeTruthy();
+  });
+
+  it('first day of week with US locale is Sunday', () => {
+    moment.locale('en-US');
+    spyOn(MomentDateTimeAdapter.prototype, 'now').and.returnValue(moment(new Date()));
+    expect(component.componentInstance.getFirstDayOfWeek()).toEqual(0);
+  });
+
+  it('first day of week with Dutch locale is Monday', () => {
+    moment.locale('nl-NL');
+    spyOn(MomentDateTimeAdapter.prototype, 'now').and.returnValue(moment(new Date()));
+    expect(component.componentInstance.getFirstDayOfWeek()).toEqual(1);
+  });
+
+  it('default first day of week is Monday when unable to determine locale specific day of week', () => {
+    spyOn(MomentDateTimeAdapter.prototype, 'now').and.throwError('error');
+    expect(component.componentInstance.getFirstDayOfWeek()).toEqual(1);
   });
 });
