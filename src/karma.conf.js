@@ -44,9 +44,7 @@ module.exports = function (config) {
       combineBrowserReports: true,
       verbose: false, // set true for debugging purpose
       reports: [
-        'cobertura',
-        'lcov'
-        // 'html',
+        'html', 'lcovonly', 'text-summary'
       ], //echo error %errorlevel%
       skipFilesWithNoCoverage: false,
       thresholds: {
