@@ -60,10 +60,11 @@ node {
         },
         'lint': {
           // tslint
-          bat 'node_modules\.bin\ng lint > tslint_results.xml'
+          bat 'node_modules\\.bin\\ng lint > tslint_results.xml'
+		  bat 'findstr /b /L "<pmd" tslint_results.xml > tslint_results_pmd.xml'
           
 		  // sass-lint
-		  bat 'node_modules\.bin\ng sass-lint --verbose --config sass-lint.yml src/**/*.scss > sasslint_results.xml'
+		  bat 'node_modules\\.bin\\ng sass-lint --verbose --config sass-lint.yml src/**/*.scss > sasslint_results.xml'
         }
       )
     }
