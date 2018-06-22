@@ -5,7 +5,7 @@ import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
 import { BlueriqTestSession } from '@blueriq/angular/testing/src/test_session';
 import { ButtonTemplate, ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
-import { MaterialModule } from '../../material/material.module';
+import { MaterialModule } from '../../material.module';
 import { PaginationComponent } from './table.pagination.component';
 
 describe('TablePaginationComponent', () => {

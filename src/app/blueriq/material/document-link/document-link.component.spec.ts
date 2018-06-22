@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate, LinkTemplate } from '@blueriq/core/testing';
-import { MaterialModule } from '../material/material.module';
+import { MaterialModule } from '../material.module';
 import { PresentationStyles } from '../presentationstyles/presentationstyles';
 import { DocumentLinkComponent } from './document-link.component';
 import { DocumentLinkService } from './document-link.service';

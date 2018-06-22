@@ -5,8 +5,7 @@ import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
 import { ElementComponent } from '../../../../generic/element/element.component';
-import { MaterialModule } from '../../../material/material.module';
-import { PresentationStyles } from '../../../presentationstyles/presentationstyles';
+import { MaterialModule } from '../../../material.module';
 
 import { CurrencyFieldComponent } from './currency.component';
 
@@ -41,28 +40,5 @@ describe('CurrencyFieldComponent', () => {
   it('should contain euro sign', () => {
     const prefix = component.nativeElement.querySelector('.mat-form-field-prefix').innerText;
     expect(prefix).toBe('€');
-  });
-
-  it('should contain bq-element (field wrapper)', () => {
-    const appElement = component.nativeElement.querySelector('bq-element');
-    expect(appElement).toBeTruthy();
-  });
-
-  it('should be disabled', () => {
-    field.styles(PresentationStyles.DISABLED);
-    session = BlueriqSessionTemplate.create().build(field);
-    component = session.get(CurrencyFieldComponent);
-
-    const inputField = component.nativeElement.querySelector('.mat-form-field-disabled');
-    expect(inputField).toBeTruthy();
-  });
-
-  it('should be disabled', () => {
-    field.readonly();
-    session = BlueriqSessionTemplate.create().build(field);
-    component = session.get(CurrencyFieldComponent);
-
-    const inputField = component.nativeElement.querySelector('.mat-form-field-disabled');
-    expect(inputField).toBeTruthy();
   });
 });
