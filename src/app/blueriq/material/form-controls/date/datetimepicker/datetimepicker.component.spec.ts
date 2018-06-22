@@ -8,10 +8,9 @@ import * as moment from 'moment';
 import { OwlDateTimeModule } from 'ng-pick-datetime';
 import { MomentDateTimeAdapter, OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
 import { ElementComponent } from '../../../../generic/element/element.component';
-import { MomentTransformer } from '../moment-transformer';
 import { MaterialModule } from '../../../material.module';
 import { PresentationStyles } from '../../../presentationstyles/presentationstyles';
-
+import { MomentTransformer } from '../moment-transformer';
 import { DateTimepickerComponent } from './datetimepicker.component';
 
 describe('DateTimepickerComponent', () => {
