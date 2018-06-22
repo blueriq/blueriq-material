@@ -1,6 +1,6 @@
 import { BlueriqSession } from '@blueriq/angular';
 import { LanguageConfiguration } from '@blueriq/core';
-import { dateTimeFormatFactory, localeFactory } from './datetime.owl';
+import { dateTimeFormatFactory, localeFactory } from './datetimepicker.owl';
 
 describe('Owl datetime util', () => {
   let mockSession: any;

@@ -1,6 +1,6 @@
 import { Link } from '@blueriq/core';
 import { LinkTemplate } from '@blueriq/core/testing';
-import { Configuration } from '../../../configuration';
+import { Configuration } from '../../../configuration/configuration';
 import { DocumentLinkService } from './document-link.service';
 
 describe('DocumentLinkService', () => {

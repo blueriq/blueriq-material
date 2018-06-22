@@ -4,8 +4,8 @@ import { BlueriqFormBuilder } from '@blueriq/angular/forms';
 import { Field } from '@blueriq/core';
 import { Moment } from 'moment';
 import { DateTimeAdapter } from 'ng-pick-datetime';
-import { MomentTransformer } from '../../../generic/moment/moment-transformer';
-import { dateTimeFormatProvider } from './datetime.owl';
+import { MomentTransformer } from '../moment-transformer';
+import { dateTimeFormatProvider } from './datetimepicker.owl';
 
 @Component({
   selector: 'bq-datetimepicker',

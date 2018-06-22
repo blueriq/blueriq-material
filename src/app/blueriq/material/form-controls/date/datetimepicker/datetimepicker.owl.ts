@@ -7,7 +7,7 @@ import {
   OwlDateTimeIntl
 } from 'ng-pick-datetime';
 import { MomentDateTimeAdapter } from 'ng-pick-datetime-moment';
-import { OwlDateTimeIntlFactory } from '../../../generic/owl/owl-datetime-intl-factory';
+import { OwlDateTimeIntlFactory } from '../../../../../configuration/date/owl-datetime-intl-factory';
 
 /**
  * Retrieves the locale from the Blueriq session
