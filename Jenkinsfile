@@ -96,15 +96,23 @@ node {
       step([$class: 'JUnitResultArchiver', testResults: 'testresults/*.xml'])
 
       // coverage results
-      publishHTML(target: [
-        allowMissing         : false,
-        alwaysLinkToLastBuild: false,
-        keepAll              : true,
-        reportDir            : "coverage",
-        reportFiles          : 'index.html',
-        reportName           : "coverage",
-        reportTitles         : "coverage"
-      ])
+     
+    step([$class: 'hudson.plugins.cobertura.CoberturaPublisher',
+              coberturaReportFile: 'coverage/cobertura-coverage.xml',
+              onlyStable: false,
+              failUnhealthy: true,
+              failUnstable: true,
+              autoUpdateHealth: false,
+              autoUpdateStability: false,
+              zoomCoverageChart: false,
+              failNoReports: true,
+              lineCoverageTargets: '80.0, 80.0, 80.0',
+              packageCoverageTargets: '80.0, 80.0, 80.0',
+              fileCoverageTargets: '80.0, 80.0, 80.0, 80.0',
+              classCoverageTargets: '80.0, 80.0, 80.0, 80.0',
+              methodCoverageTargets: '80.0, 80.0, 80.0, 80.0',
+              conditionalCoverageTargets: '80.0, 80.0, 80.0, 80.0'
+        ])
 
       // lint results
 	  step([$class: 'hudson.plugins.checkstyle.CheckStylePublisher',
