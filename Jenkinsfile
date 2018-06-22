@@ -53,7 +53,7 @@ node {
       bat 'yarn ng:version'
     }
 
-    stage('verify') {
+    stage('verify & build') {
       parallel(
         'test': {
           bat 'yarn verify'
@@ -64,15 +64,14 @@ node {
         },
 		'sass-lint': {
 		  // sass-lint
-		  bat 'node_modules\\.bin\\sass-lint --verbose --config sass-lint.yml src/**/*.scss > sasslint_results.xml'
+		  bat 'node_modules\\.bin\\sass-lint -f checkstyle --verbose --config sass-lint.yml src/**/*.scss -o sasslint_results_checkstyle.xml'
+		},
+		'build':{
+		  if (!params.isRelease) { // maven release executes the yarn build also
+			bat "yarn build"
+		  }
 		}
       )
-    }
-
-    stage('build') {
-      if (!params.isRelease) { // maven release executes the yarn build also
-        bat "yarn build"
-      }
     }
 
     if (params.deploySnapshot) {
@@ -109,12 +108,11 @@ node {
 
       // lint results
 	  step([$class: 'hudson.plugins.checkstyle.CheckStylePublisher',
-				pattern: 'tslint_results_checkstyle.xml',
+				pattern: '*_results_checkstyle.xml',
 				useStableBuildAsReference:true,
+				unstableTotalAll:'1',
 				shouldDetectModules:true,
 				canRunOnFailed: true])
-
-      // sasslint_results_pmd TODO
     }
 
     notifyBuildStatus()
