@@ -44,11 +44,11 @@ module.exports = function (config) {
       combineBrowserReports: true,
       verbose: false, // set true for debugging purpose
       reports: [
-        'html', 'lcovonly', 'text-summary'
+        'html'
       ], //echo error %errorlevel%
       skipFilesWithNoCoverage: false,
       thresholds: {
-        emitWarning: false,
+        emitWarning: true,
         global: { // thresholds for all files
           statements: 80,
           lines: 80,
