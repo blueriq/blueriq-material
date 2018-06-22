@@ -58,14 +58,14 @@ node {
         'test': {
           bat 'yarn verify'
         },
-        'lint': {
+        'tslint': {
           // tslint
-          bat 'node_modules\\.bin\\ng lint > tslint_results.xml'
-		  bat 'findstr /b /L "<pmd" tslint_results.xml > tslint_results_pmd.xml'
-          
+          bat 'node_modules\\.bin\\tslint -c src/tslint.json -t checkstyle -p src/tsconfig.app.json -p src/tsconfig.spec.json -o tslint_results_checkstyle.xml'
+        },
+		'sass-lint': {
 		  // sass-lint
-		  bat 'node_modules\\.bin\\ng sass-lint --verbose --config sass-lint.yml src/**/*.scss > sasslint_results.xml'
-        }
+		  bat 'node_modules\\.bin\\sass-lint --verbose --config sass-lint.yml src/**/*.scss > sasslint_results.xml'
+		}
       )
     }
 
@@ -108,11 +108,11 @@ node {
       ])
 
       // lint results
-      step([$class                   : 'PmdPublisher',
-            pattern                  : 'tslint_results_pmd.xml',
-            useStableBuildAsReference: true,
-            shouldDetectModules      : true,
-            canRunOnFailed           : true])
+	  step([$class: 'hudson.plugins.checkstyle.CheckStylePublisher',
+				pattern: 'tslint_results_checkstyle.xml',
+				useStableBuildAsReference:true,
+				shouldDetectModules:true,
+				canRunOnFailed: true])
 
       // sasslint_results_pmd TODO
     }

@@ -12,10 +12,7 @@ import { PresentationStyles } from '../../presentationstyles/presentationstyles'
 })
 export class ButtonComponent {
 
-  constructor(@Host() public button: Button, private session: BlueriqSession) {
-	    let b;
-		 let x;
-  }
+  constructor(@Host() public button: Button, private session: BlueriqSession) {  }
 
   getColor(): string | null {
     if (this.button.styles.has(PresentationStyles.PRIMARY)) {
