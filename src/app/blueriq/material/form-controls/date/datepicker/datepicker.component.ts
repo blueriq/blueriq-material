@@ -8,7 +8,6 @@ import { dateFormatProvider } from './datepicker.material';
 @Component({
   selector: 'bq-datepicker',
   templateUrl: './datepicker.component.html',
-  styleUrls: ['./datepicker.component.scss'],
   providers: [dateFormatProvider]
 })
 @BlueriqComponent({

@@ -13,7 +13,6 @@ import { OwlDateTimeModule } from 'ng-pick-datetime';
 import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
 import { AppComponent } from './app.component';
 import { ElementComponent } from './blueriq/generic/element/element.component';
-import { MomentTransformer } from './blueriq/material/form-controls/date/moment-transformer';
 import { ContainerComponent } from './blueriq/material/container/container.component';
 import { DocumentLinkComponent } from './blueriq/material/document-link/document-link.component';
 import { DocumentLinkService } from './blueriq/material/document-link/document-link.service';
@@ -21,6 +20,7 @@ import { ButtonComponent } from './blueriq/material/form-controls/button/button.
 import { CheckboxComponent } from './blueriq/material/form-controls/checkbox/checkbox.component';
 import { DatepickerComponent } from './blueriq/material/form-controls/date/datepicker/datepicker.component';
 import { DateTimepickerComponent } from './blueriq/material/form-controls/date/datetimepicker/datetimepicker.component';
+import { MomentTransformer } from './blueriq/material/form-controls/date/moment-transformer';
 import { CurrencyFieldComponent } from './blueriq/material/form-controls/input-field/currency/currency.component';
 import { IntegerFieldComponent } from './blueriq/material/form-controls/input-field/integer/integer.component';
 import { NumberFieldComponent } from './blueriq/material/form-controls/input-field/number/number.component';
@@ -38,7 +38,7 @@ import { TableSortComponent } from './blueriq/material/table/sort/table.sort.com
 import { TableComponent } from './blueriq/material/table/table.component';
 import { TableReadonlyComponent } from './blueriq/material/table/table.readonly.component';
 import { TextItemComponent } from './blueriq/material/textitem/textitem.component';
-import { ProjectComponent } from './blueriq/project/project.component'; 
+import { ProjectComponent } from './blueriq/project/project.component';
 import { Configuration } from './configuration/configuration';
 
 const routes: Routes = [
@@ -60,13 +60,11 @@ const BQ_COMPONENTS = [
   DocumentLinkComponent,
   IntegerFieldComponent,
   NumberFieldComponent,
-  SelectComponent,
   DateTimepickerComponent,
   PageComponent,
   PaginationComponent,
   PercentageFieldComponent,
   RadioButtonComponent,
-  SelectComponent,
   SlideToggleComponent,
   StringFieldComponent,
   TableComponent,
