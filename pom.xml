@@ -65,7 +65,7 @@
 							<outputDirectory>${project.build.outputDirectory}/webresources/angular/material</outputDirectory>
 							<resources>
 								<resource>
-									<filtering>true</filtering>
+									<filtering>false</filtering>
 									<directory>dist/</directory>
 									<include>**</include>
 								</resource>
