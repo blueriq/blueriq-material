@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BlueriqSession } from '@blueriq/angular';
 import { Link } from '@blueriq/core';
-import { Configuration } from '../../../configuration';
+import { Configuration } from '../../../configuration/configuration';
 
 @Injectable()
 export class DocumentLinkService {

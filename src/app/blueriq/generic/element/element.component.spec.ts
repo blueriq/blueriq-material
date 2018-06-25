@@ -5,7 +5,7 @@ import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
 import { StringFieldComponent } from '../../material/form-controls/input-field/string/string.component';
-import { MaterialModule } from '../../material/material/material.module';
+import { MaterialModule } from '../../material/material.module';
 
 import { ElementComponent } from './element.component';
 

@@ -9,6 +9,8 @@ import { BlueriqFormsModule } from '@blueriq/angular/forms';
 import { TextItemModule } from '@blueriq/angular/textitems';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { OwlDateTimeModule } from 'ng-pick-datetime';
+import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
 import { AppComponent } from './app.component';
 import { ElementComponent } from './blueriq/generic/element/element.component';
 import { ContainerComponent } from './blueriq/material/container/container.component';
@@ -16,6 +18,9 @@ import { DocumentLinkComponent } from './blueriq/material/document-link/document
 import { DocumentLinkService } from './blueriq/material/document-link/document-link.service';
 import { ButtonComponent } from './blueriq/material/form-controls/button/button.component';
 import { CheckboxComponent } from './blueriq/material/form-controls/checkbox/checkbox.component';
+import { DatepickerComponent } from './blueriq/material/form-controls/date/datepicker/datepicker.component';
+import { DateTimepickerComponent } from './blueriq/material/form-controls/date/datetimepicker/datetimepicker.component';
+import { MomentTransformer } from './blueriq/material/form-controls/date/moment-transformer';
 import { CurrencyFieldComponent } from './blueriq/material/form-controls/input-field/currency/currency.component';
 import { IntegerFieldComponent } from './blueriq/material/form-controls/input-field/integer/integer.component';
 import { NumberFieldComponent } from './blueriq/material/form-controls/input-field/number/number.component';
@@ -24,7 +29,7 @@ import { StringFieldComponent } from './blueriq/material/form-controls/input-fie
 import { RadioButtonComponent } from './blueriq/material/form-controls/radio-button/radio-button.component';
 import { SelectComponent } from './blueriq/material/form-controls/select/select.component';
 import { SlideToggleComponent } from './blueriq/material/form-controls/slide-toggle/slide-toggle.component';
-import { MaterialModule } from './blueriq/material/material/material.module';
+import { MaterialModule } from './blueriq/material/material.module';
 import { PageComponent } from './blueriq/material/page/page.component';
 import { PresentationStyles } from './blueriq/material/presentationstyles/presentationstyles';
 import { ReadonlyComponent } from './blueriq/material/readonly/readonly.component';
@@ -35,30 +40,33 @@ import { TableComponent } from './blueriq/material/table/table.component';
 import { TableReadonlyComponent } from './blueriq/material/table/table.readonly.component';
 import { TextItemComponent } from './blueriq/material/textitem/textitem.component';
 import { ProjectComponent } from './blueriq/project/project.component';
-import { Configuration } from './configuration';
+import { Configuration } from './configuration/configuration';
 
 const routes: Routes = [
   { path: 'session/:sessionId', component: ProjectComponent },
   { path: 'shortcut/:shortcut', component: ProjectComponent },
   { path: 'flow/:project/:flow', component: ProjectComponent },
   { path: 'flow/:project/:flow/:version', component: ProjectComponent },
+  { path: 'flow/:project/:flow/:version/:languageCode', component: ProjectComponent },
   { path: '**', redirectTo: 'shortcut/default', pathMatch: 'full' }
 ];
 
 const BQ_COMPONENTS = [
   ButtonComponent,
+  SelectComponent,
+  DatepickerComponent,
   CheckboxComponent,
   ContainerComponent,
   CurrencyFieldComponent,
   DocumentLinkComponent,
   IntegerFieldComponent,
   NumberFieldComponent,
+  DateTimepickerComponent,
   PageComponent,
   PaginationComponent,
   PercentageFieldComponent,
   RadioButtonComponent,
   ReadonlyComponent,
-  SelectComponent,
   SlideToggleComponent,
   StringFieldComponent,
   TableComponent,
@@ -78,6 +86,7 @@ const BQ_MAT_COMPONENTS = [
     ProjectComponent,
     BQ_COMPONENTS,
     BQ_MAT_COMPONENTS
+
   ],
   imports: [
     BrowserModule,
@@ -93,11 +102,14 @@ const BQ_MAT_COMPONENTS = [
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    OwlDateTimeModule,
+    OwlMomentDateTimeModule,
     TextItemModule
   ],
   providers: [
     BlueriqComponents.register(BQ_COMPONENTS),
     DocumentLinkService,
+    MomentTransformer,
     PresentationStyles
   ],
   bootstrap: [AppComponent]
