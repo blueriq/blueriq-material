@@ -7,7 +7,7 @@ import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/t
 import { BlueriqTestSession } from '@blueriq/angular/testing/src/test_session';
 import { ButtonTemplate } from '@blueriq/core/testing';
 import { ButtonComponent } from '../../form-controls/button/button.component';
-import { MaterialModule } from '../../material/material.module';
+import { MaterialModule } from '../../material.module';
 import { TableSortComponent } from './table.sort.component';
 
 describe('TableSortComponent', () => {
