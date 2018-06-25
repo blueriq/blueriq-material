@@ -11,10 +11,9 @@ module.exports = function (config) {
       'karma-chrome-launcher',
       'karma-jasmine-html-reporter',
       'karma-coverage-istanbul-reporter',
-      'karma-threshold-reporter',
       '@angular-devkit/build-angular/plugins/karma'
     ],
-    reporters: ['progress', 'kjhtml', 'junit', 'coverage-istanbul', 'coverage', 'threshold'],
+    reporters: ['progress', 'kjhtml', 'junit', 'coverage-istanbul'],
     browsers: ['Chrome'],
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
@@ -35,12 +34,6 @@ module.exports = function (config) {
     autoWatch: true,
     // autoWatchBatchDelay: 3000,
     singleRun: false,
-    thresholdReporter: {
-      statements: 100,
-      branches: 100,
-      functions: 100,
-      lines: 100
-    },
 
     // ---------- coverage below ----------
     // https://github.com/karma-runner/karma-coverage
@@ -56,12 +49,6 @@ module.exports = function (config) {
       skipFilesWithNoCoverage: false,
       thresholds: {
         emitWarning: true,
-        global: { // thresholds for all files
-          statements: 80,
-          lines: 80,
-          branches: 80,
-          functions: 80
-        },
         each: { // thresholds per file
           statements: 80,
           lines: 80,
