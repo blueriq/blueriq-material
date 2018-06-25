@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqComponents } from '@blueriq/angular';
+import { BlueriqComponents, BlueriqSession } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ButtonTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../../material.module';
@@ -82,6 +82,23 @@ describe('ButtonComponent', () => {
     const classes: string = component.nativeElement.querySelector('button').getAttribute('class');
     expect(classes).toContain('mat-accent');
     expect(classes).not.toContain('mat-primary');
+  });
+
+  it('should call the session when it gets clicked', () => {
+    spyOn(BlueriqSession.prototype, 'pressed');
+    const buttonComponent: ButtonComponent = component.componentInstance;
+    session.update(
+      button.disabled(true)
+    );
+    buttonComponent.onClick();
+    expect(buttonComponent.session.pressed).not.toHaveBeenCalled();
+
+    session.update(
+      button.disabled(false)
+    );
+    buttonComponent.onClick();
+    expect(BlueriqSession.prototype.pressed).toHaveBeenCalledTimes(1);
+
   });
 
 });
