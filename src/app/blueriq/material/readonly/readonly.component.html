@@ -1,7 +1,1 @@
-<bq-element [control]="formControl">
-  <mat-form-field>
-    <mat-label>{{field.questionText}}</mat-label>
-    <input matInput [required]="field.required" [formControl]="formControl" [readonly]="field.readonly">
-  </mat-form-field>
-</bq-element>
-
+<label *ngIf="!table">{{field.questionText}}</label>{{field.value | bqDisplay}}

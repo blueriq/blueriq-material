@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
 import { V1BackendModule } from '@blueriq/angular/backend/v1';
+import { FormattingModule } from '@blueriq/angular/formatting';
 import { BlueriqFormsModule } from '@blueriq/angular/forms';
 import { TextItemModule } from '@blueriq/angular/textitems';
 import { EffectsModule } from '@ngrx/effects';
@@ -37,7 +38,6 @@ import { PaginationComponent } from './blueriq/material/table/pagination/table.p
 import { TableSearchComponent } from './blueriq/material/table/search/table.search.component';
 import { TableSortComponent } from './blueriq/material/table/sort/table.sort.component';
 import { TableComponent } from './blueriq/material/table/table.component';
-import { TableReadonlyComponent } from './blueriq/material/table/table.readonly.component';
 import { TextItemComponent } from './blueriq/material/textitem/textitem.component';
 import { ProjectComponent } from './blueriq/project/project.component';
 import { Configuration } from './configuration/configuration';
@@ -70,7 +70,6 @@ const BQ_COMPONENTS = [
   SlideToggleComponent,
   StringFieldComponent,
   TableComponent,
-  TableReadonlyComponent,
   TableSearchComponent,
   TableSortComponent,
   TextItemComponent
@@ -100,6 +99,7 @@ const BQ_MAT_COMPONENTS = [
     BrowserAnimationsModule,
     BlueriqFormsModule.forRoot(),
     MaterialModule,
+    FormattingModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
     OwlDateTimeModule,

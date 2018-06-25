@@ -63,19 +63,6 @@ describe('RadioButtonComponent', () => {
     expect(inputField).toBeTruthy();
   });
 
-  it('should be read only', () => {
-    let inputField = component.nativeElement.querySelector('mat-radio-button');
-    expect(inputField).toBeTruthy('by default nothing is rendered read only');
-
-    field.readonly(true);
-    session = BlueriqSessionTemplate.create().build(field);
-    component = session.get(RadioButtonComponent);
-
-    inputField = component.nativeElement.querySelector('mat-radio-button');
-    expect(inputField).toBeFalsy();
-
-  });
-
   it('style `radio` is required', () => {
     // remove styles
     field.styles();

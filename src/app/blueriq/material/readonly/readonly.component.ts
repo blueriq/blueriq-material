@@ -1,6 +1,6 @@
-import { Component, Host } from '@angular/core';
+import { Component, Host, Optional } from '@angular/core';
 import { BlueriqComponent, bySelector } from '@blueriq/angular';
-import { BlueriqFormBuilder } from '@blueriq/angular/forms';
+import { Table } from '@blueriq/angular/lists';
 import { Field } from '@blueriq/core';
 
 @Component({
@@ -9,15 +9,10 @@ import { Field } from '@blueriq/core';
 })
 @BlueriqComponent({
   type: Field,
-  selector: bySelector(`[readonly]
-    :not(.Disabled)
-    :not([dataType=boolean])
-    :not([dataType=currency])
-    :not([dataType=percentage])`)
+  selector: bySelector('[readonly]', { priorityOffset: 1000 })
 })
 export class ReadonlyComponent {
-  formControl = this.form.control(this.field, { updateOn: 'blur' });
 
-  constructor(@Host() public readonly field: Field, private form: BlueriqFormBuilder) {
+  constructor(@Host() public readonly field: Field, @Optional() @Host() public readonly table: Table) {
   }
 }
