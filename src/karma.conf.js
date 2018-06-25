@@ -48,7 +48,13 @@ module.exports = function (config) {
       ], //echo error %errorlevel%
       skipFilesWithNoCoverage: false,
       thresholds: {
-        emitWarning: true,
+        emitWarning: false,
+        global: {
+          statements: 80,
+          lines: 80,
+          branches: 80,
+          functions: 80
+        },
         each: { // thresholds per file
           statements: 80,
           lines: 80,
