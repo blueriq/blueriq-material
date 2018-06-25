@@ -1,6 +1,25 @@
 {
   "extends": "../tslint.json",
   "rules": {
+    "ban": [
+      true,
+      {
+        "name": "fdescribe",
+        "message": "please change this to 'describe'"
+      },
+      {
+        "name": "fit",
+        "message": "please change this to 'it'"
+      },
+      {
+        "name": "xdescribe",
+        "message": "please change this to 'describe'"
+      },
+      {
+        "name": "xit",
+        "message": "please change this to 'it'"
+      }
+    ],
     "directive-selector": [
       true,
       "attribute",
@@ -78,6 +97,7 @@
         "order": [
           "static-field",
           "instance-field",
+          "public-constructor",
           "static-method",
           "instance-method"
         ]
@@ -89,6 +109,7 @@
       true,
       "debug",
       "info",
+      "log",
       "time",
       "timeEnd",
       "trace"
