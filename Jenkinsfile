@@ -56,29 +56,29 @@ node {
     stage('verify & build') {
       parallel(
         'test': {
-          def result = bat([returnStdout:true, script:"yarn verify"]);
+          def result = bat([returnStdout: true, script: "yarn verify"]);
           println result;
-          
+
           // Unfortunatly it is needed to check if the coverage is not met because the coverage-reporter always exits with error_level=0
           // so we need to make the build unstable manually. you can check the coverage html result to see where it is failing
-          if(result.contains('ERROR [reporter.coverage-istanbul]:') || result.contains('WARN [reporter.coverage-istanbul]:')){
-              println 'Unit tests do not meet coverage thresholds, setting the build to unstable';
-              currentBuild.result = 'UNSTABLE';
+          if (result.contains('ERROR [reporter.coverage-istanbul]:') || result.contains('WARN [reporter.coverage-istanbul]:')) {
+            println 'Unit tests do not meet coverage thresholds, setting the build to unstable';
+            currentBuild.result = 'UNSTABLE';
           }
         },
         'tslint': {
           // tslint
           bat 'node_modules\\.bin\\tslint -c src/tslint.json -t checkstyle -p src/tsconfig.app.json -p src/tsconfig.spec.json -o tslint_results_checkstyle.xml'
         },
-		'sass-lint': {
-		  // sass-lint
-		  bat 'node_modules\\.bin\\sass-lint -f checkstyle --verbose --config sass-lint.yml src/**/*.scss -o sasslint_results_checkstyle.xml'
-		},
-		'build':{
-		  if (!params.isRelease) { // maven release executes the yarn build also
-			bat "yarn build"
-		  }
-		}
+        'sass-lint': {
+          // sass-lint
+          bat 'node_modules\\.bin\\sass-lint -f checkstyle --verbose --config sass-lint.yml src/**/*.scss -o sasslint_results_checkstyle.xml'
+        },
+        'build': {
+          if (!params.isRelease) { // maven release executes the yarn build also
+            bat "yarn build"
+          }
+        }
       )
     }
 
@@ -104,31 +104,30 @@ node {
       step([$class: 'JUnitResultArchiver', testResults: 'testresults/*.xml'])
 
       // coverage results
-     
-    step([$class: 'hudson.plugins.cobertura.CoberturaPublisher',
-              coberturaReportFile: 'coverage/cobertura-coverage.xml',
-              onlyStable: false,
-              failUnhealthy: true,
-              failUnstable: true,
-              autoUpdateHealth: false,
-              autoUpdateStability: false,
-              zoomCoverageChart: false,
-              failNoReports: true,
-              lineCoverageTargets: '80.0, 80.0, 80.0',
-              packageCoverageTargets: '80.0, 80.0, 80.0',
-              fileCoverageTargets: '80.0, 80.0, 80.0, 80.0',
-              classCoverageTargets: '80.0, 80.0, 80.0, 80.0',
-              methodCoverageTargets: '80.0, 80.0, 80.0, 80.0',
-              conditionalCoverageTargets: '80.0, 80.0, 80.0, 80.0'
-        ])
+      step([$class                    : 'hudson.plugins.cobertura.CoberturaPublisher',
+            coberturaReportFile       : 'coverage/cobertura-coverage.xml',
+            onlyStable                : false,
+            failUnhealthy             : true,
+            failUnstable              : true,
+            autoUpdateHealth          : false,
+            autoUpdateStability       : false,
+            zoomCoverageChart         : false,
+            failNoReports             : true,
+            lineCoverageTargets       : '80.0, 80.0, 80.0',
+            packageCoverageTargets    : '80.0, 80.0, 80.0',
+            fileCoverageTargets       : '80.0, 80.0, 80.0, 80.0',
+            classCoverageTargets      : '80.0, 80.0, 80.0, 80.0',
+            methodCoverageTargets     : '80.0, 80.0, 80.0, 80.0',
+            conditionalCoverageTargets: '80.0, 80.0, 80.0, 80.0'
+      ])
 
       // lint results
-	  step([$class: 'hudson.plugins.checkstyle.CheckStylePublisher',
-				pattern: '*_results_checkstyle.xml',
-				useStableBuildAsReference:true,
-				unstableTotalAll:'1',
-				shouldDetectModules:true,
-				canRunOnFailed: true])
+      step([$class                   : 'hudson.plugins.checkstyle.CheckStylePublisher',
+            pattern                  : '*_results_checkstyle.xml',
+            useStableBuildAsReference: true,
+            unstableTotalAll         : '1',
+            shouldDetectModules      : true,
+            canRunOnFailed           : true])
     }
 
     notifyBuildStatus()
