@@ -62,15 +62,15 @@ node {
           // tslint
           bat 'node_modules\\.bin\\tslint -c src/tslint.json -t checkstyle -p src/tsconfig.app.json -p src/tsconfig.spec.json -o tslint_results_checkstyle.xml'
         },
-		'sass-lint': {
-		  // sass-lint
-		  bat 'node_modules\\.bin\\sass-lint -f checkstyle --verbose --config sass-lint.yml src/**/*.scss -o sasslint_results_checkstyle.xml'
-		},
-		'build':{
-		  if (!params.isRelease) { // maven release executes the yarn build also
-			bat "yarn build"
-		  }
-		}
+        'sass-lint': {
+          // sass-lint
+          bat 'node_modules\\.bin\\sass-lint -f checkstyle --verbose --config sass-lint.yml src/**/*.scss -o sasslint_results_checkstyle.xml'
+        },
+        'build':{
+          if (!params.isRelease) { // maven release executes the yarn build also
+          bat "yarn build"
+          }
+        }
       )
     }
 
@@ -96,7 +96,8 @@ node {
       step([$class: 'JUnitResultArchiver', testResults: 'testresults/*.xml'])
 
       // coverage results
-     
+	  publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'coverage', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: 'coverage'])
+
     step([$class: 'hudson.plugins.cobertura.CoberturaPublisher',
               coberturaReportFile: 'coverage/cobertura-coverage.xml',
               onlyStable: false,
