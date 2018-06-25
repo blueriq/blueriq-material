@@ -1,7 +1,8 @@
-import { Component, Host, OnInit } from '@angular/core';
+import { Component, Host } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { BlueriqFormBuilder } from '@blueriq/angular/forms';
 import { DomainValue, Field } from '@blueriq/core';
+import { PresentationStyles } from '../../presentationstyles/presentationstyles';
 
 @Component({
   selector: 'bq-select',
@@ -11,27 +12,10 @@ import { DomainValue, Field } from '@blueriq/core';
   type: Field,
   selector: '[hasDomain=true]'
 })
-export class SelectComponent implements OnInit {
-  formControl = this.form.control(this.field, { updateOn: 'blur' });
+export class SelectComponent {
+  formControl = this.form.control(this.field, { updateOn: 'blur', disableWhen: PresentationStyles.DISABLED });
 
   constructor(@Host() public field: Field, private form: BlueriqFormBuilder) {
-  }
-
-  ngOnInit(): void {
-    if (this.isDisabled() || this.isReadonly()) {
-      this.formControl.disable();
-    }
-    this.formControl.setValue(this.field.getValue());
-  }
-
-  /** Whether the select has a presentation style Disabled */
-  isDisabled() {
-    return this.field.styles.has('Disabled');
-  }
-
-  /** Whether the select is read only */
-  isReadonly() {
-    return this.field.readonly;
   }
 
   /** Returns all the available option from the field domain list */
