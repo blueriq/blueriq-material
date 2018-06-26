@@ -1,4 +1,4 @@
-<mat-table [dataSource]="table.rows$">
+<mat-table bqKey bqClasses [dataSource]="table.rows$">
 
   <ng-container *ngFor="let column of table.columns$ | async" [matColumnDef]="column.name">
     <mat-header-cell *matHeaderCellDef>
