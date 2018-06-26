@@ -7,9 +7,20 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toContain('Blueriq Material');
-    expect(page.getParagraphText()).toContain('Work in Progress');
+  it('should display header', () => {
+    page.navigateTo;
+    expect(page.paragraphText).toMatch(/^Blueriq Material/);
+    expect(page.paragraphText).toMatch(/Work in Progress$/);
+  });
+
+  it('should have 6 buttons', () => {
+    page.navigateTo;
+    expect(page.nrOfButtons).toBe(6);
+  });
+
+  it('should display a validation message on flowing to the next page', () => {
+    page.navigateTo;
+    page.continueButton.click();
+    expect(page.nrOfValidations).toBe(1);
   });
 });

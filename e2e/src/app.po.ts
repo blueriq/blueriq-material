@@ -1,11 +1,24 @@
 import { browser, by, element } from 'protractor';
 
 export class AppPage {
-  navigateTo() {
-    return browser.get('/');
+
+  get navigateTo() {
+    return browser.get('/shortcut/default');
   }
 
-  getParagraphText() {
-    return element(by.css('app-root mat-toolbar')).getText();
+  get paragraphText() {
+    return element(by.css('bq-app-root mat-toolbar')).getText();
+  }
+
+  get nrOfButtons() {
+    return element.all(by.tagName('button')).count();
+  }
+
+  get continueButton() {
+    return element(by.buttonText('Continue'));
+  }
+
+  get nrOfValidations() {
+    return element.all(by.css('mat-error')).count();
   }
 }
