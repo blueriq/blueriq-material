@@ -6,6 +6,7 @@ import { Moment } from 'moment';
 import { DateTimeAdapter } from 'ng-pick-datetime';
 import { MomentTransformer } from '../moment-transformer';
 import { dateTimeFormatProvider } from './datetimepicker.owl';
+import { PresentationStyles } from "../../../presentationstyles/presentationstyles";
 
 @Component({
   selector: 'bq-datetimepicker',
@@ -54,6 +55,7 @@ export class DateTimepickerComponent implements OnInit {
    * object (a Moment instance)
    */
   formatOnChange(event: any): void {
+    console.log('FORMATONCHANGE:' + event );
     if (event.value) {
       event.source.value = event.value;
     }
@@ -61,7 +63,7 @@ export class DateTimepickerComponent implements OnInit {
 
   /** Whether the select has a presentation style Disabled */
   isDisabled() {
-    return this.field.styles.has('Disabled');
+    return this.field.styles.has(PresentationStyles.DISABLED);
   }
 
   /** Show only the datepicker when the field datatype is `date` */

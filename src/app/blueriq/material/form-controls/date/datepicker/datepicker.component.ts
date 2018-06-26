@@ -4,6 +4,7 @@ import { BlueriqFormBuilder } from '@blueriq/angular/forms';
 import { Field } from '@blueriq/core';
 import { MomentTransformer } from '../moment-transformer';
 import { dateFormatProvider } from './datepicker.material';
+import {PresentationStyles} from "../../../presentationstyles/presentationstyles";
 
 @Component({
   selector: 'bq-datepicker',
@@ -30,6 +31,6 @@ export class DatepickerComponent implements OnInit {
 
   /** Whether the select has a presentation style Disabled */
   isDisabled() {
-    return this.field.styles.has('Disabled');
+    return this.field.styles.has(PresentationStyles.DISABLED);
   }
 }
