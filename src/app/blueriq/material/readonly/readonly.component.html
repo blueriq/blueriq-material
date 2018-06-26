@@ -1,1 +1,8 @@
-<label *ngIf="!table">{{field.questionText}}</label>{{field.value | bqDisplay}}
+<div class="readonly">
+  <div class="questiontext" *ngIf="!table">
+    <label>{{field.questionText}}</label></div>
+  <div class="display">
+    {{field.value | bqDisplay}}
+  </div>
+</div>
+
