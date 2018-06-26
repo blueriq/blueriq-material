@@ -13,7 +13,7 @@ import {
   StaticNodeTemplate,
   TextItemTemplate
 } from '@blueriq/core/testing';
-import { MaterialModule } from '../material/material.module';
+import { MaterialModule } from '../material.module';
 import { TextItemComponent } from '../textitem/textitem.component';
 import { TableSortComponent } from './sort/table.sort.component';
 import { TableComponent } from './table.component';

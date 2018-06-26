@@ -5,7 +5,7 @@ import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
 import { ElementComponent } from '../../../../generic/element/element.component';
-import { MaterialModule } from '../../../material/material.module';
+import { MaterialModule } from '../../../material.module';
 import { PercentageFieldComponent } from './percentage.component';
 
 describe('PercentageFieldComponent', () => {

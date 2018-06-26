@@ -14,7 +14,7 @@ export class TableSearchComponent {
   }
 
   applyFilter(e) {
-    console.log('not implemented yet');
+    // TODO implement
   }
 
 }
