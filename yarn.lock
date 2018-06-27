@@ -3857,27 +3857,34 @@ jszip@^3.1.3:
     pako "~1.0.2"
     readable-stream "~2.0.6"
 
-karma-chrome-launcher@~2.2.0:
+karma-chrome-launcher@2.2.0:
   version "2.2.0"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/karma-chrome-launcher/-/karma-chrome-launcher-2.2.0.tgz?dl=https://registry.yarnpkg.com/karma-chrome-launcher/-/karma-chrome-launcher-2.2.0.tgz#cf1b9d07136cc18fe239327d24654c3dbc368acf"
   dependencies:
     fs-access "^1.0.0"
     which "^1.2.1"
 
-karma-coverage-istanbul-reporter@~1.4.2:
-  version "1.4.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/karma-coverage-istanbul-reporter/-/karma-coverage-istanbul-reporter-1.4.3.tgz?dl=https://registry.yarnpkg.com/karma-coverage-istanbul-reporter/-/karma-coverage-istanbul-reporter-1.4.3.tgz#3b5dff4664fa5b8d5196b9889e3f61c1fa2b80d9"
+karma-coverage-istanbul-reporter@2.0.1:
+  version "2.0.1"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/karma-coverage-istanbul-reporter/-/karma-coverage-istanbul-reporter-2.0.1.tgz?dl=https://registry.yarnpkg.com/karma-coverage-istanbul-reporter/-/karma-coverage-istanbul-reporter-2.0.1.tgz#26b969317d191c6a897c783b4ffe7831cb92e684"
   dependencies:
     istanbul-api "^1.3.1"
     minimatch "^3.0.4"
 
-karma-jasmine-html-reporter@^1.1.0:
+karma-jasmine-html-reporter@1.1.0:
   version "1.1.0"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/karma-jasmine-html-reporter/-/karma-jasmine-html-reporter-1.1.0.tgz?dl=https://registry.yarnpkg.com/karma-jasmine-html-reporter/-/karma-jasmine-html-reporter-1.1.0.tgz#e6ce732fac43cb3907d927d5a6b3ed6ee7e95486"
 
-karma-jasmine@~1.1.2:
+karma-jasmine@1.1.2:
   version "1.1.2"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/karma-jasmine/-/karma-jasmine-1.1.2.tgz?dl=https://registry.yarnpkg.com/karma-jasmine/-/karma-jasmine-1.1.2.tgz#394f2b25ffb4a644b9ada6f22d443e2fd08886c3"
+
+karma-junit-reporter@^1.2.0:
+  version "1.2.0"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/karma-junit-reporter/-/karma-junit-reporter-1.2.0.tgz?dl=https://registry.yarnpkg.com/karma-junit-reporter/-/karma-junit-reporter-1.2.0.tgz#4f9c40cedfb1a395f8aef876abf96189917c6396"
+  dependencies:
+    path-is-absolute "^1.0.0"
+    xmlbuilder "8.2.2"
 
 karma-source-map-support@^1.2.0:
   version "1.3.0"
@@ -3885,9 +3892,9 @@ karma-source-map-support@^1.2.0:
   dependencies:
     source-map-support "^0.5.5"
 
-karma@~2.0.2:
-  version "2.0.4"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/karma/-/karma-2.0.4.tgz?dl=https://registry.yarnpkg.com/karma/-/karma-2.0.4.tgz#b399785f57e9bab1d3c4384db33fef4dec8ae349"
+karma@2.0.3:
+  version "2.0.3"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/karma/-/karma-2.0.3.tgz?dl=https://registry.yarnpkg.com/karma/-/karma-2.0.3.tgz#4d5e13d25f5a51331c5378b24c4984709c01120b"
   dependencies:
     bluebird "^3.3.0"
     body-parser "^1.16.1"
@@ -7335,6 +7342,10 @@ xml2js@^0.4.17:
   dependencies:
     sax ">=0.6.0"
     xmlbuilder "~9.0.1"
+
+xmlbuilder@8.2.2:
+  version "8.2.2"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/xmlbuilder/-/xmlbuilder-8.2.2.tgz?dl=https://registry.yarnpkg.com/xmlbuilder/-/xmlbuilder-8.2.2.tgz#69248673410b4ba42e1a6136551d2922335aa773"
 
 xmlbuilder@>=1.0.0:
   version "10.0.0"

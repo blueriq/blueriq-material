@@ -4,6 +4,7 @@ import { BlueriqFormBuilder } from '@blueriq/angular/forms';
 import { Field } from '@blueriq/core';
 import { Moment } from 'moment';
 import { DateTimeAdapter } from 'ng-pick-datetime';
+import { PresentationStyles } from '../../../presentationstyles/presentationstyles';
 import { MomentTransformer } from '../moment-transformer';
 import { dateTimeFormatProvider } from './datetimepicker.owl';
 
@@ -61,7 +62,7 @@ export class DateTimepickerComponent implements OnInit {
 
   /** Whether the select has a presentation style Disabled */
   isDisabled() {
-    return this.field.styles.has('Disabled');
+    return this.field.styles.has(PresentationStyles.DISABLED);
   }
 
   /** Show only the datepicker when the field datatype is `date` */

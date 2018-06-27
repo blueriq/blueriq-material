@@ -6,28 +6,63 @@ module.exports = function (config) {
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: [
-      require('karma-jasmine'),
-      require('karma-chrome-launcher'),
-      require('karma-jasmine-html-reporter'),
-      require('karma-coverage-istanbul-reporter'),
-      require('@angular-devkit/build-angular/plugins/karma')
+      'karma-jasmine',
+      'karma-junit-reporter',
+      'karma-chrome-launcher',
+      'karma-jasmine-html-reporter',
+      'karma-coverage-istanbul-reporter',
+      '@angular-devkit/build-angular/plugins/karma'
     ],
+    reporters: ['progress', 'kjhtml', 'junit', 'coverage-istanbul'],
+    browsers: ['Chrome'],
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
-    },
-    coverageIstanbulReporter: {
-      reports: ['html', 'lcovonly'],
-      fixWebpackSourcePaths: true
     },
     angularCli: {
       environment: 'dev'
     },
-    reporters: ['progress', 'kjhtml'],
+    junitReporter: {
+      outputDir: '../testresults',
+      outputFile: 'karmatest.xml',
+      suite: 'unit',  // whichever prefix you wish to use
+      useBrowserName: false
+    },
+
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
-    singleRun: false
+    // autoWatchBatchDelay: 3000,
+    singleRun: false,
+
+    // ---------- coverage below ----------
+    // https://github.com/karma-runner/karma-coverage
+    // https://github.com/mattlewis92/karma-coverage-istanbul-reporter
+    coverageIstanbulReporter: {
+      dir: 'coverage',
+      fixWebpackSourcePaths: true,
+      combineBrowserReports: true,
+      verbose: false, // set true for debugging purpose
+      reports: [
+        'cobertura',
+        'html' // for local coverage overview
+      ], //echo error %errorlevel%
+      skipFilesWithNoCoverage: false,
+      thresholds: {
+        emitWarning: false,
+        global: {
+          statements: 80,
+          lines: 80,
+          branches: 80,
+          functions: 80
+        },
+        each: { // thresholds per file
+          statements: 80,
+          lines: 80,
+          branches: 80,
+          functions: 80
+        }
+      }
+    } // end coverageIstanbulReporter
   });
 };
