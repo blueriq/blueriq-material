@@ -12,7 +12,7 @@ import { PresentationStyles } from '../../presentationstyles/presentationstyles'
 })
 export class ButtonComponent {
 
-  constructor(@Host() public button: Button, public session: BlueriqSession) {
+  constructor(@Host() public button: Button, private session: BlueriqSession) {
   }
 
   getColor(): string | null {

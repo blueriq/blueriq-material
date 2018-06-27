@@ -91,7 +91,7 @@ describe('ButtonComponent', () => {
       button.disabled(true)
     );
     buttonComponent.onClick();
-    expect(buttonComponent.session.pressed).not.toHaveBeenCalled();
+    expect(BlueriqSession.prototype.pressed).not.toHaveBeenCalled();
 
     session.update(
       button.disabled(false)
