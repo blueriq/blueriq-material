@@ -1,13 +1,15 @@
 import { browser, by, element } from 'protractor';
 
-export class AppPage {
+export class SuitcaseFlow {
 
-  get navigateTo() {
-    return browser.get('/shortcut/default');
+  private path = '/flow/studio-Suitcase-Suitcase/Start';
+
+  get toolbarText() {
+    return element(by.css('bq-app-root mat-toolbar')).getText();
   }
 
-  get paragraphText() {
-    return element(by.css('bq-app-root mat-toolbar')).getText();
+  get pageTitle() {
+    return element(by.css('.page h1')).getText();
   }
 
   get nrOfButtons() {
@@ -20,5 +22,13 @@ export class AppPage {
 
   get nrOfValidations() {
     return element.all(by.css('mat-error')).count();
+  }
+
+  get requiredStringField() {
+    return element(by.id('P3-C4-F5')).element(by.tagName('input'));
+  }
+
+  start() {
+    return browser.get(this.path);
   }
 }
