@@ -1,10 +1,10 @@
-import { Input, Input } from "@angular/core";
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
+import * as moment from 'moment';
 import { OwlDateTimeModule } from 'ng-pick-datetime';
 import { MomentDateTimeAdapter, OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
 import { ElementComponent } from '../../../../generic/element/element.component';
@@ -12,7 +12,6 @@ import { MaterialModule } from '../../../material.module';
 import { PresentationStyles } from '../../../presentationstyles/presentationstyles';
 import { MomentTransformer } from '../moment-transformer';
 import { DateTimepickerComponent } from './datetimepicker.component';
-import moment = require("moment");
 
 describe('DateTimepickerComponent', () => {
   let field: FieldTemplate;
@@ -95,23 +94,46 @@ describe('DateTimepickerComponent', () => {
     expect(component.componentInstance.getFirstDayOfWeek()).toEqual(1);
   });
 
-  it('should format on change', () => {
-    session = BlueriqSessionTemplate.create().build(field);
-    component = session.get(DateTimepickerComponent);
+  it('should verify that on change triggers the formatOnChange function', () => {
+    // Init
+    spyOn(DateTimepickerComponent.prototype, 'formatOnChange');
+    const inputField = component.nativeElement.querySelector('input');
 
-    let inputField = component.nativeElement.querySelector('input');
-    sendInput(inputField, '18-03-03');
+    // SUT
+    inputField.dispatchEvent(new Event('dateTimeChange'));
 
-     const value = component.nativeElement.querySelector('input');
-     expect(value.value).toBe('2018-01-01');
+    // Verify
+    expect(component.componentInstance.formatOnChange).toHaveBeenCalled();
   });
 
-  function sendInput(inputField, text: string) {
-    inputField.value = text;
-    const event = new Event('dateTimeChange');
-    inputField.dispatchEvent(event);
+  it('should have the formatOnChange event changing the event source value from event.value', () => {
+    // Init
+    const datetimePickerComponent: DateTimepickerComponent = component.componentInstance;
+    let eventJson: any = {
+      value: '18-01-02', // from
+      source: {
+        value: '' // to
+      }
+    };
 
-    component.detectChanges();
-    return component.whenStable();
-  }
+    // SUT
+    datetimePickerComponent.formatOnChange(eventJson);
+
+    // Verify
+    expect(eventJson.source.value).toBe(eventJson.value);
+
+    // Init
+    eventJson = {
+      value: null, // from
+      source: {
+        value: '' // to
+      }
+    };
+
+    // SUT
+    datetimePickerComponent.formatOnChange(eventJson);
+
+    // Verify
+    expect(eventJson.source.value).not.toBe(eventJson.value);
+  });
 });

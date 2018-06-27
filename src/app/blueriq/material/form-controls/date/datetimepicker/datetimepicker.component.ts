@@ -4,9 +4,9 @@ import { BlueriqFormBuilder } from '@blueriq/angular/forms';
 import { Field } from '@blueriq/core';
 import { Moment } from 'moment';
 import { DateTimeAdapter } from 'ng-pick-datetime';
+import { PresentationStyles } from '../../../presentationstyles/presentationstyles';
 import { MomentTransformer } from '../moment-transformer';
 import { dateTimeFormatProvider } from './datetimepicker.owl';
-import { PresentationStyles } from "../../../presentationstyles/presentationstyles";
 
 @Component({
   selector: 'bq-datetimepicker',
@@ -55,7 +55,6 @@ export class DateTimepickerComponent implements OnInit {
    * object (a Moment instance)
    */
   formatOnChange(event: any): void {
-    console.log('FORMATONCHANGE:' + event );
     if (event.value) {
       event.source.value = event.value;
     }
