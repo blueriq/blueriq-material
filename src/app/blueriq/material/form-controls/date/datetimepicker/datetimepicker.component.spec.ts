@@ -93,4 +93,47 @@ describe('DateTimepickerComponent', () => {
     spyOn(MomentDateTimeAdapter.prototype, 'now').and.throwError('error');
     expect(component.componentInstance.getFirstDayOfWeek()).toEqual(1);
   });
+
+  it('should verify that on change triggers the formatOnChange function', () => {
+    // Init
+    spyOn(DateTimepickerComponent.prototype, 'formatOnChange');
+    const inputField = component.nativeElement.querySelector('input');
+
+    // SUT
+    inputField.dispatchEvent(new Event('dateTimeChange'));
+
+    // Verify
+    expect(component.componentInstance.formatOnChange).toHaveBeenCalled();
+  });
+
+  it('should have the formatOnChange event changing the event source value from event.value', () => {
+    // Init
+    const datetimePickerComponent: DateTimepickerComponent = component.componentInstance;
+    let eventJson: any = {
+      value: '18-01-02', // from
+      source: {
+        value: '' // to
+      }
+    };
+
+    // SUT
+    datetimePickerComponent.formatOnChange(eventJson);
+
+    // Verify
+    expect(eventJson.source.value).toBe(eventJson.value);
+
+    // Init
+    eventJson = {
+      value: null, // from
+      source: {
+        value: '' // to
+      }
+    };
+
+    // SUT
+    datetimePickerComponent.formatOnChange(eventJson);
+
+    // Verify
+    expect(eventJson.source.value).not.toBe(eventJson.value);
+  });
 });
