@@ -17,6 +17,7 @@ import { ElementComponent } from './blueriq/generic/element/element.component';
 import { ContainerComponent } from './blueriq/material/container/container.component';
 import { DocumentLinkComponent } from './blueriq/material/document-link/document-link.component';
 import { DocumentLinkService } from './blueriq/material/document-link/document-link.service';
+import { FileDownloadComponent } from './blueriq/material/file-download/file-download.component';
 import { FileUploadComponent } from './blueriq/material/file-upload/file-upload.component';
 import { ButtonComponent } from './blueriq/material/form-controls/button/button.component';
 import { CheckboxComponent } from './blueriq/material/form-controls/checkbox/checkbox.component';
@@ -60,6 +61,7 @@ const BQ_COMPONENTS = [
   ContainerComponent,
   CurrencyFieldComponent,
   DocumentLinkComponent,
+  FileDownloadComponent,
   FileUploadComponent,
   IntegerFieldComponent,
   NumberFieldComponent,
