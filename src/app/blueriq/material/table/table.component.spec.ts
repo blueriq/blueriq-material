@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
+import { FormattingModule } from '@blueriq/angular/formatting';
 import { Table } from '@blueriq/angular/lists';
 import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
 import { BlueriqTestSession } from '@blueriq/angular/testing/src/test_session';
@@ -14,10 +15,10 @@ import {
   TextItemTemplate
 } from '@blueriq/core/testing';
 import { MaterialModule } from '../material.module';
+import { ReadonlyComponent } from '../readonly/readonly.component';
 import { TextItemComponent } from '../textitem/textitem.component';
 import { TableSortComponent } from './sort/table.sort.component';
 import { TableComponent } from './table.component';
-import { TableReadonlyComponent } from './table.readonly.component';
 
 describe('TableComponent', () => {
   let tableTemplate: ContainerTemplate;
@@ -26,10 +27,10 @@ describe('TableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TableComponent, TableReadonlyComponent,
+      declarations: [TableComponent, ReadonlyComponent,
         TableSortComponent, TextItemComponent],
       providers: [BlueriqComponents.register([
-        TableComponent, TableReadonlyComponent,
+        TableComponent, ReadonlyComponent,
         TableSortComponent, TextItemComponent]),
         Table
       ],
@@ -38,7 +39,8 @@ describe('TableComponent', () => {
         BrowserAnimationsModule, // or NoopAnimationsModule
         BlueriqTestingModule,
         FormsModule,
-        TextItemModule
+        TextItemModule,
+        FormattingModule.forRoot()
       ]
     });
   }));
@@ -99,6 +101,17 @@ describe('TableComponent', () => {
 
     const headerCellContent = matHeaderCell[0].querySelector('bq-textitem-static').innerText;
     expect(headerCellContent.trim()).toBe('Name');
+  });
+
+  it('should have a row with the correct content', () => {
+    const readonlyCells = component.nativeElement.querySelectorAll('.readonly');
+    expect(readonlyCells.length).toBe(2);
+
+    expect(readonlyCells[0].querySelectorAll('div').length).toBe(
+      1,
+      'Only one div should be displayed containing the field.value, without explaintext');
+    expect(readonlyCells[0].querySelector('label')).toBeFalsy();
+
   });
 
 });

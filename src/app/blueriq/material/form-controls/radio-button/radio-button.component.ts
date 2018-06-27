@@ -1,4 +1,4 @@
-import { Component, Host, OnInit } from '@angular/core';
+import { Component, Host } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { BlueriqFormBuilder } from '@blueriq/angular/forms';
 import { Field } from '@blueriq/core';
@@ -13,24 +13,11 @@ import { PresentationStyles } from '../../presentationstyles/presentationstyles'
   type: Field,
   selector: '.radio[hasDomain]'
 })
-export class RadioButtonComponent implements OnInit {
+export class RadioButtonComponent {
 
-  formControl = this.form.control(this.field, { updateOn: 'blur' });
+  formControl = this.form.control(this.field, { updateOn: 'blur', disableWhen: PresentationStyles.DISABLED });
 
   constructor(@Host() public field: Field, private form: BlueriqFormBuilder) {
-  }
-
-  /**
-   * Returns if this radio form field is disabled. This is the case when the field has a style
-   * {@link PresentationStyles.DISABLED}
-   */
-  isDisabled(): boolean {
-    return this.field.styles.has(PresentationStyles.DISABLED);
-  }
-
-  /** Returns if this radio form field is readonly. */
-  isReadonly(): boolean {
-    return this.field.readonly;
   }
 
   /**
@@ -46,11 +33,5 @@ export class RadioButtonComponent implements OnInit {
       return 'horizontal';
     }
     return 'vertical';
-  }
-
-  ngOnInit(): void {
-    if (this.isDisabled()) {
-      this.formControl.disable();
-    }
   }
 }
