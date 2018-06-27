@@ -1,7 +1,17 @@
-.display {
-  margin-left: 5px;
-}
-
 .readonly {
   display: flex;
 }
+
+.questiontext {
+  text-align: right;
+  width: 20%;
+  display: inline-table;
+}
+
+.display {
+  padding-left: 20px;
+  text-align: left;
+  width: 80%;
+}
+
+

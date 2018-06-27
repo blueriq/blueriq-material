@@ -1,8 +1,8 @@
 <div class="readonly">
   <div class="questiontext" *ngIf="!table">
-    <label>{{field.questionText}}</label></div>
-  <div class="display">
-    {{field.value | bqDisplay}}
+    <b><label>{{field.questionText}}</label></b>
   </div>
+  <div class="display">{{field.value | bqDisplay}}</div>
 </div>
 
+<!--<mat-form-field style="display: block;">--><!--<mat-label>{{field.questionText}}</mat-label>--><!--<input matInput type="text" [readonly]="true" [value]="field.getValue()">--><!--</mat-form-field>-->
