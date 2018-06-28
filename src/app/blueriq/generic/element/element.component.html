@@ -1,16 +1,17 @@
 <div class="flex-grid-thirds">
 
-  <div class="col1">
-    <ng-content>
-    </ng-content>
-    <ng-container *ngIf="hasMessages()">
-      <mat-error *ngFor="let msg of getMessages()">
-        <i class="material-icons">warning</i><span class="aligned-with-icon">{{ msg.text }}</span>
-      </mat-error>
-    </ng-container>
+  <div [fxFlex]>
+    <ng-content></ng-content>
+
+    <div class="labels" *ngIf="!hasPresentationStyleExplainIcon()">
+      <mat-hint *ngIf="!hasMessages()">{{field.explainText}}</mat-hint>
+      <div *ngIf="hasMessages()">
+        <mat-error *ngFor="let msg of getMessages()">{{ msg.text }}</mat-error>
+      </div>
+    </div>
   </div>
 
-  <div class="col2">
+  <div>
     <ng-container *ngIf="shouldDisplayExplainText()">
       <i class="material-icons" matTooltip="{{field.explainText}}">info</i>
     </ng-container>
