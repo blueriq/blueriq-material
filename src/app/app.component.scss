@@ -2,20 +2,13 @@
 @import '../theme/globals/variables';
 
 .mat-toolbar {
-  background: linear-gradient(to right, $bq-primary-blue, $bq-primary-purple);
+  background: linear-gradient(to right, $bq-primary-blue, $bq-primary-purple, $bq-primary-violet);
   color: white;
 
-  .banner {
-    display: flex;
-    margin: 30px;
-  }
-
-  span {
-    color: white;
-  }
-
-  img {
-    height: 100%;
+  h1 {
+    font-weight: 300;
+    color: $light-primary-text;
+    margin: 0 0 0 24px;
   }
 
   @include mat-elevation(1);

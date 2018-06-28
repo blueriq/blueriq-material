@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -85,7 +86,6 @@ const BQ_MAT_COMPONENTS = [
     ProjectComponent,
     BQ_COMPONENTS,
     BQ_MAT_COMPONENTS
-
   ],
   imports: [
     BrowserModule,
@@ -99,6 +99,7 @@ const BQ_MAT_COMPONENTS = [
     BrowserAnimationsModule,
     BlueriqFormsModule.forRoot(),
     MaterialModule,
+    FlexLayoutModule,
     FormattingModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
