@@ -10,29 +10,33 @@ import { Observable } from 'rxjs/Observable';
   animations: [
     trigger('animate', [
       transition(':leave', [
-        query('@*', animateChild(), {optional: true}),
-      ]),
-    ]),
-  ],
+        query('@*', animateChild(), { optional: true })
+      ])
+    ])
+  ]
 })
 @BlueriqComponent({
-  type: Container,
+  type: Container
 })
 export class ContainerComponent {
 
   @BlueriqChildren(Field)
   fields: QueryList<Field>;
 
-  @BlueriqChildren(Field, {descendants: true})
+  @BlueriqChildren(Field, { descendants: true })
   descendants: QueryList<Field>;
 
-  @BlueriqChild(Field, {required: false})
+  @BlueriqChild(Field, { required: false })
   field: Field;
 
-  @BlueriqChild(Field, {observe: true})
+  @BlueriqChild(Field, { observe: true })
   fieldObs: Observable<Field>;
 
   constructor(@Host() public container: Container) {
+  }
+
+  isOutlet(): boolean {
+    return this.container.contentStyle === 'container';
   }
 
 }

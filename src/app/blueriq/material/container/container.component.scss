@@ -1,3 +1,15 @@
+@import '~@angular/material/theming';
+// @import '../theme/globals/variables';
+
 .container {
   margin: 15px 0;
+}
+
+.outlet {
+  @include mat-elevation(1);
+
+  max-width: 1024px;
+  margin: 24px auto;
+  padding: 24px;
+  background: white; //$bq-toolbar-background;
 }
