@@ -18,10 +18,11 @@ export class FileUploadComponent {
   hasDropZoneOver = false;
   multiple = true;
 
-  constructor(@Host() private container: Container, private readonly session: BlueriqSession, private readonly uploadService: UploadService) {
+  constructor(@Host() private container: Container, private readonly session: BlueriqSession,
+              private readonly uploadService: UploadService) {
     const URL = uploadService.getUploadUrl(session.sessionId, this.container.properties.configurationid);
     this.uploader = new FileUploader({
-      url: '/Runtime/' + URL,
+      url: URL,
       allowedFileType: this.container.properties.allowedextensions.split('|'),
       maxFileSize: this.container.properties.maxfilesize,
       autoUpload: true
