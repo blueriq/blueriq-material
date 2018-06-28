@@ -26,13 +26,13 @@ export class TextItemComponent {
 
   public getGutterIcon(): string {
     if (this.textItem.styles.has(PresentationStyles.DANGER)) {
-      return 'icon-danger';
+      return 'error';
     } else if (this.textItem.styles.has(PresentationStyles.WARNING)) {
-      return 'icon-warning';
+      return 'warning';
     } else if (this.textItem.styles.has(PresentationStyles.INFO)) {
-      return 'icon-info';
+      return 'info';
     } else if (this.textItem.styles.has(PresentationStyles.SUCCESS)) {
-      return 'icon-success';
+      return 'check_circle';
     }
     return '';
   }
