@@ -13,8 +13,4 @@ export class TableSearchComponent {
   constructor(@Host() public container: Container) {
   }
 
-  applyFilter(e) {
-    // TODO implement
-  }
-
 }

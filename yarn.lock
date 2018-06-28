@@ -194,16 +194,16 @@
     tslib "^1.9.0"
 
 "@blueriq/angular@^0.3.0-beta.6":
-  version "0.3.0-beta.6"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn-local/@blueriq/angular/-/@blueriq/angular-0.3.0-beta.6.tgz#f215f53caf5a1f3a3d490d9341649851dfc943eb"
+  version "0.3.0-beta.8"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn-local/@blueriq/angular/-/@blueriq/angular-0.3.0-beta.8.tgz#77db717060a81667f942e48532c617289993db0f"
   dependencies:
     date-fns "2.0.0-alpha.7"
     stable "0.1.7"
     tslib "^1.7.1"
 
 "@blueriq/core@^0.3.0-beta.6":
-  version "0.3.0-beta.6"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn-local/@blueriq/core/-/@blueriq/core-0.3.0-beta.6.tgz#cc3d40f5a3670221b76ac23062440e4f8800c87d"
+  version "0.3.0-beta.8"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn-local/@blueriq/core/-/@blueriq/core-0.3.0-beta.8.tgz#f02f43fca3cc1c032a50ec3d98d6b2fe30c978d9"
   dependencies:
     css-selector-parser "1.3.0"
     date-fns "2.0.0-alpha.7"
@@ -552,8 +552,8 @@ anymatch@^2.0.0:
     normalize-path "^2.1.1"
 
 app-root-path@^2.0.1:
-  version "2.0.1"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/app-root-path/-/app-root-path-2.0.1.tgz?dl=https://registry.yarnpkg.com/app-root-path/-/app-root-path-2.0.1.tgz#cd62dcf8e4fd5a417efc664d2e5b10653c651b46"
+  version "2.1.0"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/app-root-path/-/app-root-path-2.1.0.tgz?dl=https://registry.yarnpkg.com/app-root-path/-/app-root-path-2.1.0.tgz#98bf6599327ecea199309866e8140368fd2e646a"
 
 append-transform@^1.0.0:
   version "1.0.0"
@@ -1193,8 +1193,8 @@ camelcase@^4.1.0:
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/camelcase/-/camelcase-4.1.0.tgz?dl=https://registry.yarnpkg.com/camelcase/-/camelcase-4.1.0.tgz#d545635be1e33c542649c69173e5de6acfae34dd"
 
 caniuse-lite@^1.0.30000844, caniuse-lite@^1.0.30000856:
-  version "1.0.30000856"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/caniuse-lite/-/caniuse-lite-1.0.30000856.tgz?dl=https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000856.tgz#ecc16978135a6f219b138991eb62009d25ee8daa"
+  version "1.0.30000858"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/caniuse-lite/-/caniuse-lite-1.0.30000858.tgz?dl=https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000858.tgz#f6f203a9128bac507136de1cf6cfd966d2df027c"
 
 caseless@~0.11.0:
   version "0.11.0"
@@ -3857,27 +3857,34 @@ jszip@^3.1.3:
     pako "~1.0.2"
     readable-stream "~2.0.6"
 
-karma-chrome-launcher@~2.2.0:
+karma-chrome-launcher@2.2.0:
   version "2.2.0"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/karma-chrome-launcher/-/karma-chrome-launcher-2.2.0.tgz?dl=https://registry.yarnpkg.com/karma-chrome-launcher/-/karma-chrome-launcher-2.2.0.tgz#cf1b9d07136cc18fe239327d24654c3dbc368acf"
   dependencies:
     fs-access "^1.0.0"
     which "^1.2.1"
 
-karma-coverage-istanbul-reporter@~1.4.2:
-  version "1.4.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/karma-coverage-istanbul-reporter/-/karma-coverage-istanbul-reporter-1.4.3.tgz?dl=https://registry.yarnpkg.com/karma-coverage-istanbul-reporter/-/karma-coverage-istanbul-reporter-1.4.3.tgz#3b5dff4664fa5b8d5196b9889e3f61c1fa2b80d9"
+karma-coverage-istanbul-reporter@2.0.1:
+  version "2.0.1"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/karma-coverage-istanbul-reporter/-/karma-coverage-istanbul-reporter-2.0.1.tgz?dl=https://registry.yarnpkg.com/karma-coverage-istanbul-reporter/-/karma-coverage-istanbul-reporter-2.0.1.tgz#26b969317d191c6a897c783b4ffe7831cb92e684"
   dependencies:
     istanbul-api "^1.3.1"
     minimatch "^3.0.4"
 
-karma-jasmine-html-reporter@^1.1.0:
+karma-jasmine-html-reporter@1.1.0:
   version "1.1.0"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/karma-jasmine-html-reporter/-/karma-jasmine-html-reporter-1.1.0.tgz?dl=https://registry.yarnpkg.com/karma-jasmine-html-reporter/-/karma-jasmine-html-reporter-1.1.0.tgz#e6ce732fac43cb3907d927d5a6b3ed6ee7e95486"
 
-karma-jasmine@~1.1.2:
+karma-jasmine@1.1.2:
   version "1.1.2"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/karma-jasmine/-/karma-jasmine-1.1.2.tgz?dl=https://registry.yarnpkg.com/karma-jasmine/-/karma-jasmine-1.1.2.tgz#394f2b25ffb4a644b9ada6f22d443e2fd08886c3"
+
+karma-junit-reporter@^1.2.0:
+  version "1.2.0"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/karma-junit-reporter/-/karma-junit-reporter-1.2.0.tgz?dl=https://registry.yarnpkg.com/karma-junit-reporter/-/karma-junit-reporter-1.2.0.tgz#4f9c40cedfb1a395f8aef876abf96189917c6396"
+  dependencies:
+    path-is-absolute "^1.0.0"
+    xmlbuilder "8.2.2"
 
 karma-source-map-support@^1.2.0:
   version "1.3.0"
@@ -3885,9 +3892,9 @@ karma-source-map-support@^1.2.0:
   dependencies:
     source-map-support "^0.5.5"
 
-karma@~2.0.2:
-  version "2.0.4"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/karma/-/karma-2.0.4.tgz?dl=https://registry.yarnpkg.com/karma/-/karma-2.0.4.tgz#b399785f57e9bab1d3c4384db33fef4dec8ae349"
+karma@2.0.3:
+  version "2.0.3"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/karma/-/karma-2.0.3.tgz?dl=https://registry.yarnpkg.com/karma/-/karma-2.0.3.tgz#4d5e13d25f5a51331c5378b24c4984709c01120b"
   dependencies:
     bluebird "^3.3.0"
     body-parser "^1.16.1"
@@ -4092,8 +4099,8 @@ log-symbols@^2.1.0:
     chalk "^2.0.1"
 
 log4js@^2.5.3:
-  version "2.9.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/log4js/-/log4js-2.9.0.tgz?dl=https://registry.yarnpkg.com/log4js/-/log4js-2.9.0.tgz#41d99ac2f140b7da54001a21a3bca61a164746a7"
+  version "2.10.0"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/log4js/-/log4js-2.10.0.tgz?dl=https://registry.yarnpkg.com/log4js/-/log4js-2.10.0.tgz#4980bd9148a030d69f9edde32a5b19c0a551e2c4"
   dependencies:
     circular-json "^0.5.4"
     date-format "^1.2.0"
@@ -4511,8 +4518,8 @@ ng-pick-datetime-moment@^1.0.6:
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/ng-pick-datetime-moment/-/ng-pick-datetime-moment-1.0.6.tgz?dl=https://registry.yarnpkg.com/ng-pick-datetime-moment/-/ng-pick-datetime-moment-1.0.6.tgz#d8892e8f4fb86fb835b022927080e9400f6f71f1"
 
 ng-pick-datetime@^6.0.5:
-  version "6.0.5"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/ng-pick-datetime/-/ng-pick-datetime-6.0.5.tgz?dl=https://registry.yarnpkg.com/ng-pick-datetime/-/ng-pick-datetime-6.0.5.tgz#6b0300fc8dc2544a981157a5b5ce4a15ecafb50b"
+  version "6.0.7"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/ng-pick-datetime/-/ng-pick-datetime-6.0.7.tgz?dl=https://registry.yarnpkg.com/ng-pick-datetime/-/ng-pick-datetime-6.0.7.tgz#a3fb357ff4e5e6b1aeca241297b74ac89eef3a69"
 
 ng2-file-upload@^1.3.0:
   version "1.3.0"
@@ -4574,8 +4581,8 @@ node-libs-browser@^2.0.0:
     vm-browserify "0.0.4"
 
 node-pre-gyp@^0.10.0:
-  version "0.10.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/node-pre-gyp/-/node-pre-gyp-0.10.0.tgz?dl=https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.10.0.tgz#6e4ef5bb5c5203c6552448828c852c40111aac46"
+  version "0.10.2"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/node-pre-gyp/-/node-pre-gyp-0.10.2.tgz?dl=https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.10.2.tgz#e8945c20ef6795a20aac2b44f036eb13cf5146e3"
   dependencies:
     detect-libc "^1.0.2"
     mkdirp "^0.5.1"
@@ -4583,7 +4590,7 @@ node-pre-gyp@^0.10.0:
     nopt "^4.0.1"
     npm-packlist "^1.1.6"
     npmlog "^4.0.2"
-    rc "^1.1.7"
+    rc "^1.2.7"
     rimraf "^2.6.1"
     semver "^5.3.0"
     tar "^4"
@@ -5438,7 +5445,7 @@ raw-loader@^0.5.1:
   version "0.5.1"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/raw-loader/-/raw-loader-0.5.1.tgz?dl=https://registry.yarnpkg.com/raw-loader/-/raw-loader-0.5.1.tgz#0c3d0beaed8a01c966d9787bf778281252a979aa"
 
-rc@^1.1.7:
+rc@^1.2.7:
   version "1.2.8"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/rc/-/rc-1.2.8.tgz?dl=https://registry.yarnpkg.com/rc/-/rc-1.2.8.tgz#cd924bf5200a075b83c188cd6b9e211b7fc0d3ed"
   dependencies:
@@ -7339,6 +7346,10 @@ xml2js@^0.4.17:
   dependencies:
     sax ">=0.6.0"
     xmlbuilder "~9.0.1"
+
+xmlbuilder@8.2.2:
+  version "8.2.2"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/xmlbuilder/-/xmlbuilder-8.2.2.tgz?dl=https://registry.yarnpkg.com/xmlbuilder/-/xmlbuilder-8.2.2.tgz#69248673410b4ba42e1a6136551d2922335aa773"
 
 xmlbuilder@>=1.0.0:
   version "10.0.0"

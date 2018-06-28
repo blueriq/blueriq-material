@@ -4,14 +4,13 @@
       {{field.questionText}}
     </div>
     <div class="field-input">
-      <mat-radio-group *ngIf="!isReadonly()" [required]="field.required" [formControl]="formControl">
+      <mat-radio-group [required]="field.required" [formControl]="formControl">
         <div [class]="determineDirection()">
           <mat-radio-button *ngFor="let option of field.domain.options" [value]="option.value">
             {{option.displayValue}}
           </mat-radio-button>
         </div>
       </mat-radio-group>
-      <span *ngIf="isReadonly()">{{field.getValue()}}</span>
     </div>
   </div>
 </bq-element>
