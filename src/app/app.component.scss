@@ -2,8 +2,14 @@
 @import '../theme/globals/variables';
 
 .mat-toolbar {
+  flex-direction: row;
+  justify-content: flex-start;
   background: linear-gradient(to right, $bq-primary-blue, $bq-primary-purple, $bq-primary-violet);
   color: white;
+
+  .mat-icon {
+    margin: 0 8px 0 0;
+  }
 
   h1 {
     font-weight: 300;
@@ -11,15 +17,18 @@
     margin: 0 0 0 24px;
   }
 
-  @include mat-elevation(1);
-}
+  h5 {
+    font-weight: 200;
+    font-size: small;
+    color: $light-primary-text;
+    line-height: 18px;
+  }
 
-//temp styling for demo
-.bq-outlet {
-  @include mat-elevation(1);
+  h6 {
+    font-size: small;
+    color: $light-primary-text;
+    line-height: 18px;
+  }
 
-  max-width: 1024px;
-  margin: 24px auto;
-  padding: 24px;
-  background: $bq-toolbar-background;
+  @include mat-elevation(1);
 }

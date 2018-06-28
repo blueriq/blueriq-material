@@ -1,5 +1,5 @@
 @import '~@angular/material/theming';
-// @import '../theme/globals/variables';
+@import '../../../../theme/globals/variables';
 
 .container {
   margin: 15px 0;
@@ -11,5 +11,5 @@
   max-width: 1024px;
   margin: 24px auto;
   padding: 24px;
-  background: white; //$bq-toolbar-background;
+  background: $bq-toolbar-background;
 }

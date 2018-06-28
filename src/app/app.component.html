@@ -1,7 +1,14 @@
 <div class="mat-typography">
-  <mat-toolbar>
+  <mat-toolbar fxLayout="row">
     <img src="theme/images/blueriq_logo_white.png" height="80%">
-    <h1>{{getPageTitle()}}</h1>
+    <h1 [fxFlex]>{{getPageTitle()}} [WIP]</h1>
+
+    <mat-icon>account_circle</mat-icon>
+
+    <div>
+      <h6>User name</h6>
+      <h5>User role</h5>
+    </div>
   </mat-toolbar>
   <router-outlet></router-outlet>
 </div>
