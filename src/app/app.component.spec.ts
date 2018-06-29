@@ -1,5 +1,6 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { async, TestBed } from '@angular/core/testing';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -17,6 +18,7 @@ describe('AppComponent', () => {
         MaterialModule,
         BrowserAnimationsModule, // or NoopAnimationsModule
         FormsModule,
+        FlexLayoutModule,
         BlueriqModule.forRoot(),
         BlueriqTestingModule,
         RouterModule.forRoot([])

@@ -1,8 +1,6 @@
-<div class="flex-grid-thirds">
-
+<div>
   <div [fxFlex]>
     <ng-content></ng-content>
-
     <div class="labels" *ngIf="!hasPresentationStyleExplainIcon()">
       <mat-hint *ngIf="!hasMessages()">{{field.explainText}}</mat-hint>
       <div *ngIf="hasMessages()">
@@ -16,5 +14,4 @@
       <i class="material-icons" matTooltip="{{field.explainText}}">info</i>
     </ng-container>
   </div>
-
 </div>
