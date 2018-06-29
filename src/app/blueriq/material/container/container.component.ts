@@ -36,7 +36,11 @@ export class ContainerComponent {
   }
 
   isOutlet(): boolean {
-    return this.container.contentStyle === 'container';
+    if (this.container.parent) {
+      return this.container.parent.contentStyle === 'page';
+    } else {
+      return false;
+    }
   }
 
 }
