@@ -7,6 +7,7 @@ import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from
 import { FieldTemplate } from '@blueriq/core/testing';
 import { StringFieldComponent } from '../../material/form-controls/input-field/string/string.component';
 import { MaterialModule } from '../../material/material.module';
+import { PresentationStyles } from '../../material/presentationstyles/presentationstyles';
 
 import { ElementComponent } from './element.component';
 
@@ -43,7 +44,7 @@ describe('ElementComponent', () => {
     expect(selectedElement).toBeTruthy();
   });
 
-  it('should display explainText, if any', () => {
+  it('should display explain text, if any', () => {
     let selectedElement = component.nativeElement.querySelector('mat-hint').innerHTML;
     expect(selectedElement).not.toContain('some explain text');
 
@@ -52,7 +53,28 @@ describe('ElementComponent', () => {
     );
     selectedElement = component.nativeElement.querySelector('mat-hint').innerHTML;
     expect(selectedElement).toContain('some explain text');
+  });
 
+  it('should display explain icon, if any', () => {
+    let selectedElement = component.nativeElement.querySelector('.material-icons');
+    expect(selectedElement).toBeFalsy();
+
+    session.update(
+      field.styles(PresentationStyles.EXPLAINICON),
+      field.explainText('some explain text')
+    );
+    selectedElement = component.nativeElement.querySelector('.material-icons[ng-reflect-message]');
+    expect(selectedElement).toBeTruthy();
+    expect(selectedElement.getAttribute('ng-reflect-message')).toBe('some explain text');
+  });
+
+  it('should not display explain icon when readonly', () => {
+    session.update(
+      field.styles(PresentationStyles.EXPLAINICON),
+      field.readonly(true)
+    );
+    const selectedElement = component.nativeElement.querySelector('.material-icons[ng-reflect-message]');
+    expect(selectedElement).toBeFalsy();
   });
 
   it('should display messages, if any', () => {
