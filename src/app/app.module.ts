@@ -15,6 +15,7 @@ import { OwlDateTimeModule } from 'ng-pick-datetime';
 import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
 import { AppComponent } from './app.component';
 import { ElementComponent } from './blueriq/generic/element/element.component';
+import { AssetComponent } from './blueriq/material/asset/asset.component';
 import { ContainerComponent } from './blueriq/material/container/container.component';
 import { DocumentLinkComponent } from './blueriq/material/document-link/document-link.component';
 import { DocumentLinkService } from './blueriq/material/document-link/document-link.service';
@@ -53,6 +54,7 @@ const routes: Routes = [
 ];
 
 const BQ_COMPONENTS = [
+  AssetComponent,
   ButtonComponent,
   SelectComponent,
   DatepickerComponent,
