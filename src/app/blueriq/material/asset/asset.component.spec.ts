@@ -27,7 +27,7 @@ describe('AssetComponent', () => {
   }));
 
   beforeEach(() => {
-    assetTemplate = AssetTemplate.create();
+    assetTemplate = AssetTemplate.create().text('lorum ipsum');
     session = BlueriqSessionTemplate.create().build(assetTemplate);
     component = session.get(AssetComponent);
   });
@@ -36,8 +36,7 @@ describe('AssetComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should contain text', () => {
-    const inputAsset = 'lorum ipsum';
-    expect(inputAsset).toBe('lorum ipsum');
+  it('should contain the expected text', () => {
+    expect(component.nativeElement.querySelector('p').innerHTML).toBe('lorum ipsum');
   });
 });
