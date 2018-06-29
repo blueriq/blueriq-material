@@ -5,28 +5,28 @@
   flex-direction: row;
   justify-content: flex-start;
   background: linear-gradient(to right, $bq-primary-blue, $bq-primary-purple, $bq-primary-violet);
-  color: white;
+  color: $bq-toolbar-background;
 
   .mat-icon {
     margin: 0 8px 0 0;
   }
 
   h1 {
-    font-weight: 300;
-    color: $light-primary-text;
     margin: 0 0 0 24px;
+    color: $light-primary-text;
+    font-weight: 300;
   }
 
   h5 {
-    font-weight: 200;
-    font-size: small;
     color: $light-primary-text;
+    font-size: small;
+    font-weight: 200;
     line-height: 18px;
   }
 
   h6 {
-    font-size: small;
     color: $light-primary-text;
+    font-size: small;
     line-height: 18px;
   }
 
