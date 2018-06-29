@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
@@ -22,6 +23,7 @@ describe('ElementComponent', () => {
       imports: [
         MaterialModule,
         BrowserAnimationsModule, // or NoopAnimationsModule
+        FlexLayoutModule,
         BlueriqTestingModule,
         FormsModule
       ]
@@ -37,18 +39,18 @@ describe('ElementComponent', () => {
   });
 
   it('should contain the FieldComponent', () => {
-    const selectedElement = component.nativeElement.querySelector('.col1').querySelector('.mat-form-field');
+    const selectedElement = component.nativeElement.querySelector('.mat-form-field');
     expect(selectedElement).toBeTruthy();
   });
 
   it('should display explainText, if any', () => {
-    let selectedElement = component.nativeElement.querySelector('.col2').innerHTML;
+    let selectedElement = component.nativeElement.querySelector('mat-hint').innerHTML;
     expect(selectedElement).not.toContain('some explain text');
 
     session.update(
       field.explainText('some explain text')
     );
-    selectedElement = component.nativeElement.querySelector('.col2').innerHTML;
+    selectedElement = component.nativeElement.querySelector('mat-hint').innerHTML;
     expect(selectedElement).toContain('some explain text');
 
   });
@@ -58,7 +60,7 @@ describe('ElementComponent', () => {
       field.error('wrong IBAN'), field.error('wrong length'), field.warning('Some warning')
     );
 
-    const selectedElements = component.nativeElement.querySelector('.col1').querySelectorAll('mat-error');
+    const selectedElements = component.nativeElement.querySelectorAll('mat-error');
     expect(selectedElements.length).toBe(3);
     expect(selectedElements[0].innerHTML).toContain('wrong IBAN');
     expect(selectedElements[1].innerHTML).toContain('wrong length');
