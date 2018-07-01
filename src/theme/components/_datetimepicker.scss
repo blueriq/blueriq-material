@@ -1,0 +1,54 @@
+@import '~ng-pick-datetime/assets/style/picker.min.css';
+
+//override specific styling to match to match it with the global theme
+
+.owl-dialog-container, .owl-dt-timer, .owl-dt-timer-input, .owl-dt-container-buttons, .owl-dt-control-button, .owl-dt-container-control-button {
+  font-family: $bq-font-family;
+}
+
+.owl-dt-calendar-table {
+  .owl-dt-calendar-cell-selected {
+    background-color: $bq-primary-blue;
+  }
+
+  .owl-dt-calendar-cell-in-range {
+    background: rgba($bq-primary-blue, .2);
+  }
+}
+
+.owl-dt-timer-hour12 {
+  color: $bq-primary-blue;
+
+  .owl-dt-timer-hour12-box {
+    &:focus, &:hover {
+      .owl-dt-control-button-content {
+        background: $bq-primary-blue;
+        color: #ffffff;
+      }
+    }
+  }
+}
+
+.owl-dt-timer-content .owl-dt-timer-input {
+  border: 1px solid $dark-dividers; // more subtle border
+
+  &:active, &:focus {
+    border-bottom-color: $bq-primary-blue;
+  }
+}
+
+.owl-dt-container-buttons {
+  color: $bq-primary-blue;
+  height: 3em; // more spacing for the buttons
+
+  .owl-dt-control-button-content {
+    text-transform: uppercase; // material style buttons
+    font-weight:400;
+  }
+}
+
+.owl-dt-container-info {
+  .owl-dt-container-info-active {
+    color: $bq-primary-blue;
+  }
+}
