@@ -2,11 +2,12 @@
   Drop zone
 </mat-card>
 <p>
-  <button mat-raised-button color="primary" (click)="fileInput.click()">{{getUploadLabel()}}</button>
-  <input hidden ng2FileSelect type="file" [uploader]="uploader" [multiple]="multiple" #fileInput>
+  <button mat-raised-button color="primary" (click)="fileInput.click()">{{container.getUploadLabel()}}</button>
+  <input hidden ng2FileSelect type="file" [uploader]="uploader" [multiple]="container.isMultipleMode()" #fileInput>
 </p><p>
-  {{getMaxFileSize()}} </p><p>
-  {{getAllowedExtensions()}} </p><h3>Upload queue</h3><p>Queue length: {{ uploader?.queue?.length }}</p>
+  {{container.getMaxFileSizeDescription()}} </p><p>
+  {{container.getAllowedExtensionsDescription()}} </p><h3>Upload queue</h3>
+<p>Queue length: {{ uploader?.queue?.length }}</p>
 
 <table class="table">
   <thead>
@@ -21,7 +22,7 @@
   <tbody>
   <tr *ngFor="let item of uploader.queue">
     <td><strong>{{ item?.file?.name }}</strong></td>
-    <td nowrap>{{ humanReadableFileSize(item?.file?.size )}}</td>
+    <td nowrap>{{ container.humanReadableFileSize(item?.file?.size )}}</td>
     <td>
       <mat-progress-bar mode="determinate" value="{{item.progress}}"></mat-progress-bar>
     </td>
