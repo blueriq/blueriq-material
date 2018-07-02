@@ -1,4 +1,5 @@
 import { OwlDateTimeIntl } from 'ng-pick-datetime';
+import { Subject } from 'rxjs/Subject';
 
 export class OwlDatetimeIntlNL implements OwlDateTimeIntl {
   /** A label for the up second button (used by screen readers).  */
@@ -60,4 +61,10 @@ export class OwlDatetimeIntlNL implements OwlDateTimeIntl {
 
   /** A label for the hour12 button (PM) */
   hour12PMLabel = 'PM';
+
+  /**
+   * Stream that emits whenever the labels here are changed. Use this to notify
+   * components if the labels have changed after initialization.
+   */
+  readonly changes: Subject<void>;
 }
