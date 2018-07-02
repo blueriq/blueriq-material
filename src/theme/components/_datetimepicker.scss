@@ -2,7 +2,12 @@
 
 //override specific styling to match to match it with the global theme
 
-.owl-dialog-container, .owl-dt-timer, .owl-dt-timer-input, .owl-dt-container-buttons, .owl-dt-control-button, .owl-dt-container-control-button {
+.owl-dialog-container,
+.owl-dt-timer,
+.owl-dt-timer-input,
+.owl-dt-container-buttons,
+.owl-dt-control-button,
+.owl-dt-container-control-button {
   font-family: $bq-font-family;
 }
 
@@ -20,10 +25,11 @@
   color: $bq-primary-blue;
 
   .owl-dt-timer-hour12-box {
-    &:focus, &:hover {
+    &:focus,
+    &:hover {
       .owl-dt-control-button-content {
         background: $bq-primary-blue;
-        color: #ffffff;
+        color: $light-primary-text;
       }
     }
   }
@@ -32,18 +38,19 @@
 .owl-dt-timer-content .owl-dt-timer-input {
   border: 1px solid $dark-dividers; // more subtle border
 
-  &:active, &:focus {
+  &:active,
+  &:focus {
     border-bottom-color: $bq-primary-blue;
   }
 }
 
 .owl-dt-container-buttons {
-  color: $bq-primary-blue;
   height: 3em; // more spacing for the buttons
+  color: $bq-primary-blue;
 
   .owl-dt-control-button-content {
-    text-transform: uppercase; // material style buttons
-    font-weight:400;
+    font-weight: 400;
+    text-transform: uppercase; // material style button
   }
 }
 
