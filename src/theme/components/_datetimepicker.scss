@@ -2,6 +2,8 @@
 
 //override specific styling to match to match it with the global theme
 
+$datepicker-bq-color: rgba($bq-primary-blue, .2);
+
 .owl-dialog-container,
 .owl-dt-timer,
 .owl-dt-timer-input,
@@ -17,7 +19,7 @@
   }
 
   .owl-dt-calendar-cell-in-range {
-    background: rgba($bq-primary-blue, .2);
+    background: $datepicker-bq-color;
   }
 }
 
