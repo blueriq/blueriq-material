@@ -14,7 +14,7 @@ import { Container } from '@blueriq/core';
 })
 export class FileDownloadComponent {
 
-  constructor(@Self() private container: FileDownloadContainer) {
+  constructor(@Self() public container: FileDownloadContainer) {
   }
 
 }

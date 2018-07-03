@@ -1,7 +1,7 @@
 import { Component, Self } from '@angular/core';
 import { BlueriqComponent, FileUploadContainer } from '@blueriq/angular';
 import { Container } from '@blueriq/core';
-import { FileUploader } from 'ng2-file-upload';
+import { CustomFileUploader } from './custom-file-uploader.class';
 
 @Component({
   selector: 'bq-file-upload',
@@ -15,17 +15,28 @@ import { FileUploader } from 'ng2-file-upload';
 })
 export class FileUploadComponent {
 
-  public uploader: FileUploader;
+  uploader: CustomFileUploader;
   hasDropZoneOver = false;
-  multiple = true;
+  response: string;
 
-  constructor(@Self() private container: FileUploadContainer) {
-    this.uploader = new FileUploader({
+  constructor(@Self() public container: FileUploadContainer) {
+    this.uploader = new CustomFileUploader({
       url: this.container.getUploadUrl(),
       allowedFileType: this.container.allowedExtensions,
       maxFileSize: (this.container.maxFileSize) ? +this.container.maxFileSize : undefined,
       autoUpload: true
     });
+    /**
+     * Override uploadAll to use our custom uploader that wraps multiple files in formdata
+     * to upload them in one call
+     */
+    this.uploader.uploadAll = () => this.uploader.uploadAllFiles();
+    /**
+     * When the upload is completed, the events returned by the runtime need to be handled.
+     */
+    this.uploader.onCompleteItem = (item: any, response: string, status: any, headers: any) => {
+      this.container.handleFileUploadCompleted(response);
+    };
   }
 
   public fileOverDropZone(e: boolean): void {
