@@ -23,6 +23,7 @@ $datepicker-bq-color: rgba($bq-primary-blue, .2);
   }
 }
 
+
 .owl-dt-timer-hour12 {
   color: $bq-primary-blue;
 
@@ -37,12 +38,14 @@ $datepicker-bq-color: rgba($bq-primary-blue, .2);
   }
 }
 
-.owl-dt-timer-content .owl-dt-timer-input {
-  border: 1px solid $dark-dividers; // more subtle border
+.owl-dt-timer-content {
+  .owl-dt-timer-input {
+    border: 1px solid $dark-dividers; // more subtle border
 
-  &:active,
-  &:focus {
-    border-bottom-color: $bq-primary-blue;
+    &:active,
+    &:focus {
+      border-bottom-color: $bq-primary-blue;
+    }
   }
 }
 
