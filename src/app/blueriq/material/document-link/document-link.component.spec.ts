@@ -38,7 +38,8 @@ describe('DocumentLinkComponent', () => {
       LinkTemplate.create().text(LINK_TEXT).parameters({
         'document-name': DOCUMENT_NAME,
         'document-type': 'pdf',
-        'page-name': ''
+        'page-name': '',
+        'optional-parameters': null
       })
     );
     session = BlueriqSessionTemplate.create().build(container);
