@@ -15,6 +15,7 @@ import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
 import { FileUploadModule } from 'ng2-file-upload';
 import { AppComponent } from './app.component';
 import { ElementComponent } from './blueriq/generic/element/element.component';
+import { AssetComponent } from './blueriq/material/asset/asset.component';
 import { ContainerComponent } from './blueriq/material/container/container.component';
 import { DocumentLinkComponent } from './blueriq/material/document-link/document-link.component';
 import { FileDownloadComponent } from './blueriq/material/file-download/file-download.component';
@@ -54,6 +55,7 @@ const routes: Routes = [
 ];
 
 const BQ_COMPONENTS = [
+  AssetComponent,
   ButtonComponent,
   SelectComponent,
   DatepickerComponent,
