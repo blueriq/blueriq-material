@@ -40,6 +40,7 @@
     <option name="SPACE_BEFORE_FOR_PARENTHESES" value="true"/>
     <option name="SPACE_BEFORE_CATCH_PARENTHESES" value="true"/>
     <option name="SPACE_BEFORE_SWITCH_PARENTHESES" value="true"/>
+    <option name="SPACES_WITHIN_IMPORTS" value="true"/>
     <option name="IF_BRACE_FORCE" value="3"/>
     <option name="DOWHILE_BRACE_FORCE" value="3"/>
     <option name="WHILE_BRACE_FORCE" value="3"/>
