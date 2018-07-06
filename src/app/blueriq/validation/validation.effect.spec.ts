@@ -7,7 +7,7 @@ import { Button, Field } from '@blueriq/core';
 import { ButtonTemplate, ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Subject } from 'rxjs/Subject';
-import { PageValidationEffects } from './validation.effects';
+import { PageValidationEffects } from './validation.effect';
 
 describe('ValidationsComponent', () => {
   let actions: Subject<any>;
