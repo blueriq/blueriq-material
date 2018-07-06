@@ -2,32 +2,47 @@
 @import '../theme/globals/variables';
 
 .mat-toolbar {
-  flex-direction: row;
-  justify-content: flex-start;
-  background: linear-gradient(to right, $bq-primary-blue, $bq-primary-purple, $bq-primary-violet);
+  $bq-toolbar-height: 77px;
 
-  .mat-icon {
-    margin: 0 8px 0 0;
-  }
+  @include mat-elevation(1);
+
+  min-height: $bq-toolbar-height;
+  padding: 0 0 0 16px;
+  background: linear-gradient(to right, $bq-primary-blue, $bq-primary-purple, $bq-primary-violet);
+  color: $light-primary-text;
 
   h1 {
     margin: 0 0 0 24px;
     color: $light-primary-text;
+    font-size: 20px;
     font-weight: 300;
+    line-height: 44px;
   }
 
-  h5 {
-    color: $light-primary-text;
-    font-size: small;
-    font-weight: 200;
-    line-height: 18px;
-  }
+  .application-actions {
+    text-align: right;
 
-  h6 {
-    color: $light-primary-text;
-    font-size: small;
-    line-height: 18px;
-  }
+    .active-user-menu {;
+      height: $bq-toolbar-height;
+      text-align: left;
 
-  @include mat-elevation(1);
+      .icon {
+        height: $bq-toolbar-height;
+      }
+
+      .username {
+        padding-top: 18px;
+        line-height: 20px;
+      }
+
+      // newline for user role (if provided)
+      small {
+        display: block;
+        color: $light-secondary-text;
+        font-size: 12px;
+        font-weight: 300;
+
+      }
+    }
+  }
 }
