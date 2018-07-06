@@ -1,5 +1,7 @@
+@import '../globals/variables';
+
 .mat-snack-bar-container.snackbar-error {
-  background: $bq-secondary-red;
+  background-color: $bq-secondary-red;
 }
 
 .mat-snack-bar-container.snackbar-warning {
