@@ -5,5 +5,5 @@ body {
   padding: 0;
 
   background: map-get($mat-gray, 200);
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  font-family: $bq-font-family;
 }

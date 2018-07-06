@@ -1,11 +1,13 @@
+@import '~@angular/material/theming';
+@import '~material-design-icons/iconfont/material-icons.css';
+@import '~roboto-fontface/css/roboto/roboto-fontface.css';
+
 @import 'globals/variables';
 @import 'globals/icons';
 @import 'globals/basic-page-layout';
 @import 'globals/standard-styles';
-@import '~@angular/material/theming';
-@import '~material-design-icons/iconfont/material-icons.css';
-@import '~ng-pick-datetime/assets/style/picker.min.css';
-@import '~roboto-fontface/css/roboto/roboto-fontface.css';
+
+@import 'components/datetimepicker';
 
 @include mat-core;
 
@@ -16,4 +18,3 @@ $bq-warn-palette: mat-palette($mat-red);
 $bq-theme: mat-light-theme($bq-primary-palette, $bq-accent-palette, $bq-warn-palette);
 
 @include angular-material-theme($bq-theme);
-
