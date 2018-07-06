@@ -49,7 +49,8 @@ describe('ValidationsComponent', () => {
     actions.next(action);
 
     expect(snackBarSpy.open).toHaveBeenCalledWith('There are validation errors on the page', undefined, {
-      duration: 5000
+      duration: 5000,
+      panelClass: 'snackbar-error'
     });
   });
 
@@ -69,7 +70,8 @@ describe('ValidationsComponent', () => {
     actions.next(action);
 
     expect(snackBarSpy.open).toHaveBeenCalledWith('There are validation warnings on the page', undefined, {
-      duration: 5000
+      duration: 5000,
+      panelClass: 'snackbar-warning'
     });
   });
 
