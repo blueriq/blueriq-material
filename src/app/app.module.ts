@@ -11,8 +11,10 @@ import { BlueriqFormsModule } from '@blueriq/angular/forms';
 import { TextItemModule } from '@blueriq/angular/textitems';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { OwlDateTimeModule } from 'ng-pick-datetime';
 import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
+import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { ElementComponent } from './blueriq/generic/element/element.component';
 import { AssetComponent } from './blueriq/material/asset/asset.component';
@@ -42,6 +44,7 @@ import { TableSortComponent } from './blueriq/material/table/sort/table.sort.com
 import { TableComponent } from './blueriq/material/table/table.component';
 import { TextItemComponent } from './blueriq/material/textitem/textitem.component';
 import { ProjectComponent } from './blueriq/project/project.component';
+import { PageValidationEffect } from './blueriq/validation/validation.effect';
 import { Configuration } from './configuration/configuration';
 
 const routes: Routes = [
@@ -107,7 +110,14 @@ const BQ_MAT_COMPONENTS = [
     ReactiveFormsModule,
     OwlDateTimeModule,
     OwlMomentDateTimeModule,
-    TextItemModule
+    TextItemModule,
+    EffectsModule.forFeature([
+      PageValidationEffect
+    ]),
+    StoreDevtoolsModule.instrument({
+      name: 'Blueriq',
+      logOnly: environment.production // Restrict extension to log-only mode
+    })
   ],
   providers: [
     BlueriqComponents.register(BQ_COMPONENTS),
