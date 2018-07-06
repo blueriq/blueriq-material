@@ -35,7 +35,7 @@ export class ContainerComponent {
   constructor(@Host() public container: Container) {
   }
 
-  isOutlet(): boolean {
+  displayAsCard(): boolean {
     if (this.container.parent) {
       return this.container.parent.contentStyle === 'page';
     } else {
