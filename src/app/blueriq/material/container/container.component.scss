@@ -11,5 +11,5 @@
   max-width: 1024px;
   margin: 24px auto;
   padding: 24px;
-  background: $bq-toolbar-background;
+  background: map-get($mat-light-theme-background, card);
 }
