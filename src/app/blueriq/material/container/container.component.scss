@@ -5,11 +5,16 @@
   margin: 15px 0;
 }
 
-.outlet {
+.container-card {
   @include mat-elevation(1);
 
   max-width: 728px; // TODO make responsive
   margin: 24px auto;
   padding: 24px;
   background: map-get($mat-light-theme-background, card);
+
+  h2 {
+    color: $bq-secondary-navy;
+    font-weight: 400;
+  }
 }
