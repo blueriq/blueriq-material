@@ -43,7 +43,7 @@ import { TableSortComponent } from './blueriq/material/table/sort/table.sort.com
 import { TableComponent } from './blueriq/material/table/table.component';
 import { TextItemComponent } from './blueriq/material/textitem/textitem.component';
 import { ProjectComponent } from './blueriq/project/project.component';
-import { PageValidationEffects } from './blueriq/validation/validation.effect';
+import { PageValidationEffect } from './blueriq/validation/validation.effect';
 import { Configuration } from './configuration/configuration';
 
 const routes: Routes = [
@@ -110,7 +110,7 @@ const BQ_MAT_COMPONENTS = [
     OwlMomentDateTimeModule,
     TextItemModule,
     EffectsModule.forFeature([
-      PageValidationEffects
+      PageValidationEffect
     ]),
     StoreDevtoolsModule.instrument({
       name: 'Blueriq',
