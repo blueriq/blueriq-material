@@ -33,12 +33,14 @@ export class PageValidationEffects {
     if (session.form.hasErrors) {
       this.snackBar.open(session.language.patterns['page.validations.message'] ||
         'There are validation errors on the page', undefined, {
-        duration: 5000
+        duration: 5000,
+        panelClass: 'snackbar-error'
       });
     } else if (session.form.hasWarnings) {
       this.snackBar.open(session.language.patterns['page.validations.message'] ||
         'There are validation warnings on the page', undefined, {
-        duration: 5000
+        duration: 5000,
+        panelClass: 'snackbar-warning'
       });
     }
   }
