@@ -1,0 +1,12 @@
+@import '../../../theme/globals/variables';
+
+.error {
+  h1 {
+    display: flex;
+  }
+
+  .error-icon {
+    padding: 4px;
+    color: $bq-secondary-red;
+  }
+}

@@ -15,6 +15,8 @@ import { OwlDateTimeModule } from 'ng-pick-datetime';
 import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
+import { ErrorComponent } from './blueriq/error/error.component';
+import { StartProjectFailedEffect } from './blueriq/generic/effects/start-project-failed.effect';
 import { ElementComponent } from './blueriq/generic/element/element.component';
 import { AssetComponent } from './blueriq/material/asset/asset.component';
 import { ContainerComponent } from './blueriq/material/container/container.component';
@@ -52,6 +54,7 @@ const routes: Routes = [
   { path: 'flow/:project/:flow', component: ProjectComponent },
   { path: 'flow/:project/:flow/:version', component: ProjectComponent },
   { path: 'flow/:project/:flow/:version/:languageCode', component: ProjectComponent },
+  { path: 'error', component: ErrorComponent },
   { path: '**', redirectTo: 'shortcut/default', pathMatch: 'full' }
 ];
 
@@ -87,6 +90,7 @@ const BQ_MAT_COMPONENTS = [
 @NgModule({
   declarations: [
     AppComponent,
+    ErrorComponent,
     ProjectComponent,
     BQ_COMPONENTS,
     BQ_MAT_COMPONENTS
@@ -110,7 +114,8 @@ const BQ_MAT_COMPONENTS = [
     OwlMomentDateTimeModule,
     TextItemModule,
     EffectsModule.forFeature([
-      PageValidationEffect
+      PageValidationEffect,
+      StartProjectFailedEffect
     ]),
     StoreDevtoolsModule.instrument({
       name: 'Blueriq',
