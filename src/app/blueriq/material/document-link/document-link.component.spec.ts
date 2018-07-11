@@ -7,7 +7,6 @@ import { ContainerTemplate, LinkTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../material.module';
 import { PresentationStyles } from '../presentationstyles/presentationstyles';
 import { DocumentLinkComponent } from './document-link.component';
-import { DocumentLinkService } from './document-link.service';
 
 describe('DocumentLinkComponent', () => {
 
@@ -22,8 +21,7 @@ describe('DocumentLinkComponent', () => {
     TestBed.configureTestingModule({
       declarations: [DocumentLinkComponent],
       providers: [
-        BlueriqComponents.register([DocumentLinkComponent]),
-        DocumentLinkService
+        BlueriqComponents.register([DocumentLinkComponent])
       ],
       imports: [
         MaterialModule,
@@ -40,7 +38,8 @@ describe('DocumentLinkComponent', () => {
       LinkTemplate.create().text(LINK_TEXT).parameters({
         'document-name': DOCUMENT_NAME,
         'document-type': 'pdf',
-        'page-name': ''
+        'page-name': '',
+        'optional-parameters': null
       })
     );
     session = BlueriqSessionTemplate.create().build(container);
