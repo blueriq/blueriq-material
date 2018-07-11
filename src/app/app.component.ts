@@ -1,10 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ErrorService } from './blueriq/error/error.service';
 
 @Component({
   selector: 'bq-app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  error: { errorType: string, title: string, message: string };
 
+  constructor(private errorService: ErrorService) {
+  }
+
+  ngOnInit(): void {
+    this.errorService.getError().subscribe((error) => {
+      this.error = error;
+    });
+  }
 }

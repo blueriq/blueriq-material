@@ -1,12 +1,22 @@
 @import '../../../theme/globals/variables';
 
 .error {
-  h1 {
-    display: flex;
-  }
+  display: flex;
+  z-index: 200;
 
   .error-icon {
     padding: 4px;
     color: $bq-secondary-red;
   }
+}
+
+.backdrop {
+  position: fixed;
+  opacity: .5;
+  background-color: #ddd;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
 }

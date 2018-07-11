@@ -1,9 +1,11 @@
 <div class="error">
-  <h1>
-    <mat-icon class="error-icon">error</mat-icon>
-    <span>An error occurred</span>
-  </h1>
-  <p>
-    ERROR TYPE: {{ errorType }}
-  </p>
+  <mat-icon class="error-icon">error</mat-icon>
+  <div>
+    <h1>
+      <span>{{ error.title }}</span>
+    </h1>
+    <p innerHTML="{{ error.message }}"></p>
+  </div>
+</div>
+<div class="backdrop">
 </div>

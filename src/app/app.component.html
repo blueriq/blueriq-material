@@ -4,5 +4,6 @@
   </mat-toolbar>
   <div class="bq-outlet">
     <router-outlet></router-outlet>
+    <bq-error *ngIf="error" [error]="error"></bq-error>
   </div>
 </div>

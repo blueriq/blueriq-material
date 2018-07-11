@@ -1,22 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'bq-error',
   templateUrl: './error.component.html',
   styleUrls: ['./error.component.scss']
 })
-export class ErrorComponent implements OnInit {
+export class ErrorComponent {
 
-  public errorType = 'unknown';
+  @Input()
+  error: { errorType: string, title: string, message: string };
 
-  constructor(private route: ActivatedRoute) {
-  }
-
-  ngOnInit() {
-    this.route.queryParams.subscribe((queryParams: Params) => {
-      this.errorType = queryParams['type'];
-    });
+  constructor() {
   }
 
 }

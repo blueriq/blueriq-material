@@ -16,6 +16,7 @@ import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { ErrorComponent } from './blueriq/error/error.component';
+import { ErrorService } from './blueriq/error/error.service';
 import { StartProjectFailedEffect } from './blueriq/generic/effects/start-project-failed.effect';
 import { ElementComponent } from './blueriq/generic/element/element.component';
 import { AssetComponent } from './blueriq/material/asset/asset.component';
@@ -54,7 +55,6 @@ const routes: Routes = [
   { path: 'flow/:project/:flow', component: ProjectComponent },
   { path: 'flow/:project/:flow/:version', component: ProjectComponent },
   { path: 'flow/:project/:flow/:version/:languageCode', component: ProjectComponent },
-  { path: 'error', component: ErrorComponent },
   { path: '**', redirectTo: 'shortcut/default', pathMatch: 'full' }
 ];
 
@@ -126,7 +126,8 @@ const BQ_MAT_COMPONENTS = [
     BlueriqComponents.register(BQ_COMPONENTS),
     DocumentLinkService,
     MomentTransformer,
-    PresentationStyles
+    PresentationStyles,
+    ErrorService
   ],
   bootstrap: [AppComponent]
 })
