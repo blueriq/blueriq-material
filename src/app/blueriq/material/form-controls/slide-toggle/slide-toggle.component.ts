@@ -1,4 +1,4 @@
-import { Component, Host, OnInit } from '@angular/core';
+import { Component, Host } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { BlueriqFormBuilder } from '@blueriq/angular/forms';
 import { Field } from '@blueriq/core';
@@ -13,28 +13,14 @@ import { PresentationStyles } from '../../presentationstyles/presentationstyles'
   type: Field,
   selector: '.' + PresentationStyles.TOGGLE + '[dataType=boolean]'
 })
-export class SlideToggleComponent implements OnInit {
+export class SlideToggleComponent {
 
-  formControl = this.form.control(this.field, { syncOn: 'update', ifUnknown: false });
+  formControl = this.form.control(this.field, {
+    syncOn: 'update',
+    ifUnknown: false,
+    disableWhen: PresentationStyles.DISABLED
+  });
 
   constructor(@Host() public field: Field, private form: BlueriqFormBuilder) {
   }
-
-  /** Whether the slide toggle has a presentation style {@link PresentationStyles.DISABLED} */
-  isDisabled() {
-    return this.field.styles.has(PresentationStyles.DISABLED);
-  }
-
-  /** Whether the slide toggle is read only */
-  isReadonly() {
-    return this.field.readonly;
-  }
-
-  ngOnInit(): void {
-    if (this.isDisabled() || this.isReadonly()) {
-      this.formControl.disable();
-    }
-    this.formControl.setValue(this.field.getValue());
-  }
-
 }

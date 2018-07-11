@@ -33,6 +33,7 @@ project.component.html
 /.sass-cache
 /connect.lock
 /coverage
+/testresults
 /libpeerconnection.log
 npm-debug.log
 yarn-error.log

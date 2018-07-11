@@ -5,15 +5,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
 import { V1BackendModule } from '@blueriq/angular/backend/v1';
+import { FormattingModule } from '@blueriq/angular/formatting';
 import { BlueriqFormsModule } from '@blueriq/angular/forms';
 import { TextItemModule } from '@blueriq/angular/textitems';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { OwlDateTimeModule } from 'ng-pick-datetime';
 import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
+import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { BqKeyDirective } from "./blueriq/generic/bq-key/bq-key.directive";
 import { ElementComponent } from './blueriq/generic/element/element.component';
+import { AssetComponent } from './blueriq/material/asset/asset.component';
 import { ContainerComponent } from './blueriq/material/container/container.component';
 import { DocumentLinkComponent } from './blueriq/material/document-link/document-link.component';
 import { DocumentLinkService } from './blueriq/material/document-link/document-link.service';
@@ -33,13 +37,14 @@ import { SlideToggleComponent } from './blueriq/material/form-controls/slide-tog
 import { MaterialModule } from './blueriq/material/material.module';
 import { PageComponent } from './blueriq/material/page/page.component';
 import { PresentationStyles } from './blueriq/material/presentationstyles/presentationstyles';
+import { ReadonlyComponent } from './blueriq/material/readonly/readonly.component';
 import { PaginationComponent } from './blueriq/material/table/pagination/table.pagination.component';
 import { TableSearchComponent } from './blueriq/material/table/search/table.search.component';
 import { TableSortComponent } from './blueriq/material/table/sort/table.sort.component';
 import { TableComponent } from './blueriq/material/table/table.component';
-import { TableReadonlyComponent } from './blueriq/material/table/table.readonly.component';
 import { TextItemComponent } from './blueriq/material/textitem/textitem.component';
 import { ProjectComponent } from './blueriq/project/project.component';
+import { PageValidationEffect } from './blueriq/validation/validation.effect';
 import { Configuration } from './configuration/configuration';
 
 const routes: Routes = [
@@ -52,6 +57,7 @@ const routes: Routes = [
 ];
 
 const BQ_COMPONENTS = [
+  AssetComponent,
   ButtonComponent,
   SelectComponent,
   DatepickerComponent,
@@ -66,10 +72,10 @@ const BQ_COMPONENTS = [
   PaginationComponent,
   PercentageFieldComponent,
   RadioButtonComponent,
+  ReadonlyComponent,
   SlideToggleComponent,
   StringFieldComponent,
   TableComponent,
-  TableReadonlyComponent,
   TableSearchComponent,
   TableSortComponent,
   TextItemComponent
@@ -86,7 +92,6 @@ const BQ_MAT_COMPONENTS = [
     ProjectComponent,
     BQ_COMPONENTS,
     BQ_MAT_COMPONENTS
-
   ],
   imports: [
     BrowserModule,
@@ -100,11 +105,19 @@ const BQ_MAT_COMPONENTS = [
     BrowserAnimationsModule,
     BlueriqFormsModule.forRoot(),
     MaterialModule,
+    FormattingModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
     OwlDateTimeModule,
     OwlMomentDateTimeModule,
-    TextItemModule
+    TextItemModule,
+    EffectsModule.forFeature([
+      PageValidationEffect
+    ]),
+    StoreDevtoolsModule.instrument({
+      name: 'Blueriq',
+      logOnly: environment.production // Restrict extension to log-only mode
+    })
   ],
   providers: [
     BlueriqComponents.register(BQ_COMPONENTS),

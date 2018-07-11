@@ -1,9 +1,10 @@
-import { Component, Host, OnInit } from '@angular/core';
+import { Component, Host } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { BlueriqFormBuilder } from '@blueriq/angular/forms';
 import { Field } from '@blueriq/core';
 import { Moment } from 'moment';
 import { DateTimeAdapter } from 'ng-pick-datetime';
+import { PresentationStyles } from '../../../presentationstyles/presentationstyles';
 import { MomentTransformer } from '../moment-transformer';
 import { dateTimeFormatProvider } from './datetimepicker.owl';
 
@@ -16,19 +17,17 @@ import { dateTimeFormatProvider } from './datetimepicker.owl';
   type: Field,
   selector: '[dataType=date],[dataType=datetime]'
 })
-export class DateTimepickerComponent implements OnInit {
+export class DateTimepickerComponent {
 
-  formControl = this.form.control(this.field, { updateOn: 'blur', transformer: MomentTransformer });
+  formControl = this.form.control(this.field, {
+    updateOn: 'blur',
+    transformer: MomentTransformer,
+    disableWhen: PresentationStyles.DISABLED
+  });
 
   constructor(@Host() public field: Field,
               private form: BlueriqFormBuilder,
               private adapter: DateTimeAdapter<Moment>) {
-  }
-
-  ngOnInit(): void {
-    if (this.isDisabled()) {
-      this.formControl.disable();
-    }
   }
 
   /**
@@ -57,11 +56,6 @@ export class DateTimepickerComponent implements OnInit {
     if (event.value) {
       event.source.value = event.value;
     }
-  }
-
-  /** Whether the select has a presentation style Disabled */
-  isDisabled() {
-    return this.field.styles.has('Disabled');
   }
 
   /** Show only the datepicker when the field datatype is `date` */
