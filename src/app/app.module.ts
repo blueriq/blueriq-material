@@ -12,6 +12,7 @@ import { StoreModule } from '@ngrx/store';
 import { OwlDateTimeModule } from 'ng-pick-datetime';
 import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
 import { AppComponent } from './app.component';
+import { BqKeyDirective } from "./blueriq/generic/bq-key/bq-key.directive";
 import { ElementComponent } from './blueriq/generic/element/element.component';
 import { ContainerComponent } from './blueriq/material/container/container.component';
 import { DocumentLinkComponent } from './blueriq/material/document-link/document-link.component';
@@ -75,7 +76,8 @@ const BQ_COMPONENTS = [
 ];
 
 const BQ_MAT_COMPONENTS = [
-  ElementComponent
+  ElementComponent,
+  BqKeyDirective
 ];
 
 @NgModule({
