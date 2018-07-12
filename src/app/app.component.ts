@@ -8,7 +8,7 @@ import { ErrorService } from './blueriq/error/error.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  error: { errorType: string, title: string, message: string, details?: string };
+  error: { errorType: string, title: string, message: string, details?: string } | null;
 
   constructor(private errorService: ErrorService,
               private titleService: Title) {

@@ -1,30 +1,31 @@
 @import '../../../theme/globals/variables';
+@import '~@angular/material/theming';
 
 .error-container {
   position: absolute;
-  z-index: $z-index-drawer + 200;
   top: 0;
-  left: 0;
   right: 0;
   bottom: 0;
+  left: 0;
+  z-index: $z-index-drawer + 200;
 
   .error {
+    @include mat-elevation(2);
+
     width: 350px;
     padding: $bq-base-margin;
-    text-align: center;
     background-color: $bq-secondary-red;
     color: $white-87-opacity;
-
-    @include mat-elevation(2);
+    text-align: center;
 
     img {
       margin-top: 3 * $bq-base-margin;
     }
 
     .error-title {
-      font-weight: normal;
-      font-size: 48px;
       margin-bottom: 12px;
+      font-size: 48px;
+      font-weight: normal;
     }
 
     .error-message {
@@ -34,7 +35,7 @@
     .error-details {
       width: 250px;
       padding: $bq-base-margin;
-      background-color: rgba(255, 255, 255, 0.37);
+      background-color: $bq-white-37-opacity;
     }
 
     .error-button {
@@ -49,11 +50,11 @@
 
 .backdrop {
   position: fixed;
-  opacity: .5;
-  background-color: $bq-grey-medium;
   top: 0;
-  left: 0;
   right: 0;
   bottom: 0;
+  left: 0;
+  background-color: $bq-grey-medium;
+  opacity: .5;
   z-index: $z-index-drawer + 100;
 }

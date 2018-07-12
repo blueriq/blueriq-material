@@ -14,13 +14,13 @@ export class ErrorComponent {
   closable = false;
 
   @Output()
-  onClosed: EventEmitter<void> = new EventEmitter<void>();
+  closed: EventEmitter<void> = new EventEmitter<void>();
 
   constructor() {
   }
 
   close(): void {
-    this.onClosed.emit();
+    this.closed.emit();
   }
 
 }
