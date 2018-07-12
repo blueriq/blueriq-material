@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'bq-error',
@@ -8,9 +8,19 @@ import { Component, Input } from '@angular/core';
 export class ErrorComponent {
 
   @Input()
-  error: { errorType: string, title: string, message: string };
+  error: { errorType: string, title: string, message: string, details?: string };
+
+  @Input()
+  closable = false;
+
+  @Output()
+  onClosed: EventEmitter<void> = new EventEmitter<void>();
 
   constructor() {
+  }
+
+  close(): void {
+    this.onClosed.emit();
   }
 
 }

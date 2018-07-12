@@ -10,17 +10,40 @@
 
   .error {
     width: 350px;
-    height: 70%;
-    padding: 12px;
+    padding: $bq-base-margin;
+    text-align: center;
     background-color: $bq-secondary-red;
     color: $white-87-opacity;
 
     @include mat-elevation(2);
-  }
 
-  .error-icon {
-    padding: 4px;
-    color: $white-87-opacity;
+    img {
+      margin-top: 3 * $bq-base-margin;
+    }
+
+    .error-title {
+      font-weight: normal;
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+
+    .error-message {
+      font-size: 12px;
+    }
+
+    .error-details {
+      width: 250px;
+      padding: $bq-base-margin;
+      background-color: rgba(255, 255, 255, 0.37);
+    }
+
+    .error-button {
+      width: 100%;
+
+      button {
+        text-transform: uppercase;
+      }
+    }
   }
 }
 

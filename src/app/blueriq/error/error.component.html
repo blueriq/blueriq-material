@@ -4,12 +4,14 @@
   <div class="error">
     <div fxFlex fxLayout="column" fxLayoutAlign="space-around center">
       <img src="/theme/images/oops-icon.svg" height="175">
-      <div>
-        <h1>
-          <span>{{ error.title }}</span>
-        </h1>
-        <p innerHTML="{{ error.message }}"></p>
-      </div>
+      <p class="error-title">{{ error.title }}</p>
+      <p class="error-rmessage" innerHTML="{{ error.message }}"></p>
+      <p class="error-details" *ngIf="error.details">
+        {{ error.details }}
+      </p>
+      <p class="error-button" *ngIf="closable" fxLayout="column" fxLayoutAlign="start end">
+        <button mat-button (click)="close()">close</button>
+      </p>
     </div>
   </div>
 </div>
