@@ -1,0 +1,9 @@
+@import '../../../../theme/globals/variables';
+
+.my-drop-zone {
+  border: dotted 3px $bq-grey-medium;
+}
+
+.nv-file-over {
+  border: dotted 3px $bq-secondary-red;
+}

@@ -4,6 +4,7 @@ import { Button } from '@blueriq/core';
 import { PresentationStyles } from '../../presentationstyles/presentationstyles';
 
 @Component({
+  selector: 'bq-button',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss']
 })

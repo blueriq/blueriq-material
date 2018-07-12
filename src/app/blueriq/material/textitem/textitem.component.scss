@@ -4,6 +4,9 @@
 
 .text-item {
   display: flex;
+  color: $dark-primary-text;
+  font-size: 14px;
+  line-height: 20px;
 
   .gutter {
     display: flex;

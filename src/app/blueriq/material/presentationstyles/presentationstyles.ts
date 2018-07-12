@@ -3,6 +3,7 @@ export class PresentationStyles {
   static BUTTON = 'button';
   static DANGER = 'Danger';
   static DISABLED = 'Disabled';
+  static EXPLAINICON = 'explainicon';
   static HORIZONTAL = 'horizontal';
   static INFO = 'Info';
   static MATERIAL = 'material';

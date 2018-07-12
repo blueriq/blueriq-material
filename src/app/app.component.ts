@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ErrorService } from './blueriq/error/error.service';
 
 @Component({
@@ -9,12 +10,17 @@ import { ErrorService } from './blueriq/error/error.service';
 export class AppComponent implements OnInit {
   error: { errorType: string, title: string, message: string };
 
-  constructor(private errorService: ErrorService) {
+  constructor(private errorService: ErrorService,
+              private titleService: Title) {
   }
 
   ngOnInit(): void {
     this.errorService.getError().subscribe((error) => {
       this.error = error;
     });
+  }
+
+  getPageTitle(): string {
+    return this.titleService.getTitle();
   }
 }
