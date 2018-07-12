@@ -147,6 +147,12 @@
   dependencies:
     tslib "^1.9.0"
 
+"@angular/flex-layout@^6.0.0-beta.16":
+  version "6.0.0-beta.16"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/flex-layout/-/flex-layout-6.0.0-beta.16.tgz?dl=https://registry.yarnpkg.com/@angular/flex-layout/-/flex-layout-6.0.0-beta.16.tgz#e2749c2609743ff4655b09ae8873709c7a62aeae"
+  dependencies:
+    tslib "^1.7.1"
+
 "@angular/forms@^6.0.1":
   version "6.0.7"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/forms/-/forms-6.0.7.tgz#1c6740b3b6b88fadcb1dc48862d102575c8d0f6e"

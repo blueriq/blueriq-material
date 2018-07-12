@@ -4,8 +4,7 @@ import { BlueriqComponent } from '@blueriq/angular';
 import { Page } from '@blueriq/core';
 
 @Component({
-  templateUrl: './page.component.html',
-  styleUrls: ['./page.component.scss']
+  templateUrl: './page.component.html'
 })
 @BlueriqComponent({
   type: Page
@@ -13,7 +12,7 @@ import { Page } from '@blueriq/core';
 export class PageComponent {
 
   constructor(@Host() public page: Page, private titleService: Title) {
-    this.titleService.setTitle(page.name);
+    this.titleService.setTitle(page.displayName);
   }
 
 }

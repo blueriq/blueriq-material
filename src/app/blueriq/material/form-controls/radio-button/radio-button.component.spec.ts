@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
@@ -19,6 +20,7 @@ describe('RadioButtonComponent', () => {
       providers: [BlueriqComponents.register([RadioButtonComponent])],
       imports: [
         MaterialModule,
+        FlexLayoutModule,
         BlueriqTestingModule
       ]
     });

@@ -2,6 +2,7 @@
 @import './color-palettes';
 
 $bq-font-family: 'Roboto', Arial, 'Helvetica Neue', sans-serif;
+$bq-base-margin: 12px;
 
 $bq-primary-blue: mat-color($bq-mat-primary-blue, 500);
 $bq-primary-purple: mat-color($bq-mat-primary-purple, 500);
@@ -18,8 +19,6 @@ $bq-secondary-yellow: mat-color($bq-mat-accent-yellow, 500);
 $bq-grey-dark: mat-color($bq-mat-grey-dark, 500);
 $bq-grey-medium: mat-color($bq-mat-grey-medium, 500);
 $bq-grey-light: mat-color($bq-mat-grey-light, 500);
-
-$bq-toolbar-background: #fff;
 
 // Material theme color definitions, change this to change color scheme's
 $bq-mat-primary: $bq-mat-primary-blue;

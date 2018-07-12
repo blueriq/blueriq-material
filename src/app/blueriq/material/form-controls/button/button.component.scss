@@ -1,3 +1,5 @@
+@import '../../../../../theme/globals/variables';
+
 button {
-  margin: 12px;
+  margin: $bq-base-margin $bq-base-margin $bq-base-margin 0;
 }
