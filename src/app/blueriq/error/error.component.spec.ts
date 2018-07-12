@@ -1,22 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatIconModule } from '@angular/material';
-import { ActivatedRoute } from '@angular/router';
-import { of } from 'rxjs';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { ErrorComponent } from './error.component';
 
-describe('ErrorComponent', () => {
+fdescribe('ErrorComponent', () => {
   let component: ErrorComponent;
   let fixture: ComponentFixture<ErrorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ErrorComponent],
-      imports: [MatIconModule],
-      providers: [{
-        provide: ActivatedRoute, useValue: {
-          queryParamMap: of({ get: (key) => 'value' })
-        }
-      }]
+      imports: [FlexLayoutModule]
     })
     .compileComponents();
   }));
@@ -24,6 +17,12 @@ describe('ErrorComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ErrorComponent);
     component = fixture.componentInstance;
+    component.error = {
+      errorType: 'NOT_FOUND',
+      title: 'Not found',
+      message: 'Unknown flow: Demo',
+      details: 'Some stack trace'
+    };
     fixture.detectChanges();
   });
 
