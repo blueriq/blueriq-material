@@ -9,8 +9,8 @@
   @include mat-elevation(1);
 
   max-width: 728px; // TODO make responsive
-  margin: 24px auto;
-  padding: 24px;
+  margin: 2*$bq-base-margin auto;
+  padding: 2*$bq-base-margin;
   background: map-get($mat-light-theme-background, card);
 
   h2 {
