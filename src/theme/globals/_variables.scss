@@ -2,6 +2,7 @@
 @import './color-palettes';
 
 $bq-font-family: 'Roboto', Arial, 'Helvetica Neue', sans-serif;
+$bq-base-margin: 12px;
 
 $bq-primary-blue: mat-color($bq-mat-primary-blue, 500);
 $bq-primary-purple: mat-color($bq-mat-primary-purple, 500);
