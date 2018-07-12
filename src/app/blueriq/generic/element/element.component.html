@@ -1,5 +1,5 @@
 <div>
-  <div [fxFlex]>
+  <div fxFlex>
     <ng-content></ng-content>
     <div class="labels" *ngIf="!hasPresentationStyleExplainIcon()">
       <mat-hint *ngIf="!hasMessages()">{{field.explainText}}</mat-hint>
