@@ -8,20 +8,24 @@ exports.config = {
   specs: [
     './src/**/*.e2e-spec.ts'
   ],
-  capabilities: {
-    'browserName': 'chrome',
-    'chromeOptions': {
-      args: ['--headless', '--disable-gpu', '--window-size=1024x786']
-    }
-  },
+  multiCapabilities: [
+   {
+     'browserName': 'chrome'
+   },
+   {
+     'browserName': 'firefox'
+   }
+  ],
+  maxSessions: 1,
+  seleniumServerJar: 'D:/tools/protractor/selenium-server-standalone-3.13.0.jar',
+  chromeDriver: 'D:/tools/protractor/chromedriver_2.40.exe',
+  geckoDriver: '‪../../../../tools/protractor/geckodriver-v0.21.0.exe',
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,
     defaultTimeoutInterval: 30000,
-    print: function () {
-    }
   },
   onPrepare() {
     require('ts-node').register({

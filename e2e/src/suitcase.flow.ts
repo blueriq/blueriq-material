@@ -2,7 +2,7 @@ import { browser, by, element } from 'protractor';
 
 export class SuitcaseFlow {
 
-  private path = '/flow/studio-Suitcase-Suitcase/Start';
+  private path = '/flow/export-Kinderbijslag/Start';
 
   get toolbarText() {
     return element(by.css('bq-app-root mat-toolbar')).getText();
@@ -17,7 +17,7 @@ export class SuitcaseFlow {
   }
 
   get continueButton() {
-    return element(by.buttonText('Continue'));
+    return element(by.buttonText('Bereken kinderbijslag'));
   }
 
   get nrOfValidations() {
@@ -25,7 +25,7 @@ export class SuitcaseFlow {
   }
 
   get requiredStringField() {
-    return element(by.id('P3-C4-F5')).element(by.tagName('input'));
+    return element(by.id('P960_Verzekerde-Voornaam_1')).element(by.tagName('input'));
   }
 
   start() {

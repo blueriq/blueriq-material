@@ -79,8 +79,10 @@ node {
             bat "yarn build"
           }
         }
-      )
+      );
+    }
 
+    stage('e2e tests'){
       bat 'yarn e2e'
     }
 
