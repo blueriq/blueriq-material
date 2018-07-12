@@ -83,7 +83,18 @@ node {
     }
 
     stage('e2e tests'){
-      bat 'yarn e2e'
+      try{
+        bat "copy dist/ e2e/docker";
+        dir("e2e/docker"){
+          bat 'docker-compose -up -d --build';
+        }
+        bat 'yarn e2e'
+      }finally{
+        dir("e2e/docker"){
+          bat 'docker-compose -down --rmi all';
+        }
+      }
+
     }
 
     if (params.deploySnapshot) {

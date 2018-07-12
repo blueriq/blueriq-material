@@ -21,7 +21,7 @@ exports.config = {
   chromeDriver: 'D:/tools/protractor/chromedriver_2.40.exe',
   geckoDriver: '‪../../../../tools/protractor/geckodriver-v0.21.0.exe',
   directConnect: true,
-  baseUrl: 'http://localhost:4200/',
+  baseUrl: '***REMOVED***',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,
