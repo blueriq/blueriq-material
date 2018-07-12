@@ -92,7 +92,7 @@ node {
         bat 'yarn e2e'
       }finally{
         dir("e2e/docker"){
-          bat 'docker-compose -down --rmi all';
+          bat 'docker-compose down --rmi all';
         }
       }
 
