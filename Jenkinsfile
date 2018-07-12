@@ -84,7 +84,8 @@ node {
 
     stage('e2e tests'){
       try{
-        bat "copy dist/ e2e/docker";
+        bat "md e2e\\docker\\dist";
+        bat "xcopy /I dist e2e\\docker\\dist";
         dir("e2e/docker"){
           bat 'docker-compose -up -d --build';
         }
