@@ -1,22 +1,36 @@
 @import '../../../theme/globals/variables';
 
-.error {
-  display: flex;
-  z-index: 200;
+.error-container {
+  position: absolute;
+  z-index: $z-index-drawer + 200;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  .error {
+    width: 350px;
+    height: 70%;
+    padding: 12px;
+    background-color: $bq-secondary-red;
+    color: $white-87-opacity;
+
+    @include mat-elevation(2);
+  }
 
   .error-icon {
     padding: 4px;
-    color: $bq-secondary-red;
+    color: $white-87-opacity;
   }
 }
 
 .backdrop {
   position: fixed;
   opacity: .5;
-  background-color: #ddd;
+  background-color: $bq-grey-medium;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 100;
+  z-index: $z-index-drawer + 100;
 }

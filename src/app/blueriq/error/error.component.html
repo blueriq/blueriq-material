@@ -1,11 +1,15 @@
-<div class="error">
-  <mat-icon class="error-icon">error</mat-icon>
-  <div>
-    <h1>
-      <span>{{ error.title }}</span>
-    </h1>
-    <p innerHTML="{{ error.message }}"></p>
-  </div>
-</div>
 <div class="backdrop">
+</div>
+<div class="error-container" fxFlex fxLayoutAlign="center center">
+  <div class="error">
+    <div fxFlex fxLayout="column" fxLayoutAlign="space-around center">
+      <img src="/theme/images/oops-icon.svg" height="175">
+      <div>
+        <h1>
+          <span>{{ error.title }}</span>
+        </h1>
+        <p innerHTML="{{ error.message }}"></p>
+      </div>
+    </div>
+  </div>
 </div>
