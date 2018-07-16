@@ -19,6 +19,7 @@ node {
 
     stage('checkout') {
       checkout scm;
+      bat "git checkout ${params.BRANCH_NAME }";
     }
 
     stage('install') {
@@ -36,9 +37,8 @@ node {
       try{
         bat "md e2e\\docker\\dist";
         bat "xcopy /I dist e2e\\docker\\dist";
-        dir("e2e/docker"){
-          bat 'docker-compose up --build --detach';
-        }
+        bat 'docker-compose --file .\\e2e\\docker\\docker-compose.yml build';
+        bat 'docker-compose --file .\\e2e\\docker\\docker-compose.yml up -d';
         bat 'yarn e2e';
       }finally{
         dir("e2e/docker"){
