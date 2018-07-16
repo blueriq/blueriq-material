@@ -23,15 +23,18 @@ exports.config = {
    }
   ],
   maxSessions: 1,
-  seleniumServerJar: '../../../../../../../Tools/protractor/selenium-server-standalone-3.13.0.jar',
-  chromeDriver: '../../../../../../../Tools/protractor/chromedriver_2.40.exe',
-  geckoDriver: '‪../../../../../../../Tools/protractor/geckodriver-v0.21.0.exe',
+  seleniumServerJar: '../../../../../../../tools/protractor/selenium-server-standalone-3.13.0.jar',
+  chromeDriver: '../../../../../../../tools/protractor/chromedriver_2.40.exe',
+  geckoDriver: '‪../../../../../../../tools/protractor/geckodriver-v0.21.0.exe',
   directConnect: true,
   baseUrl: '***REMOVED***',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,
     defaultTimeoutInterval: 30000,
+  },
+  localSeleniumStandaloneOpts: {
+    jvmArgs: ["-Dwebdriver.gecko.driver=‪D:\\tools\\protractor\\geckodriver-v0.21.0.exe"]
   },
   onPrepare() {
     require('ts-node').register({
