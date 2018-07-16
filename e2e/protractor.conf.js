@@ -19,8 +19,8 @@ exports.config = {
      browserName: 'firefox',
      marionette: true,
      'moz:firefoxOptions': {
-       args: [ "--headless" ],
-       binary: "‪D:\\tools\\Firefox-61.0.1-64bit\\firefox.exe"
+       args: [ '--headless' ],
+       binary: '‪D:\\tools\\Firefox-61.0.1-64bit\\firefox.exe'
      }
    }
   ],
@@ -36,7 +36,7 @@ exports.config = {
     defaultTimeoutInterval: 30000,
   },
   localSeleniumStandaloneOpts: {
-    jvmArgs: ["-Dwebdriver.gecko.driver=‪D:\\tools\\protractor\\geckodriver-v0.21.0.exe"]
+    jvmArgs: ['-Dwebdriver.gecko.driver=‪D:\\tools\\protractor\\geckodriver-v0.21.0.exe']
   },
   onPrepare() {
     require('ts-node').register({
