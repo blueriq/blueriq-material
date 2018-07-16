@@ -10,13 +10,14 @@ exports.config = {
   ],
   multiCapabilities: [
    {
-     'browserName': 'chrome',
+     browserName: 'chrome',
      chromeOptions: {
        args: ['--headless', '--disable-gpu', '--window-size=1024x786']
      }
    },
    {
-     'browserName': 'firefox',
+     browserName: 'firefox',
+     marionette: true,
      'moz:firefoxOptions': {
        args: [ "--headless" ],
        binary: "D:\\tools\\protractor\\geckodriver-v0.21.0.exe"
