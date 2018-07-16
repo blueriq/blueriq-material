@@ -14,7 +14,7 @@ properties([
 
 node {
   try {
-    env.PATH = "${env.PATH};${env.NODEJS_PATH}\"";
+    env.PATH = "${env.PATH};D:\\tools\\Firefox-61.0.1-64bit\\firefox.exe;${env.NODEJS_PATH}\"";
     env.SASS_BINARY_PATH = env.SASS_BINDING_PATH;
 
     stage('checkout') {

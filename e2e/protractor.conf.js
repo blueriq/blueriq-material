@@ -19,8 +19,7 @@ exports.config = {
      browserName: 'firefox',
      marionette: true,
      'moz:firefoxOptions': {
-       args: [ '--headless' ],
-       binary: '‪D:\\tools\\Firefox-61.0.1-64bit\\firefox.exe'
+       args: [ '--headless' ]
      }
    }
   ],
