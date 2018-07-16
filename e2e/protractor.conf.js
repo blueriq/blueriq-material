@@ -20,7 +20,7 @@ exports.config = {
      marionette: true,
      'moz:firefoxOptions': {
        args: [ "--headless" ],
-       binary: "D:\\tools\\protractor\\geckodriver-v0.21.0.exe"
+       binary: "‪D:\\tools\\Firefox-61.0.1-64bit\\firefox.exe"
      }
    }
   ],
