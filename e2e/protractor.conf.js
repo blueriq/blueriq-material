@@ -26,7 +26,7 @@ exports.config = {
   maxSessions: 1,
   seleniumServerJar: '../../../../../../../tools/protractor/selenium-server-standalone-3.13.0.jar',
   chromeDriver: '../../../../../../../tools/protractor/chromedriver_2.40.exe',
-  geckoDriver: '‪../../../../../../../tools/protractor/geckodriver-v0.21.0.exe',
+  //geckoDriver: '‪../../../../../../../tools/protractor/geckodriver-v0.21.0.exe',
   directConnect: true,
   baseUrl: '***REMOVED***',
   framework: 'jasmine',
