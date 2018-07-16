@@ -18,7 +18,8 @@ exports.config = {
    {
      'browserName': 'firefox',
      'moz:firefoxOptions': {
-       args: [ "--headless" ]
+       args: [ "--headless" ],
+       binary: "D:\\tools\\protractor\\geckodriver-v0.21.0.exe"
      }
    }
   ],
