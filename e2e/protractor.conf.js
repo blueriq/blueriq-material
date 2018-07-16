@@ -10,10 +10,16 @@ exports.config = {
   ],
   multiCapabilities: [
    {
-     'browserName': 'chrome'
+     'browserName': 'chrome',
+     chromeOptions: {
+       args: ['--headless', '--disable-gpu', '--window-size=1024x786']
+     }
    },
    {
-     'browserName': 'firefox'
+     'browserName': 'firefox',
+     'moz:firefoxOptions': {
+       args: [ "--headless" ]
+     }
    }
   ],
   maxSessions: 1,
