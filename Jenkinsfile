@@ -81,23 +81,6 @@ node {
         }
       );
     }
-
-    stage('e2e tests'){
-      try{
-        bat "md e2e\\docker\\dist";
-        bat "xcopy /I dist e2e\\docker\\dist";
-        dir("e2e/docker"){
-          bat 'docker-compose -up -d --build';
-        }
-        bat 'yarn e2e'
-      }finally{
-        dir("e2e/docker"){
-          bat 'docker-compose down --rmi all';
-        }
-      }
-
-    }
-
     if (params.deploySnapshot) {
       stage('deploy snapshot') {
         bat "mvn clean deploy"
