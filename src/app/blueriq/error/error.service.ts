@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 @Injectable()
 export class ErrorService {
 
-  error: Subject<{ errorType: string, title: string, message: string }>;
+  private readonly error: Subject<{ errorType: string, title: string, message: string }>;
 
   constructor() {
     this.error = new Subject<{ errorType: string, title: string, message: string }>();
