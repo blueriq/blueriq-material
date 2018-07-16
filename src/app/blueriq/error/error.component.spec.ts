@@ -28,5 +28,24 @@ describe('ErrorComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('.error-button')).toBeFalsy();
   });
+
+  it('should be closable', () => {
+    component.closable = true;
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('.error-button')).toBeTruthy();
+  });
+
+  it('should close', () => {
+    spyOn(component.closed, 'emit');
+    component.closable = true;
+    fixture.detectChanges();
+
+    component.close();
+    expect(component.closed.emit).toHaveBeenCalledTimes(1);
+
+  });
+
 });
