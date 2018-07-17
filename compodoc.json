@@ -8,11 +8,11 @@
   "disableDomTree": true,
   "disableCoverage": true,
   "disableGraph": false,
-  "disablePrivate": true,
-  "disableProtected": true,
+  "disablePrivate": false,
+  "disableProtected": false,
   "disableInternal": true,
   "disableLifeCycleHooks": true,
-  "disableRoutesGraph": true,
+  "disableRoutesGraph": false,
   "includes": "docs",
   "includesName": "Guide"
 }
