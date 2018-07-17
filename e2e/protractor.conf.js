@@ -43,13 +43,14 @@ exports.config = {
     jasmine.getEnv().addReporter(new SpecReporter({spec: {displayStacktrace: true}}));
 
     return browser.getCapabilities().then(function(value) {
-      var browserName = value.get('browserName');
+      var reportName = value.get('browserName');
       jasmine.getEnv().addReporter(new Jasmine2HtmlReporter({
-        savePath: './testresults/' + browserName,
+        savePath: './testresults',
         cleanDestination: false,
         screenshotsFolder: 'images',
         takeScreenshots: true,
-        takeScreenshotsOnlyOnFailures: true
+        takeScreenshotsOnlyOnFailures: true,
+        filePrefix: reportName + ".html"
       }));
     });
   }
