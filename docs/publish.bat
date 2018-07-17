@@ -1,10 +1,10 @@
 @echo off
 setlocal
 
-cd "%~dp0\.."
+cd "%~dp0\..\.."
 
 set version=%1
-set targetDir=\\bq-comm\ApiDocs\matherial\%version%
+set targetDir=\\bq-comm\ApiDocs\material\%version%
 
 if "%version%"=="" (
   echo Error: Provide the version to release as first argument
@@ -12,10 +12,9 @@ if "%version%"=="" (
 )
 
 if not exist "%targetDir%" (
-  mkdir "%targetDir%\\core" "%targetDir%\\angular"
+  mkdir "%targetDir%"
 )
 
 pushd dist\docs
-xcopy /s/y core "%targetDir%\core"
-xcopy /s/y angular "%targetDir%\angular"
+xcopy /s/y ".\*" "%targetDir%"
 popd
