@@ -40,7 +40,7 @@ exports.config = {
       project: require('path').join(__dirname, './tsconfig.e2e.json')
     });
     require('jasmine-reporters');
-    //jasmine.getEnv().addReporter(new SpecReporter({spec: {displayStacktrace: true}}));
+    jasmine.getEnv().addReporter(new SpecReporter({spec: {displayStacktrace: true}}));
 
     // returning the promise makes protractor wait for the reporter config before executing tests
     return browser.getProcessedConfig().then(function(config) {

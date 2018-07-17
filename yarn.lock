@@ -3749,6 +3749,13 @@ jasmine-core@~3.1.0:
   version "3.1.0"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/jasmine-core/-/jasmine-core-3.1.0.tgz?dl=https://registry.yarnpkg.com/jasmine-core/-/jasmine-core-3.1.0.tgz#a4785e135d5df65024dfc9224953df585bd2766c"
 
+jasmine-reporters@2.3.1:
+  version "2.3.1"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/jasmine-reporters/-/jasmine-reporters-2.3.1.tgz#f42d578e996696163431d911c31679719fb43b3b"
+  dependencies:
+    mkdirp "^0.5.1"
+    xmldom "^0.1.22"
+
 jasmine-spec-reporter@~4.2.1:
   version "4.2.1"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/jasmine-spec-reporter/-/jasmine-spec-reporter-4.2.1.tgz?dl=https://registry.yarnpkg.com/jasmine-spec-reporter/-/jasmine-spec-reporter-4.2.1.tgz#1d632aec0341670ad324f92ba84b4b32b35e9e22"
@@ -7370,6 +7377,10 @@ xmlbuilder@>=1.0.0:
 xmlbuilder@~9.0.1:
   version "9.0.7"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/xmlbuilder/-/xmlbuilder-9.0.7.tgz?dl=https://registry.yarnpkg.com/xmlbuilder/-/xmlbuilder-9.0.7.tgz#132ee63d2ec5565c557e20f4c22df9aca686b10d"
+
+xmldom@^0.1.22:
+  version "0.1.27"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/xmldom/-/xmldom-0.1.27.tgz#d501f97b3bdb403af8ef9ecc20573187aadac0e9"
 
 xmlhttprequest-ssl@~1.5.4:
   version "1.5.5"
