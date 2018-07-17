@@ -19,7 +19,8 @@ exports.config = {
      browserName: 'firefox',
      marionette: true,
      'moz:firefoxOptions': {
-       args: [ '--headless' ]
+       args: [ '--headless' ],
+       binary: 'D:\\tools\\Firefox-61.0.1-32bit\\firefox.exe'
      }
    }
   ],
@@ -34,9 +35,6 @@ exports.config = {
     showColors: true,
     defaultTimeoutInterval: 30000,
   },
-  // localSeleniumStandaloneOpts: {
-  //   jvmArgs: ['-Dwebdriver.gecko.driver=‪D:\\tools\\protractor\\geckodriver-v0.21.0.exe']
-  // },
   onPrepare() {
     require('ts-node').register({
       project: require('path').join(__dirname, './tsconfig.e2e.json')
