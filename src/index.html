@@ -11,7 +11,7 @@
       return '/';
     }
 
-    document.write("<base href='" + getBaseHref() + "' >");
+ document.write("<base href='" + getBaseHref() + "' >");
 
   </script>
   <meta charset="utf-8">
@@ -24,6 +24,10 @@
   <meta name="theme-color" content="#0077e5">
 </head>
 <body>
-<bq-app-root>loading..</bq-app-root>
+<bq-app-root>
+  <div class="loading" style="position: relative; height: 100%; text-align: center;">
+    <img src="/theme/images/spinner_e.gif" style="position: absolute; top: 0; bottom: 0; margin: auto;">
+  </div>
+</bq-app-root>
 </body>
 </html>

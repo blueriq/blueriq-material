@@ -10,9 +10,14 @@ import { Page } from '@blueriq/core';
   type: Page
 })
 export class PageComponent {
+  //
+  // loading: boolean = true;
 
   constructor(@Host() public page: Page, private titleService: Title) {
     this.titleService.setTitle(page.displayName);
   }
 
+  // ngOnInit() {
+  //   this.loading = false;
+  // }
 }
