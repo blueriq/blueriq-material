@@ -13,7 +13,8 @@ exports.config = {
    {
      browserName: 'chrome',
      chromeOptions: {
-       args: ['--headless', '--disable-gpu', '--window-size=1024x786']
+       args: ['--headless', '--disable-gpu', '--window-size=1024x786'],
+       binary: 'D:\\tools\\ChromePortable-67.0.3396.99\\chrome.exe'
      }
    },
    {
