@@ -3,6 +3,7 @@
 
 const {SpecReporter} = require('jasmine-spec-reporter');
 var Jasmine2HtmlReporter = require('protractor-jasmine2-html-reporter');
+var parallelHtmlReporter = new ProtractorJasmine2ParallelHtmlReporter('./reports')
 
 exports.config = {
   allScriptsTimeout: 11000,
@@ -42,17 +43,14 @@ exports.config = {
     });
     jasmine.getEnv().addReporter(new SpecReporter({spec: {displayStacktrace: true}}));
 
-    // returning the promise makes protractor wait for the reporter config before executing tests
-    return browser.getProcessedConfig().then(function(config) {
-      // you could use other properties here if you want, such as platform and version
-      var browserName = config.capabilities.browserName;
-      new Jasmine2HtmlReporter({
-        savePath: 'testresults',
+    return browser.getCapabilities().then(function(caps) {
+      var sessionId = caps.caps_['webdriver.remote.sessionid'];
+      jasmine.getEnv().addReporter(new Jasmine2HtmlReporter({
+        savePath: './testresults/' + sessionId,
         screenshotsFolder: 'images',
         takeScreenshots: true,
-        takeScreenshotsOnlyOnFailures: true,
-        fileNamePrefix: browserName + '-results'
-      })
+        takeScreenshotsOnlyOnFailures: true
+      }));
     });
   }
 };
