@@ -19,7 +19,7 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { ErrorComponent } from './blueriq/error/error.component';
 import { ErrorService } from './blueriq/error/error.service';
-import { StartProjectFailedEffect } from './blueriq/generic/effects/start-project-failed.effect';
+import { ErrorEffects } from './blueriq/generic/effects/error.effects';
 import { ElementComponent } from './blueriq/generic/element/element.component';
 import { AssetComponent } from './blueriq/material/asset/asset.component';
 import { ContainerComponent } from './blueriq/material/container/container.component';
@@ -122,7 +122,7 @@ const BQ_MAT_COMPONENTS = [
     TextItemModule,
     EffectsModule.forFeature([
       PageValidationEffect,
-      StartProjectFailedEffect
+      ErrorEffects
     ]),
     StoreDevtoolsModule.instrument({
       name: 'Blueriq',
