@@ -52,7 +52,7 @@ node {
   } finally {
     stage("Publish results") {
       // Test results
-      step([$class: 'JUnitResultArchiver', testResults: 'testresults/*.xml']);
+      publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'testresults', reportFiles: '*.html', reportName: 'E2E HTML Report', reportTitles: ''])
     }
     notifyBuildStatus();
     deleteDir();
