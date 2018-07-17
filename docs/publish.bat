@@ -1,7 +1,7 @@
 @echo off
 setlocal
 
-cd "%~dp0\..\.."
+cd "%~dp0\.."
 
 set version=%1
 set targetDir=\\bq-comm\ApiDocs\material\%version%
@@ -15,6 +15,6 @@ if not exist "%targetDir%" (
   mkdir "%targetDir%"
 )
 
-pushd dist\docs
-xcopy /s/y ".\*" "%targetDir%"
+pushd dist
+xcopy /s/y docs "%targetDir%"
 popd
