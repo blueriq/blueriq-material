@@ -42,10 +42,11 @@ exports.config = {
     });
     jasmine.getEnv().addReporter(new SpecReporter({spec: {displayStacktrace: true}}));
 
-    return browser.getCapabilities().then(function(caps) {
-      var sessionId = caps.caps_['webdriver.remote.sessionid'];
+    return browser.getCapabilities().then(function(value) {
+      var browserName = value.get('browserName');
       jasmine.getEnv().addReporter(new Jasmine2HtmlReporter({
-        savePath: './testresults/' + sessionId,
+        savePath: './testresults/' + browserName,
+        cleanDestination: false,
         screenshotsFolder: 'images',
         takeScreenshots: true,
         takeScreenshotsOnlyOnFailures: true
