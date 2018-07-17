@@ -3,7 +3,6 @@
 
 const {SpecReporter} = require('jasmine-spec-reporter');
 var Jasmine2HtmlReporter = require('protractor-jasmine2-html-reporter');
-var parallelHtmlReporter = new ProtractorJasmine2ParallelHtmlReporter('./reports')
 
 exports.config = {
   allScriptsTimeout: 11000,
