@@ -14,7 +14,7 @@ properties([
 
 node {
   try {
-    env.PATH = "${env.PATH};D:\\tools\\Firefox-61.0.1-32bit\\firefox.exe;${env.NODEJS_PATH}\"";
+    env.PATH = "${env.PATH};D:\\tools\\Firefox-61.0.1-32bit\\firefox.exe;D:\\tools\\ChromePortable-67.0.3396.99;${env.NODEJS_PATH}\"";
     env.SASS_BINARY_PATH = env.SASS_BINDING_PATH;
 
     stage('checkout') {
@@ -37,8 +37,7 @@ node {
       try{
         bat "md e2e\\docker\\dist";
         bat "xcopy /I dist e2e\\docker\\dist";
-        bat 'docker-compose --file .\\e2e\\docker\\docker-compose.yml build';
-        bat 'docker-compose --file .\\e2e\\docker\\docker-compose.yml up -d';
+        bat 'docker-compose --file .\\e2e\\docker\\docker-compose.yml up -d --build';
         bat 'yarn e2e';
       }finally{
         dir("e2e/docker"){
