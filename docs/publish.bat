@@ -4,7 +4,7 @@ setlocal
 cd "%~dp0\.."
 
 set version=%1
-set targetDir=\\bq-comm\ApiDocs\red-cow\%version%
+set targetDir=\\bq-comm\ApiDocs\matherial\%version%
 
 if "%version%"=="" (
   echo Error: Provide the version to release as first argument
