@@ -39,7 +39,8 @@ node {
   try {
     env.JAVA_HOME = tool 'jdk1.8.0_121'
     def mvnHome = tool "apache-maven-3.5.3"
-    env.PATH = "${env.JAVA_HOME}\\bin;${env.PATH};${mvnHome}\\bin;${env.NODEJS_PATH}\""
+    def chromeLocation= 'D:\\tools\\ChromePortable-67.0.3396.99';
+    env.PATH = "${env.JAVA_HOME}\\bin;${env.PATH};${chromeLocation};${mvnHome}\\bin;${env.NODEJS_PATH}\""
     env.SASS_BINARY_PATH = env.SASS_BINDING_PATH
 
     stage('checkout') {
