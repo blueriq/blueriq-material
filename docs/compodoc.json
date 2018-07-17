@@ -1,0 +1,16 @@
+{
+  "tsconfig": "docs/tsconfig.compodoc.json",
+  "name": "@blueriq/material",
+  "output": "../bipz/docz",
+  "extTheme": ".",
+  "hideGenerator": true,
+  "disableSourceCode": true,
+  "disableDomTree": true,
+  "disableCoverage": true,
+  "disableGraph": true,
+  "disablePrivate": true,
+  "disableProtected": true,
+  "disableInternal": true,
+  "disableLifeCycleHooks": true,
+  "disableRoutesGraph": true
+}

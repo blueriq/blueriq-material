@@ -2,8 +2,13 @@
 
 boolean isMaster = BRANCH_NAME == 'master'
 String triggerCron = isMaster ? "H 13 * * 7" : ""
+def logRotator = [
+  $class  : 'BuildDiscarderProperty',
+  strategy: [$class: 'LogRotator', numToKeepStr: '5']
+]
 
 properties([
+  logRotator,
   [
     $class  : 'BuildDiscarderProperty',
     strategy: [$class: 'LogRotator', numToKeepStr: '5']
@@ -87,11 +92,16 @@ node {
         bat "mvn clean deploy"
       }
     } else if (params.isRelease) {
-//      stage('increment version for release') {
-//        bat "yarn version:increment ${params.releaseVersion}"
-//      }
+      //      stage('increment version for release') {
+      //        bat "yarn version:increment ${params.releaseVersion}"
+      //      }
       stage('release') {
         bat "mvn -B -DdevelopmentVersion=${params.developmentVersion} -DreleaseVersion=${params.releaseVersion} -Dresume=false release:prepare release:perform"
+      }
+
+      stage('publish docs') {
+        bat "yarn docs --silent --name \"@blueriq/material — ${params.releaseVersion}\""
+        bat "yarn docs:publish ${params.releaseVersion}"
       }
     } // end if
 
