@@ -2,6 +2,7 @@
 // https://github.com/angular/protractor/blob/master/lib/config.ts
 
 const {SpecReporter} = require('jasmine-spec-reporter');
+var Jasmine2HtmlReporter = require('protractor-jasmine2-html-reporter');
 
 exports.config = {
   allScriptsTimeout: 11000,
@@ -45,15 +46,13 @@ exports.config = {
     return browser.getProcessedConfig().then(function(config) {
       // you could use other properties here if you want, such as platform and version
       var browserName = config.capabilities.browserName;
-
-        new Jasmine2HtmlReporter({
-          savePath: 'testresults',
-          screenshotsFolder: 'images',
-          takeScreenshots: true,
-          takeScreenshotsOnlyOnFailures: true,
-          fileNamePrefix: browserName + '-results'
-        })
-      );
+      new Jasmine2HtmlReporter({
+        savePath: 'testresults',
+        screenshotsFolder: 'images',
+        takeScreenshots: true,
+        takeScreenshotsOnlyOnFailures: true,
+        fileNamePrefix: browserName + '-results'
+      })
     });
   }
 };
