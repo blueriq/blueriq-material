@@ -50,7 +50,7 @@ exports.config = {
         screenshotsFolder: 'images',
         takeScreenshots: true,
         takeScreenshotsOnlyOnFailures: true,
-        filePrefix: reportName + ".html"
+        fileName: reportName + ".html"
       }));
     });
   }
