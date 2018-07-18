@@ -52,7 +52,6 @@ describe('DocumentLinkComponent', () => {
 
   it('should contain the correct data', () => {
     const element = component.nativeElement.querySelector('a');
-    expect(element.getAttribute('href')).not.toBeFalsy();
     expect(element.getAttribute('class')).toBe('plain-link');
     expect(element.innerHTML).toBe(LINK_TEXT);
   });
@@ -63,7 +62,6 @@ describe('DocumentLinkComponent', () => {
     );
     const element = component.nativeElement.querySelector('a');
     expect(element.getAttribute('class')).toBe('mat-raised-button');
-    expect(element.getAttribute('href')).not.toBeFalsy();
     expect(element.querySelector('span').innerHTML).toBe(LINK_TEXT);
   });
 
@@ -73,7 +71,6 @@ describe('DocumentLinkComponent', () => {
     );
     const element = component.nativeElement.querySelector('a');
     expect(element.getAttribute('class')).toBe('mat-raised-button mat-primary');
-    expect(element.getAttribute('href')).not.toBeFalsy();
     expect(element.querySelector('span').innerHTML).toBe(LINK_TEXT);
   });
 
@@ -83,7 +80,6 @@ describe('DocumentLinkComponent', () => {
     );
     const element = component.nativeElement.querySelector('a');
     expect(element.getAttribute('class')).toBe('mat-raised-button mat-accent');
-    expect(element.getAttribute('href')).not.toBeFalsy();
     expect(element.querySelector('span').innerHTML).toBe(LINK_TEXT);
   });
 
