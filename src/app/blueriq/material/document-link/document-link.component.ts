@@ -23,7 +23,6 @@ export class DocumentLinkComponent {
 
   download(): void {
     this.documentLink.getDownloadInfo().subscribe((downloadInfo: AuthorizedDownload) => {
-      console.log(downloadInfo.url);
       this.fileDownloadService.download(downloadInfo.url);
     });
   }
