@@ -2,6 +2,7 @@ import { Component, Host, Self } from '@angular/core';
 import { AuthorizedDownload, BlueriqComponent } from '@blueriq/angular';
 import { DocumentLink } from '@blueriq/angular/files';
 import { Container } from '@blueriq/core';
+import { FileDownloadService } from '../../generic/file-download.service';
 import { PresentationStyles } from '../presentationstyles/presentationstyles';
 
 @Component({
@@ -15,12 +16,15 @@ import { PresentationStyles } from '../presentationstyles/presentationstyles';
 })
 export class DocumentLinkComponent {
 
-  constructor(@Self() public documentLink: DocumentLink, @Host() public container: Container) {
+  constructor(@Self() public documentLink: DocumentLink,
+              @Host() public container: Container,
+              private fileDownloadService: FileDownloadService) {
   }
 
   download(): void {
     this.documentLink.getDownloadInfo().subscribe((downloadInfo: AuthorizedDownload) => {
-      window.location.href = downloadInfo.url;
+      console.log(downloadInfo.url);
+      this.fileDownloadService.download(downloadInfo.url);
     });
   }
 

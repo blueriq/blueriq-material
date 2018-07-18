@@ -2,8 +2,10 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
+import { DocumentLink } from '@blueriq/angular/files';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate, LinkTemplate } from '@blueriq/core/testing';
+import { FileDownloadService } from '../../generic/file-download.service';
 import { MaterialModule } from '../material.module';
 import { PresentationStyles } from '../presentationstyles/presentationstyles';
 import { DocumentLinkComponent } from './document-link.component';
@@ -16,12 +18,15 @@ describe('DocumentLinkComponent', () => {
   let container: ContainerTemplate;
   let component: ComponentFixture<DocumentLinkComponent>;
   let session: BlueriqTestSession;
+  let mockFileDownloadService: FileDownloadService;
 
   beforeEach(async(() => {
+    mockFileDownloadService = jasmine.createSpyObj(['download']);
     TestBed.configureTestingModule({
       declarations: [DocumentLinkComponent],
       providers: [
-        BlueriqComponents.register([DocumentLinkComponent])
+        BlueriqComponents.register([DocumentLinkComponent]),
+        { provide: FileDownloadService, useValue: mockFileDownloadService }
       ],
       imports: [
         MaterialModule,
@@ -85,9 +90,8 @@ describe('DocumentLinkComponent', () => {
 
   it('should change the href when the download handler is called', () => {
     const element = component.nativeElement.querySelector('a');
-    spyOn(component.componentInstance, 'download');
     element.click();
-    expect(component.componentInstance.download).toHaveBeenCalledTimes(1);
+    expect(mockFileDownloadService.download).toHaveBeenCalledTimes(1);
   });
 
 });

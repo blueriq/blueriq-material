@@ -2,6 +2,7 @@ import { Component, Self } from '@angular/core';
 import { AuthorizedDownload, BlueriqComponent } from '@blueriq/angular';
 import { FileDownload } from '@blueriq/angular/files';
 import { Container } from '@blueriq/core';
+import { FileDownloadService } from '../../generic/file-download.service';
 
 @Component({
   selector: 'bq-file-download',
@@ -15,12 +16,13 @@ import { Container } from '@blueriq/core';
 })
 export class FileDownloadComponent {
 
-  constructor(@Self() public fileDownload: FileDownload) {
+  constructor(@Self() public fileDownload: FileDownload,
+              private fileDownloadService: FileDownloadService) {
   }
 
   download(): void {
     this.fileDownload.getDownloadInfo().subscribe((downloadInfo: AuthorizedDownload) => {
-      window.location.href = downloadInfo.url;
+      this.fileDownloadService.download(downloadInfo.url);
     });
   }
 
