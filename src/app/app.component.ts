@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'bq-app-root',
@@ -8,10 +7,4 @@ import { Title } from '@angular/platform-browser';
 })
 export class AppComponent {
 
-  constructor(private titleService: Title) {
-  }
-
-  getPageTitle(): string {
-    return this.titleService.getTitle();
-  }
 }
