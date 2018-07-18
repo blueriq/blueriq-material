@@ -1,8 +1,8 @@
 <div bqKey bqClasses class="container">
   <ng-container *ngIf="hasButtonPresentationStyle(); else displayLink">
-    <a mat-raised-button [href]="getDownloadUrl()" [color]="getColor()">{{link.text}}</a>
+    <a mat-raised-button [href]="container.getDownloadUrl()" [color]="getColor()">{{container.getLinkText()}}</a>
   </ng-container>
   <ng-template #displayLink>
-    <a class="plain-link" [href]="getDownloadUrl()">{{link.text}}</a>
+    <a class="plain-link" [href]="container.getDownloadUrl()">{{container.getLinkText()}}{{container.getOptionalParameters()}}</a>
   </ng-template>
 </div>

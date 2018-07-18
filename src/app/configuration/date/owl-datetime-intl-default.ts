@@ -1,4 +1,5 @@
 import { OwlDateTimeIntl } from 'ng-pick-datetime';
+import { Subject } from 'rxjs/Subject';
 
 export class OwlDatetimeIntlDefault implements OwlDateTimeIntl {
   upSecondLabel = 'Add a second';
@@ -21,4 +22,5 @@ export class OwlDatetimeIntlDefault implements OwlDateTimeIntl {
   rangeToLabel = 'To';
   hour12AMLabel = 'AM';
   hour12PMLabel = 'PM';
+  readonly changes: Subject<void>;
 }

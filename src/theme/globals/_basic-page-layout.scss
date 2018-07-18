@@ -1,5 +1,10 @@
 @import '~@angular/material/theming';
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -7,3 +12,4 @@ body {
   background: map-get($mat-gray, 200);
   font-family: $bq-font-family;
 }
+

@@ -1,15 +1,3 @@
-.flex-grid-thirds {
-  display: flex;
-  justify-content: space-between;
-
-  .col1 {
-    width: 95%;
-  }
-
-  .col2 {
-    width: 5%;
-  }
-}
 
 :host ::ng-deep {
   .mat-form-field {
@@ -21,4 +9,10 @@
   position: absolute;
   margin-top: 5px;
   margin-left: 5px;
+}
+
+// This is a temporary solution, since errors and hints cannot be a part of the form field because of it's generic usage.
+.labels {
+  margin-bottom: 10px;
+  font-size: 75%;
 }

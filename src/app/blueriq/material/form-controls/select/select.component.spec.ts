@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,6 +24,7 @@ describe('SelectComponent', () => {
         MaterialModule,
         BrowserAnimationsModule, // or NoopAnimationsModule
         BlueriqTestingModule,
+        FlexLayoutModule,
         FormsModule
       ]
     });
@@ -92,10 +94,10 @@ describe('SelectComponent', () => {
     component = session.get(SelectComponent);
 
     component.whenStable()
-      .then(() => {
-        component.detectChanges();
-        selectedMoreValues = component.nativeElement.querySelector('.mat-select-value-text').innerText;
-        expect(selectedMoreValues).toBe('Blue, Pink, White');
+    .then(() => {
+      component.detectChanges();
+      selectedMoreValues = component.nativeElement.querySelector('.mat-select-value-text').innerText;
+      expect(selectedMoreValues).toBe('Blue, Pink, White');
     });
   });
 
@@ -105,20 +107,20 @@ describe('SelectComponent', () => {
 
     selectTrigger.nativeElement.click();
     component.whenStable()
-      .then(() => {
-        component.detectChanges();
-        const selectContent = component.debugElement.query(By.css('.mat-select-content')).nativeElement;
-        const selectOptions = selectContent.querySelectorAll('mat-option') as NodeListOf<HTMLElement>;
-        expect(selectOptions).toBeTruthy();
-        selectOptions[1].click();
-      });
+    .then(() => {
+      component.detectChanges();
+      const selectContent = component.debugElement.query(By.css('.mat-select-content')).nativeElement;
+      const selectOptions = selectContent.querySelectorAll('mat-option') as NodeListOf<HTMLElement>;
+      expect(selectOptions).toBeTruthy();
+      selectOptions[1].click();
+    });
 
     component.whenStable()
-      .then(() => {
-        component.detectChanges();
-        // Verify
-        expect(component.componentInstance.field.getValue()).toBe('blue');
-      });
+    .then(() => {
+      component.detectChanges();
+      // Verify
+      expect(component.componentInstance.field.getValue()).toBe('blue');
+    });
   });
 
   it('should contain all options in select', () => {
@@ -127,19 +129,19 @@ describe('SelectComponent', () => {
 
     selectTrigger.nativeElement.click();
     component.whenStable()
-      .then(() => {
-        component.detectChanges();
+    .then(() => {
+      component.detectChanges();
 
-        const selectContent = component.debugElement.query(By.css('.mat-select-content')).nativeElement;
-        const selectOptions = selectContent.querySelectorAll('mat-option') as NodeListOf<HTMLElement>;
+      const selectContent = component.debugElement.query(By.css('.mat-select-content')).nativeElement;
+      const selectOptions = selectContent.querySelectorAll('mat-option') as NodeListOf<HTMLElement>;
 
-        // Verify
-        expect(selectOptions.length).toBe(4);
-        expect(selectOptions[0].getAttribute('ng-reflect-value')).toBe(null);
-        expect(selectOptions[1].getAttribute('ng-reflect-value')).toBe('blue');
-        expect(selectOptions[2].getAttribute('ng-reflect-value')).toBe('pink');
-        expect(selectOptions[3].getAttribute('ng-reflect-value')).toBe('white');
-      });
+      // Verify
+      expect(selectOptions.length).toBe(4);
+      expect(selectOptions[0].getAttribute('ng-reflect-value')).toBe(null);
+      expect(selectOptions[1].getAttribute('ng-reflect-value')).toBe('blue');
+      expect(selectOptions[2].getAttribute('ng-reflect-value')).toBe('pink');
+      expect(selectOptions[3].getAttribute('ng-reflect-value')).toBe('white');
+    });
   });
 
   it('should contain explain and message support', () => {

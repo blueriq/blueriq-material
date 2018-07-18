@@ -1,4 +1,2 @@
-<div bqKey bqClasses class="page">
-  <h1>{{ page.displayName }}</h1>
-  <ng-container *ngFor="let child of page.children" [bqElement]="child"></ng-container>
-</div>
+<div *ngFor="let child of page.children" [bqElement]="child"></div>
+

@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
@@ -27,6 +28,7 @@ describe('DateTimepickerComponent', () => {
         BrowserAnimationsModule, // or NoopAnimationsModule
         BlueriqTestingModule,
         FormsModule,
+        FlexLayoutModule,
         OwlDateTimeModule,
         OwlMomentDateTimeModule
       ]

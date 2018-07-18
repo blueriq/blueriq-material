@@ -59,9 +59,9 @@ describe('TextItemComponent', () => {
     const iconGutter = component.debugElement.query(By.css('div[class=gutter]'));
     const iconWarningClass = component.debugElement.query(By.css('div[class=icon-warning]'));
     const textItemText: string = component.debugElement.query(By.css('span[class=warning]'))
-      .nativeElement
-      .textContent
-      .trim();
+    .nativeElement
+    .textContent
+    .trim();
     expect(textItemText).toBe('Lorem ipsum');
     expect(iconGutter).toBeFalsy();
     expect(iconWarningClass).toBeFalsy();
@@ -82,44 +82,43 @@ describe('TextItemComponent', () => {
     );
 
     const iconGutter = component.debugElement.query(By.css('div[class=gutter]'));
-    const iconDangerClass = component.debugElement.query(By.css('.icon-danger'));
+    const iconDangerClass = iconGutter.nativeElement.querySelector('mat-icon').innerHTML;
     const classes: string = component.nativeElement.querySelector('div').getAttribute('class');
     expect(classes).toBe('text-item Danger');
     expect(iconGutter).toBeTruthy();
-    expect(iconDangerClass).toBeTruthy();
+    expect(iconDangerClass).toBe('error');
   });
 
   it('should be composed as warning', () => {
     session.update(textItem.styles(PresentationStyles.WARNING));
 
     const iconGutter = component.debugElement.query(By.css('div[class=gutter]'));
-    const iconWarningClass = component.debugElement.query(By.css('.icon-warning'));
+    const iconWarningClass = iconGutter.nativeElement.querySelector('mat-icon').innerHTML;
     const classes: string = component.nativeElement.querySelector('div').getAttribute('class');
     expect(classes).toBe('text-item Warning');
     expect(iconGutter).toBeTruthy();
-    expect(iconWarningClass).toBeTruthy();
+    expect(iconWarningClass).toBe('warning');
   });
 
   it('should be composed as success', () => {
     session.update(textItem.styles(PresentationStyles.SUCCESS));
-
     const iconGutter = component.debugElement.query(By.css('div[class=gutter]'));
-    const iconSuccessClass = component.debugElement.query(By.css('.icon-success'));
+    const iconSuccessClass = iconGutter.nativeElement.querySelector('mat-icon').innerHTML;
     const classes: string = component.nativeElement.querySelector('div').getAttribute('class');
     expect(classes).toBe('text-item Success');
     expect(iconGutter).toBeTruthy();
-    expect(iconSuccessClass).toBeTruthy();
+    expect(iconSuccessClass).toBe('check_circle');
   });
 
   it('should be composed as info', () => {
     session.update(textItem.styles(PresentationStyles.INFO));
 
     const iconGutter = component.debugElement.query(By.css('div[class=gutter]'));
-    const iconInfoClass = component.debugElement.query(By.css('.icon-info'));
+    const iconInfoClass = iconGutter.nativeElement.querySelector('mat-icon').innerHTML;
     const classes: string = component.nativeElement.querySelector('div').getAttribute('class');
     expect(classes).toBe('text-item Info');
     expect(iconGutter).toBeTruthy();
-    expect(iconInfoClass).toBeTruthy();
+    expect(iconInfoClass).toBe('info');
   });
 
 });

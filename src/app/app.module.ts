@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,6 +14,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { OwlDateTimeModule } from 'ng-pick-datetime';
 import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
+import { FileUploadModule } from 'ng2-file-upload';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { BqKeyDirective } from "./blueriq/generic/bq-key/bq-key.directive";
@@ -20,7 +22,8 @@ import { ElementComponent } from './blueriq/generic/element/element.component';
 import { AssetComponent } from './blueriq/material/asset/asset.component';
 import { ContainerComponent } from './blueriq/material/container/container.component';
 import { DocumentLinkComponent } from './blueriq/material/document-link/document-link.component';
-import { DocumentLinkService } from './blueriq/material/document-link/document-link.service';
+import { FileDownloadComponent } from './blueriq/material/file-download/file-download.component';
+import { FileUploadComponent } from './blueriq/material/file-upload/file-upload.component';
 import { ButtonComponent } from './blueriq/material/form-controls/button/button.component';
 import { CheckboxComponent } from './blueriq/material/form-controls/checkbox/checkbox.component';
 import { DatepickerComponent } from './blueriq/material/form-controls/date/datepicker/datepicker.component';
@@ -65,6 +68,8 @@ const BQ_COMPONENTS = [
   ContainerComponent,
   CurrencyFieldComponent,
   DocumentLinkComponent,
+  FileDownloadComponent,
+  FileUploadComponent,
   IntegerFieldComponent,
   NumberFieldComponent,
   DateTimepickerComponent,
@@ -104,7 +109,9 @@ const BQ_MAT_COMPONENTS = [
     }),
     BrowserAnimationsModule,
     BlueriqFormsModule.forRoot(),
+    FileUploadModule,
     MaterialModule,
+    FlexLayoutModule,
     FormattingModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
@@ -121,7 +128,6 @@ const BQ_MAT_COMPONENTS = [
   ],
   providers: [
     BlueriqComponents.register(BQ_COMPONENTS),
-    DocumentLinkService,
     MomentTransformer,
     PresentationStyles
   ],
