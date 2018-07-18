@@ -21,6 +21,7 @@ import { ErrorComponent } from './blueriq/error/error.component';
 import { ErrorService } from './blueriq/error/error.service';
 import { ErrorEffects } from './blueriq/generic/effects/error.effects';
 import { ElementComponent } from './blueriq/generic/element/element.component';
+import { FileDownloadService } from './blueriq/generic/file-download.service';
 import { AssetComponent } from './blueriq/material/asset/asset.component';
 import { ContainerComponent } from './blueriq/material/container/container.component';
 import { DocumentLinkComponent } from './blueriq/material/document-link/document-link.component';
@@ -133,7 +134,8 @@ const BQ_MAT_COMPONENTS = [
     BlueriqComponents.register(BQ_COMPONENTS),
     MomentTransformer,
     PresentationStyles,
-    ErrorService
+    ErrorService,
+    FileDownloadService
   ],
   bootstrap: [AppComponent]
 })
