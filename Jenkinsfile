@@ -41,6 +41,7 @@ node {
     def mvnHome = tool "apache-maven-3.5.3"
     env.PATH = "${env.JAVA_HOME}\\bin;${env.PATH};${mvnHome}\\bin;${env.NODEJS_PATH}\""
     env.SASS_BINARY_PATH = env.SASS_BINDING_PATH
+    env.CHROME_BIN = env.CHROME_67_0_3396_99;
 
     stage('checkout') {
       checkout scm
