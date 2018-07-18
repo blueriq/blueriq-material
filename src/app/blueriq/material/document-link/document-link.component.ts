@@ -1,12 +1,13 @@
-import { Component, Self } from '@angular/core';
-import { BlueriqComponent, DocumentLinkContainer } from '@blueriq/angular';
+import { Component, Host, Self } from '@angular/core';
+import { BlueriqComponent } from '@blueriq/angular';
+import { DocumentLink } from '@blueriq/angular/files';
 import { Container } from '@blueriq/core';
 import { PresentationStyles } from '../presentationstyles/presentationstyles';
 
 @Component({
   templateUrl: './document-link.component.html',
   styleUrls: ['./document-link.component.scss'],
-  providers: [DocumentLinkContainer]
+  providers: [DocumentLink]
 })
 @BlueriqComponent({
   type: Container,
@@ -14,19 +15,26 @@ import { PresentationStyles } from '../presentationstyles/presentationstyles';
 })
 export class DocumentLinkComponent {
 
-  constructor(@Self() public container: DocumentLinkContainer) {
+  constructor(@Self() public link: DocumentLink, @Host() public container: Container) {
+  }
+
+  get downloadUrl(): string {
+    // FIXME(joost): revert API change in framework
+    let downloadUrl: string;
+    this.link.downloadUrl.subscribe(downloadInfo => downloadUrl = downloadInfo.url);
+    return downloadUrl!;
   }
 
   /** Whether the container has the `button` presentation style */
   hasButtonPresentationStyle() {
-    return this.container.getPresentationStyles().has(PresentationStyles.BUTTON);
+    return this.container.styles.has(PresentationStyles.BUTTON);
   }
 
   /** The button color, based on presentation styles `Primary` and `Accent` */
   getColor(): string | null {
-    if (this.container.getPresentationStyles().has(PresentationStyles.PRIMARY)) {
+    if (this.container.styles.has(PresentationStyles.PRIMARY)) {
       return 'primary';
-    } else if (this.container.getPresentationStyles().has(PresentationStyles.ACCENT)) {
+    } else if (this.container.styles.has(PresentationStyles.ACCENT)) {
       return 'accent';
     } else {
       return null;
