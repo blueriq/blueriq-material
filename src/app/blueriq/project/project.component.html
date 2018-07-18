@@ -4,6 +4,9 @@
   [flow]="flow | async"
   [version]="version | async"
   [sessionName]="sessionName"
-  [languageCode]="languageCode | async"></bq-project>
+  [languageCode]="languageCode | async"
+  (flowEnded)="onFlowEnded()"
+  (expired)="onSessionExpired()"
+  (unauthorized)="onUnauthorized($event)"></bq-project>
 
 
