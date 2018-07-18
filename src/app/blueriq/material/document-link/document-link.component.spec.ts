@@ -83,4 +83,11 @@ describe('DocumentLinkComponent', () => {
     expect(element.querySelector('span').innerHTML).toBe(LINK_TEXT);
   });
 
+  it('should change the href when the download handler is called', () => {
+    const element = component.nativeElement.querySelector('a');
+    spyOn(component.componentInstance, 'download');
+    element.click();
+    expect(component.componentInstance.download).toHaveBeenCalledTimes(1);
+  });
+
 });
