@@ -5,9 +5,8 @@ describe('workspace-project App', () => {
   let flow: SuitcaseFlow = new SuitcaseFlow();
   flow.start();
 
-  it('should display header', () => {
-    expect(flow.toolbarText).toMatch(/^Blueriq Material/);
-    expect(flow.toolbarText).toMatch(/Work in Progress$/);
+  it('should display header with text', () => {
+    expect(flow.toolbarTitleText).toBe('Aanvragen kinderbijslag');
   });
 
   it('should have 2 buttons', () => {

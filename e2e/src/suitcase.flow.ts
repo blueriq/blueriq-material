@@ -4,12 +4,8 @@ export class SuitcaseFlow {
 
   private path = '/flow/export-Kinderbijslag/Start';
 
-  get toolbarText() {
-    return element(by.css('bq-app-root mat-toolbar')).getText();
-  }
-
-  get pageTitle() {
-    return element(by.css('.page h1')).getText();
+  get toolbarTitleText() {
+    return element(by.id('P960_AanvragenKinderbijslag_1')).element(by.tagName('h1')).getText();
   }
 
   get nrOfButtons() {
@@ -25,7 +21,7 @@ export class SuitcaseFlow {
   }
 
   get requiredStringField() {
-    return element(by.id('P960_Verzekerde-Voornaam_1')).element(by.tagName('input'));
+    return element(by.id('^Verzekerde-Voornaam_1')).element(by.tagName('input'));
   }
 
   start() {

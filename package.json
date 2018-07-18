@@ -14,6 +14,7 @@
     "verify": "ng test --watch false --code-coverage true",
     "verify:all": "yarn verify && yarn tslint && yarn sass-lint",
     "e2e": "yarn protractor e2e/protractor.conf.js",
+    "e2e-dev": "yarn webdriver-manager update && protractor e2e/protractor-dev.conf.js",
     "version:increment": "npm version --allow-same-version"
   },
   "private": true,
