@@ -1,5 +1,5 @@
 import { Component, Host, Self } from '@angular/core';
-import { BlueriqComponent } from '@blueriq/angular';
+import { AuthorizedDownload, BlueriqComponent } from '@blueriq/angular';
 import { DocumentLink } from '@blueriq/angular/files';
 import { Container } from '@blueriq/core';
 import { PresentationStyles } from '../presentationstyles/presentationstyles';
@@ -15,14 +15,13 @@ import { PresentationStyles } from '../presentationstyles/presentationstyles';
 })
 export class DocumentLinkComponent {
 
-  constructor(@Self() public link: DocumentLink, @Host() public container: Container) {
+  constructor(@Self() public documentLink: DocumentLink, @Host() public container: Container) {
   }
 
-  get downloadUrl(): string {
-    // FIXME(joost): revert API change in framework
-    let downloadUrl: string;
-    this.link.downloadUrl.subscribe(downloadInfo => downloadUrl = downloadInfo.url);
-    return downloadUrl!;
+  download(): void {
+    this.documentLink.getDownloadInfo().subscribe((downloadInfo: AuthorizedDownload) => {
+      window.location.href = downloadInfo.url;
+    });
   }
 
   /** Whether the container has the `button` presentation style */

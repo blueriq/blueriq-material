@@ -19,7 +19,7 @@ export class FileDownloadComponent {
   }
 
   download(): void {
-    this.fileDownload.downloadUrl.subscribe((downloadInfo: AuthorizedDownload) => {
+    this.fileDownload.getDownloadInfo().subscribe((downloadInfo: AuthorizedDownload) => {
       window.location.href = downloadInfo.url;
     });
   }
