@@ -1,0 +1,18 @@
+{
+  "tsconfig": "./tsconfig.compodoc.json",
+  "name": "@blueriq/material",
+  "output": "./dist/docs",
+  "extTheme": "docs/theme/",
+  "hideGenerator": true,
+  "disableSourceCode": true,
+  "disableDomTree": true,
+  "disableCoverage": true,
+  "disableGraph": false,
+  "disablePrivate": false,
+  "disableProtected": false,
+  "disableInternal": true,
+  "disableLifeCycleHooks": true,
+  "disableRoutesGraph": false,
+  "includes": "docs",
+  "includesName": "Guide"
+}
