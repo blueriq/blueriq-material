@@ -18,6 +18,7 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { ElementComponent } from './blueriq/generic/element/element.component';
+import { FileDownloadService } from './blueriq/generic/file-download.service';
 import { AssetComponent } from './blueriq/material/asset/asset.component';
 import { ContainerComponent } from './blueriq/material/container/container.component';
 import { DocumentLinkComponent } from './blueriq/material/document-link/document-link.component';
@@ -127,7 +128,8 @@ const BQ_MAT_COMPONENTS = [
   providers: [
     BlueriqComponents.register(BQ_COMPONENTS),
     MomentTransformer,
-    PresentationStyles
+    PresentationStyles,
+    FileDownloadService
   ],
   bootstrap: [AppComponent]
 })

@@ -201,17 +201,17 @@
   dependencies:
     tslib "^1.9.0"
 
-"@blueriq/angular@^0.3.0-beta.9":
-  version "0.3.0-beta.11"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn-local/@blueriq/angular/-/@blueriq/angular-0.3.0-beta.11.tgz#3648a293ea5ec216fbae022a9adb370d6e42a503"
+"@blueriq/angular@^0.4.0-alpha.5":
+  version "0.4.0-alpha.5"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn-local/@blueriq/angular/-/@blueriq/angular-0.4.0-alpha.5.tgz#df23946fe44d333e970c6279a761939de67f724a"
   dependencies:
     date-fns "2.0.0-alpha.7"
     stable "0.1.7"
     tslib "^1.7.1"
 
-"@blueriq/core@^0.3.0-beta.9":
-  version "0.3.0-beta.11"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn-local/@blueriq/core/-/@blueriq/core-0.3.0-beta.11.tgz#5a032d7b54c01f39d0ec8c37524bac61b9f65e53"
+"@blueriq/core@^0.4.0-alpha.5":
+  version "0.4.0-alpha.5"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn-local/@blueriq/core/-/@blueriq/core-0.4.0-alpha.5.tgz#9c9770b3947955eedf8b698e10dcdb535719db79"
   dependencies:
     css-selector-parser "1.3.0"
     date-fns "2.0.0-alpha.7"
@@ -4530,9 +4530,9 @@ ng-pick-datetime-moment@^1.0.6:
   version "1.0.6"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/ng-pick-datetime-moment/-/ng-pick-datetime-moment-1.0.6.tgz#d8892e8f4fb86fb835b022927080e9400f6f71f1"
 
-ng-pick-datetime@^6.0.5:
-  version "6.0.10"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/ng-pick-datetime/-/ng-pick-datetime-6.0.10.tgz#214ce1c96b956e44b4603de483d1c2fcc9c6a7ff"
+ng-pick-datetime@6.0.5:
+  version "6.0.5"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/ng-pick-datetime/-/ng-pick-datetime-6.0.5.tgz#6b0300fc8dc2544a981157a5b5ce4a15ecafb50b"
 
 ng2-file-upload@^1.3.0:
   version "1.3.0"
