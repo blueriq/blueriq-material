@@ -14,7 +14,7 @@ export class ErrorService {
     this.error.next(error);
   }
 
-  getError() {
+  getError(): Subject<{ errorType: string, title: string, message: string }> {
     return this.error;
   }
 }

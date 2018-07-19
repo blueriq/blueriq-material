@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs/Subscription';
 import { ErrorService } from '../error/error.service';
+import { ErrorModel } from '../generic/models/error.model';
 
 @Component({
   templateUrl: './project.component.html'
@@ -19,7 +20,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
   flow: Observable<string>;
   languageCode: Observable<string>;
 
-  error: { errorType: string, title: string, message: string, details?: string } | null;
+  error: ErrorModel | null;
   private subscription: Subscription;
 
   constructor(private readonly route: ActivatedRoute,
@@ -42,12 +43,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
     this.languageCode = this.route.paramMap.pipe(map(params => params.get('languageCode') || ''));
 
     this.subscription = this.errorService.getError().subscribe((error) => {
-      switch (error.errorType) {
-        case 'NOT_FOUND':
-        default:
-          this.error = error;
-          break;
-      }
+      this.error = new ErrorModel(error.errorType, error.title, error.message);
     });
   }
 
@@ -56,27 +52,27 @@ export class ProjectComponent implements OnInit, OnDestroy {
   }
 
   onSessionExpired() {
-    this.error = {
-      errorType: 'SESSION_EXPIRED',
-      title: 'Session expired',
-      message: 'Your session has expired'
-    };
+    this.error = new ErrorModel(
+      'SESSION_EXPIRED',
+      'Session expired',
+      'Your session has expired due to inactivity'
+    );
   }
 
   onFlowEnded() {
-    this.error = {
-      errorType: 'FLOW_ENDED',
-      title: 'Flow ended',
-      message: 'The flow has ended'
-    };
+    this.error = new ErrorModel(
+      'FLOW_ENDED',
+      'Flow ended',
+      'The flow has ended'
+    );
   }
 
   onUnauthorized(details: ProjectDetails) {
-    this.error = {
-      errorType: 'UNAUTHORIZED',
-      title: 'Unauthorized',
-      message: 'You are not authorized to ' + JSON.stringify(details)
-    };
+    this.error = new ErrorModel(
+      'UNAUTHORIZED',
+      'Unauthorized',
+      'You are not authorized to ' + JSON.stringify(details)
+    );
   }
 
   ngOnDestroy(): void {

@@ -1,17 +1,27 @@
 <div class="backdrop">
 </div>
+
 <div class="error-container" fxFlex fxLayoutAlign="center center">
-  <div class="error">
+  <div [class]="error.severity">
+
     <div fxFlex fxLayout="column" fxLayoutAlign="space-around center">
-      <img src="/theme/images/oops-icon.svg" height="175">
-      <p class="error-title">{{ error.title }}</p>
-      <p class="error-rmessage" innerHTML="{{ error.message }}"></p>
-      <p class="error-details" *ngIf="error.details">
+
+      <img src="/theme/images/oops-icon.svg" height="175" *ngIf="error.severity == 'error'">
+      <img src="/theme/images/session-expired.svg" height="175" *ngIf="error.severity == 'notice'">
+
+      <p class="title">{{ error.title }}</p>
+
+      <p class="message" innerHTML="{{ error.message }}"></p>
+
+      <p class="details" *ngIf="error.details">
         {{ error.details }}
       </p>
-      <p class="error-button" *ngIf="closable" fxLayout="column" fxLayoutAlign="start end">
-        <button mat-button (click)="close()">close</button>
+
+      <p class="button" *ngIf="error.closable || error.reloadable" fxLayout="column" fxLayoutAlign="start center">
+        <button mat-button (click)="close()" *ngIf="error.closable">close</button>
+        <button mat-button (click)="reload()" *ngIf="error.reloadable">reload</button>
       </p>
     </div>
+
   </div>
 </div>
