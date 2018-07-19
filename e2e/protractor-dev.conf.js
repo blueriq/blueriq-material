@@ -12,26 +12,12 @@ exports.config = {
   multiCapabilities: [
    {
      browserName: 'chrome',
-     chromeOptions: {
-       args: ['--headless', '--disable-gpu', '--window-size=1366x786'],
-       binary: 'D:\\tools\\ChromePortable-67.0.3396.99\\chrome.exe'
-     }
-   },
-   {
-     browserName: 'firefox',
-     marionette: true,
-     'moz:firefoxOptions': {
-       args: [ '--headless' ],
-       binary: 'D:\\tools\\Firefox-61.0.1-32bit\\firefox.exe'
-     }
+     args: ['--headless', '--disable-gpu', '--window-size=1366x786']
    }
   ],
   maxSessions: 1,
-  seleniumServerJar: '../../../../../../../tools/protractor/selenium-server-standalone-3.13.0.jar',
-  chromeDriver: '../../../../../../../tools/protractor/chromedriver_2.40.exe',
-  geckoDriver: '‪../../../../../../../tools/protractor/geckodriver-v0.21.0.exe',
   directConnect: true,
-  baseUrl: '***REMOVED***',
+  baseUrl: 'http://localhost:4200/',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,
