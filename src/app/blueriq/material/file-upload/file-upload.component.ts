@@ -1,5 +1,6 @@
 import { Component, Self } from '@angular/core';
-import { BlueriqComponent, FileUploadContainer } from '@blueriq/angular';
+import { BlueriqComponent } from '@blueriq/angular';
+import { FileUpload } from '@blueriq/angular/files';
 import { Container } from '@blueriq/core';
 import { CustomFileUploader } from './custom-file-uploader.class';
 
@@ -7,7 +8,7 @@ import { CustomFileUploader } from './custom-file-uploader.class';
   selector: 'bq-file-upload',
   templateUrl: './file-upload.component.html',
   styleUrls: ['./file-upload.component.scss'],
-  providers: [FileUploadContainer]
+  providers: [FileUpload]
 })
 @BlueriqComponent({
   type: Container,
@@ -17,13 +18,12 @@ export class FileUploadComponent {
 
   uploader: CustomFileUploader;
   hasDropZoneOver = false;
-  response: string;
 
-  constructor(@Self() public container: FileUploadContainer) {
+  constructor(@Self() public fileUpload: FileUpload) {
     this.uploader = new CustomFileUploader({
-      url: this.container.getUploadUrl(),
-      allowedFileType: this.container.allowedExtensions,
-      maxFileSize: (this.container.maxFileSize) ? +this.container.maxFileSize : undefined,
+      url: this.fileUpload.uploadUrl,
+      allowedFileType: this.fileUpload.allowedExtensions,
+      maxFileSize: this.fileUpload.maxFileSize,
       autoUpload: true
     });
     /**
@@ -35,7 +35,7 @@ export class FileUploadComponent {
      * When the upload is completed, the events returned by the runtime need to be handled.
      */
     this.uploader.onCompleteItem = (item: any, response: string, status: any, headers: any) => {
-      this.container.handleFileUploadCompleted(response);
+      this.fileUpload.handleFileUploadCompleted(response);
     };
   }
 

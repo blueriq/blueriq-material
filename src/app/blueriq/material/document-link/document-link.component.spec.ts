@@ -2,8 +2,10 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
+import { DocumentLink } from '@blueriq/angular/files';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate, LinkTemplate } from '@blueriq/core/testing';
+import { FileDownloadService } from '../../generic/file-download.service';
 import { MaterialModule } from '../material.module';
 import { PresentationStyles } from '../presentationstyles/presentationstyles';
 import { DocumentLinkComponent } from './document-link.component';
@@ -16,12 +18,15 @@ describe('DocumentLinkComponent', () => {
   let container: ContainerTemplate;
   let component: ComponentFixture<DocumentLinkComponent>;
   let session: BlueriqTestSession;
+  let mockFileDownloadService: FileDownloadService;
 
   beforeEach(async(() => {
+    mockFileDownloadService = jasmine.createSpyObj(['download']);
     TestBed.configureTestingModule({
       declarations: [DocumentLinkComponent],
       providers: [
-        BlueriqComponents.register([DocumentLinkComponent])
+        BlueriqComponents.register([DocumentLinkComponent]),
+        { provide: FileDownloadService, useValue: mockFileDownloadService }
       ],
       imports: [
         MaterialModule,
@@ -52,7 +57,6 @@ describe('DocumentLinkComponent', () => {
 
   it('should contain the correct data', () => {
     const element = component.nativeElement.querySelector('a');
-    expect(element.getAttribute('href')).not.toBeFalsy();
     expect(element.getAttribute('class')).toBe('plain-link');
     expect(element.innerHTML).toBe(LINK_TEXT);
   });
@@ -63,7 +67,6 @@ describe('DocumentLinkComponent', () => {
     );
     const element = component.nativeElement.querySelector('a');
     expect(element.getAttribute('class')).toBe('mat-raised-button');
-    expect(element.getAttribute('href')).not.toBeFalsy();
     expect(element.querySelector('span').innerHTML).toBe(LINK_TEXT);
   });
 
@@ -73,7 +76,6 @@ describe('DocumentLinkComponent', () => {
     );
     const element = component.nativeElement.querySelector('a');
     expect(element.getAttribute('class')).toBe('mat-raised-button mat-primary');
-    expect(element.getAttribute('href')).not.toBeFalsy();
     expect(element.querySelector('span').innerHTML).toBe(LINK_TEXT);
   });
 
@@ -83,8 +85,13 @@ describe('DocumentLinkComponent', () => {
     );
     const element = component.nativeElement.querySelector('a');
     expect(element.getAttribute('class')).toBe('mat-raised-button mat-accent');
-    expect(element.getAttribute('href')).not.toBeFalsy();
     expect(element.querySelector('span').innerHTML).toBe(LINK_TEXT);
+  });
+
+  it('should change the href when the download handler is called', () => {
+    const element = component.nativeElement.querySelector('a');
+    element.click();
+    expect(mockFileDownloadService.download).toHaveBeenCalledTimes(1);
   });
 
 });
