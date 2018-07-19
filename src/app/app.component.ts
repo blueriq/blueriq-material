@@ -16,12 +16,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.errorService.getError().subscribe((error) => {
-      switch(error.errorType) {
+      switch (error.errorType) {
         case 'NOT_FOUND':
-          this.error = error;
-          break;
         default:
-          console.log(error);
+          this.error = error;
           break;
       }
     });
