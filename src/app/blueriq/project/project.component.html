@@ -9,4 +9,6 @@
   (expired)="onSessionExpired()"
   (unauthorized)="onUnauthorized($event)"></bq-project>
 
+<bq-error *ngIf="error" [error]="error" [closable]="false" (onClosed)="clearError()"></bq-error>
+
 

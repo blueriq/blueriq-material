@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProjectDetails } from '@blueriq/angular';
 import { SessionId } from '@blueriq/core';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
+import { Subscription } from 'rxjs/Subscription';
 import { ErrorService } from '../error/error.service';
 
 @Component({
   templateUrl: './project.component.html'
 })
-export class ProjectComponent implements OnInit {
+export class ProjectComponent implements OnInit, OnDestroy {
 
   sessionId: Observable<SessionId>;
   shortcut: Observable<string>;
@@ -18,8 +19,11 @@ export class ProjectComponent implements OnInit {
   flow: Observable<string>;
   languageCode: Observable<string>;
 
+  error: { errorType: string, title: string, message: string, details?: string } | null;
+  private subscription: Subscription;
+
   constructor(private readonly route: ActivatedRoute,
-              private errorService: ErrorService) {
+              private readonly errorService: ErrorService) {
   }
 
   get sessionName(): string {
@@ -36,30 +40,47 @@ export class ProjectComponent implements OnInit {
     this.project = this.route.paramMap.pipe(map(params => params.get('project') || ''));
     this.flow = this.route.paramMap.pipe(map(params => params.get('flow') || ''));
     this.languageCode = this.route.paramMap.pipe(map(params => params.get('languageCode') || ''));
+
+    this.subscription = this.errorService.getError().subscribe((error) => {
+      switch (error.errorType) {
+        case 'NOT_FOUND':
+        default:
+          this.error = error;
+          break;
+      }
+    });
+  }
+
+  clearError(): void {
+    this.error = null;
   }
 
   onSessionExpired() {
-    this.errorService.emitError({
+    this.error = {
       errorType: 'SESSION_EXPIRED',
       title: 'Session expired',
       message: 'Your session has expired'
-    });
+    };
   }
 
   onFlowEnded() {
-    this.errorService.emitError({
+    this.error = {
       errorType: 'FLOW_ENDED',
       title: 'Flow ended',
       message: 'The flow has ended'
-    });
+    };
   }
 
   onUnauthorized(details: ProjectDetails) {
-    this.errorService.emitError({
+    this.error = {
       errorType: 'UNAUTHORIZED',
       title: 'Unauthorized',
-      message: 'You are not authorized to ' + details.resource
-    });
+      message: 'You are not authorized to ' + JSON.stringify(details)
+    };
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
 
