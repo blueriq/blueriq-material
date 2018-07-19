@@ -10,11 +10,19 @@
   z-index: $z-index-drawer + 200;
 
   .error {
+    background-color: $bq-secondary-red;
+  }
+
+  .notice {
+    background-color: $bq-primary-blue;
+  }
+
+  .error,
+  .notice {
     @include mat-elevation(2);
 
     width: 350px;
     padding: $bq-base-margin;
-    background-color: $bq-secondary-red;
     color: $white-87-opacity;
     text-align: center;
 
@@ -22,23 +30,25 @@
       margin-top: 3 * $bq-base-margin;
     }
 
-    .error-title {
-      margin-bottom: 12px;
+    .title {
+      margin-bottom: $bq-base-margin;
       font-size: 48px;
       font-weight: normal;
     }
 
-    .error-message {
-      font-size: 12px;
+    .message {
+      width: 250px;
+      font-size: 16px;
+      word-break: break-all;
     }
 
-    .error-details {
+    .details {
       width: 250px;
       padding: $bq-base-margin;
       background-color: $bq-white-37-opacity;
     }
 
-    .error-button {
+    .button {
       width: 100%;
 
       button {

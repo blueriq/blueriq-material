@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
+import { ErrorModel } from '../generic/models/error.model';
 
 @Component({
   selector: 'bq-error',
@@ -8,19 +10,20 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class ErrorComponent {
 
   @Input()
-  error: { errorType: string, title: string, message: string, details?: string };
-
-  @Input()
-  closable = false;
+  error: ErrorModel;
 
   @Output()
   closed: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor() {
+  constructor(@Inject(DOCUMENT) private document: Document) {
   }
 
   close(): void {
     this.closed.emit();
+  }
+
+  reload(): void {
+    this.document.location.reload();
   }
 
 }
