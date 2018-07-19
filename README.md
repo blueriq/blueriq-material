@@ -21,7 +21,7 @@ Run `yarn verify:all` to run all linting and tests with code-coverage
 
 ## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Run `yarn e2e-dev` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
 ## Further help
 
