@@ -2,13 +2,8 @@
 
 boolean isMaster = BRANCH_NAME == 'master'
 String triggerCron = isMaster ? "H 13 * * 7" : ""
-def logRotator = [
-  $class  : 'BuildDiscarderProperty',
-  strategy: [$class: 'LogRotator', numToKeepStr: '5']
-]
 
 properties([
-  logRotator,
   [
     $class  : 'BuildDiscarderProperty',
     strategy: [$class: 'LogRotator', numToKeepStr: '5']
