@@ -17,6 +17,9 @@ import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
 import { FileUploadModule } from 'ng2-file-upload';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
+import { ErrorComponent } from './blueriq/error/error.component';
+import { ErrorService } from './blueriq/error/error.service';
+import { ErrorEffects } from './blueriq/generic/effects/error.effects';
 import { ElementComponent } from './blueriq/generic/element/element.component';
 import { FileDownloadService } from './blueriq/generic/file-download.service';
 import { AssetComponent } from './blueriq/material/asset/asset.component';
@@ -93,6 +96,7 @@ const BQ_MAT_COMPONENTS = [
 @NgModule({
   declarations: [
     AppComponent,
+    ErrorComponent,
     ProjectComponent,
     BQ_COMPONENTS,
     BQ_MAT_COMPONENTS
@@ -118,7 +122,8 @@ const BQ_MAT_COMPONENTS = [
     OwlMomentDateTimeModule,
     TextItemModule,
     EffectsModule.forFeature([
-      PageValidationEffect
+      PageValidationEffect,
+      ErrorEffects
     ]),
     StoreDevtoolsModule.instrument({
       name: 'Blueriq',
@@ -129,6 +134,7 @@ const BQ_MAT_COMPONENTS = [
     BlueriqComponents.register(BQ_COMPONENTS),
     MomentTransformer,
     PresentationStyles,
+    ErrorService,
     FileDownloadService
   ],
   bootstrap: [AppComponent]
