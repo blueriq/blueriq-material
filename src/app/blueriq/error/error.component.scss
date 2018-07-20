@@ -30,6 +30,13 @@
       margin-top: 3 * $bq-base-margin;
     }
 
+    .title,
+    .message,
+    .details {
+      width: 250px;
+      word-wrap: break-word;
+    }
+
     .title {
       margin-bottom: $bq-base-margin;
       font-size: 48px;
@@ -37,13 +44,10 @@
     }
 
     .message {
-      width: 250px;
       font-size: 16px;
-      word-break: break-all;
     }
 
     .details {
-      width: 250px;
       padding: $bq-base-margin;
       background-color: $bq-white-37-opacity;
     }
