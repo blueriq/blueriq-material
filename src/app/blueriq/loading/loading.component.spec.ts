@@ -11,7 +11,7 @@ import { MaterialModule } from '../material/material.module';
 
 import { LoadingComponent } from './loading.component';
 
-describe('LoadingComponent', () => {
+describe('LoadingComponent while not loading', () => {
   let component: LoadingComponent;
   let fixture: ComponentFixture<LoadingComponent>;
 
@@ -35,7 +35,7 @@ describe('LoadingComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create and have a default state of starting', () => {
     expect(component).toBeTruthy();
     component.state$.subscribe(value => expect(value).toBe('starting'));
   });
@@ -75,12 +75,46 @@ describe('LoadingComponent', () => {
     component.state$.subscribe(value => expect(value).toBe('idle'));
   });
 
-  // TODO - Change return value of the service.loading to return true, and expect the value to be loading
-  xit('function ngOnInit should set state to loading when not starting and is still loading', () => {
+});
+
+class MockLoadingService {
+  get loading$(): Observable<boolean> {
+    return Observable.of(true);
+  }
+}
+
+describe('LoadingComponent while loading', () => {
+  let component: LoadingComponent;
+  let fixture: ComponentFixture<LoadingComponent>;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [LoadingComponent],
+      imports: [
+        MaterialModule,
+        BrowserAnimationsModule, // or NoopAnimationsModule
+        BlueriqTestingModule,
+        FormsModule,
+        FormattingModule.forRoot()
+      ],
+      providers: [{ provide: LoadingService, useClass: MockLoadingService }]
+    });
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(LoadingComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create and have a default state of starting', () => {
+    expect(component).toBeTruthy();
+    component.state$.subscribe(value => expect(value).toBe('starting'));
+  });
+
+  it('function ngOnInit should set state to loading when starting', () => {
     // Init
     component.starting$ = new BehaviorSubject<boolean>(false);
-    const loadingService = TestBed.get(LoadingService);
-    spyOn(loadingService, 'loading$').and.callThrough().and.returnValue(Observable.of(true));
 
     // Sut
     component.ngOnInit();
@@ -88,5 +122,5 @@ describe('LoadingComponent', () => {
     // Verify
     component.state$.subscribe(value => expect(value).toBe('loading'));
   });
-})
-;
+
+});
