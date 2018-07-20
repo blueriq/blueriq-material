@@ -7,8 +7,6 @@ import { RouterModule } from '@angular/router';
 import { BlueriqModule } from '@blueriq/angular';
 import { BlueriqTestingModule } from '@blueriq/angular/testing';
 import { AppComponent } from './app.component';
-import { ErrorComponent } from './blueriq/error/error.component';
-import { ErrorService } from './blueriq/error/error.service';
 import { MaterialModule } from './blueriq/material/material.module';
 
 describe('AppComponent', () => {
@@ -16,8 +14,7 @@ describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent,
-        ErrorComponent
+        AppComponent
       ],
       imports: [
         MaterialModule,
@@ -29,8 +26,7 @@ describe('AppComponent', () => {
         RouterModule.forRoot([])
       ],
       providers: [
-        { provide: APP_BASE_HREF, useValue: '/' },
-        ErrorService
+        { provide: APP_BASE_HREF, useValue: '/' }
       ]
     });
   }));
