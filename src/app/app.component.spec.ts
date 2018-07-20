@@ -37,10 +37,4 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   }));
 
-  it('should display correct page title', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.getPageTitle()).toBe('');
-  }));
-
 });

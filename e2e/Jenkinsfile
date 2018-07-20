@@ -1,0 +1,75 @@
+#!groovy
+boolean isMaster = BRANCH_NAME == 'master';
+String triggerCron = isMaster ? "H 19 * * 7" : "";
+
+properties([
+  [
+    $class  : 'BuildDiscarderProperty',
+    strategy: [$class: 'LogRotator', numToKeepStr: '5']
+  ],
+  pipelineTriggers([
+    cron(triggerCron)
+  ]),
+]);
+
+node {
+  try {
+    env.PATH = "${env.PATH};D:\\tools\\Firefox-61.0.1-32bit\\firefox.exe;D:\\tools\\ChromePortable-67.0.3396.99\\chrome.exe;${env.NODEJS_PATH}\"";
+    env.SASS_BINARY_PATH = env.SASS_BINDING_PATH;
+
+    stage('checkout') {
+      checkout scm;
+      bat "git checkout ${params.BRANCH_NAME }";
+    }
+
+    stage('install') {
+      bat 'node -v';
+      bat 'yarn -v';
+      bat 'yarn install';
+      bat 'yarn ng:version';
+    }
+
+    stage('build') {
+        bat "yarn build";
+    }
+
+    stage('e2e tests'){
+      try{
+        bat "md e2e\\docker\\dist";
+        bat "xcopy /I dist e2e\\docker\\dist";
+        bat 'docker-compose --file .\\e2e\\docker\\docker-compose.yml up -d --build';
+        bat 'yarn e2e';
+      }finally{
+        dir("e2e/docker"){
+          bat 'docker-compose down --rmi all';
+        }
+      }
+    }
+  } catch (anyException) {
+    echo "An error occured (${anyException}) marking build as failed.";
+    currentBuild.result = 'FAILURE';
+  } finally {
+    stage("Publish results") {
+      // Test results
+      publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'testresults', reportFiles: 'firefox.html, chrome.html', reportName: 'HTML Report', reportTitles: ''])
+    }
+    notifyBuildStatus();
+    deleteDir();
+  }
+}// node
+
+def notifyBuildStatus() {
+  // notify the person who started the build and the persons who's commits broke the build
+  step([$class                  : 'Mailer',
+        notifyEveryUnstableBuild: true,
+        recipients              : emailextrecipients([
+          [$class: 'CulpritsRecipientProvider'],
+          [$class: 'RequesterRecipientProvider']
+        ])
+  ]);
+
+  step([$class                  : 'Mailer',
+        notifyEveryUnstableBuild: true,
+        sendToIndividuals       : true
+  ]);
+}

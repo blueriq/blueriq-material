@@ -1,0 +1,18 @@
+version: '3'
+services:
+    blueriq-material-theme:
+        build:
+            context: .
+            dockerfile: Dockerfile.frontend
+        ports:
+          - "9081:80"
+        deploy:
+          resources:
+            limits:
+              cpus: '0.25'
+              memory: 128M
+networks:
+    default:
+        ipam:
+            config:
+             - subnet: 192.168.192.0/29

@@ -1,4 +1,4 @@
-<div bqClasses class="container" [class.container-card]="displayAsCard()">
+<div bqKey bqClasses class="container" [class.container-card]="displayAsCard()">
   <h2 *ngIf="container.displayName">{{ container.displayName }}</h2>
   <ng-container *ngFor="let child of container.children" [bqElement]="child"></ng-container>
 </div>
