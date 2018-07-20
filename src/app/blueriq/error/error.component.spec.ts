@@ -32,7 +32,7 @@ describe('ErrorComponent', () => {
     expect(fixture.nativeElement.querySelector('.severity-notice')).toBeFalsy();
   });
 
-  it('should render close button and emit close event', () => {
+  it('should render close button and emit close event for a non fatal error', () => {
     spyOn(component.closed, 'emit').and.callThrough();
     component.error.isFatal = false;
     fixture.detectChanges();
@@ -53,6 +53,19 @@ describe('ErrorComponent', () => {
 
     expect(fixture.nativeElement.querySelector('.severity-error')).toBeFalsy();
     expect(fixture.nativeElement.querySelector('.severity-notice')).toBeTruthy();
+  });
+
+  it('should display the proper error fields', () => {
+    component.error = new ErrorModel(
+      'SESSION_EXPIRED',
+      'Session Expired',
+      'Your session has expired'
+    );
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('.title').textContent).toEqual('Session Expired');
+    expect(fixture.nativeElement.querySelector('.message').textContent).toEqual('Your session has expired');
+
   });
 
 });
