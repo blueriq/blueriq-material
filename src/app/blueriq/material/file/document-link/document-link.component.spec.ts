@@ -5,9 +5,9 @@ import { BlueriqComponents } from '@blueriq/angular';
 import { DocumentLink } from '@blueriq/angular/files';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate, LinkTemplate } from '@blueriq/core/testing';
-import { FileDownloadService } from '../../generic/file-download.service';
-import { MaterialModule } from '../material.module';
-import { PresentationStyles } from '../presentationstyles/presentationstyles';
+import { MaterialModule } from '../../material.module';
+import { PresentationStyles } from '../../presentationstyles/presentationstyles';
+import { FileDownloadService } from '../file-download/file-download.service';
 import { DocumentLinkComponent } from './document-link.component';
 
 describe('DocumentLinkComponent', () => {

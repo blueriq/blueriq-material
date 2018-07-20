@@ -21,12 +21,12 @@ import { ErrorComponent } from './blueriq/error/error.component';
 import { ErrorService } from './blueriq/error/error.service';
 import { ErrorEffects } from './blueriq/generic/effects/error.effects';
 import { ElementComponent } from './blueriq/generic/element/element.component';
-import { FileDownloadService } from './blueriq/generic/file-download.service';
 import { AssetComponent } from './blueriq/material/asset/asset.component';
 import { ContainerComponent } from './blueriq/material/container/container.component';
-import { DocumentLinkComponent } from './blueriq/material/document-link/document-link.component';
 import { FileDownloadComponent } from './blueriq/material/file-download/file-download.component';
 import { FileUploadComponent } from './blueriq/material/file-upload/file-upload.component';
+import { DocumentLinkComponent } from './blueriq/material/file/document-link/document-link.component';
+import { FileDownloadService } from './blueriq/material/file/file-download/file-download.service';
 import { ButtonComponent } from './blueriq/material/form-controls/button/button.component';
 import { CheckboxComponent } from './blueriq/material/form-controls/checkbox/checkbox.component';
 import { DatepickerComponent } from './blueriq/material/form-controls/date/datepicker/datepicker.component';
@@ -50,8 +50,8 @@ import { TableSortComponent } from './blueriq/material/table/sort/table.sort.com
 import { TableComponent } from './blueriq/material/table/table.component';
 import { TextItemComponent } from './blueriq/material/textitem/textitem.component';
 import { ProjectComponent } from './blueriq/project/project.component';
-import { PageValidationEffect } from './blueriq/validation/validation.effect';
 import { Configuration } from './configuration/configuration';
+import { PageValidationEffect } from './shared/effects/validation/validation.effect';
 
 const routes: Routes = [
   { path: 'session/:sessionId', component: ProjectComponent },

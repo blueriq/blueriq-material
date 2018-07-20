@@ -2,8 +2,8 @@ import { Component, Host, Self } from '@angular/core';
 import { AuthorizedDownload, BlueriqComponent } from '@blueriq/angular';
 import { DocumentLink } from '@blueriq/angular/files';
 import { Container } from '@blueriq/core';
-import { FileDownloadService } from '../../generic/file-download.service';
-import { PresentationStyles } from '../presentationstyles/presentationstyles';
+import { PresentationStyles } from '../../presentationstyles/presentationstyles';
+import { FileDownloadService } from '../file-download/file-download.service';
 
 @Component({
   templateUrl: './document-link.component.html',

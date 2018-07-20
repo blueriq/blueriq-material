@@ -2,7 +2,7 @@ import { Component, Self } from '@angular/core';
 import { AuthorizedDownload, BlueriqComponent } from '@blueriq/angular';
 import { FileDownload } from '@blueriq/angular/files';
 import { Container } from '@blueriq/core';
-import { FileDownloadService } from '../../generic/file-download.service';
+import { FileDownloadService } from './file-download.service';
 
 @Component({
   selector: 'bq-file-download',

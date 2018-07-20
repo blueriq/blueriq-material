@@ -12,7 +12,7 @@ import {
 } from '@blueriq/angular';
 import { Actions, Effect } from '@ngrx/effects';
 import { tap } from 'rxjs/operators';
-import { ErrorService } from '../../error/error.service';
+import { ErrorService } from '../../../blueriq/error/error.service';
 
 /**
  * This class exposes Effects so we can detect whether an error has occurred and present the error to the uses.
