@@ -11,5 +11,7 @@ The loading component will show a spinner (the `e` of the Blueriq logo). The loa
 LoadingService of red-cow. With the state (starting, loading, idle) you can distract when the spinner must be 
 shown. 
 
-
+#### Time loading spinner
+The spinner will be shown if the loading is 400 ms. You can change this in the loading.component.ts file
+inside the ngOnInit().
 
