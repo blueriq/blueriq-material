@@ -3372,6 +3372,10 @@ hash.js@^1.0.0, hash.js@^1.0.3:
     inherits "^2.0.3"
     minimalistic-assert "^1.0.1"
 
+hat@^0.0.3:
+  version "0.0.3"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/hat/-/hat-0.0.3.tgz#bb014a9e64b3788aed8005917413d4ff3d502d8a"
+
 hawk@~3.1.3:
   version "3.1.3"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/hawk/-/hawk-3.1.3.tgz#078444bd7c1640b0fe540d2c9b73d59678e8e1c4"
@@ -4488,7 +4492,7 @@ lodash.tail@^4.1.1:
   version "4.1.1"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/lodash.tail/-/lodash.tail-4.1.1.tgz#d2333a36d9e7717c8ad2f7cacafec7c32b444664"
 
-lodash@^4.0.0, lodash@^4.15.0, lodash@^4.17.10, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.3.0, lodash@^4.5.0, lodash@~4.17.10:
+lodash@^4.0.0, lodash@^4.15.0, lodash@^4.17.0, lodash@^4.17.10, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.3.0, lodash@^4.5.0, lodash@~4.17.10:
   version "4.17.10"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
 
@@ -5714,7 +5718,17 @@ promisify-call@^2.0.2:
   dependencies:
     with-callback "^1.0.2"
 
-protractor@~5.3.2:
+protractor-jasmine2-html-reporter@^0.0.7:
+  version "0.0.7"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/protractor-jasmine2-html-reporter/-/protractor-jasmine2-html-reporter-0.0.7.tgz#452da9c853e9c3985cb526a6a9933f5c97ab5d8c"
+  dependencies:
+    async "^2.1.4"
+    hat "^0.0.3"
+    lodash "^4.17.0"
+    mkdirp "^0.5.0"
+    string.prototype.startswith "^0.2.0"
+
+protractor@5.3.2:
   version "5.3.2"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/protractor/-/protractor-5.3.2.tgz#b8278f3131d9d52fa1172ed0f7fec03085fbe0ce"
   dependencies:
@@ -6970,6 +6984,10 @@ string-width@^1.0.1, string-width@^1.0.2:
     is-fullwidth-code-point "^2.0.0"
     strip-ansi "^4.0.0"
 
+string.prototype.startswith@^0.2.0:
+  version "0.2.0"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/string.prototype.startswith/-/string.prototype.startswith-0.2.0.tgz#da68982e353a4e9ac4a43b450a2045d1c445ae7b"
+
 string_decoder@^1.0.0, string_decoder@~1.1.1:
   version "1.1.1"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/string_decoder/-/string_decoder-1.1.1.tgz#9cf1611ba62685d7030ae9e4ba34149c3af03fc8"
@@ -7672,7 +7690,7 @@ webdriver-js-extender@^1.0.0:
     "@types/selenium-webdriver" "^2.53.35"
     selenium-webdriver "^2.53.2"
 
-webdriver-manager@^12.0.6:
+webdriver-manager@^12.0.6, webdriver-manager@^12.1.0:
   version "12.1.0"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/webdriver-manager/-/webdriver-manager-12.1.0.tgz#f6601e52de5f0c97fc7024c889eeb2416f2f1d9d"
   dependencies:

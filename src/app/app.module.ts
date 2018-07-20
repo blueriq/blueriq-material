@@ -19,6 +19,7 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { ErrorComponent } from './blueriq/error/error.component';
 import { ErrorService } from './blueriq/error/error.service';
+import { BqKeyDirective } from './blueriq/generic/bq-key/bq-key.directive';
 import { ErrorEffects } from './blueriq/generic/effects/error.effects';
 import { ElementComponent } from './blueriq/generic/element/element.component';
 import { FileDownloadService } from './blueriq/generic/file-download.service';
@@ -91,7 +92,8 @@ const BQ_COMPONENTS = [
 ];
 
 const BQ_MAT_COMPONENTS = [
-  ElementComponent
+  ElementComponent,
+  BqKeyDirective
 ];
 
 @NgModule({

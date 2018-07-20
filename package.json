@@ -5,6 +5,7 @@
     "ng": "ng",
     "ng:version": "ng --version",
     "start": "ng serve --open --host 0.0.0.0 --proxy-config proxy.conf.json",
+    "start:nolive": "ng serve --open --host 0.0.0.0 --proxy-config proxy.conf.json --live-reload false --watch false",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "yarn tslint && yarn sass-lint",
@@ -12,7 +13,8 @@
     "sass-lint": "sass-lint --verbose --config sass-lint.yml src/**/*.scss",
     "verify": "ng test --watch false --code-coverage true",
     "verify:all": "yarn verify && yarn tslint && yarn sass-lint",
-    "e2e": "ng e2e",
+    "e2e": "yarn protractor e2e/protractor.conf.js",
+    "e2e-dev": "yarn webdriver-manager update && protractor e2e/protractor-dev.conf.js",
     "docs": "compodoc --config compodoc.json",
     "docs:serve": "yarn docs --watch --serve --port 4201",
     "docs:publish": "./docs/publish.bat",
@@ -72,10 +74,12 @@
     "karma-jasmine": "1.1.2",
     "karma-jasmine-html-reporter": "1.1.0",
     "karma-junit-reporter": "^1.2.0",
-    "protractor": "~5.3.2",
+    "protractor": "5.3.2",
+    "protractor-jasmine2-html-reporter": "^0.0.7",
     "sass-lint": "~1.12.1",
     "ts-node": "~6.0.3",
     "tslint": "~5.10.0",
-    "typescript": "~2.7.2"
+    "typescript": "~2.7.2",
+    "webdriver-manager": "^12.1.0"
   }
 }

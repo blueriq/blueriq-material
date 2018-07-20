@@ -1,4 +1,4 @@
-<div bqClasses class="container">
+<div bqKey bqClasses class="container">
   <ng-container *ngIf="hasButtonPresentationStyle(); else displayLink">
     <a mat-raised-button (click)="download()" [color]="getColor()">{{documentLink.link.text}}</a>
   </ng-container>
