@@ -5,9 +5,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { StringFieldComponent } from '../../material/form-controls/input-field/string/string.component';
-import { MaterialModule } from '../../material/material.module';
-import { PresentationStyles } from '../../material/presentationstyles/presentationstyles'; 
+import { StringFieldComponent } from '../../blueriq/material/form-controls/input-field/string/string.component';
+import { MaterialModule } from '../../blueriq/material/material.module';
+import { PresentationStyles } from '../../blueriq/material/presentationstyles/presentationstyles';
 
 import { ElementComponent } from './element.component';
 

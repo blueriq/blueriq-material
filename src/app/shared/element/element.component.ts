@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { getBlueriqField, getFieldMessages } from '@blueriq/angular/forms';
 import { Field, FieldMessages } from '@blueriq/core';
-import { PresentationStyles } from '../../material/presentationstyles/presentationstyles';
+import { PresentationStyles } from '../../blueriq/material/presentationstyles/presentationstyles';
 
 @Component({
   selector: 'bq-element',
