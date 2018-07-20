@@ -2,7 +2,7 @@
 </div>
 
 <div class="error-container" fxFlex fxLayoutAlign="center center">
-  <div [class]="error.severity">
+  <div [class]="'severity-' + error.severity">
 
     <div fxFlex fxLayout="column" fxLayoutAlign="space-around center">
 
@@ -17,9 +17,8 @@
         {{ error.details }}
       </p>
 
-      <p class="button" *ngIf="error.closable || error.reloadable" fxLayout="column" fxLayoutAlign="start center">
-        <button mat-button (click)="close()" *ngIf="error.closable">close</button>
-        <button mat-button (click)="reload()" *ngIf="error.reloadable">reload</button>
+      <p class="button" *ngIf="!error.isFatal" fxLayout="column" fxLayoutAlign="start center">
+        <button mat-button (click)="close()">close</button>
       </p>
     </div>
 

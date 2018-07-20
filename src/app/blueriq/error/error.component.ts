@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
-import { ErrorModel } from '../generic/models/error.model';
+import { ErrorModel } from './error.model';
 
 @Component({
   selector: 'bq-error',
@@ -20,10 +20,6 @@ export class ErrorComponent {
 
   close(): void {
     this.closed.emit();
-  }
-
-  reload(): void {
-    this.document.location.reload();
   }
 
 }

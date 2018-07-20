@@ -5,8 +5,8 @@ import { SessionId } from '@blueriq/core';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs/Subscription';
+import { ErrorModel } from '../error/error.model';
 import { ErrorService } from '../error/error.service';
-import { ErrorModel } from '../generic/models/error.model';
 
 @Component({
   templateUrl: './project.component.html'

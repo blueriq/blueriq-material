@@ -1,51 +1,58 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ErrorComponent } from './error.component';
+import { ErrorModel } from './error.model';
 
 describe('ErrorComponent', () => {
   let component: ErrorComponent;
   let fixture: ComponentFixture<ErrorComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ErrorComponent],
       imports: [FlexLayoutModule]
     })
     .compileComponents();
-  }));
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(ErrorComponent);
     component = fixture.componentInstance;
-    component.error = {
-      errorType: 'NOT_FOUND',
-      title: 'Not found',
-      message: 'Unknown flow: Demo',
-      details: 'Some stack trace'
-    };
+    component.error = new ErrorModel(
+      'NOT_FOUND',
+      'Not found',
+      'Unknown flow: Demo',
+      'Some stack trace'
+    );
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
-    expect(fixture.nativeElement.querySelector('.error-button')).toBeFalsy();
+    expect(fixture.nativeElement.querySelector('.button')).toBeFalsy();
+    expect(fixture.nativeElement.querySelector('.severity-error')).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('.severity-notice')).toBeFalsy();
   });
 
-  it('should be closable', () => {
-    component.closable = true;
+  it('should render close button and emit close event', () => {
+    spyOn(component.closed, 'emit').and.callThrough();
+    component.error.isFatal = false;
     fixture.detectChanges();
 
-    expect(fixture.nativeElement.querySelector('.error-button')).toBeTruthy();
-  });
-
-  it('should close', () => {
-    spyOn(component.closed, 'emit');
-    component.closable = true;
-    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('.button')).toBeTruthy();
 
     component.close();
     expect(component.closed.emit).toHaveBeenCalledTimes(1);
+  });
 
+  it('should render severity notice on session expired', () => {
+    component.error = new ErrorModel(
+      'SESSION_EXPIRED',
+      'Session Expired',
+      'Your session has expired'
+    );
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('.severity-error')).toBeFalsy();
+    expect(fixture.nativeElement.querySelector('.severity-notice')).toBeTruthy();
   });
 
 });

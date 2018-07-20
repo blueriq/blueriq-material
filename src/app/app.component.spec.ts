@@ -47,41 +47,4 @@ describe('AppComponent', () => {
     expect(app.getPageTitle()).toBe('');
   }));
 
-  it('should show the error component', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-
-    app.error = {
-      errorType: 'NOT_FOUND',
-      title: 'Not found',
-      message: 'Unknown flow: Start',
-      details: 'Some stack trace'
-    };
-    fixture.detectChanges();
-
-    const title: string = fixture.nativeElement.querySelector('bq-error .error-title').innerText;
-    expect(title).toBe('Not found');
-  }));
-
-  it('should not show the error component after clearing an error', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-
-    app.error = {
-      errorType: 'NOT_FOUND',
-      title: 'Not found',
-      message: 'Unknown flow: Start',
-      details: 'Some stack trace'
-    };
-    fixture.detectChanges();
-
-    const title: string = fixture.nativeElement.querySelector('bq-error .error-title').innerText;
-    expect(title).toBe('Not found');
-
-    app.clearError();
-    fixture.detectChanges();
-
-    const errorElement = fixture.nativeElement.querySelector('bq-error');
-    expect(errorElement).toBe(null);
-  }));
 });
