@@ -47,10 +47,12 @@ export class ProjectComponent implements OnInit, OnDestroy {
     });
   }
 
+  /** Call this method to clear the error and thus removing it from view */
   clearError(): void {
     this.error = null;
   }
 
+  /** Handler for Session Expired events */
   onSessionExpired() {
     this.error = new ErrorModel(
       'SESSION_EXPIRED',
@@ -59,6 +61,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
     );
   }
 
+  /** Handler for Flow Ended events */
   onFlowEnded() {
     this.error = new ErrorModel(
       'FLOW_ENDED',
@@ -67,6 +70,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
     );
   }
 
+  /** Handler for unauthorized events */
   onUnauthorized(details: ProjectDetails) {
     this.error = new ErrorModel(
       'UNAUTHORIZED',

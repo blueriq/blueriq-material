@@ -14,6 +14,12 @@ import { Actions, Effect } from '@ngrx/effects';
 import { tap } from 'rxjs/operators';
 import { ErrorService } from '../../error/error.service';
 
+/**
+ * This class exposes Effects so we can detect whether an error has occurred and present the error to the uses.
+ *
+ * NOTE: This class is temporary; errors will be returned from the BqProjectComponent/BqSessionComponent as
+ *       events some time in the near future.
+ */
 @Injectable()
 export class ErrorEffects {
 
