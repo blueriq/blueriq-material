@@ -7,7 +7,7 @@ import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from
 import { FieldTemplate } from '@blueriq/core/testing';
 import { StringFieldComponent } from '../../material/form-controls/input-field/string/string.component';
 import { MaterialModule } from '../../material/material.module';
-import { PresentationStyles } from '../../material/presentationstyles/presentationstyles';
+import { PresentationStyles } from '../../material/presentationstyles/presentationstyles'; 
 
 import { ElementComponent } from './element.component';
 
