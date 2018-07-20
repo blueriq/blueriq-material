@@ -33,7 +33,7 @@
     "@angular/flex-layout": "^6.0.0-beta.16",
     "@angular/forms": "^6.0.1",
     "@angular/http": "^6.0.1",
-    "@angular/material": "^6.0.1",
+    "@angular/material": "6.3.2",
     "@angular/material-moment-adapter": "^6.2.1",
     "@angular/platform-browser": "^6.0.1",
     "@angular/platform-browser-dynamic": "^6.0.1",

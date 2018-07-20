@@ -23,6 +23,7 @@ import { BqKeyDirective } from './blueriq/generic/bq-key/bq-key.directive';
 import { ErrorEffects } from './blueriq/generic/effects/error.effects';
 import { ElementComponent } from './blueriq/generic/element/element.component';
 import { FileDownloadService } from './blueriq/generic/file-download.service';
+import { LoadingComponent } from './blueriq/loading/loading.component';
 import { AssetComponent } from './blueriq/material/asset/asset.component';
 import { ContainerComponent } from './blueriq/material/container/container.component';
 import { DocumentLinkComponent } from './blueriq/material/document-link/document-link.component';
@@ -98,8 +99,7 @@ const BQ_MAT_COMPONENTS = [
 @NgModule({
   declarations: [
     AppComponent,
-    ErrorComponent,
-    ProjectComponent,
+    LoadingComponent,    ErrorComponent,    ProjectComponent,
     BQ_COMPONENTS,
     BQ_MAT_COMPONENTS
   ],
@@ -131,6 +131,9 @@ const BQ_MAT_COMPONENTS = [
       name: 'Blueriq',
       logOnly: environment.production // Restrict extension to log-only mode
     })
+  ],
+  exports: [
+    LoadingComponent
   ],
   providers: [
     BlueriqComponents.register(BQ_COMPONENTS),

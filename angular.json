@@ -27,7 +27,8 @@
               "src/theme/images"
             ],
             "styles": [
-              "src/theme/index.scss"
+              "src/theme/index.scss",
+              "src/theme/splashscreen.scss"
             ],
             "scripts": []
           },
