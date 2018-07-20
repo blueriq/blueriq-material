@@ -1,3 +1,5 @@
+<bq-loading #loader></bq-loading>
+
 <bq-project 
 	[sessionId]="sessionId | async" 
 	[shortcut]="shortcut | async" 
@@ -5,10 +7,6 @@
 	[flow]="flow | async" 
 	[version]="version | async" 
 	[sessionName]="sessionName" 
-	[languageCode]="languageCode | async"
+	[languageCode]="languageCode | async" 
 	(initialized)="loader.onInitialize()">
 </bq-project>
-
-<bq-loading #loader></bq-loading>
-
-

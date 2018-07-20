@@ -13,7 +13,7 @@ import { debounce, map } from 'rxjs/operators';
   styleUrls: ['./loading.component.scss'],
   animations: [
     trigger('state', [
-      state('loading, starting', style({ display: 'block' })),
+      state('loading, starting', style({ display: 'inline' })),
       state('idle', style({ display: 'none' })),
       transition('* => loading', [
         style({ opacity: 0 }),
@@ -39,7 +39,7 @@ export class LoadingComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.state$ = combineLatest(this.starting$, this.loadingService.loading$).pipe(
-      debounce(([isStarting, isLoading]) => timer(isStarting ? 0 : isLoading ? 300 : 0)),
+      debounce(([isStarting, isLoading]) => timer(isStarting ? 0 : isLoading ? 400 : 0)),
       map(([isStarting, isLoading]) => isStarting ? 'starting' : isLoading ? 'loading' : 'idle')
     );
   }
