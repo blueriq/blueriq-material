@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 163 163">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        fill: #2abfad;
+      }
+
+      .cls-3 {
+        fill: none;
+      }
+    </style>
+  </defs>
+  <g id="Rounded" transform="translate(34.724 9.587)">
+    <g id="Group_363" data-name="Group 363" transform="translate(2 28.035)">
+      <circle id="Ellipse_36" data-name="Ellipse 36" class="cls-1" cx="81.5" cy="81.5" r="81.5" transform="translate(-36.724 -37.621)"/>
+      <g id="Group_364" data-name="Group 364" transform="translate(-10)">
+        <circle id="Ellipse_35" data-name="Ellipse 35" class="cls-2" cx="22.09" cy="22.09" r="22.09" transform="translate(22.09)"/>
+        <path id="Path_97" data-name="Path 97" class="cls-2" d="M45.18,15C30.435,15,1,22.4,1,37.09v5.522a5.539,5.539,0,0,0,5.522,5.522H83.837a5.539,5.539,0,0,0,5.522-5.522V37.09C89.359,22.4,59.924,15,45.18,15Z" transform="translate(-1 40.224)"/>
+      </g>
+    </g>
+    <g id="round-schedule-24px" transform="translate(63.276 26.413)">
+      <g id="Bounding_Boxes">
+        <path id="Path_111" data-name="Path 111" class="cls-3" d="M0,0H51.519V51.519H0Z"/>
+      </g>
+      <g id="Rounded-2" data-name="Rounded" transform="translate(4.293 4.293)">
+        <g id="Group_365" data-name="Group 365">
+          <path id="Path_112" data-name="Path 112" class="cls-2" d="M23.445,2A21.466,21.466,0,1,0,44.933,23.466,21.456,21.456,0,0,0,23.445,2Zm.021,38.639A17.173,17.173,0,1,1,40.639,23.466,17.168,17.168,0,0,1,23.466,40.639Z" transform="translate(-2 -2)"/>
+          <path id="Path_113" data-name="Path 113" class="cls-2" d="M12.674,7h-.129A1.539,1.539,0,0,0,11,8.546V18.678a2.125,2.125,0,0,0,1.052,1.846l8.909,5.345a1.53,1.53,0,0,0,2.1-.515h0a1.525,1.525,0,0,0-.537-2.125L14.22,18.291V8.546A1.539,1.539,0,0,0,12.674,7Z" transform="translate(8.32 3.733)"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

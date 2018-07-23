@@ -41,6 +41,7 @@ node {
     def mvnHome = tool "apache-maven-3.5.3"
     env.PATH = "${env.JAVA_HOME}\\bin;${env.PATH};${mvnHome}\\bin;${env.NODEJS_PATH}\""
     env.SASS_BINARY_PATH = env.SASS_BINDING_PATH
+    env.CHROME_BIN = env.CHROME_67_0_3396_99;
 
     stage('checkout') {
       checkout scm
@@ -79,19 +80,23 @@ node {
             bat "yarn build"
           }
         }
-      )
+      );
     }
-
     if (params.deploySnapshot) {
       stage('deploy snapshot') {
         bat "mvn clean deploy"
       }
     } else if (params.isRelease) {
-//      stage('increment version for release') {
-//        bat "yarn version:increment ${params.releaseVersion}"
-//      }
+      // stage('increment version for release') {
+      // bat "yarn version:increment ${params.releaseVersion}"
+      // }
       stage('release') {
         bat "mvn -B -DdevelopmentVersion=${params.developmentVersion} -DreleaseVersion=${params.releaseVersion} -Dresume=false release:prepare release:perform"
+      }
+
+      stage('publish docs') {
+        bat "yarn docs --silent --name \"@blueriq/material - ${params.releaseVersion}\""
+        bat "yarn docs:publish ${params.releaseVersion}"
       }
     } // end if
 

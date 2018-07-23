@@ -2,7 +2,6 @@ import { APP_BASE_HREF } from '@angular/common';
 import { async, TestBed } from '@angular/core/testing';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
-import { Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { BlueriqModule } from '@blueriq/angular';
@@ -14,14 +13,16 @@ describe('AppComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AppComponent],
+      declarations: [
+        AppComponent
+      ],
       imports: [
         MaterialModule,
         BrowserAnimationsModule, // or NoopAnimationsModule
+        BlueriqTestingModule,
         FormsModule,
         FlexLayoutModule,
         BlueriqModule.forRoot(),
-        BlueriqTestingModule,
         RouterModule.forRoot([])
       ],
       providers: [
@@ -36,9 +37,4 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   }));
 
-  it('should display correct page title', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.getPageTitle()).toBe('');
-  }));
 });
