@@ -14,14 +14,7 @@ import { debounce, map } from 'rxjs/operators';
   animations: [
     trigger('state', [
       state('loading, starting', style({ display: 'inline' })),
-      state('idle', style({ display: 'none' })),
-      transition('* => loading', [
-        style({ opacity: 0 }),
-        animate('300ms ease-in', style({ opacity: 0.8 }))
-      ]),
-      transition('loading => *, starting => *', [
-        animate('300ms ease-out', style({ opacity: 0 }))
-      ])
+      state('idle', style({ display: 'none' }))
     ])
   ]
 })
