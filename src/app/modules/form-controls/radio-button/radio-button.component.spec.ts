@@ -3,7 +3,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { ElementComponent } from '../../../../shared/element/element.component';
+import { FieldContainerComponent } from '@shared/field-container/field-container.component';
 import { MaterialModule } from '../../../material.module';
 import { PresentationStyles } from '../../presentationstyles';
 
@@ -16,7 +16,7 @@ describe('RadioButtonComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [RadioButtonComponent, ElementComponent],
+      declarations: [RadioButtonComponent, FieldContainerComponent],
       providers: [BlueriqComponents.register([RadioButtonComponent])],
       imports: [
         MaterialModule,

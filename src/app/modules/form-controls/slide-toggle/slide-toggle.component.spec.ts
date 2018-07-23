@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { ElementComponent } from '../../../../shared/element/element.component';
+import { FieldContainerComponent } from '@shared/field-container/field-container.component';
 import { MaterialModule } from '../../../material.module';
 import { PresentationStyles } from '../../presentationstyles';
 import { SlideToggleComponent } from './slide-toggle.component';
@@ -17,7 +17,7 @@ describe('SlideToggleComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SlideToggleComponent, ElementComponent],
+      declarations: [SlideToggleComponent, FieldContainerComponent],
       providers: [BlueriqComponents.register([SlideToggleComponent])],
       imports: [
         MaterialModule,

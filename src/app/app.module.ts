@@ -12,6 +12,7 @@ import { TextItemModule } from '@blueriq/angular/textitems';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { SharedModule } from '@shared/shared.module';
 import { OwlDateTimeModule } from 'ng-pick-datetime';
 import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
 import { FileUploadModule } from 'ng2-file-upload';
@@ -52,7 +53,6 @@ import { TextItemComponent } from './modules/textitem/textitem.component';
 import { ProjectComponent } from './project.component';
 import { ErrorEffects } from './shared/effects/error/error.effects';
 import { PageValidationEffect } from './shared/effects/validation/validation.effect';
-import { SharedModule } from './shared/shared.module';
 
 const routes: Routes = [
   { path: 'session/:sessionId', component: ProjectComponent },

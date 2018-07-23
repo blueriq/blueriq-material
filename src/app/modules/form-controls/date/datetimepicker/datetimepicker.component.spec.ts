@@ -5,10 +5,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
+import { FieldContainerComponent } from '@shared/field-container/field-container.component';
 import * as moment from 'moment';
 import { OwlDateTimeModule } from 'ng-pick-datetime';
 import { MomentDateTimeAdapter, OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
-import { ElementComponent } from '../../../../../shared/element/element.component';
 import { MaterialModule } from '../../../../material.module';
 import { PresentationStyles } from '../../../presentationstyles';
 import { MomentTransformer } from '../moment-transformer';
@@ -21,7 +21,7 @@ describe('DateTimepickerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [DateTimepickerComponent, ElementComponent],
+      declarations: [DateTimepickerComponent, FieldContainerComponent],
       providers: [BlueriqComponents.register([DateTimepickerComponent]), MomentTransformer],
       imports: [
         MaterialModule,

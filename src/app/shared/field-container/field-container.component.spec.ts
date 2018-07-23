@@ -6,8 +6,8 @@ import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../../material.module';
-import { StringFieldComponent } from '../../modules/material/form-controls/input-field/string/string.component';
-import { PresentationStyles } from '../../modules/material/presentationstyles/presentationstyles';
+import { StringFieldComponent } from '../../modules/form-controls/input-field/string/string.component';
+import { PresentationStyles } from '../../modules/presentationstyles';
 
 import { FieldContainerComponent } from './field-container.component';
 
