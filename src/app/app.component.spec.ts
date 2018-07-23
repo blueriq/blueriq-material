@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { BlueriqModule } from '@blueriq/angular';
 import { BlueriqTestingModule } from '@blueriq/angular/testing';
 import { AppComponent } from './app.component';
-import { MaterialModule } from './blueriq/material/material.module';
+import { MaterialModule } from './material.module';
 
 describe('AppComponent', () => {
 

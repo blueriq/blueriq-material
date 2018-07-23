@@ -1,0 +1,13 @@
+@import '../../../../theme/globals/variables';
+
+a {
+  &.plain-link {
+    color: $bq-primary-blue;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
