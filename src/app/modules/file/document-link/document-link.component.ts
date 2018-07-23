@@ -2,7 +2,7 @@ import { Component, Host, Self } from '@angular/core';
 import { AuthorizedDownload, BlueriqComponent } from '@blueriq/angular';
 import { DocumentLink } from '@blueriq/angular/files';
 import { Container } from '@blueriq/core';
-import { PresentationStyles } from '../../PresentationStyles';
+import { PresentationStylesNew } from '../../PresentationStylesNew';
 import { FileDownloadService } from '../file-download/file-download.service';
 
 @Component({
@@ -29,14 +29,14 @@ export class DocumentLinkComponent {
 
   /** Whether the container has the `button` presentation style */
   hasButtonPresentationStyle() {
-    return this.container.styles.has(PresentationStyles.BUTTON);
+    return this.container.styles.has(PresentationStylesNew.BUTTON);
   }
 
   /** The button color, based on presentation styles `Primary` and `Accent` */
   getColor(): string | null {
-    if (this.container.styles.has(PresentationStyles.PRIMARY)) {
+    if (this.container.styles.has(PresentationStylesNew.PRIMARY)) {
       return 'primary';
-    } else if (this.container.styles.has(PresentationStyles.ACCENT)) {
+    } else if (this.container.styles.has(PresentationStylesNew.ACCENT)) {
       return 'accent';
     } else {
       return null;

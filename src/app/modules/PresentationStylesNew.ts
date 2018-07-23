@@ -1,4 +1,4 @@
-export class PresentationStyles {
+export class PresentationStylesNew {
   static ACCENT = 'Accent';
   static BUTTON = 'button';
   static DANGER = 'Danger';

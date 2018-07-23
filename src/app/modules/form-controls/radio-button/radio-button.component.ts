@@ -2,7 +2,7 @@ import { Component, Host } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { BlueriqFormBuilder } from '@blueriq/angular/forms';
 import { Field } from '@blueriq/core';
-import { PresentationStyles } from '../../PresentationStyles';
+import { PresentationStylesNew } from '../../PresentationStylesNew';
 
 @Component({
   selector: 'bq-radio-button',
@@ -15,21 +15,21 @@ import { PresentationStyles } from '../../PresentationStyles';
 })
 export class RadioButtonComponent {
 
-  formControl = this.form.control(this.field, { updateOn: 'blur', disableWhen: PresentationStyles.DISABLED });
+  formControl = this.form.control(this.field, { updateOn: 'blur', disableWhen: PresentationStylesNew.DISABLED });
 
   constructor(@Host() public field: Field, private form: BlueriqFormBuilder) {
   }
 
   /**
-   * Determines the direction in which the radio buttons are presented. Options are {@link PresentationStyles.VERTICAL}
-   * and {@link PresentationStyles.HORIZONTAL}
+   * Determines the direction in which the radio buttons are presented. Options are {@link PresentationStylesNew.VERTICAL}
+   * and {@link PresentationStylesNew.HORIZONTAL}
    * @returns {string} denoting the direction in which the buttons are presented
    */
   determineDirection(): string {
-    if (this.field.styles.has(PresentationStyles.VERTICAL)) {
+    if (this.field.styles.has(PresentationStylesNew.VERTICAL)) {
       return 'vertical';
     }
-    if (this.field.styles.has(PresentationStyles.HORIZONTAL) || this.field.domain.options.length === 2) {
+    if (this.field.styles.has(PresentationStylesNew.HORIZONTAL) || this.field.domain.options.length === 2) {
       return 'horizontal';
     }
     return 'vertical';

@@ -6,7 +6,7 @@ import { DocumentLink } from '@blueriq/angular/files';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate, LinkTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../../../material.module';
-import { PresentationStyles } from '../../PresentationStyles';
+import { PresentationStylesNew } from '../../PresentationStylesNew';
 import { FileDownloadService } from '../file-download/file-download.service';
 import { DocumentLinkComponent } from './document-link.component';
 
@@ -63,7 +63,7 @@ describe('DocumentLinkComponent', () => {
 
   it('should contain the correct data when presentation style "button" is set', () => {
     session.update(
-      container.styles(PresentationStyles.BUTTON)
+      container.styles(PresentationStylesNew.BUTTON)
     );
     const element = component.nativeElement.querySelector('a');
     expect(element.getAttribute('class')).toBe('mat-raised-button');
@@ -72,7 +72,7 @@ describe('DocumentLinkComponent', () => {
 
   it('should contain the correct class when presentation styles "button" and "primary" are set', () => {
     session.update(
-      container.styles(PresentationStyles.BUTTON, PresentationStyles.PRIMARY)
+      container.styles(PresentationStylesNew.BUTTON, PresentationStylesNew.PRIMARY)
     );
     const element = component.nativeElement.querySelector('a');
     expect(element.getAttribute('class')).toBe('mat-raised-button mat-primary');
@@ -81,7 +81,7 @@ describe('DocumentLinkComponent', () => {
 
   it('should contain the correct class when presentation styles "button" and "accent" are set', () => {
     session.update(
-      container.styles(PresentationStyles.BUTTON, PresentationStyles.ACCENT)
+      container.styles(PresentationStylesNew.BUTTON, PresentationStylesNew.ACCENT)
     );
     const element = component.nativeElement.querySelector('a');
     expect(element.getAttribute('class')).toBe('mat-raised-button mat-accent');

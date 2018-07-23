@@ -7,7 +7,7 @@ import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from
 import { TextItemModule } from '@blueriq/angular/textitems';
 import { StaticNodeTemplate, StyleNodeTemplate, TextItemNodeTemplate, TextItemTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../../material.module';
-import { PresentationStyles } from '../PresentationStyles';
+import { PresentationStylesNew } from '../PresentationStylesNew';
 import { TextItemComponent } from './textitem.component';
 
 describe('TextItemComponent', () => {
@@ -78,7 +78,7 @@ describe('TextItemComponent', () => {
 
   it('should be composed as danger', () => {
     session.update(
-      textItem.styles(PresentationStyles.DANGER)
+      textItem.styles(PresentationStylesNew.DANGER)
     );
 
     const iconGutter = component.debugElement.query(By.css('div[class=gutter]'));
@@ -90,7 +90,7 @@ describe('TextItemComponent', () => {
   });
 
   it('should be composed as warning', () => {
-    session.update(textItem.styles(PresentationStyles.WARNING));
+    session.update(textItem.styles(PresentationStylesNew.WARNING));
 
     const iconGutter = component.debugElement.query(By.css('div[class=gutter]'));
     const iconWarningClass = iconGutter.nativeElement.querySelector('mat-icon').innerHTML;
@@ -101,7 +101,7 @@ describe('TextItemComponent', () => {
   });
 
   it('should be composed as success', () => {
-    session.update(textItem.styles(PresentationStyles.SUCCESS));
+    session.update(textItem.styles(PresentationStylesNew.SUCCESS));
     const iconGutter = component.debugElement.query(By.css('div[class=gutter]'));
     const iconSuccessClass = iconGutter.nativeElement.querySelector('mat-icon').innerHTML;
     const classes: string = component.nativeElement.querySelector('div').getAttribute('class');
@@ -111,7 +111,7 @@ describe('TextItemComponent', () => {
   });
 
   it('should be composed as info', () => {
-    session.update(textItem.styles(PresentationStyles.INFO));
+    session.update(textItem.styles(PresentationStylesNew.INFO));
 
     const iconGutter = component.debugElement.query(By.css('div[class=gutter]'));
     const iconInfoClass = iconGutter.nativeElement.querySelector('mat-icon').innerHTML;

@@ -5,7 +5,7 @@ import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from
 import { FieldTemplate } from '@blueriq/core/testing';
 import { FieldContainerComponent } from '@shared/field-container/field-container.component';
 import { MaterialModule } from '../../../material.module';
-import { PresentationStyles } from '../../PresentationStyles';
+import { PresentationStylesNew } from '../../PresentationStylesNew';
 
 import { RadioButtonComponent } from './radio-button.component';
 
@@ -33,7 +33,7 @@ describe('RadioButtonComponent', () => {
       'beaker': 'Beaker'
     });
     // reset field to default
-    field.styles(PresentationStyles.RADIO).readonly(false).value('');
+    field.styles(PresentationStylesNew.RADIO).readonly(false).value('');
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(RadioButtonComponent);
   });
@@ -57,7 +57,7 @@ describe('RadioButtonComponent', () => {
     let inputField = component.nativeElement.querySelector('input[type=radio]').hasAttribute('disabled');
     expect(inputField).toBeFalsy('by default nothing is disabled');
 
-    field.styles(PresentationStyles.RADIO, PresentationStyles.DISABLED);
+    field.styles(PresentationStylesNew.RADIO, PresentationStylesNew.DISABLED);
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(RadioButtonComponent);
 
@@ -80,7 +80,7 @@ describe('RadioButtonComponent', () => {
 
     // override default with presentation style
     session.update(
-      field.styles(PresentationStyles.RADIO, PresentationStyles.HORIZONTAL)
+      field.styles(PresentationStylesNew.RADIO, PresentationStylesNew.HORIZONTAL)
     );
     inputField = component.nativeElement.querySelector('.horizontal');
     expect(inputField).toBeTruthy('settings presentation style `horizontal` overrides default behaviour');
@@ -92,7 +92,7 @@ describe('RadioButtonComponent', () => {
       field.name('two_options').domain({
         1: 'One',
         2: 'Two'
-      }).styles(PresentationStyles.RADIO)
+      }).styles(PresentationStylesNew.RADIO)
     );
 
     let inputField = component.nativeElement.querySelector('.horizontal');
@@ -100,7 +100,7 @@ describe('RadioButtonComponent', () => {
 
     // override default with presentation style
     session.update(
-      field.styles(PresentationStyles.RADIO, PresentationStyles.VERTICAL)
+      field.styles(PresentationStylesNew.RADIO, PresentationStylesNew.VERTICAL)
     );
     inputField = component.nativeElement.querySelector('.vertical');
     expect(inputField).toBeTruthy('setting presentation style `vertical` overrides default behaviour');

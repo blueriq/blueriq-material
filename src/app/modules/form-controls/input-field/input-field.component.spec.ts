@@ -7,7 +7,7 @@ import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from
 import { FieldTemplate } from '@blueriq/core/testing';
 import { FieldContainerComponent } from '@shared/field-container/field-container.component';
 import { MaterialModule } from '../../../material.module';
-import { PresentationStyles } from '../../PresentationStyles';
+import { PresentationStylesNew } from '../../PresentationStylesNew';
 import { CurrencyFieldComponent } from './currency/currency.component';
 
 describe('InputFieldComponent', () => {
@@ -41,7 +41,7 @@ describe('InputFieldComponent', () => {
   });
 
   it('should be disabled', () => {
-    field.styles(PresentationStyles.DISABLED);
+    field.styles(PresentationStylesNew.DISABLED);
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(CurrencyFieldComponent);
 

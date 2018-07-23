@@ -4,7 +4,7 @@ import { BlueriqFormBuilder } from '@blueriq/angular/forms';
 import { Field } from '@blueriq/core';
 import { Moment } from 'moment';
 import { DateTimeAdapter } from 'ng-pick-datetime';
-import { PresentationStyles } from '../../../PresentationStyles';
+import { PresentationStylesNew } from '../../../PresentationStylesNew';
 import { MomentTransformer } from '../moment-transformer';
 import { dateTimeFormatProvider } from './datetimepicker.owl';
 
@@ -22,7 +22,7 @@ export class DateTimepickerComponent {
   formControl = this.form.control(this.field, {
     updateOn: 'blur',
     transformer: MomentTransformer,
-    disableWhen: PresentationStyles.DISABLED
+    disableWhen: PresentationStylesNew.DISABLED
   });
 
   constructor(@Host() public field: Field,

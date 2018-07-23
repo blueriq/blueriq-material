@@ -7,7 +7,7 @@ import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from
 import { FieldTemplate } from '@blueriq/core/testing';
 import { FieldContainerComponent } from '@shared/field-container/field-container.component';
 import { MaterialModule } from '../../../../material.module';
-import { PresentationStyles } from '../../../PresentationStyles';
+import { PresentationStylesNew } from '../../../PresentationStylesNew';
 import { MomentTransformer } from '../moment-transformer';
 import { DatepickerComponent } from './datepicker.component';
 
@@ -31,7 +31,7 @@ describe('DatepickerComponent', () => {
   }));
 
   beforeEach(() => {
-    field = FieldTemplate.date().styles(PresentationStyles.MATERIAL);
+    field = FieldTemplate.date().styles(PresentationStylesNew.MATERIAL);
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(DatepickerComponent);
   });
@@ -46,7 +46,7 @@ describe('DatepickerComponent', () => {
   });
 
   it('should be disabled', () => {
-    field.styles(PresentationStyles.DISABLED, PresentationStyles.MATERIAL);
+    field.styles(PresentationStylesNew.DISABLED, PresentationStylesNew.MATERIAL);
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(DatepickerComponent);
 
