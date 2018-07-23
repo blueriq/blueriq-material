@@ -2,7 +2,10 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { EffectsModule } from '@ngrx/effects';
 import { BqKeyDirective } from '@shared/bq-key/bq-key.directive';
+import { ErrorEffects } from '@shared/effects/error/error.effects';
+import { ValidationEffect } from '@shared/effects/validation/validation.effect';
 import { MaterialModule } from '../material.module';
 import { FieldContainerComponent } from './field-container/field-container.component';
 
@@ -19,7 +22,11 @@ const SHARED_COMPONENTS = [
     BrowserModule,
     CommonModule,
     FormsModule,
-    MaterialModule
+    MaterialModule,
+    EffectsModule.forFeature([
+      ValidationEffect,
+      ErrorEffects
+    ])
   ],
   exports: [
     SHARED_COMPONENTS

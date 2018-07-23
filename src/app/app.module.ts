@@ -51,8 +51,6 @@ import { TableSortComponent } from './modules/table/sort/table.sort.component';
 import { TableComponent } from './modules/table/table.component';
 import { TextItemComponent } from './modules/textitem/textitem.component';
 import { ProjectComponent } from './project.component';
-import { ErrorEffects } from './shared/effects/error/error.effects';
-import { PageValidationEffect } from './shared/effects/validation/validation.effect';
 
 const routes: Routes = [
   { path: 'session/:sessionId', component: ProjectComponent },
@@ -117,10 +115,6 @@ const BQ_COMPONENTS = [
     OwlDateTimeModule,
     OwlMomentDateTimeModule,
     TextItemModule,
-    EffectsModule.forFeature([
-      PageValidationEffect,
-      ErrorEffects
-    ]),
     StoreDevtoolsModule.instrument({
       name: 'Blueriq',
       logOnly: environment.production // Restrict extension to log-only mode

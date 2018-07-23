@@ -7,12 +7,12 @@ import { Button, Field } from '@blueriq/core';
 import { ButtonTemplate, ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Subject } from 'rxjs/Subject';
-import { PageValidationEffect } from './validation.effect';
+import { ValidationEffect } from './validation.effect';
 
 describe('ValidationsComponent', () => {
   let actions: Subject<any>;
   let snackBarSpy: jasmine.SpyObj<MatSnackBar>;
-  let effects: PageValidationEffect;
+  let effects: ValidationEffect;
 
   beforeEach(async(() => {
     snackBarSpy = jasmine.createSpyObj<MatSnackBar>('MatSnackBar', ['open']);
@@ -24,13 +24,13 @@ describe('ValidationsComponent', () => {
         BlueriqTestingModule
       ],
       providers: [
-        PageValidationEffect,
+        ValidationEffect,
         provideMockActions(() => actions),
         { provide: MatSnackBar, useValue: snackBarSpy }
       ]
     });
 
-    effects = TestBed.get(PageValidationEffect);
+    effects = TestBed.get(ValidationEffect);
   }));
 
   it('opens snackbar with an error message', () => {

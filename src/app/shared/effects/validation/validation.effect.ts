@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { tap } from 'rxjs/operators';
 
 @Injectable()
-export class PageValidationEffect {
+export class ValidationEffect {
 
   @Effect({ dispatch: false })
   buttonHandled$: Observable<any> = this.actions$
