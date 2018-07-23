@@ -21,7 +21,8 @@ export class RadioButtonComponent {
   }
 
   /**
-   * Determines the direction in which the radio buttons are presented. Options are {@link PresentationStylesNew.VERTICAL}
+   * Determines the direction in which the radio buttons are presented.
+   * Options are {@link PresentationStylesNew.VERTICAL}
    * and {@link PresentationStylesNew.HORIZONTAL}
    * @returns {string} denoting the direction in which the buttons are presented
    */
