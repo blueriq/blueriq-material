@@ -43,7 +43,7 @@ import { SelectComponent } from './modules/form-controls/select/select.component
 import { SlideToggleComponent } from './modules/form-controls/slide-toggle/slide-toggle.component';
 import { LoadingComponent } from './modules/loading/loading.component';
 import { PageComponent } from './modules/page/page.component';
-import { PresentationStyles } from './modules/presentationstyles';
+import { PresentationStyles } from './modules/PresentationStyles';
 import { ReadonlyComponent } from './modules/readonly/readonly.component';
 import { PaginationComponent } from './modules/table/pagination/table.pagination.component';
 import { TableSearchComponent } from './modules/table/search/table.search.component';

@@ -4,7 +4,7 @@ import { BlueriqFormBuilder } from '@blueriq/angular/forms';
 import { Field } from '@blueriq/core';
 import { Moment } from 'moment';
 import { DateTimeAdapter } from 'ng-pick-datetime';
-import { PresentationStyles } from '../../../presentationstyles';
+import { PresentationStyles } from '../../../PresentationStyles';
 import { MomentTransformer } from '../moment-transformer';
 import { dateTimeFormatProvider } from './datetimepicker.owl';
 

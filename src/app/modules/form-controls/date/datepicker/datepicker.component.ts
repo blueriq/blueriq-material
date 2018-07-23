@@ -2,7 +2,7 @@ import { Component, Host } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { BlueriqFormBuilder } from '@blueriq/angular/forms';
 import { Field } from '@blueriq/core';
-import { PresentationStyles } from '../../../presentationstyles';
+import { PresentationStyles } from '../../../PresentationStyles';
 import { MomentTransformer } from '../moment-transformer';
 import { dateFormatProvider } from './datepicker.material';
 

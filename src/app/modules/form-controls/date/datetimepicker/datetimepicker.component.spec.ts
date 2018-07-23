@@ -10,7 +10,7 @@ import * as moment from 'moment';
 import { OwlDateTimeModule } from 'ng-pick-datetime';
 import { MomentDateTimeAdapter, OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
 import { MaterialModule } from '../../../../material.module';
-import { PresentationStyles } from '../../../presentationstyles';
+import { PresentationStyles } from '../../../PresentationStyles';
 import { MomentTransformer } from '../moment-transformer';
 import { DateTimepickerComponent } from './datetimepicker.component';
 

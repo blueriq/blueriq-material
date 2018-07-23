@@ -7,7 +7,7 @@ import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from
 import { TextItemModule } from '@blueriq/angular/textitems';
 import { StaticNodeTemplate, StyleNodeTemplate, TextItemNodeTemplate, TextItemTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../../material.module';
-import { PresentationStyles } from '../presentationstyles';
+import { PresentationStyles } from '../PresentationStyles';
 import { TextItemComponent } from './textitem.component';
 
 describe('TextItemComponent', () => {

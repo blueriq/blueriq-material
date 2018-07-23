@@ -1,7 +1,7 @@
 import { Component, Host } from '@angular/core';
 import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
 import { Button } from '@blueriq/core';
-import { PresentationStyles } from '../presentationstyles';
+import { PresentationStyles } from '../PresentationStyles';
 
 @Component({
   selector: 'bq-button',

@@ -1,7 +1,7 @@
 import { Component, Host } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { TextItem } from '@blueriq/core';
-import { PresentationStyles } from '../presentationstyles';
+import { PresentationStyles } from '../PresentationStyles';
 
 @Component({
   templateUrl: './textitem.component.html',

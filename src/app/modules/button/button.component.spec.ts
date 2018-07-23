@@ -5,7 +5,7 @@ import { BlueriqComponents, BlueriqSession } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ButtonTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../../material.module';
-import { PresentationStyles } from '../presentationstyles';
+import { PresentationStyles } from '../PresentationStyles';
 import { ButtonComponent } from './button.component';
 
 describe('ButtonComponent', () => {

@@ -2,7 +2,7 @@ import { Component, Host, Self } from '@angular/core';
 import { AuthorizedDownload, BlueriqComponent } from '@blueriq/angular';
 import { DocumentLink } from '@blueriq/angular/files';
 import { Container } from '@blueriq/core';
-import { PresentationStyles } from '../../presentationstyles';
+import { PresentationStyles } from '../../PresentationStyles';
 import { FileDownloadService } from '../file-download/file-download.service';
 
 @Component({

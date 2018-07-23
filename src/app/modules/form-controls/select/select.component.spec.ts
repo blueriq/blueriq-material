@@ -8,7 +8,7 @@ import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from
 import { FieldTemplate } from '@blueriq/core/testing';
 import { FieldContainerComponent } from '@shared/field-container/field-container.component';
 import { MaterialModule } from '../../../material.module';
-import { PresentationStyles } from '../../presentationstyles';
+import { PresentationStyles } from '../../PresentationStyles';
 import { SelectComponent } from './select.component';
 
 describe('SelectComponent', () => {

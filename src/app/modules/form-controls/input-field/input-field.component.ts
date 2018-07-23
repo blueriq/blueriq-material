@@ -1,7 +1,7 @@
 import { Host } from '@angular/core';
 import { BlueriqFormBuilder } from '@blueriq/angular/forms';
 import { Field } from '@blueriq/core';
-import { PresentationStyles } from '../../presentationstyles';
+import { PresentationStyles } from '../../PresentationStyles';
 
 export class InputFieldComponent {
 

@@ -2,7 +2,7 @@ import { Component, Host } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { BlueriqFormBuilder } from '@blueriq/angular/forms';
 import { Field } from '@blueriq/core';
-import { PresentationStyles } from '../../presentationstyles';
+import { PresentationStyles } from '../../PresentationStyles';
 
 @Component({
   selector: 'bq-slide-toggle',
