@@ -1,0 +1,50 @@
+@import '~@angular/material/theming';
+@import '../../../../theme/globals/variables';
+
+.mat-toolbar {
+  @include mat-elevation(1);
+
+  position: fixed;
+  top: 0;
+
+  min-height: $bq-toolbar-height;
+  padding: 0 0 0 16px;
+  background: linear-gradient(to right, $bq-primary-blue, $bq-primary-purple, $bq-primary-violet);
+  color: $light-primary-text;
+
+  z-index: $z-index-drawer + 10;
+
+  h1 {
+    margin: 0 0 0 24px;
+    color: $light-primary-text;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 44px;
+  }
+
+  .application-actions {
+    text-align: right;
+
+    .active-user-menu {;
+      height: $bq-toolbar-height;
+      text-align: left;
+
+      .icon {
+        height: $bq-toolbar-height;
+      }
+
+      .username {
+        padding-top: 18px;
+        line-height: 20px;
+      }
+
+      // newline for user role (if provided)
+      small {
+        display: block;
+        color: $light-secondary-text;
+        font-size: 12px;
+        font-weight: 300;
+      }
+    }
+  }
+}

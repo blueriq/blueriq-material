@@ -80,9 +80,8 @@ node {
             bat "yarn build"
           }
         }
-      )
+      );
     }
-
     if (params.deploySnapshot) {
       stage('deploy snapshot') {
         bat "mvn clean deploy"

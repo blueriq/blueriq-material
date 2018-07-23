@@ -3,27 +3,34 @@
 <head>
   <script type="text/javascript">
     function getBaseHref() {
+      var prefix = "<base href='";
+      var suffix = "'>";
       var path = location.pathname;
       var indexOfApp = path.indexOf('/app/');
+      var returnValue = '';
       if (indexOfApp > -1) {
-        return path.substring(0, indexOfApp + '/app/'.length);
+        returnValue = path.substring(0, indexOfApp + '/app/'.length);
+      } else {
+        returnValue = '/';
       }
-      return '/';
+      return prefix + returnValue + suffix;
     }
 
-    document.write("<base href='" + getBaseHref() + "' >");
+    document.write(getBaseHref());
 
   </script>
   <meta charset="utf-8">
   <title></title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/png" href="/theme/images/blueriq-icon.png">
+  <link rel="icon" type="image/png" href="./theme/images/blueriq-icon.png">
   <meta name="msapplication-TileColor" content="#0077e5">
-  <meta name="msapplication-TileImage" content="/theme/images/blueriq-icon-white.png">
+  <meta name="msapplication-TileImage" content="./theme/images/blueriq-icon-white.png">
   <meta name="theme-color" content="#0077e5">
 </head>
 <body>
-<bq-app-root>loading..</bq-app-root>
+<bq-app-root>
+  <div class="splashscreen"></div>
+</bq-app-root>
 </body>
 </html>

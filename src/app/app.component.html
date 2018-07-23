@@ -1,33 +1,4 @@
 <div class="page-wrapper">
-  <mat-toolbar fxLayout="row">
-
-    <div fxFlex>
-      <img src="/theme/images/blueriq-logo-white.svg" height="45px">
-      <h1 fxFlex>{{getPageTitle()}}</h1>
-    </div>
-
-    <div fxFlex="0 0 auto" class="application-actions">
-
-      <!-- TODO: Login functionality implementation  -->
-      <a mat-button [matMenuTriggerFor]="userMenu" aria-label="Open user menu" class="active-user-menu">
-        <div fxLayout="row" fxLayoutGap="12px" class="icon">
-          <div fxLayoutAlign="center center">
-            <mat-icon>account_circle</mat-icon>
-          </div>
-          <div class="username">
-            <span>User Name<small>User Role</small></span>
-          </div>
-        </div>
-      </a>
-
-      <mat-menu [overlapTrigger]="false" #userMenu="matMenu">
-        <button mat-menu-item>
-          Uitloggen (TODO)
-        </button>
-      </mat-menu>
-    </div>
-  </mat-toolbar>
-
   <div class="router-outlet">
     <router-outlet></router-outlet>
   </div>
@@ -35,7 +6,7 @@
 
 <footer>
   <mat-divider></mat-divider>
-  <img src="/theme/images/blueriq-logo.svg" height="40px"/>
+  <img src="./theme/images/blueriq-logo.svg" height="40px"/>
   <address>
     <a href="tel:0031736450467">+31 (0)73 6450 467</a><br>
     <a href="https://www.blueriq.com" target="_blank">www.blueriq.com</a><br>

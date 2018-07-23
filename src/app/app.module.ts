@@ -19,14 +19,14 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { ErrorComponent } from './blueriq/basic/error/error.component';
 import { ErrorService } from './blueriq/basic/error/error.service';
-import { ErrorEffects } from './blueriq/generic/effects/error.effects';
-import { ElementComponent } from './blueriq/generic/element/element.component';
+import { BqKeyDirective } from './blueriq/generic/bq-key/bq-key.directive';
+import { LoadingComponent } from './blueriq/loading/loading.component';
 import { AssetComponent } from './blueriq/material/asset/asset.component';
 import { ContainerComponent } from './blueriq/material/container/container.component';
-import { FileDownloadComponent } from './blueriq/material/file-download/file-download.component';
-import { FileUploadComponent } from './blueriq/material/file-upload/file-upload.component';
 import { DocumentLinkComponent } from './blueriq/material/file/document-link/document-link.component';
+import { FileDownloadComponent } from './blueriq/material/file/file-download/file-download.component';
 import { FileDownloadService } from './blueriq/material/file/file-download/file-download.service';
+import { FileUploadComponent } from './blueriq/material/file/file-upload/file-upload.component';
 import { ButtonComponent } from './blueriq/material/form-controls/button/button.component';
 import { CheckboxComponent } from './blueriq/material/form-controls/checkbox/checkbox.component';
 import { DatepickerComponent } from './blueriq/material/form-controls/date/datepicker/datepicker.component';
@@ -51,7 +51,9 @@ import { TableComponent } from './blueriq/material/table/table.component';
 import { TextItemComponent } from './blueriq/material/textitem/textitem.component';
 import { ProjectComponent } from './blueriq/project/project.component';
 import { Configuration } from './configuration/configuration';
+import { ErrorEffects } from './shared/effects/error/error.effects';
 import { PageValidationEffect } from './shared/effects/validation/validation.effect';
+import { ElementComponent } from './shared/element/element.component';
 
 const routes: Routes = [
   { path: 'session/:sessionId', component: ProjectComponent },
@@ -90,14 +92,14 @@ const BQ_COMPONENTS = [
 ];
 
 const BQ_MAT_COMPONENTS = [
-  ElementComponent
+  ElementComponent,
+  BqKeyDirective
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    ErrorComponent,
-    ProjectComponent,
+    LoadingComponent, ErrorComponent, ProjectComponent,
     BQ_COMPONENTS,
     BQ_MAT_COMPONENTS
   ],
@@ -129,6 +131,9 @@ const BQ_MAT_COMPONENTS = [
       name: 'Blueriq',
       logOnly: environment.production // Restrict extension to log-only mode
     })
+  ],
+  exports: [
+    LoadingComponent
   ],
   providers: [
     BlueriqComponents.register(BQ_COMPONENTS),
