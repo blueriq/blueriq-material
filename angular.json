@@ -76,6 +76,9 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
+            "codeCoverageExclude": [
+              "**/error.effects.ts"
+            ],
             "styles": [
               "src/styles.scss"
             ],
