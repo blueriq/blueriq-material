@@ -4,7 +4,7 @@ export class PresentationStylesNew {
   static DANGER = 'Danger';
   static DISABLED = 'Disabled';
   static EXPLAINICON = 'explainicon';
-  static HORIZONTAL = 'horizontal';
+  static OPTIONSHORIZONTAL = 'options_horizontal';
   static INFO = 'Info';
   static MATERIAL = 'material';
   static PRIMARY = 'Primary';
@@ -13,4 +13,12 @@ export class PresentationStylesNew {
   static TOGGLE = 'toggle';
   static VERTICAL = 'vertical';
   static WARNING = 'Warning';
+
+  /* Container layouts */
+  static INTRODUCTION = 'Introduction';
+  static HORIZONTAL = 'Horizontal';
+  static TRANSPARENT = 'Transparent';
+
+  /* etc */
+
 }

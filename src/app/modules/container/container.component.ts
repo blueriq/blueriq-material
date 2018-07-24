@@ -1,8 +1,8 @@
 import { animateChild, query, transition, trigger } from '@angular/animations';
-import { Component, Host, QueryList } from '@angular/core';
-import { BlueriqChild, BlueriqChildren, BlueriqComponent } from '@blueriq/angular';
-import { Container, Field } from '@blueriq/core';
-import { Observable } from 'rxjs/Observable';
+import { Component, Host } from '@angular/core';
+import { BlueriqComponent } from '@blueriq/angular';
+import { Container } from '@blueriq/core';
+import { PresentationStylesNew } from '../PresentationStylesNew';
 
 @Component({
   styleUrls: ['./container.component.scss'],
@@ -20,27 +20,19 @@ import { Observable } from 'rxjs/Observable';
 })
 export class ContainerComponent {
 
-  @BlueriqChildren(Field)
-  fields: QueryList<Field>;
-
-  @BlueriqChildren(Field, { descendants: true })
-  descendants: QueryList<Field>;
-
-  @BlueriqChild(Field, { required: false })
-  field: Field;
-
-  @BlueriqChild(Field, { observe: true })
-  fieldObs: Observable<Field>;
-
   constructor(@Host() public container: Container) {
   }
 
-  displayAsCard(): boolean {
-    if (this.container.parent) {
-      return this.container.parent.contentStyle === 'page';
-    } else {
-      return false;
+  displayAs(): string {
+    if (this.container.parent && this.container.parent.contentStyle !== 'page') {
+      // container within a container dont need specific styling
+      return '';
+    } else if (this.container.styles.has(PresentationStylesNew.INTRODUCTION)) {
+      return 'introduction';
+    } else if (this.container.styles.has(PresentationStylesNew.TRANSPARENT)) {
+      return 'transparent';
     }
+    return 'card';
   }
 
 }

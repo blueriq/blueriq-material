@@ -1,21 +1,43 @@
 @import '~@angular/material/theming';
 @import '../../../theme/globals/variables';
 
+$margin: 2 * $bq-base-margin;
+
 .container {
   margin: 0;
 }
 
-.container-card {
-  @include mat-elevation(1);
-
+@mixin always() {
   max-width: 728px; // TODO make responsive
-  margin: 2 * $bq-base-margin auto;
-  padding: 2 * $bq-base-margin;
-  background: map-get($mat-light-theme-background, card);
+  margin: $margin auto;
+  padding: $margin;
 
   h2 {
     margin-top: 0; // reset top margin, Card padding is in place
     color: $bq-secondary-navy;
     font-weight: 400;
   }
+}
+
+.card {
+  @include mat-elevation(1);
+  @include always();
+  background: map-get($mat-light-theme-background, card);
+}
+
+.introduction {
+  @include always();
+
+  &:before {
+    content: '';
+    background: url('/theme/images/blueriq-technology.svg') no-repeat 0px 0px;
+    position: absolute;
+    width: 39px;
+    height: 39px;
+    margin: -$bq-base-margin*2;
+  }
+}
+
+.transparent {
+  @include always();
 }
