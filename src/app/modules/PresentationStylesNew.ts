@@ -1,17 +1,20 @@
 export class PresentationStylesNew {
+  // New presentation styles
   static BUTTON = 'button';
-  static DANGER = 'Danger';
-  static DISABLED = 'Disabled';
-  static EXPLAINICON = 'explainicon';
   static HORIZONTAL = 'horizontal';
-  static INFO = 'Info';
   static MATERIAL = 'material';
-  static PRIMARY = 'Primary';
   static RADIO = 'radio';
   static SECONDARY = 'Secondary';
-  static SUCCESS = 'Success';
   static TERTIARY = 'Tertiary';
-  static TOGGLE = 'toggle';
-  static VERTICAL = 'vertical';
   static WARNING = 'Warning';
+  // Presentation styles reused from AquimaLibrary, these can be refactored in the future
+  static DANGER = 'Danger';
+  static DISABLED = 'Disabled';
+  static INFO = 'Info';
+  static PRIMARY = 'Primary';
+  static SUCCESS = 'Success';
+  static TOGGLE = 'toggle'; // Could be refactored to 'Toggle'
+  // Presentation styles who are not used in studio
+  static EXPLAINICON = 'explainicon';
+  static VERTICAL = 'vertical';
 }
