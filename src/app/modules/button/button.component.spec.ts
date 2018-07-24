@@ -74,9 +74,19 @@ describe('ButtonComponent', () => {
     expect(classes).not.toContain('mat-accent');
   });
 
-  it('should be accent colored', () => {
+  it('should be secondary colored', () => {
     session.update(
-      button.styles(PresentationStylesNew.ACCENT)
+      button.styles(PresentationStylesNew.SECONDARY)
+    );
+
+    const classes: string = component.nativeElement.querySelector('button').getAttribute('class');
+    expect(classes).toContain('secondary');
+    expect(classes).not.toContain('mat-primary');
+  });
+
+  it('should be tertiary colored', () => {
+    session.update(
+      button.styles(PresentationStylesNew.TERTIARY)
     );
 
     const classes: string = component.nativeElement.querySelector('button').getAttribute('class');

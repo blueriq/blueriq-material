@@ -32,11 +32,11 @@ export class DocumentLinkComponent {
     return this.container.styles.has(PresentationStylesNew.BUTTON);
   }
 
-  /** The button color, based on presentation styles `Primary` and `Accent` */
+  /** The button color, based on presentation styles `Primary` and `Tertiary` */
   getColor(): string | null {
     if (this.container.styles.has(PresentationStylesNew.PRIMARY)) {
       return 'primary';
-    } else if (this.container.styles.has(PresentationStylesNew.ACCENT)) {
+    } else if (this.container.styles.has(PresentationStylesNew.TERTIARY)) {
       return 'accent';
     } else {
       return null;

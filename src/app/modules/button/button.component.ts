@@ -19,11 +19,15 @@ export class ButtonComponent {
   getColor(): string | null {
     if (this.button.styles.has(PresentationStylesNew.PRIMARY)) {
       return 'primary';
-    } else if (this.button.styles.has(PresentationStylesNew.ACCENT)) {
+    } else if (this.button.styles.has(PresentationStylesNew.TERTIARY)) {
       return 'accent';
     } else {
       return null;
     }
+  }
+
+  hasSecondary(): boolean {
+    return this.button.styles.has(PresentationStylesNew.SECONDARY);
   }
 
   isDisabled(): boolean {

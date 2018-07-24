@@ -79,9 +79,9 @@ describe('DocumentLinkComponent', () => {
     expect(element.querySelector('span').innerHTML).toBe(LINK_TEXT);
   });
 
-  it('should contain the correct class when presentation styles "button" and "accent" are set', () => {
+  it('should contain the correct class when presentation styles "button" and "tertiary" are set', () => {
     session.update(
-      container.styles(PresentationStylesNew.BUTTON, PresentationStylesNew.ACCENT)
+      container.styles(PresentationStylesNew.BUTTON, PresentationStylesNew.TERTIARY)
     );
     const element = component.nativeElement.querySelector('a');
     expect(element.getAttribute('class')).toBe('mat-raised-button mat-accent');
