@@ -26,6 +26,10 @@ export class ButtonComponent {
     }
   }
 
+  hasSecondary(): boolean {
+    return this.button.styles.has(PresentationStylesNew.SECONDARY);
+  }
+
   isDisabled(): boolean {
     return this.button.disabled || this.button.styles.has(PresentationStylesNew.DISABLED);
   }

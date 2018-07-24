@@ -1,4 +1,5 @@
 export class PresentationStylesNew {
+  //New
   static ACCENT = 'Accent';
   static BUTTON = 'button';
   static DANGER = 'Danger';
@@ -9,6 +10,7 @@ export class PresentationStylesNew {
   static MATERIAL = 'material';
   static PRIMARY = 'Primary';
   static RADIO = 'radio';
+  static SECONDARY = 'Secondary';
   static SUCCESS = 'Success';
   static TOGGLE = 'toggle';
   static VERTICAL = 'vertical';

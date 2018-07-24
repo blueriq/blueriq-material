@@ -1,4 +1,4 @@
-<button bqKey bqClasses mat-raised-button [color]="getColor()" [disabled]="isDisabled()" (click)="onClick()">
+<button bqKey bqClasses mat-raised-button [color]="getColor()" [disabled]="isDisabled()" (click)="onClick()" [class.secondary]="hasSecondary()">
   {{button.caption}}
 </button>
 
