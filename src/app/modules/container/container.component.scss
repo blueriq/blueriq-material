@@ -11,8 +11,8 @@ $margin: 2 * $bq-base-margin;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
   align-content: flex-start;
+  justify-content: space-between;
 }
 
 .grid-item {
@@ -20,7 +20,7 @@ $margin: 2 * $bq-base-margin;
   margin-right: 10px;
 }
 
-@mixin top-container() {
+@mixin top-container {
   max-width: 728px; // TODO make responsive
   margin: $margin auto;
   padding: $margin;
@@ -34,23 +34,23 @@ $margin: 2 * $bq-base-margin;
 
 .card {
   @include mat-elevation(1);
-  @include top-container();
+  @include top-container;
   background: map-get($mat-light-theme-background, card);
 }
 
 .introduction {
-  @include top-container();
+  @include top-container;
 
-  &:before {
-    content: '';
-    background: url('/theme/images/blueriq-technology.svg') no-repeat 0px 0px;
+  &::before {
     position: absolute;
     width: 39px;
     height: 39px;
-    margin: -$bq-base-margin*2;
+    margin: -$bq-base-margin * 2;
+    background: url('/theme/images/blueriq-technology.svg') no-repeat;
+    content: '';
   }
 }
 
 .transparent {
-  @include top-container();
+  @include top-container;
 }
