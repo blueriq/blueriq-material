@@ -1,5 +1,5 @@
 <bq-element [control]="formControl">
-  <mat-form-field>
+  <mat-form-field appearance="fill">
     <span matPrefix *ngIf="fieldPrefix">{{fieldPrefix}}</span>
     <mat-label>{{field.questionText}}</mat-label>
     <input matInput type="text" [required]="field.required" [formControl]="formControl">

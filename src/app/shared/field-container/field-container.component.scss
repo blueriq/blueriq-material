@@ -3,6 +3,11 @@
   .mat-form-field {
     display: block;
   }
+
+  // TODO - This is a temporary solution, since errors and hints cannot be a part of the form field because of it's generic usage.
+  .mat-form-field-wrapper {
+    margin-bottom: -20px;
+  }
 }
 
 .aligned-with-icon {
@@ -11,7 +16,7 @@
   margin-left: 5px;
 }
 
-// This is a temporary solution, since errors and hints cannot be a part of the form field because of it's generic usage.
+// TODO - This is a temporary solution, since errors and hints cannot be a part of the form field because of it's generic usage.
 .labels {
   margin-bottom: 10px;
   font-size: 75%;
