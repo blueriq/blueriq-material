@@ -23,6 +23,10 @@ export class ContainerComponent {
   constructor(@Host() public container: Container) {
   }
 
+  isHorizontal() {
+    return this.container.styles.has(PresentationStylesNew.HORIZONTAL);
+  }
+
   displayAs(): string {
     if (this.container.parent && this.container.parent.contentStyle !== 'page') {
       // container within a container dont need specific styling

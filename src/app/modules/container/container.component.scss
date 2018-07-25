@@ -7,7 +7,20 @@ $margin: 2 * $bq-base-margin;
   margin: 0;
 }
 
-@mixin always() {
+.grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: flex-start;
+}
+
+.grid-item {
+  flex: 1;
+  margin-right: 10px;
+}
+
+@mixin top-container() {
   max-width: 728px; // TODO make responsive
   margin: $margin auto;
   padding: $margin;
@@ -21,12 +34,12 @@ $margin: 2 * $bq-base-margin;
 
 .card {
   @include mat-elevation(1);
-  @include always();
+  @include top-container();
   background: map-get($mat-light-theme-background, card);
 }
 
 .introduction {
-  @include always();
+  @include top-container();
 
   &:before {
     content: '';
@@ -39,5 +52,5 @@ $margin: 2 * $bq-base-margin;
 }
 
 .transparent {
-  @include always();
+  @include top-container();
 }
