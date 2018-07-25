@@ -1,6 +1,6 @@
 <bq-element [control]="formControl">
 
-  <mat-form-field>
+  <mat-form-field appearance="fill">
     <mat-label>{{field.questionText}}</mat-label>
     <input matInput [matDatepicker]="picker" [formControl]="formControl" [required]="field.required">
     <mat-datepicker-toggle matPrefix [for]="picker"></mat-datepicker-toggle>
