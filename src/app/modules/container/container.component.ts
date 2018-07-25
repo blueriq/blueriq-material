@@ -1,7 +1,7 @@
 import { animateChild, query, transition, trigger } from '@angular/animations';
 import { Component, Host } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
-import { Container } from '@blueriq/core';
+import { Container, Page } from '@blueriq/core';
 import { PresentationStylesNew } from '../PresentationStylesNew';
 
 @Component({
@@ -28,7 +28,7 @@ export class ContainerComponent {
   }
 
   displayAs(): string {
-    if (this.container.parent && this.container.parent.contentStyle !== 'page') {
+    if (this.container.parent && !(this.container.parent instanceof Page)) {
       // container within a container dont need specific styling
       return '';
     } else if (this.container.styles.has(PresentationStylesNew.INTRODUCTION)) {
