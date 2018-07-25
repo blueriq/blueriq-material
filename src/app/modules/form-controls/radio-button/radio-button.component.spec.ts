@@ -80,11 +80,10 @@ describe('RadioButtonComponent', () => {
 
     // override default with presentation style
     session.update(
-      field.styles(PresentationStylesNew.RADIO, PresentationStylesNew.HORIZONTAL)
+      field.styles(PresentationStylesNew.RADIO, PresentationStylesNew.OPTIONSHORIZONTAL)
     );
     inputField = component.nativeElement.querySelector('.horizontal');
     expect(inputField).toBeTruthy('settings presentation style `horizontal` overrides default behaviour');
-
   });
 
   it('default direction is `horizontal` when there are exactly 2 radio buttons', () => {

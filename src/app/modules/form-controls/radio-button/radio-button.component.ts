@@ -27,6 +27,9 @@ export class RadioButtonComponent {
    * @returns {string} denoting the direction in which the buttons are presented
    */
   determineDirection(): string {
+    if (this.field.styles.has(PresentationStylesNew.VERTICAL)) {
+      return 'vertical';
+    }
     if (this.field.styles.has(PresentationStylesNew.OPTIONSHORIZONTAL) || this.field.domain.options.length === 2) {
       return 'horizontal';
     }
