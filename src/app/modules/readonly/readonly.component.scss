@@ -4,8 +4,10 @@
   text-align: left;
 }
 
-:host::ng-deep .mat-form-field-underline {
-  display: none;
+:host::ng-deep {
+  .mat-form-field-underline {
+    display: none;
+  }
 }
 
 .mat-form-field {
