@@ -14,5 +14,5 @@ import { InputFieldComponent } from '../input-field.component';
 })
 export class CurrencyFieldComponent extends InputFieldComponent {
 
-  fieldPrefix = '\u20AC';
+  iconPrefix = 'euro_symbol';
 }
