@@ -104,14 +104,9 @@ describe('TableComponent', () => {
   });
 
   it('should have a row with the correct content', () => {
-    const readonlyCells = component.nativeElement.querySelectorAll('.readonly');
+    const readonlyCells = component.nativeElement.querySelectorAll('bq-readonly');
     expect(readonlyCells.length).toBe(2);
-
-    expect(readonlyCells[0].querySelectorAll('div').length).toBe(
-      1,
-      'Only one div should be displayed containing the field.value, without explaintext');
     expect(readonlyCells[0].querySelector('label')).toBeFalsy();
-
   });
 
 });
