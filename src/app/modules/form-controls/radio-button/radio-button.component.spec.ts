@@ -83,7 +83,19 @@ describe('RadioButtonComponent', () => {
       field.styles(PresentationStylesNew.RADIO, PresentationStylesNew.OPTIONSHORIZONTAL)
     );
     inputField = component.nativeElement.querySelector('.horizontal');
-    expect(inputField).toBeTruthy('settings presentation style `horizontal` overrides default behaviour');
+    expect(inputField).toBeTruthy('settings presentation style `options_horizontal` overrides default behaviour');
+  });
+
+  it('default direction is `vertical` with PS RadioHorizontal', () => {
+    let inputField = component.nativeElement.querySelector('.vertical');
+    expect(inputField).toBeTruthy();
+
+    // override default with presentation style
+    session.update(
+      field.styles(PresentationStylesNew.RADIO, PresentationStylesNew.RADIOHORIZONTAL)
+    );
+    inputField = component.nativeElement.querySelector('.horizontal');
+    expect(inputField).toBeTruthy('settings presentation style `RadioHorizontal` overrides default behaviour');
   });
 
   it('default direction is `horizontal` when there are exactly 2 radio buttons', () => {
@@ -99,7 +111,7 @@ describe('RadioButtonComponent', () => {
 
     // override default with presentation style
     session.update(
-      field.styles(PresentationStylesNew.RADIO, PresentationStylesNew.VERTICAL)
+      field.styles(PresentationStylesNew.RADIO, PresentationStylesNew.OPTIONSVERTICAL)
     );
     inputField = component.nativeElement.querySelector('.vertical');
     expect(inputField).toBeTruthy('setting presentation style `vertical` overrides default behaviour');

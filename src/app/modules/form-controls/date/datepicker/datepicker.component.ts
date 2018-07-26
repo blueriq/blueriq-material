@@ -13,7 +13,7 @@ import { dateFormatProvider } from './datepicker.material';
 })
 @BlueriqComponent({
   type: Field,
-  selector: '.material[dataType=date]'
+  selector: '.DatepickerMaterial[dataType=date]'
 })
 export class DatepickerComponent {
 

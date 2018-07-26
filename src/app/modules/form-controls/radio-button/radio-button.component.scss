@@ -9,7 +9,8 @@
 }
 
 .radio-field-container {
-  display: flex;
+  display: inline-flex;
+  flex-direction: column;
 }
 
 .field-input {

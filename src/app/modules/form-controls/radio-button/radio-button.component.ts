@@ -11,7 +11,7 @@ import { PresentationStylesNew } from '../../PresentationStylesNew';
 })
 @BlueriqComponent({
   type: Field,
-  selector: '.radio[hasDomain]'
+  selector: '.Radio[hasDomain]'
 })
 export class RadioButtonComponent {
 
@@ -27,10 +27,12 @@ export class RadioButtonComponent {
    * @returns {string} denoting the direction in which the buttons are presented
    */
   determineDirection(): string {
-    if (this.field.styles.has(PresentationStylesNew.VERTICAL)) {
+    if (this.field.styles.has(PresentationStylesNew.OPTIONSVERTICAL)) {
       return 'vertical';
     }
-    if (this.field.styles.has(PresentationStylesNew.OPTIONSHORIZONTAL) || this.field.domain.options.length === 2) {
+    if (this.field.styles.has(PresentationStylesNew.OPTIONSHORIZONTAL)
+      || this.field.styles.has(PresentationStylesNew.RADIOHORIZONTAL)
+      || this.field.domain.options.length === 2) {
       return 'horizontal';
     }
     return 'vertical';

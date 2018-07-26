@@ -61,7 +61,7 @@ describe('DocumentLinkComponent', () => {
     expect(element.innerHTML).toBe(LINK_TEXT);
   });
 
-  it('should contain the correct data when presentation style "button" is set', () => {
+  it('should contain the correct data when presentation style "Button" is set', () => {
     session.update(
       container.styles(PresentationStylesNew.BUTTON)
     );
@@ -70,7 +70,7 @@ describe('DocumentLinkComponent', () => {
     expect(element.querySelector('span').innerHTML).toBe(LINK_TEXT);
   });
 
-  it('should contain the correct class when presentation styles "button" and "primary" are set', () => {
+  it('should contain the correct class when presentation styles "Button" and "primary" are set', () => {
     session.update(
       container.styles(PresentationStylesNew.BUTTON, PresentationStylesNew.PRIMARY)
     );
@@ -79,7 +79,7 @@ describe('DocumentLinkComponent', () => {
     expect(element.querySelector('span').innerHTML).toBe(LINK_TEXT);
   });
 
-  it('should contain the correct class when presentation styles "button" and "tertiary" are set', () => {
+  it('should contain the correct class when presentation styles "Button" and "tertiary" are set', () => {
     session.update(
       container.styles(PresentationStylesNew.BUTTON, PresentationStylesNew.TERTIARY)
     );
