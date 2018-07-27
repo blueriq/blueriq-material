@@ -9,28 +9,28 @@
     &.Warning { // sass-lint:disable-line class-name-format
       padding-top: 1px;
       padding-bottom: 1px;
-      background-color: $bq-mat-bg-warning;
+      background-color: mat-color($bq-warn-palette, 100);
     }
 
     &.danger,
     &.Danger { // sass-lint:disable-line class-name-format
       padding-top: 1px;
       padding-bottom: 1px;
-      background-color: $bq-mat-bg-danger;
+      background-color: mat-color($bq-error-palette, 100);
     }
 
     &.info,
     &.Info { // sass-lint:disable-line class-name-format
       padding-top: 1px;
       padding-bottom: 1px;
-      background-color: $bq-mat-bg-info;
+      background-color: mat-color($bq-info-palette, 100);
     }
 
     &.success,
     &.Success { // sass-lint:disable-line class-name-format
       padding-top: 1px;
       padding-bottom: 1px;
-      background-color: $bq-mat-bg-success;
+      background-color: mat-color($bq-success-palette, 100);
     }
   }
 }

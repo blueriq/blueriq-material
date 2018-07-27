@@ -26,32 +26,32 @@
   &.warning,
   &.Warning { // sass-lint:disable-line class-name-format
     .gutter {
-      background-color: $bq-mat-bg-warning;
-      color: $bq-mat-fg-warning;
+      background-color: mat-color($bq-warn-palette, 100);
+      color: mat-color($bq-warn-palette, 800);
     }
   }
 
   &.danger,
   &.Danger { // sass-lint:disable-line class-name-format
     .gutter {
-      background-color: $bq-mat-bg-danger;
-      color: $bq-mat-fg-danger;
+      background-color: mat-color($bq-error-palette, 100);
+      color: mat-color($bq-error-palette, 800);
     }
   }
 
   &.info,
   &.Info { // sass-lint:disable-line class-name-format
     .gutter {
-      background-color: $bq-mat-bg-info;
-      color: $bq-mat-fg-info;
+      background-color: mat-color($bq-info-palette, 100);
+      color: mat-color($bq-info-palette, 800);
     }
   }
 
   &.success,
   &.Success { // sass-lint:disable-line class-name-format
     .gutter {
-      background-color: $bq-mat-bg-success;
-      color: $bq-mat-fg-success;
+      background-color: mat-color($bq-success-palette, 100);
+      color: mat-color($bq-success-palette, 800);
     }
   }
 }

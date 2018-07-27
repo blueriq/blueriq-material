@@ -2,7 +2,7 @@
 
 //override specific styling to match to match it with the global theme
 
-$datepicker-bq-color: rgba($bq-primary-blue, .2);
+$datepicker-bq-color: rgba(mat-color($bq-primary-palette), .2);
 
 .owl-dialog-container,
 .owl-dt-timer,
@@ -15,7 +15,7 @@ $datepicker-bq-color: rgba($bq-primary-blue, .2);
 
 .owl-dt-calendar-table {
   .owl-dt-calendar-cell-selected {
-    background-color: $bq-primary-blue;
+    background-color: mat-color($bq-primary-palette);
   }
 
   .owl-dt-calendar-cell-in-range {
@@ -25,13 +25,13 @@ $datepicker-bq-color: rgba($bq-primary-blue, .2);
 
 // sass-lint:disable nesting-depth
 .owl-dt-timer-hour12 {
-  color: $bq-primary-blue;
+  color: mat-color($bq-primary-palette);
 
   .owl-dt-timer-hour12-box {
     &:focus,
     &:hover {
       .owl-dt-control-button-content {
-        background: $bq-primary-blue;
+        background: mat-color($bq-primary-palette);
         color: $light-primary-text;
       }
     }
@@ -44,14 +44,14 @@ $datepicker-bq-color: rgba($bq-primary-blue, .2);
 
     &:active,
     &:focus {
-      border-bottom-color: $bq-primary-blue;
+      border-bottom-color: mat-color($bq-primary-palette);
     }
   }
 }
 
 .owl-dt-container-buttons {
   height: 3em; // more spacing for the buttons
-  color: $bq-primary-blue;
+  color: mat-color($bq-primary-palette);
 
   .owl-dt-control-button-content {
     font-weight: 400;
@@ -61,6 +61,6 @@ $datepicker-bq-color: rgba($bq-primary-blue, .2);
 
 .owl-dt-container-info {
   .owl-dt-container-info-active {
-    color: $bq-primary-blue;
+    color: mat-color($bq-primary-palette);
   }
 }

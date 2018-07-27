@@ -2,8 +2,9 @@
 
 a {
   &.plain-link {
-    color: $bq-primary-blue;
+    color: mat-color($bq-primary-palette);
     text-decoration: none;
+    text-transform: uppercase;
     cursor: pointer;
 
     &:hover {

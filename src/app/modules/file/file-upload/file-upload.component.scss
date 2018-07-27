@@ -1,9 +1,9 @@
 @import 'globals/variables';
 
 .my-drop-zone {
-  border: dotted 3px $bq-grey-medium;
+  border: dotted 3px $dark-dividers;
 }
 
 .nv-file-over {
-  border: dotted 3px $bq-secondary-red;
+  border: dotted 3px mat-color($bq-error-palette);
 }
