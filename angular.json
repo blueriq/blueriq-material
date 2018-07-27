@@ -30,6 +30,11 @@
               "src/theme/index.scss",
               "src/theme/splashscreen.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "./src/theme"
+              ]
+            },
             "scripts": []
           },
           "configurations": {
