@@ -4,7 +4,7 @@ import { BlueriqFormBuilder } from '@blueriq/angular/forms';
 import { Field } from '@blueriq/core';
 import { PresentationStylesNew } from '../../PresentationStylesNew';
 
-export type RadioButtonDirection = 'vertical' | 'horizontal';
+type RadioButtonDirection = 'vertical' | 'horizontal';
 
 @Component({
   selector: 'bq-radio-button',
@@ -13,14 +13,16 @@ export type RadioButtonDirection = 'vertical' | 'horizontal';
 })
 @BlueriqComponent({
   type: Field,
-  selector: '.Radio[hasDomain], .' + PresentationStylesNew.DEPRECATED_HORIZONTAL + '[hasDomain] , .' +
-  PresentationStylesNew.DEPRECATED_VERTICAL + '[hasDomain], .' + PresentationStylesNew.HORIZONTAL + '[hasDomain]'
+  selector: '.Radio[hasDomain], .' +
+    PresentationStylesNew.DEPRECATED_HORIZONTAL + '[hasDomain] , .' +
+    PresentationStylesNew.DEPRECATED_VERTICAL + '[hasDomain], .' +
+    PresentationStylesNew.HORIZONTAL + '[hasDomain]'
 })
 export class RadioButtonComponent implements OnInit, OnUpdate {
 
   public direction: RadioButtonDirection = 'vertical';
 
-  formControl = this.form.control(this.field, { updateOn: 'blur', disableWhen: PresentationStylesNew.DISABLED });
+  formControl = this.form.control(this.field, {updateOn: 'blur', disableWhen: PresentationStylesNew.DISABLED});
 
   constructor(@Host() public field: Field, private form: BlueriqFormBuilder) {
   }
