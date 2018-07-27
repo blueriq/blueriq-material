@@ -2,9 +2,11 @@
 
 button {
   margin: $bq-base-margin $bq-base-margin $bq-base-margin 0;
+  text-transform: uppercase;
+  background: $bq-default-button-background;
 }
 
 .tertiary {
-  background-color: mat-color($bq-mat-accent-green, 500);
-  color: $light-primary-text;
+  background-color: mat-color($bq-tertiary-palette);
+  color: mat-color($bq-tertiary-palette, default-contrast);
 }

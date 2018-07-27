@@ -3,7 +3,13 @@
 
 $bq-font-family: 'Roboto', Arial, 'Helvetica Neue', sans-serif;
 $bq-base-margin: 12px;
+
+$bq-margin: $bq-base-margin;
+$bq-margin-half: $bq-base-margin / 2;
+$bq-margin-double: $bq-base-margin * 2;
+
 $bq-toolbar-height: 77px;
+$bq-default-button-background: #f5f5f5;
 
 $bq-primary-blue: mat-color($bq-mat-primary-blue, 500);
 $bq-primary-purple: mat-color($bq-mat-primary-purple, 500);
@@ -23,7 +29,16 @@ $bq-grey-light: mat-color($bq-mat-grey-light, 500);
 
 // Material theme color definitions, change this to change color scheme's
 $bq-mat-primary: $bq-mat-primary-blue;
-$bq-mat-accent: $bq-mat-accent-green;
+$bq-mat-accent: $bq-mat-primary-purple;
+$bq-mat-tertiary: $bq-mat-accent-green;
+$bq-mat-warn: $bq-mat-accent-red;
+
+$bq-primary-palette: mat-palette($bq-mat-primary);
+$bq-accent-palette: mat-palette($bq-mat-accent);
+$bq-warn-palette: mat-palette($bq-mat-warn);
+$bq-tertiary-palette: mat-palette($bq-mat-tertiary);
+
+$bq-theme: mat-light-theme($bq-primary-palette, $bq-accent-palette, $bq-warn-palette);
 
 $bq-mat-bg-danger: mat-color($bq-mat-accent-red, 100);
 $bq-mat-bg-info: mat-color($bq-mat-primary-blue, 100);

@@ -1,8 +1,10 @@
-import { Component, Host } from '@angular/core';
-import { BlueriqComponent } from '@blueriq/angular';
+import { Component, Host, OnInit } from '@angular/core';
+import { BlueriqComponent, OnUpdate } from '@blueriq/angular';
 import { BlueriqFormBuilder } from '@blueriq/angular/forms';
 import { Field } from '@blueriq/core';
 import { PresentationStylesNew } from '../../PresentationStylesNew';
+
+export type RadioButtonDirection = 'vertical' | 'horizontal';
 
 @Component({
   selector: 'bq-radio-button',
@@ -11,13 +13,24 @@ import { PresentationStylesNew } from '../../PresentationStylesNew';
 })
 @BlueriqComponent({
   type: Field,
-  selector: '.Radio[hasDomain]'
+  selector: '.Radio[hasDomain], .' + PresentationStylesNew.DEPRECATED_HORIZONTAL + '[hasDomain] , .' +
+  PresentationStylesNew.DEPRECATED_VERTICAL + '[hasDomain], .' + PresentationStylesNew.HORIZONTAL + '[hasDomain]'
 })
-export class RadioButtonComponent {
+export class RadioButtonComponent implements OnInit, OnUpdate {
+
+  public direction: RadioButtonDirection = 'vertical';
 
   formControl = this.form.control(this.field, { updateOn: 'blur', disableWhen: PresentationStylesNew.DISABLED });
 
   constructor(@Host() public field: Field, private form: BlueriqFormBuilder) {
+  }
+
+  ngOnInit() {
+    this.determineDirection();
+  }
+
+  bqOnUpdate() {
+    this.determineDirection();
   }
 
   /**
@@ -26,15 +39,12 @@ export class RadioButtonComponent {
    * and {@link PresentationStylesNew.HORIZONTAL}
    * @returns {string} denoting the direction in which the buttons are presented
    */
-  determineDirection(): string {
-    if (this.field.styles.has(PresentationStylesNew.OPTIONSVERTICAL)) {
-      return 'vertical';
-    }
-    if (this.field.styles.has(PresentationStylesNew.OPTIONSHORIZONTAL)
-      || this.field.styles.has(PresentationStylesNew.RADIOHORIZONTAL)
+  private determineDirection() {
+    if (this.field.styles.has(PresentationStylesNew.HORIZONTAL)
+      || this.field.styles.has(PresentationStylesNew.DEPRECATED_HORIZONTAL)
       || this.field.domain.options.length === 2) {
-      return 'horizontal';
+      this.direction = 'horizontal';
     }
-    return 'vertical';
   }
+
 }

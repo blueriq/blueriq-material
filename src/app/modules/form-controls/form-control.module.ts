@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -45,7 +46,8 @@ const FORM_CONTROL_COMPONENTS = [
     BrowserAnimationsModule,
     BrowserModule,
     CommonModule,
-    SharedModule, //
+    SharedModule,
+    FlexLayoutModule,
     OwlDateTimeModule,
     OwlMomentDateTimeModule,
     ReactiveFormsModule,

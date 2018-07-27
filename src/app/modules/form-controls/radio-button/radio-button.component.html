@@ -1,16 +1,14 @@
 <bq-element [control]="formControl">
-  <div class="radio-field-container">
-    <div class="question-text">
-      {{field.questionText}}
-    </div>
-    <div class="field-input">
-      <mat-radio-group [required]="field.required" [formControl]="formControl">
-        <div [class]="determineDirection()">
-          <mat-radio-button *ngFor="let option of field.domain.options" [value]="option.value">
-            {{option.displayValue}}
-          </mat-radio-button>
-        </div>
-      </mat-radio-group>
-    </div>
+  <div class="question-text">
+    {{field.questionText}}
   </div>
+
+  <mat-radio-group [required]="field.required" [formControl]="formControl">
+    <div [fxLayout]="direction === 'vertical' ? 'column wrap' : 'row'">
+      <mat-radio-button *ngFor="let option of field.domain.options" [value]="option.value">
+        {{option.displayValue}}
+      </mat-radio-button>
+    </div>
+  </mat-radio-group>
+
 </bq-element>

@@ -1,18 +1,10 @@
-.vertical {
-  .mat-radio-button {
-    display: block;
-  }
+@import '~@angular/material/theming';
+@import '../../../../theme/globals/variables';
+
+.question-text {
+  margin: 0 0 $bq-margin 0;
 }
 
 .mat-radio-button {
-  margin: 5px;
-}
-
-.radio-field-container {
-  display: inline-flex;
-  flex-direction: column;
-}
-
-.field-input {
-  margin-left: 5px;
+  margin: $bq-margin-half $bq-margin $bq-margin-half 0;
 }
