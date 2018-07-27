@@ -80,7 +80,7 @@ describe('ButtonComponent', () => {
     );
 
     const classes: string = component.nativeElement.querySelector('button').getAttribute('class');
-    expect(classes).toContain('secondary');
+    expect(classes).toContain('mat-accent');
     expect(classes).not.toContain('mat-primary');
   });
 
@@ -90,7 +90,7 @@ describe('ButtonComponent', () => {
     );
 
     const classes: string = component.nativeElement.querySelector('button').getAttribute('class');
-    expect(classes).toContain('mat-accent');
+    expect(classes).toContain('tertiary');
     expect(classes).not.toContain('mat-primary');
   });
 
