@@ -5,7 +5,7 @@
 
   <mat-radio-group [required]="field.required" [formControl]="formControl">
     <div [fxLayout]="direction === 'vertical' ? 'column wrap' : 'row'">
-      <mat-radio-button *ngFor="let option of field.domain.options" [value]="option.value">
+      <mat-radio-button *ngFor="let option of field.domain.options" [value]="option.value" color="primary">
         {{option.displayValue}}
       </mat-radio-button>
     </div>
