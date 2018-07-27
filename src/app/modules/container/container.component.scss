@@ -1,7 +1,7 @@
 @import '~@angular/material/theming';
-@import '../../../theme/globals/variables';
 
 $margin: 2 * $bq-base-margin;
+@import 'globals/variables';
 
 .container {
   margin: 0;
