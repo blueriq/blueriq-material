@@ -1,8 +1,10 @@
 import { animateChild, query, transition, trigger } from '@angular/animations';
-import { Component, Host } from '@angular/core';
-import { BlueriqComponent } from '@blueriq/angular';
+import { Component, Host, OnInit } from '@angular/core';
+import { BlueriqComponent, OnUpdate } from '@blueriq/angular';
 import { Container, Page } from '@blueriq/core';
 import { PresentationStylesNew } from '../PresentationStylesNew';
+
+type ContainerDisplayMode = '' | 'introduction' | 'transparent' | 'card';
 
 @Component({
   styleUrls: ['./container.component.scss'],
@@ -18,25 +20,37 @@ import { PresentationStylesNew } from '../PresentationStylesNew';
 @BlueriqComponent({
   type: Container
 })
-export class ContainerComponent {
+export class ContainerComponent implements OnInit, OnUpdate {
+
+  public displayMode: ContainerDisplayMode;
+  public horizontal: boolean = false;
 
   constructor(@Host() public container: Container) {
   }
 
-  isHorizontal() {
-    return this.container.styles.has(PresentationStylesNew.HORIZONTAL);
+  ngOnInit() {
+    this.determineDisplayStyle();
   }
 
-  displayAs(): string {
+  bqOnUpdate() {
+    this.determineDisplayStyle();
+  }
+
+  /**
+   * Finds presentation styles to determine the look-and-feel of the container
+   */
+  private determineDisplayStyle() {
+    this.horizontal = this.container.styles.has(PresentationStylesNew.HORIZONTAL);
+
     if (this.container.parent && !(this.container.parent instanceof Page)) {
-      // container within a container dont need specific styling
-      return '';
+      // container within a container doesn't need specific styling
+      this.displayMode = '';
     } else if (this.container.styles.has(PresentationStylesNew.INTRODUCTION)) {
-      return 'introduction';
+      this.displayMode = 'introduction';
     } else if (this.container.styles.has(PresentationStylesNew.TRANSPARENT)) {
-      return 'transparent';
+      this.displayMode = 'transparent';
+    } else {
+      this.displayMode = 'card';
     }
-    return 'card';
   }
-
 }

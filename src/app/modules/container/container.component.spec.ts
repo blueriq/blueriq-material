@@ -46,9 +46,9 @@ describe('ContainerComponent', () => {
     const container = containerComponent.componentInstance;
 
     // Verify
-    expect(container.displayAs()).toBe('card');
+    expect(container.displayMode).toBe('card');
     expect(containerComponent.nativeElement.querySelector('.container.card')).toBeTruthy();
-    expect(container.isHorizontal()).toBeFalsy();
+    expect(container.horizontal).toBeFalsy();
     expect(containerComponent.nativeElement.querySelector('.grid')).toBeFalsy();
 
   });
@@ -61,7 +61,7 @@ describe('ContainerComponent', () => {
     );
 
     // Sut
-    const display = container.displayAs();
+    const display = container.displayMode;
 
     // Verify
     expect(display).toBe('introduction');
@@ -76,7 +76,7 @@ describe('ContainerComponent', () => {
     );
 
     // Sut
-    const display = container.displayAs();
+    const display = container.displayMode;
 
     // Verify
     expect(display).toBe('transparent');
@@ -92,7 +92,7 @@ describe('ContainerComponent', () => {
     );
 
     // Sut
-    const isHorizontal = container.isHorizontal();
+    const isHorizontal = container.horizontal;
 
     // Verify
     expect(isHorizontal).toBeTruthy();
