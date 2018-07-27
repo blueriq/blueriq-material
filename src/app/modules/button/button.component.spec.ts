@@ -76,7 +76,7 @@ describe('ButtonComponent', () => {
 
   it('should be secondary colored', () => {
     session.update(
-      button.styles(PresentationStylesNew.SECONDARY)
+      button.styles(PresentationStylesNew.ACCENT)
     );
 
     const classes: string = component.nativeElement.querySelector('button').getAttribute('class');

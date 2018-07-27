@@ -6,7 +6,7 @@ export class PresentationStylesNew {
   static RADIOHORIZONTAL = 'RadioHorizontal';
   static DATEPICKERMATERIAL = 'DatepickerMaterial';
   static RADIO = 'Radio';
-  static SECONDARY = 'Secondary';
+  static ACCENT = 'Accent';
   static TERTIARY = 'Tertiary';
   static TRANSPARENT = 'Transparent';
   static WARNING = 'Warning';

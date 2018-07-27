@@ -1,12 +1,10 @@
 @import '../../../theme/globals/variables';
 
-$white: #fff;
-
 button {
   margin: $bq-base-margin $bq-base-margin $bq-base-margin 0;
 }
 
-.secondary {
-  background-color: $bq-primary-purple;
-  color: $white;
+.tertiary {
+  background-color: mat-color($bq-mat-accent-green, 500);
+  color: $light-primary-text;
 }
