@@ -1,4 +1,9 @@
-<button bqKey bqClasses mat-raised-button [color]="getColor()" [disabled]="isDisabled()" (click)="onClick()" [class.tertiary]="hasTertiary()">
+<button *ngIf="!table" bqKey bqClasses mat-raised-button [color]="getColor()" [disabled]="isDisabled()" (click)="onClick()" [class.tertiary]="hasTertiary()">
   {{button.caption}}
 </button>
+
+<button *ngIf="table" bqKey bqClasses mat-button [color]="getColor()" [disabled]="isDisabled()" (click)="onClick()" [class.tertiary]="hasTertiary()">
+  {{button.caption}}
+</button>
+
 

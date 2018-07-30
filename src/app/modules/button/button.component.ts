@@ -1,5 +1,6 @@
-import { Component, Host } from '@angular/core';
+import { Component, Host, Optional } from '@angular/core';
 import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
+import { Table } from '@blueriq/angular/lists';
 import { Button } from '@blueriq/core';
 import { PresentationStylesNew } from '../PresentationStylesNew';
 
@@ -13,7 +14,9 @@ import { PresentationStylesNew } from '../PresentationStylesNew';
 })
 export class ButtonComponent {
 
-  constructor(@Host() public button: Button, private session: BlueriqSession) {
+  constructor(@Host() public button: Button,
+              private session: BlueriqSession,
+              @Optional() @Host() public readonly table: Table) {
   }
 
   getColor(): string | null {
