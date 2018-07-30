@@ -10,10 +10,8 @@
   min-height: $bq-toolbar-height;
   padding: 0 0 0 16px;
 
-  /*
-    Specific colors alert, since this is a particular part of the Blueriq branding specific
-    color variables are allowed
-   */
+  // Specific colors alert, since this is a particular part of the Blueriq branding specific color variables are allowed
+  // sass-lint:disable-all
   background: linear-gradient(
       to right,
       map_get($bq-mat-primary-blue, 500),
@@ -25,6 +23,7 @@
 
   z-index: $z-index-drawer + 10;
 
+  // sass-lint:disable-all
   h1 {
     margin: 0 0 0 24px;
     color: $light-primary-text;

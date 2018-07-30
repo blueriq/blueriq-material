@@ -4278,9 +4278,9 @@ karma-source-map-support@^1.2.0:
   dependencies:
     source-map-support "^0.5.5"
 
-karma@2.0.3:
-  version "2.0.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/karma/-/karma-2.0.3.tgz#4d5e13d25f5a51331c5378b24c4984709c01120b"
+karma@^2.0.5:
+  version "2.0.5"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/karma/-/karma-2.0.5.tgz#3710c7a2e71b1c439313f283846d88e04e4f918c"
   dependencies:
     bluebird "^3.3.0"
     body-parser "^1.16.1"

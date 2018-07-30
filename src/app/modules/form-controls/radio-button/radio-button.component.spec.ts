@@ -75,27 +75,35 @@ describe('RadioButtonComponent', () => {
   });
 
   it('default direction is `vertical`', () => {
-    let inputField = component.nativeElement.querySelector('.vertical');
-    expect(inputField).toBeTruthy();
+    let styledDiv = component.nativeElement.querySelector('mat-radio-group').querySelector('div');
+    expect(styledDiv.style.flexDirection).toBe('column');
+    expect(styledDiv.style.boxSizing).toBe('border-box');
+    expect(styledDiv.style.display).toBe('flex');
 
     // override default with presentation style
     session.update(
       field.styles(PresentationStylesNew.RADIO, PresentationStylesNew.DEPRECATED_HORIZONTAL)
     );
-    inputField = component.nativeElement.querySelector('.horizontal');
-    expect(inputField).toBeTruthy('settings presentation style `options_horizontal` overrides default behaviour');
+    styledDiv = component.nativeElement.querySelector('mat-radio-group').querySelector('div');
+    expect(styledDiv.style.flexFlow).toBe('row wrap');
+    expect(styledDiv.style.boxSizing).toBe('border-box');
+    expect(styledDiv.style.display).toBe('flex');
   });
 
   it('default direction is `vertical` with PS RadioHorizontal', () => {
-    let inputField = component.nativeElement.querySelector('.vertical');
-    expect(inputField).toBeTruthy();
+    let styledDiv = component.nativeElement.querySelector('mat-radio-group').querySelector('div');
+    expect(styledDiv.style.flexDirection).toBe('column');
+    expect(styledDiv.style.boxSizing).toBe('border-box');
+    expect(styledDiv.style.display).toBe('flex');
 
     // override default with presentation style
     session.update(
-      field.styles(PresentationStylesNew.RADIO, PresentationStylesNew.HORIZONTAL)
+      field.styles(PresentationStylesNew.HORIZONTAL)
     );
-    inputField = component.nativeElement.querySelector('.horizontal');
-    expect(inputField).toBeTruthy('settings presentation style `Horizontal` overrides default behaviour');
+    styledDiv = component.nativeElement.querySelector('mat-radio-group').querySelector('div');
+    expect(styledDiv.style.flexFlow).toBe('row wrap');
+    expect(styledDiv.style.boxSizing).toBe('border-box');
+    expect(styledDiv.style.display).toBe('flex');
   });
 
   it('default direction is `horizontal` when there are exactly 2 radio buttons', () => {
@@ -106,15 +114,18 @@ describe('RadioButtonComponent', () => {
       }).styles(PresentationStylesNew.RADIO)
     );
 
-    let inputField = component.nativeElement.querySelector('.horizontal');
-    expect(inputField).toBeTruthy();
+    let styledDiv = component.nativeElement.querySelector('mat-radio-group').querySelector('div');
+    expect(styledDiv.style.flexFlow).toBe('row wrap');
+    expect(styledDiv.style.boxSizing).toBe('border-box');
+    expect(styledDiv.style.display).toBe('flex');
 
     // override default with presentation style
     session.update(
       field.styles(PresentationStylesNew.RADIO, PresentationStylesNew.DEPRECATED_VERTICAL)
     );
-    inputField = component.nativeElement.querySelector('.vertical');
-    expect(inputField).toBeTruthy('setting presentation style `vertical` overrides default behaviour');
+    styledDiv = component.nativeElement.querySelector('mat-radio-group').querySelector('div');
+    expect(styledDiv.style.flexFlow).toBe('row wrap');
+    expect(styledDiv.style.boxSizing).toBe('border-box');
+    expect(styledDiv.style.display).toBe('flex');
   });
-
 });

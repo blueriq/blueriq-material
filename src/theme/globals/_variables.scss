@@ -1,9 +1,7 @@
 @import '~@angular/material/theming';
 @import './color-palettes';
 
-/**
- * The mat-palette() function adds keys to the palette object for easy color retrieval using mat-color()
- */
+// The mat-palette() function adds keys to the palette object for easy color retrieval using mat-color()
 $bq-primary-palette: mat-palette($bq-mat-primary-blue);
 $bq-accent-palette: mat-palette($bq-mat-primary-purple);
 $bq-error-palette: mat-palette($bq-mat-accent-red);
@@ -15,25 +13,19 @@ $bq-warn-palette: mat-palette($bq-mat-accent-orange);
 $bq-info-palette: mat-palette($bq-mat-primary-blue);
 $bq-success-palette: mat-palette($bq-mat-accent-green);
 
-/**
- * Margin system, for consistency all margins are derivatives from a single base margin
- * Use the $bq-margin-* variables in all SCSS for padding, margin, etc to achieve a form of consistency
- */
+// Margin system, for consistency all margins are derivatives from a single base margin
+// Use the $bq-margin-* variables in all SCSS for padding, margin, etc to achieve a form of consistency
 $bq-base-margin: 12px;
 $bq-margin: $bq-base-margin;
 $bq-margin-half: $bq-base-margin / 2;
 $bq-margin-double: $bq-base-margin * 2;
 $bq-margin-triple: $bq-base-margin * 3;
 
-/**
- * Specific colour variables which could not not have been achieved using the default material theme variables
- */
+// Specific colour variables which could not not have been achieved using the default material theme variables
 $bq-default-button-background: #f5f5f5;
 $bg-header-color: mat-color($bq-mat-accent-navy, 500);
 $bq-white-37-opacity: rgba(255, 255, 255, .37);
 
-/**
- * Other variables
- */
+// Other variables
 $bq-font-family: 'Roboto', Arial, 'Helvetica Neue', sans-serif;
 $bq-toolbar-height: 77px;

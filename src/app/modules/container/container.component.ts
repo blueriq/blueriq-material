@@ -23,7 +23,7 @@ type ContainerDisplayMode = '' | 'introduction' | 'transparent' | 'card';
 export class ContainerComponent implements OnInit, OnUpdate {
 
   public displayMode: ContainerDisplayMode;
-  public horizontal: boolean = false;
+  public horizontal = false;
 
   constructor(@Host() public container: Container) {
   }
