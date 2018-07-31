@@ -1,5 +1,6 @@
-export class PresentationStylesNew {
+export class BqPresentationStyles {
   // New presentation styles
+  static ALIGNRIGHT = 'AlignRight';
   static BUTTON = 'Button';
   static HORIZONTAL = 'Horizontal';
   static INTRODUCTION = 'Introduction';
@@ -19,6 +20,7 @@ export class PresentationStylesNew {
   // Presentation styles which are not used in studio
   static EXPLAINICON = 'explainicon';
   // Presentation styles which are deprecated in Blueriq 12.0
+  static DEPRECATED_ALIGNRIGHT = 'align_right'; // New style is 'AlignRight'
   static DEPRECATED_HORIZONTAL = 'options_horizontal'; // New style is 'RadioHorizontal'
   static DEPRECATED_VERTICAL = 'options_vertical'; // New style is 'Radio'
 }

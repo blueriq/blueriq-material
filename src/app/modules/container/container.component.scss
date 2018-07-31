@@ -52,3 +52,9 @@
 .transparent {
   @include top-container;
 }
+
+.alignright {
+  display: flex;
+  justify-content: flex-end;
+}
+

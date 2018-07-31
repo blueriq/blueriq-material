@@ -5,7 +5,7 @@ import { BlueriqComponents, BlueriqSession } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ButtonTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../../material.module';
-import { PresentationStylesNew } from '../PresentationStylesNew';
+import { BqPresentationStyles } from '../BqPresentationStyles';
 import { ButtonComponent } from './button.component';
 
 describe('ButtonComponent', () => {
@@ -66,7 +66,7 @@ describe('ButtonComponent', () => {
 
   it('should be primary colored', () => {
     session.update(
-      button.styles(PresentationStylesNew.PRIMARY)
+      button.styles(BqPresentationStyles.PRIMARY)
     );
 
     const classes: string = component.nativeElement.querySelector('button').getAttribute('class');
@@ -76,7 +76,7 @@ describe('ButtonComponent', () => {
 
   it('should be secondary colored', () => {
     session.update(
-      button.styles(PresentationStylesNew.ACCENT)
+      button.styles(BqPresentationStyles.ACCENT)
     );
 
     const classes: string = component.nativeElement.querySelector('button').getAttribute('class');
@@ -86,7 +86,7 @@ describe('ButtonComponent', () => {
 
   it('should be tertiary colored', () => {
     session.update(
-      button.styles(PresentationStylesNew.TERTIARY)
+      button.styles(BqPresentationStyles.TERTIARY)
     );
 
     const classes: string = component.nativeElement.querySelector('button').getAttribute('class');

@@ -2,7 +2,7 @@ import { Component, Host, Optional } from '@angular/core';
 import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
 import { Table } from '@blueriq/angular/lists';
 import { Button } from '@blueriq/core';
-import { PresentationStylesNew } from '../PresentationStylesNew';
+import { BqPresentationStyles } from '../BqPresentationStyles';
 
 @Component({
   selector: 'bq-button',
@@ -20,9 +20,9 @@ export class ButtonComponent {
   }
 
   getColor(): string | null {
-    if (this.button.styles.has(PresentationStylesNew.PRIMARY)) {
+    if (this.button.styles.has(BqPresentationStyles.PRIMARY)) {
       return 'primary';
-    } else if (this.button.styles.has(PresentationStylesNew.ACCENT)) {
+    } else if (this.button.styles.has(BqPresentationStyles.ACCENT)) {
       return 'accent';
     } else {
       return null;
@@ -30,11 +30,11 @@ export class ButtonComponent {
   }
 
   hasTertiary(): boolean {
-    return this.button.styles.has(PresentationStylesNew.TERTIARY);
+    return this.button.styles.has(BqPresentationStyles.TERTIARY);
   }
 
   isDisabled(): boolean {
-    return this.button.disabled || this.button.styles.has(PresentationStylesNew.DISABLED);
+    return this.button.disabled || this.button.styles.has(BqPresentationStyles.DISABLED);
   }
 
   onClick(): void {

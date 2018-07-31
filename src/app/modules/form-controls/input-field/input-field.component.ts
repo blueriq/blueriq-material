@@ -1,11 +1,11 @@
 import { Host } from '@angular/core';
 import { BlueriqFormBuilder } from '@blueriq/angular/forms';
 import { Field } from '@blueriq/core';
-import { PresentationStylesNew } from '../../PresentationStylesNew';
+import { BqPresentationStyles } from '../../BqPresentationStyles';
 
 export class InputFieldComponent {
 
-  formControl = this.form.control(this.field, { updateOn: 'blur', disableWhen: PresentationStylesNew.DISABLED });
+  formControl = this.form.control(this.field, { updateOn: 'blur', disableWhen: BqPresentationStyles.DISABLED });
   fieldPrefix;
   iconPrefix;
   fieldSuffix;

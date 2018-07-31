@@ -2,7 +2,7 @@ import { animateChild, query, transition, trigger } from '@angular/animations';
 import { Component, Host, OnInit } from '@angular/core';
 import { BlueriqComponent, OnUpdate } from '@blueriq/angular';
 import { Container, Page } from '@blueriq/core';
-import { PresentationStylesNew } from '../PresentationStylesNew';
+import { BqPresentationStyles } from '../BqPresentationStyles';
 
 type ContainerDisplayMode = '' | 'introduction' | 'transparent' | 'card';
 
@@ -40,17 +40,22 @@ export class ContainerComponent implements OnInit, OnUpdate {
    * Finds presentation styles to determine the look-and-feel of the container
    */
   private determineDisplayStyle() {
-    this.horizontal = this.container.styles.has(PresentationStylesNew.HORIZONTAL);
+    this.horizontal = this.container.styles.has(BqPresentationStyles.HORIZONTAL);
 
     if (this.container.parent && !(this.container.parent instanceof Page)) {
       // container within a container doesn't need specific styling
       this.displayMode = '';
-    } else if (this.container.styles.has(PresentationStylesNew.INTRODUCTION)) {
+    } else if (this.container.styles.has(BqPresentationStyles.INTRODUCTION)) {
       this.displayMode = 'introduction';
-    } else if (this.container.styles.has(PresentationStylesNew.TRANSPARENT)) {
+    } else if (this.container.styles.has(BqPresentationStyles.TRANSPARENT)) {
       this.displayMode = 'transparent';
     } else {
       this.displayMode = 'card';
     }
+  }
+
+  alignRight(): boolean {
+    return this.container.styles.has(BqPresentationStyles.ALIGNRIGHT)
+      || this.container.styles.has(BqPresentationStyles.DEPRECATED_ALIGNRIGHT);
   }
 }

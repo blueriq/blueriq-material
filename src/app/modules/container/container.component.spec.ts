@@ -5,7 +5,7 @@ import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../../material.module';
-import { PresentationStylesNew } from '../PresentationStylesNew';
+import { BqPresentationStyles } from '../BqPresentationStyles';
 import { ContainerComponent } from './container.component';
 
 describe('ContainerComponent', () => {
@@ -57,7 +57,7 @@ describe('ContainerComponent', () => {
     // init
     const container = containerComponent.componentInstance;
     session.update(
-      containerTemplate.styles(PresentationStylesNew.INTRODUCTION)
+      containerTemplate.styles(BqPresentationStyles.INTRODUCTION)
     );
 
     // Sut
@@ -72,7 +72,7 @@ describe('ContainerComponent', () => {
     // init
     const container = containerComponent.componentInstance;
     session.update(
-      containerTemplate.styles(PresentationStylesNew.TRANSPARENT)
+      containerTemplate.styles(BqPresentationStyles.TRANSPARENT)
     );
 
     // Sut
@@ -88,7 +88,7 @@ describe('ContainerComponent', () => {
     // init
     const container = containerComponent.componentInstance;
     session.update(
-      containerTemplate.styles(PresentationStylesNew.HORIZONTAL)
+      containerTemplate.styles(BqPresentationStyles.HORIZONTAL)
     );
 
     // Sut
@@ -100,4 +100,18 @@ describe('ContainerComponent', () => {
     expect(containerComponent.nativeElement.querySelectorAll('.grid-item').length).toBe(3);
   });
 
+  it('should have alignright class when presentationstyle is set', () => {
+    // init
+    const container = containerComponent.componentInstance;
+    session.update(
+      containerTemplate.styles(BqPresentationStyles.ALIGNRIGHT)
+    );
+
+    // Sut
+    const alignRight = container.alignRight;
+
+    // Verify
+    expect(alignRight).toBeTruthy();
+    expect(containerComponent.nativeElement.querySelector('.container.alignright')).toBeTruthy();
+  });
 });

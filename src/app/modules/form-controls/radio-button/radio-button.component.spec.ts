@@ -5,7 +5,7 @@ import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from
 import { FieldTemplate } from '@blueriq/core/testing';
 import { FieldContainerComponent } from '@shared/field-container/field-container.component';
 import { MaterialModule } from '../../../material.module';
-import { PresentationStylesNew } from '../../PresentationStylesNew';
+import { BqPresentationStyles } from '../../BqPresentationStyles';
 
 import { RadioButtonComponent } from './radio-button.component';
 
@@ -33,7 +33,7 @@ describe('RadioButtonComponent', () => {
       'beaker': 'Beaker'
     });
     // reset field to default
-    field.styles(PresentationStylesNew.RADIO).readonly(false).value('');
+    field.styles(BqPresentationStyles.RADIO).readonly(false).value('');
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(RadioButtonComponent);
   });
@@ -57,7 +57,7 @@ describe('RadioButtonComponent', () => {
     let inputField = component.nativeElement.querySelector('input[type=radio]').hasAttribute('disabled');
     expect(inputField).toBeFalsy('by default nothing is disabled');
 
-    field.styles(PresentationStylesNew.RADIO, PresentationStylesNew.DISABLED);
+    field.styles(BqPresentationStyles.RADIO, BqPresentationStyles.DISABLED);
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(RadioButtonComponent);
 
@@ -82,7 +82,7 @@ describe('RadioButtonComponent', () => {
 
     // override default with presentation style
     session.update(
-      field.styles(PresentationStylesNew.RADIO, PresentationStylesNew.DEPRECATED_HORIZONTAL)
+      field.styles(BqPresentationStyles.RADIO, BqPresentationStyles.DEPRECATED_HORIZONTAL)
     );
     styledDiv = component.nativeElement.querySelector('mat-radio-group').querySelector('div');
     expect(styledDiv.style.flexFlow).toBe('row wrap');
@@ -98,7 +98,7 @@ describe('RadioButtonComponent', () => {
 
     // override default with presentation style
     session.update(
-      field.styles(PresentationStylesNew.HORIZONTAL)
+      field.styles(BqPresentationStyles.HORIZONTAL)
     );
     styledDiv = component.nativeElement.querySelector('mat-radio-group').querySelector('div');
     expect(styledDiv.style.flexFlow).toBe('row wrap');
@@ -111,7 +111,7 @@ describe('RadioButtonComponent', () => {
       field.name('two_options').domain({
         1: 'One',
         2: 'Two'
-      }).styles(PresentationStylesNew.RADIO)
+      }).styles(BqPresentationStyles.RADIO)
     );
 
     let styledDiv = component.nativeElement.querySelector('mat-radio-group').querySelector('div');
@@ -121,7 +121,7 @@ describe('RadioButtonComponent', () => {
 
     // override default with presentation style
     session.update(
-      field.styles(PresentationStylesNew.RADIO, PresentationStylesNew.DEPRECATED_VERTICAL)
+      field.styles(BqPresentationStyles.RADIO, BqPresentationStyles.DEPRECATED_VERTICAL)
     );
     styledDiv = component.nativeElement.querySelector('mat-radio-group').querySelector('div');
     expect(styledDiv.style.flexFlow).toBe('row wrap');

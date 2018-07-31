@@ -2,7 +2,7 @@ import { Component, Host } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { BlueriqFormBuilder } from '@blueriq/angular/forms';
 import { Field } from '@blueriq/core';
-import { PresentationStylesNew } from '../../../PresentationStylesNew';
+import { BqPresentationStyles } from '../../../BqPresentationStyles';
 import { MomentTransformer } from '../moment-transformer';
 import { dateFormatProvider } from './datepicker.material';
 
@@ -20,7 +20,7 @@ export class DatepickerComponent {
   formControl = this.form.control(this.field, {
     updateOn: 'blur',
     transformer: MomentTransformer,
-    disableWhen: PresentationStylesNew.DISABLED
+    disableWhen: BqPresentationStyles.DISABLED
   });
 
   constructor(@Host() public field: Field,

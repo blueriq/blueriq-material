@@ -1,4 +1,4 @@
-<div bqKey bqClasses class="container {{displayMode}}">
+<div bqKey bqClasses class="container {{displayMode}}" [class.alignright]="alignRight()">
   <h2 *ngIf="container.displayName">{{ container.displayName }}</h2>
 
   <div *ngIf="!horizontal">

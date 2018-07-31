@@ -1,7 +1,7 @@
 import { Component, Host } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { TextItem } from '@blueriq/core';
-import { PresentationStylesNew } from '../PresentationStylesNew';
+import { BqPresentationStyles } from '../BqPresentationStyles';
 
 @Component({
   templateUrl: './textitem.component.html',
@@ -18,20 +18,20 @@ export class TextItemComponent {
   }
 
   public shouldDisplayGutter(): boolean {
-    return this.textItem.styles.has(PresentationStylesNew.DANGER) ||
-      this.textItem.styles.has(PresentationStylesNew.WARNING) ||
-      this.textItem.styles.has(PresentationStylesNew.INFO) ||
-      this.textItem.styles.has(PresentationStylesNew.SUCCESS);
+    return this.textItem.styles.has(BqPresentationStyles.DANGER) ||
+      this.textItem.styles.has(BqPresentationStyles.WARNING) ||
+      this.textItem.styles.has(BqPresentationStyles.INFO) ||
+      this.textItem.styles.has(BqPresentationStyles.SUCCESS);
   }
 
   public getGutterIcon(): string {
-    if (this.textItem.styles.has(PresentationStylesNew.DANGER)) {
+    if (this.textItem.styles.has(BqPresentationStyles.DANGER)) {
       return 'error';
-    } else if (this.textItem.styles.has(PresentationStylesNew.WARNING)) {
+    } else if (this.textItem.styles.has(BqPresentationStyles.WARNING)) {
       return 'warning';
-    } else if (this.textItem.styles.has(PresentationStylesNew.INFO)) {
+    } else if (this.textItem.styles.has(BqPresentationStyles.INFO)) {
       return 'info';
-    } else if (this.textItem.styles.has(PresentationStylesNew.SUCCESS)) {
+    } else if (this.textItem.styles.has(BqPresentationStyles.SUCCESS)) {
       return 'check_circle';
     }
     return '';

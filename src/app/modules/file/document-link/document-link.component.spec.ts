@@ -6,7 +6,7 @@ import { DocumentLink } from '@blueriq/angular/files';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate, LinkTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../../../material.module';
-import { PresentationStylesNew } from '../../PresentationStylesNew';
+import { BqPresentationStyles } from '../../BqPresentationStyles';
 import { FileDownloadService } from '../file-download/file-download.service';
 import { DocumentLinkComponent } from './document-link.component';
 
@@ -63,7 +63,7 @@ describe('DocumentLinkComponent', () => {
 
   it('should contain the correct data when presentation style "Button" is set', () => {
     session.update(
-      container.styles(PresentationStylesNew.BUTTON)
+      container.styles(BqPresentationStyles.BUTTON)
     );
     const element = component.nativeElement.querySelector('a');
     expect(element.getAttribute('class')).toBe('mat-raised-button');
@@ -72,7 +72,7 @@ describe('DocumentLinkComponent', () => {
 
   it('should contain the correct class when presentation styles "Button" and "primary" are set', () => {
     session.update(
-      container.styles(PresentationStylesNew.BUTTON, PresentationStylesNew.PRIMARY)
+      container.styles(BqPresentationStyles.BUTTON, BqPresentationStyles.PRIMARY)
     );
     const element = component.nativeElement.querySelector('a');
     expect(element.getAttribute('class')).toBe('mat-raised-button mat-primary');
@@ -81,7 +81,7 @@ describe('DocumentLinkComponent', () => {
 
   it('should contain the correct class when presentation styles "Button" and "tertiary" are set', () => {
     session.update(
-      container.styles(PresentationStylesNew.BUTTON, PresentationStylesNew.TERTIARY)
+      container.styles(BqPresentationStyles.BUTTON, BqPresentationStyles.TERTIARY)
     );
     const element = component.nativeElement.querySelector('a');
     expect(element.getAttribute('class')).toBe('mat-raised-button mat-accent');
