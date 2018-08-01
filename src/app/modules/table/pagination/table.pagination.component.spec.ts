@@ -6,7 +6,7 @@ import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/t
 import { BlueriqTestSession } from '@blueriq/angular/testing/src/test_session';
 import { ButtonTemplate, ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../../../material.module';
-import { PaginationComponent } from './table.pagination.component';
+import { TablePaginationComponent } from './table.pagination.component';
 
 describe('TablePaginationComponent', () => {
   const LABEL = '.mat-paginator-range-label';
@@ -16,7 +16,7 @@ describe('TablePaginationComponent', () => {
   const NAVIGATION_FIRST = '.mat-paginator-navigation-first';
 
   let session: BlueriqTestSession;
-  let component: ComponentFixture<PaginationComponent>;
+  let component: ComponentFixture<TablePaginationComponent>;
 
   let btnFirst: ButtonTemplate;
   let btnLast: ButtonTemplate;
@@ -26,9 +26,9 @@ describe('TablePaginationComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [PaginationComponent],
+      declarations: [TablePaginationComponent],
       providers: [
-        BlueriqComponents.register([PaginationComponent])
+        BlueriqComponents.register([TablePaginationComponent])
       ],
       imports: [
         MaterialModule,
@@ -76,7 +76,7 @@ describe('TablePaginationComponent', () => {
       btnLast
     );
     session = BlueriqSessionTemplate.create().build(pagination);
-    component = session.get(PaginationComponent);
+    component = session.get(TablePaginationComponent);
   });
 
   it('should have been created', () => {

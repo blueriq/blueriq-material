@@ -10,9 +10,13 @@ import { Container } from '@blueriq/core';
 })
 @BlueriqComponent({
   type: Container,
-  selector: '#navigationContainer'
+  selector: 'tablenavigation, listplus_footer, list_footer'
+  // Instancelist   - tablenavigation
+  // Aggregatelist  - list_footer
+  // Caselist       - listplus_footer
+  // Worklist       - listplus_footer
 })
-export class PaginationComponent {
+export class TablePaginationComponent {
 
   constructor(@Self() public readonly pagination: Pagination) {
   }
