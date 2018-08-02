@@ -201,17 +201,17 @@
   dependencies:
     tslib "^1.9.0"
 
-"@blueriq/angular@../red-cow/dist/blueriq-angular.tgz":
-  version "0.4.0-snapshot"
-  resolved "../red-cow/dist/blueriq-angular.tgz#7226f252a78cefc07f357e526df664a6ddaa257e"
+"@blueriq/angular@^0.4.0-alpha.6":
+  version "0.4.0-alpha.6"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/angular/-/@blueriq/angular-0.4.0-alpha.6.tgz#5cbcb2e4900d0d611507903bae45937c86f3333e"
   dependencies:
     date-fns "2.0.0-alpha.7"
     stable "0.1.7"
     tslib "^1.7.1"
 
-"@blueriq/core@../red-cow/dist/blueriq-core.tgz":
-  version "0.4.0-snapshot"
-  resolved "../red-cow/dist/blueriq-core.tgz#78f2f6899ccb6c1a3a60e996ad1787b1264cea66"
+"@blueriq/core@^0.4.0-alpha.6":
+  version "0.4.0-alpha.6"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/core/-/@blueriq/core-0.4.0-alpha.6.tgz#0533a8d3803860b2cd9a8671dc83995974d95ee5"
   dependencies:
     css-selector-parser "1.3.0"
     date-fns "2.0.0-alpha.7"
