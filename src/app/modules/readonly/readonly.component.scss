@@ -1,17 +1,11 @@
-.readonly {
-  display: flex;
+// sass-lint:disable-all
+:host::ng-deep {
+  .mat-form-field-underline {
+    display: none;
+  }
 }
 
-.questiontext {
-  display: inline-table;
-  width: 20%;
-  text-align: right;
+// sass-lint:enable-all
+.mat-form-field {
+  padding-left: 12px;
 }
-
-.display {
-  width: 80%;
-  padding-left: 20px;
-  text-align: left;
-}
-
-

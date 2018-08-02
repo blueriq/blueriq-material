@@ -1,5 +1,5 @@
 @import '~@angular/material/theming';
-@import '../../../theme/globals/variables';
+@import 'globals/variables';
 
 .mat-toolbar {
   @include mat-elevation(1);
@@ -9,11 +9,21 @@
 
   min-height: $bq-toolbar-height;
   padding: 0 0 0 16px;
-  background: linear-gradient(to right, $bq-primary-blue, $bq-primary-purple, $bq-primary-violet);
+
+  // Specific colors alert, since this is a particular part of the Blueriq branding specific color variables are allowed
+  // sass-lint:disable-all
+  background: linear-gradient(
+      to right,
+      map_get($bq-mat-primary-blue, 500),
+      map_get($bq-mat-primary-purple, 500),
+      map_get($bq-mat-primary-violet, 500)
+  );
+
   color: $light-primary-text;
 
   z-index: $z-index-drawer + 10;
 
+  // sass-lint:disable-all
   h1 {
     margin: 0 0 0 24px;
     color: $light-primary-text;

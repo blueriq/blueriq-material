@@ -8,7 +8,7 @@ import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from
 import { FieldTemplate } from '@blueriq/core/testing';
 import { FieldContainerComponent } from '@shared/field-container/field-container.component';
 import { MaterialModule } from '../../../material.module';
-import { PresentationStylesNew } from '../../PresentationStylesNew';
+import { BqPresentationStyles } from '../../BqPresentationStyles';
 import { SelectComponent } from './select.component';
 
 describe('SelectComponent', () => {
@@ -48,7 +48,7 @@ describe('SelectComponent', () => {
     let selectDisabled = component.nativeElement.querySelector('.mat-select-disabled');
     expect(selectDisabled).toBeFalsy();
 
-    field.styles(PresentationStylesNew.DISABLED);
+    field.styles(BqPresentationStyles.DISABLED);
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(SelectComponent);
 

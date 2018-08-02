@@ -6,8 +6,8 @@ import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../../material.module';
+import { BqPresentationStyles } from '../../modules/BqPresentationStyles';
 import { StringFieldComponent } from '../../modules/form-controls/input-field/string/string.component';
-import { PresentationStylesNew } from '../../modules/PresentationStylesNew';
 
 import { FieldContainerComponent } from './field-container.component';
 
@@ -60,7 +60,7 @@ describe('FieldContainerComponent', () => {
     expect(selectedElement).toBeFalsy();
 
     session.update(
-      field.styles(PresentationStylesNew.EXPLAINICON),
+      field.styles(BqPresentationStyles.EXPLAINICON),
       field.explainText('some explain text')
     );
     selectedElement = component.nativeElement.querySelector('.material-icons[ng-reflect-message]');
@@ -70,7 +70,7 @@ describe('FieldContainerComponent', () => {
 
   it('should not display explain icon when readonly', () => {
     session.update(
-      field.styles(PresentationStylesNew.EXPLAINICON),
+      field.styles(BqPresentationStyles.EXPLAINICON),
       field.readonly(true)
     );
     const selectedElement = component.nativeElement.querySelector('.material-icons[ng-reflect-message]');

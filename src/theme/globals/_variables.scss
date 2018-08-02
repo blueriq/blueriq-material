@@ -1,41 +1,31 @@
 @import '~@angular/material/theming';
 @import './color-palettes';
 
-$bq-font-family: 'Roboto', Arial, 'Helvetica Neue', sans-serif;
+// The mat-palette() function adds keys to the palette object for easy color retrieval using mat-color()
+$bq-primary-palette: mat-palette($bq-mat-primary-blue);
+$bq-accent-palette: mat-palette($bq-mat-primary-purple);
+$bq-error-palette: mat-palette($bq-mat-accent-red);
+$bq-theme: mat-light-theme($bq-primary-palette, $bq-accent-palette, $bq-error-palette);
+
+//Specific none material colour palettes
+$bq-tertiary-palette: mat-palette($bq-mat-accent-green);
+$bq-warn-palette: mat-palette($bq-mat-accent-orange);
+$bq-info-palette: mat-palette($bq-mat-primary-blue);
+$bq-success-palette: mat-palette($bq-mat-accent-green);
+
+// Margin system, for consistency all margins are derivatives from a single base margin
+// Use the $bq-margin-* variables in all SCSS for padding, margin, etc to achieve a form of consistency
 $bq-base-margin: 12px;
-$bq-toolbar-height: 77px;
+$bq-margin: $bq-base-margin;
+$bq-margin-half: $bq-base-margin / 2;
+$bq-margin-double: $bq-base-margin * 2;
+$bq-margin-triple: $bq-base-margin * 3;
 
-$bq-primary-blue: mat-color($bq-mat-primary-blue, 500);
-$bq-primary-purple: mat-color($bq-mat-primary-purple, 500);
-$bq-primary-violet: mat-color($bq-mat-primary-violet, 500);
-
-$bq-secondary-teal: mat-color($bq-mat-accent-teal, 500);
-$bq-secondary-green: mat-color($bq-mat-accent-green, 500);
-$bq-secondary-mint: mat-color($bq-mat-accent-mint, 500);
-$bq-secondary-navy: mat-color($bq-mat-accent-navy, 500);
-$bq-secondary-red: mat-color($bq-mat-accent-red, 500);
-$bq-secondary-orange: mat-color($bq-mat-accent-orange, 500);
-$bq-secondary-yellow: mat-color($bq-mat-accent-yellow, 500);
-
-$bq-grey-dark: mat-color($bq-mat-grey-dark, 500);
-$bq-grey-medium: mat-color($bq-mat-grey-medium, 500);
-$bq-grey-light: mat-color($bq-mat-grey-light, 500);
-
-// Material theme color definitions, change this to change color scheme's
-$bq-mat-primary: $bq-mat-primary-blue;
-$bq-mat-accent: $bq-mat-accent-green;
-
-$bq-mat-bg-danger: mat-color($bq-mat-accent-red, 100);
-$bq-mat-bg-info: mat-color($bq-mat-primary-blue, 100);
-$bq-mat-bg-success: mat-color($bq-mat-accent-green, 100);
-$bq-mat-bg-warning: mat-color($bq-mat-accent-orange, 100);
-
-$bq-mat-fg-danger: mat-color($bq-mat-accent-red, 800);
-$bq-mat-fg-info: mat-color($bq-mat-primary-blue, 800);
-$bq-mat-fg-success: mat-color($bq-mat-accent-green, 800);
-$bq-mat-fg-warning: mat-color($bq-mat-accent-orange, 800);
-
-$bq-mat-primary-500: mat-color($bq-mat-primary, 500);
-$bq-mat-accent-500: mat-color($bq-mat-accent, 500);
-
+// Specific colour variables which could not not have been achieved using the default material theme variables
+$bq-default-button-background: #f5f5f5;
+$bg-header-color: mat-color($bq-mat-accent-navy, 500);
 $bq-white-37-opacity: rgba(255, 255, 255, .37);
+
+// Other variables
+$bq-font-family: 'Roboto', Arial, 'Helvetica Neue', sans-serif;
+$bq-toolbar-height: 77px;

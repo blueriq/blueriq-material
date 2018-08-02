@@ -10,7 +10,7 @@ import * as moment from 'moment';
 import { OwlDateTimeModule } from 'ng-pick-datetime';
 import { MomentDateTimeAdapter, OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
 import { MaterialModule } from '../../../../material.module';
-import { PresentationStylesNew } from '../../../PresentationStylesNew';
+import { BqPresentationStyles } from '../../../BqPresentationStyles';
 import { MomentTransformer } from '../moment-transformer';
 import { DateTimepickerComponent } from './datetimepicker.component';
 
@@ -62,7 +62,7 @@ describe('DateTimepickerComponent', () => {
   });
 
   it('should be disabled', () => {
-    field.styles(PresentationStylesNew.DISABLED);
+    field.styles(BqPresentationStyles.DISABLED);
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(DateTimepickerComponent);
 
