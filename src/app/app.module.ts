@@ -30,6 +30,7 @@ import { FileUploadComponent } from './modules/file/file-upload/file-upload.comp
 import { MomentTransformer } from './modules/form-controls/date/moment-transformer';
 import { FormControlModule } from './modules/form-controls/form-control.module';
 import { LoadingComponent } from './modules/loading/loading.component';
+import { MenuComponent } from './modules/menu/menu.component';
 import { PageComponent } from './modules/page/page.component';
 import { PresentationStylesNew } from './modules/PresentationStylesNew';
 import { ReadonlyComponent } from './modules/readonly/readonly.component';
@@ -56,6 +57,7 @@ const BQ_COMPONENTS = [
   DocumentLinkComponent,
   FileDownloadComponent,
   FileUploadComponent,
+  MenuComponent,
   PageComponent,
   PaginationComponent,
   ReadonlyComponent,
