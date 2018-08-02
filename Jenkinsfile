@@ -47,11 +47,6 @@ node {
       checkout scm
     }
 
-    stage('fix base URL') {
-      def configurationFile = new File('src/app/configuration/configuration.ts');
-      configurationFile.write(configurationFile.text.replace('/Runtime', '../server'));
-    }
-
     stage('install') {
       bat 'node -v'
       bat 'yarn -v'
