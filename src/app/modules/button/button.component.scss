@@ -1,5 +1,15 @@
-@import '../../../theme/globals/variables';
+@import 'globals/variables';
 
 button {
   margin: $bq-base-margin $bq-base-margin $bq-base-margin 0;
+  text-transform: uppercase;
+
+  .table {
+    background: $bq-default-button-background;
+  }
+}
+
+.tertiary {
+  background-color: mat-color($bq-tertiary-palette);
+  color: mat-color($bq-tertiary-palette, default-contrast);
 }

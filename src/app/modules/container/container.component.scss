@@ -1,21 +1,60 @@
 @import '~@angular/material/theming';
-@import '../../../theme/globals/variables';
+@import 'globals/variables';
 
 .container {
   margin: 0;
 }
 
-.container-card {
-  @include mat-elevation(1);
+.grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: space-between;
+}
 
+.grid-item {
+  flex: 1;
+  margin-right: 10px;
+}
+
+@mixin top-container {
   max-width: 728px; // TODO make responsive
-  margin: 2 * $bq-base-margin auto;
-  padding: 2 * $bq-base-margin;
-  background: map-get($mat-light-theme-background, card);
+  margin: $bq-margin-double auto;
+  padding: $bq-margin-double;
 
   h2 {
     margin-top: 0; // reset top margin, Card padding is in place
-    color: $bq-secondary-navy;
+    color: $bg-header-color;
     font-weight: 400;
   }
 }
+
+.card {
+  @include mat-elevation(1);
+  @include top-container;
+  background: map-get($mat-light-theme-background, card);
+}
+
+.introduction {
+  @include top-container;
+
+  &::before {
+    position: absolute;
+    width: 39px;
+    height: 39px;
+    margin: -$bq-margin-double;
+    background: url('/theme/images/blueriq-technology.svg') no-repeat;
+    content: '';
+  }
+}
+
+.transparent {
+  @include top-container;
+}
+
+.alignright {
+  display: flex;
+  justify-content: flex-end;
+}
+

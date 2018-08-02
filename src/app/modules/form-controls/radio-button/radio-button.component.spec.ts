@@ -5,7 +5,7 @@ import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from
 import { FieldTemplate } from '@blueriq/core/testing';
 import { FieldContainerComponent } from '@shared/field-container/field-container.component';
 import { MaterialModule } from '../../../material.module';
-import { PresentationStylesNew } from '../../PresentationStylesNew';
+import { BqPresentationStyles } from '../../BqPresentationStyles';
 
 import { RadioButtonComponent } from './radio-button.component';
 
@@ -33,7 +33,7 @@ describe('RadioButtonComponent', () => {
       'beaker': 'Beaker'
     });
     // reset field to default
-    field.styles(PresentationStylesNew.RADIO).readonly(false).value('');
+    field.styles(BqPresentationStyles.RADIO).readonly(false).value('');
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(RadioButtonComponent);
   });
@@ -57,7 +57,7 @@ describe('RadioButtonComponent', () => {
     let inputField = component.nativeElement.querySelector('input[type=radio]').hasAttribute('disabled');
     expect(inputField).toBeFalsy('by default nothing is disabled');
 
-    field.styles(PresentationStylesNew.RADIO, PresentationStylesNew.DISABLED);
+    field.styles(BqPresentationStyles.RADIO, BqPresentationStyles.DISABLED);
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(RadioButtonComponent);
 
@@ -75,16 +75,35 @@ describe('RadioButtonComponent', () => {
   });
 
   it('default direction is `vertical`', () => {
-    let inputField = component.nativeElement.querySelector('.vertical');
-    expect(inputField).toBeTruthy();
+    let styledDiv = component.nativeElement.querySelector('mat-radio-group').querySelector('div');
+    expect(styledDiv.style.flexDirection).toBe('column');
+    expect(styledDiv.style.boxSizing).toBe('border-box');
+    expect(styledDiv.style.display).toBe('flex');
 
     // override default with presentation style
     session.update(
-      field.styles(PresentationStylesNew.RADIO, PresentationStylesNew.HORIZONTAL)
+      field.styles(BqPresentationStyles.RADIO, BqPresentationStyles.DEPRECATED_HORIZONTAL)
     );
-    inputField = component.nativeElement.querySelector('.horizontal');
-    expect(inputField).toBeTruthy('settings presentation style `horizontal` overrides default behaviour');
+    styledDiv = component.nativeElement.querySelector('mat-radio-group').querySelector('div');
+    expect(styledDiv.style.flexFlow).toBe('row wrap');
+    expect(styledDiv.style.boxSizing).toBe('border-box');
+    expect(styledDiv.style.display).toBe('flex');
+  });
 
+  it('default direction is `vertical` with PS RadioHorizontal', () => {
+    let styledDiv = component.nativeElement.querySelector('mat-radio-group').querySelector('div');
+    expect(styledDiv.style.flexDirection).toBe('column');
+    expect(styledDiv.style.boxSizing).toBe('border-box');
+    expect(styledDiv.style.display).toBe('flex');
+
+    // override default with presentation style
+    session.update(
+      field.styles(BqPresentationStyles.HORIZONTAL)
+    );
+    styledDiv = component.nativeElement.querySelector('mat-radio-group').querySelector('div');
+    expect(styledDiv.style.flexFlow).toBe('row wrap');
+    expect(styledDiv.style.boxSizing).toBe('border-box');
+    expect(styledDiv.style.display).toBe('flex');
   });
 
   it('default direction is `horizontal` when there are exactly 2 radio buttons', () => {
@@ -92,18 +111,21 @@ describe('RadioButtonComponent', () => {
       field.name('two_options').domain({
         1: 'One',
         2: 'Two'
-      }).styles(PresentationStylesNew.RADIO)
+      }).styles(BqPresentationStyles.RADIO)
     );
 
-    let inputField = component.nativeElement.querySelector('.horizontal');
-    expect(inputField).toBeTruthy();
+    let styledDiv = component.nativeElement.querySelector('mat-radio-group').querySelector('div');
+    expect(styledDiv.style.flexFlow).toBe('row wrap');
+    expect(styledDiv.style.boxSizing).toBe('border-box');
+    expect(styledDiv.style.display).toBe('flex');
 
     // override default with presentation style
     session.update(
-      field.styles(PresentationStylesNew.RADIO, PresentationStylesNew.VERTICAL)
+      field.styles(BqPresentationStyles.RADIO, BqPresentationStyles.DEPRECATED_VERTICAL)
     );
-    inputField = component.nativeElement.querySelector('.vertical');
-    expect(inputField).toBeTruthy('setting presentation style `vertical` overrides default behaviour');
+    styledDiv = component.nativeElement.querySelector('mat-radio-group').querySelector('div');
+    expect(styledDiv.style.flexFlow).toBe('row wrap');
+    expect(styledDiv.style.boxSizing).toBe('border-box');
+    expect(styledDiv.style.display).toBe('flex');
   });
-
 });

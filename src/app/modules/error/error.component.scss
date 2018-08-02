@@ -1,4 +1,4 @@
-@import '../../../theme/globals/variables';
+@import 'globals/variables';
 @import '~@angular/material/theming';
 
 .error-container {
@@ -10,11 +10,11 @@
   z-index: $z-index-drawer + 200;
 
   .severity-error {
-    background-color: $bq-secondary-red;
+    background-color: mat-color($bq-error-palette);
   }
 
   .severity-notice {
-    background-color: $bq-primary-blue;
+    background-color: mat-color($bq-error-palette);
   }
 
   .severity-error,
@@ -22,12 +22,12 @@
     @include mat-elevation(2);
 
     width: 350px;
-    padding: $bq-base-margin;
+    padding: $bq-margin;
     color: $white-87-opacity;
     text-align: center;
 
     img {
-      margin-top: 3 * $bq-base-margin;
+      margin-top: $bq-margin-triple;
     }
 
     .title,
@@ -38,7 +38,7 @@
     }
 
     .title {
-      margin-bottom: $bq-base-margin;
+      margin-bottom: $bq-margin;
       font-size: 48px;
       font-weight: normal;
     }
@@ -48,7 +48,7 @@
     }
 
     .details {
-      padding: $bq-base-margin;
+      padding: $bq-margin;
       background-color: $bq-white-37-opacity;
     }
 
@@ -68,7 +68,6 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: $bq-grey-medium;
-  opacity: .5;
+  background-color: $cdk-overlay-dark-backdrop-background;
   z-index: $z-index-drawer + 100;
 }

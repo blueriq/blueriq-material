@@ -2,7 +2,7 @@ import { Component, Host } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { BlueriqFormBuilder } from '@blueriq/angular/forms';
 import { Field } from '@blueriq/core';
-import { PresentationStylesNew } from '../../PresentationStylesNew';
+import { BqPresentationStyles } from '../../BqPresentationStyles';
 
 @Component({
   selector: 'bq-slide-toggle',
@@ -11,14 +11,14 @@ import { PresentationStylesNew } from '../../PresentationStylesNew';
 })
 @BlueriqComponent({
   type: Field,
-  selector: '.' + PresentationStylesNew.TOGGLE + '[dataType=boolean]'
+  selector: '.' + BqPresentationStyles.TOGGLE + '[dataType=boolean]'
 })
 export class SlideToggleComponent {
 
   formControl = this.form.control(this.field, {
     syncOn: 'update',
     ifUnknown: false,
-    disableWhen: PresentationStylesNew.DISABLED
+    disableWhen: BqPresentationStyles.DISABLED
   });
 
   constructor(@Host() public field: Field, private form: BlueriqFormBuilder) {

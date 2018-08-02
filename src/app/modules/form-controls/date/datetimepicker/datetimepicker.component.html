@@ -1,9 +1,9 @@
 <bq-element [control]="formControl">
 
-  <mat-form-field>
+  <mat-form-field appearance="fill">
     <mat-label>{{field.questionText}}</mat-label>
     <input matInput [formControl]="formControl" [required]="field.required" [owlDateTime]="dtPicker" (dateTimeChange)="formatOnChange($event)">
-    <button matSuffix class="mat-icon-button" [owlDateTimeTrigger]="dtPicker">
+    <button matPrefix class="mat-icon-button" [owlDateTimeTrigger]="dtPicker">
       <mat-icon>today</mat-icon>
     </button>
     <owl-date-time #dtPicker [pickerType]="getPickerType()" [firstDayOfWeek]="getFirstDayOfWeek()" [showSecondsTimer]="true" [disabled]="formControl.disabled"></owl-date-time>

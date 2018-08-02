@@ -1,8 +1,10 @@
-import { Component, Host } from '@angular/core';
-import { BlueriqComponent } from '@blueriq/angular';
+import { Component, Host, OnInit } from '@angular/core';
+import { BlueriqComponent, OnUpdate } from '@blueriq/angular';
 import { BlueriqFormBuilder } from '@blueriq/angular/forms';
 import { Field } from '@blueriq/core';
-import { PresentationStylesNew } from '../../PresentationStylesNew';
+import { BqPresentationStyles } from '../../BqPresentationStyles';
+
+type RadioButtonDirection = 'vertical' | 'horizontal';
 
 @Component({
   selector: 'bq-radio-button',
@@ -11,28 +13,40 @@ import { PresentationStylesNew } from '../../PresentationStylesNew';
 })
 @BlueriqComponent({
   type: Field,
-  selector: '.radio[hasDomain]'
+  selector: '.Radio[hasDomain], .' +
+    BqPresentationStyles.DEPRECATED_HORIZONTAL + '[hasDomain] , .' +
+    BqPresentationStyles.DEPRECATED_VERTICAL + '[hasDomain], .' +
+    BqPresentationStyles.HORIZONTAL + '[hasDomain]'
 })
-export class RadioButtonComponent {
+export class RadioButtonComponent implements OnInit, OnUpdate {
 
-  formControl = this.form.control(this.field, { updateOn: 'blur', disableWhen: PresentationStylesNew.DISABLED });
+  public direction: RadioButtonDirection = 'vertical';
+
+  formControl = this.form.control(this.field, { updateOn: 'blur', disableWhen: BqPresentationStyles.DISABLED });
 
   constructor(@Host() public field: Field, private form: BlueriqFormBuilder) {
   }
 
+  ngOnInit() {
+    this.determineDirection();
+  }
+
+  bqOnUpdate() {
+    this.determineDirection();
+  }
+
   /**
    * Determines the direction in which the radio buttons are presented.
-   * Options are {@link PresentationStylesNew.VERTICAL}
-   * and {@link PresentationStylesNew.HORIZONTAL}
+   * Options are {@link BqPresentationStyles.VERTICAL}
+   * and {@link BqPresentationStyles.HORIZONTAL}
    * @returns {string} denoting the direction in which the buttons are presented
    */
-  determineDirection(): string {
-    if (this.field.styles.has(PresentationStylesNew.VERTICAL)) {
-      return 'vertical';
+  private determineDirection() {
+    if (this.field.styles.has(BqPresentationStyles.HORIZONTAL)
+      || this.field.styles.has(BqPresentationStyles.DEPRECATED_HORIZONTAL)
+      || this.field.domain.options.length === 2) {
+      this.direction = 'horizontal';
     }
-    if (this.field.styles.has(PresentationStylesNew.HORIZONTAL) || this.field.domain.options.length === 2) {
-      return 'horizontal';
-    }
-    return 'vertical';
   }
+
 }
