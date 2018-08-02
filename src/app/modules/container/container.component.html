@@ -1,5 +1,5 @@
 <div bqKey bqClasses class="container {{displayMode}}" [class.alignright]="alignRight()">
-  <h2 *ngIf="container.displayName">{{ container.displayName }}</h2>
+  <h2 *ngIf="container.displayName && !table">{{ container.displayName }}</h2>
 
   <div *ngIf="!horizontal">
     <ng-container *ngFor="let child of container.children" [bqElement]="child"></ng-container>
