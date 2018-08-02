@@ -30,6 +30,11 @@
               "src/theme/index.scss",
               "src/theme/splashscreen.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "./src/theme"
+              ]
+            },
             "scripts": []
           },
           "configurations": {
@@ -82,6 +87,11 @@
             "styles": [
               "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "./src/theme"
+              ]
+            },
             "scripts": [],
             "assets": [
               "src/favicon.ico",

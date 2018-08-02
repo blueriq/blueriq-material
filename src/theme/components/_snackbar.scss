@@ -2,10 +2,10 @@
 
 .mat-snack-bar-container {
   &.snackbar-error {
-    background-color: $bq-secondary-red;
+    background-color: mat-color($bq-error-palette);
   }
 
   &.snackbar-warning {
-    background-color: $bq-secondary-orange;
+    background-color: mat-color($bq-warn-palette);
   }
 }

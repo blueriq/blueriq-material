@@ -19,6 +19,7 @@ import { AppComponent } from './app.component';
 import { Configuration } from './configuration/configuration';
 import { MaterialModule } from './material.module';
 import { AssetComponent } from './modules/asset/asset.component';
+import { BqPresentationStyles } from './modules/BqPresentationStyles';
 import { ButtonComponent } from './modules/button/button.component';
 import { ContainerComponent } from './modules/container/container.component';
 import { ErrorComponent } from './modules/error/error.component';
@@ -31,7 +32,6 @@ import { MomentTransformer } from './modules/form-controls/date/moment-transform
 import { FormControlModule } from './modules/form-controls/form-control.module';
 import { LoadingComponent } from './modules/loading/loading.component';
 import { PageComponent } from './modules/page/page.component';
-import { PresentationStylesNew } from './modules/PresentationStylesNew';
 import { ReadonlyComponent } from './modules/readonly/readonly.component';
 import { TableModule } from './modules/table/table.module';
 import { TextItemComponent } from './modules/textitem/textitem.component';
@@ -96,7 +96,7 @@ const BQ_COMPONENTS = [
   providers: [
     BlueriqComponents.register(BQ_COMPONENTS),
     MomentTransformer,
-    PresentationStylesNew,
+    BqPresentationStyles,
     ErrorService,
     FileDownloadService
   ],

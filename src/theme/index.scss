@@ -9,11 +9,4 @@
 
 @include mat-core;
 
-$bq-primary-palette: mat-palette($bq-mat-primary);
-$bq-accent-palette: mat-palette($bq-mat-accent);
-
-$bq-warn-palette: mat-palette($mat-red);
-$bq-theme: mat-light-theme($bq-primary-palette, $bq-accent-palette, $bq-warn-palette);
-
 @include angular-material-theme($bq-theme);
-

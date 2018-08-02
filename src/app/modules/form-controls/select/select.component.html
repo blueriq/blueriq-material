@@ -1,5 +1,5 @@
 <bq-element [control]="formControl" bqClasses>
-  <mat-form-field>
+  <mat-form-field appearance="fill">
     <mat-select [placeholder]="field.questionText" [required]="field.required" [formControl]="formControl" [multiple]="field.multiValued">
       <mat-option *ngIf="!field.multiValued"></mat-option>
       <mat-option *ngFor="let option of getOptions()" [value]="option.value">

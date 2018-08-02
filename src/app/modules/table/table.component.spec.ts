@@ -15,6 +15,7 @@ import {
   TextItemTemplate
 } from '@blueriq/core/testing';
 import { MaterialModule } from '../../material.module';
+import { ButtonComponent } from '../button/button.component';
 import { ReadonlyComponent } from '../readonly/readonly.component';
 import { TextItemComponent } from '../textitem/textitem.component';
 import { TableSortComponent } from './sort/table.sort.component';
@@ -27,10 +28,10 @@ describe('TableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TableComponent, ReadonlyComponent,
+      declarations: [ButtonComponent, TableComponent, ReadonlyComponent,
         TableSortComponent, TextItemComponent],
       providers: [BlueriqComponents.register([
-        TableComponent, ReadonlyComponent,
+        ButtonComponent, TableComponent, ReadonlyComponent,
         TableSortComponent, TextItemComponent]),
         Table
       ],
@@ -69,14 +70,16 @@ describe('TableComponent', () => {
       .create('row')
       .contentStyle('tablerow')
       .children(
-        FieldTemplate.text('Person.Name').value('Mike').readonly(true)
+        FieldTemplate.text('Person.Name').value('Mike').readonly(true),
+        ButtonTemplate.create('mybutton').caption('clickme')
       ),
       // ---------- Row #2 ----------
       ContainerTemplate
       .create('row')
       .contentStyle('tablerow')
       .children(
-        FieldTemplate.text('Person.Name').value('Tilly').readonly(true)
+        FieldTemplate.text('Person.Name').value('Tilly').readonly(true),
+        ButtonTemplate.create('mybutton').caption('clickme')
       )
       // ---------- End ----------
     );
@@ -91,27 +94,31 @@ describe('TableComponent', () => {
   it('should have a header displayed with the correct content', () => {
     const matRows = component.nativeElement.querySelectorAll('.mat-row');
     expect(matRows.length).toBe(2);
-    expect(matRows[0].innerText.trim()).toBe('Mike');
-    expect(matRows[1].innerText.trim()).toBe('Tilly');
+    expect(matRows[0].innerText.trim()).toBe('Mike\nCLICKME');
+    expect(matRows[1].innerText.trim()).toBe('Tilly\nCLICKME');
   });
 
   it('should have a row with the correct content', () => {
     const matHeaderCell = component.nativeElement.querySelectorAll('.mat-header-cell');
-    expect(matHeaderCell.length).toBe(1);
+    expect(matHeaderCell.length).toBe(2);
 
     const headerCellContent = matHeaderCell[0].querySelector('bq-textitem-static').innerText;
     expect(headerCellContent.trim()).toBe('Name');
   });
 
   it('should have a row with the correct content', () => {
-    const readonlyCells = component.nativeElement.querySelectorAll('.readonly');
+    const readonlyCells = component.nativeElement.querySelectorAll('bq-readonly');
     expect(readonlyCells.length).toBe(2);
-
-    expect(readonlyCells[0].querySelectorAll('div').length).toBe(
-      1,
-      'Only one div should be displayed containing the field.value, without explaintext');
     expect(readonlyCells[0].querySelector('label')).toBeFalsy();
-
   });
 
+  it('should have a mat-button in a tablecell', () => {
+    const matButtons = component.nativeElement.querySelectorAll('.mat-button');
+    expect(matButtons.length).toBe(2);
+  });
+
+  it('should not have a mat-raised-button in a tablecell', () => {
+    const matRaisedButtons = component.nativeElement.querySelectorAll('.mat-raised-button');
+    expect(matRaisedButtons.length).toBe(0);
+  });
 });

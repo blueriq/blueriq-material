@@ -40,6 +40,6 @@ describe('CurrencyFieldComponent', () => {
 
   it('should contain euro sign', () => {
     const prefix = component.nativeElement.querySelector('.mat-form-field-prefix').innerText;
-    expect(prefix).toBe('€');
+    expect(prefix).toBe('euro_symbol');
   });
 });

@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { getBlueriqField, getFieldMessages } from '@blueriq/angular/forms';
 import { Field, FieldMessages } from '@blueriq/core';
-import { PresentationStylesNew } from '../../modules/PresentationStylesNew';
+import { BqPresentationStyles } from '../../modules/BqPresentationStyles';
 
 @Component({
   selector: 'bq-element',
@@ -26,7 +26,7 @@ export class FieldContainerComponent {
   }
 
   hasPresentationStyleExplainIcon(): boolean {
-    return this.field.styles.has(PresentationStylesNew.EXPLAINICON);
+    return this.field.styles.has(BqPresentationStyles.EXPLAINICON);
   }
 
   shouldDisplayExplainText(): boolean {
