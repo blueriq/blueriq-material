@@ -34,10 +34,7 @@ import { LoadingComponent } from './modules/loading/loading.component';
 import { MenuComponent } from './modules/menu/menu.component';
 import { PageComponent } from './modules/page/page.component';
 import { ReadonlyComponent } from './modules/readonly/readonly.component';
-import { PaginationComponent } from './modules/table/pagination/table.pagination.component';
-import { TableSearchComponent } from './modules/table/search/table.search.component';
-import { TableSortComponent } from './modules/table/sort/table.sort.component';
-import { TableComponent } from './modules/table/table.component';
+import { TableModule } from './modules/table/table.module';
 import { TextItemComponent } from './modules/textitem/textitem.component';
 import { ProjectComponent } from './project.component';
 
@@ -59,11 +56,7 @@ const BQ_COMPONENTS = [
   FileUploadComponent,
   MenuComponent,
   PageComponent,
-  PaginationComponent,
   ReadonlyComponent,
-  TableComponent,
-  TableSearchComponent,
-  TableSortComponent,
   TextItemComponent
 ];
 
@@ -88,6 +81,7 @@ const BQ_COMPONENTS = [
     MaterialModule,
     SharedModule,
     FormControlModule,
+    TableModule,
     FlexLayoutModule,
     FormattingModule.forRoot(),
     FormsModule,

@@ -17,6 +17,9 @@
     <button class="mat-paginator-navigation-last mat-icon-button" mat-icon-button [disabled]="pagination.last.disabled" [bqButton]="pagination.last">
       <mat-icon>last_page</mat-icon>
     </button>
+    <button class="mat-paginator-navigation-last mat-icon-button" mat-icon-button *ngIf="pagination.clear" [bqButton]="pagination.clear">
+      <mat-icon>clear</mat-icon>
+    </button>
 
   </div>
 </div>
