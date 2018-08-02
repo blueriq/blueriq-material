@@ -60,7 +60,7 @@ node {
           def result = bat([returnStdout: true, script: "yarn verify"]);
           println result;
 
-          // Unfortunatly it is needed to check if the coverage is not met because the coverage-reporter always exits with error_level=0
+          // Unfortunately it is needed to check if the coverage is not met because the coverage-reporter always exits with error_level=0
           // so we need to make the build unstable manually. you can check the coverage html result to see where it is failing
           if (result.contains('ERROR [reporter.coverage-istanbul]:') || result.contains('WARN [reporter.coverage-istanbul]:')) {
             println 'Unit tests do not meet coverage thresholds, setting the build to unstable';
