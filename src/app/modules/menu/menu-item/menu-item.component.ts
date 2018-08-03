@@ -4,13 +4,14 @@ import { Button, Container, Element } from '@blueriq/core';
 
 @Component({
   selector: 'bq-menu-item',
-  templateUrl: './menu-item.component.html'
+  templateUrl: './menu-item.component.html',
+  styleUrls: ['./menu-item.component.scss']
 })
 export class MenuItemComponent {
 
   @Input() child: Element;
 
-  constructor(private session: BlueriqSession /*TODO not like this*/) {
+  constructor(private session: BlueriqSession) {
   }
 
   onClick(child: Button): void {
@@ -20,11 +21,11 @@ export class MenuItemComponent {
   }
 
   isButton(element: any): boolean {
-    return (element instanceof Button) ? true : false;
+    return (element instanceof Button);
   }
 
   isContainer(element: any): boolean {
-    return (element instanceof Container) ? true : false;
+    return (element instanceof Container);
   }
 
   asButton(element: any): Button {

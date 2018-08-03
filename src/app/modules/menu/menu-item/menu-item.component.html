@@ -1,8 +1,9 @@
 <!-- button -->
-<button *ngIf="isButton(child)" mat-menu-item>{{ asButton(child).caption }}</button>
+<button *ngIf="isButton(child)" mat-menu-item (click)="onClick(child)">{{ asButton(child).caption }}</button>
 
 <!-- container with button(s) -->
-<button *ngIf="isContainer(child)" mat-button [matMenuTriggerFor]="menu">{{ asContainer(child).displayName }}</button>
+<button *ngIf="isContainer(child)" mat-menu-item [matMenuTriggerFor]="menu">{{ asContainer(child).displayName }}
+</button>
 <mat-menu #menu="matMenu">
   <bq-menu-item *ngFor="let grandchild of asContainer(child).children" [child]="grandchild"></bq-menu-item>
 </mat-menu>
