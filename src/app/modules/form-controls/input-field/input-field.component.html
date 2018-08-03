@@ -1,13 +1,12 @@
-<div class="bq-form-field">
-  <div bqKey fxFlex>
-    <mat-form-field appearance="fill">
-      <span matPrefix *ngIf="fieldPrefix">{{fieldPrefix}}</span>
-      <span matPrefix *ngIf="iconPrefix"><mat-icon>{{iconPrefix}}</mat-icon></span>
-      <mat-label>{{field.questionText}}</mat-label>
-      <input matInput type="text" [required]="field.required" [formControl]="formControl">
-      <span matSuffix *ngIf="fieldSuffix">{{fieldSuffix}}</span>
-      <mat-hint>{{field.explainText}}</mat-hint>
-      <mat-error *ngFor="let msg of getMessages()">{{msg.text}}</mat-error>
-    </mat-form-field>
-  </div>
+<div bqKey fxFlex class="bq-form-field">
+  <mat-form-field appearance="fill">
+    <span matPrefix *ngIf="fieldPrefix">{{fieldPrefix}}</span>
+    <span matPrefix *ngIf="iconPrefix"><mat-icon>{{iconPrefix}}</mat-icon></span>
+    <mat-label>{{field.questionText}}</mat-label>
+    <input matInput type="text" [required]="field.required" [formControl]="formControl">
+    <span matSuffix *ngIf="fieldSuffix">{{fieldSuffix}}</span>
+    <mat-hint>{{field.explainText}}</mat-hint>
+    <mat-error *ngFor="let msg of getMessages()">{{msg.text}}</mat-error>
+  </mat-form-field>
 </div>
+
