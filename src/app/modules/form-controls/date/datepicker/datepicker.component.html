@@ -1,10 +1,10 @@
-<bq-element [control]="formControl">
-
-  <mat-form-field appearance="fill">
-    <mat-label>{{field.questionText}}</mat-label>
-    <input matInput [matDatepicker]="picker" [formControl]="formControl" [required]="field.required">
-    <mat-datepicker-toggle matPrefix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
-
-</bq-element>
+<div bqKey fxFlex class="bq-datepicker">
+<mat-form-field appearance="fill">
+  <mat-label>{{field.questionText}}</mat-label>
+  <input matInput [matDatepicker]="picker" [formControl]="formControl" [required]="field.required">
+  <mat-datepicker-toggle matPrefix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+  <mat-hint>{{field.explainText}}</mat-hint>
+  <mat-error *ngFor="let msg of getMessages()">{{msg.text}}</mat-error>
+</mat-form-field>
+</div>
