@@ -13,7 +13,7 @@ export class InputFieldComponent {
   constructor(@Host() public field: Field, private form: BlueriqFormBuilder) {
   }
 
-  getMessages(): FieldMessages {
+  getErrors(): FieldMessages {
     return getFieldMessages(this.formControl);
   }
 }

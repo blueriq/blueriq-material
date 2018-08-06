@@ -5,7 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { FieldContainerComponent } from '@shared/field-container/field-container.component';
 import * as moment from 'moment';
 import { OwlDateTimeModule } from 'ng-pick-datetime';
 import { MomentDateTimeAdapter, OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
@@ -21,7 +20,7 @@ describe('DateTimepickerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [DateTimepickerComponent, FieldContainerComponent],
+      declarations: [DateTimepickerComponent],
       providers: [BlueriqComponents.register([DateTimepickerComponent]), MomentTransformer],
       imports: [
         MaterialModule,
@@ -56,9 +55,9 @@ describe('DateTimepickerComponent', () => {
     expect(component.componentInstance.getPickerType()).toEqual('calendar');
   });
 
-  it('should be a bq-element', () => {
-    const bqElement = component.nativeElement.querySelector('bq-element');
-    expect(bqElement).toBeTruthy();
+  it('should have hint and errors', () => {
+    expect(component.nativeElement.querySelector('mat-hint')).toBeTruthy();
+    expect(component.nativeElement.querySelector('mat-error')).toBeTruthy();
   });
 
   it('should be disabled', () => {

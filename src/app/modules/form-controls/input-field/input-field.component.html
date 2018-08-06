@@ -6,7 +6,7 @@
     <input matInput type="text" [required]="field.required" [formControl]="formControl">
     <span matSuffix *ngIf="fieldSuffix">{{fieldSuffix}}</span>
     <mat-hint>{{field.explainText}}</mat-hint>
-    <mat-error *ngFor="let msg of getMessages()">{{msg.text}}</mat-error>
+    <mat-error *ngFor="let msg of getErrors()">{{msg.text}}</mat-error>
   </mat-form-field>
 </p>
 

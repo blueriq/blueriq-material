@@ -6,8 +6,8 @@ import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../../../../material.module';
-import { FieldContainerComponent } from '../../../../shared/field-container/field-container.component';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
+import { SelectionControlComponent } from '../selection-control.component';
 import { CheckboxComponent } from './checkbox.component';
 
 describe('CheckboxComponent', () => {
@@ -17,7 +17,7 @@ describe('CheckboxComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CheckboxComponent, FieldContainerComponent],
+      declarations: [CheckboxComponent, SelectionControlComponent],
       providers: [BlueriqComponents.register([CheckboxComponent])],
       imports: [
         MaterialModule,

@@ -4,8 +4,8 @@ import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../../../../material.module';
-import { FieldContainerComponent } from '../../../../shared/field-container/field-container.component';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
+import { SelectionControlComponent } from '../selection-control.component';
 
 import { RadioButtonComponent } from './radio-button.component';
 
@@ -16,7 +16,7 @@ describe('RadioButtonComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [RadioButtonComponent, FieldContainerComponent],
+      declarations: [RadioButtonComponent, SelectionControlComponent],
       providers: [BlueriqComponents.register([RadioButtonComponent])],
       imports: [
         MaterialModule,

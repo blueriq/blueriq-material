@@ -5,7 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { FieldContainerComponent } from '@shared/field-container/field-container.component';
 import { MaterialModule } from '../../../../material.module';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
 import { MomentTransformer } from '../moment-transformer';
@@ -18,7 +17,7 @@ describe('DatepickerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [DatepickerComponent, FieldContainerComponent],
+      declarations: [DatepickerComponent],
       providers: [BlueriqComponents.register([DatepickerComponent]), MomentTransformer],
       imports: [
         MaterialModule,
@@ -40,9 +39,9 @@ describe('DatepickerComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should be a bq-element', () => {
-    const bqElement = component.nativeElement.querySelector('bq-element');
-    expect(bqElement).toBeTruthy();
+  it('should have hint and errors', () => {
+    expect(component.nativeElement.querySelector('mat-hint')).toBeTruthy();
+    expect(component.nativeElement.querySelector('mat-error')).toBeTruthy();
   });
 
   it('should be disabled', () => {

@@ -5,11 +5,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { MaterialModule } from '../../material.module';
-import { BqPresentationStyles } from '../../modules/BqPresentationStyles';
-import { StringFieldComponent } from '../../modules/form-controls/input-field/string/string.component';
-
-import { SelectionControlComponent } from './field-container.component';
+import { MaterialModule } from '../../../material.module';
+import { BqPresentationStyles } from '../../BqPresentationStyles';
+import { StringFieldComponent } from '../input-field/string/string.component';
+import { SelectionControlComponent } from './selection-control.component';
 
 describe('SelectionControlComponent', () => {
 
