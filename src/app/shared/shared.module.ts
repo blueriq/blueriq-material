@@ -8,11 +8,9 @@ import { BqKeyDirective } from '@shared/bq-key/bq-key.directive';
 import { ErrorEffects } from '@shared/effects/error/error.effects';
 import { ValidationEffect } from '@shared/effects/validation/validation.effect';
 import { MaterialModule } from '../material.module';
-import { FieldContainerComponent } from './field-container/field-container.component';
 
 const SHARED_COMPONENTS = [
-  BqKeyDirective,
-  FieldContainerComponent
+  BqKeyDirective
 ];
 
 @NgModule({

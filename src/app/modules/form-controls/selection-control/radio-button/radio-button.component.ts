@@ -1,7 +1,7 @@
 import { Component, Host, OnInit } from '@angular/core';
 import { BlueriqComponent, OnUpdate } from '@blueriq/angular';
-import { BlueriqFormBuilder } from '@blueriq/angular/forms';
-import { Field } from '@blueriq/core';
+import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
+import { Field, FieldMessages } from '@blueriq/core';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
 
 type RadioButtonDirection = 'vertical' | 'horizontal';
@@ -33,6 +33,10 @@ export class RadioButtonComponent implements OnInit, OnUpdate {
 
   bqOnUpdate() {
     this.determineDirection();
+  }
+
+  getMessages(): FieldMessages {
+    return getFieldMessages(this.formControl);
   }
 
   /**

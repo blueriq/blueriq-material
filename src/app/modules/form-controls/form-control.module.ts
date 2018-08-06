@@ -19,6 +19,7 @@ import { StringFieldComponent } from './input-field/string/string.component';
 import { SelectComponent } from './select/select.component';
 import { CheckboxComponent } from './selection-control/checkbox/checkbox.component';
 import { RadioButtonComponent } from './selection-control/radio-button/radio-button.component';
+import { SelectionControlComponent } from './selection-control/selection-control.component';
 import { SlideToggleComponent } from './selection-control/slide-toggle/slide-toggle.component';
 
 const FORM_CONTROL_COMPONENTS = [
@@ -37,10 +38,12 @@ const FORM_CONTROL_COMPONENTS = [
 
 @NgModule({
   declarations: [
-    FORM_CONTROL_COMPONENTS
+    FORM_CONTROL_COMPONENTS,
+    SelectionControlComponent
   ],
   providers: [
-    BlueriqComponents.register(FORM_CONTROL_COMPONENTS)
+    BlueriqComponents.register(FORM_CONTROL_COMPONENTS),
+    SelectionControlComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -53,7 +56,7 @@ const FORM_CONTROL_COMPONENTS = [
     ReactiveFormsModule,
     MaterialModule
   ],
-  exports: [FORM_CONTROL_COMPONENTS]
+  exports: [FORM_CONTROL_COMPONENTS, SelectionControlComponent]
 })
 
 export class FormControlModule {
