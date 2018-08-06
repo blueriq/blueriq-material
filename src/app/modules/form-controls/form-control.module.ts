@@ -9,7 +9,6 @@ import { SharedModule } from '@shared/shared.module';
 import { OwlDateTimeModule } from 'ng-pick-datetime';
 import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
 import { MaterialModule } from '../../material.module';
-import { CheckboxComponent } from './checkbox/checkbox.component';
 import { DatepickerComponent } from './date/datepicker/datepicker.component';
 import { DateTimepickerComponent } from './date/datetimepicker/datetimepicker.component';
 import { CurrencyFieldComponent } from './input-field/currency/currency.component';
@@ -17,9 +16,10 @@ import { IntegerFieldComponent } from './input-field/integer/integer.component';
 import { NumberFieldComponent } from './input-field/number/number.component';
 import { PercentageFieldComponent } from './input-field/percentage/percentage.component';
 import { StringFieldComponent } from './input-field/string/string.component';
-import { RadioButtonComponent } from './radio-button/radio-button.component';
 import { SelectComponent } from './select/select.component';
-import { SlideToggleComponent } from './slide-toggle/slide-toggle.component';
+import { CheckboxComponent } from './selection-control/checkbox/checkbox.component';
+import { RadioButtonComponent } from './selection-control/radio-button/radio-button.component';
+import { SlideToggleComponent } from './selection-control/slide-toggle/slide-toggle.component';
 
 const FORM_CONTROL_COMPONENTS = [
   CheckboxComponent,

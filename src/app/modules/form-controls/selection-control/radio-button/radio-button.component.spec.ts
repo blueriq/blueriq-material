@@ -3,9 +3,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { FieldContainerComponent } from '@shared/field-container/field-container.component';
-import { MaterialModule } from '../../../material.module';
-import { BqPresentationStyles } from '../../BqPresentationStyles';
+import { MaterialModule } from '../../../../material.module';
+import { FieldContainerComponent } from '../../../../shared/field-container/field-container.component';
+import { BqPresentationStyles } from '../../../BqPresentationStyles';
 
 import { RadioButtonComponent } from './radio-button.component';
 
