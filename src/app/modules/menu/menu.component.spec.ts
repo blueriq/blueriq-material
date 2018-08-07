@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { MatMenuTrigger } from '@angular/material';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BlueriqSession } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ButtonTemplate, ContainerTemplate } from '@blueriq/core/testing';
 import { MenuComponent } from './menu.component';
@@ -10,12 +11,13 @@ import { MenuModule } from './menu.module';
 
 describe('MenuComponent', () => {
     let menu: ContainerTemplate;
+    let btnPublicA: ButtonTemplate;
+    let btnPublicB: ButtonTemplate;
     let component: ComponentFixture<MenuComponent>;
     let session: BlueriqTestSession;
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
-        // declarations: [ButtonComponent],
         imports: [
           MenuModule,
           NoopAnimationsModule,
@@ -27,7 +29,8 @@ describe('MenuComponent', () => {
 
     beforeEach(() => {
       menu = ContainerTemplate.create().contentStyle('dashboard_menu');
-
+      btnPublicA = ButtonTemplate.create('Public').caption('Public-A');
+      btnPublicB = ButtonTemplate.create('Public').caption('Public-B');
       menu.children(
         ContainerTemplate.create().contentStyle('menubar').children(
           ButtonTemplate.create('Home').caption('Home'),
@@ -35,8 +38,8 @@ describe('MenuComponent', () => {
             ButtonTemplate.create('Core').caption('Core'),
             ButtonTemplate.create('Finance').caption('Finance'),
             ContainerTemplate.create().displayName('Public').children(
-              ButtonTemplate.create('Public').caption('Public-A'),
-              ButtonTemplate.create('Public').caption('Public-B')
+              btnPublicA,
+              btnPublicB
             )
           )
         )
@@ -48,6 +51,27 @@ describe('MenuComponent', () => {
 
     it('should create menu', () => {
       expect(component).toBeTruthy();
+    });
+
+    it('should xxxxxx', () => {
+      spyOn(BlueriqSession.prototype, 'pressed');
+      // retrieve the trigger
+      const selectTrigger = component.debugElement.query(By.directive(MatMenuTrigger));
+
+      // click on the menu button (via the trigger) to display the submenu
+      selectTrigger.nativeElement.click();
+
+      component.whenStable()
+      .then(() => {
+        component.detectChanges();
+        const setSubMenu1 = component.debugElement.query(By.css('.mat-menu-content')).nativeElement;
+        const menuItem = setSubMenu1.querySelector('bq-menu-item');
+        //console.log();
+        menuItem.debugElement.componentInstance.onClick(null);
+        menuItem.click();
+        // expect(BlueriqSession.prototype.pressed).toHaveBeenCalled();
+      });
+
     });
 
     it('should display submenus when the menu button is clicked', () => {
@@ -65,8 +89,8 @@ describe('MenuComponent', () => {
       component.whenStable()
       .then(() => {
         component.detectChanges();
-        const subMenu = component.debugElement.query(By.css('.mat-menu-content')).nativeElement;
-        const menuOptions = subMenu.querySelectorAll('bq-menu-item') as NodeListOf<HTMLElement>;
+        const setSubMenu1 = component.debugElement.query(By.css('.mat-menu-content')).nativeElement;
+        const menuOptions = setSubMenu1.querySelectorAll('bq-menu-item') as NodeListOf<HTMLElement>;
 
         // verify
         expect(menuOptions.length).toBe(3);
@@ -80,15 +104,18 @@ describe('MenuComponent', () => {
         .then(() => {
           component.detectChanges();
           // now 2 mat-menu-content sections exist, we want to verify the last one with the sub-submenu
-          const subMenu = component.debugElement.queryAll(By.css('.mat-menu-content'))[1].nativeElement;
-          const menuOptions = subMenu.querySelectorAll('bq-menu-item') as NodeListOf<HTMLElement>;
+          const setSubMenu2 = component.debugElement.queryAll(By.css('.mat-menu-content'))[1].nativeElement;
+          const setMenuOptions = setSubMenu2.querySelectorAll('bq-menu-item') as NodeListOf<HTMLElement>;
 
           // verify
-          expect(menuOptions.length).toBe(2);
-          expect(menuOptions[0].innerText.trim()).toBe('PUBLIC-A');
-          expect(menuOptions[1].innerText.trim()).toBe('PUBLIC-B');
+          expect(setMenuOptions.length).toBe(2);
+          expect(setMenuOptions[0].innerText.trim()).toBe('PUBLIC-A');
+          expect(setMenuOptions[1].innerText.trim()).toBe('PUBLIC-B');
         });
       });
     });
+
+    //
+
   }
 );

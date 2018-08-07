@@ -1,9 +1,12 @@
-<!-- button -->
-<button *ngIf="isButton(child)" mat-menu-item (click)="onClick(child)">{{ asButton(child).caption }}</button>
+<div [ngSwitch]="child.type">
+  <!-- button -->
+  <button *ngSwitchCase="'button'" mat-menu-item (click)="onClick(child)">{{ asButton(child).caption }}</button>
 
-<!-- container with button(s) -->
-<button *ngIf="isContainer(child)" mat-menu-item [matMenuTriggerFor]="menu">{{ asContainer(child).displayName }}
-</button>
-<mat-menu #menu="matMenu">
-  <bq-menu-item *ngFor="let grandchild of asContainer(child).children" [child]="grandchild"></bq-menu-item>
-</mat-menu>
+  <!-- container with button(s) -->
+  <button *ngSwitchCase="'container'" mat-menu-item [matMenuTriggerFor]="menu">{{ asContainer(child).displayName }}
+  </button>
+  <mat-menu #menu="matMenu">
+    <bq-menu-item *ngFor="let grandchild of asContainer(child).children" [child]="grandchild"></bq-menu-item>
+  </mat-menu>
+  <ng-container *ngSwitchDefault [bqElement]="child"></ng-container>
+</div>
