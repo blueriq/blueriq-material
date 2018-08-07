@@ -67,6 +67,25 @@ describe('SelectComponent', () => {
     expect(selectReadonly).toBeTruthy();
   });
 
+  it('should have a hint', () => {
+    session.update(
+      field.explainText('explaining it')
+    );
+    expect(component.nativeElement.querySelector('mat-hint')).toBeTruthy();
+    expect(component.nativeElement.querySelector('mat-hint').innerHTML).toContain('explaining it');
+  });
+
+  it('should have a error', () => {
+    expect(component.nativeElement.querySelector('mat-error')).toBeFalsy();
+    component.componentInstance.formControl.markAsTouched();
+    component.detectChanges();
+    session.update(
+      field.required(true),
+      field.error('wrong IBAN')
+    );
+    expect(component.nativeElement.querySelector('mat-error')).toBeTruthy();
+  });
+
   it('should select one value', () => {
     let selectedOneValue = component.nativeElement.querySelector('.mat-select-value-text');
     expect(selectedOneValue).toBeNull();
@@ -141,11 +160,6 @@ describe('SelectComponent', () => {
       expect(selectOptions[2].getAttribute('ng-reflect-value')).toBe('pink');
       expect(selectOptions[3].getAttribute('ng-reflect-value')).toBe('white');
     });
-  });
-
-  it('should contain explain and message support', () => {
-    const appElement = component.nativeElement.querySelector('bq-element');
-    expect(appElement).toBeTruthy();
   });
 
 });

@@ -39,8 +39,22 @@ describe('DatepickerComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have hint and errors', () => {
+  it('should have a hint', () => {
+    session.update(
+      field.explainText('explaining it')
+    );
     expect(component.nativeElement.querySelector('mat-hint')).toBeTruthy();
+    expect(component.nativeElement.querySelector('mat-hint').innerHTML).toContain('explaining it');
+  });
+
+  it('should have a error', () => {
+    expect(component.nativeElement.querySelector('mat-error')).toBeFalsy();
+    component.componentInstance.formControl.markAsTouched();
+    component.detectChanges();
+    session.update(
+      field.required(true),
+      field.error('wrong IBAN')
+    );
     expect(component.nativeElement.querySelector('mat-error')).toBeTruthy();
   });
 

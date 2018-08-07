@@ -6,7 +6,6 @@ import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../../../material.module';
-import { BqPresentationStyles } from '../../BqPresentationStyles';
 import { StringFieldComponent } from '../input-field/string/string.component';
 import { SelectionControlComponent } from './selection-control.component';
 
@@ -54,32 +53,12 @@ describe('SelectionControlComponent', () => {
     expect(selectedElement).toContain('some explain text');
   });
 
-  it('should display explain icon, if any', () => {
-    let selectedElement = component.nativeElement.querySelector('.material-icons');
-    expect(selectedElement).toBeFalsy();
-
-    session.update(
-      field.styles(BqPresentationStyles.EXPLAINICON),
-      field.explainText('some explain text')
-    );
-    selectedElement = component.nativeElement.querySelector('.material-icons[ng-reflect-message]');
-    expect(selectedElement).toBeTruthy();
-    expect(selectedElement.getAttribute('ng-reflect-message')).toBe('some explain text');
-  });
-
-  it('should not display explain icon when readonly', () => {
-    session.update(
-      field.styles(BqPresentationStyles.EXPLAINICON),
-      field.readonly(true)
-    );
-    const selectedElement = component.nativeElement.querySelector('.material-icons[ng-reflect-message]');
-    expect(selectedElement).toBeFalsy();
-  });
-
   it('should display messages, if any', () => {
     session.update(
       field.error('wrong IBAN'), field.error('wrong length'), field.warning('Some warning')
     );
+    component.componentInstance.formControl.markAsTouched();
+    component.detectChanges();
 
     const selectedElements = component.nativeElement.querySelectorAll('mat-error');
     expect(selectedElements.length).toBe(3);

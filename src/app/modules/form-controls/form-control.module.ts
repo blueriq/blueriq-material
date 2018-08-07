@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
@@ -43,7 +44,8 @@ const FORM_CONTROL_COMPONENTS = [
   ],
   providers: [
     BlueriqComponents.register(FORM_CONTROL_COMPONENTS),
-    SelectionControlComponent
+    SelectionControlComponent,
+    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }
   ],
   imports: [
     BrowserAnimationsModule,

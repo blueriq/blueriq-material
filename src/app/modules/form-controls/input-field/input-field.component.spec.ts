@@ -21,7 +21,7 @@ describe('InputFieldComponent', () => {
       providers: [BlueriqComponents.register([CurrencyFieldComponent]), InputFieldComponent],
       imports: [
         MaterialModule,
-        BrowserAnimationsModule, // or NoopAnimationsModule
+        BrowserAnimationsModule,
         BlueriqTestingModule,
         FlexLayoutModule,
         FormsModule
@@ -33,7 +33,6 @@ describe('InputFieldComponent', () => {
     field = FieldTemplate.currency();
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(CurrencyFieldComponent);
-    component.autoDetectChanges();
   });
 
   it('should have a hint', () => {
@@ -44,34 +43,16 @@ describe('InputFieldComponent', () => {
     expect(component.nativeElement.querySelector('mat-hint').innerHTML).toContain('explaining it');
   });
 
-  // TODO WIP
-  xit('should have a error', () => {
+  it('should have a error', () => {
     expect(component.nativeElement.querySelector('mat-error')).toBeFalsy();
+    component.componentInstance.formControl.markAsTouched();
+    component.detectChanges();
     session.update(
-      field.error('wrong IBAN'), field.error('wrong length'), field.warning('Some warning')
+      field.required(true),
+      field.error('wrong IBAN')
     );
-
-    // Weg klikken
-    keyPress();
-    let somethingelse = component.nativeElement.querySelector('p');
-    somethingelse.click();
-
-    component.whenStable()
-    .then(() => {
-      console.log(component.nativeElement.querySelector('mat-error'));
-    });
-    component.whenRenderingDone()
-    .then(() => {
-      console.log(component.nativeElement.querySelector('mat-error'));
-    });
-    // expect(component.nativeElement.querySelector('mat-error')).toBeTruthy();
+    expect(component.nativeElement.querySelector('mat-error')).toBeTruthy();
   });
-
-  function keyPress() {
-    const event = document.createEvent('Event');
-    event.initEvent('keydown', false, false);
-    document.dispatchEvent(event);
-  }
 
   it('should be disabled', () => {
     field.styles(BqPresentationStyles.DISABLED);
