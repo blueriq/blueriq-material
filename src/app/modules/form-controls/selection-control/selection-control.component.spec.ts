@@ -6,65 +6,57 @@ import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../../../material.module';
-import { StringFieldComponent } from '../input-field/string/string.component';
+import { CheckboxComponent } from './checkbox/checkbox.component';
 import { SelectionControlComponent } from './selection-control.component';
 
 describe('SelectionControlComponent', () => {
 
   let field: FieldTemplate;
+  let component: ComponentFixture<CheckboxComponent>;
   let session: BlueriqTestSession;
-  let component: ComponentFixture<StringFieldComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [StringFieldComponent, SelectionControlComponent],
-      providers: [BlueriqComponents.register([StringFieldComponent])],
+      declarations: [CheckboxComponent, SelectionControlComponent],
+      providers: [BlueriqComponents.register([CheckboxComponent])],
       imports: [
         MaterialModule,
         BrowserAnimationsModule, // or NoopAnimationsModule
-        FlexLayoutModule,
         BlueriqTestingModule,
+        FlexLayoutModule,
         FormsModule
       ]
     });
   }));
 
   beforeEach(() => {
-    // Create a SelectionControlComponent  based on a StringFieldComponent.
-    // StringFieldComponent is used, but any component that has a field should work
-    field = FieldTemplate.text();
+    field = FieldTemplate.boolean();
     session = BlueriqSessionTemplate.create().build(field);
-    component = session.get(StringFieldComponent);
+    component = session.get(CheckboxComponent);
   });
 
-  it('should contain the FieldComponent', () => {
-    const selectedElement = component.nativeElement.querySelector('.mat-form-field');
-    expect(selectedElement).toBeTruthy();
+  it('should be created', () => {
+    expect(component).toBeTruthy();
   });
 
-  it('should display explain text, if any', () => {
-    let selectedElement = component.nativeElement.querySelector('mat-hint').innerHTML;
-    expect(selectedElement).not.toContain('some explain text');
-
+  it('should display hint', () => {
     session.update(
-      field.explainText('some explain text')
+      field.explainText('explaintext')
     );
-    selectedElement = component.nativeElement.querySelector('mat-hint').innerHTML;
-    expect(selectedElement).toContain('some explain text');
+    expect(component.nativeElement.querySelector('mat-hint')).toBeTruthy();
+    expect(component.nativeElement.querySelector('mat-error')).toBeFalsy();
+    expect(component.nativeElement.querySelector('mat-hint').innerHTML).toBe('explaintext');
   });
 
-  it('should display messages, if any', () => {
+  it('should display errors', () => {
+    // component.componentInstance.formControl.markAsTouched();
+    // component.detectChanges();
     session.update(
-      field.error('wrong IBAN'), field.error('wrong length'), field.warning('Some warning')
+      field.error('someError')
     );
-    component.componentInstance.formControl.markAsTouched();
-    component.detectChanges();
-
-    const selectedElements = component.nativeElement.querySelectorAll('mat-error');
-    expect(selectedElements.length).toBe(3);
-    expect(selectedElements[0].innerHTML).toContain('wrong IBAN');
-    expect(selectedElements[1].innerHTML).toContain('wrong length');
-    expect(selectedElements[2].innerHTML).toContain('Some warning');
+    expect(component.nativeElement.querySelector('mat-hint')).toBeFalsy();
+    expect(component.nativeElement.querySelector('mat-error')).toBeTruthy();
+    expect(component.nativeElement.querySelector('mat-error').innerHTML).toBe('someError');
   });
 
 });

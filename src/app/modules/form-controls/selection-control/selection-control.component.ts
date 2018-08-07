@@ -16,10 +16,6 @@ export class SelectionControlComponent {
     return getBlueriqField(this.control)!;
   }
 
-  hasMessages(): boolean {
-    return getFieldMessages(this.control).hasMessages;
-  }
-
   getMessages(): FieldMessages {
     return getFieldMessages(this.control);
   }
