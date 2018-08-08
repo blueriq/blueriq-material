@@ -8,7 +8,7 @@ properties([
     strategy: [$class: 'LogRotator', numToKeepStr: '5']
   ],
   pipelineTriggers([
-    cron(triggerCron)
+    cron('@midnight')
   ]),
 ]);
 
