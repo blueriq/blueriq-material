@@ -18,7 +18,7 @@ node {
     }
 
     stage('build') {
-        bat "yarn build";
+        bat "yarn build-dev";
     }
 
     stage('e2e tests'){
