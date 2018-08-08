@@ -10,7 +10,7 @@ import {
   StartProjectFailedAction,
   StartupActions
 } from '@blueriq/angular';
-import { Actions, Effect, ofType } from '@ngrx/effects';
+import { Actions, Effect } from '@ngrx/effects';
 import { tap } from 'rxjs/operators';
 import { ErrorService } from '../../../modules/error/error.service';
 
@@ -26,8 +26,7 @@ export class ErrorEffects {
   /* Startup actions */
   // Fatal error
   @Effect({ dispatch: false })
-  startProjectFailed$ = this.actions$.pipe(
-    ofType<StartProjectFailedAction>(StartupActions.START_PROJECT_FAILED),
+  startProjectFailed$ = this.actions$.ofType<StartProjectFailedAction>(StartupActions.START_PROJECT_FAILED).pipe(
     tap((action: StartProjectFailedAction) => {
       this.errorService.emitError(action.error['error']);
     })
@@ -35,8 +34,7 @@ export class ErrorEffects {
 
   // Fatal error
   @Effect({ dispatch: false })
-  loadSessionFailed$ = this.actions$.pipe(
-    ofType<LoadSessionFailedAction>(StartupActions.LOAD_SESSION_FAILED),
+  loadSessionFailed$ = this.actions$.ofType<LoadSessionFailedAction>(StartupActions.LOAD_SESSION_FAILED).pipe(
     tap((action: LoadSessionFailedAction) => {
       this.errorService.emitError(action.error['error']);
     })
@@ -45,8 +43,7 @@ export class ErrorEffects {
   /* Session actions */
   // Non-fatal error
   @Effect({ dispatch: false })
-  fieldRefreshFailed$ = this.actions$.pipe(
-    ofType<FieldRefreshFailedAction>(SessionActions.FIELD_REFRESH_FAILED),
+  fieldRefreshFailed$ = this.actions$.ofType<FieldRefreshFailedAction>(SessionActions.FIELD_REFRESH_FAILED).pipe(
     tap((action: FieldRefreshFailedAction) => {
       this.errorService.emitError(action.error['error']);
     })
@@ -54,8 +51,7 @@ export class ErrorEffects {
 
   // Non-fatal error
   @Effect({ dispatch: false })
-  buttonPressFailed$ = this.actions$.pipe(
-    ofType<ButtonPressFailedAction>(SessionActions.BUTTON_PRESS_FAILED),
+  buttonPressFailed$ = this.actions$.ofType<ButtonPressFailedAction>(SessionActions.BUTTON_PRESS_FAILED).pipe(
     tap((action: ButtonPressFailedAction) => {
       this.errorService.emitError(action.error['error']);
     })
@@ -63,8 +59,7 @@ export class ErrorEffects {
 
   // Fatal error
   @Effect({ dispatch: false })
-  recomposePageFailed$ = this.actions$.pipe(
-    ofType<RecomposePageFailedAction>(SessionActions.RECOMPOSE_PAGE_FAILED),
+  recomposePageFailed$ = this.actions$.ofType<RecomposePageFailedAction>(SessionActions.RECOMPOSE_PAGE_FAILED).pipe(
     tap((action: RecomposePageFailedAction) => {
       this.errorService.emitError(action.error['error']);
     })
@@ -72,8 +67,8 @@ export class ErrorEffects {
 
   // Fatal error
   @Effect({ dispatch: false })
-  projectChangeFailed$ = this.actions$.pipe(
-    ofType<ProjectChangeFailedAction>(SessionEventActions.PROJECT_CHANGE_FAILED),
+  projectChangeFailed$ = this.actions$
+  .ofType<ProjectChangeFailedAction>(SessionEventActions.PROJECT_CHANGE_FAILED).pipe(
     tap((action: ProjectChangeFailedAction) => {
       this.errorService.emitError(action.error['error']);
     })
