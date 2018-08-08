@@ -1,16 +1,4 @@
 #!groovy
-boolean isMaster = BRANCH_NAME == 'master';
-String triggerCron = isMaster ? "H 19 * * 7" : "";
-
-properties([
-  [
-    $class  : 'BuildDiscarderProperty',
-    strategy: [$class: 'LogRotator', numToKeepStr: '5']
-  ],
-  pipelineTriggers([
-    cron(triggerCron)
-  ]),
-]);
 
 node {
   try {
