@@ -15,7 +15,6 @@ export class MenuItemComponent {
   }
 
   onClick(child: Button): void {
-    console.log('het werkt boembats');
     if (child.enabled) {
       this.session.pressed(child);
     }

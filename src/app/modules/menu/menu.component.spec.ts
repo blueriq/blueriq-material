@@ -53,8 +53,7 @@ describe('MenuComponent', () => {
       expect(component).toBeTruthy();
     });
 
-    it('should xxxxxx', () => {
-      spyOn(BlueriqSession.prototype, 'pressed');
+    it(' buttons that are not a submenu should trigger the blueriq session pressed', () => {
       // retrieve the trigger
       const selectTrigger = component.debugElement.query(By.directive(MatMenuTrigger));
 
@@ -63,13 +62,14 @@ describe('MenuComponent', () => {
 
       component.whenStable()
       .then(() => {
+        spyOn(BlueriqSession.prototype, 'pressed').and.callThrough();
         component.detectChanges();
         const setSubMenu1 = component.debugElement.query(By.css('.mat-menu-content')).nativeElement;
-        const menuItem = setSubMenu1.querySelector('bq-menu-item');
-        //console.log();
-        menuItem.debugElement.componentInstance.onClick(null);
-        menuItem.click();
-        // expect(BlueriqSession.prototype.pressed).toHaveBeenCalled();
+        const menuButtons = setSubMenu1.querySelectorAll('button:not(.mat-menu-item-submenu-trigger)');
+        expect(menuButtons.length).toBe(2);
+        menuButtons[0].click();
+        menuButtons[1].click();
+        expect(BlueriqSession.prototype.pressed).toHaveBeenCalledTimes(2);
       });
 
     });
