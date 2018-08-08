@@ -36,7 +36,7 @@ describe('MenuComponent', () => {
           ButtonTemplate.create('Home').caption('Home'),
           ContainerTemplate.create().displayName('Unit').children(
             ButtonTemplate.create('Core').caption('Core'),
-            ButtonTemplate.create('Finance').caption('Finance'),
+            ButtonTemplate.create('Finance').caption('Finance').disabled(true),
             ContainerTemplate.create().displayName('Public').children(
               btnPublicA,
               btnPublicB
@@ -68,8 +68,8 @@ describe('MenuComponent', () => {
         const menuButtons = setSubMenu1.querySelectorAll('button:not(.mat-menu-item-submenu-trigger)');
         expect(menuButtons.length).toBe(2);
         menuButtons[0].click();
-        menuButtons[1].click();
-        expect(BlueriqSession.prototype.pressed).toHaveBeenCalledTimes(2);
+        menuButtons[1].click(); // is disabled
+        expect(BlueriqSession.prototype.pressed).toHaveBeenCalledTimes(1);
       });
 
     });
