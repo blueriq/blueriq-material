@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material';
+import { ErrorStateMatcher } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
@@ -10,6 +10,7 @@ import { SharedModule } from '@shared/shared.module';
 import { OwlDateTimeModule } from 'ng-pick-datetime';
 import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
 import { MaterialModule } from '../../material.module';
+import { BqErrorStateMatcher } from './bq-errorstatematcher';
 import { DatepickerComponent } from './date/datepicker/datepicker.component';
 import { DateTimepickerComponent } from './date/datetimepicker/datetimepicker.component';
 import { CurrencyFieldComponent } from './input-field/currency/currency.component';
@@ -45,7 +46,7 @@ const FORM_CONTROL_COMPONENTS = [
   providers: [
     BlueriqComponents.register(FORM_CONTROL_COMPONENTS),
     SelectionControlComponent,
-    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }
+    { provide: ErrorStateMatcher, useClass: BqErrorStateMatcher }
   ],
   imports: [
     BrowserAnimationsModule,
