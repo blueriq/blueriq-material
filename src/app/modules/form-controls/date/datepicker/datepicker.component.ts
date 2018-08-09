@@ -30,4 +30,11 @@ export class DatepickerComponent {
   getMessages(): FieldMessages {
     return getFieldMessages(this.formControl);
   }
+
+  /**
+   * Returns if the date input is invalid so an error message can be shown
+   */
+  invalidInput(): boolean {
+    return (this.formControl.errors && this.formControl.errors['matDatepickerParse']);
+  }
 }

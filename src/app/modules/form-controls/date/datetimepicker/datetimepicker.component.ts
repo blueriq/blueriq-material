@@ -70,4 +70,11 @@ export class DateTimepickerComponent {
     return getFieldMessages(this.formControl);
   }
 
+  /**
+   * Returns if the date(time) input is invalid so an error message can be shown
+   */
+  invalidInput(): boolean {
+    return (this.formControl.errors && this.formControl.errors['owlDateTimeParse']);
+  }
 }
+

@@ -5,6 +5,7 @@
     <mat-datepicker-toggle matPrefix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
     <mat-hint>{{field.explainText}}</mat-hint>
+    <mat-error *ngIf="invalidInput()">invalid input</mat-error>
     <mat-error *ngFor="let msg of getMessages()">{{msg.text}}</mat-error>
   </mat-form-field>
 </p>
