@@ -18,6 +18,6 @@ describe('FileDownloadService', () => {
     const fileDownloadService: FileDownloadService = TestBed.get(FileDownloadService);
     const mockDocument: any = TestBed.get(DOCUMENT);
     fileDownloadService.download('URL');
-    expect(mockDocument.location.href).toEqual('URL');
+    expect(mockDocument.location.href).toMatch(/URL$/);
   });
 });
