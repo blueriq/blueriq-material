@@ -15,7 +15,7 @@ export class FileDownloadService {
   // relative to the current URL in the browser instead of relative to the location of index.html
   // See: BQ-5234
   private toAbsoluteLink(linkText: string): string {
-    const temp = document.createElement('a');
+    const temp = this.document.createElement('a');
     temp.href = linkText;
     return temp.href;
   }
