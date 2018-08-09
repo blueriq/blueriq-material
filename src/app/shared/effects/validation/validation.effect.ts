@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { ButtonPressHandledAction, Session, SessionActions, SessionStore } from '@blueriq/angular';
 import { Button } from '@blueriq/core';
-import { Actions, Effect, ofType } from '@ngrx/effects';
+import { Actions, Effect } from '@ngrx/effects';
 import { Observable } from 'rxjs/Observable';
 import { tap } from 'rxjs/operators';
 
@@ -10,8 +10,8 @@ import { tap } from 'rxjs/operators';
 export class ValidationEffect {
 
   @Effect({ dispatch: false })
-  buttonHandled$: Observable<any> = this.actions$.pipe(
-    ofType<ButtonPressHandledAction>(SessionActions.BUTTON_PRESS_HANDLED),
+  buttonHandled$: Observable<any> = this.actions$
+  .ofType<ButtonPressHandledAction>(SessionActions.BUTTON_PRESS_HANDLED).pipe(
     tap(action => this.checkValidations(action))
   );
 

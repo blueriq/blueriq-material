@@ -268,17 +268,17 @@
     is-absolute "^1.0.0"
     is-negated-glob "^1.0.0"
 
-"@ngrx/effects@^6.0.1":
-  version "6.1.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@ngrx/effects/-/effects-6.1.0.tgz#3c1e1ab1e5a86c6d9c29d4f3771e42cc9bd8576c"
+"@ngrx/effects@6.0.1":
+  version "6.0.1"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@ngrx/effects/-/effects-6.0.1.tgz#b4c0a7918b8c9a4dbc2a663ea7562bea5db21257"
 
-"@ngrx/store-devtools@^6.0.1":
-  version "6.1.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@ngrx/store-devtools/-/store-devtools-6.1.0.tgz#cf65a3149628dc37badd094204484dde9ba14200"
+"@ngrx/store-devtools@6.0.1":
+  version "6.0.1"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@ngrx/store-devtools/-/store-devtools-6.0.1.tgz#6049208d1ef8dc5f1f96ffc63373eab2d72f957c"
 
-"@ngrx/store@^6.0.1":
-  version "6.1.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@ngrx/store/-/store-6.1.0.tgz#5b027647a797bf027912568214b10375dd75af38"
+"@ngrx/store@6.0.1":
+  version "6.0.1"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@ngrx/store/-/store-6.0.1.tgz#02c806ce20c698b997e81f5671e0edc07d32cf86"
 
 "@ngtools/webpack@6.0.8":
   version "6.0.8"
@@ -1499,8 +1499,8 @@ clone-deep@^2.0.1:
     shallow-clone "^1.0.0"
 
 clone@^2.1.1:
-  version "2.1.2"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/clone/-/clone-2.1.2.tgz#1b7f4b9f591f1e8f83670401600345a02887435f"
+  version "2.1.1"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/clone/-/clone-2.1.1.tgz#d217d1e961118e3ac9a4b8bba3285553bf647cdb"
 
 co@^4.6.0:
   version "4.6.0"
@@ -2206,8 +2206,8 @@ ejs@^2.5.7:
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/ejs/-/ejs-2.6.1.tgz#498ec0d495655abc6f23cd61868d926464071aa0"
 
 electron-to-chromium@^1.3.47:
-  version "1.3.55"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/electron-to-chromium/-/electron-to-chromium-1.3.55.tgz#f150e10b20b77d9d41afcca312efe0c3b1a7fdce"
+  version "1.3.52"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/electron-to-chromium/-/electron-to-chromium-1.3.52.tgz#d2d9f1270ba4a3b967b831c40ef71fb4d9ab5ce0"
 
 elliptic@^6.0.0:
   version "6.4.0"
@@ -2881,8 +2881,8 @@ follow-redirects@1.0.0:
     debug "^2.2.0"
 
 follow-redirects@^1.0.0:
-  version "1.5.2"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/follow-redirects/-/follow-redirects-1.5.2.tgz#5a9d80e0165957e5ef0c1210678fc5c4acb9fb03"
+  version "1.5.1"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/follow-redirects/-/follow-redirects-1.5.1.tgz#67a8f14f5a1f67f962c2c46469c79eaec0a90291"
   dependencies:
     debug "^3.1.0"
 
@@ -6367,15 +6367,14 @@ sass-lint@~1.12.1:
     util "^0.10.3"
 
 sass-loader@^7.0.1:
-  version "7.1.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/sass-loader/-/sass-loader-7.1.0.tgz#16fd5138cb8b424bf8a759528a1972d72aad069d"
+  version "7.0.3"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/sass-loader/-/sass-loader-7.0.3.tgz#6ca10871a1cc7549f8143db5a9958242c4e4ca2a"
   dependencies:
     clone-deep "^2.0.1"
     loader-utils "^1.0.1"
     lodash.tail "^4.1.1"
     neo-async "^2.5.0"
     pify "^3.0.0"
-    semver "^5.5.0"
 
 saucelabs@^1.5.0:
   version "1.5.0"
@@ -7126,8 +7125,8 @@ tar@^2.0.0:
     inherits "2"
 
 tar@^4:
-  version "4.4.6"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/tar/-/tar-4.4.6.tgz#63110f09c00b4e60ac8bcfe1bf3c8660235fbc9b"
+  version "4.4.4"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/tar/-/tar-4.4.4.tgz#ec8409fae9f665a4355cc3b4087d0820232bb8cd"
   dependencies:
     chownr "^1.0.1"
     fs-minipass "^1.2.5"
@@ -7777,8 +7776,8 @@ webpack-log@^1.0.1, webpack-log@^1.1.2:
     uuid "^3.1.0"
 
 webpack-merge@^4.1.2:
-  version "4.1.4"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/webpack-merge/-/webpack-merge-4.1.4.tgz#0fde38eabf2d5fd85251c24a5a8c48f8a3f4eb7b"
+  version "4.1.3"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/webpack-merge/-/webpack-merge-4.1.3.tgz#8aaff2108a19c29849bc9ad2a7fd7fce68e87c4a"
   dependencies:
     lodash "^4.17.5"
 
