@@ -1,0 +1,19 @@
+@import "./reset.css";
+@import "./bootstrap.min.css";
+@import "./bootstrap-card.css";
+@import "./font-awesome.min.css";
+@import "./compodoc.css";
+@import "./prism.css";
+@import "./tablesort.css";
+
+.main .container-fluid.overview .col-sm-3 {
+  width: auto;
+}
+
+.content-data p, .content-data ul {
+  font-size: 16px;
+}
+
+.content-data blockquote {
+  font-size: 16px;
+}
