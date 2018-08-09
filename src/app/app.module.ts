@@ -31,6 +31,7 @@ import { FileUploadComponent } from './modules/file/file-upload/file-upload.comp
 import { MomentTransformer } from './modules/form-controls/date/moment-transformer';
 import { FormControlModule } from './modules/form-controls/form-control.module';
 import { LoadingComponent } from './modules/loading/loading.component';
+import { MenuModule } from './modules/menu/menu.module';
 import { PageComponent } from './modules/page/page.component';
 import { ReadonlyComponent } from './modules/readonly/readonly.component';
 import { TableModule } from './modules/table/table.module';
@@ -79,6 +80,7 @@ const BQ_COMPONENTS = [
     MaterialModule,
     SharedModule,
     FormControlModule,
+    MenuModule,
     TableModule,
     FlexLayoutModule,
     FormattingModule.forRoot(),
