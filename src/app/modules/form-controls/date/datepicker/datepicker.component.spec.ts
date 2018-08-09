@@ -64,8 +64,8 @@ describe('DatepickerComponent', () => {
     // note: contrary to blueriq errors (messages) which are handled by the runtime,
     // invalid dates are handled by the component itself, so we need to actually send
     // some input rather than update the session
-    let input = component.debugElement.query(By.css('input'));
-    let inputElement = input.nativeElement;
+    const input = component.debugElement.query(By.css('input'));
+    const inputElement = input.nativeElement;
 
     expect(inputElement.value).toBe('');
 
@@ -76,7 +76,7 @@ describe('DatepickerComponent', () => {
     component.detectChanges();
     component.whenStable()
     .then(() => {
-      let errorElement = component.nativeElement.querySelector('mat-error');
+      const errorElement = component.nativeElement.querySelector('mat-error');
       expect(errorElement).toBeTruthy();
       expect(errorElement.innerText).toBe('invalid input');
     });
