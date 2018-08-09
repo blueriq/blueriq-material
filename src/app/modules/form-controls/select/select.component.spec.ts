@@ -6,7 +6,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { FieldContainerComponent } from '@shared/field-container/field-container.component';
 import { MaterialModule } from '../../../material.module';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
 import { SelectComponent } from './select.component';
@@ -18,7 +17,7 @@ describe('SelectComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SelectComponent, FieldContainerComponent],
+      declarations: [SelectComponent],
       providers: [BlueriqComponents.register([SelectComponent])],
       imports: [
         MaterialModule,
@@ -66,6 +65,25 @@ describe('SelectComponent', () => {
 
     selectReadonly = component.nativeElement.querySelector('.mat-select-disabled');
     expect(selectReadonly).toBeTruthy();
+  });
+
+  it('should have a hint', () => {
+    session.update(
+      field.explainText('explaining it')
+    );
+    expect(component.nativeElement.querySelector('mat-hint')).toBeTruthy();
+    expect(component.nativeElement.querySelector('mat-hint').innerHTML).toContain('explaining it');
+  });
+
+  it('should have a error', () => {
+    expect(component.nativeElement.querySelector('mat-error')).toBeFalsy();
+    component.componentInstance.formControl.markAsTouched();
+    component.detectChanges();
+    session.update(
+      field.required(true),
+      field.error('wrong IBAN')
+    );
+    expect(component.nativeElement.querySelector('mat-error')).toBeTruthy();
   });
 
   it('should select one value', () => {
@@ -144,10 +162,6 @@ describe('SelectComponent', () => {
     });
   });
 
-  it('should contain explain and message support', () => {
-    const appElement = component.nativeElement.querySelector('bq-element');
-    expect(appElement).toBeTruthy();
-  });
 });
 
 

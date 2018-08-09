@@ -5,19 +5,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { FieldContainerComponent } from '@shared/field-container/field-container.component';
 import { MaterialModule } from '../../../material.module';
-import { BqPresentationStyles } from '../../BqPresentationStyles';
-import { CheckboxComponent } from './checkbox.component';
+import { CheckboxComponent } from './checkbox/checkbox.component';
+import { SelectionControlComponent } from './selection-control.component';
 
-describe('CheckboxComponent', () => {
+describe('SelectionControlComponent', () => {
+
   let field: FieldTemplate;
   let component: ComponentFixture<CheckboxComponent>;
   let session: BlueriqTestSession;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CheckboxComponent, FieldContainerComponent],
+      declarations: [CheckboxComponent, SelectionControlComponent],
       providers: [BlueriqComponents.register([CheckboxComponent])],
       imports: [
         MaterialModule,
@@ -39,29 +39,24 @@ describe('CheckboxComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should be changed', () => {
-    // Change
+  it('should display hint', () => {
     session.update(
-      field.value('true')
+      field.explainText('explaintext')
     );
-    let inputField = component.nativeElement.querySelector('.mat-checkbox-input').getAttribute('aria-checked');
-    expect(inputField).toBe('true');
-
-    // Change again
-    session.update(
-      field.value('false')
-    );
-    inputField = component.nativeElement.querySelector('.mat-checkbox-input').getAttribute('aria-checked');
-    expect(inputField).toBe('false');
+    expect(component.nativeElement.querySelector('mat-hint')).toBeTruthy();
+    expect(component.nativeElement.querySelector('mat-error')).toBeFalsy();
+    expect(component.nativeElement.querySelector('mat-hint').innerHTML).toBe('explaintext');
   });
 
-  it('should be disabled', () => {
-    field.styles(BqPresentationStyles.DISABLED);
-    session = BlueriqSessionTemplate.create().build(field);
-    component = session.get(CheckboxComponent);
-
-    const inputField = component.nativeElement.querySelector('.mat-checkbox-disabled');
-    expect(inputField).toBeTruthy();
+  it('should display errors', () => {
+    // component.componentInstance.formControl.markAsTouched();
+    // component.detectChanges();
+    session.update(
+      field.error('someError')
+    );
+    expect(component.nativeElement.querySelector('mat-hint')).toBeFalsy();
+    expect(component.nativeElement.querySelector('mat-error')).toBeTruthy();
+    expect(component.nativeElement.querySelector('mat-error').innerHTML).toBe('someError');
   });
 
 });

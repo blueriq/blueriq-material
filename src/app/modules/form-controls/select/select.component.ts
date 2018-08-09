@@ -1,7 +1,7 @@
 import { Component, Host } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
-import { BlueriqFormBuilder } from '@blueriq/angular/forms';
-import { DomainValue, Field } from '@blueriq/core';
+import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
+import { DomainValue, Field, FieldMessages } from '@blueriq/core';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
 
 @Component({
@@ -21,5 +21,9 @@ export class SelectComponent {
   /** Returns all the available option from the field domain list */
   getOptions(): DomainValue[] {
     return this.field.domain.options;
+  }
+
+  getMessages(): FieldMessages {
+    return getFieldMessages(this.formControl);
   }
 }

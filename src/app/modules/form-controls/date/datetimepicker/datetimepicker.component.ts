@@ -1,7 +1,7 @@
 import { Component, Host } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
-import { BlueriqFormBuilder } from '@blueriq/angular/forms';
-import { Field } from '@blueriq/core';
+import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
+import { Field, FieldMessages } from '@blueriq/core';
 import { Moment } from 'moment';
 import { DateTimeAdapter } from 'ng-pick-datetime';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
@@ -66,4 +66,15 @@ export class DateTimepickerComponent {
     return 'both';
   }
 
+  getMessages(): FieldMessages {
+    return getFieldMessages(this.formControl);
+  }
+
+  /**
+   * Returns if the date(time) input is invalid so an error message can be shown
+   */
+  invalidInput(): boolean {
+    return (this.formControl.errors && this.formControl.errors['owlDateTimeParse']);
+  }
 }
+

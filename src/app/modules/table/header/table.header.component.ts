@@ -7,10 +7,11 @@ import { Container } from '@blueriq/core';
 })
 @BlueriqComponent({
   type: Container,
-  selector: '#searchContainer'
+  selector: 'listplus_header'
 })
-export class TableSearchComponent {
+export class TableHeaderComponent {
 
+  // TODO this component can render search AND limit
   constructor(@Host() public container: Container) {
   }
 

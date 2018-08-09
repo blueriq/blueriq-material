@@ -1,7 +1,7 @@
 import { Component, Host } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
-import { BlueriqFormBuilder } from '@blueriq/angular/forms';
-import { Field } from '@blueriq/core';
+import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
+import { Field, FieldMessages } from '@blueriq/core';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
 import { MomentTransformer } from '../moment-transformer';
 import { dateFormatProvider } from './datepicker.material';
@@ -25,5 +25,16 @@ export class DatepickerComponent {
 
   constructor(@Host() public field: Field,
               private form: BlueriqFormBuilder) {
+  }
+
+  getMessages(): FieldMessages {
+    return getFieldMessages(this.formControl);
+  }
+
+  /**
+   * Returns if the date input is invalid so an error message can be shown
+   */
+  invalidInput(): boolean {
+    return (this.formControl.errors && this.formControl.errors['matDatepickerParse']);
   }
 }

@@ -1,11 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { By } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { FieldContainerComponent } from '@shared/field-container/field-container.component';
 import { MaterialModule } from '../../../../material.module';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
 import { MomentTransformer } from '../moment-transformer';
@@ -18,11 +18,11 @@ describe('DatepickerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [DatepickerComponent, FieldContainerComponent],
+      declarations: [DatepickerComponent],
       providers: [BlueriqComponents.register([DatepickerComponent]), MomentTransformer],
       imports: [
         MaterialModule,
-        BrowserAnimationsModule, // or NoopAnimationsModule
+        NoopAnimationsModule,
         BlueriqTestingModule,
         FlexLayoutModule,
         FormsModule
@@ -40,9 +40,46 @@ describe('DatepickerComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should be a bq-element', () => {
-    const bqElement = component.nativeElement.querySelector('bq-element');
-    expect(bqElement).toBeTruthy();
+  it('should have a hint', () => {
+    session.update(
+      field.explainText('explaining it')
+    );
+    expect(component.nativeElement.querySelector('mat-hint')).toBeTruthy();
+    expect(component.nativeElement.querySelector('mat-hint').innerHTML).toContain('explaining it');
+  });
+
+  it('should have an error', () => {
+    expect(component.nativeElement.querySelector('mat-error')).toBeFalsy();
+    component.componentInstance.formControl.markAsTouched();
+    component.detectChanges();
+    session.update(
+      field.error('wrong IBAN')
+    );
+    expect(component.nativeElement.querySelector('mat-error')).toBeTruthy();
+  });
+
+  it('should have an error because of wrong date input', () => {
+    expect(component.nativeElement.querySelector('mat-error')).toBeFalsy();
+
+    // note: contrary to blueriq errors (messages) which are handled by the runtime,
+    // invalid dates are handled by the component itself, so we need to actually send
+    // some input rather than update the session
+    const input = component.debugElement.query(By.css('input'));
+    const inputElement = input.nativeElement;
+
+    expect(inputElement.value).toBe('');
+
+    inputElement.value = 'this is not a date';
+    inputElement.dispatchEvent(new Event('input'));
+
+    component.componentInstance.formControl.markAsTouched();
+    component.detectChanges();
+    component.whenStable()
+    .then(() => {
+      const errorElement = component.nativeElement.querySelector('mat-error');
+      expect(errorElement).toBeTruthy();
+      expect(errorElement.innerText).toBe('invalid input');
+    });
   });
 
   it('should be disabled', () => {

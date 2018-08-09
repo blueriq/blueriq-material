@@ -1,8 +1,4 @@
-<bq-element [control]="formControl">
-  <div class="question-text">
-    {{field.questionText}}
-  </div>
-
+<bq-selection-control [control]="formControl">
   <mat-radio-group [required]="field.required" [formControl]="formControl">
     <div [fxLayout]="direction === 'vertical' ? 'column' : 'row wrap'">
       <mat-radio-button *ngFor="let option of field.domain.options" [value]="option.value" color="primary">
@@ -10,5 +6,4 @@
       </mat-radio-button>
     </div>
   </mat-radio-group>
-
-</bq-element>
+</bq-selection-control>
