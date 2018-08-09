@@ -1,0 +1,13 @@
+@import '~@angular/material/theming';
+@import 'globals/variables';
+
+mat-toolbar {
+  // sass-lint:disable-all
+  background: linear-gradient(
+      to right,
+      map_get($bq-mat-primary-blue, 900),
+      map_get($bq-mat-primary-purple, 900),
+      map_get($bq-mat-primary-violet, 900)
+  );
+  color: $light-primary-text;
+}

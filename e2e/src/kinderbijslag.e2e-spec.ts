@@ -64,8 +64,8 @@ describe('Kinderbijslag App', () => {
     // Verify
     expect(app.pageTitleResultaatBerekening).toBe('Resultaat berekening');
     expect(app.getTableCellFor(app.PAGE_ID_RESULTAAT_BEREKENING + '_cell_4')).toBe('€ 188,57');
-    expect(app.getTextFor(app.PAGE_ID_RESULTAAT_BEREKENING,'Verzekerde-Kinderbijslag')).toBe('Kinderbijslag totaal\n€ 188,57');
-    expect(app.getTextFor(app.PAGE_ID_RESULTAAT_BEREKENING,'Verzekerde-AantalKinderen')).toBe('Aantal kinderen\n1');
+    expect(app.getInputFor(app.PAGE_ID_RESULTAAT_BEREKENING,'Verzekerde-Kinderbijslag').getAttribute('value')).toBe('€ 188,57');
+    expect(app.getInputFor(app.PAGE_ID_RESULTAAT_BEREKENING,'Verzekerde-AantalKinderen').getAttribute('value')).toBe('1');
   });
 
   function fillInRequiredFieldsVerzekerde() {
