@@ -5,8 +5,7 @@ import { InputFieldComponent } from '../input-field.component';
 
 @Component({
   selector: 'bq-currency-field',
-  templateUrl: '../input-field.component.html',
-  styleUrls: ['./currency.component.scss']
+  templateUrl: '../input-field.component.html'
 })
 @BlueriqComponent({
   type: Field,

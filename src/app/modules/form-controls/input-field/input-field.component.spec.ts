@@ -5,10 +5,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { FieldContainerComponent } from '@shared/field-container/field-container.component';
 import { MaterialModule } from '../../../material.module';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
 import { CurrencyFieldComponent } from './currency/currency.component';
+import { InputFieldComponent } from './input-field.component';
 
 describe('InputFieldComponent', () => {
   let field: FieldTemplate;
@@ -17,11 +17,11 @@ describe('InputFieldComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CurrencyFieldComponent, FieldContainerComponent],
-      providers: [BlueriqComponents.register([CurrencyFieldComponent])],
+      declarations: [CurrencyFieldComponent],
+      providers: [BlueriqComponents.register([CurrencyFieldComponent]), InputFieldComponent],
       imports: [
         MaterialModule,
-        BrowserAnimationsModule, // or NoopAnimationsModule
+        BrowserAnimationsModule,
         BlueriqTestingModule,
         FlexLayoutModule,
         FormsModule
@@ -35,9 +35,23 @@ describe('InputFieldComponent', () => {
     component = session.get(CurrencyFieldComponent);
   });
 
-  it('should contain bq-element (field wrapper)', () => {
-    const appElement = component.nativeElement.querySelector('bq-element');
-    expect(appElement).toBeTruthy();
+  it('should have a hint', () => {
+    session.update(
+      field.explainText('explaining it')
+    );
+    expect(component.nativeElement.querySelector('mat-hint')).toBeTruthy();
+    expect(component.nativeElement.querySelector('mat-hint').innerHTML).toContain('explaining it');
+  });
+
+  it('should have a error', () => {
+    expect(component.nativeElement.querySelector('mat-error')).toBeFalsy();
+    component.componentInstance.formControl.markAsTouched();
+    component.detectChanges();
+    session.update(
+      field.required(true),
+      field.error('wrong IBAN')
+    );
+    expect(component.nativeElement.querySelector('mat-error')).toBeTruthy();
   });
 
   it('should be disabled', () => {

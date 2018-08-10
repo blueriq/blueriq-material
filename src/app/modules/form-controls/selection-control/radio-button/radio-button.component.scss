@@ -1,9 +1,4 @@
-@import '~@angular/material/theming';
 @import 'globals/variables';
-
-.question-text {
-  margin: 0 0 $bq-margin;
-}
 
 .mat-radio-button {
   margin: $bq-margin-half $bq-margin $bq-margin-half 0;
