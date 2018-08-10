@@ -1,9 +1,14 @@
 @import 'globals/variables';
 
-.my-drop-zone {
-  border: dotted 3px $dark-dividers;
+mat-hint,
+mat-error {
+  font-size: 75%;
+  display: block;
+  margin-top: 4px;
 }
 
-.nv-file-over {
-  border: dotted 3px mat-color($bq-error-palette);
+h2 {
+  margin-top: 0; // reset top margin, Card padding is in place
+  color: $bg-header-color;
+  font-weight: 400;
 }

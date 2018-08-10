@@ -29,7 +29,6 @@ export class FileDownloadComponent extends ButtonComponent {
   /* Overrides */
   onClick(): void {
     this.fileDownload.getDownloadInfo().subscribe((downloadInfo: AuthorizedDownload) => {
-      console.log(downloadInfo);
       this.fileDownloadService.download(downloadInfo.url);
     });
   }
