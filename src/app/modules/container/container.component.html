@@ -1,4 +1,5 @@
-<div bqKey bqClasses class="container {{displayMode}}" [class.alignright]="alignRight()">
+<div bqKey bqClasses class="container {{displayMode}}" [class.alignright]="alignRight">
+  <img *ngIf="isIntroduction()" src="./theme/images/blueriq-technology.svg">
   <h2 *ngIf="container.displayName && !table">{{ container.displayName }}</h2>
 
   <div *ngIf="!horizontal">
