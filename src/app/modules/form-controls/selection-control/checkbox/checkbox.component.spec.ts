@@ -5,20 +5,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { FieldContainerComponent } from '@shared/field-container/field-container.component';
-import { MaterialModule } from '../../../material.module';
-import { BqPresentationStyles } from '../../BqPresentationStyles';
-import { SlideToggleComponent } from './slide-toggle.component';
+import { MaterialModule } from '../../../../material.module';
+import { BqPresentationStyles } from '../../../BqPresentationStyles';
+import { SelectionControlComponent } from '../selection-control.component';
+import { CheckboxComponent } from './checkbox.component';
 
-describe('SlideToggleComponent', () => {
+describe('CheckboxComponent', () => {
   let field: FieldTemplate;
-  let component: ComponentFixture<SlideToggleComponent>;
+  let component: ComponentFixture<CheckboxComponent>;
   let session: BlueriqTestSession;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SlideToggleComponent, FieldContainerComponent],
-      providers: [BlueriqComponents.register([SlideToggleComponent])],
+      declarations: [CheckboxComponent, SelectionControlComponent],
+      providers: [BlueriqComponents.register([CheckboxComponent])],
       imports: [
         MaterialModule,
         BrowserAnimationsModule, // or NoopAnimationsModule
@@ -31,9 +31,8 @@ describe('SlideToggleComponent', () => {
 
   beforeEach(() => {
     field = FieldTemplate.boolean();
-    field.styles(BqPresentationStyles.TOGGLE);
     session = BlueriqSessionTemplate.create().build(field);
-    component = session.get(SlideToggleComponent);
+    component = session.get(CheckboxComponent);
   });
 
   it('should be created', () => {
@@ -41,25 +40,27 @@ describe('SlideToggleComponent', () => {
   });
 
   it('should be changed', () => {
+    // Change
     session.update(
       field.value('true')
     );
-    let inputField = component.nativeElement.querySelector('.mat-checked');
-    expect(inputField).toBeTruthy();
+    let inputField = component.nativeElement.querySelector('.mat-checkbox-input').getAttribute('aria-checked');
+    expect(inputField).toBe('true');
 
+    // Change again
     session.update(
       field.value('false')
     );
-    inputField = component.nativeElement.querySelector('.mat-checked');
-    expect(inputField).toBeFalsy();
+    inputField = component.nativeElement.querySelector('.mat-checkbox-input').getAttribute('aria-checked');
+    expect(inputField).toBe('false');
   });
 
   it('should be disabled', () => {
-    field.styles(BqPresentationStyles.TOGGLE, BqPresentationStyles.DISABLED);
+    field.styles(BqPresentationStyles.DISABLED);
     session = BlueriqSessionTemplate.create().build(field);
-    component = session.get(SlideToggleComponent);
+    component = session.get(CheckboxComponent);
 
-    const inputField = component.nativeElement.querySelector('.mat-disabled');
+    const inputField = component.nativeElement.querySelector('.mat-checkbox-disabled');
     expect(inputField).toBeTruthy();
   });
 

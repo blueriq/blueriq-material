@@ -5,8 +5,7 @@ import { InputFieldComponent } from '../input-field.component';
 
 @Component({
   selector: 'bq-percentage-field',
-  templateUrl: '../input-field.component.html',
-  styleUrls: ['./percentage.component.scss']
+  templateUrl: '../input-field.component.html'
 })
 @BlueriqComponent({
   type: Field,

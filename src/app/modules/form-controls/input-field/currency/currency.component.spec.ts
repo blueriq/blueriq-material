@@ -5,7 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { FieldContainerComponent } from '@shared/field-container/field-container.component';
 import { MaterialModule } from '../../../../material.module';
 import { CurrencyFieldComponent } from './currency.component';
 
@@ -16,7 +15,7 @@ describe('CurrencyFieldComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CurrencyFieldComponent, FieldContainerComponent],
+      declarations: [CurrencyFieldComponent],
       providers: [BlueriqComponents.register([CurrencyFieldComponent])],
       imports: [
         MaterialModule,
@@ -40,6 +39,6 @@ describe('CurrencyFieldComponent', () => {
 
   it('should contain euro sign', () => {
     const prefix = component.nativeElement.querySelector('.mat-form-field-prefix').innerText;
-    expect(prefix).toBe('euro_symbol');
+    expect(prefix.trim()).toBe('euro_symbol');
   });
 });

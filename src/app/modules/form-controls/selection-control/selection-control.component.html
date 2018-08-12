@@ -1,0 +1,10 @@
+<div bqKey class="selection-control">
+  <p>{{field.questionText}}</p>
+  <div>
+    <ng-content></ng-content>
+  </div>
+  <mat-hint *ngIf="!getMessages().hasMessages">{{field.explainText}}</mat-hint>
+  <div *ngIf="getMessages().hasMessages">
+    <mat-error *ngFor="let msg of getMessages()">{{ msg.text }}</mat-error>
+  </div>
+</div>

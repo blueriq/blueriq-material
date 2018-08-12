@@ -5,7 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { FieldContainerComponent } from '@shared/field-container/field-container.component';
 import { MaterialModule } from '../../../../material.module';
 import { IntegerFieldComponent } from './integer.component';
 
@@ -16,7 +15,7 @@ describe('IntegerFieldComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [IntegerFieldComponent, FieldContainerComponent],
+      declarations: [IntegerFieldComponent],
       providers: [BlueriqComponents.register([IntegerFieldComponent])],
       imports: [
         MaterialModule,
