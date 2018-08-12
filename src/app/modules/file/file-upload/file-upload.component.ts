@@ -19,7 +19,7 @@ export class FileUploadComponent {
   uploader: CustomFileUploader;
   hasDropZoneOver = false;
   errorMessage: string;
-  isBuzy = false;
+  isBusy = false;
 
   constructor(@Self() public fileUpload: FileUpload, @Host() public container: Container) {
 
@@ -34,7 +34,7 @@ export class FileUploadComponent {
      * When adding a file is done hide the progress bar
      * */
     this.uploader.onAfterAddingFile = (file) => {
-      this.isBuzy = true;
+      this.isBusy = true;
     };
 
     /**
@@ -42,7 +42,7 @@ export class FileUploadComponent {
      */
     this.uploader.onCompleteItem = (item: any, response: string, status: any, headers: any) => {
       this.errorMessage = '';
-      this.isBuzy = false;
+      this.isBusy = false;
       this.fileUpload.handleFileUploadCompleted(response);
       this.uploader.clearQueue();
     };
