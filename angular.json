@@ -82,7 +82,8 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "codeCoverageExclude": [
-              "**/error.effects.ts"
+              "**/error.effects.ts",
+              "**/custom-file-uploader.ts"
             ],
             "styles": [
               "src/styles.scss"

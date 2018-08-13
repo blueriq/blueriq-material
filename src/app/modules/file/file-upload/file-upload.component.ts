@@ -2,7 +2,7 @@ import { Component, Host, Self } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { FileUpload } from '@blueriq/angular/files';
 import { Container } from '@blueriq/core';
-import { CustomFileUploader } from './custom-file-uploader.class';
+import { CustomFileUploader } from './custom-file-uploader';
 
 @Component({
   selector: 'bq-file-upload',

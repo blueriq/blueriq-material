@@ -8,9 +8,10 @@ import { FileSelectDirective, FileUploader } from 'ng2-file-upload';
 import { FileItem } from 'ng2-file-upload/file-upload/file-item.class';
 import { FileLikeObject } from 'ng2-file-upload/file-upload/file-like-object.class';
 import { FileModule } from '../file.modules';
+import { CustomFileUploader } from './custom-file-uploader';
 import { FileUploadComponent } from './file-upload.component';
 
-describe('FileUploadComponent', () => {
+fdescribe('FileUploadComponent', () => {
 
   let container: ContainerTemplate;
   let component: ComponentFixture<FileUploadComponent>;
@@ -111,6 +112,17 @@ describe('FileUploadComponent', () => {
     expect(errors[0].innerHTML).toBe(component.componentInstance.fileUpload.fileTooLargeValidationMessage);
   });
 
+  it('should display an error message even with a unknown error', () => {
+    // Sut
+    fileSelectDirective.uploader.onWhenAddingFileFailed(new FileLikeObject({}), { name: 'unknown_error' }, {});
+    component.detectChanges();
+    const errors = component.nativeElement.querySelectorAll('mat-error');
+
+    // Verify
+    expect(errors.length).toBe(1);
+    expect(errors[0].innerHTML).toBe('File could not be uploaded');
+  });
+
   it('should call runtime when upload is complete', () => {
     // init
     spyOn(FileUpload.prototype, 'handleFileUploadCompleted');
@@ -125,6 +137,22 @@ describe('FileUploadComponent', () => {
     expect(fileSelectDirective.uploader.clearQueue).toHaveBeenCalled();
     expect(component.componentInstance.errorMessage).toBe('', 'Clear the error message when a file passes');
     expect(component.componentInstance.isBusy).toBe(false, 'Upload is compleet, no need to show the progress bar');
+  });
+
+  it('should override the "UploadAll" on FileUploader ', () => {
+    // Init
+    spyOn(CustomFileUploader.prototype, 'uploadAll').and.callThrough();
+    session.update(
+      container.properties({
+        'singlefilemode': false
+      })
+    );
+
+    // Sut
+    component.componentInstance.uploader.uploadAll();
+
+    // Verify
+    expect(CustomFileUploader.prototype.uploadAll).toHaveBeenCalled();
   });
 
   function createFile(): FileItem {
