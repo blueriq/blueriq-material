@@ -11,7 +11,7 @@ import { FileModule } from '../file.modules';
 import { CustomFileUploader } from './custom-file-uploader';
 import { FileUploadComponent } from './file-upload.component';
 
-fdescribe('FileUploadComponent', () => {
+describe('FileUploadComponent', () => {
 
   let container: ContainerTemplate;
   let component: ComponentFixture<FileUploadComponent>;

@@ -22,7 +22,6 @@ export class CustomFileUploader extends FileUploader {
   }
 
   uploadAll(): void {
-    console.log('OVERRIDE NICE!');
     const xhr = new XMLHttpRequest();
     const sendable = new FormData();
     const fakeItem: FileItem = null!;
