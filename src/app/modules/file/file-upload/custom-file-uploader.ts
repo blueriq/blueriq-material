@@ -26,7 +26,7 @@ export class CustomFileUploader extends FileUploader {
     const sendable = new FormData();
     const fakeItem: FileItem = null!;
     this.onBuildItemForm(fakeItem, sendable);
-    console.log(this.queue);
+
     for (const item of this.queue) {
       item.isReady = true;
       item.isUploading = true;
@@ -39,8 +39,6 @@ export class CustomFileUploader extends FileUploader {
       if (typeof item._file.size !== 'number') {
         throw new TypeError('The file specified is no longer valid');
       }
-      console.log('BBB');
-      console.log(item);
       sendable.append('files[]', item._file, item.file.name);
     }
 
@@ -88,9 +86,7 @@ export class CustomFileUploader extends FileUploader {
         this._onCompleteItem(this.queue[0], response, xhr.status, headers);
       }
     };
-    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-    console.log(sendable);
-    // xhr.send(sendable);
+    xhr.send(sendable);
   }
 
   _fileTypeFilter(item: FileLikeObject): boolean {
