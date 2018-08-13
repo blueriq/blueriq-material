@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project name="documentation" basedir=".">
-	<property name="documentation" location=".\docs"/>
-	<property name="documentationZip" location=".\docs\documentation.zip"/>
+	<property name="documentation" location=".\dist\docs"/>
+	<property name="documentationZip" location=".\dist\docs\documentation.zip"/>
 	<property name="communityHost" value="bq-comm2.blueriq.local"/>
 	<property name="communityUser" value="publishdocs"/>
 	<property name="communityPass" value="Blueriq01"/>
