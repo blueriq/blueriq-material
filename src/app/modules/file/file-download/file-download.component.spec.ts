@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ButtonTemplate, ContainerTemplate } from '@blueriq/core/testing';
+import { Observable } from 'rxjs/Observable';
 import { FileModule } from '../file.modules';
 import { FileDownloadComponent } from './file-download.component';
 import { FileDownloadService } from './file-download.service';
@@ -34,12 +35,13 @@ describe('FileDownloadComponent', () => {
   });
 
   it('should override the onClick and use the downloadService', () => {
-    spyOn(FileDownloadService.prototype, 'download').and.callThrough();
+    spyOn(FileDownloadService.prototype, 'download').and.returnValue(Observable.of('some value'));
     const button = component.nativeElement.querySelector('button');
     expect(button).toBeTruthy();
     button.click();
-    component.componentInstance.fileDownload.getDownloadInfo().subscribe(e => {
+    component.componentInstance.fileDownload.getDownloadInfo().subscribe((downloadInfo) => {
       expect(FileDownloadService.prototype.download).toHaveBeenCalled();
     });
   });
+
 });
