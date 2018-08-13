@@ -3,8 +3,8 @@
 <button style="display: block;" mat-raised-button color="primary" (click)="fileInput.click()">{{fileUpload.uploadLabel}}</button>
 <input hidden ng2FileSelect type="file" [uploader]="uploader" [multiple]="fileUpload.multiple" #fileInput>
 <div>
-  <mat-hint *ngIf="fileUpload.allowedExtensions">Allowed file extensions are: {{fileUpload.allowedExtensions.toString()}}</mat-hint>
-  <mat-hint *ngIf="fileUpload.maxFileSize">Maximum file size is: {{ fileUpload.toHumanReadableSize(fileUpload.maxFileSize )}}</mat-hint>
+  <mat-hint *ngIf="fileUpload.allowedExtensions">{{fileUpload.allowedExtensionsDescription}}</mat-hint>
+  <mat-hint *ngIf="fileUpload.maxFileSize">{{fileUpload.maxFileSizeDescription}}</mat-hint>
   <mat-error *ngIf="errorMessage">{{errorMessage}}</mat-error>
 </div>
 
