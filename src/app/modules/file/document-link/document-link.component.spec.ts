@@ -10,7 +10,7 @@ import { BqPresentationStyles } from '../../BqPresentationStyles';
 import { FileDownloadService } from '../file-download/file-download.service';
 import { DocumentLinkComponent } from './document-link.component';
 
-describe('DocumentLinkComponent', () => {
+describe('DocumentLinkComponent DocumentLink', () => {
 
   const LINK_TEXT = 'clickme';
   const DOCUMENT_NAME = 'downloadme';
@@ -57,40 +57,42 @@ describe('DocumentLinkComponent', () => {
   });
 
   it('should contain the correct data', () => {
-    const element = component.nativeElement.querySelector('a');
-    expect(element.getAttribute('class')).toBe('plain-link');
-    expect(element.innerHTML).toBe(LINK_TEXT);
+    const element = component.nativeElement.querySelector('button');
+    expect(element.getAttribute('class')).toContain('plain-link');
+    expect(element.innerHTML.trim()).toContain(LINK_TEXT);
   });
 
   it('should contain the correct data when presentation style "Button" is set', () => {
     session.update(
       container.styles(BqPresentationStyles.BUTTON)
     );
-    const element = component.nativeElement.querySelector('a');
-    expect(element.getAttribute('class')).toBe('mat-raised-button');
-    expect(element.querySelector('span').innerHTML).toBe(LINK_TEXT);
+    const element = component.nativeElement.querySelector('button');
+    expect(element.getAttribute('class')).toContain('mat-raised-button');
+    expect(element.querySelector('span').innerHTML.trim()).toBe(LINK_TEXT);
   });
 
   it('should contain the correct class when presentation styles "Button" and "primary" are set', () => {
     session.update(
       container.styles(BqPresentationStyles.BUTTON, BqPresentationStyles.PRIMARY)
     );
-    const element = component.nativeElement.querySelector('a');
-    expect(element.getAttribute('class')).toBe('mat-raised-button mat-primary');
-    expect(element.querySelector('span').innerHTML).toBe(LINK_TEXT);
+    const element = component.nativeElement.querySelector('button');
+    expect(element.getAttribute('class')).toContain('mat-raised-button');
+    expect(element.getAttribute('class')).toContain('mat-primary');
+    expect(element.querySelector('span').innerHTML.trim()).toBe(LINK_TEXT);
   });
 
   it('should contain the correct class when presentation styles "Button" and "tertiary" are set', () => {
     session.update(
       container.styles(BqPresentationStyles.BUTTON, BqPresentationStyles.TERTIARY)
     );
-    const element = component.nativeElement.querySelector('a');
-    expect(element.getAttribute('class')).toBe('mat-raised-button mat-accent');
-    expect(element.querySelector('span').innerHTML).toBe(LINK_TEXT);
+    const element = component.nativeElement.querySelector('button');
+    expect(element.getAttribute('class')).toContain('mat-raised-button');
+    expect(element.getAttribute('class')).toContain('mat-accent');
+    expect(element.querySelector('span').innerHTML.trim()).toBe(LINK_TEXT);
   });
 
   it('should change the href when the download handler is called', () => {
-    const element = component.nativeElement.querySelector('a');
+    const element = component.nativeElement.querySelector('button');
     element.click();
     expect(mockFileDownloadService.download).toHaveBeenCalledTimes(1);
   });

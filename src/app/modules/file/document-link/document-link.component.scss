@@ -1,6 +1,6 @@
 @import 'globals/variables';
 
-a {
+button {
   &.plain-link {
     color: mat-color($bq-primary-palette);
     text-transform: uppercase;
