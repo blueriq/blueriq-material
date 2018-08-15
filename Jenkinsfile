@@ -96,7 +96,7 @@ node {
 
       stage('publish docs') {
         bat "yarn docs --silent --name \"@blueriq/material - ${params.releaseVersion}\""
-        bat "yarn docs:publish ${params.releaseVersion}"
+        bat "build-publish-docs.bat ${params.releaseVersion}"
       }
     } // end if
 

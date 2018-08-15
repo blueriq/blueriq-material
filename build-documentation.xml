@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="documentation" basedir=".">
+	<property name="documentation" location=".\dist\docs"/>
+	<property name="documentationZip" location=".\dist\docs\documentation.zip"/>
+	<property name="communityHost" value="bq-comm2.blueriq.local"/>
+	<property name="communityUser" value="publishdocs"/>
+	<property name="communityPass" value="Blueriq01"/>
+	<property name="communityDocsFolder" value="/var/confluence-home/confluence/ApiDocs/material/${releaseVersion}"/>
+	
+	<target name="deployDocumentation">
+		<property name="sourceDocs" location="${documentation}\*"/>
+		<exec executable=".\tools\7z.exe" failonerror="true">
+			<arg value="a" />
+			<arg value="${documentationZip}" />
+			<arg value="${sourceDocs}" />
+		</exec>
+		
+		<antcall target="executeCommandOnDocumentationServer">
+			<param name="command" value="mkdir ${communityDocsFolder}"/>
+		</antcall>
+		
+		<scp todir="${communityUser}:${communityPass}@${communityHost}:${communityDocsFolder}" 
+				 trust="yes">
+			<fileset file="${documentationZip}"/>
+		</scp>
+		
+		<antcall target="executeCommandOnDocumentationServer">
+			<param name="command" value="unzip ${communityDocsFolder}/documentation.zip -d ${communityDocsFolder}"/>
+		</antcall>
+				
+		<antcall target="executeCommandOnDocumentationServer">
+			<param name="command" value="rm -rf ${communityDocsFolder}/documentation.zip"/>
+		</antcall>
+	</target>
+	
+	<target name="executeCommandOnDocumentationServer">
+		<sshexec host="${communityHost}" 
+				 username="${communityUser}" 
+				 password="${communityPass}" 
+				 trust="yes" 
+				 command="${command}"/>
+	</target>
+</project>
