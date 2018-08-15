@@ -3,9 +3,7 @@
 a {
   &.plain-link {
     color: mat-color($bq-primary-palette);
-    text-decoration: none;
     text-transform: uppercase;
-    cursor: pointer;
 
     &:hover {
       text-decoration: underline;

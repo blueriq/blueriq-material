@@ -44,6 +44,7 @@ describe('DocumentLinkComponent', () => {
         'document-name': DOCUMENT_NAME,
         'document-type': 'pdf',
         'page-name': '',
+        'downloadid': 'downid',
         'optional-parameters': null
       })
     );

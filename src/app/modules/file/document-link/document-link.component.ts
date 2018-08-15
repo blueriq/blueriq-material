@@ -21,10 +21,20 @@ export class DocumentLinkComponent {
               private fileDownloadService: FileDownloadService) {
   }
 
-  download(): void {
+  onClick(): void {
     this.documentLink.getDownloadInfo().subscribe((downloadInfo: AuthorizedDownload) => {
       this.fileDownloadService.download(downloadInfo.url);
     });
+  }
+
+  getDisplayText(): string {
+    const link = this.documentLink.link;
+    if (link.text) {
+      return link.text;
+    } else if (link.textRef) {
+      return link.textRef.plainText;
+    }
+    return 'download';
   }
 
   /** Whether the container has the `button` presentation style */
@@ -42,4 +52,5 @@ export class DocumentLinkComponent {
       return null;
     }
   }
+
 }
