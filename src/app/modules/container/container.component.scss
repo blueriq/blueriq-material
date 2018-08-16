@@ -15,6 +15,9 @@
 .grid-item {
   flex: 1;
   margin-right: 10px;
+  // Make every element align in center with grid + center
+  display: grid;
+  align-items: center;
 }
 
 @mixin top-container {
