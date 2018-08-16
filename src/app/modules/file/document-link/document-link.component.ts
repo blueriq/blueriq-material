@@ -1,7 +1,8 @@
-import { Component, Host, Self } from '@angular/core';
+import { Component, Host, OnDestroy, Self } from '@angular/core';
 import { AuthorizedDownload, BlueriqComponent } from '@blueriq/angular';
 import { DocumentLink } from '@blueriq/angular/files';
 import { Container } from '@blueriq/core';
+import { Subscription } from 'rxjs/Subscription';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
 import { FileDownloadService } from '../file-download/file-download.service';
 
@@ -14,17 +15,30 @@ import { FileDownloadService } from '../file-download/file-download.service';
   type: Container,
   selector: '*:has(* > [type=link])'
 })
-export class DocumentLinkComponent {
+export class DocumentLinkComponent implements OnDestroy {
+
+  downloadObservableSubscription: Subscription;
 
   constructor(@Self() public documentLink: DocumentLink,
               @Host() public container: Container,
               private fileDownloadService: FileDownloadService) {
   }
 
-  download(): void {
-    this.documentLink.getDownloadInfo().subscribe((downloadInfo: AuthorizedDownload) => {
+  onClick(): void {
+    this.downloadObservableSubscription = this.documentLink.getDownloadInfo()
+    .subscribe((downloadInfo: AuthorizedDownload) => {
       this.fileDownloadService.download(downloadInfo.url);
     });
+  }
+
+  getDisplayText(): string {
+    const link = this.documentLink.link;
+    if (link.text) {
+      return link.text;
+    } else if (link.textRef) {
+      return link.textRef.plainText;
+    }
+    return 'download';
   }
 
   /** Whether the container has the `button` presentation style */
@@ -41,4 +55,11 @@ export class DocumentLinkComponent {
     }
     return null;
   }
+
+  ngOnDestroy() {
+    if (this.downloadObservableSubscription) {
+      this.downloadObservableSubscription.unsubscribe();
+    }
+  }
+
 }
