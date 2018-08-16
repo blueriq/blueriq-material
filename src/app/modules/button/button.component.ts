@@ -15,7 +15,7 @@ import { BqPresentationStyles } from '../BqPresentationStyles';
 export class ButtonComponent {
 
   constructor(@Host() public button: Button,
-              private session: BlueriqSession,
+              public session: BlueriqSession,
               @Optional() @Host() public readonly table: Table) {
   }
 

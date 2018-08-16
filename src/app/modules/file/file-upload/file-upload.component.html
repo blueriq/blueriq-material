@@ -1,52 +1,19 @@
-<mat-card ng2FileDrop [ngClass]="{'nv-file-over': hasDropZoneOver}" (fileOver)="fileOverDropZone($event)" [uploader]="uploader" class="my-drop-zone">
-  Drop zone
-</mat-card>
-<p>
-  <button mat-raised-button color="primary" (click)="fileInput.click()">{{fileUpload.uploadLabel}}</button>
-  <input hidden ng2FileSelect type="file" [uploader]="uploader" [multiple]="fileUpload.multiple" #fileInput>
-</p><p>
-  {{fileUpload.maxFileSizeDescription}} </p><p>
-  {{fileUpload.allowedExtensionsDescription}} </p><h3>Upload queue</h3>
-<p>Queue length: {{ uploader?.queue?.length }}</p>
+<h2 *ngIf="container.displayName">{{ container.displayName }}</h2>
 
-<table class="table">
-  <thead>
-  <tr>
-    <th width="50%">Name</th>
-    <th>Size</th>
-    <th>Progress</th>
-    <th>Status</th>
-    <th width="50%">Actions</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let item of uploader.queue">
-    <td><strong>{{ item?.file?.name }}</strong></td>
-    <td nowrap>{{ fileUpload.toHumanReadableSize(item?.file?.size )}}</td>
-    <td>
-      <mat-progress-bar mode="determinate" value="{{item.progress}}"></mat-progress-bar>
-    </td>
-    <td class="text-center">
-      <mat-icon *ngIf="item.isSuccess">done</mat-icon>
-      <mat-icon *ngIf="item.isCancel">cancel</mat-icon>
-      <mat-icon *ngIf="item.isError">error</mat-icon>
-    </td>
-    <td>
-      <button mat-icon-button (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
-        <mat-icon>cloud_upload</mat-icon>
-      </button>
-      Upload
-      <button mat-icon-button (click)="item.cancel()" [disabled]="!item.isUploading">
-        <mat-icon>cancel</mat-icon>
-      </button>
-      Cancel
-      <button mat-icon-button (click)="item.remove()">
-        <mat-icon>remove_circle</mat-icon>
-      </button>
-      Remove
-    </td>
-  </tr>
-  </tbody>
-</table>
+<button style="display: block;" mat-raised-button color="primary" (click)="fileInput.click()">{{fileUpload.uploadLabel}}</button>
+<input hidden ng2FileSelect type="file" [uploader]="uploader" [multiple]="fileUpload.multiple" #fileInput>
+<div>
+  <mat-hint *ngIf="fileUpload.allowedExtensions">{{fileUpload.allowedExtensionsDescription}}</mat-hint>
+  <mat-hint *ngIf="fileUpload.maxFileSize">{{fileUpload.maxFileSizeDescription}}</mat-hint>
+  <mat-error *ngIf="errorMessage">{{errorMessage}}</mat-error>
+</div>
 
-<!--<div>--><!--<div>--><!--Queue progress:--><!--<mat-progress-bar mode="determinate" value="{{uploader.progress}}"></mat-progress-bar>--><!--</div>--><!--<button mat-icon-button (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">--><!--<mat-icon>cloud_upload</mat-icon>--><!--</button>--><!--Upload all--><!--<button mat-icon-button (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">--><!--<mat-icon>cancel</mat-icon>--><!--</button>--><!--Cancel all--><!--<button mat-icon-button (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">--><!--<mat-icon>remove_circle</mat-icon>--><!--</button>--><!--Remove all--><!--</div>-->
+<div *ngIf="isBusy">
+  <div>
+    <mat-progress-bar mode="determinate" value="{{uploader.progress}}"></mat-progress-bar>
+  </div>
+  <button mat-icon-button (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+    <mat-icon>cancel</mat-icon>
+  </button>
+  Cancel all
+</div>

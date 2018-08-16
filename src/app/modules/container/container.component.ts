@@ -25,6 +25,7 @@ export class ContainerComponent implements OnInit, OnUpdate {
 
   public displayMode: ContainerDisplayMode;
   public horizontal = false;
+  public alignRight = false;
 
   constructor(@Host() public container: Container, @Optional() @Host() public readonly table: Table) {
   }
@@ -42,11 +43,13 @@ export class ContainerComponent implements OnInit, OnUpdate {
    */
   private determineDisplayStyle() {
     this.horizontal = this.container.styles.has(BqPresentationStyles.HORIZONTAL);
+    this.alignRight = this.container.styles.has(BqPresentationStyles.ALIGNRIGHT)
+      || this.container.styles.has(BqPresentationStyles.DEPRECATED_ALIGNRIGHT);
 
     if (this.container.parent && !(this.container.parent instanceof Page)) {
       // container within a container doesn't need specific styling
       this.displayMode = '';
-    } else if (this.container.styles.has(BqPresentationStyles.INTRODUCTION)) {
+    } else if (this.isIntroduction()) {
       this.displayMode = 'introduction';
     } else if (this.container.styles.has(BqPresentationStyles.TRANSPARENT)) {
       this.displayMode = 'transparent';
@@ -55,8 +58,8 @@ export class ContainerComponent implements OnInit, OnUpdate {
     }
   }
 
-  alignRight(): boolean {
-    return this.container.styles.has(BqPresentationStyles.ALIGNRIGHT)
-      || this.container.styles.has(BqPresentationStyles.DEPRECATED_ALIGNRIGHT);
+  isIntroduction(): boolean {
+    return this.container.styles.has(BqPresentationStyles.INTRODUCTION);
   }
+
 }
