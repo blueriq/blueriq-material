@@ -11,9 +11,11 @@ import { getFieldMessages } from '@blueriq/angular/forms';
 export class BqErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     return !!(control && (
-        (control.invalid &&
-          (control.touched || (form && form.submitted))) || getFieldMessages(control).hasErrors
-      )
+        (
+          control.invalid &&
+          (control.touched || (form && form.submitted))
+        ) ||
+        getFieldMessages(control).hasErrors)
     );
   }
 }
