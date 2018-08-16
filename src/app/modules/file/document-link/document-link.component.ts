@@ -38,8 +38,7 @@ export class DocumentLinkComponent {
       return 'primary';
     } else if (this.container.styles.has(BqPresentationStyles.TERTIARY)) {
       return 'accent';
-    } else {
-      return null;
     }
+    return null;
   }
 }

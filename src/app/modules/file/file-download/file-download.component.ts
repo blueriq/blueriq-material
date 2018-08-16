@@ -1,10 +1,11 @@
-import { Component, Host, Optional, Self, ViewEncapsulation } from '@angular/core';
+import { Component, Host, OnDestroy, Optional, Self, ViewEncapsulation } from '@angular/core';
 import { AuthorizedDownload, BlueriqComponent, BlueriqSession } from '@blueriq/angular';
 import { FileDownload } from '@blueriq/angular/files';
 import { Table } from '@blueriq/angular/lists';
 import { Container } from '@blueriq/core';
 import { ButtonComponent } from '../../button/button.component';
 import { FileDownloadService } from './file-download.service';
+import { Subscription } from "rxjs/Subscription";
 
 @Component({
   selector: 'bq-file-download',
@@ -17,10 +18,12 @@ import { FileDownloadService } from './file-download.service';
   type: Container,
   selector: 'filedownload'
 })
-export class FileDownloadComponent extends ButtonComponent {
+export class FileDownloadComponent extends ButtonComponent implements OnDestroy {
+
+  downloadObservableSubscription: Subscription;
 
   constructor(@Self() public fileDownload: FileDownload,
-              session: BlueriqSession,
+              public session: BlueriqSession,
               @Optional() @Host() public readonly table: Table,
               private fileDownloadService: FileDownloadService) {
     super(fileDownload.downloadButton, session, table);
@@ -28,9 +31,15 @@ export class FileDownloadComponent extends ButtonComponent {
 
   /* Overrides */
   onClick(): void {
-    this.fileDownload.getDownloadInfo().subscribe((downloadInfo: AuthorizedDownload) => {
+    this.downloadObservableSubscription = this.fileDownload.getDownloadInfo().subscribe((downloadInfo: AuthorizedDownload) => {
       this.fileDownloadService.download(downloadInfo.url);
     });
+  }
+
+  ngOnDestroy(){
+    if(this.downloadObservableSubscription){
+      this.downloadObservableSubscription.unsubscribe();
+    }
   }
 
 }
