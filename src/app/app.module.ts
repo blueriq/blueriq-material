@@ -13,7 +13,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { SharedModule } from '@shared/shared.module';
-import { FileUploadModule } from 'ng2-file-upload';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
@@ -23,10 +22,7 @@ import { ButtonComponent } from './modules/button/button.component';
 import { ContainerComponent } from './modules/container/container.component';
 import { ErrorComponent } from './modules/error/error.component';
 import { ErrorService } from './modules/error/error.service';
-import { DocumentLinkComponent } from './modules/file/document-link/document-link.component';
-import { FileDownloadComponent } from './modules/file/file-download/file-download.component';
-import { FileDownloadService } from './modules/file/file-download/file-download.service';
-import { FileUploadComponent } from './modules/file/file-upload/file-upload.component';
+import { FileModule } from './modules/file/file.modules';
 import { MomentTransformer } from './modules/form-controls/date/moment-transformer';
 import { FormControlModule } from './modules/form-controls/form-control.module';
 import { LoadingComponent } from './modules/loading/loading.component';
@@ -50,9 +46,6 @@ const BQ_COMPONENTS = [
   AssetComponent,
   ButtonComponent,
   ContainerComponent,
-  DocumentLinkComponent,
-  FileDownloadComponent,
-  FileUploadComponent,
   PageComponent,
   ReadonlyComponent,
   TextItemComponent
@@ -74,22 +67,23 @@ const BQ_COMPONENTS = [
       baseUrl: environment.baseUrl
     }),
     BrowserAnimationsModule,
-    BlueriqFormsModule.forRoot(),
-    FileUploadModule,
     MaterialModule,
-    SharedModule,
-    FormControlModule,
-    MenuModule,
-    TableModule,
+    FormsModule,
+    BlueriqFormsModule.forRoot(),
     FlexLayoutModule,
     FormattingModule.forRoot(),
-    FormsModule,
     ReactiveFormsModule,
-    TextItemModule,
     StoreDevtoolsModule.instrument({
       name: 'Blueriq',
       logOnly: environment.production // Restrict extension to log-only mode
-    })
+    }),
+    /* bq modules */
+    SharedModule,
+    FileModule,
+    FormControlModule,
+    MenuModule,
+    TextItemModule,
+    TableModule
   ],
   exports: [
     LoadingComponent
@@ -98,8 +92,7 @@ const BQ_COMPONENTS = [
     BlueriqComponents.register(BQ_COMPONENTS),
     MomentTransformer,
     BqPresentationStyles,
-    ErrorService,
-    FileDownloadService
+    ErrorService
   ],
   bootstrap: [AppComponent]
 })
