@@ -1,0 +1,59 @@
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FileDownload } from '@blueriq/angular/files';
+import { AuthorizedDownload } from '@blueriq/angular/src/api/file_handling';
+import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
+import { ButtonTemplate, ContainerTemplate } from '@blueriq/core/testing';
+import { of } from 'rxjs/internal/observable/of';
+import { FileModule } from '../file.modules';
+import { FileDownloadComponent } from './file-download.component';
+import { FileDownloadService } from './file-download.service';
+
+describe('FileDownloadComponent', () => {
+
+  let container: ContainerTemplate;
+  let component: ComponentFixture<FileDownloadComponent>;
+  let session: BlueriqTestSession;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [BlueriqTestingModule, FileModule]
+    });
+  }));
+
+  beforeEach(async(() => {
+    container = ContainerTemplate.create().contentStyle('filedownload');
+    container.children(
+      ButtonTemplate.create('downloadButton'),
+      ButtonTemplate.create('Unauthorized')
+    );
+    // fileDownload = fd;
+    session = BlueriqSessionTemplate.create().build(container);
+    component = session.get(FileDownloadComponent);
+  }));
+
+  it('should be created', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should override the onClick and use the downloadService', () => {
+    // Init
+    const authDownload: AuthorizedDownload = { type: 'authorized', url: '/some/url' };
+    spyOn(FileDownload.prototype, 'getDownloadInfo').and.callFake(() => {
+      return of(authDownload);
+    });
+    spyOn(FileDownloadService.prototype, 'download').and.callFake((url: string) => {
+      // not interested in the actual implementation
+      expect(url).toBe('/some/url');
+    });
+    const button = component.nativeElement.querySelector('button');
+    expect(button).toBeTruthy();
+
+    // SUT
+    button.click();
+    component.detectChanges();
+
+    // Verify
+    expect(FileDownloadService.prototype.download).toHaveBeenCalled();
+  });
+
+});

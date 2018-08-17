@@ -1,13 +1,17 @@
-import { Element } from '@blueriq/core';
+import { Element, PageModel } from '@blueriq/core';
 import { ElementJson } from '@blueriq/core/src/elements/types';
 import { ElementVisitor } from '@blueriq/core/src/elements/visitor';
 import { BqKeyDirective } from '@shared/bq-key/bq-key.directive';
 
 class MockElement extends Element {
+
   accept<T>(visitor: ElementVisitor<T>, context: T): void {
   }
 
   patch(element: ElementJson): void {
+  }
+
+  linkHierarchy(pageModel: PageModel): void {
   }
 }
 
