@@ -32,6 +32,7 @@ import { PageComponent } from './modules/page/page.component';
 import { ReadonlyComponent } from './modules/readonly/readonly.component';
 import { TableModule } from './modules/table/table.module';
 import { TextItemComponent } from './modules/textitem/textitem.component';
+import { WidgetModule } from './modules/widget/widget.module';
 import { ProjectComponent } from './project.component';
 
 const routes: Routes = [
@@ -84,7 +85,8 @@ const BQ_COMPONENTS = [
     FormControlModule,
     MenuModule,
     TextItemModule,
-    TableModule
+    TableModule,
+    WidgetModule
   ],
   exports: [
     LoadingComponent
