@@ -16,7 +16,6 @@ import { SharedModule } from '@shared/shared.module';
 import { FileUploadModule } from 'ng2-file-upload';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
-import { Configuration } from './configuration/configuration';
 import { MaterialModule } from './material.module';
 import { AssetComponent } from './modules/asset/asset.component';
 import { BqPresentationStyles } from './modules/BqPresentationStyles';
@@ -72,7 +71,7 @@ const BQ_COMPONENTS = [
     EffectsModule.forRoot([]),
     BlueriqModule.forRoot(),
     V1BackendModule.forRoot({
-      baseUrl: Configuration.BASE_URL
+      baseUrl: environment.baseUrl
     }),
     BrowserAnimationsModule,
     BlueriqFormsModule.forRoot(),
