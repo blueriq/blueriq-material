@@ -20,7 +20,7 @@ import { FileDownloadService } from './file-download.service';
 })
 export class FileDownloadComponent extends ButtonComponent implements OnDestroy {
 
-  downloadObservableSubscription: Subscription;
+  downloadSubscription: Subscription | undefined;
 
   constructor(@Self() public fileDownload: FileDownload,
               public session: BlueriqSession,
@@ -31,15 +31,15 @@ export class FileDownloadComponent extends ButtonComponent implements OnDestroy 
 
   /* Overrides */
   onClick(): void {
-    this.downloadObservableSubscription = this.fileDownload.getDownloadInfo()
-    .subscribe((downloadInfo: AuthorizedDownload) => {
-      this.fileDownloadService.download(downloadInfo.url);
-    });
+    this.downloadSubscription = this.fileDownload.getDownloadInfo()
+      .subscribe((downloadInfo: AuthorizedDownload) => {
+        this.fileDownloadService.download(downloadInfo.url);
+      });
   }
 
   ngOnDestroy() {
-    if (this.downloadObservableSubscription) {
-      this.downloadObservableSubscription.unsubscribe();
+    if (this.downloadSubscription) {
+      this.downloadSubscription.unsubscribe();
     }
   }
 

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
+import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
 import { SharedModule } from '@shared/shared.module';
 import { MaterialModule } from '../../material.module';
 import { TableHeaderComponent } from './header/table.header.component';
@@ -30,14 +30,13 @@ const TABLE_COMPONENTS = [
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
+    BlueriqCommonModule,
     CommonModule,
     SharedModule,
     ReactiveFormsModule,
-    MaterialModule,
-    BlueriqModule.forRoot()
+    MaterialModule
   ],
   exports: [TABLE_COMPONENTS]
 })
-
 export class TableModule {
 }

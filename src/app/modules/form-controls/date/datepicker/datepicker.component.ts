@@ -35,6 +35,6 @@ export class DatepickerComponent {
    * Returns if the date input is invalid so an error message can be shown
    */
   invalidInput(): boolean {
-    return (this.formControl.errors && this.formControl.errors['matDatepickerParse']);
+    return this.formControl.errors && this.formControl.errors['matDatepickerParse'];
   }
 }

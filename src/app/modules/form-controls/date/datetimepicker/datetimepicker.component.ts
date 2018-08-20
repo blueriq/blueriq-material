@@ -25,9 +25,12 @@ export class DateTimepickerComponent {
     disableWhen: BqPresentationStyles.DISABLED
   });
 
+  firstDayOfWeek: number;
+
   constructor(@Host() public field: Field,
               private form: BlueriqFormBuilder,
               private adapter: DateTimeAdapter<Moment>) {
+    this.firstDayOfWeek = this.computeFirstDayOfWeek();
   }
 
   /**
@@ -35,7 +38,7 @@ export class DateTimepickerComponent {
    * default is 1 (Monday).
    * @returns {number} the first day of the week (0 = Sunday, 1 = Monday ... 6 = Saturday)
    */
-  getFirstDayOfWeek(): number {
+  computeFirstDayOfWeek(): number {
     try {
       return this.adapter.now().creationData().locale.firstDayOfWeek();
     } catch (error) {

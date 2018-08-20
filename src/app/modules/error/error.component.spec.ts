@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ErrorType } from '@blueriq/core';
 import { ErrorComponent } from './error.component';
 import { ErrorModel } from './error.model';
 
@@ -9,15 +10,15 @@ describe('ErrorComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ErrorComponent],
-      imports: [FlexLayoutModule]
-    })
-    .compileComponents();
+        declarations: [ErrorComponent],
+        imports: [FlexLayoutModule]
+      })
+      .compileComponents();
 
     fixture = TestBed.createComponent(ErrorComponent);
     component = fixture.componentInstance;
     component.error = new ErrorModel(
-      'NOT_FOUND',
+      ErrorType.NotFound,
       'Not found',
       'Unknown flow: Demo',
       'Some stack trace'
@@ -32,20 +33,20 @@ describe('ErrorComponent', () => {
     expect(fixture.nativeElement.querySelector('.severity-notice')).toBeFalsy();
   });
 
-  it('should render close button and emit close event for a non fatal error', () => {
-    spyOn(component.closed, 'emit').and.callThrough();
+  it('should render close button and emit dismiss event for a non fatal error', () => {
+    spyOn(component.dismissed, 'emit').and.callThrough();
     component.error.isFatal = false;
     fixture.detectChanges();
 
     expect(fixture.nativeElement.querySelector('.button')).toBeTruthy();
 
-    component.close();
-    expect(component.closed.emit).toHaveBeenCalledTimes(1);
+    component.dismiss();
+    expect(component.dismissed.emit).toHaveBeenCalledTimes(1);
   });
 
   it('should render severity notice on session expired', () => {
     component.error = new ErrorModel(
-      'SESSION_EXPIRED',
+      ErrorType.UnknownSession,
       'Session Expired',
       'Your session has expired'
     );
@@ -57,7 +58,7 @@ describe('ErrorComponent', () => {
 
   it('should display the proper error fields', () => {
     component.error = new ErrorModel(
-      'SESSION_EXPIRED',
+      ErrorType.UnknownSession,
       'Session Expired',
       'Your session has expired'
     );

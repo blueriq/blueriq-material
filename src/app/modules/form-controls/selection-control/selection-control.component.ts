@@ -13,7 +13,7 @@ export class SelectionControlComponent {
   @Input() control: FormControl;
 
   get field(): Field {
-    return getBlueriqField(this.control)!;
+    return getBlueriqField(this.control);
   }
 
   getMessages(): FieldMessages {
