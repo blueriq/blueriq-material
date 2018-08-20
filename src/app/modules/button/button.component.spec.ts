@@ -8,7 +8,7 @@ import { MaterialModule } from '../../material.module';
 import { BqPresentationStyles } from '../BqPresentationStyles';
 import { ButtonComponent } from './button.component';
 
-describe('ButtonComponent', () => {
+describe('CommentListComponent', () => {
   let button: ButtonTemplate;
   let component: ComponentFixture<ButtonComponent>;
   let session: BlueriqTestSession;
