@@ -1,1 +1,4 @@
-<bq-session [sessionName]="flowWidget.sessionName"></bq-session>
+<div class="elevate">
+  <h2 *ngIf="widget.displayName">{{widget.displayName}}</h2>
+  <bq-session [sessionName]="flowWidget.sessionName"></bq-session>
+</div>

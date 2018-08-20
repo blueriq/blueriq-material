@@ -4,6 +4,7 @@ import { Container } from '@blueriq/core';
 
 @Component({
   templateUrl: './flow-widget.component.html',
+  styleUrls: ['./flow-widget.component.scss'],
   providers: [FlowWidget]
 })
 @BlueriqComponent({

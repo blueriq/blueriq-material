@@ -1,0 +1,9 @@
+@import 'globals/variables';
+
+.elevate {
+  @include mat-elevation(1);
+  background: map-get($mat-light-theme-background, card);
+  max-width: 728px;
+  margin: $bq-margin-double auto;
+  padding: $bq-margin-double;
+}
