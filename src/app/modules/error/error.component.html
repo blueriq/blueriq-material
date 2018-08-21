@@ -16,7 +16,7 @@
         {{ error.details }} </p>
 
       <p class="button" *ngIf="!error.isFatal" fxLayout="column" fxLayoutAlign="start center">
-        <button mat-button (click)="close()">close</button>
+        <button mat-button (click)="dismiss()">close</button>
       </p>
     </div>
 

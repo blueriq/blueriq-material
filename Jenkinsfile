@@ -118,12 +118,13 @@ node {
             autoUpdateStability       : false,
             zoomCoverageChart         : false,
             failNoReports             : true,
+            //                          healthy, unhealthy, failing
             lineCoverageTargets       : '80.0, 80.0, 80.0',
             packageCoverageTargets    : '80.0, 80.0, 80.0',
-            fileCoverageTargets       : '80.0, 80.0, 80.0, 80.0',
-            classCoverageTargets      : '80.0, 80.0, 80.0, 80.0',
-            methodCoverageTargets     : '80.0, 80.0, 80.0, 80.0',
-            conditionalCoverageTargets: '80.0, 80.0, 80.0, 80.0'
+            fileCoverageTargets       : '80.0, 80.0, 80.0',
+            classCoverageTargets      : '80.0, 80.0, 80.0',
+            methodCoverageTargets     : '80.0, 80.0, 80.0',
+            conditionalCoverageTargets: '80.0, 80.0, 80.0'
       ])
 
       // lint results

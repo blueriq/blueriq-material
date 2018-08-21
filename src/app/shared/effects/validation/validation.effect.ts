@@ -1,44 +1,31 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
-import { ButtonPressHandledAction, Session, SessionActions, SessionStore } from '@blueriq/angular';
-import { Button } from '@blueriq/core';
+import { ButtonPressHandledAction } from '@blueriq/angular';
+import { FormActions, InvalidFormAction } from '@blueriq/angular/forms';
 import { Actions, Effect } from '@ngrx/effects';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class ValidationEffect {
 
   @Effect({ dispatch: false })
-  buttonHandled$: Observable<any> = this.actions$
-  .ofType<ButtonPressHandledAction>(SessionActions.BUTTON_PRESS_HANDLED).pipe(
-    tap(action => this.checkValidations(action))
-  );
+  invalidForm$: Observable<any> = this.actions$
+    .ofType<ButtonPressHandledAction>(FormActions.INVALID_FORM).pipe(
+      tap(action => this.showSnackBar(action))
+    );
 
-  constructor(private actions$: Actions, private sessionStore: SessionStore, private snackBar: MatSnackBar) {
+  constructor(private actions$: Actions, private snackBar: MatSnackBar) {
   }
 
-  private checkValidations(action: ButtonPressHandledAction): void {
-    const session = this.sessionStore.getByNameOptionally(action.sessionName);
-    if (!session) {
-      return;
-    }
-    const element = session.pageModel.getElementOptionally(action.elementKey);
-    if (element instanceof Button && element.validate) {
-      this.showSnackBar(session);
-    }
-  }
-
-  private showSnackBar(session: Session): void {
-    if (session.form.hasErrors) {
-      this.snackBar.open(session.language.patterns['page.validations.message'] ||
-        'There are validation errors on the page', undefined, {
+  private showSnackBar(action: InvalidFormAction): void {
+    if (action.hasErrors) {
+      this.snackBar.open(action.message || 'There are validation errors on the page', undefined, {
         duration: 5000,
         panelClass: 'snackbar-error'
       });
-    } else if (session.form.hasWarnings) {
-      this.snackBar.open(session.language.patterns['page.validations.message'] ||
-        'There are validation warnings on the page', undefined, {
+    } else if (action.hasWarnings) {
+      this.snackBar.open(action.message || 'There are validation warnings on the page', undefined, {
         duration: 5000,
         panelClass: 'snackbar-warning'
       });

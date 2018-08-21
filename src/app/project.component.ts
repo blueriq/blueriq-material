@@ -1,50 +1,42 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProjectDetails } from '@blueriq/angular';
-import { SessionId } from '@blueriq/core';
-import { Observable } from 'rxjs/Observable';
+import { FailedAction, isBlueriqError, UnauthorizedProjectAction } from '@blueriq/angular';
+import { ErrorType, SessionId } from '@blueriq/core';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Subscription } from 'rxjs/Subscription';
 import { ErrorModel } from './modules/error/error.model';
-import { ErrorService } from './modules/error/error.service';
 
 @Component({
   templateUrl: './project.component.html'
 })
-export class ProjectComponent implements OnInit, OnDestroy {
+export class ProjectComponent implements OnInit {
 
-  sessionId: Observable<SessionId>;
-  shortcut: Observable<string>;
-  version: Observable<string>;
-  project: Observable<string>;
-  flow: Observable<string>;
-  languageCode: Observable<string>;
+  sessionName: Observable<string>;
+  sessionId: Observable<SessionId | null>;
+  shortcut: Observable<string | null>;
+  version: Observable<string | null>;
+  project: Observable<string | null>;
+  flow: Observable<string | null>;
+  languageCode: Observable<string | null>;
 
   error: ErrorModel | null;
-  private subscription: Subscription;
 
-  constructor(private readonly route: ActivatedRoute,
-              private readonly errorService: ErrorService) {
-  }
-
-  get sessionName(): string {
-    const tab = this.route.snapshot.queryParams['tab'];
-
-    return tab ? `Main-${tab}` : 'Main';
+  constructor(private readonly route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    this.sessionId = this.route.paramMap.pipe(map(params => params.get('sessionId') || ''));
-    this.shortcut = this.route.paramMap.pipe(map(params => params.get('shortcut') || ''));
+    this.sessionName = this.route.queryParamMap.pipe(map(params => {
+      const tab = params.get('tab');
 
-    this.version = this.route.paramMap.pipe(map(params => params.get('version') || '0.0-Trunk'));
-    this.project = this.route.paramMap.pipe(map(params => params.get('project') || ''));
-    this.flow = this.route.paramMap.pipe(map(params => params.get('flow') || ''));
-    this.languageCode = this.route.paramMap.pipe(map(params => params.get('languageCode') || ''));
+      return tab ? `Main-${tab}` : 'Main';
+    }));
 
-    this.subscription = this.errorService.getError().subscribe((error) => {
-      this.error = new ErrorModel(error.errorType, error.title, error.message);
-    });
+    this.sessionId = this.route.paramMap.pipe(map(params => params.get('sessionId')));
+    this.shortcut = this.route.paramMap.pipe(map(params => params.get('shortcut')));
+    this.version = this.route.paramMap.pipe(map(params => params.get('version')));
+    this.project = this.route.paramMap.pipe(map(params => params.get('project')));
+    this.flow = this.route.paramMap.pipe(map(params => params.get('flow')));
+    this.languageCode = this.route.paramMap.pipe(map(params => params.get('languageCode')));
   }
 
   /** Call this method to clear the error and thus removing it from view */
@@ -55,7 +47,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
   /** Handler for Session Expired events */
   onSessionExpired() {
     this.error = new ErrorModel(
-      'SESSION_EXPIRED',
+      ErrorType.UnknownSession,
       'Session expired',
       'Your session has expired due to inactivity'
     );
@@ -64,24 +56,29 @@ export class ProjectComponent implements OnInit, OnDestroy {
   /** Handler for Flow Ended events */
   onFlowEnded() {
     this.error = new ErrorModel(
-      'FLOW_ENDED',
+      ErrorType.FlowEnded,
       'Flow ended',
       'The flow has ended'
     );
   }
 
   /** Handler for unauthorized events */
-  onUnauthorized(details: ProjectDetails) {
+  onUnauthorized(details: UnauthorizedProjectAction) {
     this.error = new ErrorModel(
-      'UNAUTHORIZED',
+      ErrorType.Unauthorized,
       'Unauthorized',
       'You are not authorized to ' + JSON.stringify(details)
     );
   }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+  onError(action: FailedAction): void {
+    if (isBlueriqError(action.error)) {
+      const { errorType, message, title } = action.error.cause;
+
+      this.error = new ErrorModel((errorType || ErrorType.Exception) as any, title, message);
+    } else {
+      this.error = new ErrorModel(ErrorType.Exception, 'Oops!', 'An unknown error occurred');
+    }
   }
+
 }
-
-
