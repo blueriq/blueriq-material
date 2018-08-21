@@ -1,13 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatCardModule, MatDividerModule, MatListModule } from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatCardModule, MatDividerModule, MatFormFieldModule, MatListModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqComponents } from '@blueriq/angular';
+import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
+import { CommentComponent } from './comment.component';
 import { CommentListComponent } from './list/comment.list.component';
 
 const COMMENT_COMPONENTS = [
+  CommentComponent,
   CommentListComponent
 ];
 
@@ -22,10 +25,15 @@ const COMMENT_COMPONENTS = [
     BrowserAnimationsModule,
     BrowserModule,
     CommonModule,
+    ReactiveFormsModule,
+    BlueriqModule.forRoot(),
     FlexLayoutModule,
+
+    /* Material modules */
     MatDividerModule,
     MatListModule,
-    MatCardModule
+    MatCardModule,
+    MatFormFieldModule
   ],
   exports: [COMMENT_COMPONENTS]
 })

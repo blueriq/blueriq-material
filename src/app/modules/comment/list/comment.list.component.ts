@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BlueriqChildren, BlueriqComponent, OnUpdate } from '@blueriq/angular';
 import { Container } from '@blueriq/core';
+import * as moment from 'moment';
 import { Observable } from 'rxjs/Observable';
 import { CommentEntry } from './CommentEntry';
 
@@ -33,7 +34,11 @@ export class CommentListComponent implements OnInit, OnUpdate {
   }
 
   bqOnUpdate() {
-    console.log('update');
+    // TODO console.log('update');
+  }
+
+  dateToReadableFormat(date: Date): string {
+    return moment(date).fromNow(false);
   }
 
 }

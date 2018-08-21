@@ -1,4 +1,13 @@
+@import 'globals/variables';
 
 .username {
-  font-weight: 500;
+  margin-bottom: $bq-margin-half;
+}
+
+.date {
+  font-size: 11px;
+}
+
+.space {
+  margin: $bq-margin 0px $bq-margin 0px;
 }

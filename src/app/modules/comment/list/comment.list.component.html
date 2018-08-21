@@ -1,25 +1,13 @@
 <mat-list>
-
-
   <div *ngFor="let entry of commentEntries">
-
-
     <div fxLayout="row">
-      <div class="username" fxFlex>{{entry.username}} {{entry.title}}</div>
-      <div class="date" fxFlex="nogrow"> {{entry.date}}</div>
+      <div class="username" fxFlex>{{entry.username}} [{{entry.title}}]</div>
+      <div></div>
+      <mat-card-subtitle>
+        <div class="date" fxFlex="nogrow"> {{dateToReadableFormat(entry.date)}}</div>
+      </mat-card-subtitle>
     </div>
-
-
-    <mat-list-item class="comment">
-      <mat-card-subtitle>{{entry.comment}}</mat-card-subtitle>
-    </mat-list-item>
-
-
-    <!--<mat-card-header>-->
-    <!--<mat-card-title>Shiba Inu</mat-card-title>-->
-    <!--<mat-card-subtitle>Dog Breed</mat-card-subtitle>-->
-    <!--</mat-card-header>-->
-    <mat-divider></mat-divider>
+    <mat-card-subtitle class="comment">{{entry.comment}}</mat-card-subtitle>
+    <mat-divider class="space"></mat-divider>
   </div>
-
 </mat-list>
