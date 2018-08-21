@@ -43,8 +43,8 @@ export class ContainerComponent implements OnInit, OnUpdate {
    */
   private determineDisplayStyle() {
     this.horizontal = this.container.styles.has(BqPresentationStyles.HORIZONTAL);
-    this.alignRight = this.container.styles.has(BqPresentationStyles.ALIGNRIGHT)
-      || this.container.styles.has(BqPresentationStyles.DEPRECATED_ALIGNRIGHT);
+    this.alignRight = this.container.styles.hasAny(
+      BqPresentationStyles.ALIGNRIGHT, BqPresentationStyles.DEPRECATED_ALIGNRIGHT);
 
     if (this.container.parent && !(this.container.parent instanceof Page)) {
       // container within a container doesn't need specific styling

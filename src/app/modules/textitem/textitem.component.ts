@@ -18,10 +18,12 @@ export class TextItemComponent {
   }
 
   public shouldDisplayGutter(): boolean {
-    return this.textItem.styles.has(BqPresentationStyles.DANGER) ||
-      this.textItem.styles.has(BqPresentationStyles.WARNING) ||
-      this.textItem.styles.has(BqPresentationStyles.INFO) ||
-      this.textItem.styles.has(BqPresentationStyles.SUCCESS);
+    return this.textItem.styles.hasAny(
+      BqPresentationStyles.DANGER,
+      BqPresentationStyles.WARNING,
+      BqPresentationStyles.INFO,
+      BqPresentationStyles.SUCCESS
+    );
   }
 
   public getGutterIcon(): string {

@@ -40,13 +40,7 @@ describe('DocumentLinkComponent DocumentLink', () => {
   beforeEach(() => {
     container = ContainerTemplate.create('DocumentLink');
     container.children(
-      LinkTemplate.create().text(LINK_TEXT).parameters({
-        'document-name': DOCUMENT_NAME,
-        'document-type': 'pdf',
-        'page-name': '',
-        'downloadid': 'downid',
-        'optional-parameters': null
-      })
+      LinkTemplate.create().text(LINK_TEXT).document(DOCUMENT_NAME, 'pdf')
     );
     session = BlueriqSessionTemplate.create().build(container);
     component = session.get(DocumentLinkComponent);
@@ -95,17 +89,5 @@ describe('DocumentLinkComponent DocumentLink', () => {
     const element = component.nativeElement.querySelector('button');
     element.click();
     expect(mockFileDownloadService.download).toHaveBeenCalledTimes(1);
-  });
-
-  it('should have a plainText when textRef is set ', () => {
-    // init
-    const mockTextItem: any = { plainText: 'downloadme' };
-    component.componentInstance.documentLink.link.text = null;
-    component.componentInstance.documentLink.link.textRef = mockTextItem;
-    component.detectChanges();
-    const element = component.nativeElement.querySelector('button');
-
-    // Verify
-    expect(element.querySelector('span').innerHTML.trim()).toBe('downloadme');
   });
 });

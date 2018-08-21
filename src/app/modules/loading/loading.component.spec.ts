@@ -1,126 +1,82 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoadingService } from '@blueriq/angular';
-import { FormattingModule } from '@blueriq/angular/formatting';
+import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ActivityType, GlobalLoadingActivity } from '@blueriq/angular';
 import { BlueriqTestingModule } from '@blueriq/angular/testing';
-import 'rxjs/add/observable/of';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Observable } from 'rxjs/Observable';
-import { MaterialModule } from '../../material.module';
 
 import { LoadingComponent } from './loading.component';
 
-describe('LoadingComponent while not loading', () => {
+describe('LoadingComponent', () => {
   let component: LoadingComponent;
   let fixture: ComponentFixture<LoadingComponent>;
+  let loadingActivity: GlobalLoadingActivity;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [LoadingComponent],
       imports: [
-        MaterialModule,
-        BrowserAnimationsModule, // or NoopAnimationsModule
-        BlueriqTestingModule,
-        FormsModule,
-        FormattingModule.forRoot()
+        NoopAnimationsModule,
+        BlueriqTestingModule
       ],
-      providers: [LoadingService]
+      providers: [GlobalLoadingActivity]
     });
   }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(LoadingComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create and have a default state of starting', () => {
-    expect(component).toBeTruthy();
-    component.state$.subscribe(value => expect(value).toBe('starting'));
-  });
-
-  it('function ngOnDestroy should be complete and unsubscribe', () => {
-    // Init
-    spyOn(BehaviorSubject.prototype, 'complete');
-    spyOn(BehaviorSubject.prototype, 'unsubscribe');
-
-    // Sut
-    component.ngOnDestroy();
-
-    // Verify
-    expect(BehaviorSubject.prototype.complete).toHaveBeenCalled();
-    expect(BehaviorSubject.prototype.unsubscribe).toHaveBeenCalled();
-  });
-
-  it('function onInitialize should be done starting', () => {
-    // Init
-    spyOn(BehaviorSubject.prototype, 'next');
-
-    // Sut
-    component.onInitialize();
-
-    // Verify
-    expect(BehaviorSubject.prototype.next).toHaveBeenCalledWith(false);
-  });
-
-  it('function ngOnInit should set state to idle when not starting', () => {
-    // Init
-    component.starting$ = new BehaviorSubject<boolean>(false);
-
-    // Sut
-    component.ngOnInit();
-
-    // Verify
-    component.state$.subscribe(value => expect(value).toBe('idle'));
-  });
-
-});
-
-class MockLoadingService {
-  get loading$(): Observable<boolean> {
-    return Observable.of(true);
-  }
-}
-
-describe('LoadingComponent while loading', () => {
-  let component: LoadingComponent;
-  let fixture: ComponentFixture<LoadingComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [LoadingComponent],
-      imports: [
-        MaterialModule,
-        BrowserAnimationsModule, // or NoopAnimationsModule
-        BlueriqTestingModule,
-        FormsModule,
-        FormattingModule.forRoot()
-      ],
-      providers: [{ provide: LoadingService, useClass: MockLoadingService }]
-    });
-  }));
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(LoadingComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+
+    loadingActivity = TestBed.get(GlobalLoadingActivity);
+  }));
+
+  it('is idle when no loading activity', () => {
+    let state!: string;
+    component.state$.subscribe(s => state = s);
+
+    expect(state).toEqual('idle');
   });
 
-  it('should create and have a default state of starting', () => {
-    expect(component).toBeTruthy();
-    component.state$.subscribe(value => expect(value).toBe('starting'));
+  it('is starting when a session is starting', () => {
+    let state!: string;
+    component.state$.subscribe(s => state = s);
+
+    loadingActivity.start(ActivityType.StartingSession);
+    expect(state).toEqual('starting');
+
+    loadingActivity.stop(ActivityType.StartingSession);
+    expect(state).toEqual('idle');
   });
 
-  it('function ngOnInit should set state to loading when starting', () => {
-    // Init
-    component.starting$ = new BehaviorSubject<boolean>(false);
+  it('is loading on interaction activity', fakeAsync(() => {
+    let state!: string;
+    component.state$.subscribe(s => state = s);
 
-    // Sut
-    component.ngOnInit();
+    loadingActivity.start(ActivityType.Interaction);
+    expect(state).toEqual('idle');
 
-    // Verify
-    component.state$.subscribe(value => expect(value).toBe('loading'));
-  });
+    tick(400);
+    expect(state).toEqual('loading');
+
+    loadingActivity.stop(ActivityType.Interaction);
+
+    tick();
+    expect(state).toEqual('idle');
+  }));
+
+  it('is loading during field refreshes', fakeAsync(() => {
+    let state!: string;
+    component.state$.subscribe(s => state = s);
+
+    loadingActivity.start(ActivityType.FieldRefresh);
+    expect(state).toEqual('idle');
+
+    tick(400);
+    expect(state).toEqual('loading');
+
+    loadingActivity.stop(ActivityType.FieldRefresh);
+
+    tick();
+    expect(state).toEqual('idle');
+  }));
 
 });

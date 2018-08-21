@@ -17,7 +17,7 @@ import { FileDownloadService } from '../file-download/file-download.service';
 })
 export class DocumentLinkComponent implements OnDestroy {
 
-  downloadObservableSubscription: Subscription;
+  downloadSubscription: Subscription | undefined;
 
   constructor(@Self() public documentLink: DocumentLink,
               @Host() public container: Container,
@@ -25,20 +25,14 @@ export class DocumentLinkComponent implements OnDestroy {
   }
 
   onClick(): void {
-    this.downloadObservableSubscription = this.documentLink.getDownloadInfo()
-    .subscribe((downloadInfo: AuthorizedDownload) => {
-      this.fileDownloadService.download(downloadInfo.url);
-    });
+    this.downloadSubscription = this.documentLink.getDownloadInfo()
+      .subscribe((downloadInfo: AuthorizedDownload) => {
+        this.fileDownloadService.download(downloadInfo.url);
+      });
   }
 
   getDisplayText(): string {
-    const link = this.documentLink.link;
-    if (link.text) {
-      return link.text;
-    } else if (link.textRef) {
-      return link.textRef.plainText;
-    }
-    return 'download';
+    return this.documentLink.link.text;
   }
 
   /** Whether the container has the `button` presentation style */
@@ -57,8 +51,8 @@ export class DocumentLinkComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.downloadObservableSubscription) {
-      this.downloadObservableSubscription.unsubscribe();
+    if (this.downloadSubscription) {
+      this.downloadSubscription.unsubscribe();
     }
   }
 
