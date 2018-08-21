@@ -57,10 +57,10 @@ module.exports = function (config) {
           functions: 80
         },
         each: { // thresholds per file
-          statements: 80,
-          lines: 80,
-          branches: 80,
-          functions: 80
+          statements: 50,
+          lines: 50,
+          branches: 50,
+          functions: 50
         }
       }
     } // end coverageIstanbulReporter
