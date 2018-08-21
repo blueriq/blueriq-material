@@ -21,12 +21,10 @@ describe('FileDownloadComponent', () => {
   }));
 
   beforeEach(async(() => {
-    container = ContainerTemplate.create().contentStyle('filedownload');
-    container.children(
+    container = ContainerTemplate.create().contentStyle('filedownload').children(
       ButtonTemplate.create('downloadButton'),
       ButtonTemplate.create('Unauthorized')
     );
-    // fileDownload = fd;
     session = BlueriqSessionTemplate.create().build(container);
     component = session.get(FileDownloadComponent);
   }));

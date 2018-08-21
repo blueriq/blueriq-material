@@ -1,19 +1,20 @@
+import { ErrorType } from '@blueriq/core';
+
 /**
  * This class represents an error
  */
 export class ErrorModel {
-  private fatal: boolean;
+  private fatal = true;
 
-  constructor(private errorType: string,
+  constructor(private errorType: ErrorType,
               public title: string,
               public message: string,
               public details?: string) {
-    this.fatal = true;
   }
 
   /** The severity of the error, can used to make a distinction in the way the error is displayed */
   get severity(): string {
-    return this.errorType === 'SESSION_EXPIRED' ? 'notice' : 'error';
+    return this.errorType === ErrorType.UnknownSession ? 'notice' : 'error';
   }
 
   /**

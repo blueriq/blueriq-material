@@ -10,5 +10,6 @@ import { Page } from '@blueriq/core';
   type: Page
 })
 export class PageComponent {
-  constructor(@Host() public page: Page) {}
+  constructor(@Host() public page: Page) {
+  }
 }

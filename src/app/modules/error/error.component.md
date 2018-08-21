@@ -9,6 +9,6 @@ errors, like 'session expired', 'flow has ended', etc.
 <bq-error [error]="yourErrorModel" (close)="yourCloseHandler()"></bq-error>
 ```
 
-The [error] directive expects an object of type ErrorModel and the (close) event handler can be used 
-to add behavior in case a non fatal error is closed. The Blueriq Material Theme will just remove the
+The [error] input expects an object of type `ErrorModel` and the `(dismiss)` event handler can be used 
+to add behavior in case a non fatal error is dismissed. The Blueriq Material Theme will just remove the
 error from view when it is closed.

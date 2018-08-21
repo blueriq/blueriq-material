@@ -1,5 +1,4 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ErrorModel } from './error.model';
 
 @Component({
@@ -13,13 +12,10 @@ export class ErrorComponent {
   error: ErrorModel;
 
   @Output()
-  closed: EventEmitter<void> = new EventEmitter<void>();
+  dismissed = new EventEmitter<void>();
 
-  constructor(@Inject(DOCUMENT) private document: Document) {
-  }
-
-  close(): void {
-    this.closed.emit();
+  dismiss(): void {
+    this.dismissed.emit();
   }
 
 }

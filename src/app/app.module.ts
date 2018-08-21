@@ -8,6 +8,7 @@ import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
 import { V1BackendModule } from '@blueriq/angular/backend/v1';
 import { FormattingModule } from '@blueriq/angular/formatting';
 import { BlueriqFormsModule } from '@blueriq/angular/forms';
+import { BlueriqStoreModule } from '@blueriq/angular/store';
 import { TextItemModule } from '@blueriq/angular/textitems';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
@@ -18,12 +19,10 @@ import { AppComponent } from './app.component';
 import { Configuration } from './configuration/configuration';
 import { MaterialModule } from './material.module';
 import { AssetComponent } from './modules/asset/asset.component';
-import { BqPresentationStyles } from './modules/BqPresentationStyles';
 import { ButtonComponent } from './modules/button/button.component';
 import { CommentModule } from './modules/comment/comment.module';
 import { ContainerComponent } from './modules/container/container.component';
 import { ErrorComponent } from './modules/error/error.component';
-import { ErrorService } from './modules/error/error.service';
 import { FileModule } from './modules/file/file.modules';
 import { MomentTransformer } from './modules/form-controls/date/moment-transformer';
 import { FormControlModule } from './modules/form-controls/form-control.module';
@@ -75,6 +74,7 @@ const BQ_COMPONENTS = [
     FlexLayoutModule,
     FormattingModule.forRoot(),
     ReactiveFormsModule,
+    BlueriqStoreModule.forRoot(),
     StoreDevtoolsModule.instrument({
       name: 'Blueriq',
       logOnly: environment.production // Restrict extension to log-only mode
@@ -93,9 +93,7 @@ const BQ_COMPONENTS = [
   ],
   providers: [
     BlueriqComponents.register(BQ_COMPONENTS),
-    MomentTransformer,
-    BqPresentationStyles,
-    ErrorService
+    MomentTransformer
   ],
   bootstrap: [AppComponent]
 })

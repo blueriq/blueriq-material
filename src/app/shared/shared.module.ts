@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { EffectsModule } from '@ngrx/effects';
 import { BqKeyDirective } from '@shared/bq-key/bq-key.directive';
-import { ErrorEffects } from '@shared/effects/error/error.effects';
 import { ValidationEffect } from '@shared/effects/validation/validation.effect';
 import { MaterialModule } from '../material.module';
 
@@ -24,8 +23,7 @@ const SHARED_COMPONENTS = [
     MaterialModule,
     FlexLayoutModule,
     EffectsModule.forFeature([
-      ValidationEffect,
-      ErrorEffects
+      ValidationEffect
     ])
   ],
   exports: [
