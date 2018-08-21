@@ -1,17 +1,17 @@
 <bq-loading #loader></bq-loading>
 
-<bq-project 
-  [sessionId]="sessionId | async" 
-  [shortcut]="shortcut | async" 
-  [project]="project | async" 
-  [flow]="flow | async" 
-  [version]="version | async" 
-  [sessionName]="sessionName" 
+<bq-project
+  [sessionName]="sessionName | async"
+  [sessionId]="sessionId | async"
+  [shortcut]="shortcut | async"
+  [project]="project | async"
+  [flow]="flow | async"
+  [version]="version | async"
   [languageCode]="languageCode | async"
   (flowEnded)="onFlowEnded()"
   (expired)="onSessionExpired()"
-  (unauthorized)="onUnauthorized($event)"
-  (initialized)="loader.onInitialize()">
+  (error)="onError($event)"
+  (unauthorized)="onUnauthorized($event)">
 </bq-project>
 
 <bq-error

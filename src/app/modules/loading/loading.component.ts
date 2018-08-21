@@ -1,11 +1,8 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { LoadingService } from '@blueriq/angular';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Observable } from 'rxjs/Observable';
-import { combineLatest } from 'rxjs/observable/combineLatest';
-import { timer } from 'rxjs/observable/timer';
-import { debounce, map } from 'rxjs/operators';
+import { state, style, trigger } from '@angular/animations';
+import { Component, OnInit } from '@angular/core';
+import { ActivityType, GlobalLoadingActivity } from '@blueriq/angular';
+import { combineLatest, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'bq-loading',
@@ -18,27 +15,22 @@ import { debounce, map } from 'rxjs/operators';
     ])
   ]
 })
-export class LoadingComponent implements OnInit, OnDestroy {
+export class LoadingComponent implements OnInit {
 
   state$: Observable<'starting' | 'loading' | 'idle'>;
-  starting$ = new BehaviorSubject<boolean>(true);
 
-  constructor(private loadingService: LoadingService) {
-  }
-
-  onInitialize(): void {
-    this.starting$.next(false);
+  constructor(private loadingActivity: GlobalLoadingActivity) {
   }
 
   ngOnInit(): void {
-    this.state$ = combineLatest(this.starting$, this.loadingService.loading$).pipe(
-      debounce(([isStarting, isLoading]) => timer(isStarting ? 0 : isLoading ? 400 : 0)),
-      map(([isStarting, isLoading]) => isStarting ? 'starting' : isLoading ? 'loading' : 'idle')
-    );
-  }
+    const startingSession$ = this.loadingActivity.isActive(ActivityType.StartingSession);
+    const interaction$ = this.loadingActivity.isActiveWithDelay(ActivityType.Interaction, 400);
+    const fieldRefresh$ = this.loadingActivity.isActiveWithDelay(ActivityType.FieldRefresh, 400);
 
-  ngOnDestroy(): void {
-    this.starting$.complete();
-    this.starting$.unsubscribe();
+    this.state$ = combineLatest(startingSession$, interaction$, fieldRefresh$).pipe(
+      map(([isStarting, interaction, fieldRefresh]) => {
+        return isStarting ? 'starting' : interaction || fieldRefresh ? 'loading' : 'idle';
+      })
+    );
   }
 }

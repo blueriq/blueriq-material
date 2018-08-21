@@ -30,8 +30,8 @@ describe('DateTimepickerComponent', () => {
         FormsModule,
         FlexLayoutModule,
         OwlDateTimeModule,
-        OwlMomentDateTimeModule
-      ]
+        OwlMomentDateTimeModule,
+      ],
     });
   }));
 
@@ -119,18 +119,18 @@ describe('DateTimepickerComponent', () => {
   it('first day of week with US locale is Sunday', () => {
     moment.locale('en-US');
     spyOn(MomentDateTimeAdapter.prototype, 'now').and.returnValue(moment(new Date()));
-    expect(component.componentInstance.getFirstDayOfWeek()).toEqual(0);
+    expect(component.componentInstance.computeFirstDayOfWeek()).toEqual(0);
   });
 
   it('first day of week with Dutch locale is Monday', () => {
     moment.locale('nl-NL');
     spyOn(MomentDateTimeAdapter.prototype, 'now').and.returnValue(moment(new Date()));
-    expect(component.componentInstance.getFirstDayOfWeek()).toEqual(1);
+    expect(component.componentInstance.computeFirstDayOfWeek()).toEqual(1);
   });
 
   it('default first day of week is Monday when unable to determine locale specific day of week', () => {
     spyOn(MomentDateTimeAdapter.prototype, 'now').and.throwError('error');
-    expect(component.componentInstance.getFirstDayOfWeek()).toEqual(1);
+    expect(component.componentInstance.computeFirstDayOfWeek()).toEqual(1);
   });
 
   it('should verify that on change triggers the formatOnChange function', () => {
@@ -151,8 +151,8 @@ describe('DateTimepickerComponent', () => {
     let eventJson: any = {
       value: '18-01-02', // from
       source: {
-        value: '' // to
-      }
+        value: '', // to
+      },
     };
 
     // SUT
@@ -165,8 +165,8 @@ describe('DateTimepickerComponent', () => {
     eventJson = {
       value: null, // from
       source: {
-        value: '' // to
-      }
+        value: '', // to
+      },
     };
 
     // SUT

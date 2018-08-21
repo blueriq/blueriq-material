@@ -108,7 +108,6 @@ describe('ButtonComponent', () => {
     );
     buttonComponent.onClick();
     expect(BlueriqSession.prototype.pressed).toHaveBeenCalledTimes(1);
-
   });
 
 });

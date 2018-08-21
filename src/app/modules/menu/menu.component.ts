@@ -13,10 +13,7 @@ import { Container } from '@blueriq/core';
 })
 export class MenuComponent {
 
-  @BlueriqChild(Container, 'menubar', { required: true })
+  @BlueriqChild(Container, 'menubar')
   menuBar: Container;
-
-  constructor() {
-  }
 
 }

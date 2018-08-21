@@ -46,8 +46,7 @@ export class RadioButtonComponent implements OnInit, OnUpdate {
    * @returns {string} denoting the direction in which the buttons are presented
    */
   private determineDirection() {
-    if (this.field.styles.has(BqPresentationStyles.HORIZONTAL)
-      || this.field.styles.has(BqPresentationStyles.DEPRECATED_HORIZONTAL)
+    if (this.field.styles.hasAny(BqPresentationStyles.HORIZONTAL, BqPresentationStyles.DEPRECATED_HORIZONTAL)
       || this.field.domain.options.length === 2) {
       this.direction = 'horizontal';
     }

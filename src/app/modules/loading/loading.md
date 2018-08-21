@@ -2,16 +2,13 @@
 The loading spinner is implemented at two places in the code. In the index.html and a loading component.
 
 #### Index
-In the index.html is added a `div` inside the bq-app-root with a class `splashscreen`. To realize the 
-spinner (Blueriq logo) when Angular is loading, the file splashscreen.scss is added to the theme folder. 
-And the image will be loaded as a background image. 
+In `src/index.html`, a `div` with a class `splashscreen` is put inside of the `bq-app-root` element. This
+element is replaced once Angular has been initialized, so this element achieves that a loader is shown even
+before the Angular application has completed loading. Since this is not rendered as Angular component, the
+stylesheet is bundled with the theme in `splashscreen.scss`, that specifies an image to be shown as background
+image.
 
 #### Loading component
-The loading component will show a spinner (the `e` of the Blueriq logo). The loading component will be use the
-LoadingService of red-cow. With the state (starting, loading, idle) you can distract when the spinner must be 
-shown. 
-
-#### Time loading spinner
-The spinner will be shown if the loading is 400 ms. You can change this in the loading.component.ts file
-inside the ngOnInit().
-
+The loading component will show a spinner (the *e* of the Blueriq logo) for certain kinds of loading activity
+of the application. By default, button presses and field refreshes will show the spinner with a small delay,
+which is 400 ms by default.
