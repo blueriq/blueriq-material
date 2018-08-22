@@ -1,11 +1,12 @@
 import { Component, Host, OnInit } from '@angular/core';
 import { BlueriqChild, BlueriqComponent, BlueriqSession } from '@blueriq/angular';
-import { BlueriqFormBuilder } from '@blueriq/angular/forms';
 import { Button, Container, Field } from '@blueriq/core';
+import { BqPresentationStyles } from '../BqPresentationStyles';
 
 @Component({
   selector: 'bq-comment',
-  templateUrl: './comment.component.html'
+  templateUrl: './comment.component.html',
+  styleUrls: ['./comment.component.scss']
 })
 @BlueriqComponent({
   type: Container,
@@ -13,21 +14,29 @@ import { Button, Container, Field } from '@blueriq/core';
 })
 export class CommentComponent implements OnInit {
 
-  @BlueriqChild(Field, { required: true })
+  @BlueriqChild(Field, {})
   commentField: Field;
 
-  @BlueriqChild(Button, { required: true })
-  commentButton: Button;
+  @BlueriqChild(Button)
+  public commentButton: Button;
 
-  constructor(@Host() public container: Container, private form: BlueriqFormBuilder, public session: BlueriqSession) {
+  constructor(@Host() public container: Container, public session: BlueriqSession) {
   }
 
   ngOnInit() {
+    // Since the field in comment cannot have a questiontext, the caption of the button will be given.
+    this.commentField.questionText = this.commentButton.caption;
+    // Because there is no other way of telling that the comment field should be displayed as a large text field,
+    // the presentation style is given so it would render is such
+    this.commentField.styles = this.commentField.styles.add(BqPresentationStyles.LARGETEXT);
   }
 
-  // TODO
-  // onClick() {
-  //   this.session.pressed(this.commentButton);
-  // }
+  onClick() {
+    if (this.commentField.getValue()) {
+      const parameters = {};
+      parameters[this.commentField.name] = [this.commentField.getValue()];
+      this.session.pressed(this.commentButton, parameters);
+    }
+  }
 
 }

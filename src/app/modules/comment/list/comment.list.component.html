@@ -1,7 +1,7 @@
 <mat-list>
   <div *ngFor="let entry of commentEntries">
     <div fxLayout="row">
-      <div class="username" fxFlex>{{entry.username}} [{{entry.title}}]</div>
+      <div class="header" fxFlex>{{entry.username}} <span class="title">{{entry.title}}</span></div>
       <div></div>
       <mat-card-subtitle>
         <div class="date" fxFlex="nogrow"> {{dateToReadableFormat(entry.date)}}</div>
