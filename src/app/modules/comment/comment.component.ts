@@ -14,7 +14,7 @@ import { BqPresentationStyles } from '../BqPresentationStyles';
 })
 export class CommentComponent implements OnInit {
 
-  @BlueriqChild(Field, {})
+  @BlueriqChild(Field)
   commentField: Field;
 
   @BlueriqChild(Button)

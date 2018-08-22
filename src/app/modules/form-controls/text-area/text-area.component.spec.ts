@@ -7,8 +7,6 @@ import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from
 import { FieldTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../../../material.module';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
-import { CurrencyFieldComponent } from './currency/currency.component';
-import { InputFieldComponent } from './input-field.component';
 import { TextAreaComponent } from './text-area.component';
 
 describe('TextAreaComponent', () => {
@@ -67,18 +65,17 @@ describe('TextAreaComponent', () => {
   });
 
   it('should be disabled', () => {
-    field.styles(BqPresentationStyles.DISABLED);
-    session = BlueriqSessionTemplate.create().build(field);
-    component = session.get(CurrencyFieldComponent);
-
+    session.update(
+      field.styles(BqPresentationStyles.DISABLED)
+    );
     const inputField = component.nativeElement.querySelector('.mat-form-field-disabled');
     expect(inputField).toBeTruthy();
   });
 
   it('should be read only', () => {
-    field.readonly();
-    session = BlueriqSessionTemplate.create().build(field);
-    component = session.get(CurrencyFieldComponent);
+    session.update(
+      field.readonly()
+    );
 
     const inputField = component.nativeElement.querySelector('.mat-form-field-disabled');
     expect(inputField).toBeTruthy();
