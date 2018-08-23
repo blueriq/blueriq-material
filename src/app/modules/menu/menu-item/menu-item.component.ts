@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { BlueriqSession } from '@blueriq/angular';
 import { Button, Container, Element } from '@blueriq/core';
 
 @Component({
@@ -11,20 +10,11 @@ export class MenuItemComponent {
 
   @Input() child: Element;
 
-  constructor(private session: BlueriqSession) {
-  }
-
-  onClick(child: Button): void {
-    if (child.enabled) {
-      this.session.pressed(child);
-    }
-  }
-
-  asButton(element: any): Button {
+  asButton(element: Element): Button {
     return element as Button;
   }
 
-  asContainer(element: any): Container {
+  asContainer(element: Element): Container {
     return element as Container;
   }
 

@@ -6,10 +6,10 @@
     <h3 *ngIf="!bigHeader">{{ container.displayName }}</h3>
   </div>
   <div *ngIf="!horizontal">
-    <ng-container *ngFor="let child of container.children" [bqElement]="child"></ng-container>
+    <ng-container *ngFor="let child of container.children | bqUnmarked" [bqElement]="child"></ng-container>
   </div>
   <div *ngIf="horizontal" class="grid">
-    <div *ngFor="let child of container.children" class="grid-item">
+    <div *ngFor="let child of container.children | bqUnmarked" class="grid-item">
       <ng-container [bqElement]="child"></ng-container>
     </div>
   </div>

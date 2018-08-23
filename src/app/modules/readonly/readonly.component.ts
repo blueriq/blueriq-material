@@ -14,6 +14,7 @@ import { Field } from '@blueriq/core';
 })
 export class ReadonlyComponent {
 
-  constructor(@Host() public readonly field: Field, @Optional() @Host() public readonly table: Table) {
+  constructor(@Host() public readonly field: Field,
+              @Optional() @Host() public readonly table: Table) {
   }
 }

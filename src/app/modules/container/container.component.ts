@@ -47,7 +47,7 @@ export class ContainerComponent implements OnInit, OnUpdate {
    */
   private determineDisplayStyle() {
     this.horizontal = this.container.styles.has(BqPresentationStyles.HORIZONTAL);
-    this.alignRight = this.container.styles.has(BqPresentationStyles.ALIGNRIGHT)
+    this.alignRight = this.container.styles.hasAny(BqPresentationStyles.ALIGNRIGHT)
       || this.container.styles.has(BqPresentationStyles.DEPRECATED_ALIGNRIGHT);
     this.bigHeader = !this.flowWidget;
 
