@@ -1,17 +1,26 @@
+import { Component, Host } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
-import { ContainerTemplate } from '@blueriq/core/testing';
+import { BlueriqComponent, BlueriqComponents, SessionRegistry } from '@blueriq/angular';
+import {
+  BlueriqSessionTemplate,
+  BlueriqTestingModule,
+  BlueriqTestSession,
+  SessionTemplate
+} from '@blueriq/angular/testing';
+import { Page } from '@blueriq/core';
+import { ContainerTemplate, PageModelTemplate, PageTemplate } from '@blueriq/core/testing';
 import { FlowWidgetComponent } from './flow-widget.component';
 import { WidgetModule } from './widget.module';
 
-fdescribe('FlowWidgetComponent', () => {
+describe('FlowWidgetComponent', () => {
   let container: ContainerTemplate;
   let component: ComponentFixture<FlowWidgetComponent>;
   let session: BlueriqTestSession;
-  let subSession: BlueriqTestSession;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      declarations: [MockPageComponent],
+      providers: [BlueriqComponents.register([MockPageComponent])],
       imports: [
         BlueriqTestingModule,
         WidgetModule
@@ -20,20 +29,43 @@ fdescribe('FlowWidgetComponent', () => {
   }));
 
   beforeEach(() => {
-    container = ContainerTemplate.create()
+    container = ContainerTemplate.create('containername')
+    .displayName('Container display name')
     .contentStyle('dashboard_flowwidget')
     .properties({ 'info': 'WidgetInfo_DashboardFlowWidget' });
-    // const page  = PageTemplate.create('session-name-DashboardFlowWidget').build();
-    //
-    session = BlueriqSessionTemplate.create().build(container);
 
-    //subSession = BlueriqSessionTemplate.create().build(ContainerTemplate.create('somename').displayName('somedisplayname'));
+    const pageModel = PageModelTemplate.create(PageTemplate.create('pagename').displayName('Widget display name'));
+    const dashboardSession = SessionTemplate.create()
+    .sessionName('session-name-DashboardFlowWidget')
+    .pageModel(pageModel).build();
+
+    const sessionRegistry: SessionRegistry = TestBed.get(SessionRegistry);
+    sessionRegistry.register(dashboardSession);
+
+    session = BlueriqSessionTemplate.create().build(container);
     component = session.get(FlowWidgetComponent);
   });
 
-  it('should be created', () => {
-    expect(component).toBeTruthy();
-    console.log(component.nativeElement);
+  it('should contain the correct elements', () => {
+    // Init
+    const header2 = component.nativeElement.querySelector('h2');
+    const widgetSessionSpan = component.nativeElement.querySelector('#widgetSessionDisplayName');
+
+    // Verify
+    expect(header2.innerHTML).toEqual('Container display name');
+    expect(widgetSessionSpan.innerHTML).toEqual('Widget display name');
   });
 
 });
+
+@Component({
+  template: '<span id="widgetSessionDisplayName">{{page.displayName}}</span>'
+})
+@BlueriqComponent({
+  type: Page
+})
+class MockPageComponent {
+
+  constructor(@Host() public readonly page: Page) {
+  }
+}
