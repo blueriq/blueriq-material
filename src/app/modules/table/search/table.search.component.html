@@ -1,0 +1,21 @@
+<div bqKey bqClasses class="search-field-container">
+  <mat-form-field appearance="standard" class="search-field">
+    <mat-label>{{ caption }}</mat-label>
+    <mat-chip-list #chipList>
+      <mat-chip *ngFor="let searchTerm of searchTerms" [selectable]="false" [removable]="true" (removed)="remove(searchTerm)">
+        {{searchTerm}}
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+      <input
+        type="text"
+        [matChipInputFor]="chipList"
+        [matChipInputSeparatorKeyCodes]="separatorKeyCodes"
+        [matChipInputAddOnBlur]="true"
+        (matChipInputTokenEnd)="add($event)"
+      >
+    </mat-chip-list>
+    <button type="button" mat-icon-button (click)="doSearch()" matSuffix>
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-form-field>
+</div>

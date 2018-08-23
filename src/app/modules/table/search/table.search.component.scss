@@ -1,0 +1,20 @@
+.search-field-container {
+  display: flex;
+  justify-content: flex-end;
+
+  .search-field {
+    width: 70%;
+  }
+
+  .mat-chip-input {
+    height: 32px;
+
+    label {
+      padding-top: 7px;
+    }
+  }
+
+  [matsuffix] {
+    padding-top: 7px;
+  }
+}
