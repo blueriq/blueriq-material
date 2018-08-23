@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { BlueriqComponents, BlueriqSession } from '@blueriq/angular';
+import { BlueriqSession } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ButtonTemplate, ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../../material.module';
-import { TextAreaComponent } from '../form-controls/text-area/text-area.component';
+import { FormControlModule } from '../form-controls/form-control.module';
 import { CommentComponent } from './comment.component';
 import { CommentModule } from './comment.module';
 
@@ -17,13 +17,11 @@ describe('CommentComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TextAreaComponent],
-      providers: [BlueriqComponents.register([TextAreaComponent])],
       imports: [
         MaterialModule,
         BlueriqTestingModule,
-        CommentModule
-        // FormControlModule
+        CommentModule,
+        FormControlModule
       ]
     });
   }));
