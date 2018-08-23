@@ -4,14 +4,14 @@
   margin-bottom: $bq-margin-half;
 
   .title {
-    color: $dark-secondary-text;
     margin-left: $bq-margin-half;
+    color: $dark-secondary-text;
   }
 }
 
 .mat-card-subtitle {
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 .date {
@@ -23,5 +23,5 @@
 }
 
 .space {
-  margin: $bq-margin 0px $bq-margin 0px;
+  margin: $bq-margin 0;
 }
