@@ -1,6 +1,6 @@
 import { animateChild, query, transition, trigger } from '@angular/animations';
 import { Component, Host, OnInit, Optional } from '@angular/core';
-import { BlueriqComponent, OnUpdate } from '@blueriq/angular';
+import { BlueriqComponent, FlowWidget, OnUpdate } from '@blueriq/angular';
 import { Table } from '@blueriq/angular/lists';
 import { Container, Page } from '@blueriq/core';
 import { BqPresentationStyles } from '../BqPresentationStyles';
@@ -26,8 +26,12 @@ export class ContainerComponent implements OnInit, OnUpdate {
   public displayMode: ContainerDisplayMode;
   public horizontal = false;
   public alignRight = false;
+  public bigHeader = true;
 
-  constructor(@Host() public container: Container, @Optional() @Host() public readonly table: Table) {
+  constructor(@Host() public container: Container,
+              @Optional() @Host() public readonly table: Table,
+              @Optional() @Host() public readonly flowWidget: FlowWidget
+  ) {
   }
 
   ngOnInit() {
@@ -45,8 +49,9 @@ export class ContainerComponent implements OnInit, OnUpdate {
     this.horizontal = this.container.styles.has(BqPresentationStyles.HORIZONTAL);
     this.alignRight = this.container.styles.has(BqPresentationStyles.ALIGNRIGHT)
       || this.container.styles.has(BqPresentationStyles.DEPRECATED_ALIGNRIGHT);
+    this.bigHeader = !this.flowWidget;
 
-    if (this.container.parent && !(this.container.parent instanceof Page)) {
+    if (this.container.parent && !(this.container.parent instanceof Page) || this.flowWidget) {
       // container within a container doesn't need specific styling
       this.displayMode = '';
     } else if (this.isIntroduction()) {

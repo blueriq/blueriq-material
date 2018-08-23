@@ -1,7 +1,10 @@
 <div bqKey bqClasses class="container {{displayMode}}" [class.alignright]="alignRight">
   <img *ngIf="isIntroduction()" src="./theme/images/blueriq-technology.svg">
-  <h2 *ngIf="container.displayName && !table">{{ container.displayName }}</h2>
 
+  <div *ngIf="container.displayName && !table">
+    <h2 *ngIf="bigHeader">{{ container.displayName }}</h2>
+    <h3 *ngIf="!bigHeader">{{ container.displayName }}</h3>
+  </div>
   <div *ngIf="!horizontal">
     <ng-container *ngFor="let child of container.children" [bqElement]="child"></ng-container>
   </div>
