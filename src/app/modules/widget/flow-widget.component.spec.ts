@@ -12,6 +12,18 @@ import { ContainerTemplate, PageModelTemplate, PageTemplate } from '@blueriq/cor
 import { FlowWidgetComponent } from './flow-widget.component';
 import { WidgetModule } from './widget.module';
 
+@Component({
+  template: '<span id="widgetSessionDisplayName">{{page.displayName}}</span>'
+})
+@BlueriqComponent({
+  type: Page
+})
+class MockPageComponent {
+
+  constructor(@Host() public readonly page: Page) {
+  }
+}
+
 describe('FlowWidgetComponent', () => {
   let container: ContainerTemplate;
   let component: ComponentFixture<FlowWidgetComponent>;
@@ -57,15 +69,3 @@ describe('FlowWidgetComponent', () => {
   });
 
 });
-
-@Component({
-  template: '<span id="widgetSessionDisplayName">{{page.displayName}}</span>'
-})
-@BlueriqComponent({
-  type: Page
-})
-class MockPageComponent {
-
-  constructor(@Host() public readonly page: Page) {
-  }
-}
