@@ -1,41 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { BlueriqChildren, BlueriqComponent } from '@blueriq/angular';
+import { Component, Self } from '@angular/core';
+import { BlueriqComponent, DashboardCommentList } from '@blueriq/angular';
 import { Container } from '@blueriq/core';
 import * as moment from 'moment';
-import { Observable } from 'rxjs/Observable';
-import { CommentEntry } from './CommentEntry';
 
 @Component({
   selector: 'bq-comment-list',
   templateUrl: './comment.list.component.html',
-  styleUrls: ['./comment.list.component.scss']
+  styleUrls: ['./comment.list.component.scss'],
+  providers: [DashboardCommentList]
 })
 @BlueriqComponent({
   type: Container,
   selector: 'commentlist'
 })
-export class CommentListComponent implements OnInit {
+export class CommentListComponent {
 
-  @BlueriqChildren(Container, 'commentEntry', { observe: true })
-  entries: Observable<Container[]>;
-
-  commentEntries: CommentEntry[] = [];
-
-  ngOnInit() {
-    this.entries.subscribe(entries => {
-        this.commentEntries = [];
-        for (const entry of entries) {
-          this.commentEntries.push(new CommentEntry(entry.properties));
-        }
-      }
-    );
+  constructor(@Self() public readonly commentList: DashboardCommentList) {
   }
 
   dateToReadableFormat(date: Date): string {
-    if (moment(moment()).diff(moment(date), 'days') >= 6) {
-      return moment(date).format('MMMM Do YYYY, hh:mm');
+    const mdate = moment(date);
+    if (moment().diff(mdate, 'days') >= 6) {
+      return mdate.format('MMMM Do YYYY, hh:mm');
     }
-    return moment(date).fromNow(false);
+    return mdate.fromNow(false);
   }
 
 }

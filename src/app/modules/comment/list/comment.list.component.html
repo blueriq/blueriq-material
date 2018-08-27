@@ -1,5 +1,5 @@
 <mat-list>
-  <div *ngFor="let entry of commentEntries">
+  <div *ngFor="let entry of commentList.entries$ | async">
     <div fxLayout="row">
       <div class="header" fxFlex>{{entry.username}} <span class="title">{{entry.title}}</span></div>
       <div></div>

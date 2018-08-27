@@ -93,7 +93,9 @@ describe('CommentListComponent', () => {
     const commentListComponent: CommentListComponent = component.componentInstance;
 
     // Verify
-    expect(commentListComponent.commentEntries.length).toBe(3);
+    expect(commentListComponent.commentList.entries$.subscribe(entries => {
+      expect(entries.length).toBe(3);
+    }));
   });
 
   function generateCommentEntry(comment, date, title, username) {
