@@ -24,10 +24,6 @@ export class TableSearchComponent implements OnInit, OnUpdate {
               @Self() private readonly search: Search) {
   }
 
-  get caption() {
-    return this.search.getCaption();
-  }
-
   ngOnInit(): void {
     this.searchTerms = this.search.getCurrentSearchTerms();
   }

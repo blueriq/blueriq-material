@@ -1,6 +1,6 @@
 <div bqKey bqClasses class="search-field-container">
   <mat-form-field appearance="standard" class="search-field">
-    <mat-label>{{ caption }}</mat-label>
+    <mat-label>{{ search.caption }}</mat-label>
     <mat-chip-list #chipList>
       <mat-chip *ngFor="let searchTerm of searchTerms" [selectable]="false" [removable]="true" (removed)="remove(searchTerm)">
         {{searchTerm}}
