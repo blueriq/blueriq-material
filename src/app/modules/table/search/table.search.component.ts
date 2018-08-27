@@ -19,7 +19,7 @@ export class TableSearchComponent implements OnInit, OnUpdate {
   searchTerms: string[] = [];
   readonly separatorKeyCodes = [ENTER, COMMA];
 
-  constructor(@Self() private readonly search: Search) {
+  constructor(@Self() public readonly search: Search) {
   }
 
   ngOnInit(): void {
