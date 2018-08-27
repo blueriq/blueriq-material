@@ -53,7 +53,7 @@ describe('CommentComponent', () => {
 
     // Verify
     expect(button).toBeTruthy();
-    expect(button.innerHTML.trim()).toBe('klikme');
+    expect(button.caption.innerHTML).toContain('klikme');
   });
 
   it('button click should not have been called session pressed when value is empty', () => {
