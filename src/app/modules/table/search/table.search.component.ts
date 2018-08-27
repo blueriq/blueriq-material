@@ -1,5 +1,5 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Component, Host, OnInit, Self } from '@angular/core';
+import { Component, OnInit, Self } from '@angular/core';
 import { MatChipInputEvent } from '@angular/material';
 import { BlueriqComponent, BlueriqSession, OnUpdate } from '@blueriq/angular';
 import { Search } from '@blueriq/angular/lists';
@@ -19,17 +19,16 @@ export class TableSearchComponent implements OnInit, OnUpdate {
   searchTerms: string[] = [];
   readonly separatorKeyCodes = [ENTER, COMMA];
 
-  constructor(@Host() public container: Container,
-              public session: BlueriqSession,
-              @Self() private readonly search: Search) {
+  constructor(@Self() private readonly search: Search,
+              public session: BlueriqSession) {
   }
 
   ngOnInit(): void {
-    this.searchTerms = this.search.getCurrentSearchTerms();
+    this.searchTerms = this.search.currentSearchTerms;
   }
 
   bqOnUpdate(): void {
-    this.searchTerms = this.search.getCurrentSearchTerms();
+    this.searchTerms = this.search.currentSearchTerms;
   }
 
   add(event: MatChipInputEvent): void {
@@ -38,10 +37,8 @@ export class TableSearchComponent implements OnInit, OnUpdate {
 
     const sanitizedValue = (value || '').trim();
 
-    if (sanitizedValue) {
-      if (this.searchTerms.map(x => x.toLowerCase()).indexOf(sanitizedValue.toLowerCase()) === -1) {
-        this.searchTerms.push(sanitizedValue);
-      }
+    if (sanitizedValue && !this.searchTerms.map(x => x.toLowerCase()).includes(sanitizedValue.toLowerCase())) {
+      this.searchTerms.push(sanitizedValue);
     }
 
     // Reset the input field value
@@ -53,7 +50,7 @@ export class TableSearchComponent implements OnInit, OnUpdate {
   }
 
   remove(searchTerm: string): void {
-    this.searchTerms = this.searchTerms.filter(t => t.toLocaleLowerCase() !== searchTerm.toLocaleLowerCase());
+    this.searchTerms = this.searchTerms.filter(t => t.toLowerCase() !== searchTerm.toLowerCase());
     this.search.search(this.searchTerms);
   }
 
