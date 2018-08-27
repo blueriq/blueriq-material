@@ -1,7 +1,7 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, OnInit, Self } from '@angular/core';
 import { MatChipInputEvent } from '@angular/material';
-import { BlueriqComponent, BlueriqSession, OnUpdate } from '@blueriq/angular';
+import { BlueriqComponent, OnUpdate } from '@blueriq/angular';
 import { Search } from '@blueriq/angular/lists';
 import { Container } from '@blueriq/core';
 
@@ -19,8 +19,7 @@ export class TableSearchComponent implements OnInit, OnUpdate {
   searchTerms: string[] = [];
   readonly separatorKeyCodes = [ENTER, COMMA];
 
-  constructor(@Self() private readonly search: Search,
-              public session: BlueriqSession) {
+  constructor(@Self() private readonly search: Search) {
   }
 
   ngOnInit(): void {
