@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { BlueriqSession } from '@blueriq/angular';
+import { BlueriqSession, DashboardComment } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ButtonTemplate, ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../../material.module';
@@ -53,20 +53,7 @@ describe('CommentComponent', () => {
 
     // Verify
     expect(button).toBeTruthy();
-    expect(button.caption.innerHTML).toContain('klikme');
-  });
-
-  it('button click should not have been called session pressed when value is empty', () => {
-    // Init
-    spyOn(BlueriqSession.prototype, 'pressed');
-    const button = component.nativeElement.querySelector('button');
-
-    // SUT
-    button.click();
-    component.detectChanges();
-
-    // Verify
-    expect(BlueriqSession.prototype.pressed).not.toHaveBeenCalled();
+    expect(button.innerHTML).toContain('klikme');
   });
 
   it('button click should call session pressed when value is set', () => {
@@ -82,6 +69,6 @@ describe('CommentComponent', () => {
     component.detectChanges();
 
     // Verify
-    expect(BlueriqSession.prototype.pressed).toHaveBeenCalled();
+    expect(DashboardComment.prototype.comment).toHaveBeenCalled();
   });
 });
