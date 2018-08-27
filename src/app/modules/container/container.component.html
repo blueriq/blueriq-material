@@ -1,4 +1,4 @@
-<div bqKey bqClasses class="container {{displayMode}}" [class.alignright]="alignRight">
+<div bqKey bqClasses class="container {{displayMode}}" [ngClass]="{'alignright': this.alignRight}">
   <img *ngIf="isIntroduction()" src="./theme/images/blueriq-technology.svg">
 
   <div *ngIf="container.displayName && !table">

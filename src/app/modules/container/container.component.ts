@@ -1,6 +1,6 @@
 import { animateChild, query, transition, trigger } from '@angular/animations';
 import { Component, Host, OnInit, Optional } from '@angular/core';
-import { BlueriqComponent, FlowWidget, OnUpdate } from '@blueriq/angular';
+import { BlueriqComponent, BlueriqSession, OnUpdate } from '@blueriq/angular';
 import { Table } from '@blueriq/angular/lists';
 import { Container, Page } from '@blueriq/core';
 import { BqPresentationStyles } from '../BqPresentationStyles';
@@ -30,7 +30,7 @@ export class ContainerComponent implements OnInit, OnUpdate {
 
   constructor(@Host() public container: Container,
               @Optional() @Host() public readonly table: Table,
-              @Optional() @Host() public readonly flowWidget: FlowWidget
+              private blueriqSession: BlueriqSession
   ) {
   }
 
@@ -49,9 +49,9 @@ export class ContainerComponent implements OnInit, OnUpdate {
     this.horizontal = this.container.styles.has(BqPresentationStyles.HORIZONTAL);
     this.alignRight = this.container.styles.hasAny(BqPresentationStyles.ALIGNRIGHT)
       || this.container.styles.has(BqPresentationStyles.DEPRECATED_ALIGNRIGHT);
-    this.bigHeader = !this.flowWidget;
+    this.bigHeader = !this.blueriqSession.isWidget;
 
-    if (this.container.parent && !(this.container.parent instanceof Page) || this.flowWidget) {
+    if (this.container.parent && !(this.container.parent instanceof Page) || this.blueriqSession.isWidget) {
       // container within a container doesn't need specific styling
       this.displayMode = '';
     } else if (this.isIntroduction()) {

@@ -1,5 +1,5 @@
-import { Component, Host, Optional } from '@angular/core';
-import { BlueriqComponent, FlowWidget } from '@blueriq/angular';
+import { Component, Host } from '@angular/core';
+import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
 import { Page } from '@blueriq/core';
 
 @Component({
@@ -11,7 +11,7 @@ import { Page } from '@blueriq/core';
 })
 export class PageComponent {
   constructor(@Host() public page: Page,
-              @Optional() @Host() public readonly flowWidget: FlowWidget
+              public blueriqSession: BlueriqSession
   ) {
   }
 }
