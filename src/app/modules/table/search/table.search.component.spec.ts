@@ -8,7 +8,7 @@ import { ButtonTemplate, ContainerTemplate, FieldTemplate } from '@blueriq/core/
 import { MaterialModule } from '../../../material.module';
 import { TableSearchComponent } from './table.search.component';
 
-fdescribe('TableSearchComponent', () => {
+describe('TableSearchComponent', () => {
   let tableSearch: ContainerTemplate;
   let field: FieldTemplate;
   let button: ButtonTemplate;
