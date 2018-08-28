@@ -77,7 +77,7 @@ describe('SelectComponent', () => {
 
   it('should have a placeholder', () => {
     session.update(
-      field.placeholder('myPlaceholder'),
+      field.placeholder('myPlaceholder')
     );
     expect(component.nativeElement.querySelector('.mat-select-placeholder')).toBeTruthy();
     expect(component.nativeElement.querySelector('.mat-select-placeholder').innerText).toBe('myPlaceholder');
