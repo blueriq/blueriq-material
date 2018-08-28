@@ -10,9 +10,12 @@ import { BqPresentationStyles } from '../../BqPresentationStyles';
 })
 @BlueriqComponent({
   type: Field,
+  /* Textfield that itself or parent having the presentationstyle largetext/memo */
   selector: bySelector(
     '[dataType=text].' + BqPresentationStyles.LARGETEXT + ', ' +
-    '[dataType=text].' + BqPresentationStyles.MEMO,
+    '[dataType=text].' + BqPresentationStyles.MEMO + ', ' +
+    '.' + BqPresentationStyles.MEMO + ' > [dataType=text], ' +
+    '.' + BqPresentationStyles.LARGETEXT + ' > [dataType=text]',
     { priorityOffset: 100 })
 })
 export class TextAreaComponent {
