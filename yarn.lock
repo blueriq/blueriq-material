@@ -215,17 +215,17 @@
   dependencies:
     tslib "^1.9.0"
 
-"@blueriq/angular@0.5.0-alpha.2":
-  version "0.5.0-alpha.2"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn-local/@blueriq/angular/-/@blueriq/angular-0.5.0-alpha.2.tgz#dc229664d4801b00ce61d9355d5a7702a8d53574"
+"@blueriq/angular@0.5.0-alpha.3":
+  version "0.5.0-alpha.3"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn-local/@blueriq/angular/-/@blueriq/angular-0.5.0-alpha.3.tgz#2498961b6589bc0d5a22b4396e75867791721534"
   dependencies:
     date-fns "2.0.0-alpha.7"
     stable "0.1.7"
     tslib "^1.7.1"
 
-"@blueriq/core@0.5.0-alpha.2":
-  version "0.5.0-alpha.2"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn-local/@blueriq/core/-/@blueriq/core-0.5.0-alpha.2.tgz#d24353d89e024c68b64cf271649e1f04c93cc337"
+"@blueriq/core@0.5.0-alpha.3":
+  version "0.5.0-alpha.3"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn-local/@blueriq/core/-/@blueriq/core-0.5.0-alpha.3.tgz#b33d391e3e2ff0c9a40d64cb1c5c9c96188ea98e"
   dependencies:
     css-selector-parser "1.3.0"
     date-fns "2.0.0-alpha.7"
