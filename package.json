@@ -7,6 +7,7 @@
     "start": "ng serve --open --host 0.0.0.0 --proxy-config proxy.conf.json",
     "start:nolive": "ng serve --open --host 0.0.0.0 --proxy-config proxy.conf.json --live-reload false --watch false",
     "build": "ng build --prod",
+    "build:runtime": "ng build --prod -c runtime",
     "test": "ng test",
     "lint": "yarn tslint && yarn sass-lint",
     "tslint": "ng lint",
