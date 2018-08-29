@@ -1,9 +1,10 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Component, OnInit, Self } from '@angular/core';
+import { Component, OnDestroy, OnInit, Self } from '@angular/core';
 import { MatChipInputEvent } from '@angular/material';
-import { BlueriqComponent, OnUpdate } from '@blueriq/angular';
+import { BlueriqComponent } from '@blueriq/angular';
 import { Search } from '@blueriq/angular/lists';
 import { Container } from '@blueriq/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   templateUrl: './table.search.component.html',
@@ -13,20 +14,19 @@ import { Container } from '@blueriq/core';
   type: Container,
   selector: '#searchContainer',
 })
-export class TableSearchComponent implements OnInit, OnUpdate {
+export class TableSearchComponent implements OnInit, OnDestroy {
 
   searchTerms: string[] = [];
   readonly separatorKeyCodes = [ENTER, COMMA];
+  private subscription: Subscription;
 
   constructor(@Self() public readonly search: Search) {
   }
 
   ngOnInit(): void {
-    this.searchTerms = this.search.currentSearchTerms;
-  }
-
-  bqOnUpdate(): void {
-    this.searchTerms = this.search.currentSearchTerms;
+    this.subscription = this.search.searchTerms$.subscribe((updatedSearchTerms) => {
+      this.searchTerms = updatedSearchTerms;
+    });
   }
 
   add(event: MatChipInputEvent): void {
@@ -54,6 +54,10 @@ export class TableSearchComponent implements OnInit, OnUpdate {
 
   doSearch(): void {
     this.search.search(this.searchTerms);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }

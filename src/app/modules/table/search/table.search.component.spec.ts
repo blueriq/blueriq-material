@@ -19,14 +19,14 @@ describe('TableSearchComponent', () => {
     TestBed.configureTestingModule({
       declarations: [TableSearchComponent],
       providers: [
-        BlueriqComponents.register([TableSearchComponent]),
+        BlueriqComponents.register([TableSearchComponent])
       ],
       imports: [
         MaterialModule,
         NoopAnimationsModule,
         BlueriqTestingModule,
-        FormsModule,
-      ],
+        FormsModule
+      ]
     });
   });
 
@@ -43,11 +43,11 @@ describe('TableSearchComponent', () => {
     .contentStyle('table')
     .children(field, button);
 
+    session = BlueriqSessionTemplate.create().build(tableSearch);
+    component = session.get(TableSearchComponent);
   });
 
   it('should render', () => {
-    session = BlueriqSessionTemplate.create().build(tableSearch);
-    component = session.get(TableSearchComponent);
 
     expect(component.nativeElement.querySelector('mat-label').innerText).toBe('Zoeken');
     expect(component.nativeElement.querySelector('mat-chip-list')).toBeTruthy();
@@ -55,17 +55,14 @@ describe('TableSearchComponent', () => {
   });
 
   it('should render multiple chips', () => {
-    field.value(['term1', 'term2', 'term3']);
-    session = BlueriqSessionTemplate.create().build(tableSearch);
-    component = session.get(TableSearchComponent);
+    session.update(
+      field.value(['term1', 'term2', 'term3'])
+    );
 
     expect(component.nativeElement.querySelectorAll('mat-chip').length).toBe(3);
   });
 
   it('should add a search term', () => {
-    session = BlueriqSessionTemplate.create().build(tableSearch);
-    component = session.get(TableSearchComponent);
-
     const searchInput = component.nativeElement.querySelector('input');
 
     component.componentInstance.add({ 'input': searchInput, 'value': 'term1' });
@@ -73,9 +70,6 @@ describe('TableSearchComponent', () => {
   });
 
   it('should not add a search term if a term with different casing is already present', () => {
-    session = BlueriqSessionTemplate.create().build(tableSearch);
-    component = session.get(TableSearchComponent);
-
     const searchInput = component.nativeElement.querySelector('input');
 
     component.componentInstance.add({ 'input': searchInput, 'value': 'term1' });
@@ -85,11 +79,10 @@ describe('TableSearchComponent', () => {
   });
 
   it('should remove a search term', () => {
-    field.value(['term1', 'term2', 'term3']);
-    session = BlueriqSessionTemplate.create().build(tableSearch);
-    component = session.get(TableSearchComponent);
+    session.update(
+      field.value(['term1', 'term2', 'term3'])
+    );
 
-    const searchInput = component.nativeElement.querySelector('input');
     expect(component.componentInstance.searchTerms.length).toBe(3);
 
     component.componentInstance.remove('term2');
@@ -97,11 +90,9 @@ describe('TableSearchComponent', () => {
   });
 
   it('should remove a search term even in different casing', () => {
-    field.value(['term1', 'term2', 'term3']);
-    session = BlueriqSessionTemplate.create().build(tableSearch);
-    component = session.get(TableSearchComponent);
-
-    const searchInput = component.nativeElement.querySelector('input');
+    session.update(
+      field.value(['term1', 'term2', 'term3'])
+    );
     expect(component.componentInstance.searchTerms.length).toBe(3);
 
     component.componentInstance.remove('TERM2');
@@ -109,9 +100,9 @@ describe('TableSearchComponent', () => {
   });
 
   it('should not add an empty search term', () => {
-    field.value(['term1', 'term2', 'term3']);
-    session = BlueriqSessionTemplate.create().build(tableSearch);
-    component = session.get(TableSearchComponent);
+    session.update(
+      field.value(['term1', 'term2', 'term3'])
+    );
     const searchInput = component.nativeElement.querySelector('input');
 
     component.componentInstance.add({ 'input': searchInput, 'value': '' });
