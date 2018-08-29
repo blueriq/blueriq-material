@@ -1,3 +1,5 @@
 ### Table search
-For an overview of the table search component you can find the information here on the page below: https://material.angular.io/components/table/examples
-There are no presentation styles for the table search component 
+This component allows the user to search the contents of an Instance List,
+
+### Presentation Styles
+There are no presentation styles available that impact the behavior of the table search component.
