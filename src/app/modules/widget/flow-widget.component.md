@@ -1,8 +1,5 @@
 ### Dashboard flow widget
-This component will be rendered when it matches with a `AQ_Dashboard_FlowWidget`. 
-The chosen Display name will be shown on top of the flow widget.
+This component will be rendered for a container with the `AQ_Dashboard_FlowWidget` container type. 
+The modeled display name will be shown at the top of the flow widget.
 
-All containers that should be displayed within this widget will be displayed on one paper view, instead of 'paper per container'
-
-### ContainerType
-Having a container with Container type `AQ_Dashboard_FlowWidget`. 
+All containers that should be displayed within this widget will be displayed on one paper view, instead of using a 'paper per container'
