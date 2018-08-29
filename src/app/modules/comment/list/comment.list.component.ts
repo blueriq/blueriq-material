@@ -1,7 +1,8 @@
 import { Component, Self } from '@angular/core';
-import { BlueriqComponent, DashboardCommentList } from '@blueriq/angular';
+import { BlueriqComponent, BlueriqSession, DashboardCommentList } from '@blueriq/angular';
 import { Container } from '@blueriq/core';
 import * as moment from 'moment';
+import { parseBqDateTimePattern, parseBqLocale } from '../../../configuration/date/bq-date-parser';
 
 @Component({
   selector: 'bq-comment-list',
@@ -15,15 +16,16 @@ import * as moment from 'moment';
 })
 export class CommentListComponent {
 
-  constructor(@Self() public readonly commentList: DashboardCommentList) {
+  constructor(@Self() public readonly commentList: DashboardCommentList, private readonly session: BlueriqSession) {
   }
 
   dateToReadableFormat(date: Date): string {
-    const mdate = moment(date);
-    if (moment().diff(mdate, 'days') >= 6) {
-      return mdate.format('MMMM Do YYYY, hh:mm');
+    moment.locale(parseBqLocale(this.session);
+    const bqDateTime = parseBqDateTimePattern(this.session);
+    const mdate = moment(date, bqDateTime.dateTimePattern);
+    if (moment().diff(mdate, 'days') >= 7) {
+      return mdate.format('LLL');
     }
     return mdate.fromNow(false);
   }
-
 }
