@@ -7,7 +7,6 @@ import { Container } from '@blueriq/core';
 
 @Component({
   templateUrl: './table.search.component.html',
-  styleUrls: ['./table.search.component.scss'],
   providers: [Search],
 })
 @BlueriqComponent({

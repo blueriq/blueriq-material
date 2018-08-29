@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,26 +18,27 @@ const TABLE_COMPONENTS = [
   TableSearchComponent,
   TableSortComponent,
   TableHeaderComponent,
-  TablePaginationComponent
+  TablePaginationComponent,
 ];
 
 @NgModule({
   declarations: [
-    TABLE_COMPONENTS
+    TABLE_COMPONENTS,
   ],
   providers: [
-    BlueriqComponents.register(TABLE_COMPONENTS)
+    BlueriqComponents.register(TABLE_COMPONENTS),
   ],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
     BlueriqCommonModule,
     CommonModule,
+    FlexLayoutModule,
     SharedModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
   ],
-  exports: [TABLE_COMPONENTS]
+  exports: [TABLE_COMPONENTS],
 })
 export class TableModule {
 }
