@@ -75,6 +75,14 @@ describe('SelectComponent', () => {
     expect(component.nativeElement.querySelector('mat-hint').innerHTML).toContain('explaining it');
   });
 
+  it('should have a placeholder', () => {
+    session.update(
+      field.placeholder('myPlaceholder')
+    );
+    expect(component.nativeElement.querySelector('.mat-select-placeholder')).toBeTruthy();
+    expect(component.nativeElement.querySelector('.mat-select-placeholder').innerText).toBe('myPlaceholder');
+  });
+
   it('should have a error', () => {
     expect(component.nativeElement.querySelector('mat-error')).toBeFalsy();
     component.componentInstance.formControl.markAsTouched();

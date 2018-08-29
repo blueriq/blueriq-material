@@ -5,19 +5,19 @@
     <div class="mat-paginator-range-label">{{pagination.currentPageNumber}} of {{pagination.numberOfPages}}</div>
 
     <!-- Previous/Next -->
-    <button class="mat-paginator-navigation-first mat-icon-button" mat-icon-button [disabled]="pagination.first.disabled" [bqButton]="pagination.first">
+    <button class="mat-paginator-navigation-first mat-icon-button" mat-icon-button [disabled]="pagination.first.disabled" [bqButton]="pagination.first" matTooltip="First page">
       <mat-icon>first_page</mat-icon>
     </button>
-    <button class="mat-paginator-navigation-previous mat-icon-button" mat-icon-button [disabled]="pagination.previous.disabled" [bqButton]="pagination.previous">
+    <button class="mat-paginator-navigation-previous mat-icon-button" mat-icon-button [disabled]="pagination.previous.disabled" [bqButton]="pagination.previous" matTooltip="Previous page">
       <mat-icon>navigate_before</mat-icon>
     </button>
-    <button class="mat-paginator-navigation-next mat-icon-button" mat-icon-button [disabled]="pagination.next.disabled" [bqButton]="pagination.next">
+    <button class="mat-paginator-navigation-next mat-icon-button" mat-icon-button [disabled]="pagination.next.disabled" [bqButton]="pagination.next" matTooltip="Next page">
       <mat-icon>navigate_next</mat-icon>
     </button>
-    <button class="mat-paginator-navigation-last mat-icon-button" mat-icon-button [disabled]="pagination.last.disabled" [bqButton]="pagination.last">
+    <button class="mat-paginator-navigation-last mat-icon-button" mat-icon-button [disabled]="pagination.last.disabled" [bqButton]="pagination.last" matTooltip="Last page">
       <mat-icon>last_page</mat-icon>
     </button>
-    <button class="mat-paginator-navigation-last mat-icon-button" mat-icon-button *ngIf="pagination.clear" [bqButton]="pagination.clear">
+    <button class="mat-paginator-navigation-last mat-icon-button" mat-icon-button *ngIf="pagination.clear" [bqButton]="pagination.clear" matTooltip="Clear filter">
       <mat-icon>clear</mat-icon>
     </button>
 
