@@ -1,15 +1,14 @@
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatDateFormats } from '@angular/material';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { BlueriqSession } from '@blueriq/angular';
+import { parseBqDatePattern, parseBqLocale } from '../../../../configuration/date/bq-date-parser';
 
 export function localeFactory(session: BlueriqSession): string {
-  return session.language.languageCode;
+  return parseBqLocale(session);
 }
 
 export function dateFormatFactory(session: BlueriqSession): MatDateFormats {
-  const datePattern = (session.language.patterns.date || 'DD-MM-YYYY')
-  // year, month and date are all uppercase
-  .toUpperCase();
+  const datePattern = parseBqDatePattern(session);
   return {
     parse: {
       dateInput: datePattern
