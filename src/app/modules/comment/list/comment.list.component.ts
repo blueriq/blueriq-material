@@ -20,7 +20,7 @@ export class CommentListComponent {
   }
 
   dateToReadableFormat(date: Date): string {
-    moment.locale(parseBqLocale(this.session);
+    moment.locale(parseBqLocale(this.session));
     const bqDateTime = parseBqDateTimePattern(this.session);
     const mdate = moment(date, bqDateTime.dateTimePattern);
     if (moment().diff(mdate, 'days') >= 7) {
