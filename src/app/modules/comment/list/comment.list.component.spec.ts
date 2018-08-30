@@ -53,7 +53,7 @@ describe('CommentListComponent', () => {
     expect(headers[2].innerHTML).toContain('title1');
   });
 
-  fit('should contain correct date', () => {
+  it('should contain correct date', () => {
     // init
     const dates = component.nativeElement.querySelectorAll('.date');
 
@@ -75,7 +75,7 @@ describe('CommentListComponent', () => {
     expect(comments[2].innerHTML).toBe('end case');
   });
 
-  fit('should parse the date correctly', () => {
+  it('should parse the date correctly', () => {
     // init
     const commentListComponent: CommentListComponent = component.componentInstance;
 
