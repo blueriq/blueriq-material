@@ -1,6 +1,6 @@
 import { Component, Host } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { BlueriqComponent, BlueriqComponents, SessionRegistry } from '@blueriq/angular';
+import { BlueriqComponent, BlueriqComponents, FailedAction, SessionRegistry } from '@blueriq/angular';
 import {
   BlueriqSessionTemplate,
   BlueriqTestingModule,
@@ -66,6 +66,20 @@ fdescribe('FlowWidgetComponent', () => {
     // Verify
     expect(header2.innerHTML).toEqual('Container display name');
     expect(widgetSessionSpan.innerHTML).toEqual('Widget display name');
+  });
+
+  it('should display an error message when widget fails to load', () => {
+    const bqError: FailedAction = { error: { cause: { message: 'whoops' } }, type: 'some_error' };
+    component.componentInstance.bqError = bqError;
+    component.detectChanges();
+
+    const widgetSessionSpan = component.nativeElement.querySelector('#widgetSessionDisplayName');
+    const errorElement = component.nativeElement.querySelector('mat-error');
+
+    // Verify 
+    expect(widgetSessionSpan).toBeFalsy();
+    expect(errorElement).toBeTruthy();
+    expect(errorElement.innerText.trim()).toBe('whoops');
   });
 
 });
