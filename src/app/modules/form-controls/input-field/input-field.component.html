@@ -3,7 +3,7 @@
     <span matPrefix *ngIf="fieldPrefix">{{fieldPrefix}}</span>
     <span matPrefix *ngIf="iconPrefix"><mat-icon>{{iconPrefix}}</mat-icon></span>
     <mat-label>{{field.questionText}}</mat-label>
-    <input matInput type="text" [required]="field.required" [formControl]="formControl">
+    <input matInput type="text" [placeholder]="field.placeholder" [required]="field.required" [formControl]="formControl">
     <span matSuffix *ngIf="fieldSuffix">{{fieldSuffix}}</span>
     <mat-hint>{{field.explainText}}</mat-hint>
     <mat-error *ngFor="let msg of getErrors()">{{msg.text}}</mat-error>

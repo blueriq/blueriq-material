@@ -1,16 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
 import { BlueriqTestSession } from '@blueriq/angular/testing/src/test_session';
-import { ContainerTemplate } from '@blueriq/core/testing';
+import { ButtonTemplate, ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../../../material.module';
-
 import { TableSearchComponent } from './table.search.component';
 
 describe('TableSearchComponent', () => {
-  let tableTemplate: ContainerTemplate;
+  let tableSearch: ContainerTemplate;
+  let field: FieldTemplate;
+  let button: ButtonTemplate;
   let session: BlueriqTestSession;
   let component: ComponentFixture<TableSearchComponent>;
 
@@ -22,7 +23,7 @@ describe('TableSearchComponent', () => {
       ],
       imports: [
         MaterialModule,
-        BrowserAnimationsModule, // or NoopAnimationsModule
+        NoopAnimationsModule,
         BlueriqTestingModule,
         FormsModule
       ]
@@ -30,19 +31,83 @@ describe('TableSearchComponent', () => {
   });
 
   beforeEach(() => {
-    tableTemplate = ContainerTemplate.create('searchContainer');
-    tableTemplate.contentStyle('table');
-    session = BlueriqSessionTemplate.create().build(tableTemplate);
+    field = FieldTemplate.text('searchField')
+    .value([])
+    .styles('searchField');
+
+    button = ButtonTemplate.create('searchButton')
+    .styles('searchButton')
+    .caption('Zoeken');
+
+    tableSearch = ContainerTemplate.create('searchContainer')
+    .contentStyle('table')
+    .children(field, button);
+
+    session = BlueriqSessionTemplate.create().build(tableSearch);
     component = session.get(TableSearchComponent);
   });
 
-  it('should have been created', () => {
-    expect(component).toBeTruthy();
+  it('should render', () => {
+
+    expect(component.nativeElement.querySelector('mat-label').innerText).toBe('Zoeken');
+    expect(component.nativeElement.querySelector('mat-chip-list')).toBeTruthy();
+    expect(component.nativeElement.querySelector('mat-chip')).toBeFalsy();
   });
 
-  it('should have no content', () => {
-    // Since only the instanceList is implemented and the instancelist has no search container, we expect this to be so.
-    expect(component.nativeElement.innerHTML).toBe('');
+  it('should render multiple chips', () => {
+    session.update(
+      field.value(['term1', 'term2', 'term3'])
+    );
+
+    expect(component.nativeElement.querySelectorAll('mat-chip').length).toBe(3);
+  });
+
+  it('should add a search term', () => {
+    const searchInput = component.nativeElement.querySelector('input');
+
+    component.componentInstance.add({ 'input': searchInput, 'value': 'term1' });
+    expect(component.componentInstance.searchTerms.length).toBe(1);
+  });
+
+  it('should not add a search term if a term with different casing is already present', () => {
+    const searchInput = component.nativeElement.querySelector('input');
+
+    component.componentInstance.add({ 'input': searchInput, 'value': 'term1' });
+    expect(component.componentInstance.searchTerms.length).toBe(1);
+    component.componentInstance.add({ 'input': searchInput, 'value': 'TERM1' });
+    expect(component.componentInstance.searchTerms.length).toBe(1);
+  });
+
+  it('should remove a search term', () => {
+    session.update(
+      field.value(['term1', 'term2', 'term3'])
+    );
+
+    expect(component.componentInstance.searchTerms.length).toBe(3);
+
+    component.componentInstance.remove('term2');
+    expect(component.componentInstance.searchTerms.length).toBe(2);
+  });
+
+  it('should remove a search term even in different casing', () => {
+    session.update(
+      field.value(['term1', 'term2', 'term3'])
+    );
+    expect(component.componentInstance.searchTerms.length).toBe(3);
+
+    component.componentInstance.remove('TERM2');
+    expect(component.componentInstance.searchTerms.length).toBe(2);
+  });
+
+  it('should not add an empty search term', () => {
+    session.update(
+      field.value(['term1', 'term2', 'term3'])
+    );
+    const searchInput = component.nativeElement.querySelector('input');
+
+    component.componentInstance.add({ 'input': searchInput, 'value': '' });
+    expect(component.componentInstance.searchTerms.length).toBe(3);
+
   });
 
 });

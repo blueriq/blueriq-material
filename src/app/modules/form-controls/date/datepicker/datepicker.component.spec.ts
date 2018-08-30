@@ -48,6 +48,14 @@ describe('DatepickerComponent', () => {
     expect(component.nativeElement.querySelector('mat-hint').innerHTML).toContain('explaining it');
   });
 
+  it('should have a placeholder', () => {
+    session.update(
+      field.placeholder('myPlaceholder')
+    );
+    expect(component.nativeElement.querySelector('input[placeholder]')).toBeTruthy();
+    expect(component.nativeElement.querySelector('input').getAttribute('placeholder')).toBe('myPlaceholder');
+  });
+
   it('should have an error', () => {
     expect(component.nativeElement.querySelector('mat-error')).toBeFalsy();
     component.componentInstance.formControl.markAsTouched();
