@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { BlueriqSession, DashboardComment } from '@blueriq/angular';
+import { DashboardComment } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ButtonTemplate, ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../../material.module';
@@ -56,9 +56,9 @@ describe('CommentComponent', () => {
     expect(button.innerHTML).toContain('klikme');
   });
 
-  it('button click should call session pressed when value is set', () => {
+  it('button click should call comment()', () => {
     // Init
-    spyOn(BlueriqSession.prototype, 'pressed');
+    const commentSpy = spyOn(DashboardComment.prototype, 'comment');
     const button = component.nativeElement.querySelector('button');
     session.update(
       commentField.value('this is my first comment')
@@ -69,6 +69,6 @@ describe('CommentComponent', () => {
     component.detectChanges();
 
     // Verify
-    expect(DashboardComment.prototype.comment).toHaveBeenCalled();
+    expect(commentSpy).toHaveBeenCalled();
   });
 });

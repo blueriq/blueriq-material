@@ -23,8 +23,8 @@ describe('CommentListComponent', () => {
     container = ContainerTemplate.create()
     .contentStyle('commentlist')
     .children(
-      generateCommentEntry('hello', '2012-12-12', 'title1', 'Tilly'),
-      generateCommentEntry('done things', '2014-12-12', 'title2', 'Tine'),
+      generateCommentEntry('hello', new Date('2012-12-12'), 'title1', 'Tilly'),
+      generateCommentEntry('done things', new Date('2014-12-12'), 'title2', 'Tine'),
       generateCommentEntry('end case', new Date(), 'title1', 'Double G')
     );
     session = BlueriqSessionTemplate.create().build(container);
@@ -53,14 +53,14 @@ describe('CommentListComponent', () => {
     expect(headers[2].innerHTML).toContain('title1');
   });
 
-  it('should contain correct date', () => {
+  fit('should contain correct date', () => {
     // init
     const dates = component.nativeElement.querySelectorAll('.date');
 
     // verify
     expect(dates.length).toBe(3);
-    expect(dates[0].innerHTML).toBe(moment('2012-12-12').format('MMMM Do YYYY, hh:mm'));
-    expect(dates[1].innerHTML).toBe(moment('2014-12-12').format('MMMM Do YYYY, hh:mm'));
+    expect(dates[0].innerHTML).toBe(moment(new Date('2012-12-12')).format('LLL'));
+    expect(dates[1].innerHTML).toBe(moment(new Date('2014-12-12')).format('LLL'));
     expect(dates[2].innerHTML).toBe(moment(new Date()).fromNow(false));
   });
 
@@ -75,7 +75,7 @@ describe('CommentListComponent', () => {
     expect(comments[2].innerHTML).toBe('end case');
   });
 
-  it('should parse the date correctly', () => {
+  fit('should parse the date correctly', () => {
     // init
     const commentListComponent: CommentListComponent = component.componentInstance;
 
@@ -85,7 +85,7 @@ describe('CommentListComponent', () => {
 
     // Verify
     expect(now).toBe(moment(new Date()).fromNow(false));
-    expect(longTimeAgo).toBe(moment(new Date('2010-12-12')).format('MMMM Do YYYY, hh:mm'));
+    expect(longTimeAgo).toBe(moment(new Date('2010-12-12')).format('LLL'));
   });
 
   it('should contain 3 parsed CommentEntries', () => {

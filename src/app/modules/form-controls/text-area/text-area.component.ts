@@ -14,8 +14,9 @@ import { BqPresentationStyles } from '../../BqPresentationStyles';
   selector: bySelector(
     '[dataType=text].' + BqPresentationStyles.LARGETEXT + ', ' +
     '[dataType=text].' + BqPresentationStyles.MEMO + ', ' +
-    '.' + BqPresentationStyles.MEMO + ' > [dataType=text], ' +
-    '.' + BqPresentationStyles.LARGETEXT + ' > [dataType=text]',
+    'storecomment > [dataType=text]',
+    // '.' + BqPresentationStyles.MEMO + ' > [dataType=text], ' +
+    // '.' + BqPresentationStyles.LARGETEXT + ' > [dataType=text]',
     { priorityOffset: 100 })
 })
 export class TextAreaComponent {
