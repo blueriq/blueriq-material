@@ -3,9 +3,9 @@ import { BlueriqSession } from '@blueriq/angular';
 export const DEFAULT_DATE_PATTERN = 'DD-MM-YYYY';
 export const DEFAULT_DATETIME_PATTERN = 'DD-MM-YYYY HH:mm:ss';
 
-export interface bqDateTime {
-  datePattern: string,
-  timePattern: string,
+export interface BqDateTime {
+  datePattern: string;
+  timePattern: string;
   dateTimePattern: string;
 }
 
@@ -47,10 +47,10 @@ export function parseBqDatePattern(session: BlueriqSession): string {
  *
  * Note that only 24 hour notation is supported, AM/PM is not supported
  *
- * @returns {bqDateTime} an object that contains date, time and datetime patterns in ISO 8601 format
+ * @returns {BqDateTime} an object that contains date, time and datetime patterns in ISO 8601 format
  * @param {BlueriqSession} session the current session containing the datetime patterns
  */
-export function parseBqDateTimePattern(session: BlueriqSession): bqDateTime {
+export function parseBqDateTimePattern(session: BlueriqSession): BqDateTime {
   const dateTimePattern = session.language.patterns.datetime || DEFAULT_DATETIME_PATTERN;
 
   let parts = dateTimePattern.split(' ');
