@@ -1,7 +1,7 @@
 <p>
   <mat-form-field bqKey fxFlex bqClasses appearance="fill">
     <mat-label>{{field.questionText}}</mat-label>
-    <mat-select [required]="field.required" [formControl]="formControl" [multiple]="field.multiValued">
+    <mat-select [required]="field.required" [formControl]="formControl" [multiple]="field.multiValued" [placeholder]="field.placeholder">
       <mat-option *ngIf="!field.multiValued"></mat-option>
       <mat-option *ngFor="let option of getOptions()" [value]="option.value">
         {{ option.displayValue }}

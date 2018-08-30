@@ -24,7 +24,7 @@ class MockPageComponent {
   }
 }
 
-describe('FlowWidgetComponent', () => {
+fdescribe('FlowWidgetComponent', () => {
   let container: ContainerTemplate;
   let component: ComponentFixture<FlowWidgetComponent>;
   let session: BlueriqTestSession;
