@@ -1,5 +1,5 @@
 import { Component, Host, Self } from '@angular/core';
-import { BlueriqComponent, FlowWidget } from '@blueriq/angular';
+import { BlueriqComponent, FailedAction, FlowWidget } from '@blueriq/angular';
 import { Container } from '@blueriq/core';
 
 @Component({
@@ -13,8 +13,13 @@ import { Container } from '@blueriq/core';
 })
 export class FlowWidgetComponent {
 
+  bqError: FailedAction;
+
   constructor(@Host() public widget: Container,
               @Self() public flowWidget: FlowWidget) {
   }
 
+  getErrorMessage(): string {
+    return this.bqError.error.cause.message;
+  }
 }

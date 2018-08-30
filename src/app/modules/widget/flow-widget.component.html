@@ -1,4 +1,10 @@
 <div class="elevate">
   <h2 *ngIf="widget.displayName">{{widget.displayName}}</h2>
-  <bq-session [sessionName]="flowWidget.sessionName"></bq-session>
+  <bq-session *ngIf="!bqError" [sessionName]="flowWidget.sessionName" (error)="bqError=$event"></bq-session>
+  <div *ngIf="bqError">
+    <mat-error fxLayout="row" fxLayoutAlign=" center">
+      <mat-icon>error</mat-icon>
+      {{getErrorMessage()}}
+    </mat-error>
+  </div>
 </div>
