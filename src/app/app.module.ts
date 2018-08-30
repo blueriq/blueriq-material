@@ -19,6 +19,7 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
 import { AssetComponent } from './modules/asset/asset.component';
 import { ButtonComponent } from './modules/button/button.component';
+import { CommentModule } from './modules/comment/comment.module';
 import { ContainerComponent } from './modules/container/container.component';
 import { ErrorComponent } from './modules/error/error.component';
 import { FileModule } from './modules/file/file.modules';
@@ -83,7 +84,8 @@ const BQ_COMPONENTS = [
     FormControlModule,
     MenuModule,
     TextItemModule,
-    TableModule
+    TableModule,
+    CommentModule
   ],
   exports: [
     LoadingComponent
