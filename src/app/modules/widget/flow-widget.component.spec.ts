@@ -24,7 +24,7 @@ class MockPageComponent {
   }
 }
 
-fdescribe('FlowWidgetComponent', () => {
+describe('FlowWidgetComponent', () => {
   let container: ContainerTemplate;
   let component: ComponentFixture<FlowWidgetComponent>;
   let session: BlueriqTestSession;
@@ -76,10 +76,10 @@ fdescribe('FlowWidgetComponent', () => {
     const widgetSessionSpan = component.nativeElement.querySelector('#widgetSessionDisplayName');
     const errorElement = component.nativeElement.querySelector('mat-error');
 
-    // Verify 
+    // Verify
     expect(widgetSessionSpan).toBeFalsy();
     expect(errorElement).toBeTruthy();
-    expect(errorElement.innerText.trim()).toBe('whoops');
+    expect(errorElement.innerText).toContain('whoops');
   });
 
 });
