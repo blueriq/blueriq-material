@@ -50,7 +50,7 @@ describe('TableSearchComponent', () => {
   it('should render', () => {
     expect(component.nativeElement.querySelector('mat-form-field')).toBeFalsy();
     expect(component.nativeElement.querySelector('button')).toBeTruthy();
-    expect(component.nativeElement.querySelector('button mat-icon').innerText).toBe('search');
+    expect(component.nativeElement.querySelector('button mat-icon').innerText).toMatch(/^search$/i);
   });
 
   it('should show empty search field on button click', () => {
