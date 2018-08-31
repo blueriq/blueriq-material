@@ -1,6 +1,6 @@
 import { animateChild, query, transition, trigger } from '@angular/animations';
 import { Component, Host, OnInit, Optional } from '@angular/core';
-import { BlueriqComponent, OnUpdate } from '@blueriq/angular';
+import { BlueriqComponent, BlueriqSession, OnUpdate } from '@blueriq/angular';
 import { Table } from '@blueriq/angular/lists';
 import { Container, Page } from '@blueriq/core';
 import { BqPresentationStyles } from '../BqPresentationStyles';
@@ -27,7 +27,14 @@ export class ContainerComponent implements OnInit, OnUpdate {
   public horizontal = false;
   public alignRight = false;
 
-  constructor(@Host() public container: Container, @Optional() @Host() public readonly table: Table) {
+  constructor(@Host() public container: Container,
+              @Optional() @Host() public readonly table: Table,
+              private blueriqSession: BlueriqSession
+  ) {
+  }
+
+  get isWidget(): boolean {
+    return this.blueriqSession.isWidget;
   }
 
   ngOnInit() {
@@ -38,15 +45,19 @@ export class ContainerComponent implements OnInit, OnUpdate {
     this.determineDisplayStyle();
   }
 
+  isIntroduction(): boolean {
+    return this.container.styles.has(BqPresentationStyles.INTRODUCTION);
+  }
+
   /**
    * Finds presentation styles to determine the look-and-feel of the container
    */
   private determineDisplayStyle() {
     this.horizontal = this.container.styles.has(BqPresentationStyles.HORIZONTAL);
-    this.alignRight = this.container.styles.hasAny(
-      BqPresentationStyles.ALIGNRIGHT, BqPresentationStyles.DEPRECATED_ALIGNRIGHT);
+    this.alignRight = this.container.styles.hasAny(BqPresentationStyles.ALIGNRIGHT,
+      BqPresentationStyles.DEPRECATED_ALIGNRIGHT);
 
-    if (this.container.parent && !(this.container.parent instanceof Page)) {
+    if (this.container.parent && !(this.container.parent instanceof Page) || this.blueriqSession.isWidget) {
       // container within a container doesn't need specific styling
       this.displayMode = '';
     } else if (this.isIntroduction()) {
@@ -57,9 +68,4 @@ export class ContainerComponent implements OnInit, OnUpdate {
       this.displayMode = 'card';
     }
   }
-
-  isIntroduction(): boolean {
-    return this.container.styles.has(BqPresentationStyles.INTRODUCTION);
-  }
-
 }

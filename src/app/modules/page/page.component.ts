@@ -1,5 +1,5 @@
 import { Component, Host } from '@angular/core';
-import { BlueriqComponent } from '@blueriq/angular';
+import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
 import { Page } from '@blueriq/core';
 
 @Component({
@@ -10,6 +10,8 @@ import { Page } from '@blueriq/core';
   type: Page
 })
 export class PageComponent {
-  constructor(@Host() public page: Page) {
+  constructor(@Host() public page: Page,
+              public blueriqSession: BlueriqSession
+  ) {
   }
 }

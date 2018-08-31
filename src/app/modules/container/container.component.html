@@ -1,10 +1,14 @@
-<div bqKey bqClasses class="container {{displayMode}}" [class.alignright]="alignRight">
+<div bqKey bqClasses class="container {{displayMode}}" [ngClass]="{'alignright': this.alignRight}">
   <img *ngIf="isIntroduction()" src="./theme/images/blueriq-technology.svg">
-  <h2 *ngIf="container.displayName && !table">{{ container.displayName }}</h2>
+
+  <div *ngIf="container.displayName && !table">
+    <h2 [class.widget]="isWidget">{{ container.displayName }}</h2>
+  </div>
 
   <div *ngIf="!horizontal">
     <ng-container *ngFor="let child of container.children | bqUnmarked" [bqElement]="child"></ng-container>
   </div>
+
   <div *ngIf="horizontal" class="grid">
     <div *ngFor="let child of container.children | bqUnmarked" class="grid-item">
       <ng-container [bqElement]="child"></ng-container>
