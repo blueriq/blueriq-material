@@ -102,7 +102,9 @@
             "karmaConfig": "src/karma.conf.js",
             "codeCoverageExclude": [
               "**/error.effects.ts",
-              "**/custom-file-uploader.ts"
+              "**/custom-file-uploader.ts",
+              "**/BqPresentationStyles.ts",
+              "**/datepicker.material.ts"
             ],
             "styles": [
               "src/styles.scss"

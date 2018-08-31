@@ -1,4 +1,5 @@
 @import '~@angular/material/theming';
+@import './variables';
 
 html,
 body {
@@ -8,7 +9,6 @@ body {
 body {
   margin: 0;
   padding: 0;
-
   background: map-get($mat-gray, 200);
   font-family: $bq-font-family;
 }
@@ -16,6 +16,7 @@ body {
 h1,
 h2,
 h3 {
+  margin-top: 0;
   color: $bg-header-color;
   font-weight: 400;
 }

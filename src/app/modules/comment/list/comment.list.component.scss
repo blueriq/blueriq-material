@@ -1,0 +1,27 @@
+@import 'globals/variables';
+
+.header {
+  margin-bottom: $bq-margin-half;
+
+  .title {
+    margin-left: $bq-margin-half;
+    color: $dark-secondary-text;
+  }
+}
+
+.mat-card-subtitle {
+  align-items: center;
+  justify-content: center;
+}
+
+.date {
+  font-size: 11px;
+}
+
+.comment {
+  white-space: pre-line;
+}
+
+.space {
+  margin: $bq-margin 0;
+}

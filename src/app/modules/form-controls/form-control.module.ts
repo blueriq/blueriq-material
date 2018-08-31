@@ -23,6 +23,7 @@ import { CheckboxComponent } from './selection-control/checkbox/checkbox.compone
 import { RadioButtonComponent } from './selection-control/radio-button/radio-button.component';
 import { SelectionControlComponent } from './selection-control/selection-control.component';
 import { SlideToggleComponent } from './selection-control/slide-toggle/slide-toggle.component';
+import { TextAreaComponent } from './text-area/text-area.component';
 
 const FORM_CONTROL_COMPONENTS = [
   CheckboxComponent,
@@ -35,6 +36,7 @@ const FORM_CONTROL_COMPONENTS = [
   CurrencyFieldComponent,
   SlideToggleComponent,
   SelectComponent,
+  TextAreaComponent,
   PercentageFieldComponent
 ];
 

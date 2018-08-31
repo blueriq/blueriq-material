@@ -10,6 +10,7 @@ export class BqPresentationStyles {
   static TERTIARY = 'Tertiary';
   static TRANSPARENT = 'Transparent';
   static WARNING = 'Warning';
+  static LARGETEXT = 'LargeText';
   // Presentation styles reused from AquimaLibrary, these can be refactored in the future
   static DANGER = 'Danger';
   static DISABLED = 'Disabled';
@@ -17,6 +18,7 @@ export class BqPresentationStyles {
   static PRIMARY = 'Primary';
   static SUCCESS = 'Success';
   static TOGGLE = 'toggle'; // Could be refactored to 'Toggle'
+  static MEMO = 'memo';
   // Presentation styles which are not used in studio
   static EXPLAINICON = 'explainicon';
   // Presentation styles which are deprecated in Blueriq 12.0

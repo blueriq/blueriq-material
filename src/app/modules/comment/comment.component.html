@@ -1,0 +1,10 @@
+<h2>
+  <mat-icon>chat</mat-icon>
+  {{container.displayName}}
+</h2>
+<ng-container [bqElement]="comment.commentField"></ng-container>
+<div fxLayout="row" fxLayoutAlign="end">
+  <button bqKey bqClasses mat-raised-button (click)="onClick()" color="primary">
+    {{comment.caption}}
+  </button>
+</div>
