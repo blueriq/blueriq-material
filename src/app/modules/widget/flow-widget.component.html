@@ -1,0 +1,19 @@
+<div bqKey bqClasses class="elevate">
+
+  <h2 *ngIf="widgetContainer.displayName">{{widgetContainer.displayName}}</h2>
+
+  <bq-session
+    *ngIf="!shouldDisplayError()"
+    [sessionName]="flowWidget.sessionName"
+    (flowEnded)="handleFlowEnded()"
+    (expired)="handleSessionExpired()"
+    (error)="handleError($event)"></bq-session>
+
+  <div *ngIf="shouldDisplayError()">
+    <mat-error fxLayout="row" fxLayoutAlign="center">
+      <mat-icon>error</mat-icon>
+      <span>{{errorMessage}}</span>
+    </mat-error>
+  </div>
+
+</div>

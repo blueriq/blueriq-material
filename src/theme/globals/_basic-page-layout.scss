@@ -9,13 +9,65 @@ body {
 body {
   margin: 0;
   padding: 0;
-
   background: map-get($mat-gray, 200);
   font-family: $bq-font-family;
 }
 
-h2 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin-top: 0;
   color: $bg-header-color;
   font-weight: 400;
+}
+
+h1 {
+  font-size: $h1-size;
+
+  .widget {
+    font-size: $h1-widget-size;
+  }
+}
+
+h2 {
+  font-size: $h2-size;
+
+  .widget {
+    font-size: $h2-widget-size;
+  }
+}
+
+h3 {
+  font-size: $h3-size;
+
+  .widget {
+    font-size: $h3-widget-size;
+  }
+}
+
+h4 {
+  font-size: $h4-size;
+
+  .widget {
+    font-size: $h4-widget-size;
+  }
+}
+
+h5 {
+  font-size: $h5-size;
+
+  .widget {
+    font-size: $h5-widget-size;
+  }
+}
+
+h6 {
+  font-size: $h6-size;
+
+  .widget {
+    font-size: $h6-widget-size;
+  }
 }

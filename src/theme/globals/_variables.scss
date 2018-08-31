@@ -29,3 +29,19 @@ $bq-white-37-opacity: rgba(255, 255, 255, .37);
 // Other variables
 $bq-font-family: 'Roboto', Arial, 'Helvetica Neue', sans-serif;
 $bq-toolbar-height: 77px;
+
+// Default sizes for headings
+$h1-size: 2em;
+$h2-size: 1.5em;
+$h3-size: 1.17em;
+$h4-size: 1.12em;
+$h5-size: .83em;
+$h6-size: .75em;
+
+// In widgets, headings should be one level smaller
+$h1-widget-size: $h2-size;
+$h2-widget-size: $h3-size;
+$h3-widget-size: $h4-size;
+$h4-widget-size: $h5-size;
+$h5-widget-size: $h6-size;
+$h6-widget-size: .66em;
