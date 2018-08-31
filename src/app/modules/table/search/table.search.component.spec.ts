@@ -48,6 +48,14 @@ describe('TableSearchComponent', () => {
   });
 
   it('should render', () => {
+    expect(component.nativeElement.querySelector('mat-form-field')).toBeFalsy();
+    expect(component.nativeElement.querySelector('button')).toBeTruthy();
+    expect(component.nativeElement.querySelector('button mat-icon').innerText).toMatch(/^search$/i);
+  });
+
+  it('should show empty search field on button click', () => {
+    component.nativeElement.querySelector('button').click();
+    component.detectChanges();
 
     expect(component.nativeElement.querySelector('mat-label').innerText).toBe('Zoeken');
     expect(component.nativeElement.querySelector('mat-chip-list')).toBeTruthy();

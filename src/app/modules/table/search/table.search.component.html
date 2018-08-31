@@ -1,8 +1,18 @@
 <div bqKey bqClasses fxLayoutAlign="end center">
-  <mat-form-field appearance="standard" fxFlex="70">
+  <mat-form-field
+    *ngIf="fieldIsVisible()"
+    appearance="legacy"
+    floatLabel="never"
+    fxFlex="70"
+    [@slideIn]="'*'"
+    (@slideIn.done)="focusField()">
     <mat-label>{{ search.caption }}</mat-label>
     <mat-chip-list #chipList>
-      <mat-chip *ngFor="let searchTerm of searchTerms" [selectable]="false" [removable]="true" (removed)="remove(searchTerm)">
+      <mat-chip
+        *ngFor="let searchTerm of searchTerms"
+        [selectable]="false"
+        [removable]="true"
+        (removed)="remove(searchTerm)">
         {{searchTerm}}
         <mat-icon matChipRemove>cancel</mat-icon>
       </mat-chip>
@@ -12,10 +22,17 @@
         [matChipInputSeparatorKeyCodes]="separatorKeyCodes"
         [matChipInputAddOnBlur]="true"
         (matChipInputTokenEnd)="add($event)"
-      >
+        #inputField>
     </mat-chip-list>
-    <button type="button" mat-icon-button (click)="doSearch()" matSuffix>
-      <mat-icon>search</mat-icon>
-    </button>
   </mat-form-field>
+  <div class="button-wrapper">
+    <button
+      type="button"
+      mat-icon-button
+      (click)="toggle()"
+      [color]="opened ? 'default' : 'primary'">
+      <mat-icon *ngIf="!opened">search</mat-icon>
+      <mat-icon *ngIf="opened">clear</mat-icon>
+    </button>
+  </div>
 </div>
