@@ -21,7 +21,7 @@
   },
   "private": true,
   "engines": {
-    "yarn": "1.4.0"
+    "yarn": "^1.4.0"
   },
   "dependencies": {
     "@angular/animations": "6.1.3",
