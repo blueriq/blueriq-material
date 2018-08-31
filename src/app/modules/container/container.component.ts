@@ -26,12 +26,15 @@ export class ContainerComponent implements OnInit, OnUpdate {
   public displayMode: ContainerDisplayMode;
   public horizontal = false;
   public alignRight = false;
-  public bigHeader = true;
 
   constructor(@Host() public container: Container,
               @Optional() @Host() public readonly table: Table,
               private blueriqSession: BlueriqSession
   ) {
+  }
+
+  get isWidget(): boolean {
+    return this.blueriqSession.isWidget;
   }
 
   ngOnInit() {
@@ -42,14 +45,17 @@ export class ContainerComponent implements OnInit, OnUpdate {
     this.determineDisplayStyle();
   }
 
+  isIntroduction(): boolean {
+    return this.container.styles.has(BqPresentationStyles.INTRODUCTION);
+  }
+
   /**
    * Finds presentation styles to determine the look-and-feel of the container
    */
   private determineDisplayStyle() {
     this.horizontal = this.container.styles.has(BqPresentationStyles.HORIZONTAL);
-    this.alignRight = this.container.styles.hasAny(BqPresentationStyles.ALIGNRIGHT)
-      || this.container.styles.has(BqPresentationStyles.DEPRECATED_ALIGNRIGHT);
-    this.bigHeader = !this.blueriqSession.isWidget;
+    this.alignRight = this.container.styles.hasAny(BqPresentationStyles.ALIGNRIGHT,
+      BqPresentationStyles.DEPRECATED_ALIGNRIGHT);
 
     if (this.container.parent && !(this.container.parent instanceof Page) || this.blueriqSession.isWidget) {
       // container within a container doesn't need specific styling
@@ -62,9 +68,4 @@ export class ContainerComponent implements OnInit, OnUpdate {
       this.displayMode = 'card';
     }
   }
-
-  isIntroduction(): boolean {
-    return this.container.styles.has(BqPresentationStyles.INTRODUCTION);
-  }
-
 }
