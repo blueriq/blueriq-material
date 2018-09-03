@@ -14,4 +14,17 @@ export class PageComponent {
               public blueriqSession: BlueriqSession
   ) {
   }
+
+  get size(): string {
+    if (this.page.contentStyle === 'large') {
+      return 'large';
+    } else if (this.page.contentStyle === 'medium') {
+      return 'medium';
+    } else if (this.page.contentStyle === 'small') {
+      return 'small';
+    } else if (this.page.contentStyle === 'full') {
+      return 'full';
+    }
+    return 'responsive';
+  }
 }

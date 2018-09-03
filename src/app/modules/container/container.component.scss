@@ -21,8 +21,7 @@
 }
 
 @mixin top-container {
-  max-width: 728px; // TODO make responsive
-  margin: $bq-margin-double auto;
+  margin: $bq-margin-double;
   padding: $bq-margin-double;
 
   h2 {
