@@ -2,8 +2,7 @@
 
 .elevate {
   @include mat-elevation(1);
-  max-width: 728px;
-  margin: $bq-margin-double auto;
+  margin: $bq-margin-double;
   padding: $bq-margin-double;
   background: map-get($mat-light-theme-background, card);
 }
