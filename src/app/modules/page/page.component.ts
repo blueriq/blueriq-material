@@ -16,15 +16,18 @@ export class PageComponent {
   }
 
   get size(): string {
-    if (this.page.contentStyle === 'large') {
-      return 'large';
-    } else if (this.page.contentStyle === 'medium') {
-      return 'medium';
-    } else if (this.page.contentStyle === 'small') {
-      return 'small';
-    } else if (this.page.contentStyle === 'full') {
-      return 'full';
+    if (this.blueriqSession.isRoot) {
+      if (this.page.contentStyle === 'large') {
+        return 'large';
+      } else if (this.page.contentStyle === 'medium') {
+        return 'medium';
+      } else if (this.page.contentStyle === 'small') {
+        return 'small';
+      } else if (this.page.contentStyle === 'full') {
+        return 'full';
+      }
+      return 'responsive';
     }
-    return 'responsive';
+    return 'full';
   }
 }
