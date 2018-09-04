@@ -33,6 +33,6 @@ describe('AssetComponent', () => {
   });
 
   it('should contain the expected text', () => {
-    expect(component.nativeElement.querySelector('div').innerHTML).toBe('lorum ipsum');
+    expect(component.nativeElement.querySelector('div').innerText.trim()).toBe('lorum ipsum');
   });
 });
