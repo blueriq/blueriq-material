@@ -32,11 +32,7 @@ describe('AssetComponent', () => {
     component = session.get(AssetComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should contain the expected text', () => {
-    expect(component.nativeElement.querySelector('p').innerHTML).toBe('lorum ipsum');
+    expect(component.nativeElement.querySelector('div').innerHTML).toBe('lorum ipsum');
   });
 });
