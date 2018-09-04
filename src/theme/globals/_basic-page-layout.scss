@@ -27,7 +27,7 @@ h6 {
 h1 {
   font-size: $h1-size;
 
-  .widget {
+  &.widget {
     font-size: $h1-widget-size;
   }
 }
@@ -35,7 +35,7 @@ h1 {
 h2 {
   font-size: $h2-size;
 
-  .widget {
+  &.widget {
     font-size: $h2-widget-size;
   }
 }
@@ -43,7 +43,7 @@ h2 {
 h3 {
   font-size: $h3-size;
 
-  .widget {
+  &.widget {
     font-size: $h3-widget-size;
   }
 }
@@ -51,7 +51,7 @@ h3 {
 h4 {
   font-size: $h4-size;
 
-  .widget {
+  &.widget {
     font-size: $h4-widget-size;
   }
 }
@@ -59,7 +59,7 @@ h4 {
 h5 {
   font-size: $h5-size;
 
-  .widget {
+  &.widget {
     font-size: $h5-widget-size;
   }
 }
@@ -67,7 +67,7 @@ h5 {
 h6 {
   font-size: $h6-size;
 
-  .widget {
+  &.widget {
     font-size: $h6-widget-size;
   }
 }
