@@ -96,7 +96,9 @@ export class StatisticComponent implements AfterViewInit {
           padding: 5
         }
       },
-      animation: this.container.styles.hasAny(BqPresentationStyles.ANIMATION, BqPresentationStyles.ANIMATE)
+      animation: {
+        duration: this.container.styles.hasAny(BqPresentationStyles.ANIMATION, BqPresentationStyles.ANIMATE) ? 800 : 0
+      }
     };
     if (this.container.styles.hasAny(
       BqPresentationStyles.STATISTICBAR, BqPresentationStyles.DEPRECATED_STATISTIC_BAR,
