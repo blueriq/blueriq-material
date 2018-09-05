@@ -11,23 +11,23 @@ import { Page } from '@blueriq/core';
 })
 export class PageComponent {
   constructor(@Host() public page: Page,
-              public blueriqSession: BlueriqSession
-  ) {
+              public blueriqSession: BlueriqSession) {
   }
 
   get size(): string {
-    if (this.blueriqSession.isRoot) {
-      if (this.page.contentStyle === 'large') {
-        return 'large';
-      } else if (this.page.contentStyle === 'medium') {
-        return 'medium';
-      } else if (this.page.contentStyle === 'small') {
-        return 'small';
-      } else if (this.page.contentStyle === 'full') {
-        return 'full';
-      }
-      return 'responsive';
+    if (this.blueriqSession.isWidget) {
+      return 'full';
     }
-    return 'full';
+
+    if (this.page.contentStyle === 'large') {
+      return 'large';
+    } else if (this.page.contentStyle === 'medium') {
+      return 'medium';
+    } else if (this.page.contentStyle === 'small') {
+      return 'small';
+    } else if (this.page.contentStyle === 'full') {
+      return 'full';
+    }
+    return 'responsive';
   }
 }

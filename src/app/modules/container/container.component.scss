@@ -1,43 +1,16 @@
 @import 'globals/variables';
 
-.container {
-  margin: 0;
-}
-
-.grid {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  justify-content: space-between;
-}
-
-.grid-item {
-  // Make every element align in center with grid + center
-  display: grid;
-  flex: 1;
-  align-items: center;
-  margin-right: 10px;
-}
-
-@mixin top-container {
+.top-container {
   margin: $bq-margin-double;
   padding: $bq-margin-double;
-
-  h2 {
-    margin-top: 0; // reset top margin, Card padding is in place
-  }
 }
 
 .card {
   @include mat-elevation(1);
-  @include top-container;
   background: map-get($mat-light-theme-background, card);
 }
 
 .introduction {
-  @include top-container;
-
   img {
     position: absolute;
     width: 39px;
@@ -48,12 +21,14 @@
   }
 }
 
-.transparent {
-  @include top-container;
-}
-
-.alignright {
+.align-right {
   display: flex;
   justify-content: flex-end;
 }
 
+.horizontal-flex-target {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  align-content: stretch;
+}

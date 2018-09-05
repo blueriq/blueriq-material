@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate } from '@blueriq/core/testing';
@@ -19,7 +19,7 @@ describe('ContainerComponent', () => {
       providers: [BlueriqComponents.register([ContainerComponent/*, PageComponent*/])],
       imports: [
         MaterialModule,
-        BrowserAnimationsModule, // or NoopAnimationsModule
+        NoopAnimationsModule,
         BlueriqTestingModule,
         FormsModule
       ]
@@ -37,81 +37,52 @@ describe('ContainerComponent', () => {
     containerComponent = session.get(ContainerComponent);
   });
 
-  it('should be created', () => {
-    expect(containerComponent).toBeTruthy();
-  });
-
   it('should have default expectations', () => {
-    // init
     const container = containerComponent.componentInstance;
 
-    // Verify
-    expect(container.displayMode).toBe('card');
+    expect(container.isCard()).toBe(true);
     expect(containerComponent.nativeElement.querySelector('.container.card')).toBeTruthy();
-    expect(container.horizontal).toBeFalsy();
-    expect(containerComponent.nativeElement.querySelector('.grid')).toBeFalsy();
-
+    expect(container.isHorizontal()).toBe(false);
   });
 
-  it('should have introduction class when presentationstyle is set', () => {
-    // init
+  it('should have introduction class when presentation style is set', () => {
     const container = containerComponent.componentInstance;
     session.update(
       containerTemplate.styles(BqPresentationStyles.INTRODUCTION)
     );
 
-    // Sut
-    const display = container.displayMode;
-
-    // Verify
-    expect(display).toBe('introduction');
+    expect(container.isIntroduction()).toBe(true);
     expect(containerComponent.nativeElement.querySelector('.container.introduction')).toBeTruthy();
   });
 
   it('should have transparent class when presentationstyle is set', () => {
-    // init
     const container = containerComponent.componentInstance;
     session.update(
       containerTemplate.styles(BqPresentationStyles.TRANSPARENT)
     );
 
-    // Sut
-    const display = container.displayMode;
-
-    // Verify
-    expect(display).toBe('transparent');
+    expect(container.isTransparent()).toBe(true);
     expect(containerComponent.nativeElement.querySelector('.container.transparent')).toBeTruthy();
-    expect(containerComponent.nativeElement.querySelector('.grid')).toBeFalsy();
   });
 
   it('should be horizontal class when presentationstyle is set', () => {
-    // init
     const container = containerComponent.componentInstance;
     session.update(
       containerTemplate.styles(BqPresentationStyles.HORIZONTAL)
     );
 
-    // Sut
-    const isHorizontal = container.horizontal;
-
-    // Verify
-    expect(isHorizontal).toBeTruthy();
-    expect(containerComponent.nativeElement.querySelector('.grid')).toBeTruthy();
-    expect(containerComponent.nativeElement.querySelectorAll('.grid-item').length).toBe(3);
+    expect(container.isHorizontal()).toBe(true);
+    expect(containerComponent.nativeElement.querySelector('.flex-target')).toBeTruthy();
+    expect(containerComponent.nativeElement.querySelectorAll('.flex-target > *').length).toBe(3);
   });
 
   it('should have alignright class when presentationstyle is set', () => {
-    // init
     const container = containerComponent.componentInstance;
     session.update(
       containerTemplate.styles(BqPresentationStyles.ALIGNRIGHT)
     );
 
-    // Sut
-    const alignRight = container.alignRight;
-
-    // Verify
-    expect(alignRight).toBeTruthy();
-    expect(containerComponent.nativeElement.querySelector('.container.alignright')).toBeTruthy();
+    expect(container.isAlignRight()).toBe(true);
+    expect(containerComponent.nativeElement.querySelector('.container.align-right')).toBeTruthy();
   });
 });
