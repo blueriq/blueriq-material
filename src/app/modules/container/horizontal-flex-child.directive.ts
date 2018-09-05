@@ -1,4 +1,4 @@
-import { Directive, DoCheck, ElementRef, Input } from '@angular/core';
+import { Directive, DoCheck, ElementRef, Input, Renderer2 } from '@angular/core';
 import { Container, Element } from '@blueriq/core';
 
 /**
@@ -13,7 +13,8 @@ export class HorizontalFlexChildDirective implements DoCheck {
   @Input()
   bqElement: Element;
 
-  constructor(private elementRef: ElementRef) {
+  constructor(private elementRef: ElementRef,
+              private renderer: Renderer2) {
   }
 
   ngDoCheck(): void {
@@ -24,8 +25,8 @@ export class HorizontalFlexChildDirective implements DoCheck {
       if (matches && matches[1]) {
         // this.elementRef refers to a comment, whose next sibling is supposed to be the <ng-component> tag that
         // will be the flex item for the dashboard
-        this.elementRef.nativeElement.nextSibling.style.flexGrow = +matches[1];
-        this.elementRef.nativeElement.nextSibling.style.width = 0;
+        this.renderer.addClass(this.elementRef.nativeElement.nextSibling, 'column-wrapper');
+        this.renderer.setStyle(this.elementRef.nativeElement.nextSibling, 'flex-grow', +matches[1]);
       }
     }
   }

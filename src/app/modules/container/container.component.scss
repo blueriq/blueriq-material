@@ -32,3 +32,19 @@
   align-content: stretch;
   align-items: stretch;
 }
+
+:host {
+  &.column-wrapper {
+    margin-left: $gutter-width-large;
+    margin-right: $gutter-width-large;
+    width: 0;
+  }
+
+  &.column-wrapper:first-child {
+    margin-left: 0;
+  }
+
+  &.column-wrapper:last-child {
+    margin-right: 0;
+  }
+}
