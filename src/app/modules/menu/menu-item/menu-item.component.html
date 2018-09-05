@@ -7,8 +7,8 @@
     <button mat-menu-item [matMenuTriggerFor]="menu">{{ asContainer(child).displayName }}
     </button>
     <mat-menu #menu="matMenu">
-      <bq-menu-item *ngFor="let grandchild of asContainer(child).children | bqUnmarked"
-                    [child]="grandchild"></bq-menu-item>
+      <bq-menu-item *ngFor="let grandchild of asContainer(child).children | bqIncluded"
+        [child]="grandchild"></bq-menu-item>
     </mat-menu>
   </ng-container>
 
