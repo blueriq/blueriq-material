@@ -19,6 +19,10 @@ export class ButtonComponent {
               @Optional() @Host() public readonly table: Table) {
   }
 
+  shouldRaiseButton(): boolean {
+    return !(this.table || this.button.styles.has(BqPresentationStyles.FLAT_BUTTON);
+  }
+
   getColor(): string | null {
     if (this.button.styles.has(BqPresentationStyles.PRIMARY)) {
       return 'primary';
@@ -42,5 +46,4 @@ export class ButtonComponent {
       this.session.pressed(this.button);
     }
   }
-
 }
