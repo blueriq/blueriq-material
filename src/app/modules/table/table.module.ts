@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
 import { SharedModule } from '@shared/shared.module';
 import { MaterialModule } from '../../material.module';
-import { TableHeaderComponent } from './header/table.header.component';
+import { ListComponent } from './list.component';
 import { TablePaginationComponent } from './pagination/table.pagination.component';
 import { TableSearchComponent } from './search/table.search.component';
 import { TableSortComponent } from './sort/table.sort.component';
@@ -17,16 +17,16 @@ const TABLE_COMPONENTS = [
   TableComponent,
   TableSearchComponent,
   TableSortComponent,
-  TableHeaderComponent,
   TablePaginationComponent,
+  ListComponent
 ];
 
 @NgModule({
   declarations: [
-    TABLE_COMPONENTS,
+    TABLE_COMPONENTS
   ],
   providers: [
-    BlueriqComponents.register(TABLE_COMPONENTS),
+    BlueriqComponents.register(TABLE_COMPONENTS)
   ],
   imports: [
     BrowserAnimationsModule,
@@ -36,9 +36,9 @@ const TABLE_COMPONENTS = [
     FlexLayoutModule,
     SharedModule,
     ReactiveFormsModule,
-    MaterialModule,
+    MaterialModule
   ],
-  exports: [TABLE_COMPONENTS],
+  exports: [TABLE_COMPONENTS]
 })
 export class TableModule {
 }
