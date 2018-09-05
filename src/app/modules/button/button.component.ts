@@ -20,7 +20,7 @@ export class ButtonComponent {
   }
 
   shouldRaiseButton(): boolean {
-    return !(this.table || this.button.styles.has(BqPresentationStyles.FLAT_BUTTON);
+    return !(this.table || this.button.styles.has(BqPresentationStyles.FLAT_BUTTON));
   }
 
   getColor(): string | null {
