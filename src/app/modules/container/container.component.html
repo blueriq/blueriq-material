@@ -4,9 +4,10 @@
   [ngClass]="{
     'container': true,
     'top-container': isTopContainer(),
-    'align-right': isAlignRight(),
     'introduction': isIntroduction(),
-    'card': isCard()
+    'transparent': isTransparent(),
+    'card': isCard(),
+    'align-right': isAlignRight()
   }">
   <img *ngIf="isIntroduction()" src="./theme/images/blueriq-technology.svg">
 

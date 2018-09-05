@@ -72,8 +72,8 @@ describe('ContainerComponent', () => {
     );
 
     expect(container.isHorizontal()).toBe(true);
-    expect(containerComponent.nativeElement.querySelector('.flex-target')).toBeTruthy();
-    expect(containerComponent.nativeElement.querySelectorAll('.flex-target > *').length).toBe(3);
+    expect(containerComponent.nativeElement.querySelector('.horizontal-flex-target')).toBeTruthy();
+    expect(containerComponent.nativeElement.querySelectorAll('.horizontal-flex-target > *').length).toBe(3);
   });
 
   it('should have alignright class when presentationstyle is set', () => {
