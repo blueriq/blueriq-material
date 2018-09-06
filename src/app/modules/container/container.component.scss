@@ -36,8 +36,14 @@
 :host {
   &.column-wrapper {
     width: 0;
-    margin-right: $gutter-width-large;
-    margin-left: $gutter-width-large;
+
+    @media (max-width: $break-medium - 1) {
+      margin: 0 $gutter-width-small;
+    }
+
+    @media (min-width: $break-medium) {
+      margin: 0 $gutter-width-large;
+    }
 
     &:first-child {
       margin-left: 0;

@@ -1,8 +1,25 @@
 @import 'globals/variables';
 
-.elevate {
-  @include mat-elevation(1);
+.flow-widget {
+  @media (max-width: $break-medium - 1) {
+    margin-bottom: $gutter-width-small * 2;
+  }
 
+  @media (min-width: $break-medium) {
+    margin-bottom: $gutter-width-large * 2;
+  }
   padding: $bq-margin-double;
-  background: map-get($mat-light-theme-background, card);
+
+  &.elevate {
+    @include mat-elevation(1);
+    background: map-get($mat-light-theme-background, card);
+  }
+}
+
+:host {
+  &:last-child {
+    .flow-widget {
+      margin-bottom: 0;
+    }
+  }
 }
