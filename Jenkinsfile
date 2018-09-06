@@ -77,7 +77,7 @@ node {
         },
         'build': {
           if (!params.isRelease) { // maven release executes the yarn build also
-            bat "yarn build"
+            bat "yarn build --progress=false"
           }
         }
       );
