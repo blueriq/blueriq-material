@@ -1,0 +1,38 @@
+<h2>
+  <mat-icon>timer</mat-icon>
+  Hier de tijdlijn title
+</h2>
+<div class="timeline">
+  <div *ngFor="let entry of entries" fxLayout="row">
+
+    <!-- left side of the timeline -->
+    <div fxFlex="20" class="line">
+      <div class="content">
+        4 uur geleden
+      </div>
+      <div class="shape-position">
+        <div class="dot"></div>
+      </div>
+    </div>
+
+    <!-- right side of the timeline -->
+    <div fxFlex="80" class="card">
+      <div class="shape-position">
+        <div class="triangle"></div>
+      </div>
+      <div class="content">
+        <div fxLayout="row">
+          <div fxFlex class="user">{{ entry.properties.username }}</div>
+          <div fxFlex="nogrow" class="time">{{ entry.properties.datetime }}</div>
+        </div>
+        <mat-divider></mat-divider>
+        <div>
+          <p>{{ entry.properties.actionname }}</p>
+          <p>{{ entry.properties.entryname }}</p>
+          <p></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

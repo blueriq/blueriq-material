@@ -31,6 +31,7 @@ import { PageComponent } from './modules/page/page.component';
 import { ReadonlyComponent } from './modules/readonly/readonly.component';
 import { TableModule } from './modules/table/table.module';
 import { TextItemComponent } from './modules/textitem/textitem.component';
+import { TimelineModule } from './modules/timeline/timeline.module';
 import { WidgetModule } from './modules/widget/widget.module';
 import { ProjectComponent } from './project.component';
 
@@ -87,6 +88,7 @@ const BQ_COMPONENTS = [
     MenuModule,
     TextItemModule,
     TableModule,
+    TimelineModule,
     WidgetModule
   ],
   exports: [

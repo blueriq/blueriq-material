@@ -1,0 +1,80 @@
+@import 'globals/variables';
+
+$shape-size: 14px;
+$shape-top: 24px;
+$background: map-get($mat-gray, 200);
+$background-card: map-get($mat-light-theme-background, card);
+
+.timeline {
+  background: $background;
+}
+
+/* ---- left side of the timeline --- */
+.line {
+  border-right: 1px;
+  border-right-style: solid;
+  border-right-color: map-get($bq-mat-grey-light, 500);
+  position: relative;
+
+  .content {
+    margin: $bq-margin;
+  }
+
+  .shape-position {
+    position: absolute;
+    display: inline-block;
+    background: $background;
+    padding: ($shape-size / 2) 0;
+    right: -$shape-size / 2;
+    top: $shape-top;
+
+    .dot {
+      background: map-get($bq-mat-accent-mint, 500);
+      width: $shape-size;
+      height: $shape-size;
+      border-radius: 50%;
+    }
+  }
+}
+
+/* ---- Right side of the timeline --- */
+.card {
+  position: relative;
+
+  .content {
+    @include mat-elevation(1);
+    background: $background-card;
+    margin: $bq-margin $bq-margin-double;
+    padding: $bq-margin;
+  }
+
+  .shape-position {
+    position: absolute;
+    display: inline-block;
+    background: transparent;
+    left: $bq-margin; // Same as card-content left margin
+    top: $shape-top;
+
+    .triangle {
+      background: transparent;
+      width: 0;
+      height: 0;
+      border-right: $shape-size solid $background-card;
+      border-bottom: $shape-size solid transparent;
+      border-top: $shape-size solid transparent;
+    }
+  }
+}
+
+mat-divider {
+  margin: $bq-margin 0;
+}
+
+.time {
+  color: $dark-secondary-text;
+}
+
+.user {
+  font-weight: 500;
+  color: map-get($bq-mat-accent-mint, 500);
+}
