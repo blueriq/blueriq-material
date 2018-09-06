@@ -1,6 +1,7 @@
 import { Component, Host } from '@angular/core';
 import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
 import { Page } from '@blueriq/core';
+import { BqContentStyles } from '../BqContentStyles';
 
 @Component({
   templateUrl: './page.component.html',
@@ -19,13 +20,13 @@ export class PageComponent {
       return 'full';
     }
 
-    if (this.page.contentStyle === 'large') {
+    if (this.page.contentStyle === BqContentStyles.WIDTH_LARGE) {
       return 'large';
-    } else if (this.page.contentStyle === 'medium') {
+    } else if (this.page.contentStyle === BqContentStyles.WIDTH_MEDIUM) {
       return 'medium';
-    } else if (this.page.contentStyle === 'small') {
+    } else if (this.page.contentStyle === BqContentStyles.WIDTH_SMALL) {
       return 'small';
-    } else if (this.page.contentStyle === 'full') {
+    } else if (this.page.contentStyle === BqContentStyles.WIDTH_FULL) {
       return 'full';
     }
     return 'responsive';
