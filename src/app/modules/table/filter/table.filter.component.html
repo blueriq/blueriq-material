@@ -1,0 +1,6 @@
+<bq-table-filter-value *ngFor="let filterValue of filters" [filterValue]="filterValue" [filter]="filter"></bq-table-filter-value>
+<p>
+  <button mat-mini-fab (click)="addFilter()">+</button>
+  <button (click)="doFilter()">Filter</button>
+  <button (click)="clearFilter()">Clear filters</button>
+</p>

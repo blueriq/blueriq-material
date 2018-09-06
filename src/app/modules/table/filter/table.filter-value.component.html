@@ -1,0 +1,16 @@
+<p>
+  <mat-label>Column name</mat-label>
+  <mat-select [value]="filterValue.filterOption" (valueChange)="onColumn($event)">
+    <mat-option *ngFor="let filterOption of filter.filterOptions" [value]="filterOption">
+      {{filterOption.title}}
+    </mat-option>
+  </mat-select>
+  <mat-label>Operation</mat-label>
+  <mat-select (valueChange)="onOperation($event)" [value]="filterValue.operation">
+    <mat-option *ngFor="let operation of operations" [value]="operation">
+      {{getOperationAsString(operation)}}
+    </mat-option>
+  </mat-select>
+  <mat-label>Value</mat-label>
+  <input matInput (change)="onValue($event.target.value)" [value]="filterValue.value">
+</p>

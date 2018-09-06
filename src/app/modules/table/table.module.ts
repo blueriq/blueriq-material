@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
 import { SharedModule } from '@shared/shared.module';
 import { MaterialModule } from '../../material.module';
+import { TableFilterValueComponent } from './filter/table.filter-value.component';
+import { TableFilterComponent } from './filter/table.filter.component';
 import { ListComponent } from './list.component';
 import { TablePaginationComponent } from './pagination/table.pagination.component';
 import { TableSearchComponent } from './search/table.search.component';
@@ -15,10 +17,12 @@ import { TableComponent } from './table.component';
 
 const TABLE_COMPONENTS = [
   TableComponent,
+  TableFilterComponent,
   TableSearchComponent,
   TableSortComponent,
   TablePaginationComponent,
-  ListComponent
+  ListComponent,
+  TableFilterValueComponent
 ];
 
 @NgModule({
@@ -26,7 +30,7 @@ const TABLE_COMPONENTS = [
     TABLE_COMPONENTS
   ],
   providers: [
-    BlueriqComponents.register(TABLE_COMPONENTS)
+    BlueriqComponents.register([ListComponent, TableSortComponent])
   ],
   imports: [
     BrowserAnimationsModule,
