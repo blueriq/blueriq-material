@@ -9,8 +9,8 @@ import {
 } from '@blueriq/angular/testing';
 import { Page } from '@blueriq/core';
 import { ContainerTemplate, PageModelTemplate, PageTemplate } from '@blueriq/core/testing';
-import { FlowWidgetComponent } from './flow-widget.component';
 import { WidgetModule } from '../widget.module';
+import { FlowWidgetComponent } from './flow-widget.component';
 
 @Component({
   template: '<span id="widgetSessionDisplayName">{{page.displayName}}</span>'
