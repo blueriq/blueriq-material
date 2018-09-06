@@ -3,6 +3,7 @@ import { Component, Host, OnInit, Optional } from '@angular/core';
 import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
 import { Table } from '@blueriq/angular/lists';
 import { Container, Page } from '@blueriq/core';
+import { BqContentStyles } from '../BqContentStyles';
 import { BqPresentationStyles } from '../BqPresentationStyles';
 
 @Component({
@@ -35,11 +36,15 @@ export class ContainerComponent implements OnInit {
   }
 
   isDashboardBody(): boolean {
-    return this.container.contentStyle === 'dashboard_body';
+    return this.container.contentStyle === BqContentStyles.DASHBOARD_BODY;
   }
 
   isDashboardRow(): boolean {
-    return this.container.contentStyle === 'dashboard_row';
+    return this.container.contentStyle === BqContentStyles.DASHBOARD_ROW;
+  }
+
+  isDashboardWidget(): boolean {
+    return this.container.contentStyle === BqContentStyles.DASHBOARD_WIDGET;
   }
 
   isTopContainer() {
@@ -55,7 +60,8 @@ export class ContainerComponent implements OnInit {
   }
 
   isCard(): boolean {
-    return this.isTopContainer() && !this.isDashboardBody();
+    return (this.isTopContainer() && !this.isDashboardBody() && !this.isTransparent() && !this.isIntroduction())
+      || this.isDashboardWidget();
   }
 
   isHorizontal(): boolean {

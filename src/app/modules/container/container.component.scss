@@ -21,6 +21,18 @@
   }
 }
 
+.widget {
+  padding: $bq-margin-double;
+
+  @media (max-width: $break-medium - 1) {
+    margin-bottom: $gutter-width-small * 2;
+  }
+
+  @media (min-width: $break-medium) {
+    margin-bottom: $gutter-width-large * 2;
+  }
+}
+
 .align-right {
   display: flex;
   justify-content: flex-end;
