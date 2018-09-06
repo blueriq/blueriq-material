@@ -10,7 +10,7 @@ import {
 import { Page } from '@blueriq/core';
 import { ContainerTemplate, PageModelTemplate, PageTemplate } from '@blueriq/core/testing';
 import { FlowWidgetComponent } from './flow-widget.component';
-import { WidgetModule } from './widget.module';
+import { WidgetModule } from '../widget.module';
 
 @Component({
   template: '<span id="widgetSessionDisplayName">{{page.displayName}}</span>'
@@ -24,7 +24,7 @@ class MockPageComponent {
   }
 }
 
-describe('FlowWidgetComponent', () => {
+describe('WidgetComponent', () => {
   let container: ContainerTemplate;
   let component: ComponentFixture<FlowWidgetComponent>;
   let session: BlueriqTestSession;
