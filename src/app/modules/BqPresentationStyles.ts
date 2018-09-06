@@ -2,6 +2,7 @@ export class BqPresentationStyles {
   // New presentation styles
   static ALIGNRIGHT = 'AlignRight';
   static BUTTON = 'Button';
+  static FLAT_BUTTON = 'FlatButton';
   static HORIZONTAL = 'Horizontal';
   static INTRODUCTION = 'Introduction';
   static DATEPICKERMATERIAL = 'DatepickerMaterial';

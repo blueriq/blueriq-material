@@ -94,6 +94,20 @@ describe('ButtonComponent', () => {
     expect(classes).not.toContain('mat-primary');
   });
 
+  it('should be raised by default', () => {
+    const classes: string = component.nativeElement.querySelector('button').getAttribute('class');
+    expect(classes).toContain('mat-raised-button');
+  });
+
+  it('should be flat on presentation style', () => {
+    session.update(
+      button.styles(BqPresentationStyles.FLAT_BUTTON)
+    );
+
+    const classes: string = component.nativeElement.querySelector('button').getAttribute('class');
+    expect(classes).not.toContain('mat-raised-button');
+  });
+
   it('should call the session when it gets clicked', () => {
     spyOn(BlueriqSession.prototype, 'pressed');
     const buttonComponent: ButtonComponent = component.componentInstance;
