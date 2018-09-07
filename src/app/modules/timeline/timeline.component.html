@@ -1,14 +1,15 @@
 <h2>
   <mat-icon>timer</mat-icon>
-  Hier de tijdlijn title
+  {{ timeline.displayName }}
 </h2>
 <div class="timeline">
-  <div *ngFor="let entry of entries" fxLayout="row">
+  <div *ngFor="let entry of timeline.entries$ | async; let i = index" fxLayout="row">
 
     <!-- left side of the timeline -->
     <div fxFlex="20" class="line">
+      <div *ngIf="i == 0" class="dotted-border"></div>
       <div class="content">
-        4 uur geleden
+        <p class="date">{{ dateToReadableFormat(entry.datetime) }}</p>
       </div>
       <div class="shape-position">
         <div class="dot"></div>
@@ -22,15 +23,12 @@
       </div>
       <div class="content">
         <div fxLayout="row">
-          <div fxFlex class="user">{{ entry.properties.username }}</div>
-          <div fxFlex="nogrow" class="time">{{ entry.properties.datetime }}</div>
+          <div fxFlex class="user">{{ entry.username }}</div>
+          <div fxFlex="nogrow" class="time">{{ dateToTimestamp(entry.datetime) }}</div>
         </div>
         <mat-divider></mat-divider>
-        <div>
-          <p>{{ entry.properties.actionname }}</p>
-          <p>{{ entry.properties.entryname }}</p>
-          <p></p>
-        </div>
+        <p class="action-name">{{ entry.actionName }}</p>
+        <p class="entry-name">{{ entry.entryName }}</p>
       </div>
     </div>
 
