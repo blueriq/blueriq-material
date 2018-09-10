@@ -15,8 +15,8 @@ describe('ContainerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ContainerComponent/*, PageComponent*/],
-      providers: [BlueriqComponents.register([ContainerComponent/*, PageComponent*/])],
+      declarations: [ContainerComponent],
+      providers: [BlueriqComponents.register([ContainerComponent])],
       imports: [
         MaterialModule,
         NoopAnimationsModule,
