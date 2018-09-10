@@ -8,7 +8,7 @@
     'transparent': isTransparent(),
     'card': isCard(),
     'align-right': isAlignRight(),
-    'widget': isDashboardWidget()
+    'bq-widget': isDashboardWidget()
   }">
   <img *ngIf="isIntroduction()" src="./theme/images/blueriq-technology.svg">
 
@@ -16,8 +16,9 @@
     <h2 [class.widget]="isWidget">{{ container.displayName }}</h2>
   </ng-container>
 
-  <div [class.horizontal-flex-target]="isHorizontal()">
-    <ng-container *ngFor="let child of container.children | bqIncluded" [bqElement]="child" bqFlexChild></ng-container>
+  <div [class.bq-row]="isHorizontal()">
+    <ng-container *ngFor="let child of container.children | bqIncluded" [bqElement]="child"
+      [bqFlexChild]="isHorizontal()"></ng-container>
   </div>
 
 </div>

@@ -58,38 +58,3 @@
     }
   }
 }
-
-.page {
-  margin: 0 auto;
-
-  &.large {
-    max-width: $width-large;
-  }
-
-  &.medium {
-    max-width: $width-medium;
-  }
-
-  &.small {
-    max-width: $width-small;
-  }
-
-  &.full {
-    width: 100%;
-  }
-
-  &.responsive {
-    @media (max-width: $break-small - 1) {
-      max-width: $width-small;
-    }
-    @media (min-width: $break-small) {
-      max-width: $width-medium;
-    }
-    @media (min-width: $break-medium) {
-      max-width: $width-large;
-    }
-    @media (min-width: $break-large) {
-      max-width: $width-extra-large;
-    }
-  }
-}

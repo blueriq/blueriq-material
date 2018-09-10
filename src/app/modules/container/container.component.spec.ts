@@ -7,6 +7,7 @@ import { ContainerTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../../material.module';
 import { BqPresentationStyles } from '../BqPresentationStyles';
 import { ContainerComponent } from './container.component';
+import { HorizontalFlexChildDirective } from './horizontal-flex-child.directive';
 
 describe('ContainerComponent', () => {
   let containerTemplate: ContainerTemplate;
@@ -15,7 +16,7 @@ describe('ContainerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ContainerComponent],
+      declarations: [ContainerComponent, HorizontalFlexChildDirective],
       providers: [BlueriqComponents.register([ContainerComponent])],
       imports: [
         MaterialModule,
@@ -72,8 +73,8 @@ describe('ContainerComponent', () => {
     );
 
     expect(container.isHorizontal()).toBe(true);
-    expect(containerComponent.nativeElement.querySelector('.horizontal-flex-target')).toBeTruthy();
-    expect(containerComponent.nativeElement.querySelectorAll('.horizontal-flex-target > *').length).toBe(3);
+    expect(containerComponent.nativeElement.querySelector('.bq-row')).toBeTruthy();
+    expect(containerComponent.nativeElement.querySelectorAll('.bq-row > *').length).toBe(3);
   });
 
   it('should have alignright class when presentationstyle is set', () => {
