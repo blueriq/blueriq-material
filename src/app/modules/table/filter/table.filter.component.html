@@ -1,6 +1,29 @@
-<bq-table-filter-value *ngFor="let filterValue of filters" [filterValue]="filterValue" [filter]="filter"></bq-table-filter-value>
-<p>
-  <button mat-mini-fab (click)="addFilter()">+</button>
-  <button (click)="doFilter()">Filter</button>
-  <button (click)="clearFilter()">Clear filters</button>
-</p>
+<ng-container *ngIf="showFilter">
+  <div class="grid">
+    <div class="grid-item">
+      <mat-label>Column name</mat-label>
+    </div>
+    <div class="grid-item">
+      <mat-label>Operation</mat-label>
+    </div>
+    <div class="grid-item">
+      <mat-label>Value</mat-label>
+    </div>
+    <div class="grid-item">
+      <mat-label>{{filter.filterOptions[0].showAllLabel}}</mat-label>
+    </div>
+    <div class="grid-item">
+      <mat-label>{{filter.filterOptions[0].showUnknownLabel}}</mat-label>
+    </div>
+  </div>
+  <bq-table-filter-value *ngFor="let filterValue of filterCandidates" [filterValue]="filterValue" [filterOptions]="filter.filterOptions"></bq-table-filter-value>
+
+  <p>
+    <button mat-mini-fab (click)="addFilter()">+</button>
+    <button (click)="doFilter()">Apply filter</button>
+    <button (click)="clearFilters()">Clear filter</button>
+  </p>
+</ng-container>
+<ng-container *ngIf="!showFilter">
+  <button (click)="toggleFilter()">Filter</button>
+</ng-container>

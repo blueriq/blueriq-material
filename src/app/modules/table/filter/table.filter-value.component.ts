@@ -1,37 +1,36 @@
 import { Component, Input } from '@angular/core';
-import { Filter, FilterOption, OPERATION_TYPES } from '@blueriq/angular/lists';
-import { BqFilter } from './table.filter.component';
+import { FilterOption, FilterValue } from '@blueriq/angular/lists';
 
 @Component({
   selector: 'bq-table-filter-value',
-  templateUrl: './table.filter-value.component.html'
+  templateUrl: './table.filter-value.component.html',
+  styleUrls: ['./table.filter-value.component.scss']
 })
 export class TableFilterValueComponent {
 
-  operations: OPERATION_TYPES[] = [];
+  @Input()
+  filterValue: FilterValue;
 
   @Input()
-  private readonly filter: Filter;
+  filterOptions: FilterOption[];
 
-  @Input()
-  private filterValue: BqFilter;
-
-  onColumn(filterOption: FilterOption): void {
-    this.operations = this.filter.getOperationsForType(filterOption.type);
-    this.filterValue.filterOption = filterOption;
+  onColumn(selectedOption: FilterOption): void {
+    this.filterValue.selectedOption = selectedOption;
   }
 
-  onOperation(operation: OPERATION_TYPES): void {
+  onOperation(operation: string): void {
     this.filterValue.operation = operation;
-  }
-
-  getOperationAsString(operation: OPERATION_TYPES): string {
-    return OPERATION_TYPES[operation];
   }
 
   onValue(value: string): void {
     this.filterValue.value = value;
-    this.filterValue.showUnknown = true;
     this.filterValue.showAll = false;
+  }
+
+  getOperations(): string[] {
+    if (this.filterValue.selectedOption) {
+      return this.filterValue.selectedOption.operations;
+    }
+    return [];
   }
 }

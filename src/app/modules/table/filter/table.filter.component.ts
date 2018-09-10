@@ -1,13 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Filter, FilterOption, FilterValue, OPERATION_TYPES } from '@blueriq/angular/lists';
-
-export class BqFilter {
-  filterOption: FilterOption;
-  operation: OPERATION_TYPES;
-  value: string;
-  showUnknown: boolean;
-  showAll: boolean;
-}
+import { Filter, FilterValue } from '@blueriq/angular/lists';
 
 @Component({
   selector: 'bq-table-filter',
@@ -16,40 +8,33 @@ export class BqFilter {
 })
 export class TableFilterComponent implements OnInit {
 
-  filters: BqFilter[] = [];
+  filterCandidates: FilterValue[] = [];
+  showFilter = false;
 
   @Input()
   private readonly filter: Filter;
 
   addFilter(): void {
-    this.filters.push(new BqFilter());
+    this.filterCandidates.push(new FilterValue());
   }
 
   doFilter(): void {
-    this.filters.forEach(value => this.filter.addFilter(value.filterOption.index, this.createFilterValueFromBqFilter(value)));
+    this.filterCandidates.forEach(value => this.filter.addFilter(value));
     this.filter.applyFilters();
+    this.toggleFilter();
   }
 
-  clearFilter(): void {
+  clearFilters(): void {
     this.filter.clearFilters();
-    this.filter.applyFilters();
-    this.filters = [new BqFilter()];
+    this.filterCandidates = [];
+    this.toggleFilter();
+  }
+
+  toggleFilter(): void {
+    this.showFilter = !this.showFilter;
   }
 
   ngOnInit(): void {
-    for (let filterValues of Array.from(this.filter.filterValues.values())) {
-      const bqFilter = new BqFilter();
-      bqFilter.filterOption = this.filter.getFilterOptionByIndex(filterValues.index);
-      bqFilter.operation = this.filter.getOperationForFilterValue(filterValues.value);
-      bqFilter.value = filterValues.value[bqFilter.operation];
-      bqFilter.showAll = filterValues.value.showAll;
-      bqFilter.showUnknown = filterValues.value.showUnknown;
-      this.filters.push(bqFilter);
-    }
-  }
-
-  private createFilterValueFromBqFilter(value: BqFilter): FilterValue {
-    const filterOption = value.filterOption;
-    return this.filter.createFilterValue(filterOption.index, filterOption.type, value.showAll, value.showUnknown, value.operation, value.value);
+    this.filterCandidates = this.filter.filterValues.length > 0 ? this.filter.filterValues : [new FilterValue()];
   }
 }
