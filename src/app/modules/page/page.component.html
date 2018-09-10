@@ -19,8 +19,8 @@
     </a>
 
     <mat-menu [overlapTrigger]="false" #userMenu="matMenu">
-      <button mat-menu-item>
-        Uitloggen (TODO)
+      <button mat-menu-item (click)="logout()">
+        Uitloggen
       </button>
     </mat-menu>
   </div>

@@ -29,6 +29,8 @@ import { LoadingComponent } from './modules/loading/loading.component';
 import { MenuModule } from './modules/menu/menu.module';
 import { PageComponent } from './modules/page/page.component';
 import { ReadonlyComponent } from './modules/readonly/readonly.component';
+import { LoginComponent } from './modules/static-pages/login.component';
+import { StaticPagesModule } from './modules/static-pages/static-pages.module';
 import { TableModule } from './modules/table/table.module';
 import { TextItemComponent } from './modules/textitem/textitem.component';
 import { WidgetModule } from './modules/widget/widget.module';
@@ -40,6 +42,7 @@ const routes: Routes = [
   { path: 'flow/:project/:flow', component: ProjectComponent },
   { path: 'flow/:project/:flow/:version', component: ProjectComponent },
   { path: 'flow/:project/:flow/:version/:languageCode', component: ProjectComponent },
+  { path: 'login', component: LoginComponent },
   { path: '**', redirectTo: 'shortcut/default', pathMatch: 'full' }
 ];
 
@@ -85,6 +88,7 @@ const BQ_COMPONENTS = [
     CommentModule,
     FormControlModule,
     MenuModule,
+    StaticPagesModule,
     TextItemModule,
     TableModule,
     WidgetModule

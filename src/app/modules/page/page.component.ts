@@ -1,5 +1,6 @@
 import { Component, Host } from '@angular/core';
-import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService, BlueriqComponent, BlueriqSession } from '@blueriq/angular';
 import { Page } from '@blueriq/core';
 
 @Component({
@@ -11,7 +12,18 @@ import { Page } from '@blueriq/core';
 })
 export class PageComponent {
   constructor(@Host() public page: Page,
+              private readonly authService: AuthService,
+              private router: Router,
+              private readonly route: ActivatedRoute,
               public blueriqSession: BlueriqSession
   ) {
+  }
+
+  logout() {
+    this.authService.logout().subscribe(() => {
+      this.route.params.subscribe(params => {
+        this.router.navigate(['/login'], { queryParams: params });
+      });
+    });
   }
 }

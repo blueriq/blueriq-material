@@ -1,0 +1,29 @@
+<div fxLayout="row" fxLayoutAlign="center center" class="transform" [class.background]="!failed" [class.background-failed]="failed">
+  <mat-card>
+    <form [formGroup]="loginForm">
+
+      <mat-card-header fxLayoutAlign="center">
+        <h1>Login</h1>
+      </mat-card-header>
+
+      <mat-card-content>
+
+        <mat-form-field fxFill appearance="fill">
+          <mat-label>Username</mat-label>
+          <input matInput formControlName="username" name="username">
+        </mat-form-field>
+        <mat-form-field fxFill appearance="fill">
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="password" type="password" name="password" autocomplete="off">
+        </mat-form-field>
+        <mat-error *ngIf="failed">Authentication failed</mat-error>
+
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-raised-button fxFill (click)="login()" color="primary">Login</button>
+      </mat-card-actions>
+
+    </form>
+  </mat-card>
+</div>

@@ -1,0 +1,25 @@
+@import 'globals/variables';
+
+.transform {
+  -webkit-transition: all 2s ease;
+  -moz-transition: all 2s ease;
+  -o-transition: all 2s ease;
+  -ms-transition: all 2s ease;
+  transition: all 2s ease;
+}
+
+.background {
+  background: map-get($bq-mat-primary-blue, 400);
+  height: 400px;
+}
+
+.background-failed {
+  background: map-get($bq-mat-primary-purple, 400);
+  height: 400px;
+}
+
+mat-error {
+  display: block;
+  margin-top: 4px;
+  font-size: 75%;
+}
