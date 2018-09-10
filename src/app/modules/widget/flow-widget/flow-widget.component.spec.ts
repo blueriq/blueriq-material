@@ -64,6 +64,8 @@ describe('WidgetComponent', () => {
     const widgetSessionSpan = component.nativeElement.querySelector('#widgetSessionDisplayName');
 
     // Verify
+    expect(component.nativeElement.classList).toContain('flow-widget');
+    expect(component.nativeElement.classList).toContain('elevate');
     expect(header2.innerHTML).toEqual('Container display name');
     expect(widgetSessionSpan.innerHTML).toEqual('Widget display name');
   });
