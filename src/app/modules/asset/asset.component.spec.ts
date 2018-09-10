@@ -35,4 +35,8 @@ describe('AssetComponent', () => {
   it('should contain the expected text', () => {
     expect(component.nativeElement.querySelector('div').innerText.trim()).toBe('lorum ipsum');
   });
+
+  it('should have the asset class', () => {
+    expect(component.nativeElement.querySelector('div').classList).toContain('asset');
+  });
 });
