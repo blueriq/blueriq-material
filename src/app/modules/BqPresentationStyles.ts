@@ -22,6 +22,9 @@ export class BqPresentationStyles {
   static MEMO = 'memo';
   // Presentation styles which are not used in studio
   static EXPLAINICON = 'explainicon';
+  // Prefixes
+  static WEIGHT_PREFIX = 'Weight';
+  static ICON_PREFIX = 'icon_';
   // Presentation styles which are deprecated in Blueriq 12.0
   static DEPRECATED_ALIGNRIGHT = 'align_right'; // New style is 'AlignRight'
   static DEPRECATED_HORIZONTAL = 'options_horizontal'; // New style is 'RadioHorizontal'
