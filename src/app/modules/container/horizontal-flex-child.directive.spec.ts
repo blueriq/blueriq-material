@@ -97,6 +97,15 @@ describe('HorizontalFlexChildDirective', () => {
       expect(fixture.nativeElement.querySelector('.bq-column').style.flexGrow).toBe('1');
     });
 
+    it('should render child component with irrelevant content style', () => {
+      session.update(
+        childTemplate.contentStyle('unknown')
+      );
+      expect(fixture.nativeElement.querySelector('.child')).toBeTruthy();
+      expect(fixture.nativeElement.querySelector('.bq-column')).toBeTruthy();
+      expect(fixture.nativeElement.querySelector('.bq-column').style.flexGrow).toBe('1');
+    });
+
     it('should render child component with Weight presentation style', () => {
       session.update(
         childTemplate.styles('Weight6')
