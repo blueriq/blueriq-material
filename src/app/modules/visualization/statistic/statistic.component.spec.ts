@@ -24,7 +24,7 @@ describe('StatisticComponent', () => {
   }));
 
   beforeEach(() => {
-    container = createVisualizationContainer(null);
+    container = createVisualizationContainer();
     session = BlueriqSessionTemplate.create().build(container);
     component = session.get(StatisticComponent);
   });
@@ -91,14 +91,16 @@ describe('StatisticComponent', () => {
     expect(labels[3]).toBe('Age greater than 60');
   });
 
-  function createVisualizationContainer(presentationStyle) {
+  function createVisualizationContainer(presentationStyle?: string) {
     const visualizationContainer = ContainerTemplate.create('myStatistics').contentStyle('visualization').children(
       createStatisticContainer('Age between 0-20', '2'), // In the sentence: 2 people are between 0-20
       createStatisticContainer('Age between 20-40', '19'),
       createStatisticContainer('Age between 40-60', '8'),
       createStatisticContainer('Age greater than 60', '1')
     );
-    visualizationContainer.styles(presentationStyle);
+    if (presentationStyle) {
+      visualizationContainer.styles(presentationStyle);
+    }
     return visualizationContainer;
   }
 
