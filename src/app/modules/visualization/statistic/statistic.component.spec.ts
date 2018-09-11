@@ -23,72 +23,83 @@ describe('StatisticComponent', () => {
     });
   }));
 
-  beforeEach(() => {
-    container = createVisualizationContainer();
-    session = BlueriqSessionTemplate.create().build(container);
-    component = session.get(StatisticComponent);
+  describe('basic tests', () => {
+    beforeEach(() => {
+      container = createVisualizationContainer();
+      session = BlueriqSessionTemplate.create().build(container);
+      component = session.get(StatisticComponent);
+    });
+
+    it('chart should have a default type Doughnut', () => {
+      expect(component.componentInstance.chart.config.type).toBe('doughnut');
+    });
+
+    it('chart should have the correct data', () => {
+      // Init
+      const datasets: any[] = component.componentInstance.chart.data.datasets;
+      const data: string[] = datasets[0].data;
+
+      // Verify
+      expect(datasets.length).toBe(1);
+      expect(data[0]).toBe('2');
+      expect(data[1]).toBe('19');
+      expect(data[2]).toBe('8');
+      expect(data[3]).toBe('1');
+    });
+
+    it('chart should have the correct labels', () => {
+      // Init
+      const labels: string[] = component.componentInstance.chart.data.labels;
+
+      // Verify
+      expect(labels.length).toBe(4);
+      expect(labels[0]).toBe('Age between 0-20');
+      expect(labels[1]).toBe('Age between 20-40');
+      expect(labels[2]).toBe('Age between 40-60');
+      expect(labels[3]).toBe('Age greater than 60');
+    });
   });
 
-  it('chart should have a default type Doughnut', () => {
-    expect(component.componentInstance.chart.config.type).toBe('doughnut');
-  });
-
-  it('should have a correct chart type when certain presentation style is set', () => {
-    // Pie
+  it('should have a pie chart type when the pie presentation style is set', () => {
     container = createVisualizationContainer(BqPresentationStyles.STATISTICPIE);
     session = BlueriqSessionTemplate.create().build(container);
     component = session.get(StatisticComponent);
     expect(component.componentInstance.chart.config.type).toBe('pie');
-    // Bar
+  });
+
+  it('should have a bar chart type when the bar presentation style is set', () => {
     container = createVisualizationContainer(BqPresentationStyles.STATISTICBAR);
     session = BlueriqSessionTemplate.create().build(container);
     component = session.get(StatisticComponent);
     expect(component.componentInstance.chart.config.type).toBe('bar');
-    // Bar
+  });
+
+  it('should have a doughnut chart type when the doughnut presentation style is set', () => {
     container = createVisualizationContainer(BqPresentationStyles.STATISTICDOUGHNUT);
     session = BlueriqSessionTemplate.create().build(container);
     component = session.get(StatisticComponent);
     expect(component.componentInstance.chart.config.type).toBe('doughnut');
-    // Bar
+  });
+
+  it('should have a radar chart type when the radar presentation style is set', () => {
     container = createVisualizationContainer(BqPresentationStyles.STATISTICRADAR);
     session = BlueriqSessionTemplate.create().build(container);
     component = session.get(StatisticComponent);
     expect(component.componentInstance.chart.config.type).toBe('radar');
-    // Bar
+  });
+
+  it('should have a line chart type when the line presentation style is set', () => {
     container = createVisualizationContainer(BqPresentationStyles.STATISTICLINE);
     session = BlueriqSessionTemplate.create().build(container);
     component = session.get(StatisticComponent);
     expect(component.componentInstance.chart.config.type).toBe('line');
-    // Bar
+  });
+
+  it('should have a polar chart type when the polar presentation style is set', () => {
     container = createVisualizationContainer(BqPresentationStyles.STATISTICPOLAR);
     session = BlueriqSessionTemplate.create().build(container);
     component = session.get(StatisticComponent);
     expect(component.componentInstance.chart.config.type).toBe('polarArea');
-  });
-
-  it('chart should have the correct data', () => {
-    // Init
-    const datasets: any[] = component.componentInstance.chart.data.datasets;
-    const data: string[] = datasets[0].data;
-
-    // Verify
-    expect(datasets.length).toBe(1);
-    expect(data[0]).toBe('2');
-    expect(data[1]).toBe('19');
-    expect(data[2]).toBe('8');
-    expect(data[3]).toBe('1');
-  });
-
-  it('chart should have the correct labels', () => {
-    // Init
-    const labels: string[] = component.componentInstance.chart.data.labels;
-
-    // Verify
-    expect(labels.length).toBe(4);
-    expect(labels[0]).toBe('Age between 0-20');
-    expect(labels[1]).toBe('Age between 20-40');
-    expect(labels[2]).toBe('Age between 40-60');
-    expect(labels[3]).toBe('Age greater than 60');
   });
 
   function createVisualizationContainer(presentationStyle?: string) {
@@ -106,9 +117,8 @@ describe('StatisticComponent', () => {
 
   function createStatisticContainer(label, data) {
     return ContainerTemplate.create('s1')
-                            .contentStyle('statistic')
-                            .properties({ 'value': data })
-                            .displayName(label);
+    .contentStyle('statistic')
+    .properties({ 'value': data })
+    .displayName(label);
   }
-
 });
