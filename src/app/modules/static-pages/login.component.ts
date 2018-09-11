@@ -33,7 +33,7 @@ export class LoginComponent {
           } else if (project && flow) {
             this.router.navigate(['/flow', project, flow]);
           } else {
-            this.router.navigateByUrl('/shortcut/default'); // TODO dont think this is good
+            this.failed = true;
           }
         } else {
           this.failed = true;
