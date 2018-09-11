@@ -33,6 +33,7 @@ import { LoginComponent } from './modules/static-pages/login.component';
 import { StaticPagesModule } from './modules/static-pages/static-pages.module';
 import { TableModule } from './modules/table/table.module';
 import { TextItemComponent } from './modules/textitem/textitem.component';
+import { VisualizationModule } from './modules/visualization/visualization.module';
 import { WidgetModule } from './modules/widget/widget.module';
 import { ProjectComponent } from './project.component';
 
@@ -91,6 +92,7 @@ const BQ_COMPONENTS = [
     StaticPagesModule,
     TextItemModule,
     TableModule,
+    VisualizationModule,
     WidgetModule
   ],
   exports: [
