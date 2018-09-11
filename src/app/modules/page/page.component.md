@@ -13,3 +13,5 @@ There are 5 content styles that influence the page's behavior:
   * It is medium (768 pixels) on screens smaller than 1024 pixels.
   * It is large (1024 pixels) on screens smaller than 1240 pixels.
   * It is extra large (1240 pixels) on screens wider than 1240 pixels.
+  
+The widths mentioned can easily be changed to suit your needs in the `theme/globals/_responsive-layout.scss` file.
