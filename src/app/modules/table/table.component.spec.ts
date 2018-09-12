@@ -3,7 +3,6 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { FormattingModule } from '@blueriq/angular/formatting';
-import { Table } from '@blueriq/angular/lists';
 import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
 import { BlueriqTestSession } from '@blueriq/angular/testing/src/test_session';
 import { TextItemModule } from '@blueriq/angular/textitems';
@@ -18,22 +17,27 @@ import { MaterialModule } from '../../material.module';
 import { ButtonComponent } from '../button/button.component';
 import { ReadonlyComponent } from '../readonly/readonly.component';
 import { TextItemComponent } from '../textitem/textitem.component';
+import { TableFilterValueComponent } from './filter/table.filter-value.component';
+import { TableFilterComponent } from './filter/table.filter.component';
+import { ListComponent } from './list.component';
+import { TablePaginationComponent } from './pagination/table.pagination.component';
+import { TableSearchComponent } from './search/table.search.component';
 import { TableSortComponent } from './sort/table.sort.component';
 import { TableComponent } from './table.component';
 
 describe('TableComponent', () => {
   let tableTemplate: ContainerTemplate;
   let session: BlueriqTestSession;
-  let component: ComponentFixture<TableComponent>;
+  let component: ComponentFixture<ListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ButtonComponent, TableComponent, ReadonlyComponent,
+      declarations: [ButtonComponent, ListComponent, ReadonlyComponent, TableComponent, TableSearchComponent,
+        TableFilterComponent, TableFilterValueComponent, TablePaginationComponent,
         TableSortComponent, TextItemComponent],
       providers: [BlueriqComponents.register([
-        ButtonComponent, TableComponent, ReadonlyComponent,
-        TableSortComponent, TextItemComponent]),
-        Table
+        ButtonComponent, ListComponent, ReadonlyComponent,
+        TableSortComponent, TextItemComponent])
       ],
       imports: [
         MaterialModule,
@@ -83,8 +87,44 @@ describe('TableComponent', () => {
       )
       // ---------- End ----------
     );
-    session = BlueriqSessionTemplate.create().build(tableTemplate);
-    component = session.get(TableComponent);
+    const btnFirst = ButtonTemplate.create('first')
+    .caption('<<')
+    .disabled(true)
+    .styles('pagination');
+
+    const btnPrevious = ButtonTemplate.create('previous')
+    .caption('<')
+    .disabled(true)
+    .styles('pagination');
+
+    const currentPageNumber = FieldTemplate.integer('InstanceListContainer_currentPageNumber')
+    .domain({ 1: '1', 2: '2', 3: '3' })
+    .styles('paginationNumber')
+    .value('1');
+
+    const btnNext = ButtonTemplate.create('next')
+    .caption('>')
+    .styles('pagination');
+
+    const btnLast = ButtonTemplate.create('last')
+    .caption('>>')
+    .styles('pagination');
+
+    const pagination = ContainerTemplate.create()
+    .name('navigationContainer')
+    .displayName('DisplayName')
+    .styles('navigationContainer')
+    .contentStyle('tablenavigation')
+    .children(
+      btnFirst,
+      btnPrevious,
+      currentPageNumber,
+      btnNext,
+      btnLast
+    );
+    const list = ContainerTemplate.create().children(tableTemplate, pagination);
+    session = BlueriqSessionTemplate.create().build(list);
+    component = session.get(ListComponent);
   });
 
   it('should have been created', () => {

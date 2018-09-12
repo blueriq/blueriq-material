@@ -6,6 +6,11 @@ import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/t
 import { BlueriqTestSession } from '@blueriq/angular/testing/src/test_session';
 import { ButtonTemplate, ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../../../material.module';
+import { TableFilterValueComponent } from '../filter/table.filter-value.component';
+import { TableFilterComponent } from '../filter/table.filter.component';
+import { ListComponent } from '../list.component';
+import { TablePaginationComponent } from '../pagination/table.pagination.component';
+import { TableComponent } from '../table.component';
 import { TableSearchComponent } from './table.search.component';
 
 describe('TableSearchComponent', () => {
@@ -13,13 +18,15 @@ describe('TableSearchComponent', () => {
   let field: FieldTemplate;
   let button: ButtonTemplate;
   let session: BlueriqTestSession;
-  let component: ComponentFixture<TableSearchComponent>;
+  let component: ComponentFixture<ListComponent>;
+  let tableSearchComponent: TableSearchComponent;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TableSearchComponent],
+      declarations: [ListComponent, TableComponent, TableSearchComponent, TableFilterComponent,
+        TableFilterValueComponent, TablePaginationComponent],
       providers: [
-        BlueriqComponents.register([TableSearchComponent])
+        BlueriqComponents.register([ListComponent])
       ],
       imports: [
         MaterialModule,
@@ -43,8 +50,49 @@ describe('TableSearchComponent', () => {
     .contentStyle('table')
     .children(field, button);
 
-    session = BlueriqSessionTemplate.create().build(tableSearch);
-    component = session.get(TableSearchComponent);
+    const btnFirst = ButtonTemplate.create('first')
+    .caption('<<')
+    .disabled(true)
+    .styles('pagination');
+
+    const btnPrevious = ButtonTemplate.create('previous')
+    .caption('<')
+    .disabled(true)
+    .styles('pagination');
+
+    const currentPageNumber = FieldTemplate.integer('InstanceListContainer_currentPageNumber')
+    .domain({ 1: '1', 2: '2', 3: '3' })
+    .styles('paginationNumber')
+    .value('1');
+
+    const btnNext = ButtonTemplate.create('next')
+    .caption('>')
+    .styles('pagination');
+
+    const btnLast = ButtonTemplate.create('last')
+    .caption('>>')
+    .styles('pagination');
+
+    const pagination = ContainerTemplate.create()
+    .name('navigationContainer')
+    .displayName('DisplayName')
+    .styles('navigationContainer')
+    .contentStyle('tablenavigation')
+    .children(
+      btnFirst,
+      btnPrevious,
+      currentPageNumber,
+      btnNext,
+      btnLast
+    );
+    const table = ContainerTemplate.create().contentStyle('table');
+    const list = ContainerTemplate.create().children(tableSearch, table, pagination);
+    session = BlueriqSessionTemplate.create().build(list);
+    component = session.get(ListComponent);
+
+    tableSearchComponent = new TableSearchComponent();
+    tableSearchComponent.search = component.componentInstance.list.search!;
+
   });
 
   it('should render', () => {
@@ -72,49 +120,42 @@ describe('TableSearchComponent', () => {
 
   it('should add a search term', () => {
     const searchInput = component.nativeElement.querySelector('input');
-
-    component.componentInstance.add({ 'input': searchInput, 'value': 'term1' });
-    expect(component.componentInstance.searchTerms.length).toBe(1);
+    tableSearchComponent.add({ 'input': searchInput, 'value': 'term1' });
+    expect(tableSearchComponent.searchTerms.length).toBe(1);
   });
 
   it('should not add a search term if a term with different casing is already present', () => {
     const searchInput = component.nativeElement.querySelector('input');
 
-    component.componentInstance.add({ 'input': searchInput, 'value': 'term1' });
-    expect(component.componentInstance.searchTerms.length).toBe(1);
-    component.componentInstance.add({ 'input': searchInput, 'value': 'TERM1' });
-    expect(component.componentInstance.searchTerms.length).toBe(1);
+    tableSearchComponent.add({ 'input': searchInput, 'value': 'term1' });
+    expect(tableSearchComponent.searchTerms.length).toBe(1);
+    tableSearchComponent.add({ 'input': searchInput, 'value': 'TERM1' });
+    expect(tableSearchComponent.searchTerms.length).toBe(1);
   });
 
   it('should remove a search term', () => {
-    session.update(
-      field.value(['term1', 'term2', 'term3'])
-    );
+    tableSearchComponent.searchTerms = ['term1', 'term2', 'term3'];
 
-    expect(component.componentInstance.searchTerms.length).toBe(3);
+    expect(tableSearchComponent.searchTerms.length).toBe(3);
 
-    component.componentInstance.remove('term2');
-    expect(component.componentInstance.searchTerms.length).toBe(2);
+    tableSearchComponent.remove('term2');
+    expect(tableSearchComponent.searchTerms.length).toBe(2);
   });
 
   it('should remove a search term even in different casing', () => {
-    session.update(
-      field.value(['term1', 'term2', 'term3'])
-    );
-    expect(component.componentInstance.searchTerms.length).toBe(3);
+    tableSearchComponent.searchTerms = ['term1', 'term2', 'term3'];
+    expect(tableSearchComponent.searchTerms.length).toBe(3);
 
-    component.componentInstance.remove('TERM2');
-    expect(component.componentInstance.searchTerms.length).toBe(2);
+    tableSearchComponent.remove('TERM2');
+    expect(tableSearchComponent.searchTerms.length).toBe(2);
   });
 
   it('should not add an empty search term', () => {
-    session.update(
-      field.value(['term1', 'term2', 'term3'])
-    );
+    tableSearchComponent.searchTerms = ['term1', 'term2', 'term3'];
     const searchInput = component.nativeElement.querySelector('input');
 
-    component.componentInstance.add({ 'input': searchInput, 'value': '' });
-    expect(component.componentInstance.searchTerms.length).toBe(3);
+    tableSearchComponent.add({ 'input': searchInput, 'value': '' });
+    expect(tableSearchComponent.searchTerms.length).toBe(3);
 
   });
 
