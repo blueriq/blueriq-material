@@ -29,11 +29,11 @@ describe('ContainerComponent', () => {
 
   beforeEach(() => {
     containerTemplate = ContainerTemplate.create()
-    .children(
-      ContainerTemplate.create(),
-      ContainerTemplate.create(),
-      ContainerTemplate.create()
-    );
+                                         .children(
+                                           ContainerTemplate.create(),
+                                           ContainerTemplate.create(),
+                                           ContainerTemplate.create()
+                                         );
     session = BlueriqSessionTemplate.create().build(containerTemplate);
     containerComponent = session.get(ContainerComponent);
   });
@@ -41,9 +41,9 @@ describe('ContainerComponent', () => {
   it('should have default expectations', () => {
     const container = containerComponent.componentInstance;
 
-    expect(container.isCard()).toBe(true);
+    expect(container.card).toBe(true);
     expect(containerComponent.nativeElement.querySelector('.container.card')).toBeTruthy();
-    expect(container.isHorizontal()).toBe(false);
+    expect(container.horizontal).toBe(false);
   });
 
   it('should have introduction class when presentation style is set', () => {
@@ -52,7 +52,7 @@ describe('ContainerComponent', () => {
       containerTemplate.styles(BqPresentationStyles.INTRODUCTION)
     );
 
-    expect(container.isIntroduction()).toBe(true);
+    expect(container.introduction).toBe(true);
     expect(containerComponent.nativeElement.querySelector('.container.introduction')).toBeTruthy();
   });
 
@@ -62,7 +62,7 @@ describe('ContainerComponent', () => {
       containerTemplate.styles(BqPresentationStyles.TRANSPARENT)
     );
 
-    expect(container.isTransparent()).toBe(true);
+    expect(container.transparent).toBe(true);
     expect(containerComponent.nativeElement.querySelector('.container.transparent')).toBeTruthy();
   });
 
@@ -72,7 +72,7 @@ describe('ContainerComponent', () => {
       containerTemplate.styles(BqPresentationStyles.HORIZONTAL)
     );
 
-    expect(container.isHorizontal()).toBe(true);
+    expect(container.horizontal).toBe(true);
     expect(containerComponent.nativeElement.querySelector('.bq-row')).toBeTruthy();
     expect(containerComponent.nativeElement.querySelectorAll('.bq-row > *').length).toBe(3);
   });
@@ -83,7 +83,7 @@ describe('ContainerComponent', () => {
       containerTemplate.styles(BqPresentationStyles.ALIGNRIGHT)
     );
 
-    expect(container.isAlignRight()).toBe(true);
+    expect(container.alignRight).toBe(true);
     expect(containerComponent.nativeElement.querySelector('.container.align-right')).toBeTruthy();
   });
 });

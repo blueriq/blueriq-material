@@ -8,7 +8,7 @@ import { MaterialModule } from '../../material.module';
 import { BqContentStyles } from '../BqContentStyles';
 import { PageComponent } from './page.component';
 
-describe('PageComponent', () => {
+fdescribe('PageComponent', () => {
   let pageTemplate: PageTemplate;
   let pageComponent: ComponentFixture<PageComponent>;
   let session: BlueriqTestSession;
@@ -30,6 +30,7 @@ describe('PageComponent', () => {
     pageTemplate = PageTemplate.create();
     session = BlueriqSessionTemplate.create().build(pageTemplate);
     pageComponent = session.get(PageComponent);
+    pageComponent.autoDetectChanges();
   });
 
   it('should be rendered by default', () => {

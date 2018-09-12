@@ -1,5 +1,5 @@
 import { Component, Host } from '@angular/core';
-import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
+import { BlueriqComponent, BlueriqSession, OnUpdate } from '@blueriq/angular';
 import { Page } from '@blueriq/core';
 import { BqContentStyles } from '../BqContentStyles';
 
@@ -10,12 +10,16 @@ import { BqContentStyles } from '../BqContentStyles';
 @BlueriqComponent({
   type: Page
 })
-export class PageComponent {
+export class PageComponent implements OnUpdate {
 
   size;
 
   constructor(@Host() public page: Page,
               public blueriqSession: BlueriqSession) {
+    this.size = this.determineSize();
+  }
+
+  bqOnUpdate(): void {
     this.size = this.determineSize();
   }
 
