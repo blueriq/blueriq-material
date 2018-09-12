@@ -33,6 +33,7 @@ export class TableFilterValueComponent {
   getOperations(): string[] {
     if (this.filterValue.selectedOption) {
       if (this.filterValue.selectedOption.operations.length > 0) {
+        // select the first operation for convenience
         this.filterValue.operation = this.filterValue.selectedOption.operations[0];
       }
       return this.filterValue.selectedOption.operations;
@@ -41,6 +42,6 @@ export class TableFilterValueComponent {
   }
 
   removeFilter(): void {
-    this.remove.emit('');
+    this.remove.emit('remove me');
   }
 }
