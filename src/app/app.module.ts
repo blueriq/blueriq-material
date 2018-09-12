@@ -21,6 +21,7 @@ import { AssetComponent } from './modules/asset/asset.component';
 import { ButtonComponent } from './modules/button/button.component';
 import { CommentModule } from './modules/comment/comment.module';
 import { ContainerComponent } from './modules/container/container.component';
+import { HorizontalFlexChildDirective } from './modules/container/horizontal-flex-child.directive';
 import { ErrorComponent } from './modules/error/error.component';
 import { FileModule } from './modules/file/file.modules';
 import { MomentTransformer } from './modules/form-controls/date/moment-transformer';
@@ -56,7 +57,10 @@ const BQ_COMPONENTS = [
 @NgModule({
   declarations: [
     AppComponent,
-    LoadingComponent, ErrorComponent, ProjectComponent,
+    ErrorComponent,
+    HorizontalFlexChildDirective,
+    LoadingComponent,
+    ProjectComponent,
     BQ_COMPONENTS
   ],
   imports: [

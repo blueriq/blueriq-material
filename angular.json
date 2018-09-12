@@ -101,9 +101,9 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "codeCoverageExclude": [
-              "**/error.effects.ts",
-              "**/custom-file-uploader.ts",
+              "**/BqContentStyles.ts",
               "**/BqPresentationStyles.ts",
+              "**/custom-file-uploader.ts",
               "**/datepicker.material.ts"
             ],
             "styles": [
