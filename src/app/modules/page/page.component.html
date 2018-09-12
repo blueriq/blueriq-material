@@ -26,5 +26,6 @@
   </div>
 </mat-toolbar>
 
-
-<div *ngFor="let child of page.children | bqIncluded" [bqElement]="child"></div>
+<div class="page {{ size }}">
+  <div *ngFor="let child of page.children | bqIncluded" [bqElement]="child"></div>
+</div>

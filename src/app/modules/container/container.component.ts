@@ -3,9 +3,8 @@ import { Component, Host, OnInit, Optional } from '@angular/core';
 import { BlueriqComponent, BlueriqSession, OnUpdate } from '@blueriq/angular';
 import { Table } from '@blueriq/angular/lists';
 import { Container, Page } from '@blueriq/core';
+import { BqContentStyles } from '../BqContentStyles';
 import { BqPresentationStyles } from '../BqPresentationStyles';
-
-type ContainerDisplayMode = '' | 'introduction' | 'transparent' | 'card';
 
 @Component({
   styleUrls: ['./container.component.scss'],
@@ -23,7 +22,11 @@ type ContainerDisplayMode = '' | 'introduction' | 'transparent' | 'card';
 })
 export class ContainerComponent implements OnInit, OnUpdate {
 
-  public displayMode: ContainerDisplayMode;
+  public dashboardwidget = false;
+  public topcontainer = false;
+  public introduction = false;
+  public transparent = false;
+  public card = false;
   public horizontal = false;
   public alignRight = false;
 
@@ -31,10 +34,6 @@ export class ContainerComponent implements OnInit, OnUpdate {
               @Optional() @Host() public readonly table: Table,
               private blueriqSession: BlueriqSession
   ) {
-  }
-
-  get isWidget(): boolean {
-    return this.blueriqSession.isWidget;
   }
 
   ngOnInit() {
@@ -45,27 +44,25 @@ export class ContainerComponent implements OnInit, OnUpdate {
     this.determineDisplayStyle();
   }
 
-  isIntroduction(): boolean {
-    return this.container.styles.has(BqPresentationStyles.INTRODUCTION);
-  }
-
   /**
    * Finds presentation styles to determine the look-and-feel of the container
    */
   private determineDisplayStyle() {
-    this.horizontal = this.container.styles.has(BqPresentationStyles.HORIZONTAL);
+    const isDashboardbody = this.container.contentStyle === BqContentStyles.DASHBOARD_BODY;
+    const isDashboardrow = this.container.contentStyle === BqContentStyles.DASHBOARD_ROW;
+    this.dashboardwidget = this.container.contentStyle === BqContentStyles.DASHBOARD_WIDGET;
+    this.topcontainer = this.container.parent instanceof Page && this.blueriqSession.isRoot;
+    this.introduction = this.container.styles.has(BqPresentationStyles.INTRODUCTION);
+    this.transparent = this.container.styles.has(BqPresentationStyles.TRANSPARENT);
+    this.card = (this.topcontainer && !isDashboardbody && !this.transparent && !this.introduction)
+      || this.dashboardwidget;
+    this.horizontal = this.container.styles.has(BqPresentationStyles.HORIZONTAL) || isDashboardrow;
     this.alignRight = this.container.styles.hasAny(BqPresentationStyles.ALIGNRIGHT,
       BqPresentationStyles.DEPRECATED_ALIGNRIGHT);
-
-    if (this.container.parent && !(this.container.parent instanceof Page) || this.blueriqSession.isWidget) {
-      // container within a container doesn't need specific styling
-      this.displayMode = '';
-    } else if (this.isIntroduction()) {
-      this.displayMode = 'introduction';
-    } else if (this.container.styles.has(BqPresentationStyles.TRANSPARENT)) {
-      this.displayMode = 'transparent';
-    } else {
-      this.displayMode = 'card';
-    }
   }
+
+  get isWidget(): boolean {
+    return this.blueriqSession.isWidget;
+  }
+
 }

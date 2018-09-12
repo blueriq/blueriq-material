@@ -1,18 +1,21 @@
-<div bqKey bqClasses class="container {{displayMode}}" [ngClass]="{'alignright': this.alignRight}">
-  <img *ngIf="isIntroduction()" src="./theme/images/blueriq-technology.svg">
+<div bqKey bqClasses [ngClass]="{
+    'container': true,
+    'top-container': topcontainer,
+    'introduction': introduction,
+    'transparent': transparent,
+    'card': card,
+    'align-right': alignRight,
+    'bq-widget': dashboardwidget
+  }">
+  <img *ngIf="introduction" src="./theme/images/blueriq-technology.svg">
 
-  <div *ngIf="container.displayName && !table">
+  <ng-container *ngIf="container.displayName && !table">
     <h2 *ngIf="!isWidget">{{ container.displayName }}</h2>
     <h3 *ngIf="isWidget" class="widget">{{ container.displayName }}</h3>
+  </ng-container>
+
+  <div [class.bq-row]="horizontal">
+    <ng-container *ngFor="let child of container.children | bqIncluded" [bqElement]="child" [bqFlexChild]="horizontal"></ng-container>
   </div>
 
-  <div *ngIf="!horizontal">
-    <ng-container *ngFor="let child of container.children | bqIncluded" [bqElement]="child"></ng-container>
-  </div>
-
-  <div *ngIf="horizontal" class="grid">
-    <div *ngFor="let child of container.children | bqIncluded" class="grid-item">
-      <ng-container [bqElement]="child"></ng-container>
-    </div>
-  </div>
 </div>
