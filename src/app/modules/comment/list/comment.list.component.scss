@@ -1,5 +1,10 @@
 @import 'globals/variables';
 
+mat-list {
+  max-height: $bq-max-height-scrollbar;
+  overflow-y: auto;
+}
+
 .header {
   margin-bottom: $bq-margin-half;
 
@@ -12,6 +17,7 @@
 .mat-card-subtitle {
   align-items: center;
   justify-content: center;
+  margin-right: $bq-margin-half;
 }
 
 .date {
