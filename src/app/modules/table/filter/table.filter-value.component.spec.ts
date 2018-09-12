@@ -1,7 +1,7 @@
 import { FilterOption, FilterValue } from '@blueriq/angular/lists';
 import { TableFilterValueComponent } from '../filter/table.filter-value.component';
 
-fdescribe('TableFilterValueComponent', () => {
+describe('TableFilterValueComponent', () => {
   const tableFilterValueComponent = new TableFilterValueComponent();
 
   it('FilterValue operations', () => {
