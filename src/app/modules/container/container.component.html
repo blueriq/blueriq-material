@@ -1,24 +1,20 @@
-<div
-  bqKey
-  bqClasses
-  [ngClass]="{
+<div bqKey bqClasses [ngClass]="{
     'container': true,
-    'top-container': isTopContainer(),
-    'introduction': isIntroduction(),
-    'transparent': isTransparent(),
-    'card': isCard(),
-    'align-right': isAlignRight(),
-    'bq-widget': isDashboardWidget()
+    'top-container': topcontainer,
+    'introduction': introduction,
+    'transparent': transparent,
+    'card': card,
+    'align-right': alignRight,
+    'bq-widget': dashboardwidget
   }">
-  <img *ngIf="isIntroduction()" src="./theme/images/blueriq-technology.svg">
+  <img *ngIf="introduction" src="./theme/images/blueriq-technology.svg">
 
   <ng-container *ngIf="container.displayName && !table">
     <h2 [class.widget]="isWidget">{{ container.displayName }}</h2>
   </ng-container>
 
-  <div [class.bq-row]="isHorizontal()">
-    <ng-container *ngFor="let child of container.children | bqIncluded" [bqElement]="child"
-      [bqFlexChild]="isHorizontal()"></ng-container>
+  <div [class.bq-row]="horizontal">
+    <ng-container *ngFor="let child of container.children | bqIncluded" [bqElement]="child" [bqFlexChild]="horizontal"></ng-container>
   </div>
 
 </div>

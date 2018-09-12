@@ -1,6 +1,6 @@
 import { animateChild, query, transition, trigger } from '@angular/animations';
 import { Component, Host, OnInit, Optional } from '@angular/core';
-import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
+import { BlueriqComponent, BlueriqSession, OnUpdate } from '@blueriq/angular';
 import { Table } from '@blueriq/angular/lists';
 import { Container, Page } from '@blueriq/core';
 import { BqContentStyles } from '../BqContentStyles';
@@ -20,7 +20,15 @@ import { BqPresentationStyles } from '../BqPresentationStyles';
 @BlueriqComponent({
   type: Container
 })
-export class ContainerComponent implements OnInit {
+export class ContainerComponent implements OnInit, OnUpdate {
+
+  public dashboardwidget = false;
+  public topcontainer = false;
+  public introduction = false;
+  public transparent = false;
+  public card = false;
+  public horizontal = false;
+  public alignRight = false;
 
   constructor(@Host() public container: Container,
               @Optional() @Host() public readonly table: Table,
@@ -28,47 +36,33 @@ export class ContainerComponent implements OnInit {
   ) {
   }
 
+  ngOnInit() {
+    this.determineDisplayStyle();
+  }
+
+  bqOnUpdate() {
+    this.determineDisplayStyle();
+  }
+
+  /**
+   * Finds presentation styles to determine the look-and-feel of the container
+   */
+  private determineDisplayStyle() {
+    const isDashboardbody = this.container.contentStyle === BqContentStyles.DASHBOARD_BODY;
+    const isDashboardrow = this.container.contentStyle === BqContentStyles.DASHBOARD_ROW;
+    this.dashboardwidget = this.container.contentStyle === BqContentStyles.DASHBOARD_WIDGET;
+    this.topcontainer = this.container.parent instanceof Page && this.blueriqSession.isRoot;
+    this.introduction = this.container.styles.has(BqPresentationStyles.INTRODUCTION);
+    this.transparent = this.container.styles.has(BqPresentationStyles.TRANSPARENT);
+    this.card = (this.topcontainer && !isDashboardbody && !this.transparent && !this.introduction)
+      || this.dashboardwidget;
+    this.horizontal = this.container.styles.has(BqPresentationStyles.HORIZONTAL) || isDashboardrow;
+    this.alignRight = this.container.styles.hasAny(BqPresentationStyles.ALIGNRIGHT,
+      BqPresentationStyles.DEPRECATED_ALIGNRIGHT);
+  }
+
   get isWidget(): boolean {
     return this.blueriqSession.isWidget;
   }
 
-  ngOnInit() {
-  }
-
-  isDashboardBody(): boolean {
-    return this.container.contentStyle === BqContentStyles.DASHBOARD_BODY;
-  }
-
-  isDashboardRow(): boolean {
-    return this.container.contentStyle === BqContentStyles.DASHBOARD_ROW;
-  }
-
-  isDashboardWidget(): boolean {
-    return this.container.contentStyle === BqContentStyles.DASHBOARD_WIDGET;
-  }
-
-  isTopContainer() {
-    return this.container.parent instanceof Page && this.blueriqSession.isRoot;
-  }
-
-  isIntroduction(): boolean {
-    return this.container.styles.has(BqPresentationStyles.INTRODUCTION);
-  }
-
-  isTransparent(): boolean {
-    return this.container.styles.has(BqPresentationStyles.TRANSPARENT);
-  }
-
-  isCard(): boolean {
-    return (this.isTopContainer() && !this.isDashboardBody() && !this.isTransparent() && !this.isIntroduction())
-      || this.isDashboardWidget();
-  }
-
-  isHorizontal(): boolean {
-    return this.container.styles.has(BqPresentationStyles.HORIZONTAL) || this.isDashboardRow();
-  }
-
-  isAlignRight(): boolean {
-    return this.container.styles.hasAny(BqPresentationStyles.ALIGNRIGHT, BqPresentationStyles.DEPRECATED_ALIGNRIGHT);
-  }
 }

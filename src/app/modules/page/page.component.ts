@@ -11,15 +11,18 @@ import { BqContentStyles } from '../BqContentStyles';
   type: Page
 })
 export class PageComponent {
+
+  size;
+
   constructor(@Host() public page: Page,
               public blueriqSession: BlueriqSession) {
+    this.size = this.determineSize();
   }
 
-  get size(): string {
+  determineSize(): string {
     if (this.blueriqSession.isWidget) {
       return 'full';
     }
-
     if (this.page.contentStyle === BqContentStyles.WIDTH_LARGE) {
       return 'large';
     } else if (this.page.contentStyle === BqContentStyles.WIDTH_MEDIUM) {
@@ -31,4 +34,5 @@ export class PageComponent {
     }
     return 'responsive';
   }
+
 }
