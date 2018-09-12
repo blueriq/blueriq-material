@@ -6,6 +6,12 @@ button {
 }
 
 .tertiary {
-  background-color: mat-color($bq-tertiary-palette);
-  color: mat-color($bq-tertiary-palette, default-contrast);
+  background-color: mat-color($bq-tertiary-palette, default-contrast);
+  color: mat-color($bq-tertiary-palette);
+
+  &.mat-raised-button {
+    background-color: mat-color($bq-tertiary-palette);
+    color: mat-color($bq-tertiary-palette, default-contrast);
+  }
 }
+

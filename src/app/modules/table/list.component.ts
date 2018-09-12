@@ -2,6 +2,7 @@ import { Component, Host } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { List } from '@blueriq/angular/lists';
 import { Container } from '@blueriq/core';
+import { BqContentStyles } from '../BqContentStyles';
 
 @Component({
   selector: 'bq-list',
@@ -10,7 +11,7 @@ import { Container } from '@blueriq/core';
 })
 @BlueriqComponent({
   type: Container,
-  selector: ':has(* > table)'
+  selector: `:has(* > ${BqContentStyles.TABLE})`
 })
 export class ListComponent {
 
