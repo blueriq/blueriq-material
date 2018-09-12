@@ -12,6 +12,7 @@ export class BqPresentationStyles {
   static TRANSPARENT = 'Transparent';
   static WARNING = 'Warning';
   static LARGETEXT = 'LargeText';
+  static AUTOCOMPLETE = 'Autocomplete';
   // Presentation styles reused from AquimaLibrary, these can be refactored in the future
   static DANGER = 'Danger';
   static DISABLED = 'Disabled';
