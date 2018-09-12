@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { Filter, FilterValue } from '@blueriq/angular/lists';
 
 @Component({
@@ -9,29 +10,48 @@ import { Filter, FilterValue } from '@blueriq/angular/lists';
 export class TableFilterComponent implements OnInit {
 
   filterCandidates: FilterValue[] = [];
-  showFilter = false;
+  private filterDialog: MatDialogRef<any, any>;
 
   @Input()
   private readonly filter: Filter;
+
+  constructor(public dialog: MatDialog) {
+  }
 
   addFilter(): void {
     this.filterCandidates.push(new FilterValue());
   }
 
   doFilter(): void {
+    this.filter.filterValues = [];
     this.filterCandidates.forEach(value => this.filter.addFilter(value));
     this.filter.applyFilters();
-    this.toggleFilter();
+    this.filterDialog.close();
   }
 
   clearFilters(): void {
     this.filter.clearFilters();
-    this.filterCandidates = [];
-    this.toggleFilter();
+    this.filterCandidates = [new FilterValue()];
+    this.filterDialog.close();
   }
 
-  toggleFilter(): void {
-    this.showFilter = !this.showFilter;
+  removeFilter(filterValue: FilterValue): void {
+    this.filterCandidates.forEach((filter, index) => {
+      if (filter === filterValue) {
+        this.filterCandidates.splice(index, 1);
+      }
+    });
+  }
+
+  showFilter(templateRef: TemplateRef<any>): void {
+    this.filterDialog = this.dialog.open(templateRef);
+  }
+
+  isFiltered(): string {
+    if (this.filter.filterValues.length > 0) {
+      return 'primary';
+    }
+    return '';
   }
 
   ngOnInit(): void {

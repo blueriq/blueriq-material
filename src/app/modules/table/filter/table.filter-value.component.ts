@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FilterOption, FilterValue } from '@blueriq/angular/lists';
 
 @Component({
@@ -13,6 +13,9 @@ export class TableFilterValueComponent {
 
   @Input()
   filterOptions: FilterOption[];
+
+  @Output()
+  remove = new EventEmitter<any>();
 
   onColumn(selectedOption: FilterOption): void {
     this.filterValue.selectedOption = selectedOption;
@@ -29,8 +32,15 @@ export class TableFilterValueComponent {
 
   getOperations(): string[] {
     if (this.filterValue.selectedOption) {
+      if (this.filterValue.selectedOption.operations.length > 0) {
+        this.filterValue.operation = this.filterValue.selectedOption.operations[0];
+      }
       return this.filterValue.selectedOption.operations;
     }
     return [];
+  }
+
+  removeFilter(): void {
+    this.remove.emit('');
   }
 }

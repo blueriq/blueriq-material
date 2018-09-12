@@ -1,29 +1,31 @@
-<ng-container *ngIf="showFilter">
-  <div class="grid">
-    <div class="grid-item">
+<ng-container>
+  <button mat-raised-button [color]="isFiltered()" (click)="showFilter(filterDialog)">Filter</button>
+</ng-container>
+
+<ng-template #filterDialog>
+  <div fxLayout="row" fxLayoutGap="10px">
+    <div fxFlex="30">
       <mat-label>Column name</mat-label>
     </div>
-    <div class="grid-item">
+    <div fxFlex="30">
       <mat-label>Operation</mat-label>
     </div>
-    <div class="grid-item">
+    <div fxFlex="30">
       <mat-label>Value</mat-label>
     </div>
-    <div class="grid-item">
-      <mat-label>{{filter.filterOptions[0].showAllLabel}}</mat-label>
-    </div>
-    <div class="grid-item">
+    <div fxFlex="5">
       <mat-label>{{filter.filterOptions[0].showUnknownLabel}}</mat-label>
     </div>
+    <div fxFlex="5"></div>
   </div>
-  <bq-table-filter-value *ngFor="let filterValue of filterCandidates" [filterValue]="filterValue" [filterOptions]="filter.filterOptions"></bq-table-filter-value>
 
-  <p>
-    <button mat-mini-fab (click)="addFilter()">+</button>
-    <button (click)="doFilter()">Apply filter</button>
-    <button (click)="clearFilters()">Clear filter</button>
-  </p>
-</ng-container>
-<ng-container *ngIf="!showFilter">
-  <button (click)="toggleFilter()">Filter</button>
-</ng-container>
+  <bq-table-filter-value *ngFor="let filterValue of filterCandidates" [filterValue]="filterValue" (remove)="removeFilter(filterValue)" [filterOptions]="filter.filterOptions"></bq-table-filter-value>
+
+  <div fxLayout="row" fxLayoutGap="10px">
+    <button mat-button class="plain-link" (click)="addFilter()">Add filter</button>
+  </div>
+  <div fxLayout="row" fxLayoutGap="10px">
+    <button mat-raised-button [color]="'primary'" (click)="doFilter()">Apply filter</button>
+    <button mat-raised-button (click)="clearFilters()">Clear filter</button>
+  </div>
+</ng-template>

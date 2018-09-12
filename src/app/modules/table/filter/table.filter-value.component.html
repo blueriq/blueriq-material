@@ -1,25 +1,33 @@
-<div class="grid">
-  <div class="grid-item">
-    <mat-select [value]="filterValue.selectedOption" (valueChange)="onColumn($event)">
-      <mat-option *ngFor="let filterOption of filterOptions" [value]="filterOption">
-        {{filterOption.title}}
-      </mat-option>
-    </mat-select>
+<div fxLayout="row" fxLayoutGap="10px">
+  <div fxFlex="30">
+    <mat-form-field fxFlex appearance="fill">
+      <mat-select placeholder="Column name" [value]="filterValue.selectedOption" (valueChange)="onColumn($event)">
+        <mat-option *ngFor="let filterOption of filterOptions" [value]="filterOption">
+          {{filterOption.title}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
-  <div class="grid-item">
-    <mat-select (valueChange)="onOperation($event)" [value]="filterValue.operation">
-      <mat-option *ngFor="let operation of getOperations()" [value]="operation">
-        {{operation}}
-      </mat-option>
-    </mat-select>
+  <div fxFlex="30">
+    <mat-form-field fxFlex appearance="fill">
+      <mat-select placeholder="operation" (valueChange)="onOperation($event)" [value]="filterValue.operation">
+        <mat-option *ngFor="let operation of getOperations()" [value]="operation">
+          {{operation}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
-  <div class="grid-item">
-    <input matInput (change)="onValue($event.target.value)" [value]="filterValue.value">
+  <div fxFlex="30">
+    <mat-form-field fxFlex appearance="fill">
+      <input matInput (change)="onValue($event.target.value)" [value]="filterValue.value || ''">
+    </mat-form-field>
   </div>
-  <div class="grid-item">
-    <mat-checkbox [checked]="filterValue.showAll"></mat-checkbox>
-  </div>
-  <div class="grid-item">
+  <div fxFlex="5" fxLayoutAlign="center center">
     <mat-checkbox [checked]="filterValue.showUnknown"></mat-checkbox>
+  </div>
+  <div fxFlex="5" fxLayoutAlign="center center">
+    <button mat-button (click)="removeFilter()">
+      <mat-icon>clear</mat-icon>
+    </button>
   </div>
 </div>
