@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule, MatInputModule } from '@angular/material';
 import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
-import { FlowWidgetComponent } from './flow-widget.component';
+import { FlowWidgetComponent } from './flow-widget/flow-widget.component';
 
 const WIDGET_CONTROL_COMPONENTS = [
   FlowWidgetComponent

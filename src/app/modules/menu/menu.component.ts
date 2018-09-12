@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BlueriqChild, BlueriqComponent } from '@blueriq/angular';
 import { Container } from '@blueriq/core';
+import { BqContentStyles } from '../BqContentStyles';
 
 @Component({
   selector: 'bq-menu',
@@ -9,7 +10,7 @@ import { Container } from '@blueriq/core';
 })
 @BlueriqComponent({
   type: Container,
-  selector: 'dashboard_menu'
+  selector: BqContentStyles.DASHBOARD_MENU
 })
 export class MenuComponent {
 
