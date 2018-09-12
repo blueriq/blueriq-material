@@ -8,7 +8,7 @@ import { MaterialModule } from '../../material.module';
 import { BqContentStyles } from '../BqContentStyles';
 import { PageComponent } from './page.component';
 
-fdescribe('PageComponent', () => {
+describe('PageComponent', () => {
   let pageTemplate: PageTemplate;
   let pageComponent: ComponentFixture<PageComponent>;
   let session: BlueriqTestSession;
