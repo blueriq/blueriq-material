@@ -16,16 +16,17 @@ button {
 }
 
 ::ng-deep {
-  .Tertiary .mat-button-focus-overlay { // sass-lint:disable-line class-name-format
-    background-color: mat-color($bq-tertiary-palette, 0.12);
+  .Tertiary { // sass-lint:disable-line class-name-format
+    .mat-button-focus-overlay {
+      background-color: mat-color($bq-tertiary-palette, .12);
+    }
   }
 
-  /**
-    Default buttons in cards or elevated widgets get a slightly darker background compared to default
-    buttons in transparent containers.
-   */
-  .card, .flow-widget.elevate {
-    button.default-styling {
+  // Default buttons in cards or elevated widgets get a slightly darker background compared to default
+  // buttons in transparent containers.
+  .card,
+  .flow-widget.elevate { // sass-lint:disable-line force-element-nesting
+    .default-styling { // sass-lint:disable-line force-element-nesting
       background: $bq-card-button-background;
     }
   }

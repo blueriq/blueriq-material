@@ -37,7 +37,9 @@ export class ButtonComponent {
    * Determines if there is a styling specification set for the current button.
    */
   hasDefaultStyling(): boolean {
-    return !this.button.styles.hasAny(BqPresentationStyles.PRIMARY, BqPresentationStyles.ACCENT, BqPresentationStyles.TERTIARY, BqPresentationStyles.FLAT_BUTTON);
+    return !this.button.styles.hasAny(
+      BqPresentationStyles.PRIMARY, BqPresentationStyles.ACCENT,
+      BqPresentationStyles.TERTIARY, BqPresentationStyles.FLAT_BUTTON);
   }
 
   isDisabled(): boolean {
