@@ -90,7 +90,7 @@ describe('ButtonComponent', () => {
     );
 
     const classes: string = component.nativeElement.querySelector('button').getAttribute('class');
-    expect(classes).toContain('tertiary');
+    expect(classes).toContain('Tertiary');
     expect(classes).not.toContain('mat-primary');
   });
 
