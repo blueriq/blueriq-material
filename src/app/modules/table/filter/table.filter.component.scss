@@ -1,15 +1,5 @@
 @import 'globals/variables';
 
-button {
-  &.plain-link {
-    color: mat-color($bq-primary-palette);
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-}
-
 .margin {
   margin: $bq-margin-half;
 }

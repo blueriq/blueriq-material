@@ -1,15 +1,17 @@
-<ng-container>
-  <button
-    mat-raised-button
-    [color]="isFiltered()"
+<div fxLayout="row" fxLayoutAlign="end center">
+  <button mat-icon-button
     (click)="showFilter(filterDialog)"
     [matBadge]="filter.filterValues.length"
     [matBadgeHidden]="filter.filterValues.length === 0"
+    matTooltip="Filter"
     matBadgePosition="before"
-    matBadgeColor="accent">
-    Filters
+    matBadgeColor="primary">
+    <mat-icon aria-label="Filter">filter_list</mat-icon>
   </button>
-</ng-container>
+  <button mat-icon-button *ngIf="filter.filterValues.length > 0" matTooltip="Clear filter">
+    <mat-icon aria-label="Clear filter" (click)="clearFilters()">clear</mat-icon>
+  </button>
+</div>
 
 <ng-template #filterDialog>
   <div class="margin">
@@ -29,14 +31,11 @@
       <div fxFlex="5"></div>
     </div>
 
-    <bq-table-filter-value *ngFor="let filterValue of filterCandidates" [filterValue]="filterValue" (remove)="removeFilter(filterValue)" [filterOptions]="filter.filterOptions"></bq-table-filter-value>
+    <bq-table-filter-value *ngFor="let filterValue of filterCandidates" [filterValue]="filterValue" (remove)="removeFilter(filterValue)" (complete)="addFiltert()" [filterOptions]="filter.filterOptions"></bq-table-filter-value>
 
-    <div fxLayout="row" fxLayoutGap="10px">
-      <button mat-button class="plain-link" (click)="addFilter()">Add filter</button>
+    <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end center">
+      <button mat-flat-button [color]="'primary'" (click)="doFilter()">Apply filter</button>
     </div>
-    <div fxLayout="row" fxLayoutGap="10px">
-      <button mat-raised-button [color]="'primary'" (click)="doFilter()">Apply filter</button>
-      <button mat-raised-button (click)="clearFilters()">Clear filter</button>
-    </div>
+
   </div>
 </ng-template>

@@ -9,6 +9,7 @@ import { Filter, FilterValue } from '@blueriq/angular/lists';
 })
 export class TableFilterComponent implements OnInit {
 
+  MAX_FILTERS = 8;
   filterCandidates: FilterValue[] = [];
 
   @Input()
@@ -20,7 +21,9 @@ export class TableFilterComponent implements OnInit {
   }
 
   addFilter(): void {
-    this.filterCandidates.push(new FilterValue());
+    if (this.filterCandidates.length < this.MAX_FILTERS) {
+      this.filterCandidates.push(new FilterValue());
+    }
   }
 
   doFilter(): void {
@@ -53,6 +56,10 @@ export class TableFilterComponent implements OnInit {
       return 'primary';
     }
     return '';
+  }
+
+  addFiltert() {
+    console.log('HOPPA');
   }
 
   ngOnInit(): void {

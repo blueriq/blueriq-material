@@ -1,4 +1,13 @@
+::ng-deep {
+  .bq-table-filter-value * {
 
-mat-form-field {
-  font-size: 12px;
+    // resize the default material fields to make the fields more compressed
+    .mat-form-field-infix {
+      border-top: 0;
+    }
+
+    .mat-form-field-appearance-fill .mat-select-arrow-wrapper, .mat-form-field-appearance-standard .mat-select-arrow-wrapper {
+      transform: none;
+    }
+  }
 }

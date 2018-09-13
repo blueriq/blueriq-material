@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 import { FilterOption, FilterValue } from '@blueriq/angular/lists';
 
 @Component({
@@ -8,6 +8,8 @@ import { FilterOption, FilterValue } from '@blueriq/angular/lists';
 })
 export class TableFilterValueComponent {
 
+  @HostBinding('class') classes = 'bq-table-filter-value';
+
   @Input()
   filterValue: FilterValue;
 
@@ -16,6 +18,9 @@ export class TableFilterValueComponent {
 
   @Output()
   remove = new EventEmitter<any>();
+
+  @Output()
+  complete = new EventEmitter<any>();
 
   onColumn(selectedOption: FilterOption): void {
     this.filterValue.selectedOption = selectedOption;
@@ -28,6 +33,9 @@ export class TableFilterValueComponent {
   onValue(value: string): void {
     this.filterValue.value = value;
     this.filterValue.showAll = false;
+    if (value) {
+      this.isComplete();
+    }
   }
 
   getOperations(): string[] {
@@ -43,5 +51,9 @@ export class TableFilterValueComponent {
 
   removeFilter(): void {
     this.remove.emit('remove me');
+  }
+
+  isComplete(): void {
+    this.complete.emit(true);
   }
 }
