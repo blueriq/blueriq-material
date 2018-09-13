@@ -25,7 +25,8 @@ describe('TableFilterIconComponent', () => {
 
   it('column with filtering', () => {
     // setup
-    const container = ContainerTemplate.create().contentStyle('listplus_search_integer').properties({ index: 0 }).build();
+    const container = ContainerTemplate.create().contentStyle('listplus_search_integer')
+    .properties({ index: 0 }).build();
     const filterOption = new FilterOption();
     filterOption.index = 0;
     const filterValue = new FilterValue();
