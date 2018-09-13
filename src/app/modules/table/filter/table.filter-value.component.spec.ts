@@ -17,7 +17,9 @@ describe('TableFilterValueComponent', () => {
     expect(tableFilterValueComponent.filterValue.value).toBeFalsy();
     expect(tableFilterValueComponent.filterValue.isValid()).toBeFalsy();
 
-    // SUT
+    // SUT & verify: empty operations if nothing is selected
+    expect(tableFilterValueComponent.getOperations()).toEqual([]);
+
     // select option
     tableFilterValueComponent.onColumn(filterOption);
     // retrieve operations, the first operation is automatically set as selected operation

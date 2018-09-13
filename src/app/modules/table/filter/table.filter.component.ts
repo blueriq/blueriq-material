@@ -10,8 +10,10 @@ import { Filter, FilterValue } from '@blueriq/angular/lists';
 export class TableFilterComponent implements OnInit {
 
   filterCandidates: FilterValue[] = [];
+
   @Input()
-  readonly filter: Filter;
+  filter: Filter;
+
   private filterDialog: MatDialogRef<any, any>;
 
   constructor(public dialog: MatDialog) {
