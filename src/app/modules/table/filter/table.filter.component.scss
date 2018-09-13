@@ -3,3 +3,13 @@
 .margin {
   margin: $bq-margin-half;
 }
+
+button {
+  &.plain-link {
+    color: mat-color($bq-primary-palette);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

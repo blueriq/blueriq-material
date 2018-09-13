@@ -33,6 +33,9 @@
 
     <bq-table-filter-value *ngFor="let filterValue of filterCandidates" [filterValue]="filterValue" (remove)="removeFilter(filterValue)" (complete)="addFiltert()" [filterOptions]="filter.filterOptions"></bq-table-filter-value>
 
+    <div fxLayout="row" fxLayoutGap="10px">
+      <button mat-button class="plain-link" (click)="addFilter()">Add filter</button>
+    </div>
     <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end center">
       <button mat-flat-button [color]="'primary'" (click)="doFilter()">Apply filter</button>
     </div>

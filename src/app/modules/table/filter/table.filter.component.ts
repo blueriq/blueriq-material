@@ -58,10 +58,6 @@ export class TableFilterComponent implements OnInit {
     return '';
   }
 
-  addFiltert() {
-    console.log('HOPPA');
-  }
-
   ngOnInit(): void {
     this.filterCandidates = this.filter.filterValues.length > 0 ? this.filter.filterValues : [new FilterValue()];
   }

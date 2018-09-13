@@ -19,9 +19,6 @@ export class TableFilterValueComponent {
   @Output()
   remove = new EventEmitter<any>();
 
-  @Output()
-  complete = new EventEmitter<any>();
-
   onColumn(selectedOption: FilterOption): void {
     this.filterValue.selectedOption = selectedOption;
     // reset filter values because they depend on selected option
@@ -40,9 +37,6 @@ export class TableFilterValueComponent {
   onValue(value: string): void {
     this.filterValue.value = value;
     this.filterValue.showAll = false;
-    if (value) {
-      this.isComplete();
-    }
   }
 
   getOperations(): string[] {
@@ -53,7 +47,4 @@ export class TableFilterValueComponent {
     this.remove.emit('remove me');
   }
 
-  isComplete(): void {
-    this.complete.emit(true);
-  }
 }
