@@ -5,13 +5,34 @@ button {
   text-transform: uppercase;
 }
 
-.tertiary {
-  background-color: mat-color($bq-tertiary-palette, default-contrast);
+.Tertiary {
+  background-color: transparent;
   color: mat-color($bq-tertiary-palette);
+
+  .mat-button-focus-overlay {
+    background-color: pink;
+    font-size: 123px;
+  }
 
   &.mat-raised-button {
     background-color: mat-color($bq-tertiary-palette);
     color: mat-color($bq-tertiary-palette, default-contrast);
+  }
+}
+
+::ng-deep {
+  .Tertiary .mat-button-focus-overlay {
+    background-color: mat-color($bq-tertiary-palette, 0.12);
+  }
+
+  /**
+    Default buttons in cards get a slightly darker background compared to default
+    buttons in transparent containers.
+   */
+  .card {
+    button.default-styling {
+      background: $bq-card-button-background;
+    }
   }
 }
 
