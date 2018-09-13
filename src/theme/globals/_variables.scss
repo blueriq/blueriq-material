@@ -24,7 +24,7 @@ $bq-margin-quadruple: $bq-base-margin * 4;
 
 // Specific colour variables which could not not have been achieved using the default material theme variables
 $bq-card-button-background: #f5f5f5;
-$bg-header-color: mat-color($bq-mat-accent-navy, 500);
+$bq-header-color: mat-color($bq-mat-accent-navy, 500);
 $bq-white-37-opacity: rgba(255, 255, 255, .37);
 
 // Other variables
