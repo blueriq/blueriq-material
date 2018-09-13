@@ -5,7 +5,7 @@ button {
   text-transform: uppercase;
 }
 
-.Tertiary {
+.Tertiary { // sass-lint:disable-line class-name-format
   background-color: transparent;
   color: mat-color($bq-tertiary-palette);
 
@@ -21,7 +21,7 @@ button {
 }
 
 ::ng-deep {
-  .Tertiary .mat-button-focus-overlay {
+  .Tertiary .mat-button-focus-overlay { // sass-lint:disable-line class-name-format
     background-color: mat-color($bq-tertiary-palette, 0.12);
   }
 
