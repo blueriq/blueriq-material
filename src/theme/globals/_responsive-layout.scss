@@ -1,0 +1,114 @@
+@import './variables';
+
+$break-small: 768px;
+$break-medium: 1024px;
+$break-large: 1240px;
+
+$width-small: 512px;
+$width-medium: 768px;
+$width-large: 1024px;
+$width-extra-large: 1240px;
+
+$gutter-width-small: $bq-margin;
+$gutter-width-medium: $bq-margin-double;
+$gutter-width-large: $bq-margin-quadruple;
+
+// Responsive page:
+// - Content width is determined by page class or screen width
+// - Content is always centered
+.page {
+  margin: 0 auto;
+
+  &.large {
+    max-width: $width-large;
+  }
+
+  &.medium {
+    max-width: $width-medium;
+  }
+
+  &.small {
+    max-width: $width-small;
+  }
+
+  &.full {
+    width: 100%;
+  }
+
+  &.responsive {
+    @media (max-width: $break-small - 1) {
+      max-width: $width-small;
+    }
+    @media (min-width: $break-small) {
+      max-width: $width-medium;
+    }
+    @media (min-width: $break-medium) {
+      max-width: $width-large;
+    }
+    @media (min-width: $break-large) {
+      max-width: $width-extra-large;
+    }
+  }
+}
+
+//  Responsive row:
+// - Content on screens smaller that $break-small will still be rendered vertically
+// - Otherwise, content in this container is rendered horizontally
+.bq-row {
+  @media (max-width: $break-small - 1) {
+    flex-direction: column;
+  }
+
+  @media (min-width: $break-small) {
+    flex-direction: row;
+  }
+
+  display: flex;
+}
+
+// Responsive column:
+// - Define horizontal gutter based on screen width
+// - 0 width so weights work
+.bq-column {
+  @media (max-width: $break-small - 1) {
+    margin: 0;
+  }
+
+  @media (min-width: $break-small) {
+    width: 0;
+
+    @media (max-width: $break-medium - 1) {
+      margin-right: $gutter-width-small;
+    }
+
+    @media (min-width: $break-medium) and (max-width: $break-large - 1) {
+      margin-right: $gutter-width-medium;
+    }
+
+    @media (min-width: $break-large) {
+      margin-right: $gutter-width-large;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+// Responsive widget
+// - Define padding and vertical gutter based on screen width
+.bq-widget {
+  padding: $bq-margin-double;
+
+  @media (max-width: $break-medium - 1) {
+    margin-bottom: $gutter-width-small;
+  }
+
+  @media (min-width: $break-medium) and (max-width: $break-large - 1) {
+    margin-bottom: $gutter-width-medium;
+  }
+
+  @media (min-width: $break-large) {
+    margin-bottom: $gutter-width-large;
+  }
+}

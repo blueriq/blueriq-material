@@ -8,4 +8,5 @@ Add the presentation style `Secondary` on an attribute, the button will have a b
 Add the presentation style `Tertiary` on an attribute, the button will have a background in the accent color.  
 Add no presentation style, the button will have a white background.  
 
-The secondary color is defined in the button.component.scss file.
+Add the presentation style `FlatButton` to the button to display the button more subtly. This presentation style can 
+be used in conjunction with the styles mentioned above.
