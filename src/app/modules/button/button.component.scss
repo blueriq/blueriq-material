@@ -9,11 +9,6 @@ button {
   background-color: transparent;
   color: mat-color($bq-tertiary-palette);
 
-  .mat-button-focus-overlay {
-    background-color: pink;
-    font-size: 123px;
-  }
-
   &.mat-raised-button {
     background-color: mat-color($bq-tertiary-palette);
     color: mat-color($bq-tertiary-palette, default-contrast);
