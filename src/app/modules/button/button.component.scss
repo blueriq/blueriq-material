@@ -26,10 +26,10 @@ button {
   }
 
   /**
-    Default buttons in cards get a slightly darker background compared to default
+    Default buttons in cards or elevated widgets get a slightly darker background compared to default
     buttons in transparent containers.
    */
-  .card {
+  .card, .flow-widget.elevate {
     button.default-styling {
       background: $bq-card-button-background;
     }
