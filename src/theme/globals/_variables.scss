@@ -46,3 +46,17 @@ $h3-widget-size: $h4-size;
 $h4-widget-size: $h5-size;
 $h5-widget-size: $h6-size;
 $h6-widget-size: .66em;
+
+//responsive design variables
+$break-small: 768px;
+$break-medium: 1024px;
+$break-large: 1240px;
+
+$width-small: 512px;
+$width-medium: 768px;
+$width-large: 1024px;
+$width-extra-large: 1240px;
+
+$gutter-width-small: $bq-margin;
+$gutter-width-medium: $bq-margin-double;
+$gutter-width-large: $bq-margin-quadruple;
