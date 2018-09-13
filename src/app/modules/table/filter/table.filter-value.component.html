@@ -1,7 +1,7 @@
 <div fxLayout="row" fxLayoutGap="10px">
   <div fxFlex="30">
     <mat-form-field fxFlex appearance="fill">
-      <mat-select placeholder="Column name" [value]="filterValue.selectedOption" (valueChange)="onColumn($event)">
+      <mat-select placeholder="Column name" [value]="filterValue.selectedOption" (selectionChange)="onColumn($event.value)">
         <mat-option *ngFor="let filterOption of filterOptions" [value]="filterOption">
           {{filterOption.title}}
         </mat-option>
@@ -10,7 +10,7 @@
   </div>
   <div fxFlex="30">
     <mat-form-field fxFlex appearance="fill">
-      <mat-select placeholder="operation" (valueChange)="onOperation($event)" [value]="filterValue.operation">
+      <mat-select placeholder="Operation" [value]="filterValue.operation" (selectionChange)="onOperation($event.value)">
         <mat-option *ngFor="let operation of getOperations()" [value]="operation">
           {{operation}}
         </mat-option>
@@ -19,7 +19,7 @@
   </div>
   <div fxFlex="30">
     <mat-form-field fxFlex appearance="fill">
-      <input matInput (change)="onValue($event.target.value)" [value]="filterValue.value || ''">
+      <input matInput placeholder="Value" (change)="onValue($event.target.value)" [value]="filterValue.value || ''">
     </mat-form-field>
   </div>
   <div fxFlex="5" fxLayoutAlign="center center">

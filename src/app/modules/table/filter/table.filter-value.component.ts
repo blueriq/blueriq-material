@@ -19,6 +19,13 @@ export class TableFilterValueComponent {
 
   onColumn(selectedOption: FilterOption): void {
     this.filterValue.selectedOption = selectedOption;
+    // reset filter values because they depend on selected option
+    if (selectedOption.operations.length > 0) {
+      // select the first operation for convenience
+      this.filterValue.operation = selectedOption.operations[0];
+    }
+    this.filterValue.value = '';
+    this.filterValue.showAll = false;
   }
 
   onOperation(operation: string): void {
@@ -27,18 +34,10 @@ export class TableFilterValueComponent {
 
   onValue(value: string): void {
     this.filterValue.value = value;
-    this.filterValue.showAll = false;
   }
 
   getOperations(): string[] {
-    if (this.filterValue.selectedOption) {
-      if (this.filterValue.selectedOption.operations.length > 0) {
-        // select the first operation for convenience
-        this.filterValue.operation = this.filterValue.selectedOption.operations[0];
-      }
-      return this.filterValue.selectedOption.operations;
-    }
-    return [];
+    return this.filterValue.selectedOption ? this.filterValue.selectedOption.operations : [];
   }
 
   removeFilter(): void {
