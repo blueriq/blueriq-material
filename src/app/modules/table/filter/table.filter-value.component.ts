@@ -52,4 +52,8 @@ export class TableFilterValueComponent {
   removeFilter(): void {
     this.remove.emit('remove me');
   }
+
+  isComplete(): void {
+    this.complete.emit(true);
+  }
 }
