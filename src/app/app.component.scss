@@ -4,8 +4,4 @@
 .page-wrapper {
   display: block;
   min-height: 100%;
-
-  .router-outlet {
-    padding-top: $bq-toolbar-height;
-  }
 }
