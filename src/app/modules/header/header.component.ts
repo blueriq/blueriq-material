@@ -29,6 +29,13 @@ export class HeaderComponent implements OnInit {
               private readonly route: ActivatedRoute) {
   }
 
+  get displayName() {
+    if (this.page) {
+      return this.page.displayName;
+    }
+    return '';
+  }
+
   ngOnInit() {
     // If we are a dashboardHeader, look up the parent page
     // TODO: this is done by getting the direct parent now. But we should query the Page parent
