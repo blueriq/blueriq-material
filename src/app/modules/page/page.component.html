@@ -7,3 +7,14 @@
 <div class="page {{ pageSize }}">
   <div *ngFor="let child of page.children | bqIncluded" [bqElement]="child"></div>
 </div>
+
+<footer *ngIf="!blueriqSession.isWidget">
+  <mat-divider></mat-divider>
+  <img src="./theme/images/blueriq-logo.svg" height="40px"/>
+  <address>
+    <a href="tel:0031736450467">+31 (0)73 6450 467</a><br>
+    <a href="https://www.blueriq.com" target="_blank">www.blueriq.com</a><br>
+    <a href="mailto:support@blueriq.com">support@blueriq.com</a>
+  </address>
+</footer>
+

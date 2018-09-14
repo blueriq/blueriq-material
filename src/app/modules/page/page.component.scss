@@ -1,6 +1,45 @@
 @import '~@angular/material/theming';
-@import 'globals/variables';
+@import '../theme/globals/variables';
+
+$bq-footer-height: 200px;
 
 .header {
   @include mat-elevation(1);
+}
+
+.page {
+  margin-bottom: $bq-margin-double;
+}
+
+footer {
+  max-width: 1080px;
+  margin: 0 auto;
+  color: $dark-secondary-text;
+  text-align: center;
+
+  a {
+    color: $dark-secondary-text;
+    font-style: normal;
+    text-decoration: none;
+
+    &:hover,
+    &:visited {
+      color: $dark-primary-text;
+    }
+  }
+
+  address {
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .mat-divider {
+    margin-bottom: 48px;
+  }
+
+  &::after {
+    display: block;
+    height: 50px;
+    content: '';
+  }
 }

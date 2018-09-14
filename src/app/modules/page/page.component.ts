@@ -1,4 +1,4 @@
-import { Component, Host, Optional } from '@angular/core';
+import { Component, Host } from '@angular/core';
 import { BlueriqChild, BlueriqComponent, BlueriqSession, OnUpdate } from '@blueriq/angular';
 import { Container, Page } from '@blueriq/core';
 import { BqContentStyles } from '../BqContentStyles';
