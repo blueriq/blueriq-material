@@ -67,7 +67,7 @@ describe('HeaderComponent', () => {
       fixture.autoDetectChanges();
     });
 
-    fit('should render properly', () => {
+    it('should render properly', () => {
       expect(fixture.nativeElement.querySelector('img')).toBeTruthy();
       expect(fixture.nativeElement.querySelector('h1').innerText).toBe('Page Title');
       expect(fixture.nativeElement.querySelector('.username').innerText.toLowerCase()).toBe('requester');
