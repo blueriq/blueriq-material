@@ -30,7 +30,7 @@ import { LoadingComponent } from './modules/loading/loading.component';
 import { MenuModule } from './modules/menu/menu.module';
 import { PageComponent } from './modules/page/page.component';
 import { ReadonlyComponent } from './modules/readonly/readonly.component';
-import { ListModule } from './modules/table/table.module';
+import { ListModule } from './modules/table/list.module';
 import { TextItemComponent } from './modules/textitem/textitem.component';
 import { VisualizationModule } from './modules/visualization/visualization.module';
 import { WidgetModule } from './modules/widget/widget.module';
