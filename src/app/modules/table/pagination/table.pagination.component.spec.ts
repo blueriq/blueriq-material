@@ -1,11 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
 import { BlueriqTestSession } from '@blueriq/angular/testing/src/test_session';
 import { ButtonTemplate, ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../../../material.module';
+import { TableFilterValueComponent } from '../filter/table.filter-value.component';
+import { TableFilterComponent } from '../filter/table.filter.component';
+import { ListComponent } from '../list.component';
+import { TableSearchComponent } from '../search/table.search.component';
+import { TableComponent } from '../table.component';
 import { TablePaginationComponent } from './table.pagination.component';
 
 describe('TablePaginationComponent', () => {
@@ -16,7 +21,7 @@ describe('TablePaginationComponent', () => {
   const NAVIGATION_FIRST = '.mat-paginator-navigation-first';
 
   let session: BlueriqTestSession;
-  let component: ComponentFixture<TablePaginationComponent>;
+  let component: ComponentFixture<ListComponent>;
 
   let btnFirst: ButtonTemplate;
   let btnLast: ButtonTemplate;
@@ -26,13 +31,14 @@ describe('TablePaginationComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TablePaginationComponent],
+      declarations: [ListComponent, TableComponent, TableSearchComponent, TableFilterComponent,
+        TableFilterValueComponent, TablePaginationComponent],
       providers: [
-        BlueriqComponents.register([TablePaginationComponent])
+        BlueriqComponents.register([ListComponent])
       ],
       imports: [
         MaterialModule,
-        BrowserAnimationsModule, // or NoopAnimationsModule
+        NoopAnimationsModule,
         BlueriqTestingModule,
         FormsModule
       ]
@@ -76,8 +82,10 @@ describe('TablePaginationComponent', () => {
         btnNext,
         btnLast
       );
-      session = BlueriqSessionTemplate.create().build(pagination);
-      component = session.get(TablePaginationComponent);
+      const table = ContainerTemplate.create().contentStyle('table');
+      const list = ContainerTemplate.create().children(table, pagination);
+      session = BlueriqSessionTemplate.create().build(list);
+      component = session.get(ListComponent);
     });
     executedSharedTests();
   });
@@ -119,8 +127,10 @@ describe('TablePaginationComponent', () => {
         btnNext,
         btnLast
       );
-      session = BlueriqSessionTemplate.create().build(pagination);
-      component = session.get(TablePaginationComponent);
+      const table = ContainerTemplate.create().contentStyle('table');
+      const list = ContainerTemplate.create().children(table, pagination);
+      session = BlueriqSessionTemplate.create().build(list);
+      component = session.get(ListComponent);
     });
     executedSharedTests();
   });
@@ -164,8 +174,10 @@ describe('TablePaginationComponent', () => {
         btnNext,
         btnLast
       );
-      session = BlueriqSessionTemplate.create().build(pagination);
-      component = session.get(TablePaginationComponent);
+      const table = ContainerTemplate.create().contentStyle('table');
+      const list = ContainerTemplate.create().children(table, pagination);
+      session = BlueriqSessionTemplate.create().build(list);
+      component = session.get(ListComponent);
     });
     executedSharedTests();
   });

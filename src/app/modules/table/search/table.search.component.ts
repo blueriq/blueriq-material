@@ -1,16 +1,14 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Component, ElementRef, OnDestroy, OnInit, Self, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatChipInputEvent } from '@angular/material';
-import { BlueriqComponent } from '@blueriq/angular';
 import { Search } from '@blueriq/angular/lists';
-import { Container } from '@blueriq/core';
 import { Subscription } from 'rxjs';
 
 @Component({
+  selector: 'bq-table-search',
   templateUrl: './table.search.component.html',
   styleUrls: ['./table.search.component.scss'],
-  providers: [Search],
   animations: [
     trigger('slideIn', [
       transition(':enter', [
@@ -24,10 +22,6 @@ import { Subscription } from 'rxjs';
     ])
   ]
 })
-@BlueriqComponent({
-  type: Container,
-  selector: '#searchContainer'
-})
 export class TableSearchComponent implements OnInit, OnDestroy {
 
   @ViewChild('inputField')
@@ -36,10 +30,9 @@ export class TableSearchComponent implements OnInit, OnDestroy {
   opened = false;
   searchTerms: string[] = [];
   readonly separatorKeyCodes = [ENTER, COMMA];
+  @Input()
+  public search: Search;
   private subscription: Subscription;
-
-  constructor(@Self() public readonly search: Search) {
-  }
 
   ngOnInit(): void {
     this.subscription = this.search.searchTerms$.subscribe((updatedSearchTerms) => {
