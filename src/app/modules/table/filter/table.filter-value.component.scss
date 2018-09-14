@@ -6,7 +6,8 @@
       border-top: 0;
     }
 
-    .mat-form-field-appearance-fill .mat-select-arrow-wrapper, .mat-form-field-appearance-standard .mat-select-arrow-wrapper {
+    .mat-form-field-appearance-fill .mat-select-arrow-wrapper, // sass-lint:disable-line  force-element-nesting
+    .mat-form-field-appearance-standard .mat-select-arrow-wrapper { // sass-lint:disable-line  force-element-nesting
       transform: none;
     }
 
