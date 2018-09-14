@@ -1,22 +1,32 @@
 @import 'globals/variables';
 
-.transform {
-  transition: 2s ease;
+.logo {
+  margin-bottom: $bq-base-margin;
 }
 
-.background {
-  height: 400px;
-  background: map-get($bq-mat-primary-blue, 400);
+.center {
+  width: 100%;
+
+  .background {
+    background: map-get($bq-mat-primary-blue, 400);
+    transition: 2s ease;
+  }
+
+  .failed {
+    background: map-get($bq-mat-primary-purple, 400);
+  }
 }
 
-.background-failed {
-  height: 400px;
-  background: map-get($bq-mat-primary-purple, 400);
+mat-card {
+  margin: 50px 0;
 }
 
 mat-error {
   display: block;
-  margin-top: 4px;
+  margin-bottom: $bq-base-margin;
   font-size: 75%;
 }
 
+button {
+  margin-top: $bq-margin-double;
+}
