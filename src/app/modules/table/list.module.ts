@@ -7,26 +7,32 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
 import { SharedModule } from '@shared/shared.module';
 import { MaterialModule } from '../../material.module';
-import { TableHeaderComponent } from './header/table.header.component';
+import { TableFilterIconComponent } from './filter/table.filter-icon.component';
+import { TableFilterValueComponent } from './filter/table.filter-value.component';
+import { TableFilterComponent } from './filter/table.filter.component';
+import { ListComponent } from './list.component';
 import { TablePaginationComponent } from './pagination/table.pagination.component';
 import { TableSearchComponent } from './search/table.search.component';
 import { TableSortComponent } from './sort/table.sort.component';
 import { TableComponent } from './table.component';
 
-const TABLE_COMPONENTS = [
+const LIST_COMPONENTS = [
   TableComponent,
+  TableFilterComponent,
   TableSearchComponent,
   TableSortComponent,
-  TableHeaderComponent,
   TablePaginationComponent,
+  ListComponent,
+  TableFilterValueComponent,
+  TableFilterIconComponent
 ];
 
 @NgModule({
   declarations: [
-    TABLE_COMPONENTS,
+    LIST_COMPONENTS
   ],
   providers: [
-    BlueriqComponents.register(TABLE_COMPONENTS),
+    BlueriqComponents.register([ListComponent, TableSortComponent, TableFilterIconComponent])
   ],
   imports: [
     BrowserAnimationsModule,
@@ -36,9 +42,9 @@ const TABLE_COMPONENTS = [
     FlexLayoutModule,
     SharedModule,
     ReactiveFormsModule,
-    MaterialModule,
+    MaterialModule
   ],
-  exports: [TABLE_COMPONENTS],
+  exports: [LIST_COMPONENTS]
 })
-export class TableModule {
+export class ListModule {
 }

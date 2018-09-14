@@ -30,7 +30,7 @@ import { LoadingComponent } from './modules/loading/loading.component';
 import { MenuModule } from './modules/menu/menu.module';
 import { PageComponent } from './modules/page/page.component';
 import { ReadonlyComponent } from './modules/readonly/readonly.component';
-import { TableModule } from './modules/table/table.module';
+import { ListModule } from './modules/table/list.module';
 import { TextItemComponent } from './modules/textitem/textitem.component';
 import { TimelineModule } from './modules/timeline/timeline.module';
 import { VisualizationModule } from './modules/visualization/visualization.module';
@@ -92,8 +92,8 @@ const BQ_COMPONENTS = [
     FormControlModule,
     MenuModule,
     TextItemModule,
-    TableModule,
     TimelineModule,
+    ListModule,
     VisualizationModule,
     WidgetModule
   ],

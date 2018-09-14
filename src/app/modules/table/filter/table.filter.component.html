@@ -1,0 +1,46 @@
+<div fxLayout="row" fxLayoutAlign="end center">
+  <button mat-icon-button
+    (click)="showFilter(filterDialog)"
+    [matBadge]="filter.filterValues.length"
+    [matBadgeHidden]="filter.filterValues.length === 0"
+    matTooltip="Filter"
+    matBadgePosition="before"
+    matBadgeColor="primary">
+    <mat-icon aria-label="Filter">filter_list</mat-icon>
+  </button>
+  <button mat-icon-button *ngIf="filter.filterValues.length > 0" matTooltip="Clear filter">
+    <mat-icon aria-label="Clear filter" (click)="clearFilters()">clear</mat-icon>
+  </button>
+</div>
+
+<ng-template #filterDialog>
+  <div class="margin">
+    <div fxLayout="row" class="header">
+      <div fxFlex="30">
+        <mat-label>Column name</mat-label>
+      </div>
+      <div fxFlex="30">
+        <mat-label>Operation</mat-label>
+      </div>
+      <div fxFlex="30">
+        <mat-label>Value</mat-label>
+      </div>
+      <div fxFlex="5">
+        <mat-label>{{filter.filterOptions[0].showUnknownLabel}}</mat-label>
+      </div>
+      <div fxFlex="5"></div>
+    </div>
+
+    <bq-table-filter-value *ngFor="let filterValue of filterCandidates"
+      [filterValue]="filterValue" (remove)="removeFilter(filterValue)"
+      [filterOptions]="filter.filterOptions"></bq-table-filter-value>
+
+    <div fxLayout="row" fxLayoutGap="10px">
+      <button mat-button class="plain-link" (click)="addFilter()">Add filter</button>
+    </div>
+    <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end center">
+      <button mat-flat-button [color]="'primary'" (click)="doFilter()">Apply filter</button>
+    </div>
+
+  </div>
+</ng-template>
