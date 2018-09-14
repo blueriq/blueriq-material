@@ -9,6 +9,7 @@ import { FieldTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../../../material.module';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
 import { AutocompleteComponent } from './autocomplete.component';
+import { DomainValueTransformer } from './domain-value-transformer';
 
 describe('AutocompleteComponent', () => {
   let field: FieldTemplate;
@@ -18,7 +19,7 @@ describe('AutocompleteComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [AutocompleteComponent],
-      providers: [BlueriqComponents.register([AutocompleteComponent])],
+      providers: [DomainValueTransformer, BlueriqComponents.register([AutocompleteComponent])],
       imports: [
         MaterialModule,
         BrowserAnimationsModule, // or NoopAnimationsModule
@@ -30,10 +31,11 @@ describe('AutocompleteComponent', () => {
   });
 
   beforeEach(() => {
-    field = FieldTemplate.text('colour').domain({
-      'blue': 'Blue',
-      'pink': 'Pink',
-      'white': 'White'
+    field = FieldTemplate.text('colour').styles(BqPresentationStyles.AUTOCOMPLETE).domain({
+      'a': 'Red',
+      'b': 'White',
+      'c': 'Blue',
+      'd': 'Orange'
     });
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(AutocompleteComponent);
@@ -44,27 +46,27 @@ describe('AutocompleteComponent', () => {
   });
 
   it('should be disabled', () => {
-    let selectDisabled = component.nativeElement.querySelector('.mat-select-disabled');
-    expect(selectDisabled).toBeFalsy();
+    let autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
+    expect(autocompleteInput.properties['disabled']).toBe(false);
 
-    field.styles(BqPresentationStyles.DISABLED);
+    field.styles(BqPresentationStyles.AUTOCOMPLETE, BqPresentationStyles.DISABLED);
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(AutocompleteComponent);
 
-    selectDisabled = component.nativeElement.querySelector('.mat-select-disabled');
-    expect(selectDisabled).toBeTruthy();
+    autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
+    expect(autocompleteInput.properties['disabled']).toBe(true);
   });
 
   it('should be read only', () => {
-    let selectReadonly = component.nativeElement.querySelector('.mat-select-disabled');
-    expect(selectReadonly).toBeFalsy();
+    let autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
+    expect(autocompleteInput.properties['disabled']).toBe(false);
 
     field.readonly(true);
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(AutocompleteComponent);
 
-    selectReadonly = component.nativeElement.querySelector('.mat-select-disabled');
-    expect(selectReadonly).toBeTruthy();
+    autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
+    expect(autocompleteInput.properties['disabled']).toBe(true);
   });
 
   it('should have a hint', () => {
@@ -79,8 +81,8 @@ describe('AutocompleteComponent', () => {
     session.update(
       field.placeholder('myPlaceholder')
     );
-    expect(component.nativeElement.querySelector('.mat-select-placeholder')).toBeTruthy();
-    expect(component.nativeElement.querySelector('.mat-select-placeholder').innerText).toBe('myPlaceholder');
+    let autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
+    expect(autocompleteInput.attributes['placeholder']).toBe('myPlaceholder');
   });
 
   it('should have a error', () => {
@@ -94,82 +96,81 @@ describe('AutocompleteComponent', () => {
     expect(component.nativeElement.querySelector('mat-error')).toBeTruthy();
   });
 
-  it('should select one value', () => {
-    let selectedOneValue = component.nativeElement.querySelector('.mat-select-value-text');
-    expect(selectedOneValue).toBeNull();
+  it('should display value when fieldValue set', () => {
+    let autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
+    expect(autocompleteInput.nativeElement.value).toBe('');
 
     session.update(
-      field.value('blue')
+      field.value('c')
     );
 
-    selectedOneValue = component.nativeElement.querySelector('.mat-select-value-text').innerText;
-    expect(selectedOneValue).toBe('Blue');
-  });
-
-  it('should only have one mat-select', () => {
-    const selectList = component.nativeElement.querySelectorAll('mat-select') as NodeListOf<HTMLElement>;
-    expect(selectList.length).toBe(1);
-  });
-
-  it('should have more values selected', () => {
-    let selectedMoreValues = component.nativeElement.querySelector('.mat-select').getAttribute('ng-reflect-value');
-    expect(selectedMoreValues).toBeNull();
-
-    field.value(['blue', 'pink', 'white']);
-    session = BlueriqSessionTemplate.create().build(field);
-    component = session.get(AutocompleteComponent);
-
     component.whenStable()
     .then(() => {
       component.detectChanges();
-      selectedMoreValues = component.nativeElement.querySelector('.mat-select-value-text').innerText;
-      expect(selectedMoreValues).toBe('Blue, Pink, White');
+      autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
+      expect(autocompleteInput.nativeElement.value).toBe('Blue');
     });
   });
 
-  it('should set selected value to fieldValue', () => {
-    const selectTrigger = component.debugElement.query(By.css('.mat-select-trigger'));
-    expect(selectTrigger).toBeTruthy();
+  it('should only have one mat-autocomplete', () => {
+    const autocompleteList = component.nativeElement.querySelectorAll('mat-autocomplete') as NodeListOf<HTMLElement>;
+    expect(autocompleteList.length).toBe(1);
+  });
 
-    selectTrigger.nativeElement.click();
+  it('should set fieldValue when option clicked', () => {
+    const autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
+    expect(autocompleteInput).toBeTruthy();
+
+    dispatchFakeEvent(autocompleteInput.nativeElement, 'focusin');
+
     component.whenStable()
     .then(() => {
       component.detectChanges();
-      const selectContent = component.debugElement.query(By.css('.mat-select-content')).nativeElement;
-      const selectOptions = selectContent.querySelectorAll('mat-option') as NodeListOf<HTMLElement>;
-      expect(selectOptions).toBeTruthy();
-      selectOptions[1].click();
+      const autocompleteContent = component.debugElement.query(By.css('.mat-autocomplete-panel')).nativeElement;
+      const autocompleteOptions = autocompleteContent.querySelectorAll('.mat-option-text') as NodeListOf<HTMLElement>;
+      expect(autocompleteOptions).toBeTruthy();
+      // Click on the 'White' option
+      autocompleteOptions[1].click();
     });
 
     component.whenStable()
     .then(() => {
       component.detectChanges();
       // Verify
-      expect(component.componentInstance.field.getValue()).toBe('blue');
+      // The technical value for 'White' is 'b'
+      expect(component.componentInstance.field.getValue()).toBe('b');
     });
   });
 
-  it('should contain all options in select', () => {
-    const selectTrigger = component.debugElement.query(By.css('.mat-select-trigger'));
-    expect(selectTrigger).toBeTruthy();
+  it('should contain all domain values in autocomplete', () => {
+    const autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
+    expect(autocompleteInput).toBeTruthy();
 
-    selectTrigger.nativeElement.click();
+    dispatchFakeEvent(autocompleteInput.nativeElement, 'focusin');
+
     component.whenStable()
     .then(() => {
       component.detectChanges();
-
-      const selectContent = component.debugElement.query(By.css('.mat-select-content')).nativeElement;
-      const selectOptions = selectContent.querySelectorAll('mat-option') as NodeListOf<HTMLElement>;
+      const autocompleteContent = component.debugElement.query(By.css('.mat-autocomplete-panel')).nativeElement;
+      const autocompleteOptions = autocompleteContent.querySelectorAll('.mat-option-text') as NodeListOf<HTMLElement>;
 
       // Verify
-      expect(selectOptions.length).toBe(4);
-      expect(selectOptions[0].getAttribute('ng-reflect-value')).toBe(null);
-      expect(selectOptions[1].getAttribute('ng-reflect-value')).toBe('blue');
-      expect(selectOptions[2].getAttribute('ng-reflect-value')).toBe('pink');
-      expect(selectOptions[3].getAttribute('ng-reflect-value')).toBe('white');
+      expect(autocompleteOptions.length).toBe(4);
+      expect(autocompleteOptions[0].textContent).toContain('Red');
+      expect(autocompleteOptions[1].textContent).toContain('White');
+      expect(autocompleteOptions[2].textContent).toContain('Blue');
+      expect(autocompleteOptions[3].textContent).toContain('Orange');
     });
   });
 
+  // TODO import these functions from cdk testing
+  function createFakeEvent(type: string) {
+    const event = document.createEvent('Event');
+    event.initEvent(type, true, true);
+    return event;
+  }
+
+  function dispatchFakeEvent(node: Node | Window, type: string) {
+    node.dispatchEvent(createFakeEvent(type));
+  }
 });
-
-
