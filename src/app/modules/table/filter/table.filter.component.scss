@@ -4,6 +4,11 @@
   margin: $bq-margin-half;
 }
 
+.header {
+  margin: $bq-margin-half 0;
+  color: $dark-secondary-text;
+}
+
 button {
   &.plain-link {
     color: mat-color($bq-primary-palette);

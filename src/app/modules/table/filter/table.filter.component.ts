@@ -45,6 +45,9 @@ export class TableFilterComponent implements OnInit {
         this.filterCandidates.splice(index, 1);
       }
     });
+    if (this.filterCandidates.length === 0) {
+      this.addFilter();
+    }
   }
 
   showFilter(templateRef: TemplateRef<any>): void {
