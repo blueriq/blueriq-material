@@ -33,7 +33,7 @@ import { PageComponent } from './modules/page/page.component';
 import { ReadonlyComponent } from './modules/readonly/readonly.component';
 import { LoginComponent } from './modules/static-pages/login.component';
 import { StaticPagesModule } from './modules/static-pages/static-pages.module';
-import { TableModule } from './modules/table/table.module';
+import { ListModule } from './modules/table/list.module';
 import { TextItemComponent } from './modules/textitem/textitem.component';
 import { VisualizationModule } from './modules/visualization/visualization.module';
 import { WidgetModule } from './modules/widget/widget.module';
@@ -97,7 +97,7 @@ const BQ_COMPONENTS = [
     MenuModule,
     StaticPagesModule,
     TextItemModule,
-    TableModule,
+    ListModule,
     VisualizationModule,
     WidgetModule
   ],

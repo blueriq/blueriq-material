@@ -1,5 +1,5 @@
 <div class="mat-paginator">
-  <div class="paginator-container">
+  <div class="paginator-container" fxLayout="row" fxLayoutAlign="end center">
 
     <!-- Range -->
     <div class="mat-paginator-range-label">{{pagination.currentPageNumber}} of {{pagination.numberOfPages}}</div>
@@ -17,9 +17,5 @@
     <button class="mat-paginator-navigation-last mat-icon-button" mat-icon-button [disabled]="pagination.last.disabled" [bqButton]="pagination.last" matTooltip="Last page">
       <mat-icon>last_page</mat-icon>
     </button>
-    <button class="mat-paginator-navigation-last mat-icon-button" mat-icon-button *ngIf="pagination.clear" [bqButton]="pagination.clear" matTooltip="Clear filter">
-      <mat-icon>clear</mat-icon>
-    </button>
-
   </div>
 </div>
