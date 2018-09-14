@@ -16,7 +16,7 @@ import { TableSearchComponent } from './search/table.search.component';
 import { TableSortComponent } from './sort/table.sort.component';
 import { TableComponent } from './table.component';
 
-const TABLE_COMPONENTS = [
+const LIST_COMPONENTS = [
   TableComponent,
   TableFilterComponent,
   TableSearchComponent,
@@ -29,7 +29,7 @@ const TABLE_COMPONENTS = [
 
 @NgModule({
   declarations: [
-    TABLE_COMPONENTS
+    LIST_COMPONENTS
   ],
   providers: [
     BlueriqComponents.register([ListComponent, TableSortComponent, TableFilterIconComponent])
@@ -44,7 +44,7 @@ const TABLE_COMPONENTS = [
     ReactiveFormsModule,
     MaterialModule
   ],
-  exports: [TABLE_COMPONENTS]
+  exports: [LIST_COMPONENTS]
 })
-export class TableModule {
+export class ListModule {
 }
