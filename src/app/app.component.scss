@@ -1,48 +1,8 @@
 @import '~@angular/material/theming';
 @import '../theme/globals/variables';
 
-$bq-footer-height: 200px;
-
 .page-wrapper {
   display: block;
+  height: 100%;
   min-height: 100%;
-  margin-bottom: 0 - $bq-footer-height;
-
-  .router-outlet {
-    padding-top: $bq-toolbar-height;
-  }
-
-  &::after {
-    display: block;
-    height: $bq-footer-height;
-    content: '';
-  }
-}
-
-footer {
-  max-width: 1080px;
-  height: $bq-footer-height;
-  margin: 0 auto;
-  color: $dark-secondary-text;
-  text-align: center;
-
-  a {
-    color: $dark-secondary-text;
-    font-style: normal;
-    text-decoration: none;
-
-    &:hover,
-    &:visited {
-      color: $dark-primary-text;
-    }
-  }
-
-  address {
-    font-size: 12px;
-    line-height: 20px;
-  }
-
-  .mat-divider {
-    margin-bottom: 48px;
-  }
 }

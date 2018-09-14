@@ -1,0 +1,40 @@
+<div fxFill fxLayout="column" fxLayoutAlign="center center">
+
+  <div fxFlex="20" fxLayoutAlign="center center">
+
+  </div>
+
+  <div fxFlex="60" class="center">
+    <div fxLayoutAlign="center center" class="background" [class.failed]="failed">
+      <mat-card>
+        <form [formGroup]="loginForm">
+
+          <mat-card-header fxLayoutAlign="center">
+            <img class="logo" src="./theme/images/blueriq-logo.svg" height="50px"/>
+          </mat-card-header>
+
+          <mat-card-content>
+
+            <mat-form-field fxFill appearance="fill">
+              <mat-label>Username</mat-label>
+              <input matInput formControlName="username" name="username">
+            </mat-form-field>
+            <mat-form-field fxFill appearance="fill">
+              <mat-label>Password</mat-label>
+              <input matInput formControlName="password" type="password" name="password" autocomplete="off">
+            </mat-form-field>
+            <div>
+              <mat-error *ngIf="failed">Authentication failed</mat-error>
+            </div>
+            <button mat-raised-button fxFill (click)="login()" color="primary" id="loginbutton">Login</button>
+          </mat-card-content>
+
+        </form>
+      </mat-card>
+    </div>
+  </div>
+
+  <div fxFlex>
+  </div>
+
+</div>

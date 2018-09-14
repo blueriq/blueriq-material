@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FailedAction, isBlueriqError, UnauthorizedProjectAction } from '@blueriq/angular';
 import { ErrorType, SessionId } from '@blueriq/core';
 import { Observable } from 'rxjs';
@@ -21,7 +21,7 @@ export class ProjectComponent implements OnInit {
 
   error: ErrorModel | null;
 
-  constructor(private readonly route: ActivatedRoute) {
+  constructor(private readonly route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -30,7 +30,6 @@ export class ProjectComponent implements OnInit {
 
       return tab ? `Main-${tab}` : 'Main';
     }));
-
     this.sessionId = this.route.paramMap.pipe(map(params => params.get('sessionId')));
     this.shortcut = this.route.paramMap.pipe(map(params => params.get('shortcut')));
     this.version = this.route.paramMap.pipe(map(params => params.get('version')));
@@ -62,13 +61,10 @@ export class ProjectComponent implements OnInit {
     );
   }
 
-  /** Handler for unauthorized events */
+  /** Handler for unauthorized events, navigate to login page */
   onUnauthorized(details: UnauthorizedProjectAction) {
-    this.error = new ErrorModel(
-      ErrorType.Unauthorized,
-      'Unauthorized',
-      'You are not authorized to ' + JSON.stringify(details)
-    );
+    const { channel, flow, project, version } = details.details.params;
+    this.router.navigate(['/login'], { queryParams: { channel, flow, project, version } });
   }
 
   onError(action: FailedAction): void {
