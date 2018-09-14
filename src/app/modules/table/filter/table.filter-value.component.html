@@ -10,7 +10,7 @@
   </div>
   <div fxFlex="30">
     <mat-form-field fxFlex appearance="fill">
-      <mat-select placeholder="Operation" [value]="filterValue.operation" (selectionChange)="onOperation($event.value)">
+      <mat-select placeholder="Operation" [value]="filterValue.operation" [disabled]="!filterValue.selectedOption" (selectionChange)="onOperation($event.value)">
         <mat-option *ngFor="let operation of getOperations()" [value]="operation">
           {{operation}}
         </mat-option>
@@ -19,13 +19,13 @@
   </div>
   <div fxFlex="30">
     <mat-form-field fxFlex appearance="fill">
-      <input matInput placeholder="Value" (change)="onValue($event.target.value)" [value]="filterValue.value || ''">
+      <input matInput placeholder="Value" (change)="onValue($event.target.value)" [value]="filterValue.value || ''" [disabled]="!filterValue.selectedOption">
     </mat-form-field>
   </div>
-  <div fxFlex="5" fxLayoutAlign="center center">
+  <div fxFlex="5" fxLayoutGap="10px" fxLayoutAlign="center start">
     <mat-checkbox [checked]="filterValue.showUnknown" color="primary"></mat-checkbox>
   </div>
-  <div fxFlex="5" fxLayoutAlign="center center">
+  <div fxFlex="5" fxLayoutGap="10px" fxLayoutAlign="center">
     <button mat-icon-button (click)="removeFilter()">
       <mat-icon>clear</mat-icon>
     </button>

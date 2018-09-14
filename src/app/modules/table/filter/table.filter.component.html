@@ -31,7 +31,9 @@
       <div fxFlex="5"></div>
     </div>
 
-    <bq-table-filter-value *ngFor="let filterValue of filterCandidates" [filterValue]="filterValue" (remove)="removeFilter(filterValue)" (complete)="addFiltert()" [filterOptions]="filter.filterOptions"></bq-table-filter-value>
+    <bq-table-filter-value *ngFor="let filterValue of filterCandidates"
+      [filterValue]="filterValue" (remove)="removeFilter(filterValue)"
+      [filterOptions]="filter.filterOptions"></bq-table-filter-value>
 
     <div fxLayout="row" fxLayoutGap="10px">
       <button mat-button class="plain-link" (click)="addFilter()">Add filter</button>
