@@ -81,7 +81,7 @@ describe('AutocompleteComponent', () => {
     session.update(
       field.placeholder('myPlaceholder')
     );
-    let autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
+    const autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
     expect(autocompleteInput.attributes['placeholder']).toBe('myPlaceholder');
   });
 
