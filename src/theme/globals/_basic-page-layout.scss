@@ -1,6 +1,4 @@
-@import '~@angular/material/theming';
-@import './responsive-layout';
-@import './variables';
+@import 'variables';
 
 html,
 body {
@@ -21,7 +19,7 @@ h4,
 h5,
 h6 {
   margin-top: 0;
-  color: $bg-header-color;
+  color: $bq-header-color;
   font-weight: 400;
 }
 
