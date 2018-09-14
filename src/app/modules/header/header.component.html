@@ -1,0 +1,31 @@
+<mat-toolbar bqKey bqClasses class="dashboard-header">
+  <div bqKey fxFlex>
+    <img src="./theme/images/blueriq-logo-white.svg" height="45px">
+    <h1 fxFlex>{{ page.displayName }}</h1>
+  </div>
+
+  <ng-container *ngIf="dashboardHeader">
+    <ng-container *ngFor="let child of dashboardHeader.children | bqIncluded" [bqElement]="child"></ng-container>
+  </ng-container>
+
+  <div fxFlex="0 0 auto" class="application-actions" *ngIf="authenticatedUser || logoutLink">
+
+    <button type="button" mat-button [matMenuTriggerFor]="userMenu" aria-label="Open user menu"
+      class="active-user-menu">
+      <div fxLayout="row" fxLayoutGap="12px" class="icon">
+        <div fxLayoutAlign="center center">
+          <mat-icon>account_circle</mat-icon>
+        </div>
+        <div class="username">
+          <span>{{ authenticatedUser.plainText }}</span>
+        </div>
+      </div>
+    </button>
+
+    <mat-menu [overlapTrigger]="false" #userMenu="matMenu">
+      <button mat-menu-item (click)="logout()" *ngIf="logoutLink">
+        {{ logoutLink.plainText }}
+      </button>
+    </mat-menu>
+  </div>
+</mat-toolbar>

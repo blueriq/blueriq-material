@@ -21,10 +21,12 @@ import { AssetComponent } from './modules/asset/asset.component';
 import { ButtonComponent } from './modules/button/button.component';
 import { CommentModule } from './modules/comment/comment.module';
 import { ContainerComponent } from './modules/container/container.component';
+import { HorizontalFlexChildDirective } from './modules/container/horizontal-flex-child.directive';
 import { ErrorComponent } from './modules/error/error.component';
 import { FileModule } from './modules/file/file.modules';
 import { MomentTransformer } from './modules/form-controls/date/moment-transformer';
 import { FormControlModule } from './modules/form-controls/form-control.module';
+import { HeaderComponent } from './modules/header/header.component';
 import { LoadingComponent } from './modules/loading/loading.component';
 import { MenuModule } from './modules/menu/menu.module';
 import { PageComponent } from './modules/page/page.component';
@@ -51,6 +53,7 @@ const BQ_COMPONENTS = [
   AssetComponent,
   ButtonComponent,
   ContainerComponent,
+  HeaderComponent,
   PageComponent,
   ReadonlyComponent,
   TextItemComponent
@@ -59,7 +62,10 @@ const BQ_COMPONENTS = [
 @NgModule({
   declarations: [
     AppComponent,
-    LoadingComponent, ErrorComponent, ProjectComponent,
+    ErrorComponent,
+    HorizontalFlexChildDirective,
+    LoadingComponent,
+    ProjectComponent,
     BQ_COMPONENTS
   ],
   imports: [

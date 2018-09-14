@@ -1,6 +1,7 @@
 import { Component, Host, Self } from '@angular/core';
 import { BlueriqComponent, FailedAction, FlowWidget } from '@blueriq/angular';
 import { Container } from '@blueriq/core';
+import { BqContentStyles } from '../../BqContentStyles';
 
 @Component({
   templateUrl: './flow-widget.component.html',
@@ -9,7 +10,7 @@ import { Container } from '@blueriq/core';
 })
 @BlueriqComponent({
   type: Container,
-  selector: 'dashboard_flowwidget'
+  selector: BqContentStyles.DASHBOARD_FLOWWIDGET
 })
 export class FlowWidgetComponent {
 

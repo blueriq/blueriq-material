@@ -9,8 +9,8 @@ import {
 } from '@blueriq/angular/testing';
 import { Page } from '@blueriq/core';
 import { ContainerTemplate, PageModelTemplate, PageTemplate } from '@blueriq/core/testing';
+import { WidgetModule } from '../widget.module';
 import { FlowWidgetComponent } from './flow-widget.component';
-import { WidgetModule } from './widget.module';
 
 @Component({
   template: '<span id="widgetSessionDisplayName">{{page.displayName}}</span>'
@@ -24,7 +24,7 @@ class MockPageComponent {
   }
 }
 
-describe('FlowWidgetComponent', () => {
+describe('WidgetComponent', () => {
   let container: ContainerTemplate;
   let component: ComponentFixture<FlowWidgetComponent>;
   let session: BlueriqTestSession;
@@ -64,6 +64,8 @@ describe('FlowWidgetComponent', () => {
     const widgetSessionSpan = component.nativeElement.querySelector('#widgetSessionDisplayName');
 
     // Verify
+    expect(component.nativeElement.children[0].classList).toContain('flow-widget');
+    expect(component.nativeElement.children[0].classList).toContain('elevate');
     expect(header2.innerHTML).toEqual('Container display name');
     expect(widgetSessionSpan.innerHTML).toEqual('Widget display name');
   });
