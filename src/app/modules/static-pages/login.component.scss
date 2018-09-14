@@ -8,8 +8,8 @@
   width: 100%;
 
   .background {
-    background: map-get($bq-mat-primary-blue, 400);
     transition: 2s ease;
+    background: map-get($bq-mat-primary-blue, 400);
   }
 
   .failed {
