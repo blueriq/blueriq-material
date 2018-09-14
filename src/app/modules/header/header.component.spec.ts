@@ -70,7 +70,7 @@ describe('HeaderComponent', () => {
     it('should render properly', () => {
       expect(fixture.nativeElement.querySelector('img')).toBeTruthy();
       expect(fixture.nativeElement.querySelector('h1').innerText).toBe('Page Title');
-      expect(fixture.nativeElement.querySelector('.username').innerText).toBe('Requester');
+      expect(fixture.nativeElement.querySelector('.username').innerText.toLowerCase).toBe('requester');
       expect(fixture.nativeElement.querySelector('mat-menu').getAttribute('ng-reflect-overlap-trigger')).toBe('false');
     });
   });
