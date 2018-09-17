@@ -1,60 +1,46 @@
 @import '~@angular/material/theming';
-@import 'globals/variables';
+@import '../theme/globals/variables';
 
-.mat-toolbar {
+$bq-footer-height: 200px;
+
+.header {
   @include mat-elevation(1);
+}
 
-  position: fixed;
-  top: 0;
+.page {
+  margin-bottom: $bq-margin-double;
+  padding-top: $bq-toolbar-height;
+}
 
-  min-height: $bq-toolbar-height;
-  padding: 0 0 0 16px;
+footer {
+  max-width: 1080px;
+  margin: 0 auto;
+  color: $dark-secondary-text;
+  text-align: center;
 
-  // Specific colors alert, since this is a particular part of the Blueriq branding specific color variables are allowed
-  // sass-lint:disable-all
-  background: linear-gradient(
-      to right,
-      map_get($bq-mat-primary-blue, 500),
-      map_get($bq-mat-primary-purple, 500),
-      map_get($bq-mat-primary-violet, 500)
-  );
+  a {
+    color: $dark-secondary-text;
+    font-style: normal;
+    text-decoration: none;
 
-  color: $light-primary-text;
-
-  z-index: $z-index-drawer + 10;
-
-  // sass-lint:disable-all
-  h1 {
-    margin: 0 0 0 24px;
-    color: $light-primary-text;
-    font-size: 20px;
-    font-weight: 300;
-    line-height: 44px;
+    &:hover,
+    &:visited {
+      color: $dark-primary-text;
+    }
   }
 
-  .application-actions {
-    text-align: right;
+  address {
+    font-size: 12px;
+    line-height: 20px;
+  }
 
-    .active-user-menu {;
-      height: $bq-toolbar-height;
-      text-align: left;
+  .mat-divider {
+    margin-bottom: 48px;
+  }
 
-      .icon {
-        height: $bq-toolbar-height;
-      }
-
-      .username {
-        padding-top: 18px;
-        line-height: 20px;
-      }
-
-      // newline for user role (if provided)
-      small {
-        display: block;
-        color: $light-secondary-text;
-        font-size: 12px;
-        font-weight: 300;
-      }
-    }
+  &::after {
+    display: block;
+    height: 50px;
+    content: '';
   }
 }

@@ -1,6 +1,6 @@
 import { Component, Host } from '@angular/core';
-import { BlueriqComponent, BlueriqSession, OnUpdate } from '@blueriq/angular';
-import { Page } from '@blueriq/core';
+import { BlueriqChild, BlueriqComponent, BlueriqSession, OnUpdate } from '@blueriq/angular';
+import { Container, Page } from '@blueriq/core';
 import { BqContentStyles } from '../BqContentStyles';
 
 @Component({
@@ -12,18 +12,24 @@ import { BqContentStyles } from '../BqContentStyles';
 })
 export class PageComponent implements OnUpdate {
 
-  size;
+  @BlueriqChild(Container, 'dashboard_header', { exclude: true, optional: true })
+  dashboardHeader: Container;
+
+  @BlueriqChild(Container, 'dashboard_menu', { exclude: true, optional: true })
+  dashboardMenu: Container;
+
+  pageSize: string;
 
   constructor(@Host() public page: Page,
               public blueriqSession: BlueriqSession) {
-    this.size = this.determineSize();
+    this.pageSize = this.determinePageSize();
   }
 
   bqOnUpdate(): void {
-    this.size = this.determineSize();
+    this.pageSize = this.determinePageSize();
   }
 
-  determineSize(): string {
+  determinePageSize(): string {
     if (this.blueriqSession.isWidget) {
       return 'full';
     }
@@ -38,5 +44,4 @@ export class PageComponent implements OnUpdate {
     }
     return 'responsive';
   }
-
 }

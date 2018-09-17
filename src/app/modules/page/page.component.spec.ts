@@ -1,11 +1,14 @@
+import { APP_BASE_HREF } from '@angular/common';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { PageTemplate } from '@blueriq/core/testing';
 import { MaterialModule } from '../../material.module';
 import { BqContentStyles } from '../BqContentStyles';
+import { HeaderComponent } from '../header/header.component';
 import { PageComponent } from './page.component';
 
 describe('PageComponent', () => {
@@ -15,13 +18,14 @@ describe('PageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [PageComponent],
-      providers: [BlueriqComponents.register([PageComponent])],
+      declarations: [PageComponent, HeaderComponent],
+      providers: [BlueriqComponents.register([PageComponent]), { provide: APP_BASE_HREF, useValue: '/' }],
       imports: [
         MaterialModule,
         NoopAnimationsModule,
         BlueriqTestingModule,
-        FormsModule
+        FormsModule,
+        RouterModule.forRoot([])
       ]
     });
   }));
@@ -36,7 +40,7 @@ describe('PageComponent', () => {
   it('should be rendered by default', () => {
     const page = pageComponent.componentInstance;
 
-    expect(page.size).toBe('responsive');
+    expect(page.pageSize).toBe('responsive');
     expect(pageComponent.nativeElement.querySelector('.page.responsive')).toBeTruthy();
     expect(pageComponent.nativeElement.querySelector('mat-toolbar')).toBeTruthy();
   });
@@ -47,25 +51,25 @@ describe('PageComponent', () => {
     session.update(
       pageTemplate.contentStyle(BqContentStyles.WIDTH_FULL)
     );
-    expect(page.size).toBe('full');
+    expect(page.pageSize).toBe('full');
     expect(pageComponent.nativeElement.querySelector('.page.full')).toBeTruthy();
 
     session.update(
       pageTemplate.contentStyle(BqContentStyles.WIDTH_LARGE)
     );
-    expect(page.size).toBe('large');
+    expect(page.pageSize).toBe('large');
     expect(pageComponent.nativeElement.querySelector('.page.large')).toBeTruthy();
 
     session.update(
       pageTemplate.contentStyle(BqContentStyles.WIDTH_MEDIUM)
     );
-    expect(page.size).toBe('medium');
+    expect(page.pageSize).toBe('medium');
     expect(pageComponent.nativeElement.querySelector('.page.medium')).toBeTruthy();
 
     session.update(
       pageTemplate.contentStyle(BqContentStyles.WIDTH_SMALL)
     );
-    expect(page.size).toBe('small');
+    expect(page.pageSize).toBe('small');
     expect(pageComponent.nativeElement.querySelector('.page.small')).toBeTruthy();
   });
 
