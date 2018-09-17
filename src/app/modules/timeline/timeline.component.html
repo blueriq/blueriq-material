@@ -9,7 +9,7 @@
     <div fxFlex="20" class="line">
       <div *ngIf="i == 0" class="dotted-border"></div>
       <div class="content">
-        <p class="date">{{ dateToReadableFormat(entry.datetime) }}</p>
+        <p class="date">{{ dateToHumanReadableFormat(entry.datetime) }}</p>
       </div>
       <div class="shape-position">
         <div class="dot"></div>
@@ -24,7 +24,7 @@
       <div class="content">
         <div fxLayout="row">
           <div fxFlex class="user">{{ entry.username }}</div>
-          <div fxFlex="nogrow" class="time">{{ dateToTimestamp(entry.datetime) }}</div>
+          <div fxFlex="nogrow" class="time">{{ dateToShortTime(entry.datetime) }}</div>
         </div>
         <mat-divider></mat-divider>
         <p class="action-name">{{ entry.actionName }}</p>

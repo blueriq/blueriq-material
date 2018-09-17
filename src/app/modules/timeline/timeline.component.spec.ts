@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate } from '@blueriq/core/testing';
+import { DEFAULT_DATE_FROM_NOW_FORMAT } from '@shared/date/bq-date-parser';
 import * as moment from 'moment';
 import { TimelineComponent } from './timeline.component';
 import { TimelineModule } from './timeline.module';
@@ -24,7 +25,7 @@ describe('TimelineComponent', () => {
   beforeEach(() => {
     now = new Date();
     container = ContainerTemplate.create('statisticContainer')
-                                 .contentStyle('timeline').children(
+    .contentStyle('timeline').children(
       createTimelineEntry('Henk', new Date('2018-05-05 17:00:00'), 'Request driving licence', 'RequestLicence'),
       createTimelineEntry('Klaas', now, 'Accept driving licence', 'AcceptLicence')
     );
@@ -56,7 +57,7 @@ describe('TimelineComponent', () => {
   it('should render the correct entry date', () => {
     const date = component.nativeElement.querySelectorAll('.date');
     expect(date.length).toBe(2);
-    expect(date[0].innerHTML).toBe(moment(new Date('2018-05-05 17:00:00')).format('LLL'));
+    expect(date[0].innerHTML).toBe(moment(new Date('2018-05-05 17:00:00')).format(DEFAULT_DATE_FROM_NOW_FORMAT));
     expect(date[1].innerHTML).toBe(moment(now).fromNow(false));
   });
 
@@ -70,13 +71,13 @@ describe('TimelineComponent', () => {
   function createTimelineEntry(username, datetime,
                                actionName, entryName): ContainerTemplate {
     return ContainerTemplate.create('someTimelineEntry')
-                            .contentStyle('timelineEntry')
-                            .properties({
-                              'username': username,
-                              'datetime': datetime,
-                              'actionname': actionName,
-                              'entryname': entryName
-                            });
+    .contentStyle('timelineEntry')
+    .properties({
+      'username': username,
+      'datetime': datetime,
+      'actionname': actionName,
+      'entryname': entryName
+    });
   }
 
 });
