@@ -142,7 +142,7 @@ describe('AutocompleteComponent', () => {
     });
   });
 
-  it('should contain all domain values in autocomplete', () => {
+  it('initially should contain all domain values in autocomplete', () => {
     const autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
     expect(autocompleteInput).toBeTruthy();
 
@@ -163,14 +163,78 @@ describe('AutocompleteComponent', () => {
     });
   });
 
-  // TODO import these functions from cdk testing
-  function createFakeEvent(type: string) {
+  it('should contain correct options for filter input', () => {
+    const autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
+    expect(autocompleteInput).toBeTruthy();
+
+    typeInElement('r', autocompleteInput.nativeElement);
+
+    component.whenStable()
+    .then(() => {
+      component.detectChanges();
+      const autocompleteContent = component.debugElement.query(By.css('.mat-autocomplete-panel')).nativeElement;
+      const autocompleteOptions = autocompleteContent.querySelectorAll('.mat-option-text') as NodeListOf<HTMLElement>;
+
+      // Verify
+      expect(autocompleteOptions.length).toBe(2);
+      expect(autocompleteOptions[0].textContent).toContain('Red');
+      expect(autocompleteOptions[1].textContent).toContain('Orange');
+    });
+  });
+
+  it('should set fieldValue when part of domain value typed and clicked', () => {
+    const autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
+    expect(autocompleteInput).toBeTruthy();
+
+    typeInElement('bl', autocompleteInput.nativeElement);
+
+    component.whenStable()
+    .then(() => {
+      component.detectChanges();
+      const autocompleteContent = component.debugElement.query(By.css('.mat-autocomplete-panel')).nativeElement;
+      const autocompleteOptions = autocompleteContent.querySelectorAll('.mat-option-text') as NodeListOf<HTMLElement>;
+      expect(autocompleteOptions).toBeTruthy();
+      // Click on the 'Blue' option
+      autocompleteOptions[0].click();
+    });
+
+    component.whenStable()
+    .then(() => {
+      component.detectChanges();
+      // Verify
+      // The technical value for 'Blue' is 'c'
+      expect(component.componentInstance.field.getValue()).toBe('c');
+    });
+  });
+
+  // TODO import these functions from @angular/cdk/testing once it is released publicly
+  /** Creates a fake event object with any desired event type. */
+  function createFakeEvent(type: string, canBubble = false, cancelable = true) {
     const event = document.createEvent('Event');
-    event.initEvent(type, true, true);
+    event.initEvent(type, canBubble, cancelable);
     return event;
   }
 
-  function dispatchFakeEvent(node: Node | Window, type: string) {
-    node.dispatchEvent(createFakeEvent(type));
+  /** Utility to dispatch any event on a Node. */
+  function dispatchEvent(node: Node | Window, event: Event): Event {
+    node.dispatchEvent(event);
+    return event;
+  }
+
+  /** Shorthand to dispatch a fake event on a specified node. */
+  function dispatchFakeEvent(node: Node | Window, type: string, canBubble?: boolean): Event {
+    return dispatchEvent(node, createFakeEvent(type, canBubble));
+  }
+
+  /**
+   * Focuses an input, sets its value and dispatches
+   * the `input` event, simulating the user typing.
+   * @param value Value to be set on the input.
+   * @param element Element onto which to set the value.
+   */
+  function typeInElement(value: string, element: HTMLInputElement) {
+    element.focus();
+    element.value = value;
+    dispatchFakeEvent(element, 'input');
   }
 });
