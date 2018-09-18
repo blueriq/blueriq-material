@@ -211,13 +211,16 @@ describe('AutocompleteComponent', () => {
     });
   });
 
-  it('should reset input value when the value is not within the domain', () => {
+  fit('should reset input value when the value is not within the domain', () => {
     const autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
     expect(autocompleteInput).toBeTruthy();
 
+    // input something that is not in the domain
     autocompleteInput.nativeElement.focus();
     autocompleteInput.nativeElement.value = 'something_not_in_the_domain';
     autocompleteInput.nativeElement.dispatchEvent(new Event('input'));
+    // trigger blur to check the value
+    autocompleteInput.nativeElement.blur();
 
     component.whenStable()
     .then(() => {
