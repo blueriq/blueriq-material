@@ -1,0 +1,101 @@
+@import 'globals/variables';
+
+$shape-size: 14px;
+$shape-top: 20px;
+$background: map-get($mat-gray, 200);
+$background-card: map-get($mat-light-theme-background, card);
+
+.timeline {
+  max-height: $bq-max-height-scrollbar;
+  background: $background;
+  overflow-y: auto;
+}
+
+// ---- left side of the timeline ---
+.line {
+  position: relative;
+  border-right: 1px solid map-get($bq-mat-grey-light, 500);
+
+  .content {
+    margin: ($shape-top + 6) $bq-margin 0 0;
+    color: $dark-secondary-text;
+    font-size: 11px;
+    text-align: right;
+  }
+
+  .shape-position {
+    display: inline-block;
+    position: absolute;
+    top: $shape-top;
+    right: -$shape-size / 2;
+    padding: ($shape-size / 2) 0;
+    background: $background;
+
+    .dot {
+      width: $shape-size;
+      height: $shape-size;
+      border-radius: 50%;
+      background: map-get($bq-mat-accent-mint, 500);
+    }
+  }
+}
+
+// ---- Right side of the timeline ---
+.card {
+  $card-left-margin: $bq-margin;
+  position: relative;
+
+  .content {
+    @include mat-elevation(1);
+    margin: $card-left-margin $bq-margin-double;
+    padding: $bq-margin;
+    background: $background-card;
+    font-size: 14px;
+
+    .time {
+      color: $dark-secondary-text;
+    }
+
+    .user {
+      color: map-get($bq-mat-accent-mint, 500);
+      font-weight: 500;
+    }
+
+    .action-name {
+      font-weight: 500;
+    }
+
+    .entry-name {
+      color: $dark-secondary-text;
+    }
+  }
+
+  .shape-position {
+    display: inline-block;
+    position: absolute;
+    top: $shape-top;
+    left: $card-left-margin; // Same as card-content left margin
+    background: transparent;
+
+    .triangle {
+      width: 0;
+      height: 0;
+      border-top: $shape-size solid transparent;
+      border-right: $shape-size solid $background-card;
+      border-bottom: $shape-size solid transparent;
+      background: transparent;
+    }
+  }
+
+}
+
+mat-divider {
+  margin: $bq-margin 0;
+}
+
+.dotted-border {
+  position: absolute;
+  right: -1px;
+  height: $shape-top;
+  border-right: 1px dashed $background;
+}

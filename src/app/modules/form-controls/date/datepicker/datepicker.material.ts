@@ -1,7 +1,7 @@
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatDateFormats } from '@angular/material';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { BlueriqSession } from '@blueriq/angular';
-import { parseBqDatePattern, parseBqLocale } from '../../../../configuration/date/bq-date-parser';
+import { parseBqDatePattern, parseBqLocale } from '@shared/date/bq-date-parser';
 
 export function localeFactory(session: BlueriqSession): string {
   return parseBqLocale(session);

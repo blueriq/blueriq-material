@@ -1,7 +1,10 @@
 import { BlueriqSession } from '@blueriq/angular';
+import * as moment from 'moment';
 
 export const DEFAULT_DATE_PATTERN = 'DD-MM-YYYY';
 export const DEFAULT_DATETIME_PATTERN = 'DD-MM-YYYY HH:mm:ss';
+export const DEFAULT_DATE_FROM_NOW_FORMAT = 'LL';
+export const DEFAULT_DATETIME_FROM_NOW_FORMAT = 'LLL';
 
 export interface BqDateTime {
   datePattern: string;
@@ -69,4 +72,46 @@ export function parseBqDateTimePattern(session: BlueriqSession): BqDateTime {
     timePattern: timePattern,
     dateTimePattern: datePattern + ' ' + timePattern
   };
+}
+
+/**
+ * Converts a JS Date object to a moment object, based on the locale and datetime format existing
+ * in the Blueriq session
+ * @param date the JS Date object
+ * @param session the Blueriq session
+ * @returns a moment object
+ */
+export function convertBqDateToMoment(date: Date, session: BlueriqSession): moment.Moment {
+  moment.locale(parseBqLocale(session));
+  const bqDateTime = parseBqDateTimePattern(session);
+  return moment(date, bqDateTime.dateTimePattern);
+}
+
+/**
+ * Provides a human readable form of the given date relative to now. If the given date is more
+ * than a week ago, the full date is outputted. If less than a week ago, the date is described
+ * as <period> ago, where period is seconds, minutes, hours or days.
+ * @param date the date to convert to human readable form
+ * @param session the blueriq Session containing information how to parse JS Date objects
+ * @param showTime optional parameter to display the time when the date is more than a week ago (default true)
+ * @returns a string describing how long the given date is from now, or a full date when
+ * this is more than a week ago
+ */
+export function dateFromNowHumanReadable(date: Date, session: BlueriqSession, showTime = true): string {
+  const mdate = convertBqDateToMoment(date, session);
+  if (moment().diff(mdate, 'days') >= 7) {
+    return mdate.format(showTime ? DEFAULT_DATETIME_FROM_NOW_FORMAT : DEFAULT_DATE_FROM_NOW_FORMAT);
+  }
+  return mdate.fromNow(false);
+}
+
+/**
+ * Converts a JS Date object to a short time (hours:minutes) string
+ * @param date the JS Date object
+ * @param session the Blueriq session containing information on how to parse the date
+ * @returns string with the time (24H notation)
+ */
+export function dateToShortTime(date: Date, session: BlueriqSession): string {
+  const mdate = convertBqDateToMoment(date, session);
+  return mdate.format('HH:mm');
 }

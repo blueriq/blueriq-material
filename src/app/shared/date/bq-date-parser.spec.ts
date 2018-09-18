@@ -1,6 +1,16 @@
 import { BlueriqSession } from '@blueriq/angular';
 import { LanguageConfiguration } from '@blueriq/core';
-import { parseBqDatePattern, parseBqDateTimePattern, parseBqLocale } from './bq-date-parser';
+import {
+  dateFromNowHumanReadable,
+  dateToShortTime,
+  DEFAULT_DATE_FROM_NOW_FORMAT,
+  DEFAULT_DATETIME_FROM_NOW_FORMAT,
+  parseBqDatePattern,
+  parseBqDateTimePattern,
+  parseBqLocale
+} from './bq-date-parser';
+
+import moment = require('moment');
 
 describe('bq-date-parser', () => {
   let mockSession: any;
@@ -88,5 +98,36 @@ describe('bq-date-parser', () => {
     });
     const formatting = parseBqDateTimePattern(BlueriqSession.prototype);
     expect(formatting.dateTimePattern).toEqual('DD-MM-YYYY HH:mm:ss');
+  });
+
+  it('should output timestamp when the date is a week ago or longer', () => {
+    mockSession.and.returnValue(dutchLanguage);
+    const aWeekAgo = new Date();
+    aWeekAgo.setDate(new Date().getDate() - 7);
+    const readable = dateFromNowHumanReadable(aWeekAgo, BlueriqSession.prototype);
+    expect(readable).toEqual(moment(aWeekAgo).format(DEFAULT_DATETIME_FROM_NOW_FORMAT));
+  });
+
+  it('should output datestamp when the date is a week ago or longer', () => {
+    mockSession.and.returnValue(dutchLanguage);
+    const aWeekAgo = new Date();
+    aWeekAgo.setDate(new Date().getDate() - 7);
+    const readable = dateFromNowHumanReadable(aWeekAgo, BlueriqSession.prototype, false);
+    expect(readable).toEqual(moment(aWeekAgo).format(DEFAULT_DATE_FROM_NOW_FORMAT));
+  });
+
+  it('should output human readable length of time when date is shorter than a week ago ', () => {
+    mockSession.and.returnValue(dutchLanguage);
+    const aDayAgo = new Date();
+    aDayAgo.setDate(new Date().getDate() - 1);
+    const readable = dateFromNowHumanReadable(aDayAgo, BlueriqSession.prototype);
+    expect(readable).toEqual(moment(aDayAgo).fromNow(false));
+  });
+
+  it('should output short time', () => {
+    mockSession.and.returnValue(dutchLanguage);
+    const date = new Date();
+    const readable = dateToShortTime(date, BlueriqSession.prototype);
+    expect(readable).toEqual(moment(date).format('HH:mm'));
   });
 });
