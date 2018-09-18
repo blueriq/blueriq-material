@@ -211,7 +211,7 @@ describe('AutocompleteComponent', () => {
     });
   });
 
-  fit('should reset input value when the value is not within the domain', () => {
+  it('should reset input value when the value is not within the domain', () => {
     const autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
     expect(autocompleteInput).toBeTruthy();
 
