@@ -26,6 +26,7 @@ import { RadioButtonComponent } from './selection-control/radio-button/radio-but
 import { SelectionControlComponent } from './selection-control/selection-control.component';
 import { SlideToggleComponent } from './selection-control/slide-toggle/slide-toggle.component';
 import { TextAreaComponent } from './text-area/text-area.component';
+import { ChiplistComponent } from './chiplist/chiplist.component';
 
 const FORM_CONTROL_COMPONENTS = [
   CheckboxComponent,
@@ -40,13 +41,15 @@ const FORM_CONTROL_COMPONENTS = [
   SelectComponent,
   AutocompleteComponent,
   TextAreaComponent,
-  PercentageFieldComponent
+  PercentageFieldComponent,
+  ChiplistComponent
 ];
 
 @NgModule({
   declarations: [
     FORM_CONTROL_COMPONENTS,
-    SelectionControlComponent
+    SelectionControlComponent,
+    ChiplistComponent
   ],
   providers: [
     BlueriqComponents.register(FORM_CONTROL_COMPONENTS),
