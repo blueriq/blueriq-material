@@ -1,10 +1,6 @@
 import { BlueriqSession } from '@blueriq/angular';
 import * as moment from 'moment';
 
-let bqLocale: string;
-let bqDatePattern: string;
-let bqDateTimePattern: BqDateTime;
-
 export const DEFAULT_DATE_PATTERN = 'DD-MM-YYYY';
 export const DEFAULT_DATETIME_PATTERN = 'DD-MM-YYYY HH:mm:ss';
 export const DEFAULT_DATE_FROM_NOW_FORMAT = 'LL';
@@ -22,10 +18,7 @@ export interface BqDateTime {
  * @returns {string} locale
  */
 export function parseBqLocale(session: BlueriqSession): string {
-  if (!bqLocale) {
-    bqLocale = session.language.languageCode;
-  }
-  return bqLocale;
+  return session.language.languageCode;
 }
 
 /**
@@ -34,12 +27,9 @@ export function parseBqLocale(session: BlueriqSession): string {
  * @param {BlueriqSession} session the current session containing the date pattern
  */
 export function parseBqDatePattern(session: BlueriqSession): string {
-  if (!bqDatePattern) {
-    bqDatePattern = session.language.patterns.date || DEFAULT_DATE_PATTERN;
-    // year, month and day all need to be uppercase, in blueriq everything is lowercase
-    bqDatePattern = bqDatePattern.toUpperCase();
-  }
-  return bqDatePattern;
+  const datePattern = session.language.patterns.date || DEFAULT_DATE_PATTERN;
+  // year, month and day all need to be uppercase, in blueriq everything is lowercase
+  return datePattern.toUpperCase();
 }
 
 /**
@@ -64,27 +54,24 @@ export function parseBqDatePattern(session: BlueriqSession): string {
  * @param {BlueriqSession} session the current session containing the datetime patterns
  */
 export function parseBqDateTimePattern(session: BlueriqSession): BqDateTime {
-  if (!bqDateTimePattern) {
-    const dateTimePattern = session.language.patterns.datetime || DEFAULT_DATETIME_PATTERN;
+  const dateTimePattern = session.language.patterns.datetime || DEFAULT_DATETIME_PATTERN;
 
-    let parts = dateTimePattern.split(' ');
+  let parts = dateTimePattern.split(' ');
+  if (parts.length !== 2) {
+    // split on time designator (lowercase!)
+    parts = dateTimePattern.split('t');
     if (parts.length !== 2) {
-      // split on time designator (lowercase!)
-      parts = dateTimePattern.split('t');
-      if (parts.length !== 2) {
-        // unknown pattern, use the default datetime pattern
-        parts = DEFAULT_DATETIME_PATTERN.split(' ');
-      }
+      // unknown pattern, use the default datetime pattern
+      parts = DEFAULT_DATETIME_PATTERN.split(' ');
     }
-    const datePattern = parts[0].toUpperCase();
-    const timePattern = parts[1].replace('hh', 'HH');
-    bqDateTimePattern = {
-      datePattern: datePattern,
-      timePattern: timePattern,
-      dateTimePattern: datePattern + ' ' + timePattern
-    };
   }
-  return bqDateTimePattern;
+  const datePattern = parts[0].toUpperCase();
+  const timePattern = parts[1].replace('hh', 'HH');
+  return {
+    datePattern: datePattern,
+    timePattern: timePattern,
+    dateTimePattern: datePattern + ' ' + timePattern
+  };
 }
 
 /**
@@ -106,7 +93,7 @@ export function convertBqDateToMoment(date: Date, session: BlueriqSession): mome
  * as <period> ago, where period is seconds, minutes, hours or days.
  * @param date the date to convert to human readable form
  * @param session the blueriq Session containing information how to parse JS Date objects
- * @param showTime optional parameter to display the time when the date is more than a week ago
+ * @param showTime optional parameter to display the time when the date is more than a week ago (default true)
  * @returns a string describing how long the given date is from now, or a full date when
  * this is more than a week ago
  */
@@ -127,5 +114,4 @@ export function dateFromNowHumanReadable(date: Date, session: BlueriqSession, sh
 export function dateToShortTime(date: Date, session: BlueriqSession): string {
   const mdate = convertBqDateToMoment(date, session);
   return mdate.format('HH:mm');
-
 }
