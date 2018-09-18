@@ -121,7 +121,7 @@ describe('AutocompleteComponent', () => {
     const autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
     expect(autocompleteInput).toBeTruthy();
 
-    dispatchFakeEvent(autocompleteInput.nativeElement, 'focusin');
+    autocompleteInput.nativeElement.dispatchEvent(new Event('focusin'));
 
     component.whenStable()
     .then(() => {
@@ -146,7 +146,7 @@ describe('AutocompleteComponent', () => {
     const autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
     expect(autocompleteInput).toBeTruthy();
 
-    dispatchFakeEvent(autocompleteInput.nativeElement, 'focusin');
+    autocompleteInput.nativeElement.dispatchEvent(new Event('focusin'));
 
     component.whenStable()
     .then(() => {
@@ -167,7 +167,9 @@ describe('AutocompleteComponent', () => {
     const autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
     expect(autocompleteInput).toBeTruthy();
 
-    typeInElement('r', autocompleteInput.nativeElement);
+    autocompleteInput.nativeElement.focus();
+    autocompleteInput.nativeElement.value = 'r';
+    autocompleteInput.nativeElement.dispatchEvent(new Event('input'));
 
     component.whenStable()
     .then(() => {
@@ -186,7 +188,9 @@ describe('AutocompleteComponent', () => {
     const autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
     expect(autocompleteInput).toBeTruthy();
 
-    typeInElement('bl', autocompleteInput.nativeElement);
+    autocompleteInput.nativeElement.focus();
+    autocompleteInput.nativeElement.value = 'bl';
+    autocompleteInput.nativeElement.dispatchEvent(new Event('input'));
 
     component.whenStable()
     .then(() => {
@@ -207,34 +211,27 @@ describe('AutocompleteComponent', () => {
     });
   });
 
-  // TODO import these functions from @angular/cdk/testing once it is released publicly
-  /** Creates a fake event object with any desired event type. */
-  function createFakeEvent(type: string, canBubble = false, cancelable = true) {
-    const event = document.createEvent('Event');
-    event.initEvent(type, canBubble, cancelable);
-    return event;
-  }
+  it('should reset input value when the value is not within the domain', () => {
+    const autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
+    expect(autocompleteInput).toBeTruthy();
 
-  /** Utility to dispatch any event on a Node. */
-  function dispatchEvent(node: Node | Window, event: Event): Event {
-    node.dispatchEvent(event);
-    return event;
-  }
+    autocompleteInput.nativeElement.focus();
+    autocompleteInput.nativeElement.value = 'something_not_in_the_domain';
+    autocompleteInput.nativeElement.dispatchEvent(new Event('input'));
 
-  /** Shorthand to dispatch a fake event on a specified node. */
-  function dispatchFakeEvent(node: Node | Window, type: string, canBubble?: boolean): Event {
-    return dispatchEvent(node, createFakeEvent(type, canBubble));
-  }
-
-  /**
-   * Focuses an input, sets its value and dispatches
-   * the `input` event, simulating the user typing.
-   * @param value Value to be set on the input.
-   * @param element Element onto which to set the value.
-   */
-  function typeInElement(value: string, element: HTMLInputElement) {
-    element.focus();
-    element.value = value;
-    dispatchFakeEvent(element, 'input');
-  }
+    component.whenStable()
+    .then(() => {
+      component.detectChanges();
+      const autocompleteContent = component.debugElement.query(By.css('.mat-autocomplete-panel')).nativeElement;
+      const autocompleteOptions = autocompleteContent.querySelectorAll('.mat-option-text') as NodeListOf<HTMLElement>;
+      expect(autocompleteOptions).toBeTruthy();
+      // Verify
+      // all options are filtered out
+      expect(autocompleteOptions.length).toEqual(0);
+      // the field value is still empty
+      expect(component.componentInstance.field.getValue()).toEqual('');
+      // the input value is reset
+      expect(autocompleteInput.nativeElement.value).toEqual('');
+    });
+  });
 });
