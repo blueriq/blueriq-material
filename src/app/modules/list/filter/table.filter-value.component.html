@@ -10,7 +10,7 @@
   </div>
   <div fxFlex="30">
     <mat-form-field appearance="fill">
-      <mat-select placeholder="Operation" [value]="filterValue.operation" [disabled]="!filterValue.selectedOption" (selectionChange)="onOperation($event.value)">
+      <mat-select [value]="filterValue.operation" [disabled]="!filterValue.selectedOption" (selectionChange)="onOperation($event.value)">
         <mat-option *ngFor="let operation of getOperations()" [value]="operation">
           {{operation}}
         </mat-option>
@@ -18,12 +18,44 @@
     </mat-form-field>
   </div>
   <div fxFlex="30">
-    <mat-form-field appearance="fill">
-      <input matInput placeholder="Value" (change)="onValue($event.target.value)" [value]="filterValue.value || ''" [disabled]="!filterValue.selectedOption">
-    </mat-form-field>
+    <ng-container [ngSwitch]="filterValue?.selectedOption?.type" disabled="true">
+
+      <!-- ### domain as multi-select ### -->
+      <ng-container *ngSwitchCase="'domain'">
+        <mat-form-field appearance="fill">
+          <mat-select multiple (selectionChange)="onValue($event.value.join(','))" [value]="filterValue.value.split(',')">
+            <mat-option *ngFor="let domain of filterValue?.selectedOption?.domain" [value]="domain.value">{{domain.displayValue}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </ng-container>
+
+      <!-- ### boolean as checkbox ### -->
+      <ng-container *ngSwitchCase="'boolean'">
+        <mat-checkbox (change)="onValue($event.checked)" [checked]="filterValue.value || false" [disabled]="!filterValue.selectedOption" color="primary">
+        </mat-checkbox>
+      </ng-container>
+
+      <!-- ### date/datetime as datepicker ### -->
+      <ng-container *ngSwitchCase="'datetime'">
+        <mat-form-field appearance="fill">
+          <input matInput (dateChange)="onValue($event.target.value)" [value]="filterValue.value || ''" [matDatepicker]="picker">
+          <mat-datepicker-toggle matPrefix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </ng-container>
+
+      <!-- ### anything else as inputfield ### -->
+      <ng-container *ngSwitchDefault>
+        <mat-form-field appearance="fill">
+          <input matInput (change)="onValue($event.target.value)" [value]="filterValue.value || ''" [disabled]="!filterValue.selectedOption">
+        </mat-form-field>
+      </ng-container>
+      <!-- ### -->
+
+    </ng-container>
   </div>
   <div fxFlex="5" fxLayoutAlign="center start">
-    <mat-checkbox [checked]="filterValue.showUnknown" color="primary"></mat-checkbox>
+    <mat-checkbox [checked]="filterValue.showUnknown" (change)="filterValue.showUnknown = $event.checked" color="primary"></mat-checkbox>
   </div>
   <div fxFlex="5" fxLayoutAlign="center">
     <button mat-icon-button (click)="removeFilter()">
