@@ -4,8 +4,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.frontend
-      args:
-      - nginx_proxy_pass_target_url=${nginx_proxy_pass_target_url}
     ports:
     - "9081:80"
     deploy:
