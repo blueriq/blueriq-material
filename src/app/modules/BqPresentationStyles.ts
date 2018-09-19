@@ -12,6 +12,7 @@ export class BqPresentationStyles {
   static TRANSPARENT = 'Transparent';
   static WARNING = 'Warning';
   static LARGETEXT = 'LargeText';
+  static AUTOCOMPLETE = 'Autocomplete';
   static ANIMATION = 'Animation';
   static STATISTICPIE = 'StatisticPie';
   static STATISTICBAR = 'StatisticBar';

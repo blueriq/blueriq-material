@@ -1,4 +1,5 @@
 import { BlueriqSession } from '@blueriq/angular';
+import { parseBqDateTimePattern, parseBqLocale } from '@shared/date/bq-date-parser';
 import {
   DateTimeAdapter,
   OWL_DATE_TIME_FORMATS,
@@ -7,7 +8,6 @@ import {
   OwlDateTimeIntl
 } from 'ng-pick-datetime';
 import { MomentDateTimeAdapter } from 'ng-pick-datetime-moment';
-import { parseBqDateTimePattern, parseBqLocale } from '../../../../configuration/date/bq-date-parser';
 import { OwlDateTimeIntlFactory } from '../../../../configuration/date/owl-datetime-intl-factory';
 
 export function localeFactory(session: BlueriqSession): string {

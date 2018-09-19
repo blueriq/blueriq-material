@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate } from '@blueriq/core/testing';
+import { DEFAULT_DATETIME_FROM_NOW_FORMAT } from '@shared/date/bq-date-parser';
 import * as moment from 'moment';
 import { CommentModule } from '../comment.module';
 import { CommentListComponent } from './comment.list.component';
@@ -59,8 +60,8 @@ describe('CommentListComponent', () => {
 
     // verify
     expect(dates.length).toBe(3);
-    expect(dates[0].innerHTML).toBe(moment(new Date('2012-12-12')).format('LLL'));
-    expect(dates[1].innerHTML).toBe(moment(new Date('2014-12-12')).format('LLL'));
+    expect(dates[0].innerHTML).toBe(moment(new Date('2012-12-12')).format(DEFAULT_DATETIME_FROM_NOW_FORMAT));
+    expect(dates[1].innerHTML).toBe(moment(new Date('2014-12-12')).format(DEFAULT_DATETIME_FROM_NOW_FORMAT));
     expect(dates[2].innerHTML).toBe(moment(new Date()).fromNow(false));
   });
 
@@ -80,12 +81,12 @@ describe('CommentListComponent', () => {
     const commentListComponent: CommentListComponent = component.componentInstance;
 
     // SUT
-    const now = commentListComponent.dateToReadableFormat(new Date());
-    const longTimeAgo = commentListComponent.dateToReadableFormat(new Date('2010-12-12'));
+    const now = commentListComponent.dateToHumanReadableFormat(new Date());
+    const longTimeAgo = commentListComponent.dateToHumanReadableFormat(new Date('2010-12-12'));
 
     // Verify
     expect(now).toBe(moment(new Date()).fromNow(false));
-    expect(longTimeAgo).toBe(moment(new Date('2010-12-12')).format('LLL'));
+    expect(longTimeAgo).toBe(moment(new Date('2010-12-12')).format(DEFAULT_DATETIME_FROM_NOW_FORMAT));
   });
 
   it('should contain 3 parsed CommentEntries', () => {
