@@ -13,6 +13,7 @@ import { MaterialModule } from '../../material.module';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 import { DomainValueTransformer } from './autocomplete/domain-value-transformer';
 import { BqErrorStateMatcher } from './bq-errorstatematcher';
+import { ChiplistComponent } from './chiplist/chiplist.component';
 import { DatepickerComponent } from './date/datepicker/datepicker.component';
 import { DateTimepickerComponent } from './date/datetimepicker/datetimepicker.component';
 import { CurrencyFieldComponent } from './input-field/currency/currency.component';
@@ -26,30 +27,28 @@ import { RadioButtonComponent } from './selection-control/radio-button/radio-but
 import { SelectionControlComponent } from './selection-control/selection-control.component';
 import { SlideToggleComponent } from './selection-control/slide-toggle/slide-toggle.component';
 import { TextAreaComponent } from './text-area/text-area.component';
-import { ChiplistComponent } from './chiplist/chiplist.component';
 
 const FORM_CONTROL_COMPONENTS = [
+  AutocompleteComponent,
   CheckboxComponent,
-  DatepickerComponent,
+  ChiplistComponent,
+  CurrencyFieldComponent,
   DateTimepickerComponent,
-  StringFieldComponent,
+  DatepickerComponent,
   IntegerFieldComponent,
   NumberFieldComponent,
-  RadioButtonComponent,
-  CurrencyFieldComponent,
-  SlideToggleComponent,
-  SelectComponent,
-  AutocompleteComponent,
-  TextAreaComponent,
   PercentageFieldComponent,
-  ChiplistComponent
+  RadioButtonComponent,
+  SelectComponent,
+  StringFieldComponent,
+  SlideToggleComponent,
+  TextAreaComponent,
 ];
 
 @NgModule({
   declarations: [
     FORM_CONTROL_COMPONENTS,
-    SelectionControlComponent,
-    ChiplistComponent
+    SelectionControlComponent
   ],
   providers: [
     BlueriqComponents.register(FORM_CONTROL_COMPONENTS),

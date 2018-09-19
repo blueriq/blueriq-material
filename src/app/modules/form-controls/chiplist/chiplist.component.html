@@ -1,7 +1,7 @@
 <p bqClasses>
   <mat-form-field bqKey fxFlex appearance="fill">
     <mat-label>{{ field.questionText }}</mat-label>
-    <mat-chip-list #chipList>
+    <mat-chip-list #chipList [formControl]="formControl">
       <mat-chip *ngFor="let value of values" [selectable]="false"
         [removable]="true" (removed)="remove(value)">
         {{value}}
@@ -14,5 +14,7 @@
         (matChipInputTokenEnd)="add($event)"
         [required]="field.required">
     </mat-chip-list>
+    <mat-hint>{{field.explainText}}</mat-hint>
+    <mat-error *ngFor="let msg of getMessages()">{{msg.text}}</mat-error>
   </mat-form-field>
 </p>
