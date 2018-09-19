@@ -7,7 +7,7 @@ node {
 
     stage('checkout') {
       checkout scm;
-      bat "git checkout ${params.BRANCH_NAME }";
+      bat "git checkout ${params.BRANCH_NAME}";
     }
 
     stage('install') {
@@ -18,17 +18,17 @@ node {
     }
 
     stage('build') {
-        bat "yarn build";
+      bat "yarn build";
     }
 
-    stage('e2e tests'){
-      try{
+    stage('e2e tests') {
+      try {
         bat "md e2e\\docker\\dist";
         bat "xcopy /I dist e2e\\docker\\dist";
-        bat 'docker-compose --file .\\e2e\\docker\\docker-compose.yml up -d -e blueriq.license=${params.BLUERIQ_LICENSE_VALUE} --build';
+        bat 'docker-compose --file .\\e2e\\docker\\docker-compose.yml up -d -e "blueriq.license=${params.BLUERIQ_LICENSE_VALUE}" -e "nginx_proxy_pass_target_url=${params.NGINX_PROXY_PASS_TARGET_URL}" --build';
         bat 'yarn e2e';
-      }finally{
-        dir("e2e/docker"){
+      } finally {
+        dir("e2e/docker") {
           bat 'docker-compose down --rmi all';
         }
       }
