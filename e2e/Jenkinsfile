@@ -26,7 +26,7 @@ node {
         bat "md e2e\\docker\\dist";
         bat "xcopy /I dist e2e\\docker\\dist";
         // Replace proxy_pass target url in NGINX configuration
-        replaceStringInFile "nginx.conf", "_NGINX_PROXY_PASS_TARGET_URL_", "${params.NGINX_PROXY_PASS_TARGET_URL}";
+        replaceStringInWorkspaceFile "e2e/docker/nginx.conf", "_NGINX_PROXY_PASS_TARGET_URL_", "${params.NGINX_PROXY_PASS_TARGET_URL}";
         bat 'docker-compose --file .\\e2e\\docker\\docker-compose.yml up --build -d -e blueriq.license="${params.BLUERIQ_LICENSE_VALUE}"';
         bat 'yarn e2e';
       } finally {
@@ -48,10 +48,10 @@ node {
   }
 }// node
 
-def replaceStringInFile(String filename, String tokenValue, String replacementValue) {
-  def file = new File(filename);
-  def newFileText = file.text.replace(replacementValue, tokenValue);
-  file.text = newFileText;
+def replaceStringInWorkspaceFile(String filename, String tokenValue, String replacementValue) {
+  def fileText = readFile(filename);
+  def newFileText = fileText.replace(tokenValue, replacementValue);
+  writeFile(file: filename, text: newFileText);
 }
 
 def notifyBuildStatus() {
