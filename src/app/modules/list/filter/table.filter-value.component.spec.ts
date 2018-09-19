@@ -40,11 +40,12 @@ describe('TableFilterValueComponent', () => {
     expect(tableFilterValueComponent.filterValue.isValid()).toBeTruthy();
   });
 
-  it('remove filter value', () => {
+  it('remove filter value', (done) => {
     // setup
     let receivedEvent;
     const subscription = tableFilterValueComponent.remove.subscribe((event) => {
       receivedEvent = event;
+      done();
     });
 
     // SUT

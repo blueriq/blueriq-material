@@ -50,7 +50,6 @@ describe('TableValueComponent', () => {
 
     // verify
     expect(filterSpy.clearFilters).toHaveBeenCalledTimes(1);
-    expect(dialogRefSpy.close).toHaveBeenCalledTimes(1);
     // always leave an empty filter to quickly start filtering again
     expect(tableFilterComponent.filterCandidates.length).toEqual(1);
   });
