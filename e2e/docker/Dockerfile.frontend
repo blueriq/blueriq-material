@@ -3,6 +3,5 @@ FROM nginx:1.13.12-alpine@sha256:9d46fd628d54ebe1633ee3cf0fe2acfcc419cfae541c630
 ADD /dist /usr/share/nginx/html
 ADD /nginx.conf /etc/nginx/conf.d/default.conf
 
-ENV nginx_proxy_pass_target_url http://somehost.somedomain:10080/Runtime/server
 # Replace proxy_pass target url in NGINX configuration
 RUN sed -i "s|_NGINX_PROXY_PASS_TARGET_URL_|$nginx_proxy_pass_target_url|g" /etc/nginx/conf.d/default.conf

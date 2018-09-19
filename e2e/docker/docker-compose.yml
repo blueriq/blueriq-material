@@ -4,6 +4,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.frontend
+      environment:
+      - nginx_proxy_pass_target_url
     ports:
     - "9081:80"
     deploy:
