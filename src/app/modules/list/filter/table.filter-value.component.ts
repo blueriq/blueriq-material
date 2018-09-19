@@ -1,10 +1,14 @@
 import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 import { FilterOption, FilterValue } from '@blueriq/angular/lists';
+import { momentToBackendFormat } from '@shared/date/bq-date-parser';
+import * as moment from 'moment';
+import { dateTimeFormatProvider } from '../../form-controls/date/datetimepicker/datetimepicker.owl';
 
 @Component({
   selector: 'bq-table-filter-value',
   templateUrl: './table.filter-value.component.html',
-  styleUrls: ['./table.filter-value.component.scss']
+  styleUrls: ['./table.filter-value.component.scss'],
+  providers: [dateTimeFormatProvider]
 })
 export class TableFilterValueComponent {
 
@@ -35,6 +39,11 @@ export class TableFilterValueComponent {
   }
 
   onValue(value: string): void {
+    if (this.filterValue.selectedOption!.type === 'date' || this.filterValue.selectedOption!.type === 'datetime') {
+      if (moment.isMoment(value)) {
+        value = momentToBackendFormat(value);
+      }
+    }
     this.filterValue.value = value;
     this.filterValue.showAll = false;
   }

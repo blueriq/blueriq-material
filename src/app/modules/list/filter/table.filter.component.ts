@@ -36,7 +36,6 @@ export class TableFilterComponent implements OnInit {
   clearFilters(): void {
     this.filter.clearFilters();
     this.filterCandidates = [new FilterValue()];
-    this.filterDialog.close();
   }
 
   removeFilter(filterValue: FilterValue): void {
@@ -46,7 +45,7 @@ export class TableFilterComponent implements OnInit {
       }
     });
     if (this.filterCandidates.length === 0) {
-      this.addFilter();
+      this.clearFilters();
     }
   }
 
@@ -64,4 +63,5 @@ export class TableFilterComponent implements OnInit {
   ngOnInit(): void {
     this.filterCandidates = this.filter.filterValues.length > 0 ? this.filter.filterValues : [new FilterValue()];
   }
+
 }

@@ -3,6 +3,7 @@ import * as moment from 'moment';
 
 export const DEFAULT_DATE_PATTERN = 'DD-MM-YYYY';
 export const DEFAULT_DATETIME_PATTERN = 'DD-MM-YYYY HH:mm:ss';
+export const BACKEND_DATETIME_PATTERN = 'YYYY-MM-DDTHH:mm:ss';
 export const DEFAULT_DATE_FROM_NOW_FORMAT = 'LL';
 export const DEFAULT_DATETIME_FROM_NOW_FORMAT = 'LLL';
 
@@ -114,4 +115,8 @@ export function dateFromNowHumanReadable(date: Date, session: BlueriqSession, sh
 export function dateToShortTime(date: Date, session: BlueriqSession): string {
   const mdate = convertBqDateToMoment(date, session);
   return mdate.format('HH:mm');
+}
+
+export function momentToBackendFormat(momentDate: moment.Moment) {
+  return momentDate.format(BACKEND_DATETIME_PATTERN);
 }

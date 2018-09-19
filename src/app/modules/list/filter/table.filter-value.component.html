@@ -31,16 +31,18 @@
 
       <!-- ### boolean as checkbox ### -->
       <ng-container *ngSwitchCase="'boolean'">
-        <mat-checkbox (change)="onValue($event.checked)" [checked]="filterValue.value || false" [disabled]="!filterValue.selectedOption" color="primary">
+        <mat-checkbox fxFlex (change)="onValue($event.checked)" [checked]="filterValue.value || false" [disabled]="!filterValue.selectedOption" color="primary">
         </mat-checkbox>
       </ng-container>
 
-      <!-- ### date/datetime as datepicker ### -->
-      <ng-container *ngSwitchCase="'datetime'">
+      <!-- ### date/datetime as owl-date-time ### -->
+      <ng-container *ngSwitchCase="['date', 'datetime'].includes(filterValue?.selectedOption?.type) ? filterValue?.selectedOption?.type : ''">
         <mat-form-field appearance="fill">
-          <input matInput (dateChange)="onValue($event.target.value)" [value]="filterValue.value || ''" [matDatepicker]="picker">
-          <mat-datepicker-toggle matPrefix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
+          <input matInput (dateTimeChange)="onValue($event.value)" [value]="filterValue.value" [owlDateTime]="dtPicker">
+          <button matPrefix class="mat-icon-button" [owlDateTimeTrigger]="dtPicker">
+            <mat-icon>today</mat-icon>
+          </button>
+          <owl-date-time #dtPicker [pickerType]="filterValue?.selectedOption?.type === 'date' ? 'calendar' : 'both'" [firstDayOfWeek]="1" [showSecondsTimer]="true"></owl-date-time>
         </mat-form-field>
       </ng-container>
 
@@ -50,7 +52,6 @@
           <input matInput (change)="onValue($event.target.value)" [value]="filterValue.value || ''" [disabled]="!filterValue.selectedOption">
         </mat-form-field>
       </ng-container>
-      <!-- ### -->
 
     </ng-container>
   </div>
