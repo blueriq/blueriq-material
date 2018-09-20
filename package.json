@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "ng:version": "ng --version",
-    "start": "ng serve --open --host 0.0.0.0 --proxy-config proxy.conf.json",
-    "start:nolive": "ng serve --open --host 0.0.0.0 --proxy-config proxy.conf.json --live-reload false --watch false",
+    "start": "ng serve --open --host 0.0.0.0 --proxy-config proxy.conf.js",
+    "start:nolive": "ng serve --open --host 0.0.0.0 --proxy-config proxy.conf.js --live-reload false --watch false",
     "build": "ng build --prod",
     "build:runtime": "ng build --prod -c runtime",
     "test": "ng test",
