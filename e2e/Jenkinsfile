@@ -28,7 +28,7 @@ node {
         // Replace proxy_pass target url in NGINX configuration
         replaceStringInWorkspaceFile "e2e/docker/nginx.conf", "_NGINX_PROXY_PASS_TARGET_URL_", "${params.NGINX_PROXY_PASS_TARGET_URL}";
         bat 'docker-compose --file .\\e2e\\docker\\docker-compose.yml up --build -d -e blueriq.license="${params.BLUERIQ_LICENSE_VALUE}"';
-        bat 'yarn e2e';
+        bat 'yarn e2e --baseUrl ${params.PROTRACTOR_BASE_URL}';
       } finally {
         dir("e2e/docker") {
           bat 'docker-compose down --rmi all';
