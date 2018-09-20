@@ -1,6 +1,6 @@
 import { DcmFlow } from './dcm.flow';
 
-fdescribe('DCM App', () => {
+describe('DCM App', () => {
 
   let app: DcmFlow = new DcmFlow();
 
