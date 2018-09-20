@@ -35,7 +35,6 @@ fdescribe('ChiplistComponent', () => {
       fieldTemplate = FieldTemplate.text('colour').value(['Red', 'Green', 'Blue']);
       session = BlueriqSessionTemplate.create().build(fieldTemplate);
       fixture = session.get(ChiplistComponent);
-      fixture.autoDetectChanges(true);
       component = fixture.componentInstance;
     });
 
@@ -44,11 +43,34 @@ fdescribe('ChiplistComponent', () => {
       expect(fixture.nativeElement.querySelectorAll('mat-chip').length).toBe(3);
     });
 
-    it('should add a chip', () => {
-      component.add({ input: fixture.nativeElement.querySelector('input'), value: 'Yellow' });
-      expect(component.values.length).toBe(4);
-      //expect(fixture.nativeElement.querySelectorAll('mat-chip').length).toBe(4);
-    });
-  });
+    it('should add a chip', (() => {
+      const input = fixture.nativeElement.querySelector('.mat-input-element');
+      expect(input).toBeTruthy();
 
+      if (input) {
+        input.value = 'Yellow';
+        input.dispatchEvent(new Event('blur'));
+
+        fixture.detectChanges();
+        expect(component.values.length).toBe(4);
+        expect(fixture.nativeElement.querySelectorAll('mat-chip').length).toBe(4);
+        expect(input.value).toBe('');
+      }
+    }));
+
+    it('should not add an existing chip case insensitive', () => {
+      const input = fixture.nativeElement.querySelector('.mat-input-element');
+      expect(input).toBeTruthy();
+
+      if (input) {
+        input.value = 'red';
+        input.dispatchEvent(new Event('blur'));
+
+        fixture.detectChanges();
+        expect(component.values.length).toBe(3);
+        expect(fixture.nativeElement.querySelectorAll('mat-chip').length).toBe(3);
+      }
+    });
+
+  });
 });
