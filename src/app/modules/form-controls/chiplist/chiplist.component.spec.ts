@@ -9,7 +9,7 @@ import { MaterialModule } from '../../../material.module';
 
 import { ChiplistComponent } from './chiplist.component';
 
-fdescribe('ChiplistComponent', () => {
+describe('ChiplistComponent', () => {
   let fieldTemplate: FieldTemplate;
   let component: ChiplistComponent;
   let fixture: ComponentFixture<ChiplistComponent>;
@@ -43,28 +43,39 @@ fdescribe('ChiplistComponent', () => {
       expect(fixture.nativeElement.querySelectorAll('mat-chip').length).toBe(3);
     });
 
-    it('should add a chip', (() => {
-      const input = fixture.nativeElement.querySelector('.mat-input-element');
-      expect(input).toBeTruthy();
+    it('should add a chip', () => {
+      const inputField = fixture.nativeElement.querySelector('.mat-input-element');
+      expect(inputField).toBeTruthy();
 
-      if (input) {
-        input.value = 'Yellow';
-        input.dispatchEvent(new Event('blur'));
+      if (inputField) {
+        inputField.value = 'Yellow';
+        inputField.dispatchEvent(new Event('blur'));
 
         fixture.detectChanges();
         expect(component.values.length).toBe(4);
         expect(fixture.nativeElement.querySelectorAll('mat-chip').length).toBe(4);
-        expect(input.value).toBe('');
+        expect(inputField.value).toBe('');
       }
-    }));
+    });
+
+    it('should remove a chip', () => {
+      const chipRemoveButton = fixture.nativeElement.querySelectorAll('.mat-chip-remove')[0];
+      if (chipRemoveButton) {
+        chipRemoveButton.dispatchEvent(new Event('click'));
+
+        fixture.detectChanges();
+        expect(component.values.length).toBe(2);
+        expect(fixture.nativeElement.querySelectorAll('mat-chip').length).toBe(2);
+      }
+    });
 
     it('should not add an existing chip case insensitive', () => {
-      const input = fixture.nativeElement.querySelector('.mat-input-element');
-      expect(input).toBeTruthy();
+      const inputField = fixture.nativeElement.querySelector('.mat-input-element');
+      expect(inputField).toBeTruthy();
 
-      if (input) {
-        input.value = 'red';
-        input.dispatchEvent(new Event('blur'));
+      if (inputField) {
+        inputField.value = 'red';
+        inputField.dispatchEvent(new Event('blur'));
 
         fixture.detectChanges();
         expect(component.values.length).toBe(3);
@@ -73,4 +84,5 @@ fdescribe('ChiplistComponent', () => {
     });
 
   });
+
 });
