@@ -1,0 +1,7 @@
+<h2 *ngIf="container.displayName">{{container.displayName}}</h2>
+
+<mat-tab-group>
+  <mat-tab *ngFor="let child of container.children" [label]="child.displayName || child.functionalKey">
+    <ng-container [bqElement]="child"></ng-container>
+  </mat-tab>
+</mat-tab-group>

@@ -33,6 +33,7 @@ import { PageComponent } from './modules/page/page.component';
 import { ReadonlyComponent } from './modules/readonly/readonly.component';
 import { LoginComponent } from './modules/static-pages/login.component';
 import { StaticPagesModule } from './modules/static-pages/static-pages.module';
+import { TabModule } from './modules/tab/tabs.module';
 import { ListModule } from './modules/table/list.module';
 import { TextItemComponent } from './modules/textitem/textitem.component';
 import { TimelineModule } from './modules/timeline/timeline.module';
@@ -100,6 +101,7 @@ const BQ_COMPONENTS = [
     TextItemModule,
     TimelineModule,
     ListModule,
+    TabModule,
     VisualizationModule,
     WidgetModule
   ],
