@@ -2,9 +2,6 @@
 <project name="documentation" basedir=".">
 	<property name="documentation" location=".\dist\docs"/>
 	<property name="documentationZip" location=".\dist\docs\documentation.zip"/>
-	<property name="communityHost" value="bq-comm2.blueriq.local"/>
-	<property name="communityUser" value="publishdocs"/>
-	<property name="communityPass" value="Blueriq01"/>
 	<property name="communityDocsFolder" value="/var/confluence-home/confluence/ApiDocs/material/${releaseVersion}"/>
 	
 	<target name="deployDocumentation">
