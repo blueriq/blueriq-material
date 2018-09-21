@@ -2,6 +2,7 @@
 ## Development server
 
 Run `yarn start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+If your Blueriq runtime is not at `http://localhost:10080`, set the environment variable `BQ_MATERIAL_NG_PROXY_TARGET_URL`
 
 ## Build
 
@@ -22,6 +23,7 @@ Run `yarn verify:all` to run all linting and tests with code-coverage
 ## Running end-to-end tests
 
 Run `yarn e2e-dev` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+If your dev server is not at `http://localhost:4200/`, pass `--baseUrl MY_DEV_URL` to Yarn. Replace `MY_DEV_URL` with the correct URL.
 
 ## Further help
 
