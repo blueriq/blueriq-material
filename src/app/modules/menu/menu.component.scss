@@ -1,7 +1,8 @@
 @import '~@angular/material/theming';
 @import 'globals/variables';
 
-mat-toolbar {
+.mat-toolbar {
+  margin-top: $bq-toolbar-height;
   // sass-lint:disable-all
   background: linear-gradient(
       to right,
