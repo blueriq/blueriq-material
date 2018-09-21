@@ -1,4 +1,12 @@
 @import 'globals/variables';
+@keyframes move {
+  0%, 100% {
+    top: 0
+  }
+  50% {
+    top: 120px
+  }
+}
 
 .logo {
   margin-bottom: $bq-base-margin;
@@ -8,12 +16,29 @@
   width: 100%;
 
   .background {
-    transition: 2s ease;
-    background: map-get($bq-mat-primary-blue, 400);
+    transition: background 2s ease;
+    position: relative;
+    background: map-get($bq-mat-primary-blue, 700);
+    overflow: hidden;
+    box-sizing: inherit;
+    height: 100%;
+
+    .background-icons {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: url('/theme/images/blueriq-icons.png') repeat 50% 50%;
+      background-size: 100% auto;
+      -webkit-animation: move 8s ease-in-out infinite;
+      animation: move 8s ease-in-out infinite;
+    }
+
   }
 
   .failed {
-    background: map-get($bq-mat-primary-purple, 400);
+    background: map-get($bq-mat-primary-purple, 700);
   }
 }
 
