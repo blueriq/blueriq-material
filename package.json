@@ -1,6 +1,12 @@
 {
   "name": "blueriq-material",
   "version": "1.0.0",
+  "license": "MIT",
+  "homepage": "https://github.com/blueriq/blueriq-material",
+  "keywords": [
+    "blueriq",
+    "theme"
+  ],
   "scripts": {
     "ng": "ng",
     "ng:version": "ng --version",
@@ -19,7 +25,6 @@
     "docs": "compodoc --config compodoc.json",
     "version:increment": "npm version --allow-same-version"
   },
-  "private": true,
   "engines": {
     "yarn": "^1.4.0"
   },
