@@ -5,8 +5,7 @@ import { BqContentStyles } from '../BqContentStyles';
 
 @Component({
   selector: 'bq-tab',
-  templateUrl: './tab.component.html',
-  styleUrls: ['./tab.component.scss']
+  templateUrl: './tab.component.html'
 })
 @BlueriqComponent({
   type: Container,
@@ -16,5 +15,4 @@ export class TabComponent {
 
   constructor(@Host() public container: Container) {
   }
-
 }
