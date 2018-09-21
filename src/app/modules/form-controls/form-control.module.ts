@@ -10,6 +10,8 @@ import { SharedModule } from '@shared/shared.module';
 import { OwlDateTimeModule } from 'ng-pick-datetime';
 import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
 import { MaterialModule } from '../../material.module';
+import { AutocompleteComponent } from './autocomplete/autocomplete.component';
+import { DomainValueTransformer } from './autocomplete/domain-value-transformer';
 import { BqErrorStateMatcher } from './bq-errorstatematcher';
 import { DatepickerComponent } from './date/datepicker/datepicker.component';
 import { DateTimepickerComponent } from './date/datetimepicker/datetimepicker.component';
@@ -36,6 +38,7 @@ const FORM_CONTROL_COMPONENTS = [
   CurrencyFieldComponent,
   SlideToggleComponent,
   SelectComponent,
+  AutocompleteComponent,
   TextAreaComponent,
   PercentageFieldComponent
 ];
@@ -48,6 +51,7 @@ const FORM_CONTROL_COMPONENTS = [
   providers: [
     BlueriqComponents.register(FORM_CONTROL_COMPONENTS),
     SelectionControlComponent,
+    DomainValueTransformer,
     { provide: ErrorStateMatcher, useClass: BqErrorStateMatcher }
   ],
   imports: [
