@@ -1,9 +1,9 @@
 <div *ngIf="!table" bqKey>
   <mat-form-field fxFlex>
     <mat-label>{{field.questionText}}</mat-label>
-    <input matInput type="text" [readonly]="true" [value]="field.getValue() | bqDisplay">
+    <input matInput type="text" [readonly]="true" [value]="getValue() ||  'er is niks :(' | bqDisplay">
   </mat-form-field>
 </div>
 <div *ngIf="table">
-  {{field.getValue() | bqDisplay}}
+  {{getValue() | bqDisplay}}
 </div>

@@ -30,6 +30,7 @@ export class ChiplistComponent implements OnInit, OnUpdate {
   }
 
   bqOnUpdate() {
+    this.field.setValue('');
     this.values = this.field.listValue;
   }
 
@@ -51,6 +52,8 @@ export class ChiplistComponent implements OnInit, OnUpdate {
     if (input) {
       input.value = sanitizedValue;
     }
+    this.field.setValue('');
+    this.field.listValue = this.values;
   }
 
   remove(value: string) {
