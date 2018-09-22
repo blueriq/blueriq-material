@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatTabsModule } from '@angular/material';
+import { MatIconModule, MatTabsModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
 import { TabComponent } from './tab.component';
@@ -20,7 +20,8 @@ const TAB_COMPONENTS = [
     BlueriqCommonModule,
     BrowserAnimationsModule,
     CommonModule,
-    MatTabsModule
+    MatTabsModule,
+    MatIconModule
   ],
   exports: [TAB_COMPONENTS]
 })

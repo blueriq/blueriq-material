@@ -1,7 +1,11 @@
 <h2 *ngIf="container.displayName">{{container.displayName}}</h2>
 
 <mat-tab-group>
-  <mat-tab *ngFor="let child of container.children" [label]="child.displayName || child.functionalKey">
+  <mat-tab *ngFor="let child of container.children">
+    <ng-template mat-tab-label>
+      <mat-icon *ngIf="hasValidationErrors(child)">error_outline</mat-icon>
+      {{child.displayName || child.functionalKey}}
+    </ng-template>
     <ng-container [bqElement]="child"></ng-container>
   </mat-tab>
 </mat-tab-group>
