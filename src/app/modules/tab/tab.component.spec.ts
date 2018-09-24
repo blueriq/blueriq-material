@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
-import { ContainerTemplate } from '@blueriq/core/testing';
+import { ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
 import { BqContentStyles } from '../BqContentStyles';
 import { ContainerComponent } from '../container/container.component';
 import { HorizontalFlexChildDirective } from '../container/horizontal-flex-child.directive';
@@ -15,6 +15,8 @@ describe('TabComponent', () => {
   let session: BlueriqTestSession;
   let tabFixture: ComponentFixture<TabComponent>;
   let tabComponent: TabComponent;
+  let extraTab: ContainerTemplate;
+  let tabField: FieldTemplate;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -26,6 +28,8 @@ describe('TabComponent', () => {
         TabModule
       ]
     });
+    tabField = FieldTemplate.text('field');
+    extraTab = ContainerTemplate.create().name('tab4').children(tabField);
     tabTemplate = ContainerTemplate.create('someTab')
     .contentStyle(BqContentStyles.TAB)
     .displayName('Tweakers')
@@ -33,7 +37,7 @@ describe('TabComponent', () => {
       ContainerTemplate.create('tab1').displayName('News'),
       ContainerTemplate.create('tab2').displayName('Reviews'),
       ContainerTemplate.create('tab3').displayName('Pricewatch'),
-      ContainerTemplate.create('tab4')
+      extraTab
     );
     session = BlueriqSessionTemplate.create().build(tabTemplate);
     tabFixture = session.get(TabComponent);
@@ -52,7 +56,7 @@ describe('TabComponent', () => {
     expect(matHeaderLabels[0].innerText).toEqual('News'); // mat-tab-label-content
     expect(matHeaderLabels[1].innerText).toEqual('Reviews');
     expect(matHeaderLabels[2].innerText).toEqual('Pricewatch');
-    expect(matHeaderLabels[3].innerText).toEqual('tab4');
+    expect(matHeaderLabels[3].innerText).toEqual('[tab4]');
   });
 
   it('should have 4 containers rendered', () => {
@@ -60,5 +64,17 @@ describe('TabComponent', () => {
 
     expect(tabBodies.length).toBe(4);
     expect(tabBodies[0].querySelector('bq-container')).toBeTruthy('The first container should be displayed');
+    const activeLabel = tabFixture.nativeElement.querySelector('.mat-tab-label-active');
+    expect(activeLabel.innerText).toEqual('News', 'First tab should be selected');
+  });
+
+  it('show an icon on inactive tab that has validation messages', () => {
+    session.update(
+      tabField.error('an error')
+    );
+    const matHeaderLabels = tabFixture.nativeElement.querySelectorAll('.mat-tab-label');
+    const matIcon = matHeaderLabels[3].querySelector('.mat-icon');
+    expect(matIcon).toBeTruthy();
+    expect(matIcon.innerText).toEqual('error_outline');
   });
 });
