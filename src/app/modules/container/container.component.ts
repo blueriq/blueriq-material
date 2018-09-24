@@ -7,6 +7,7 @@ import { BqContentStyles } from '../BqContentStyles';
 import { BqPresentationStyles } from '../BqPresentationStyles';
 
 @Component({
+  selector: 'bq-container',
   styleUrls: ['./container.component.scss'],
   templateUrl: './container.component.html',
   animations: [
