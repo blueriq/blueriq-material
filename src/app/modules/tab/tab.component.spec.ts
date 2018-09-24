@@ -27,14 +27,14 @@ describe('TabComponent', () => {
       ]
     });
     tabTemplate = ContainerTemplate.create('someTab')
-                                   .contentStyle(BqContentStyles.TAB)
-                                   .displayName('Tweakers')
-                                   .children(
-                                     ContainerTemplate.create('tab1').displayName('News'),
-                                     ContainerTemplate.create('tab2').displayName('Reviews'),
-                                     ContainerTemplate.create('tab3').displayName('Pricewatch'),
-                                     ContainerTemplate.create('tab4')
-                                   );
+    .contentStyle(BqContentStyles.TAB)
+    .displayName('Tweakers')
+    .children(
+      ContainerTemplate.create('tab1').displayName('News'),
+      ContainerTemplate.create('tab2').displayName('Reviews'),
+      ContainerTemplate.create('tab3').displayName('Pricewatch'),
+      ContainerTemplate.create('tab4')
+    );
     session = BlueriqSessionTemplate.create().build(tabTemplate);
     tabFixture = session.get(TabComponent);
     tabComponent = tabFixture.componentInstance;
@@ -49,11 +49,10 @@ describe('TabComponent', () => {
     const matHeaderLabels = tabFixture.nativeElement.querySelectorAll('.mat-tab-label');
 
     expect(matHeaderLabels.length).toBe(4);
-    expect(matHeaderLabels[0].innerHTML).toContain('News'); // mat-tab-label-content
-    expect(matHeaderLabels[1].innerHTML).toContain('Reviews');
-    expect(matHeaderLabels[2].innerHTML).toContain('Pricewatch');
-    expect(matHeaderLabels[3].innerHTML).not.toBeFalsy(
-      'header without a displayname should still display the functionalkey');
+    expect(matHeaderLabels[0].innerText).toEqual('News'); // mat-tab-label-content
+    expect(matHeaderLabels[1].innerText).toEqual('Reviews');
+    expect(matHeaderLabels[2].innerText).toEqual('Pricewatch');
+    expect(matHeaderLabels[3].innerText).toEqual('tab4');
   });
 
   it('should have 4 containers rendered', () => {
@@ -62,7 +61,4 @@ describe('TabComponent', () => {
     expect(tabBodies.length).toBe(4);
     expect(tabBodies[0].querySelector('bq-container')).toBeTruthy('The first container should be displayed');
   });
-
-  //
-
 });

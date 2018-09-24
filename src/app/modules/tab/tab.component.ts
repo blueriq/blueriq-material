@@ -18,8 +18,8 @@ export class TabComponent {
   }
 
   hasValidationErrors(element: Element): boolean {
-    if(element instanceof Container) {
-      return element.children.some(c=> c instanceof Field && c.messages.hasMessages);
+    if (element instanceof Container) {
+      return element.children.some(c => c instanceof Field && c.messages.hasMessages);
     }
     return false;
   }
