@@ -42,7 +42,7 @@
           <button matPrefix class="mat-icon-button" [owlDateTimeTrigger]="dtPicker">
             <mat-icon>today</mat-icon>
           </button>
-          <owl-date-time #dtPicker [pickerType]="filterValue?.selectedOption?.type === 'date' ? 'calendar' : 'both'" [firstDayOfWeek]="1" [showSecondsTimer]="true"></owl-date-time>
+          <owl-date-time #dtPicker [pickerType]="filterValue?.selectedOption?.type === 'date' ? 'calendar' : 'both'" [firstDayOfWeek]="firstDayOfWeek" [showSecondsTimer]="true"></owl-date-time>
         </mat-form-field>
       </ng-container>
 

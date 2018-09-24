@@ -41,11 +41,7 @@ describe('TableValueComponent', () => {
     expect(dialogRefSpy.close).toHaveBeenCalledTimes(1);
   });
 
-  it('close dialog on clear filters', () => {
-    // SUT
-    // show filter dialog
-    tableFilterComponent.showFilter('' as any);
-    // clear filter, so dialog closes
+  it('should clear the filter and always leave a candidate', () => {
     tableFilterComponent.clearFilters();
 
     // verify

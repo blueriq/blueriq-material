@@ -2,6 +2,7 @@ import { Component, Host } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { Field, FieldMessages } from '@blueriq/core';
+import { computeFirstDayOfWeek } from '@shared/date/bq-date-parser';
 import { Moment } from 'moment';
 import { DateTimeAdapter } from 'ng-pick-datetime';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
@@ -30,20 +31,7 @@ export class DateTimepickerComponent {
   constructor(@Host() public field: Field,
               private form: BlueriqFormBuilder,
               private adapter: DateTimeAdapter<Moment>) {
-    this.firstDayOfWeek = this.computeFirstDayOfWeek();
-  }
-
-  /**
-   * Retrieves the first day of the week based on the locale set for this component. The
-   * default is 1 (Monday).
-   * @returns {number} the first day of the week (0 = Sunday, 1 = Monday ... 6 = Saturday)
-   */
-  computeFirstDayOfWeek(): number {
-    try {
-      return this.adapter.now().creationData().locale.firstDayOfWeek();
-    } catch (error) {
-      return 1;
-    }
+    this.firstDayOfWeek = computeFirstDayOfWeek(adapter);
   }
 
   /**
