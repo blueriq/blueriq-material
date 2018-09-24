@@ -50,7 +50,9 @@ export class TableFilterComponent implements OnInit {
   }
 
   showFilter(templateRef: TemplateRef<any>): void {
-    this.filterDialog = this.dialog.open(templateRef);
+    this.filterDialog = this.dialog.open(templateRef, {
+      minWidth: '700px'
+    });
   }
 
   isFiltered(): string {
