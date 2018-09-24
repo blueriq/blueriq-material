@@ -8,8 +8,8 @@
     matBadgeColor="primary">
     <mat-icon aria-label="Filter">filter_list</mat-icon>
   </button>
-  <button mat-icon-button *ngIf="filter.filterValues.length > 0" matTooltip="Clear filter">
-    <mat-icon aria-label="Clear filter" (click)="clearFilters()">clear</mat-icon>
+  <button (click)="clearFilters()" mat-icon-button *ngIf="filter.filterValues.length > 0" matTooltip="Clear filter">
+    <mat-icon aria-label="Clear filter">clear</mat-icon>
   </button>
 </div>
 
