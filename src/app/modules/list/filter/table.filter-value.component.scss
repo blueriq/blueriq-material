@@ -1,6 +1,10 @@
 ::ng-deep {
   .bq-table-filter-value * {
 
+    .mat-form-field {
+      max-width: 100%;
+    }
+
     // resize the default material fields to make the fields more compressed
     .mat-form-field-infix {
       border-top: 0;
@@ -13,6 +17,10 @@
 
     .mat-checkbox {
       margin-top: 12px;
+    }
+
+    .mat-form-field-prefix {
+      font-size: 9px;
     }
   }
 }
