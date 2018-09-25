@@ -1,14 +1,14 @@
 <p bqClasses>
   <mat-form-field bqKey fxFlex appearance="fill">
     <mat-label>{{ field.questionText }}</mat-label>
-    <mat-chip-list #chipList>
-      <mat-chip *ngFor="let value of values" [selectable]="false"
-        [removable]="true" (removed)="remove(value)">
+    <mat-chip-list #chipList [formControl]="formControl">
+      <mat-chip *ngFor="let value of values" [selectable]="!isDisabled()"
+        [removable]="true" (removed)="remove(value)" [disabled]="isDisabled()">
         {{value}}
-        <mat-icon matChipRemove>cancel</mat-icon>
+        <mat-icon matChipRemove *ngIf="!isDisabled()">cancel</mat-icon>
       </mat-chip>
       <input [placeholder]="field.placeholder"
-        [formControl]="formControl"
+        [disabled]="isDisabled()"
         [matChipInputFor]="chipList"
         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
         [matChipInputAddOnBlur]="true"

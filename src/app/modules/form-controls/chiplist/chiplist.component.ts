@@ -1,4 +1,4 @@
-import { ENTER } from '@angular/cdk/keycodes';
+import { COMMA, ENTER, TAB } from '@angular/cdk/keycodes';
 import { Component, Host, OnInit } from '@angular/core';
 import { MatChipInputEvent } from '@angular/material';
 import { BlueriqComponent, BlueriqSession, bySelector, OnUpdate } from '@blueriq/angular';
@@ -16,7 +16,7 @@ import { BqPresentationStyles } from '../../BqPresentationStyles';
 })
 export class ChiplistComponent implements OnInit, OnUpdate {
 
-  separatorKeysCodes = [ENTER];
+  separatorKeysCodes = [ENTER, TAB, COMMA];
   values: string[];
   formControl = this.form.control(this.field, { syncOn: 'blur', disableWhen: BqPresentationStyles.DISABLED });
 
@@ -30,7 +30,6 @@ export class ChiplistComponent implements OnInit, OnUpdate {
   }
 
   bqOnUpdate() {
-    this.field.setValue('');
     this.values = this.field.listValue;
   }
 
@@ -42,18 +41,15 @@ export class ChiplistComponent implements OnInit, OnUpdate {
     const input = event.input;
     let sanitizedValue = this._sanitizeValue(event.value);
 
-    if (sanitizedValue && this._shouldAddOption(sanitizedValue)) {
+    if (sanitizedValue && !this._valueExists(sanitizedValue)) {
       this.values.push(sanitizedValue);
       this.field.setValue(this.values);
       this.session.changed(this.field);
       sanitizedValue = '';
     }
-
     if (input) {
       input.value = sanitizedValue;
     }
-    this.field.setValue('');
-    this.field.listValue = this.values;
   }
 
   remove(value: string) {
@@ -66,40 +62,17 @@ export class ChiplistComponent implements OnInit, OnUpdate {
     }
   }
 
-  private _sanitizeValue(value: string): string {
-    const sanitizedValue = (value || '').trim();
-    if (this.field.dataType === 'boolean') {
-      if (value.toLowerCase() === 'true' || value === '1') {
-        return 'true';
-      } else if (value.toLowerCase() === 'false' || value === '0') {
-        return 'false';
-      }
-    }
-    return sanitizedValue;
+  isDisabled(): boolean {
+    return this.field.styles.has(BqPresentationStyles.DISABLED);
   }
 
-  private _shouldAddOption(value: string): boolean {
-    if (this._valueExists(value)) {
-      return false;
-    }
-    if (this.field.dataType === 'boolean') {
-      if (value !== 'true' && value !== 'false') {
-        return false;
-      }
-    }
-    return true;
+  private _sanitizeValue(value: string): string {
+    return (value || '').trim();
   }
 
   private _valueExists(value: string): boolean {
     if (this.field.dataType === 'text') {
       return this.values.map(x => x.toLowerCase()).includes(value.toLowerCase());
-    } else if (this.field.dataType === 'boolean') {
-      value = value.toLowerCase() === 'true' ? 'true' : 'false';
-      if (this.values.includes(value)) {
-        return true;
-      } else {
-        return false;
-      }
     }
     return this.values.includes(value);
   }

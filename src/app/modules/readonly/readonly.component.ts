@@ -19,6 +19,6 @@ export class ReadonlyComponent {
   }
 
   getValue(): string {
-    return this.field.multiValued ? this.field.listValue.join(',') : this.field.getValue();
+    return this.field.multiValued ? this.field.listValue.toString() : this.field.getValue();
   }
 }
