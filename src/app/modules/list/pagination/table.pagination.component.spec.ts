@@ -1,16 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
 import { BlueriqTestSession } from '@blueriq/angular/testing/src/test_session';
 import { ButtonTemplate, ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
-import { MaterialModule } from '../../../material.module';
-import { TableFilterValueComponent } from '../filter/table.filter-value.component';
-import { TableFilterComponent } from '../filter/table.filter.component';
 import { ListComponent } from '../list.component';
-import { TableSearchComponent } from '../search/table.search.component';
-import { TableComponent } from '../table.component';
+import { ListModule } from '../list.module';
 import { TablePaginationComponent } from './table.pagination.component';
 
 describe('TablePaginationComponent', () => {
@@ -31,16 +26,10 @@ describe('TablePaginationComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ListComponent, TableComponent, TableSearchComponent, TableFilterComponent,
-        TableFilterValueComponent, TablePaginationComponent],
-      providers: [
-        BlueriqComponents.register([ListComponent])
-      ],
       imports: [
-        MaterialModule,
         NoopAnimationsModule,
         BlueriqTestingModule,
-        FormsModule
+        ListModule
       ]
     });
   });
@@ -48,40 +37,40 @@ describe('TablePaginationComponent', () => {
   describe('by InstanceList', () => {
     beforeEach(() => {
       btnFirst = ButtonTemplate.create('first')
-      .caption('<<')
-      .disabled(true)
-      .styles('pagination');
+                               .caption('<<')
+                               .disabled(true)
+                               .styles('pagination');
 
       btnPrevious = ButtonTemplate.create('previous')
-      .caption('<')
-      .disabled(true)
-      .styles('pagination');
+                                  .caption('<')
+                                  .disabled(true)
+                                  .styles('pagination');
 
       currentPageNumber = FieldTemplate.integer('InstanceListContainer_currentPageNumber')
-      .domain({ 1: '1', 2: '2', 3: '3' })
-      .styles('paginationNumber')
-      .value('1');
+                                       .domain({ 1: '1', 2: '2', 3: '3' })
+                                       .styles('paginationNumber')
+                                       .value('1');
 
       btnNext = ButtonTemplate.create('next')
-      .caption('>')
-      .styles('pagination');
+                              .caption('>')
+                              .styles('pagination');
 
       btnLast = ButtonTemplate.create('last')
-      .caption('>>')
-      .styles('pagination');
+                              .caption('>>')
+                              .styles('pagination');
 
       const pagination = ContainerTemplate.create()
-      .name('navigationContainer')
-      .displayName('DisplayName')
-      .styles('navigationContainer')
-      .contentStyle('tablenavigation')
-      .children(
-        btnFirst,
-        btnPrevious,
-        currentPageNumber,
-        btnNext,
-        btnLast
-      );
+                                          .name('navigationContainer')
+                                          .displayName('DisplayName')
+                                          .styles('navigationContainer')
+                                          .contentStyle('tablenavigation')
+                                          .children(
+                                            btnFirst,
+                                            btnPrevious,
+                                            currentPageNumber,
+                                            btnNext,
+                                            btnLast
+                                          );
       const table = ContainerTemplate.create().contentStyle('table');
       const list = ContainerTemplate.create().children(table, pagination);
       session = BlueriqSessionTemplate.create().build(list);
@@ -93,40 +82,40 @@ describe('TablePaginationComponent', () => {
   describe('by Aggregatelist', () => {
     beforeEach(() => {
       btnFirst = ButtonTemplate.create('first')
-      .caption('<<')
-      .disabled(true)
-      .styles('pagination');
+                               .caption('<<')
+                               .disabled(true)
+                               .styles('pagination');
 
       btnPrevious = ButtonTemplate.create('prev')
-      .caption('<')
-      .disabled(true)
-      .styles('pagination');
+                                  .caption('<')
+                                  .disabled(true)
+                                  .styles('pagination');
 
       currentPageNumber = FieldTemplate.integer('InstanceListContainer_currentPageNumber')
-      .domain({ 1: '1', 2: '2', 3: '3' })
-      .styles('paginationNumber')
-      .value('1');
+                                       .domain({ 1: '1', 2: '2', 3: '3' })
+                                       .styles('paginationNumber')
+                                       .value('1');
 
       btnNext = ButtonTemplate.create('next')
-      .caption('>')
-      .styles('pagination');
+                              .caption('>')
+                              .styles('pagination');
 
       btnLast = ButtonTemplate.create('last')
-      .caption('>>')
-      .styles('pagination');
+                              .caption('>>')
+                              .styles('pagination');
 
       const pagination = ContainerTemplate.create()
-      .name('navigationContainer')
-      .displayName('DisplayName')
-      .styles('navigationContainer')
-      .contentStyle('list_footer')
-      .children(
-        btnFirst,
-        btnPrevious,
-        currentPageNumber,
-        btnNext,
-        btnLast
-      );
+                                          .name('navigationContainer')
+                                          .displayName('DisplayName')
+                                          .styles('navigationContainer')
+                                          .contentStyle('list_footer')
+                                          .children(
+                                            btnFirst,
+                                            btnPrevious,
+                                            currentPageNumber,
+                                            btnNext,
+                                            btnLast
+                                          );
       const table = ContainerTemplate.create().contentStyle('table');
       const list = ContainerTemplate.create().children(table, pagination);
       session = BlueriqSessionTemplate.create().build(list);
@@ -138,42 +127,42 @@ describe('TablePaginationComponent', () => {
   describe('by case and worklist', () => {
     beforeEach(() => {
       btnFirst = ButtonTemplate.create('first')
-      .caption('<<')
-      .disabled(true)
-      .styles('pagination');
+                               .caption('<<')
+                               .disabled(true)
+                               .styles('pagination');
 
       btnPrevious = ButtonTemplate.create('previous')
-      .caption('<')
-      .disabled(true)
-      .styles('pagination');
+                                  .caption('<')
+                                  .disabled(true)
+                                  .styles('pagination');
 
       currentPageNumber = FieldTemplate.integer('pageSelector')
-      // TODO case and worklist dont have domain, but these test will fail without this
-      // TODO this should be fixed in RedCows pagination.ts constructor
-      .domain({ 1: '1', 2: '2', 3: '3' })
-      .styles('paginationNumber')
-      .value('1');
+                                       // TODO case and worklist dont have domain, but these test will fail without this
+                                       // TODO this should be fixed in RedCows pagination.ts constructor
+                                       .domain({ 1: '1', 2: '2', 3: '3' })
+                                       .styles('paginationNumber')
+                                       .value('1');
 
       btnNext = ButtonTemplate.create('next')
-      .caption('>')
-      .styles('pagination');
+                              .caption('>')
+                              .styles('pagination');
 
       btnLast = ButtonTemplate.create('last')
-      .caption('>>')
-      .styles('pagination');
+                              .caption('>>')
+                              .styles('pagination');
 
       const pagination = ContainerTemplate.create()
-      .name('navigationContainer')
-      .displayName('DisplayName')
-      .styles('navigationContainer')
-      .contentStyle('list_footer')
-      .children(
-        btnFirst,
-        btnPrevious,
-        currentPageNumber,
-        btnNext,
-        btnLast
-      );
+                                          .name('navigationContainer')
+                                          .displayName('DisplayName')
+                                          .styles('navigationContainer')
+                                          .contentStyle('list_footer')
+                                          .children(
+                                            btnFirst,
+                                            btnPrevious,
+                                            currentPageNumber,
+                                            btnNext,
+                                            btnLast
+                                          );
       const table = ContainerTemplate.create().contentStyle('table');
       const list = ContainerTemplate.create().children(table, pagination);
       session = BlueriqSessionTemplate.create().build(list);

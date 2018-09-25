@@ -26,7 +26,9 @@ describe('TableValueComponent', () => {
 
     // verify
     expect(dialogSpy.open).toHaveBeenCalledTimes(1);
-    expect(dialogSpy.open).toHaveBeenCalledWith(template);
+    expect(dialogSpy.open).toHaveBeenCalledWith(template, {
+      minWidth: '700px'
+    });
   });
 
   it('close dialog on filter', () => {
@@ -41,16 +43,11 @@ describe('TableValueComponent', () => {
     expect(dialogRefSpy.close).toHaveBeenCalledTimes(1);
   });
 
-  it('close dialog on clear filters', () => {
-    // SUT
-    // show filter dialog
-    tableFilterComponent.showFilter('' as any);
-    // clear filter, so dialog closes
+  it('should clear the filter and always leave a candidate', () => {
     tableFilterComponent.clearFilters();
 
     // verify
     expect(filterSpy.clearFilters).toHaveBeenCalledTimes(1);
-    expect(dialogRefSpy.close).toHaveBeenCalledTimes(1);
     // always leave an empty filter to quickly start filtering again
     expect(tableFilterComponent.filterCandidates.length).toEqual(1);
   });
