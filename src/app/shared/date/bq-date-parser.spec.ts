@@ -1,5 +1,6 @@
 import { BlueriqSession } from '@blueriq/angular';
 import { LanguageConfiguration } from '@blueriq/core';
+import * as moment from 'moment';
 import {
   computeFirstDayOfWeek,
   dateFromNowHumanReadable,
@@ -10,7 +11,6 @@ import {
   parseBqDateTimePattern,
   parseBqLocale
 } from './bq-date-parser';
-import moment = require('moment');
 
 describe('bq-date-parser', () => {
   let mockSession: any;
