@@ -1,5 +1,6 @@
-import { Host } from '@angular/core';
+import { Host, Optional } from '@angular/core';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
+import { Table } from '@blueriq/angular/lists';
 import { Field, FieldMessages } from '@blueriq/core';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
 
@@ -10,7 +11,8 @@ export class InputFieldComponent {
   iconPrefix: string;
   fieldSuffix: string;
 
-  constructor(@Host() public field: Field, private form: BlueriqFormBuilder) {
+  constructor(@Host() public field: Field, private form: BlueriqFormBuilder,
+              @Optional() @Host() public readonly table: Table) {
   }
 
   getErrors(): FieldMessages {

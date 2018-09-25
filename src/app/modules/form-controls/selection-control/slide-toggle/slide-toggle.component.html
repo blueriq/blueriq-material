@@ -1,5 +1,5 @@
-<bq-selection-control [control]="formControl">
+<bq-selection-control [control]="formControl" [inTable]="!!table">
   <mat-slide-toggle [required]="field.required" [formControl]="formControl" color="primary">
-    {{field.questionText}}
+    <ng-container *ngIf="!table">{{field.questionText}}</ng-container>
   </mat-slide-toggle>
 </bq-selection-control>

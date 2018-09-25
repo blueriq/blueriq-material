@@ -1,5 +1,5 @@
-<bq-selection-control [control]="formControl">
+<bq-selection-control [control]="formControl" [inTable]="!!table">
   <mat-checkbox [required]="field.required" [formControl]="formControl" color="primary">
-    {{field.questionText}}
+    <ng-container *ngIf="!table">{{field.questionText}}</ng-container>
   </mat-checkbox>
 </bq-selection-control>

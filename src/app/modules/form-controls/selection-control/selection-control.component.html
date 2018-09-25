@@ -1,4 +1,4 @@
-<div bqKey class="selection-control">
+<div bqKey class="selection-control" *ngIf="!inTable">
   <p *ngIf="field.questionText">{{field.questionText}}</p>
   <div>
     <ng-content></ng-content>
@@ -6,5 +6,10 @@
   <mat-hint *ngIf="!getMessages().hasMessages">{{field.explainText}}</mat-hint>
   <div *ngIf="getMessages().hasMessages">
     <mat-error *ngFor="let msg of getMessages()">{{ msg.text }}</mat-error>
+  </div>
+</div>
+<div bqKey class="selection-control" *ngIf="inTable">
+  <div>
+    <ng-content></ng-content>
   </div>
 </div>

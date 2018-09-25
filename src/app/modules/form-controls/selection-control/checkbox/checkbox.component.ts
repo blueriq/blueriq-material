@@ -1,6 +1,7 @@
-import { Component, Host } from '@angular/core';
+import { Component, Host, Optional } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { BlueriqFormBuilder } from '@blueriq/angular/forms';
+import { Table } from '@blueriq/angular/lists';
 import { Field } from '@blueriq/core';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
 
@@ -20,6 +21,8 @@ export class CheckboxComponent {
     disableWhen: BqPresentationStyles.DISABLED
   });
 
-  constructor(@Host() public field: Field, private form: BlueriqFormBuilder) {
+  constructor(@Host() public field: Field,
+              private form: BlueriqFormBuilder,
+              @Host() @Optional() public readonly table: Table) {
   }
 }

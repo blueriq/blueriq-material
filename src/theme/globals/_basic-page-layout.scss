@@ -70,3 +70,15 @@ h6 {
     font-size: $h6-widget-size;
   }
 }
+
+.mat-form-field-underline {
+  display: none;
+}
+
+.mat-form-field-infix {
+  background-color: white;
+}
+
+.mat-row:hover {
+  background-color: lightgray;
+}

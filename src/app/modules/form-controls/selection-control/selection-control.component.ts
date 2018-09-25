@@ -12,6 +12,8 @@ export class SelectionControlComponent {
 
   @Input() control: FormControl;
 
+  @Input() inTable: boolean;
+
   get field(): Field {
     return getBlueriqField(this.control);
   }
