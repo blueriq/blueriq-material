@@ -1,19 +1,30 @@
 <p bqClasses>
   <mat-form-field bqKey fxFlex appearance="fill">
     <mat-label>{{ field.questionText }}</mat-label>
-    <mat-chip-list #chipList [formControl]="formControl">
+    <mat-chip-list #chipList >
       <mat-chip *ngFor="let value of values" [selectable]="!isDisabled()"
         [removable]="true" (removed)="remove(value)" [disabled]="isDisabled()">
-        {{value}}
+        {{value.displayValue}}
         <mat-icon matChipRemove *ngIf="!isDisabled()">cancel</mat-icon>
       </mat-chip>
       <input [placeholder]="field.placeholder"
-        [disabled]="isDisabled()"
+        [formControl]="formControl"
         [matChipInputFor]="chipList"
-        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-        [matChipInputAddOnBlur]="true"
-        (matChipInputTokenEnd)="add($event)"
-        [required]="field.required">
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [matChipInputAddOnBlur]="true"
+      (matChipInputTokenEnd)="addByInput($event)"
+      [required]="field.required"
+      [matAutocomplete]="matAuto" >
+      <!--[disabled]="isDisabled()"-->
+
+
+      <!--[displayWith]="displayDomainValue"-->
+      <mat-autocomplete autoActiveFirstOption #matAuto="matAutocomplete" (optionSelected)="addByAutoComplete($event)">
+        <mat-option *ngFor="let domainOption of filteredDomainOptions$ | async" [value]="domainOption">
+          {{ domainOption.displayValue }}
+        </mat-option>
+      </mat-autocomplete>
+
     </mat-chip-list>
     <mat-hint>{{field.explainText}}</mat-hint>
     <mat-error *ngFor="let msg of getMessages()">{{msg.text}}</mat-error>

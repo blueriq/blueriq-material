@@ -1,9 +1,11 @@
 import { COMMA, ENTER, TAB } from '@angular/cdk/keycodes';
 import { Component, Host, OnInit } from '@angular/core';
-import { MatChipInputEvent } from '@angular/material';
+import { MatAutocompleteSelectedEvent, MatChipInputEvent } from '@angular/material';
 import { BlueriqComponent, BlueriqSession, bySelector, OnUpdate } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
-import { Field, FieldMessages } from '@blueriq/core';
+import { DomainValue, Field, FieldMessages } from '@blueriq/core';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
 
 @Component({
@@ -12,13 +14,14 @@ import { BqPresentationStyles } from '../../BqPresentationStyles';
 })
 @BlueriqComponent({
   type: Field,
-  selector: bySelector('[multiValued=true]:not([hasDomain])', { priorityOffset: 100 })
+  selector: bySelector('[multiValued].'+ BqPresentationStyles.AUTOCOMPLETE + ',[multiValued][hasDomain=false]', { priorityOffset: 100 })
 })
 export class ChiplistComponent implements OnInit, OnUpdate {
 
   separatorKeysCodes = [ENTER, TAB, COMMA];
-  values: string[];
+  values: {displayValue: string,value: string}[];
   formControl = this.form.control(this.field, { syncOn: 'blur', disableWhen: BqPresentationStyles.DISABLED });
+  filteredDomainOptions$: Observable<DomainValue[]>;
 
   constructor(@Host() public field: Field,
               private session: BlueriqSession,
@@ -26,24 +29,45 @@ export class ChiplistComponent implements OnInit, OnUpdate {
   }
 
   ngOnInit() {
-    this.values = this.field.listValue;
+    this.fill();
+    this.filteredDomainOptions$ = this.formControl.valueChanges
+        .pipe(
+          startWith<DomainValue | string>(''),
+          map(value => !value ? value : typeof value === 'string' ? value : value.displayValue),
+          map(displayValue => displayValue ?
+            this.field.domain.options.filter(option => option.displayValue.toLowerCase().includes(displayValue.toLowerCase())) :
+            this.field.domain.options.slice())
+        );
   }
 
   bqOnUpdate() {
-    this.values = this.field.listValue;
+    this.fill();
+  }
+
+  fill() {
+    if(this.field.hasDomain) {
+      this.values = this.field.listValue.map(lv => this.findDomainValueByValue(lv));
+    } else {
+      this.values = this.field.listValue.map(lv => { return {displayValue: lv, value: lv}});
+    }
+  }
+
+  findDomainValueByValue(value): {displayValue: string,value: string}{
+    const val = this.field.domain.options.find(d => d.value === value);
+    return val ? val : { displayValue: value,value: value};
   }
 
   getMessages(): FieldMessages {
     return getFieldMessages(this.formControl);
   }
 
-  add(event: MatChipInputEvent) {
+  addByInput(event: MatChipInputEvent) {
     const input = event.input;
     let sanitizedValue = this._sanitizeValue(event.value);
 
     if (sanitizedValue && !this._valueExists(sanitizedValue)) {
-      this.values.push(sanitizedValue);
-      this.field.setValue(this.values);
+      this.values.push({displayValue: sanitizedValue, value: sanitizedValue});
+      this.field.setValue(this.values.map(v => v.value));
       this.session.changed(this.field);
       sanitizedValue = '';
     }
@@ -52,7 +76,14 @@ export class ChiplistComponent implements OnInit, OnUpdate {
     }
   }
 
-  remove(value: string) {
+  addByAutoComplete(e: MatAutocompleteSelectedEvent) {
+    const selectedValue = e.option.value;
+    this.values.push({displayValue: selectedValue.displayValue, value: selectedValue.value});
+    this.field.setValue(this.values.map(v => v.value));
+    this.session.changed(this.field);
+  }
+
+  remove(value: any) {
     const index = this.values.indexOf(value);
 
     if (index >= 0) {
@@ -71,10 +102,7 @@ export class ChiplistComponent implements OnInit, OnUpdate {
   }
 
   private _valueExists(value: string): boolean {
-    if (this.field.dataType === 'text') {
-      return this.values.map(x => x.toLowerCase()).includes(value.toLowerCase());
-    }
-    return this.values.includes(value);
+      return this.values.map(x => x.value.toLowerCase()).includes(value.toLowerCase());
   }
 
 }
