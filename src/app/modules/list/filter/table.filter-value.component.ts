@@ -1,8 +1,8 @@
 import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { BlueriqSession } from '@blueriq/angular';
 import { FilterOption, FilterValue } from '@blueriq/angular/lists';
 import { computeFirstDayOfWeek, momentToBackendFormat } from '@shared/date/bq-date-parser';
 import * as moment from 'moment';
-import { DateTimeAdapter } from 'ng-pick-datetime';
 import { dateTimeFormatProvider } from '../../form-controls/date/datetimepicker/datetimepicker.owl';
 
 @Component({
@@ -26,8 +26,8 @@ export class TableFilterValueComponent {
 
   firstDayOfWeek: number;
 
-  constructor(private adapter: DateTimeAdapter<moment.Moment>) {
-    this.firstDayOfWeek = computeFirstDayOfWeek(adapter);
+  constructor(session: BlueriqSession) {
+    this.firstDayOfWeek = computeFirstDayOfWeek(session);
   }
 
   onColumn(selectedOption: FilterOption): void {

@@ -3,31 +3,16 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSession } from '@blueriq/angular';
 import { FilterOption, FilterValue } from '@blueriq/angular/lists';
 import { BlueriqTestingModule } from '@blueriq/angular/testing';
-import { OwlDateTimeModule } from 'ng-pick-datetime';
-import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
 import { MomentTransformer } from '../../form-controls/date/moment-transformer';
 import { TableFilterValueComponent } from '../filter/table.filter-value.component';
 import { ListModule } from '../list.module';
 
 describe('TableFilterValueComponent', () => {
 
-  let tableFilterValueComponent = new TableFilterValueComponent();
+  let tableFilterValueComponent;
   let fixture: ComponentFixture<TableFilterValueComponent>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [MomentTransformer, BlueriqSession],
-      imports: [
-        NoopAnimationsModule,
-        BlueriqTestingModule,
-        ListModule,
-        OwlDateTimeModule,
-        OwlMomentDateTimeModule
-      ]
-    });
-    fixture = TestBed.createComponent(TableFilterValueComponent);
-    tableFilterValueComponent = fixture.componentInstance;
-
     // mocking the session
     spyOnProperty(BlueriqSession.prototype, 'language', 'get').and.returnValue({
       languageCode: 'nl-NL',
@@ -37,6 +22,17 @@ describe('TableFilterValueComponent', () => {
           'dd-mm-yyyy hh:mm:ss'
       }
     });
+
+    TestBed.configureTestingModule({
+      providers: [MomentTransformer, BlueriqSession],
+      imports: [
+        NoopAnimationsModule,
+        BlueriqTestingModule,
+        ListModule
+      ]
+    });
+    fixture = TestBed.createComponent(TableFilterValueComponent);
+    tableFilterValueComponent = fixture.componentInstance;
   });
 
   it('should render a mat-select when filtering on domain', () => {
@@ -79,7 +75,7 @@ describe('TableFilterValueComponent', () => {
     const specifiedElement = fixture.nativeElement.querySelector('#specifiedElement');
     expect(specifiedElement.querySelector('owl-date-time')).toBeTruthy();
     expect(specifiedElement.querySelector('input')
-                           .getAttribute('ng-reflect-value'))
+    .getAttribute('ng-reflect-value'))
     .toBe('12-12-2012 10:11:12', 'The format should be dd-mm-yyyy hh:mm:ss (see mock)');
   });
 

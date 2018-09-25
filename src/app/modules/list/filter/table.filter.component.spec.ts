@@ -26,7 +26,9 @@ describe('TableValueComponent', () => {
 
     // verify
     expect(dialogSpy.open).toHaveBeenCalledTimes(1);
-    expect(dialogSpy.open).toHaveBeenCalledWith(template);
+    expect(dialogSpy.open).toHaveBeenCalledWith(template, {
+      minWidth: '700px'
+    });
   });
 
   it('close dialog on filter', () => {

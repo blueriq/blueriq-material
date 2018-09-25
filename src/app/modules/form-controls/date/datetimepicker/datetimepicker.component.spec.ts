@@ -6,9 +6,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import * as moment from 'moment';
 import { OwlDateTimeModule } from 'ng-pick-datetime';
-import { MomentDateTimeAdapter, OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
+import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
 import { MaterialModule } from '../../../../material.module';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
 import { MomentTransformer } from '../moment-transformer';
@@ -30,8 +29,8 @@ describe('DateTimepickerComponent', () => {
         FormsModule,
         FlexLayoutModule,
         OwlDateTimeModule,
-        OwlMomentDateTimeModule,
-      ],
+        OwlMomentDateTimeModule
+      ]
     });
   }));
 
@@ -124,23 +123,6 @@ describe('DateTimepickerComponent', () => {
     expect(inputField).toBeTruthy();
   });
 
-  it('first day of week with US locale is Sunday', () => {
-    moment.locale('en-US');
-    spyOn(MomentDateTimeAdapter.prototype, 'now').and.returnValue(moment(new Date()));
-    expect(component.componentInstance.computeFirstDayOfWeek()).toEqual(0);
-  });
-
-  it('first day of week with Dutch locale is Monday', () => {
-    moment.locale('nl-NL');
-    spyOn(MomentDateTimeAdapter.prototype, 'now').and.returnValue(moment(new Date()));
-    expect(component.componentInstance.computeFirstDayOfWeek()).toEqual(1);
-  });
-
-  it('default first day of week is Monday when unable to determine locale specific day of week', () => {
-    spyOn(MomentDateTimeAdapter.prototype, 'now').and.throwError('error');
-    expect(component.componentInstance.computeFirstDayOfWeek()).toEqual(1);
-  });
-
   it('should verify that on change triggers the formatOnChange function', () => {
     // Init
     spyOn(DateTimepickerComponent.prototype, 'formatOnChange');
@@ -159,8 +141,8 @@ describe('DateTimepickerComponent', () => {
     let eventJson: any = {
       value: '18-01-02', // from
       source: {
-        value: '', // to
-      },
+        value: '' // to
+      }
     };
 
     // SUT
@@ -173,8 +155,8 @@ describe('DateTimepickerComponent', () => {
     eventJson = {
       value: null, // from
       source: {
-        value: '', // to
-      },
+        value: '' // to
+      }
     };
 
     // SUT
