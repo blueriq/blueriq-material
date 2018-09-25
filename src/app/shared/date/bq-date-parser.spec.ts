@@ -1,6 +1,7 @@
 import { BlueriqSession } from '@blueriq/angular';
 import { LanguageConfiguration } from '@blueriq/core';
 import {
+  computeFirstDayOfWeek,
   dateFromNowHumanReadable,
   dateToShortTime,
   DEFAULT_DATE_FROM_NOW_FORMAT,
@@ -9,7 +10,6 @@ import {
   parseBqDateTimePattern,
   parseBqLocale
 } from './bq-date-parser';
-
 import moment = require('moment');
 
 describe('bq-date-parser', () => {
@@ -129,5 +129,17 @@ describe('bq-date-parser', () => {
     const date = new Date();
     const readable = dateToShortTime(date, BlueriqSession.prototype);
     expect(readable).toEqual(moment(date).format('HH:mm'));
+  });
+
+  it('first day of week with US locale is Sunday', () => {
+    mockSession.and.returnValue({
+      languageCode: 'en-US'
+    });
+    expect(computeFirstDayOfWeek(BlueriqSession.prototype)).toEqual(0);
+  });
+
+  it('first day of week with Dutch locale is Monday', () => {
+    mockSession.and.returnValue(dutchLanguage);
+    expect(computeFirstDayOfWeek(BlueriqSession.prototype)).toEqual(1);
   });
 });

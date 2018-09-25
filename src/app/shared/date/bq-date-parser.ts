@@ -1,6 +1,5 @@
 import { BlueriqSession } from '@blueriq/angular';
 import * as moment from 'moment';
-import { DateTimeAdapter } from 'ng-pick-datetime';
 
 export const DEFAULT_DATE_PATTERN = 'DD-MM-YYYY';
 export const DEFAULT_DATETIME_PATTERN = 'DD-MM-YYYY HH:mm:ss';
@@ -123,14 +122,9 @@ export function momentToBackendFormat(momentDate: moment.Moment) {
 }
 
 /**
- * Retrieves the first day of the week based on the locale set for this component. The
- * default is 1 (Monday).
+ * Retrieves the first day of the week based on the locale in the Blueriq session
  * @returns {number} the first day of the week (0 = Sunday, 1 = Monday ... 6 = Saturday)
  */
-export function computeFirstDayOfWeek(adapter: DateTimeAdapter<moment.Moment>): number {
-  try {
-    return adapter.now().creationData().locale.firstDayOfWeek();
-  } catch (error) {
-    return 1;
-  }
+export function computeFirstDayOfWeek(session: BlueriqSession): number {
+  return moment.localeData(parseBqLocale(session)).firstDayOfWeek();
 }
