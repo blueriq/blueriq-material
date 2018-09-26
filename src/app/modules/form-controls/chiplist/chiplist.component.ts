@@ -1,5 +1,6 @@
 import { COMMA, ENTER, TAB } from '@angular/cdk/keycodes';
 import { Component, Host, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent, MatChipInputEvent } from '@angular/material';
 import { BlueriqComponent, BlueriqSession, bySelector, OnUpdate } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
@@ -21,7 +22,7 @@ export class ChiplistComponent implements OnInit, OnUpdate {
   separatorKeysCodes = [ENTER, TAB, COMMA];
   values: {displayValue: string,value: string}[];
   formControl = this.form.control(this.field, { syncOn: 'blur', disableWhen: BqPresentationStyles.DISABLED });
-  filteredDomainOptions$: Observable<DomainValue[]>;
+  filteredDomainOptions: DomainValue[];
 
   constructor(@Host() public field: Field,
               private session: BlueriqSession,
@@ -29,22 +30,19 @@ export class ChiplistComponent implements OnInit, OnUpdate {
   }
 
   ngOnInit() {
-    this.fill();
-    this.filteredDomainOptions$ = this.formControl.valueChanges
-        .pipe(
-          startWith<DomainValue | string>(''),
-          map(value => !value ? value : typeof value === 'string' ? value : value.displayValue),
-          map(displayValue => displayValue ?
-            this.field.domain.options.filter(option => option.displayValue.toLowerCase().includes(displayValue.toLowerCase())) :
-            this.field.domain.options.slice())
-        );
+    this.fillValues();
+
   }
 
   bqOnUpdate() {
-    this.fill();
+    this.fillValues();
   }
 
-  fill() {
+  /**
+  * Fill the values list that will be used by the chiplist.
+  * These values are based on what was already on the `field`'s listValue
+  */
+  fillValues() {
     if(this.field.hasDomain) {
       this.values = this.field.listValue.map(lv => this.findDomainValueByValue(lv));
     } else {
@@ -57,18 +55,33 @@ export class ChiplistComponent implements OnInit, OnUpdate {
     return val ? val : { displayValue: value,value: value};
   }
 
+  /**
+  * The possible domain options will be filtered based on the string value from the input field
+  */
+  filterDomain(value) {
+    if(this.field.hasDomain) {
+      this.filteredDomainOptions = this.field.domain.options.filter(option => option.displayValue.toLowerCase().includes(value.toLowerCase()));
+    }
+  }
+
   getMessages(): FieldMessages {
     return getFieldMessages(this.formControl);
   }
 
+  /**
+  * Add items to the values list. (without a domain)
+  * Whenever one of the `separatorKeysCodes` was used that piece of text will be added
+  */
   addByInput(event: MatChipInputEvent) {
+    if(this.field.hasDomain) {
+      return;
+    }
     const input = event.input;
     let sanitizedValue = this._sanitizeValue(event.value);
 
     if (sanitizedValue && !this._valueExists(sanitizedValue)) {
       this.values.push({displayValue: sanitizedValue, value: sanitizedValue});
-      this.field.setValue(this.values.map(v => v.value));
-      this.session.changed(this.field);
+      this.sessionChanged();
       sanitizedValue = '';
     }
     if (input) {
@@ -76,21 +89,43 @@ export class ChiplistComponent implements OnInit, OnUpdate {
     }
   }
 
+  /**
+  * Add items to the values list (With a domain)
+  * Whenever a item is selected from the 'mat-autocomplete' the selected value will be added
+  */
   addByAutoComplete(e: MatAutocompleteSelectedEvent) {
     const selectedValue = e.option.value;
     this.values.push({displayValue: selectedValue.displayValue, value: selectedValue.value});
-    this.field.setValue(this.values.map(v => v.value));
-    this.session.changed(this.field);
+    this.sessionChanged();
   }
 
+  /**
+   * Remove the item vrom the values list based on value
+   * */
   remove(value: any) {
     const index = this.values.indexOf(value);
-
     if (index >= 0) {
       this.values.splice(index, 1);
-      this.field.setValue(this.values);
-      this.session.changed(this.field);
+      this.sessionChanged();
     }
+  }
+
+  /**
+   * Checks if the value of the autocomplete input is valid within the fields' domain.
+   * If that is not the case, reset the input value
+   * @param event the event that is dispatched when the TODO input value is changed (blur)
+   */
+  checkValidOption(event): void {
+    if (event && event.target && event.target.value) {
+      if (this.field.domain.getValue(event.target.value) === undefined) {
+        event.target.value = null;
+      }
+    }
+  }
+
+  sessionChanged() {
+    this.field.setValue(this.values.map(v => v.value));
+    this.session.changed(this.field);
   }
 
   isDisabled(): boolean {
@@ -102,7 +137,7 @@ export class ChiplistComponent implements OnInit, OnUpdate {
   }
 
   private _valueExists(value: string): boolean {
-      return this.values.map(x => x.value.toLowerCase()).includes(value.toLowerCase());
+    return this.values.map(x => x.value.toLowerCase()).includes(value.toLowerCase());
   }
 
 }
