@@ -1,4 +1,4 @@
-import { Component, Host } from '@angular/core';
+import { Component, Host, OnInit } from '@angular/core';
 import { BlueriqChild, BlueriqComponent, BlueriqSession, OnUpdate } from '@blueriq/angular';
 import { Container, Page } from '@blueriq/core';
 import { BqContentStyles } from '../BqContentStyles';
@@ -10,7 +10,7 @@ import { BqContentStyles } from '../BqContentStyles';
 @BlueriqComponent({
   type: Page
 })
-export class PageComponent implements OnUpdate {
+export class PageComponent implements OnInit, OnUpdate {
 
   @BlueriqChild(Container, 'dashboard_header', { exclude: true, optional: true })
   dashboardHeader: Container;
@@ -23,6 +23,13 @@ export class PageComponent implements OnUpdate {
   constructor(@Host() public page: Page,
               public blueriqSession: BlueriqSession) {
     this.pageSize = this.determinePageSize();
+  }
+
+  /**
+   * Scroll to the top of the page whenever a new page is loaded.
+   */
+  ngOnInit(): void {
+    window.scroll(0, 0);
   }
 
   bqOnUpdate(): void {
