@@ -6,6 +6,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
 import { SharedModule } from '@shared/shared.module';
+import { OwlDateTimeModule } from 'ng-pick-datetime';
+import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
 import { MaterialModule } from '../../material.module';
 import { TableFilterIconComponent } from './filter/table.filter-icon.component';
 import { TableFilterValueComponent } from './filter/table.filter-value.component';
@@ -42,7 +44,9 @@ const LIST_COMPONENTS = [
     FlexLayoutModule,
     SharedModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    OwlDateTimeModule,
+    OwlMomentDateTimeModule
   ],
   exports: [LIST_COMPONENTS]
 })

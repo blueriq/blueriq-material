@@ -14,4 +14,6 @@ export class BqContentStyles {
   static DASHBOARD_FLOWWIDGET = 'dashboard_flowwidget';
   static DASHBOARD_COLUMN = 'dashboard_column';
   static DASHBOARD_COLUMN_PREFIX = 'dashboard_column';
+
+  static TAB = 'tabs';
 }

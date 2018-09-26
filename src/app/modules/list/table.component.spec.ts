@@ -17,12 +17,8 @@ import { MaterialModule } from '../../material.module';
 import { ButtonComponent } from '../button/button.component';
 import { ReadonlyComponent } from '../readonly/readonly.component';
 import { TextItemComponent } from '../textitem/textitem.component';
-import { TableFilterValueComponent } from './filter/table.filter-value.component';
-import { TableFilterComponent } from './filter/table.filter.component';
 import { ListComponent } from './list.component';
-import { TablePaginationComponent } from './pagination/table.pagination.component';
-import { TableSearchComponent } from './search/table.search.component';
-import { TableSortComponent } from './sort/table.sort.component';
+import { ListModule } from './list.module';
 import { TableComponent } from './table.component';
 
 describe('TableComponent', () => {
@@ -32,20 +28,20 @@ describe('TableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ButtonComponent, ListComponent, ReadonlyComponent, TableComponent, TableSearchComponent,
-        TableFilterComponent, TableFilterValueComponent, TablePaginationComponent,
-        TableSortComponent, TextItemComponent],
+      declarations: [ButtonComponent, ReadonlyComponent,
+        TextItemComponent],
       providers: [BlueriqComponents.register([
-        ButtonComponent, ListComponent, ReadonlyComponent,
-        TableSortComponent, TextItemComponent])
+        ButtonComponent, ReadonlyComponent,
+        TextItemComponent])
       ],
       imports: [
         MaterialModule,
-        BrowserAnimationsModule, // or NoopAnimationsModule
+        BrowserAnimationsModule,
         BlueriqTestingModule,
         FormsModule,
         TextItemModule,
-        FormattingModule.forRoot()
+        FormattingModule.forRoot(),
+        ListModule
       ]
     });
   }));
@@ -88,40 +84,40 @@ describe('TableComponent', () => {
       // ---------- End ----------
     );
     const btnFirst = ButtonTemplate.create('first')
-    .caption('<<')
-    .disabled(true)
-    .styles('pagination');
+                                   .caption('<<')
+                                   .disabled(true)
+                                   .styles('pagination');
 
     const btnPrevious = ButtonTemplate.create('previous')
-    .caption('<')
-    .disabled(true)
-    .styles('pagination');
+                                      .caption('<')
+                                      .disabled(true)
+                                      .styles('pagination');
 
     const currentPageNumber = FieldTemplate.integer('InstanceListContainer_currentPageNumber')
-    .domain({ 1: '1', 2: '2', 3: '3' })
-    .styles('paginationNumber')
-    .value('1');
+                                           .domain({ 1: '1', 2: '2', 3: '3' })
+                                           .styles('paginationNumber')
+                                           .value('1');
 
     const btnNext = ButtonTemplate.create('next')
-    .caption('>')
-    .styles('pagination');
+                                  .caption('>')
+                                  .styles('pagination');
 
     const btnLast = ButtonTemplate.create('last')
-    .caption('>>')
-    .styles('pagination');
+                                  .caption('>>')
+                                  .styles('pagination');
 
     const pagination = ContainerTemplate.create()
-    .name('navigationContainer')
-    .displayName('DisplayName')
-    .styles('navigationContainer')
-    .contentStyle('tablenavigation')
-    .children(
-      btnFirst,
-      btnPrevious,
-      currentPageNumber,
-      btnNext,
-      btnLast
-    );
+                                        .name('navigationContainer')
+                                        .displayName('DisplayName')
+                                        .styles('navigationContainer')
+                                        .contentStyle('tablenavigation')
+                                        .children(
+                                          btnFirst,
+                                          btnPrevious,
+                                          currentPageNumber,
+                                          btnNext,
+                                          btnLast
+                                        );
     const list = ContainerTemplate.create().children(tableTemplate, pagination);
     session = BlueriqSessionTemplate.create().build(list);
     component = session.get(ListComponent);

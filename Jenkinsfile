@@ -25,13 +25,28 @@ properties([
     string(
       name: 'releaseVersion',
       defaultValue: '1.0.x',
-      description: "In case of a release-build please provide the release version."
+      description: 'In case of a release-build please provide the release version.'
     ),
     string(
       name: 'developmentVersion',
       defaultValue: '1.0.x-SNAPSHOT',
-      description: "In case of a release-build please provide the next development version."
-    )
+      description: 'In case of a release-build please provide the next development version.'
+    ),
+	string(
+	  name: 'communityHost',
+	  defaultValue: '',
+	  description: 'In case of a release-build please provide the hostname of the server where to publish the community documentation to.'
+	),
+	string(
+	  name: 'communityUser',
+	  defaultValue: '',
+	  description: 'In case of a release-build please provide the username for the server where to publish the community documentation to.'
+	),
+	string(
+	  name: 'communityPass',
+	  defaultValue: '',
+	  description: 'In case of a release-build please provide the password for the server where to publish the community documentation to.'
+	)
   ])
 ])
 
@@ -96,7 +111,7 @@ node {
 
       stage('publish docs') {
         bat "yarn docs --silent --name \"@blueriq/material - ${params.releaseVersion}\""
-        bat "build-publish-docs.bat ${params.releaseVersion}"
+        bat "build-publish-docs.bat ${params.releaseVersion} ${params.communityHost} ${params.communityUser} ${params.communityPass}"
       }
     } // end if
 
@@ -135,6 +150,19 @@ node {
             shouldDetectModules      : true,
             canRunOnFailed           : true])
     }
+
+	if (isMaster && currentBuild.result.equals('SUCCESS')) {
+      stage('push to Github') {
+        withCredentials([usernamePassword(credentialsId: 'blueriq-material_github.com', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+          // We want the tags now that where not fetched in the 'checkout' stage
+          bat "git fetch --tags"
+          bat "git remote add upstream \"https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/blueriq/blueriq-material.git\" "
+          // Push only the master branch and all tags to Github
+          bat "git push upstream master"
+          bat "git push upstream --tags"
+        }
+      }
+	}
 
     notifyBuildStatus()
     deleteDir()
