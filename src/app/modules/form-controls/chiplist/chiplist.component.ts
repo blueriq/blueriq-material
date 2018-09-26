@@ -73,12 +73,14 @@ export class ChiplistComponent implements OnInit, OnUpdate {
   * Whenever one of the `separatorKeysCodes` was used that piece of text will be added
   */
   addByInput(event: MatChipInputEvent) {
+    const input = event.input;
     if(this.field.hasDomain) {
+      input.value = '';
+      this.sessionChanged();
       return;
     }
-    const input = event.input;
-    let sanitizedValue = this._sanitizeValue(event.value);
 
+    let sanitizedValue = this._sanitizeValue(event.value);
     if (sanitizedValue && !this._valueExists(sanitizedValue)) {
       this.values.push({displayValue: sanitizedValue, value: sanitizedValue});
       this.sessionChanged();
@@ -119,6 +121,7 @@ export class ChiplistComponent implements OnInit, OnUpdate {
     if (event && event.target && event.target.value) {
       if (this.field.domain.getValue(event.target.value) === undefined) {
         event.target.value = null;
+        this.sessionChanged();
       }
     }
   }
