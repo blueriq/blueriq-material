@@ -3,8 +3,11 @@
     <mat-label>{{ field.questionText }}</mat-label>
     <mat-chip-list #chipList>
 
-      <mat-chip *ngFor="let value of values" [selectable]="!isDisabled()"
-        [removable]="true" (removed)="remove(value)" [disabled]="isDisabled()">
+      <mat-chip *ngFor="let value of values"
+        [selectable]="!isDisabled()"
+        [removable]="true"
+        (removed)="remove(value)"
+        [disabled]="isDisabled()">
         {{value.displayValue}}
         <mat-icon matChipRemove *ngIf="!isDisabled()">cancel</mat-icon>
       </mat-chip>
@@ -21,8 +24,8 @@
         (keyup)="filterDomain(input.value)"
         (blur)="checkValidOption($event)">
 
-      <mat-autocomplete autoActiveFirstOption #matAuto="matAutocomplete" (optionSelected)="addByAutoComplete($event)">
-        <mat-option *ngFor="let domainOption of filteredDomainOptions" [value]="domainOption">
+      <mat-autocomplete autoActiveFirstOption #matAuto="matAutocomplete">
+        <mat-option *ngFor="let domainOption of filteredDomainOptions" [value]="domainOption" (onSelectionChange)="addByAutoComplete($event)">
           {{ domainOption.displayValue }}
         </mat-option>
       </mat-autocomplete>

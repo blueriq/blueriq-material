@@ -1,6 +1,6 @@
 import { COMMA, ENTER, TAB } from '@angular/cdk/keycodes';
 import { Component, Host, OnInit } from '@angular/core';
-import { MatAutocompleteSelectedEvent, MatChipInputEvent } from '@angular/material';
+import { MatChipInputEvent, MatOptionSelectionChange } from '@angular/material';
 import { BlueriqComponent, BlueriqSession, bySelector, OnUpdate } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { DomainValue, Field, FieldMessages } from '@blueriq/core';
@@ -95,8 +95,8 @@ export class ChiplistComponent implements OnInit, OnUpdate {
    * Add items to the values list (With a domain)
    * Whenever a item is selected from the 'mat-autocomplete' the selected value will be added
    */
-  addByAutoComplete(e: MatAutocompleteSelectedEvent) {
-    const selectedValue = e.option.value;
+  addByAutoComplete(e: MatOptionSelectionChange) {
+    const selectedValue = e.source.value;
     this.values.push({ displayValue: selectedValue.displayValue, value: selectedValue.value });
     this.sessionChanged();
   }
@@ -115,7 +115,7 @@ export class ChiplistComponent implements OnInit, OnUpdate {
   /**
    * Checks if the value of the autocomplete input is valid within the fields' domain.
    * If that is not the case, reset the input value
-   * @param event the event that is dispatched when the TODO input value is changed (blur)
+   * @param event the event that is dispatched when the input value is changed (blur)
    */
   checkValidOption(event): void {
     if (event && event.target && event.target.value) {
