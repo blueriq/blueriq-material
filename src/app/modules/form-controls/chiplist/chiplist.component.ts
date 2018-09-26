@@ -1,12 +1,9 @@
 import { COMMA, ENTER, TAB } from '@angular/cdk/keycodes';
 import { Component, Host, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent, MatChipInputEvent } from '@angular/material';
 import { BlueriqComponent, BlueriqSession, bySelector, OnUpdate } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { DomainValue, Field, FieldMessages } from '@blueriq/core';
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
 
 @Component({
@@ -15,12 +12,14 @@ import { BqPresentationStyles } from '../../BqPresentationStyles';
 })
 @BlueriqComponent({
   type: Field,
-  selector: bySelector('[multiValued].'+ BqPresentationStyles.AUTOCOMPLETE + ',[multiValued][hasDomain=false]', { priorityOffset: 100 })
+  selector: bySelector(
+    '[multiValued].' + BqPresentationStyles.AUTOCOMPLETE +
+    ',[multiValued][hasDomain=false]', { priorityOffset: 100 })
 })
 export class ChiplistComponent implements OnInit, OnUpdate {
 
   separatorKeysCodes = [ENTER, TAB, COMMA];
-  values: {displayValue: string,value: string}[];
+  values: { displayValue: string, value: string }[];
   formControl = this.form.control(this.field, { syncOn: 'blur', disableWhen: BqPresentationStyles.DISABLED });
   filteredDomainOptions: DomainValue[];
 
@@ -31,7 +30,6 @@ export class ChiplistComponent implements OnInit, OnUpdate {
 
   ngOnInit() {
     this.fillValues();
-
   }
 
   bqOnUpdate() {
@@ -39,27 +37,29 @@ export class ChiplistComponent implements OnInit, OnUpdate {
   }
 
   /**
-  * Fill the values list that will be used by the chiplist.
-  * These values are based on what was already on the `field`'s listValue
-  */
+   * Fill the values list that will be used by the chiplist.
+   * These values are based on what was already on the `field`'s listValue
+   */
   fillValues() {
-    if(this.field.hasDomain) {
+    if (this.field.hasDomain) {
       this.values = this.field.listValue.map(lv => this.findDomainValueByValue(lv));
     } else {
-      this.values = this.field.listValue.map(lv => { return {displayValue: lv, value: lv}});
+      this.values = this.field.listValue.map(lv => {
+        return { displayValue: lv, value: lv };
+      });
     }
   }
 
-  findDomainValueByValue(value): {displayValue: string,value: string}{
+  findDomainValueByValue(value): { displayValue: string, value: string } {
     const val = this.field.domain.options.find(d => d.value === value);
-    return val ? val : { displayValue: value,value: value};
+    return val ? val : { displayValue: value, value: value };
   }
 
   /**
-  * The possible domain options will be filtered based on the string value from the input field
-  */
+   * The possible domain options will be filtered based on the string value from the input field
+   */
   filterDomain(value) {
-    if(this.field.hasDomain) {
+    if (this.field.hasDomain) {
       this.filteredDomainOptions = this.field.domain.options.filter(option => option.displayValue.toLowerCase().includes(value.toLowerCase()));
     }
   }
@@ -69,12 +69,12 @@ export class ChiplistComponent implements OnInit, OnUpdate {
   }
 
   /**
-  * Add items to the values list. (without a domain)
-  * Whenever one of the `separatorKeysCodes` was used that piece of text will be added
-  */
+   * Add items to the values list. (without a domain)
+   * Whenever one of the `separatorKeysCodes` was used that piece of text will be added
+   */
   addByInput(event: MatChipInputEvent) {
     const input = event.input;
-    if(this.field.hasDomain) {
+    if (this.field.hasDomain) {
       input.value = '';
       this.sessionChanged();
       return;
@@ -82,7 +82,7 @@ export class ChiplistComponent implements OnInit, OnUpdate {
 
     let sanitizedValue = this._sanitizeValue(event.value);
     if (sanitizedValue && !this._valueExists(sanitizedValue)) {
-      this.values.push({displayValue: sanitizedValue, value: sanitizedValue});
+      this.values.push({ displayValue: sanitizedValue, value: sanitizedValue });
       this.sessionChanged();
       sanitizedValue = '';
     }
@@ -92,12 +92,12 @@ export class ChiplistComponent implements OnInit, OnUpdate {
   }
 
   /**
-  * Add items to the values list (With a domain)
-  * Whenever a item is selected from the 'mat-autocomplete' the selected value will be added
-  */
+   * Add items to the values list (With a domain)
+   * Whenever a item is selected from the 'mat-autocomplete' the selected value will be added
+   */
   addByAutoComplete(e: MatAutocompleteSelectedEvent) {
     const selectedValue = e.option.value;
-    this.values.push({displayValue: selectedValue.displayValue, value: selectedValue.value});
+    this.values.push({ displayValue: selectedValue.displayValue, value: selectedValue.value });
     this.sessionChanged();
   }
 

@@ -68,7 +68,7 @@ export class ProjectComponent implements OnInit {
   }
 
   onError(action: FailedAction): void {
-    if(isDevMode()) {
+    if (isDevMode()) {
       console.error(action);
     }
     if (isBlueriqError(action.error)) {
