@@ -115,17 +115,6 @@ node {
       }
     } // end if
 
-    stage('push to Github') {
-      withCredentials([usernamePassword(credentialsId: 'blueriq-material_github.com', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-        // We want the tags now that where not fetched in the 'checkout' stage
-        bat "git fetch --tags"
-        bat "git remote add upstream \"https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/blueriq/blueriq-material.git\" "
-        // Push only the master branch and all tags to Github
-        bat "git push upstream master"
-        bat "git push upstream --tags"
-      }
-    }
-
   } catch (anyException) {
     echo "An error occured (${anyException}) marking build as failed."
     currentBuild.result = 'FAILURE'
@@ -161,6 +150,19 @@ node {
             shouldDetectModules      : true,
             canRunOnFailed           : true])
     }
+
+	if (isMaster && currentBuild.result.equals('SUCCESS')) {
+      stage('push to Github') {
+        withCredentials([usernamePassword(credentialsId: 'blueriq-material_github.com', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+          // We want the tags now that where not fetched in the 'checkout' stage
+          bat "git fetch --tags"
+          bat "git remote add upstream \"https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/blueriq/blueriq-material.git\" "
+          // Push only the master branch and all tags to Github
+          bat "git push upstream master"
+          bat "git push upstream --tags"
+        }
+      }
+	}
 
     notifyBuildStatus()
     deleteDir()
