@@ -164,7 +164,7 @@ describe('TablePaginationComponent', () => {
       .name('navigationContainer')
       .displayName('DisplayName')
       .styles('navigationContainer')
-      .contentStyle('list_footer')
+      .contentStyle('listplus_footer')
       .children(
         btnFirst,
         btnPrevious,
