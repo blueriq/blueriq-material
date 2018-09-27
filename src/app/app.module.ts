@@ -21,6 +21,7 @@ import { AssetComponent } from './modules/asset/asset.component';
 import { ButtonComponent } from './modules/button/button.component';
 import { CommentModule } from './modules/comment/comment.module';
 import { ContainerComponent } from './modules/container/container.component';
+import { FailedComponent } from './modules/container/failed/failed.component';
 import { HorizontalFlexChildDirective } from './modules/container/horizontal-flex-child.directive';
 import { ErrorComponent } from './modules/error/error.component';
 import { FileModule } from './modules/file/file.modules';
@@ -55,6 +56,7 @@ const BQ_COMPONENTS = [
   AssetComponent,
   ButtonComponent,
   ContainerComponent,
+  FailedComponent,
   HeaderComponent,
   PageComponent,
   ReadonlyComponent,

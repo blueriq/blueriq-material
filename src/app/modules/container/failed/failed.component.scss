@@ -1,0 +1,17 @@
+@import 'globals/variables';
+
+.message {
+  @include mat-elevation(1);
+  background: mat-color($bq-error-palette, 400);
+  color: mat-color($bq-error-palette, default-contrast);
+  margin: $bq-margin;
+  padding: $bq-margin;
+}
+
+.trace {
+  @include mat-elevation(1);
+  background: mat-color($bq-mat-grey-light, 400);
+  margin: $bq-margin;
+  padding: $bq-margin;
+  overflow: auto;
+}
