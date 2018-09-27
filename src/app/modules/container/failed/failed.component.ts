@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, isDevMode } from '@angular/core';
 import { BlueriqChild, BlueriqComponent } from '@blueriq/angular';
 import { Container, FailedElement } from '@blueriq/core';
 
@@ -16,4 +16,10 @@ export class FailedComponent {
   @BlueriqChild(FailedElement, '[type=failedelement]', { optional: true })
   failedElement: FailedElement;
 
+  showTrace = false;
+  isDev = false;
+
+  constructor() {
+    this.isDev = isDevMode();
+  }
 }

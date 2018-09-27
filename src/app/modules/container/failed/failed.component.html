@@ -1,5 +1,11 @@
-<div class="message" fxLayout="row">{{failedElement.message}}</div>
-<div class="trace" fxLayout="row">
-  <pre>{{failedElement.stacktrace}}</pre>
+<div *ngIf="isDev">
+  <div class="message" fxLayout="row">
+    {{failedElement.message}}
+    <button mat-icon-button (click)="showTrace=!showTrace">
+      <mat-icon aria-label="Example icon-button with a heart icon">more</mat-icon>
+    </button>
+  </div>
+  <div class="trace" fxLayout="row" *ngIf="showTrace">
+    <pre>{{failedElement.stacktrace}}</pre>
+  </div>
 </div>
-

@@ -10,8 +10,10 @@
 
 .trace {
   @include mat-elevation(1);
-  background: mat-color($bq-mat-grey-light, 400);
+  background: mat-color($bq-mat-grey-light, 50);
   margin: $bq-margin;
   padding: $bq-margin;
-  overflow: auto;
+  max-height: $bq-max-height-scrollbar;
+  overflow-y: auto;
+  font-size: 11px;
 }
