@@ -58,7 +58,7 @@ export class ChiplistComponent implements OnInit, OnUpdate {
   /**
    * The possible domain options will be filtered based on the string value from the input field
    */
-  filterDomain(value) {
+  filterDomain(value: string) {
     if (this.field.hasDomain) {
       this.filteredDomainOptions = this.field.domain.options.filter(option => option.displayValue.toLowerCase().includes(value.toLowerCase()));
     }
@@ -85,10 +85,12 @@ export class ChiplistComponent implements OnInit, OnUpdate {
       this.values.push({ displayValue: sanitizedValue, value: sanitizedValue });
       this.sessionChanged();
       sanitizedValue = '';
+      input.focus();
+      if (input) {
+        input.value = sanitizedValue;
+      }
     }
-    if (input) {
-      input.value = sanitizedValue;
-    }
+
   }
 
   /**
@@ -97,12 +99,16 @@ export class ChiplistComponent implements OnInit, OnUpdate {
    */
   addByAutoComplete(e: MatOptionSelectionChange) {
     const selectedValue = e.source.value;
-    this.values.push({ displayValue: selectedValue.displayValue, value: selectedValue.value });
-    this.sessionChanged();
+    if (!this._valueExists(selectedValue.value)) {
+      this.values.push({ displayValue: selectedValue.displayValue, value: selectedValue.value });
+      this.sessionChanged();
+    }
+    // Reset the filter after adding a chip
+    this.filterDomain('');
   }
 
   /**
-   * Remove the item vrom the values list based on value
+   * Remove the item from the values list based on value
    * */
   remove(value: any) {
     const index = this.values.indexOf(value);
