@@ -1,8 +1,12 @@
-<div class="mat-paginator">
-  <div class="paginator-container" fxLayout="row" fxLayoutAlign="end center">
+<div class="mat-paginator" fxLayout="row">
+  <div fxFlex fxLayoutAlign=" center">
+    <!-- Display feedback -->
+    <div *ngIf="pagination.pagingFeedback">{{pagination.pagingFeedback.text}}</div>
+  </div>
+  <div fxFlex="nogrow" fxLayoutAlign="center center">
 
     <!-- Range -->
-    <div class="mat-paginator-range-label">{{pagination.currentPageNumber}} of {{pagination.numberOfPages}}</div>
+    <div class="mat-paginator-range-label">{{pagination.paginationText}}</div>
 
     <!-- Previous/Next -->
     <button class="mat-paginator-navigation-first mat-icon-button" mat-icon-button [disabled]="pagination.first.disabled" [bqButton]="pagination.first" matTooltip="First page">
