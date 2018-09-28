@@ -18,7 +18,7 @@ The last option makes it possible to change the includePaths property to a new t
 ```
 
 # Palettes
-There are additional palettes defined to the default Material palletes (Primary, Accent and Error). Some components utilize a tertary color for UX reasons. Below example demonstrates how to provide the palettes. 
+There are additional palettes defined to the default Material palletes (Primary, Accent and Error). Some components utilize a tertiary color for UX reasons. Below example demonstrates how to provide the palettes. 
 ```
 $bq-primary-palette: mat-palette($bq-mat-primary-blue);
 $bq-accent-palette: mat-palette($bq-mat-primary-purple);
