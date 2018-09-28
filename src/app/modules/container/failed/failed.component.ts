@@ -22,4 +22,13 @@ export class FailedComponent {
   constructor() {
     this.isDev = isDevMode();
   }
+
+  copyToClipboard() {
+    const textArea = document.createElement('textarea');
+    textArea.textContent = this.failedElement.stacktrace ? this.failedElement.stacktrace : '';
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textArea);
+  }
 }

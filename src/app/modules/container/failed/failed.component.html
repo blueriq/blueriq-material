@@ -1,8 +1,11 @@
 <div *ngIf="isDev">
-  <div class="message" fxLayout="row">
+  <div class="message" fxLayout="row" (dblclick)="showTrace=!showTrace">
     {{failedElement.message}}
-    <button mat-icon-button (click)="showTrace=!showTrace">
-      <mat-icon aria-label="Example icon-button with a heart icon">more</mat-icon>
+    <button mat-icon-button matTooltip="Copy trace to clipboard" (click)="copyToClipboard()">
+      <mat-icon aria-label="Copy to clipboard">assignment</mat-icon>
+    </button>
+    <button mat-icon-button matTooltip="Show Tracing" (click)="showTrace=!showTrace">
+      <mat-icon aria-label="Show trace">more</mat-icon>
     </button>
   </div>
   <div class="trace" fxLayout="row" *ngIf="showTrace">
