@@ -4,6 +4,7 @@
 @import 'globals/index';
 @import 'components/index';
 
-@include mat-core;
+@include mat-core($bq-mat-typography);
 
 @include angular-material-theme($bq-theme);
+
