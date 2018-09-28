@@ -18,7 +18,7 @@ The last option makes it possible to change the includePaths property to a new t
 ```
 
 # Palettes
-There are additional palletes defined to the default Material palletes (Primary, Accent and Error). Some components utilize a tertary color for UX reasons. Below example demonstrates how to provide the palettes. 
+There are additional palettes defined to the default Material palletes (Primary, Accent and Error). Some components utilize a tertary color for UX reasons. Below example demonstrates how to provide the palettes. 
 ```
 $bq-primary-palette: mat-palette($bq-mat-primary-blue);
 $bq-accent-palette: mat-palette($bq-mat-primary-purple);
@@ -39,7 +39,7 @@ There are multiple ways to create your own custom theme, you could fork this pro
 2. Create an `index.scss` file in the theme-root
 3. Import components from Blueriq in your `index.scss` if no override is necessary, example: `@import '../blueriq/components/datetimepicker';`
 4. Change references inside `angular.json` from `src/theme/blueriq` to your theme-name
-5. Select or create Material palettes acording to your branding guidelines. See http://mcg.mbitson.com/ for an easy Material palette creator and implement it in your theme
+5. Select or create Material palettes according to your branding guidelines. See http://mcg.mbitson.com/ for an easy Material palette creator and implement it in your theme
 6. Implement your branding guidelines in the newly created theme directory
 7. Edit `page.component.html` to create a custom header and footer
 
