@@ -1,0 +1,37 @@
+<p bqClasses>
+  <mat-form-field bqKey fxFlex appearance="fill">
+    <mat-label>{{ field.questionText }}</mat-label>
+    <mat-chip-list #chipList>
+
+      <mat-chip *ngFor="let value of values"
+        [selectable]="!isDisabled()"
+        [removable]="true"
+        (removed)="remove(value)"
+        [disabled]="isDisabled()">
+        {{value.displayValue}}
+        <mat-icon matChipRemove *ngIf="!isDisabled()">cancel</mat-icon>
+      </mat-chip>
+
+      <input #input
+        [formControl]="formControl"
+        [placeholder]="field.placeholder"
+        [matChipInputFor]="chipList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="!field.hasDomain"
+        (matChipInputTokenEnd)="addByInput($event)"
+        [required]="field.required"
+        [matAutocomplete]="matAuto"
+        (keyup)="filterDomain(input.value)"
+        (blur)="checkValidOption($event)">
+
+      <mat-autocomplete autoActiveFirstOption #matAuto="matAutocomplete">
+        <mat-option *ngFor="let domainOption of filteredDomainOptions" [value]="domainOption" (onSelectionChange)="addByAutoComplete($event)">
+          {{ domainOption.displayValue }}
+        </mat-option>
+      </mat-autocomplete>
+
+    </mat-chip-list>
+    <mat-hint>{{field.explainText}}</mat-hint>
+    <mat-error *ngFor="let msg of getMessages()">{{msg.text}}</mat-error>
+  </mat-form-field>
+</p>

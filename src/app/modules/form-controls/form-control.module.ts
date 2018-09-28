@@ -13,6 +13,7 @@ import { MaterialModule } from '../../material.module';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 import { DomainValueTransformer } from './autocomplete/domain-value-transformer';
 import { BqErrorStateMatcher } from './bq-errorstatematcher';
+import { ChiplistComponent } from './chiplist/chiplist.component';
 import { DatepickerComponent } from './date/datepicker/datepicker.component';
 import { DateTimepickerComponent } from './date/datetimepicker/datetimepicker.component';
 import { CurrencyFieldComponent } from './input-field/currency/currency.component';
@@ -28,19 +29,20 @@ import { SlideToggleComponent } from './selection-control/slide-toggle/slide-tog
 import { TextAreaComponent } from './text-area/text-area.component';
 
 const FORM_CONTROL_COMPONENTS = [
+  AutocompleteComponent,
   CheckboxComponent,
-  DatepickerComponent,
+  ChiplistComponent,
+  CurrencyFieldComponent,
   DateTimepickerComponent,
-  StringFieldComponent,
+  DatepickerComponent,
   IntegerFieldComponent,
   NumberFieldComponent,
+  PercentageFieldComponent,
   RadioButtonComponent,
-  CurrencyFieldComponent,
-  SlideToggleComponent,
   SelectComponent,
-  AutocompleteComponent,
+  StringFieldComponent,
+  SlideToggleComponent,
   TextAreaComponent,
-  PercentageFieldComponent
 ];
 
 @NgModule({
