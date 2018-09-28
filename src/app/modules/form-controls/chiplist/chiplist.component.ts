@@ -1,5 +1,5 @@
 import { COMMA, ENTER, TAB } from '@angular/cdk/keycodes';
-import { Component, Host, OnInit } from '@angular/core';
+import { Component, ElementRef, Host, OnInit, ViewChild } from '@angular/core';
 import { MatChipInputEvent, MatOptionSelectionChange } from '@angular/material';
 import { BlueriqComponent, BlueriqSession, bySelector, OnUpdate } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
@@ -22,6 +22,9 @@ export class ChiplistComponent implements OnInit, OnUpdate {
   values: { displayValue: string, value: string }[];
   formControl = this.form.control(this.field, { syncOn: 'blur', disableWhen: BqPresentationStyles.DISABLED });
   filteredDomainOptions: DomainValue[];
+
+  @ViewChild('input')
+  inputField: ElementRef;
 
   constructor(@Host() public field: Field,
               private session: BlueriqSession,
@@ -105,6 +108,7 @@ export class ChiplistComponent implements OnInit, OnUpdate {
     }
     // Reset the filter after adding a chip
     this.filterDomain('');
+    this.inputField.nativeElement.focus();
   }
 
   /**
@@ -145,7 +149,10 @@ export class ChiplistComponent implements OnInit, OnUpdate {
     return (value || '').trim();
   }
 
-  private _valueExists(value: string): boolean {
+  private _valueExists(value: any): boolean {
+    if (this.field.dataType === 'number' || this.field.dataType === 'percentage' || this.field.dataType === 'currency') {
+      return this.values.map(x => parseFloat(x.value)).includes(parseFloat(value));
+    }
     return this.values.map(x => x.value.toLowerCase()).includes(value.toLowerCase());
   }
 
