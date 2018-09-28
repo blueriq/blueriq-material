@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, isDevMode, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FailedAction, isBlueriqError, UnauthorizedProjectAction } from '@blueriq/angular';
 import { ErrorType, SessionId } from '@blueriq/core';
@@ -68,6 +68,9 @@ export class ProjectComponent implements OnInit {
   }
 
   onError(action: FailedAction): void {
+    if (isDevMode()) {
+      console.error(action);
+    }
     if (isBlueriqError(action.error)) {
       const { errorType, message, title } = action.error.cause;
 

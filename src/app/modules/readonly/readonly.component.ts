@@ -17,4 +17,8 @@ export class ReadonlyComponent {
   constructor(@Host() public readonly field: Field,
               @Optional() @Host() public readonly table: Table) {
   }
+
+  getValue(): string {
+    return this.field.multiValued ? this.field.listValue.toString() : this.field.getValue();
+  }
 }

@@ -10,7 +10,7 @@ import { BqPresentationStyles } from '../../BqPresentationStyles';
 })
 @BlueriqComponent({
   type: Field,
-  selector: '[hasDomain=true]'
+  selector: '[hasDomain]'
 })
 export class SelectComponent {
   formControl = this.form.control(this.field, { updateOn: 'blur', disableWhen: BqPresentationStyles.DISABLED });
