@@ -4,12 +4,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { EffectsModule } from '@ngrx/effects';
-import { BqKeyDirective } from '@shared/bq-key/bq-key.directive';
+import { BqKeyDirective } from '@shared/directive/bq-key/bq-key.directive';
+import { BqIconDirective } from '@shared/directive/icon/icon.directive';
 import { ValidationEffect } from '@shared/effects/validation/validation.effect';
 import { MaterialModule } from '../material.module';
 
 const SHARED_COMPONENTS = [
-  BqKeyDirective
+  BqKeyDirective,
+  BqIconDirective
 ];
 
 @NgModule({
@@ -27,7 +29,7 @@ const SHARED_COMPONENTS = [
     ])
   ],
   exports: [
-    SHARED_COMPONENTS
+    SHARED_COMPONENTS, CommonModule, FormsModule
   ]
 })
 export class SharedModule {

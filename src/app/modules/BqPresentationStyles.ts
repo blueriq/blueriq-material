@@ -32,11 +32,12 @@ export class BqPresentationStyles {
   static EXPLAINICON = 'explainicon';
   // Prefixes
   static WEIGHT_PREFIX = 'Weight';
-  static ICON_PREFIX = 'icon_';
+  static ICON_FA_PREFIX = 'icon_';
+  static ICON_MAT_PREFIX = 'Icon';
   // Presentation styles which are deprecated in Blueriq 12.0
   static DEPRECATED_ALIGNRIGHT = 'align_right'; // New style is 'AlignRight'
   static DEPRECATED_ANIMATE = 'animate'; // New style is 'Animation'
-  static DEPRECATED_HORIZONTAL = 'options_horizontal'; // New style is 'RadioHorizontal'
+  static DEPRECATED_HORIZONTAL = 'options_horizontal'; // New style is 'Horizontal'
   static DEPRECATED_VERTICAL = 'options_vertical'; // New style is 'Radio'
   static DEPRECATED_STATISTIC_PIE = 'pie';
   static DEPRECATED_STATISTIC_BAR = 'bar';
