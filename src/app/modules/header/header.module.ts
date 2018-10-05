@@ -1,0 +1,32 @@
+import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatIconModule, MatMenuModule, MatToolbarModule } from '@angular/material';
+import { BrowserModule } from '@angular/platform-browser';
+import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
+import { HeaderComponent } from './header.component';
+
+const BLUERIQ_COMPONENTS = [
+  HeaderComponent
+];
+
+@NgModule({
+  declarations: [
+    BLUERIQ_COMPONENTS
+  ],
+  providers: [
+    BlueriqComponents.register(BLUERIQ_COMPONENTS)
+  ],
+  imports: [
+    BrowserModule,
+    BlueriqModule.forRoot(),
+    FlexLayoutModule,
+
+    /* Material modules */
+    MatToolbarModule,
+    MatMenuModule,
+    MatIconModule
+  ],
+  exports: [BLUERIQ_COMPONENTS]
+})
+export class HeaderModule {
+}
