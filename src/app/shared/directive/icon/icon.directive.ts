@@ -22,7 +22,7 @@ export class BqIconDirective {
     const materialIcons = presentationStyles.get(style => style.startsWith(BqPresentationStyles.ICON_MAT_PREFIX));
     if (fontAwesomeIcons) {
       let iconName = fontAwesomeIcons.replace(new RegExp('^' + BqPresentationStyles.ICON_FA_PREFIX), '');
-      iconName = iconName.replace('_', '-');
+      iconName = iconName.replace(new RegExp('_', 'g'), '-');
       iconName = this.getMappedFaIcon(iconName);
       this._class = 'fa fa-' + iconName;
     } else if (materialIcons) {
