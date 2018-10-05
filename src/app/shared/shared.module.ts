@@ -6,12 +6,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { EffectsModule } from '@ngrx/effects';
 import { BqKeyDirective } from '@shared/directive/bq-key/bq-key.directive';
 import { HorizontalFlexChildDirective } from '@shared/directive/flex/horizontal-flex-child.directive';
+
 import { ValidationEffect } from '@shared/effects/validation/validation.effect';
 import { MaterialModule } from '../material.module';
+import { BqIconDirective } from '@shared/directive/icon/icon.directive';
 
 const SHARED_COMPONENTS = [
   BqKeyDirective,
-  HorizontalFlexChildDirective
+  HorizontalFlexChildDirective,
+  BqIconDirective
 ];
 
 @NgModule({
@@ -30,7 +33,7 @@ const SHARED_COMPONENTS = [
     ])
   ],
   exports: [
-    SHARED_COMPONENTS
+    SHARED_COMPONENTS, CommonModule, FormsModule
   ]
 })
 export class SharedModule {
