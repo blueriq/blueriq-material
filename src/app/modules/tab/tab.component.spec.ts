@@ -3,6 +3,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
+import { SharedModule } from '@shared/shared.module';
+import { MaterialModule } from '../../material.module';
 import { BqContentStyles } from '../BqContentStyles';
 import { ContainerComponent } from '../container/container.component';
 import { HorizontalFlexChildDirective } from '../container/horizontal-flex-child.directive';
@@ -25,7 +27,9 @@ describe('TabComponent', () => {
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        TabModule
+        TabModule,
+        SharedModule,
+        MaterialModule
       ]
     });
     tabField = FieldTemplate.text('field');
