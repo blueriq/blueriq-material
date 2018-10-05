@@ -18,7 +18,6 @@ export class BqIconDirective {
 
   @Input()
   set bqIcon(presentationStyles: PresentationStyles) {
-    console.log(presentationStyles);
     const fontAwesomeIcons = presentationStyles.get(style => style.startsWith(BqPresentationStyles.ICON_FA_PREFIX));
     const materialIcons = presentationStyles.get(style => style.startsWith(BqPresentationStyles.ICON_MAT_PREFIX));
     if (fontAwesomeIcons) {
