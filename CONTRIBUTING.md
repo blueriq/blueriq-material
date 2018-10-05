@@ -13,7 +13,7 @@ The following is a set of guidelines for contributing to blueriq-material, which
 
 ## Code of Conduct
 
-This project and everyone participating in it is governed by the [Blueriq Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [support@blueriq.com](mailto:support@blueriq.com).
+This project and everyone participating in it is governed by the [Blueriq Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [Blueriq support](https://my.blueriq.com/display/CUS/).
 
 ## How Can I Contribute?
 
