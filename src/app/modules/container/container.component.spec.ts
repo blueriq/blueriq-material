@@ -4,6 +4,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate } from '@blueriq/core/testing';
+import { SharedModule } from '@shared/shared.module';
 import { MaterialModule } from '../../material.module';
 import { BqPresentationStyles } from '../BqPresentationStyles';
 import { ContainerComponent } from './container.component';
@@ -22,18 +23,19 @@ describe('ContainerComponent', () => {
         MaterialModule,
         NoopAnimationsModule,
         BlueriqTestingModule,
-        FormsModule
+        FormsModule,
+        SharedModule
       ]
     });
   }));
 
   beforeEach(() => {
     containerTemplate = ContainerTemplate.create()
-                                         .children(
-                                           ContainerTemplate.create(),
-                                           ContainerTemplate.create(),
-                                           ContainerTemplate.create()
-                                         );
+    .children(
+      ContainerTemplate.create(),
+      ContainerTemplate.create(),
+      ContainerTemplate.create()
+    );
     session = BlueriqSessionTemplate.create().build(containerTemplate);
     containerComponent = session.get(ContainerComponent);
   });
