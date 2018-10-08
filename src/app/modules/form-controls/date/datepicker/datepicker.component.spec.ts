@@ -6,7 +6,6 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { MaterialModule } from '../../../../material.module';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
 import { MomentTransformer } from '../moment-transformer';
 import { DatepickerComponent } from './datepicker.component';
@@ -21,7 +20,6 @@ describe('DatepickerComponent', () => {
       declarations: [DatepickerComponent],
       providers: [BlueriqComponents.register([DatepickerComponent]), MomentTransformer],
       imports: [
-        MaterialModule,
         NoopAnimationsModule,
         BlueriqTestingModule,
         FlexLayoutModule,

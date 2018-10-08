@@ -5,7 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { MaterialModule } from '../../../material.module';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
 import { CurrencyFieldComponent } from './currency/currency.component';
 import { InputFieldComponent } from './input-field.component';
@@ -20,7 +19,6 @@ describe('InputFieldComponent', () => {
       declarations: [CurrencyFieldComponent],
       providers: [BlueriqComponents.register([CurrencyFieldComponent]), InputFieldComponent],
       imports: [
-        MaterialModule,
         BrowserAnimationsModule,
         BlueriqTestingModule,
         FlexLayoutModule,

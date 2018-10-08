@@ -3,7 +3,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { MaterialModule } from '../../../../material.module';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
 import { SelectionControlComponent } from '../selection-control.component';
 
@@ -19,7 +18,6 @@ describe('RadioButtonComponent', () => {
       declarations: [RadioButtonComponent, SelectionControlComponent],
       providers: [BlueriqComponents.register([RadioButtonComponent])],
       imports: [
-        MaterialModule,
         FlexLayoutModule,
         BlueriqTestingModule
       ]

@@ -5,7 +5,6 @@ import { BlueriqComponents } from '@blueriq/angular';
 import { FormattingModule } from '@blueriq/angular/formatting';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { MaterialModule } from '../../material.module';
 
 import { ReadonlyComponent } from './readonly.component';
 
@@ -19,7 +18,6 @@ describe('ReadonlyComponent', () => {
       declarations: [ReadonlyComponent],
       providers: [BlueriqComponents.register([ReadonlyComponent])],
       imports: [
-        MaterialModule,
         BrowserAnimationsModule, // or NoopAnimationsModule
         BlueriqTestingModule,
         FormsModule,

@@ -5,7 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { MaterialModule } from '../../../material.module';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { SelectionControlComponent } from './selection-control.component';
 
@@ -20,7 +19,6 @@ describe('SelectionControlComponent', () => {
       declarations: [CheckboxComponent, SelectionControlComponent],
       providers: [BlueriqComponents.register([CheckboxComponent])],
       imports: [
-        MaterialModule,
         BrowserAnimationsModule, // or NoopAnimationsModule
         BlueriqTestingModule,
         FlexLayoutModule,

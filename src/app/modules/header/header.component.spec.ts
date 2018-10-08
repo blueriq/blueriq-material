@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate, PageTemplate, TextItemTemplate } from '@blueriq/core/testing';
-import { MaterialModule } from '../../material.module';
 import { PageComponent } from '../page/page.component';
 import { HeaderComponent } from './header.component';
 
@@ -22,7 +21,6 @@ describe('HeaderComponent', () => {
         useValue: '/'
       }],
       imports: [
-        MaterialModule,
         NoopAnimationsModule,
         BlueriqTestingModule,
         FormsModule,

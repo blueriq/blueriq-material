@@ -5,7 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { MaterialModule } from '../../../../material.module';
 
 import { StringFieldComponent } from './string.component';
 
@@ -19,7 +18,6 @@ describe('StringFieldComponent', () => {
       declarations: [StringFieldComponent],
       providers: [BlueriqComponents.register([StringFieldComponent])],
       imports: [
-        MaterialModule,
         BrowserAnimationsModule, // or NoopAnimationsModule
         BlueriqTestingModule,
         FlexLayoutModule,

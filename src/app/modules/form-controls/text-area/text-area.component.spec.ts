@@ -5,7 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { MaterialModule } from '../../../material.module';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
 import { TextAreaComponent } from './text-area.component';
 
@@ -19,7 +18,6 @@ describe('TextAreaComponent', () => {
       declarations: [TextAreaComponent],
       providers: [BlueriqComponents.register([TextAreaComponent])],
       imports: [
-        MaterialModule,
         BrowserAnimationsModule,
         BlueriqTestingModule,
         FlexLayoutModule,

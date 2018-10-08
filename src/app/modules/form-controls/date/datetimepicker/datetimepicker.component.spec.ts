@@ -8,7 +8,6 @@ import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from
 import { FieldTemplate } from '@blueriq/core/testing';
 import { OwlDateTimeModule } from 'ng-pick-datetime';
 import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
-import { MaterialModule } from '../../../../material.module';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
 import { MomentTransformer } from '../moment-transformer';
 import { DateTimepickerComponent } from './datetimepicker.component';
@@ -23,7 +22,6 @@ describe('DateTimepickerComponent', () => {
       declarations: [DateTimepickerComponent],
       providers: [BlueriqComponents.register([DateTimepickerComponent]), MomentTransformer],
       imports: [
-        MaterialModule,
         NoopAnimationsModule,
         BlueriqTestingModule,
         FormsModule,

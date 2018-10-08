@@ -6,7 +6,6 @@ import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { TextItemModule } from '@blueriq/angular/textitems';
 import { StaticNodeTemplate, StyleNodeTemplate, TextItemNodeTemplate, TextItemTemplate } from '@blueriq/core/testing';
-import { MaterialModule } from '../../material.module';
 import { BqPresentationStyles } from '../BqPresentationStyles';
 import { TextItemComponent } from './textitem.component';
 
@@ -20,7 +19,6 @@ describe('TextItemComponent', () => {
       declarations: [TextItemComponent],
       providers: [BlueriqComponents.register([TextItemComponent])],
       imports: [
-        MaterialModule,
         BrowserAnimationsModule, // or NoopAnimationsModule
         BlueriqTestingModule,
         FormsModule,

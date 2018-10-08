@@ -1,12 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqComponents } from '@blueriq/angular';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { TextItemModule } from '@blueriq/angular/textitems';
 import { AssetTemplate } from '@blueriq/core/testing';
-import { MaterialModule } from '../../material.module';
 
 import { AssetComponent } from './asset.component';
+import { AssetModule } from './asset.module';
 
 describe('AssetComponent', () => {
   let assetTemplate: AssetTemplate;
@@ -15,12 +14,10 @@ describe('AssetComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AssetComponent],
-      providers: [BlueriqComponents.register([AssetComponent])],
       imports: [
-        MaterialModule,
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         BlueriqTestingModule,
+        AssetModule,
         TextItemModule
       ]
     });

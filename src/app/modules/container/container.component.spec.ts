@@ -5,10 +5,9 @@ import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate } from '@blueriq/core/testing';
 import { SharedModule } from '@shared/shared.module';
-import { MaterialModule } from '../../material.module';
 import { BqPresentationStyles } from '../BqPresentationStyles';
 import { ContainerComponent } from './container.component';
-import { HorizontalFlexChildDirective } from './horizontal-flex-child.directive';
+import { HorizontalFlexChildDirective } from './flex/horizontal-flex-child.directive';
 
 describe('ContainerComponent', () => {
   let containerTemplate: ContainerTemplate;
@@ -20,7 +19,6 @@ describe('ContainerComponent', () => {
       declarations: [ContainerComponent, HorizontalFlexChildDirective],
       providers: [BlueriqComponents.register([ContainerComponent])],
       imports: [
-        MaterialModule,
         NoopAnimationsModule,
         BlueriqTestingModule,
         FormsModule,

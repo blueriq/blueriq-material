@@ -6,7 +6,6 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents, BlueriqSession } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { MaterialModule } from '../../../material.module';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
 
 import { ChiplistComponent } from './chiplist.component';
@@ -22,7 +21,6 @@ describe('ChiplistComponent', () => {
       declarations: [ChiplistComponent],
       providers: [BlueriqComponents.register([ChiplistComponent])],
       imports: [
-        MaterialModule,
         NoopAnimationsModule,
         BlueriqTestingModule,
         FlexLayoutModule,

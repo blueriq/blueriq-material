@@ -6,7 +6,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { MaterialModule } from '../../../material.module';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
 import { AutocompleteComponent } from './autocomplete.component';
 import { DomainValueTransformer } from './domain-value-transformer';
@@ -21,7 +20,6 @@ describe('AutocompleteComponent', () => {
       declarations: [AutocompleteComponent],
       providers: [DomainValueTransformer, BlueriqComponents.register([AutocompleteComponent])],
       imports: [
-        MaterialModule,
         BrowserAnimationsModule, // or NoopAnimationsModule
         BlueriqTestingModule,
         FlexLayoutModule,

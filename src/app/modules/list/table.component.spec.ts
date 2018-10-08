@@ -14,7 +14,6 @@ import {
   TextItemTemplate
 } from '@blueriq/core/testing';
 import { SharedModule } from '@shared/shared.module';
-import { MaterialModule } from '../../material.module';
 import { ButtonComponent } from '../button/button.component';
 import { ReadonlyComponent } from '../readonly/readonly.component';
 import { TextItemComponent } from '../textitem/textitem.component';
@@ -32,7 +31,6 @@ describe('TableComponent', () => {
       declarations: [ButtonComponent, ReadonlyComponent, TextItemComponent],
       providers: [BlueriqComponents.register([ButtonComponent, ReadonlyComponent, TextItemComponent])],
       imports: [
-        MaterialModule,
         NoopAnimationsModule,
         BlueriqTestingModule,
         FormsModule,
