@@ -1,13 +1,13 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate, PageTemplate, TextItemTemplate } from '@blueriq/core/testing';
 import { PageComponent } from '../page/page.component';
+import { PageModule } from '../page/page.module';
 import { HeaderComponent } from './header.component';
+import { HeaderModule } from './header.module';
 
 describe('HeaderComponent', () => {
   let session: BlueriqTestSession;
@@ -15,24 +15,25 @@ describe('HeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [PageComponent, HeaderComponent],
-      providers: [BlueriqComponents.register([PageComponent, HeaderComponent]), {
-        provide: APP_BASE_HREF,
-        useValue: '/'
-      }],
+      providers: [
+        {
+          provide: APP_BASE_HREF,
+          useValue: '/'
+        }],
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        FormsModule,
-        RouterModule.forRoot([])
+        RouterModule.forRoot([]), // TODO needed?
+        HeaderModule,
+        PageModule
       ]
-    })
-    .compileComponents();
+    });
   }));
 
   describe('basic behavior', () => {
     let fixture: ComponentFixture<HeaderComponent>;
     let component: HeaderComponent;
+
     beforeEach(() => {
       fixture = TestBed.createComponent(HeaderComponent);
       component = fixture.componentInstance;

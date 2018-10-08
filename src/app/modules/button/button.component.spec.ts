@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSession } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ButtonTemplate } from '@blueriq/core/testing';
@@ -8,7 +8,7 @@ import { BqPresentationStyles } from '../BqPresentationStyles';
 import { ButtonComponent } from './button.component';
 import { ButtonModule } from './button.module';
 
-fdescribe('ButtonComponent', () => {
+describe('ButtonComponent', () => {
   let button: ButtonTemplate;
   let component: ComponentFixture<ButtonComponent>;
   let session: BlueriqTestSession;
@@ -16,7 +16,7 @@ fdescribe('ButtonComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        BrowserAnimationsModule, // or NoopAnimationsModule
+        NoopAnimationsModule,
         BlueriqTestingModule,
         FormsModule,
         ButtonModule

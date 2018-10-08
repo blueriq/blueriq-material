@@ -16,6 +16,7 @@ const BLUERIQ_COMPONENTS = [
     BlueriqComponents.register(BLUERIQ_COMPONENTS)
   ],
   imports: [
+    // TODO : sollution to fix test? BlueriqModule.forRoot(), // using bqClasses
     SharedModule,
 
     /* Material modules */

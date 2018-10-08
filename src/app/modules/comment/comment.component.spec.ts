@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComment } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ButtonTemplate, ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
-import { FormControlModule } from '../form-controls/form-control.module';
 import { CommentComponent } from './comment.component';
 import { CommentModule } from './comment.module';
 
@@ -17,9 +17,9 @@ describe('CommentComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        NoopAnimationsModule,
         BlueriqTestingModule,
-        CommentModule,
-        FormControlModule
+        CommentModule
       ]
     });
   }));

@@ -1,13 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqComponents } from '@blueriq/angular';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { TextItemModule } from '@blueriq/angular/textitems';
 import { StaticNodeTemplate, StyleNodeTemplate, TextItemNodeTemplate, TextItemTemplate } from '@blueriq/core/testing';
 import { BqPresentationStyles } from '../BqPresentationStyles';
 import { TextItemComponent } from './textitem.component';
+import { TextItemModule as BlueriqTextItemModule } from './textitem.module';
 
 describe('TextItemComponent', () => {
   let textItem: TextItemTemplate;
@@ -16,13 +15,11 @@ describe('TextItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TextItemComponent],
-      providers: [BlueriqComponents.register([TextItemComponent])],
       imports: [
-        BrowserAnimationsModule, // or NoopAnimationsModule
+        NoopAnimationsModule,
         BlueriqTestingModule,
-        FormsModule,
-        TextItemModule
+        TextItemModule,
+        BlueriqTextItemModule
       ]
     });
   }));

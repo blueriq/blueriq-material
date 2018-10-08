@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { ErrorType } from '@blueriq/core';
 import { ErrorComponent } from './error.component';
 import { ErrorModel } from './error.model';
+import { ErrorModule } from './error.module';
 
 describe('ErrorComponent', () => {
   let component: ErrorComponent;
@@ -10,10 +10,8 @@ describe('ErrorComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-        declarations: [ErrorComponent],
-        imports: [FlexLayoutModule]
-      })
-      .compileComponents();
+      imports: [ErrorModule]
+    });
 
     fixture = TestBed.createComponent(ErrorComponent);
     component = fixture.componentInstance;
@@ -66,7 +64,6 @@ describe('ErrorComponent', () => {
 
     expect(fixture.nativeElement.querySelector('.title').textContent).toEqual('Session Expired');
     expect(fixture.nativeElement.querySelector('.message').textContent).toEqual('Your session has expired');
-
   });
 
 });

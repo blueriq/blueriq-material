@@ -1,12 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
 import { SharedModule } from '@shared/shared.module';
 import { BqContentStyles } from '../BqContentStyles';
-import { ContainerComponent } from '../container/container.component';
-import { HorizontalFlexChildDirective } from '../container/flex/horizontal-flex-child.directive';
+import { ContainerModule } from '../container/container.module';
 import { TabComponent } from './tab.component';
 import { TabModule } from './tabs.module';
 
@@ -21,13 +19,12 @@ describe('TabComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ContainerComponent, HorizontalFlexChildDirective],
-      providers: [BlueriqComponents.register([ContainerComponent])],
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
+        SharedModule,
         TabModule,
-        SharedModule
+        ContainerModule
       ]
     });
     tabField = FieldTemplate.text('field');
