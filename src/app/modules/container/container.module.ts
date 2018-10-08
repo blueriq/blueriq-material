@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { MatIconModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
 import { SharedModule } from '@shared/shared.module';
@@ -20,8 +21,10 @@ const BLUERIQ_COMPONENTS = [
     SharedModule,
     BrowserModule,
     BlueriqCommonModule,
-    CommonModule
+    CommonModule,
 
+    /* Material modules */
+    MatIconModule
   ],
   exports: [BLUERIQ_COMPONENTS]
 })
