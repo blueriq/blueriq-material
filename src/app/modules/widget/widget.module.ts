@@ -17,9 +17,11 @@ const WIDGET_CONTROL_COMPONENTS = [
     BlueriqComponents.register(WIDGET_CONTROL_COMPONENTS)
   ],
   imports: [
-    BlueriqCommonModule,
+    BlueriqCommonModule, // using: bq-session
     CommonModule,
     FlexLayoutModule,
+
+    /* Material modules */
     MatIconModule,
     MatInputModule
   ],

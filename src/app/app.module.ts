@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,18 +13,18 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
-import { MaterialModule } from './material.module';
 import { AssetModule } from './modules/asset/asset.module';
 import { ButtonModule } from './modules/button/button.module';
 import { CommentModule } from './modules/comment/comment.module';
 import { ContainerModule } from './modules/container/container.module';
-import { ErrorComponent } from './modules/error/error.component';
+import { ErrorModule } from './modules/error/error.module';
 import { FileModule } from './modules/file/file.modules';
 import { MomentTransformer } from './modules/form-controls/date/moment-transformer';
 import { FormControlModule } from './modules/form-controls/form-control.module';
 import { HeaderModule } from './modules/header/header.module';
 import { ListModule } from './modules/list/list.module';
 import { LoadingComponent } from './modules/loading/loading.component';
+import { LoadingModule } from './modules/loading/loading.module';
 import { MenuModule } from './modules/menu/menu.module';
 import { PageModule } from './modules/page/page.module';
 import { ReadonlyModule } from './modules/readonly/readonly.module';
@@ -51,14 +50,12 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    ErrorComponent,
-    LoadingComponent,
     ProjectComponent
   ],
   imports: [
     // TODO remove what is not needed here
     // Since every component takes care of its own imports
-    BrowserModule,
+    BrowserModule, // TODO DIT MAG ALLEEN HIER -> alle andere modules moeten CommonModule
     RouterModule.forRoot(routes),
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
@@ -67,10 +64,9 @@ const routes: Routes = [
       baseUrl: environment.baseUrl
     }),
     BrowserAnimationsModule,
-    MaterialModule,
     FormsModule,
     BlueriqFormsModule.forRoot(),
-    FlexLayoutModule,
+    // FlexLayoutModule,
     FormattingModule.forRoot(),
     ReactiveFormsModule,
     BlueriqStoreModule.forRoot(),
@@ -79,18 +75,16 @@ const routes: Routes = [
       logOnly: environment.production // Restrict extension to log-only mode
     }),
     /* TODO ordering: bq modules */
-    // SharedModule,
+    /* Blueriq Modules */
     FileModule,
     CommentModule,
     FormControlModule,
     MenuModule,
-    StaticPagesModule,
     TimelineModule,
     ListModule,
     TabModule,
     VisualizationModule,
     WidgetModule,
-
     // NEW TODO remove this line
     AssetModule,
     ButtonModule,
@@ -98,7 +92,12 @@ const routes: Routes = [
     HeaderModule,
     PageModule,
     ReadonlyModule,
-    TextItemModule
+    TextItemModule,
+
+    /* Non Blueriq modules */
+    LoadingModule,
+    StaticPagesModule,
+    ErrorModule
   ],
   exports: [
     // TODO this might not be needed

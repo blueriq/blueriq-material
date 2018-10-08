@@ -5,9 +5,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
 import { SharedModule } from '@shared/shared.module';
 import { ContainerComponent } from './container.component';
+import { HorizontalFlexChildDirective } from './flex/horizontal-flex-child.directive';
 
 const BLUERIQ_COMPONENTS = [
-  ContainerComponent
+  ContainerComponent,
+  HorizontalFlexChildDirective
 ];
 
 @NgModule({

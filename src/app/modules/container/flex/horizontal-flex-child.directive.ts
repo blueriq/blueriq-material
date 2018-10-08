@@ -77,11 +77,9 @@ export class HorizontalFlexChildDirective implements OnDestroy {
   private applyStyles(element: Element, flexGrow: number) {
     // retrieve the host element from the angular component
     const component = getAngularComponent(element);
-    console.log(element,component);
     if (component) {
       this.renderer.addClass(component.location.nativeElement, 'bq-column');
-      console.log('HIT x');
-      this.renderer.setStyle(component.location.nativeElement, 'flex-grow', 50);
+      this.renderer.setStyle(component.location.nativeElement, 'flex-grow', flexGrow);
     }
   }
 }

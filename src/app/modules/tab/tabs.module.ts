@@ -5,27 +5,27 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
 import { TabComponent } from './tab.component';
 
-const TAB_COMPONENTS = [
+const BLUERIQ_COMPONENTS = [
   TabComponent
 ];
 
 @NgModule({
   declarations: [
-    TAB_COMPONENTS
+    BLUERIQ_COMPONENTS
   ],
   providers: [
-    BlueriqComponents.register(TAB_COMPONENTS)
+    BlueriqComponents.register(BLUERIQ_COMPONENTS)
   ],
   imports: [
-    BlueriqCommonModule,
+    BlueriqCommonModule, // using: [bqElement] directive
     BrowserAnimationsModule,
     CommonModule,
+
+    /* Material modules */
     MatTabsModule,
     MatIconModule
   ],
-  exports: [TAB_COMPONENTS]
+  exports: [BLUERIQ_COMPONENTS]
 })
-
 export class TabModule {
-
 }

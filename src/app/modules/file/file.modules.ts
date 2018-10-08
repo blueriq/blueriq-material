@@ -1,11 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { MatButtonModule, MatFormFieldModule, MatIconModule, MatProgressBarModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { SharedModule } from '@shared/shared.module';
 import { FileUploadModule } from 'ng2-file-upload';
-import { MaterialModule } from '../../material.module';
 import { DocumentLinkComponent } from './document-link/document-link.component';
 import { FileDownloadComponent } from './file-download/file-download.component';
 import { FileDownloadService } from './file-download/file-download.service';
@@ -27,14 +26,17 @@ const FILE_COMPONENTS = [
   ],
   imports: [
     BrowserAnimationsModule,
-    BrowserModule,
     CommonModule,
     SharedModule,
     FileUploadModule,
-    MaterialModule
+
+    /* Material modules */
+    MatIconModule,
+    MatButtonModule,
+    MatProgressBarModule,
+    MatFormFieldModule
   ],
   exports: [FILE_COMPONENTS]
 })
-
 export class FileModule {
 }

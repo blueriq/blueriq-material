@@ -2,14 +2,24 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material';
-import { BrowserModule } from '@angular/platform-browser';
+import {
+  ErrorStateMatcher,
+  MatAutocompleteModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatRadioModule,
+  MatSelectModule,
+  MatSlideToggleModule
+} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { SharedModule } from '@shared/shared.module';
 import { OwlDateTimeModule } from 'ng-pick-datetime';
 import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
-import { MaterialModule } from '../../material.module';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 import { DomainValueTransformer } from './autocomplete/domain-value-transformer';
 import { BqErrorStateMatcher } from './bq-errorstatematcher';
@@ -42,7 +52,7 @@ const FORM_CONTROL_COMPONENTS = [
   SelectComponent,
   StringFieldComponent,
   SlideToggleComponent,
-  TextAreaComponent,
+  TextAreaComponent
 ];
 
 @NgModule({
@@ -58,14 +68,26 @@ const FORM_CONTROL_COMPONENTS = [
   ],
   imports: [
     BrowserAnimationsModule,
-    BrowserModule,
     CommonModule,
     SharedModule,
     FlexLayoutModule,
     OwlDateTimeModule,
     OwlMomentDateTimeModule,
     ReactiveFormsModule,
-    MaterialModule
+
+    /* Material modules */
+    MatIconModule,
+
+    // In order of appearance
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    MatChipsModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatRadioModule,
+    MatSlideToggleModule
   ],
   exports: [FORM_CONTROL_COMPONENTS, SelectionControlComponent]
 })
