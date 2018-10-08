@@ -19,11 +19,9 @@ import { CommentModule } from './modules/comment/comment.module';
 import { ContainerModule } from './modules/container/container.module';
 import { ErrorModule } from './modules/error/error.module';
 import { FileModule } from './modules/file/file.modules';
-import { MomentTransformer } from './modules/form-controls/date/moment-transformer';
 import { FormControlModule } from './modules/form-controls/form-control.module';
 import { HeaderModule } from './modules/header/header.module';
 import { ListModule } from './modules/list/list.module';
-import { LoadingComponent } from './modules/loading/loading.component';
 import { LoadingModule } from './modules/loading/loading.module';
 import { MenuModule } from './modules/menu/menu.module';
 import { PageModule } from './modules/page/page.module';
@@ -53,61 +51,49 @@ const routes: Routes = [
     ProjectComponent
   ],
   imports: [
-    // TODO remove what is not needed here
-    // Since every component takes care of its own imports
-    BrowserModule, // TODO DIT MAG ALLEEN HIER -> alle andere modules moeten CommonModule
+    BrowserModule,
     RouterModule.forRoot(routes),
-    StoreModule.forRoot({}),
-    EffectsModule.forRoot([]),
-    BlueriqModule.forRoot(),
-    V1BackendModule.forRoot({
+    StoreModule.forRoot({}), // ????
+    EffectsModule.forRoot([]), // ????
+    BlueriqModule.forRoot(), // ????
+    V1BackendModule.forRoot({ // ????
       baseUrl: environment.baseUrl
     }),
-    BrowserAnimationsModule,
-    FormsModule,
-    BlueriqFormsModule.forRoot(),
-    // FlexLayoutModule,
-    FormattingModule.forRoot(),
-    ReactiveFormsModule,
-    BlueriqStoreModule.forRoot(),
-    StoreDevtoolsModule.instrument({
+    BrowserAnimationsModule, // ????
+    FormsModule, // ????
+    BlueriqFormsModule.forRoot(), // ????
+    FormattingModule.forRoot(), // ????
+    ReactiveFormsModule, // ????
+    BlueriqStoreModule.forRoot(), // ????
+    StoreDevtoolsModule.instrument({ // ????
       name: 'Blueriq',
       logOnly: environment.production // Restrict extension to log-only mode
     }),
-    /* TODO ordering: bq modules */
+
     /* Blueriq Modules */
-    FileModule,
-    CommentModule,
-    FormControlModule,
-    MenuModule,
-    TimelineModule,
-    ListModule,
-    TabModule,
-    VisualizationModule,
-    WidgetModule,
-    // NEW TODO remove this line
     AssetModule,
     ButtonModule,
+    CommentModule,
     ContainerModule,
+    FileModule,
+    FormControlModule,
     HeaderModule,
+    ListModule,
+    MenuModule,
     PageModule,
     ReadonlyModule,
+    TabModule,
     TextItemModule,
+    TimelineModule,
+    VisualizationModule,
+    WidgetModule,
 
-    /* Non Blueriq modules */
+    /* Non-Blueriq modules */
     LoadingModule,
     StaticPagesModule,
     ErrorModule
   ],
-  exports: [
-    // TODO this might not be needed
-    LoadingComponent
-  ],
-  providers: [
-    MomentTransformer
-  ],
   bootstrap: [AppComponent]
 })
-
 export class AppModule {
 }

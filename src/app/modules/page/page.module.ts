@@ -1,6 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatDividerModule } from '@angular/material';
-import { BrowserModule } from '@angular/platform-browser';
 import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
 import { HeaderModule } from '../header/header.module';
 import { PageComponent } from './page.component';
@@ -17,7 +17,7 @@ const BLUERIQ_COMPONENTS = [
     BlueriqComponents.register(BLUERIQ_COMPONENTS)
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
     BlueriqModule.forRoot(),
 
     /* Blueriq modules */

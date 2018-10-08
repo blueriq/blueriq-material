@@ -26,6 +26,7 @@ import { BqErrorStateMatcher } from './bq-errorstatematcher';
 import { ChiplistComponent } from './chiplist/chiplist.component';
 import { DatepickerComponent } from './date/datepicker/datepicker.component';
 import { DateTimepickerComponent } from './date/datetimepicker/datetimepicker.component';
+import { MomentTransformer } from './date/moment-transformer';
 import { CurrencyFieldComponent } from './input-field/currency/currency.component';
 import { IntegerFieldComponent } from './input-field/integer/integer.component';
 import { NumberFieldComponent } from './input-field/number/number.component';
@@ -64,6 +65,7 @@ const FORM_CONTROL_COMPONENTS = [
     BlueriqComponents.register(FORM_CONTROL_COMPONENTS),
     SelectionControlComponent,
     DomainValueTransformer,
+    MomentTransformer,
     { provide: ErrorStateMatcher, useClass: BqErrorStateMatcher }
   ],
   imports: [

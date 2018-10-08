@@ -1,7 +1,7 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule, MatMenuModule, MatToolbarModule } from '@angular/material';
-import { BrowserModule } from '@angular/platform-browser';
 import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
 import { HeaderComponent } from './header.component';
 
@@ -17,7 +17,7 @@ const BLUERIQ_COMPONENTS = [
     BlueriqComponents.register(BLUERIQ_COMPONENTS)
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
     BlueriqModule.forRoot(),
     FlexLayoutModule,
 

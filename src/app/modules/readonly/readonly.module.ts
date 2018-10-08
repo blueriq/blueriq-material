@@ -1,6 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
-import { BrowserModule } from '@angular/platform-browser';
 import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
 import { FormattingModule } from '@blueriq/angular/formatting';
 import { SharedModule } from '@shared/shared.module';
@@ -18,8 +18,8 @@ const BLUERIQ_COMPONENTS = [
     BlueriqComponents.register(BLUERIQ_COMPONENTS)
   ],
   imports: [
+    CommonModule,
     SharedModule,
-    BrowserModule,
     BlueriqModule.forRoot(),
     FormattingModule.forRoot(), // for pipe 'bqDisplay'
 
