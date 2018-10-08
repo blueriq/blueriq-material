@@ -1,10 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { BlueriqComponents } from '@blueriq/angular';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
-import { SelectionControlComponent } from '../selection-control.component';
+import { FormControlModule } from '../../form-control.module';
 
 import { RadioButtonComponent } from './radio-button.component';
 
@@ -15,11 +14,10 @@ describe('RadioButtonComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [RadioButtonComponent, SelectionControlComponent],
-      providers: [BlueriqComponents.register([RadioButtonComponent])],
       imports: [
-        FlexLayoutModule,
-        BlueriqTestingModule
+        NoopAnimationsModule,
+        BlueriqTestingModule,
+        FormControlModule
       ]
     });
   }));
