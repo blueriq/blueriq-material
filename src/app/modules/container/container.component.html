@@ -7,11 +7,17 @@
     'align-right': alignRight,
     'bq-widget': dashboardwidget
   }">
-  <img *ngIf="introduction" src="./theme/images/blueriq-technology.svg">
+  <img *ngIf="introduction" src="./theme/blueriq/images/blueriq-technology.svg">
 
   <ng-container *ngIf="container.displayName && !table">
-    <h2 *ngIf="!isWidget">{{ container.displayName }}</h2>
-    <h3 *ngIf="isWidget" class="widget">{{ container.displayName }}</h3>
+    <h2 *ngIf="!isWidget">
+      <mat-icon [bqIcon]="container.styles"></mat-icon>
+      {{ container.displayName }}
+    </h2>
+    <h3 *ngIf="isWidget" class="widget">
+      <mat-icon [bqIcon]="container.styles"></mat-icon>
+      {{ container.displayName }}
+    </h3>
   </ng-container>
 
   <div [class.bq-row]="horizontal">

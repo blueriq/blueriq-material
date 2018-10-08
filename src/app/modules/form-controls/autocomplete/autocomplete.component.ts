@@ -13,7 +13,7 @@ import { DomainValueTransformer } from './domain-value-transformer';
 })
 @BlueriqComponent({
   type: Field,
-  selector: '.' + BqPresentationStyles.AUTOCOMPLETE + '[hasDomain][multiValued=false]'
+  selector: '[hasDomain][multiValued=false].' + BqPresentationStyles.AUTOCOMPLETE
 })
 export class AutocompleteComponent implements OnInit {
   formControl = this.form.control(this.field, {
