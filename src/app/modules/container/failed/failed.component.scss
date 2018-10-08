@@ -2,22 +2,18 @@
 
 .message {
   @include mat-elevation(1);
-  background: mat-color($bq-error-palette, 400);
-  color: mat-color($bq-error-palette, default-contrast);
   margin: $bq-margin;
   padding: $bq-margin;
+  background: mat-color($bq-error-palette, 400);
+  color: mat-color($bq-error-palette, default-contrast);
 }
 
 .trace {
   @include mat-elevation(1);
-  background: mat-color($bq-mat-grey-light, 50);
+  max-height: $bq-max-height-scrollbar;
   margin: $bq-margin;
   padding: $bq-margin;
-  max-height: $bq-max-height-scrollbar;
-  overflow-y: auto;
+  background: mat-color($bq-mat-grey-light, 50);
   font-size: 11px;
-
-  button {
-
-  }
+  overflow-y: auto;
 }
