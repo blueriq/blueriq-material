@@ -19,9 +19,10 @@ const BLUERIQ_COMPONENTS = [
   ],
   imports: [
     CommonModule,
-    BlueriqModule.forRoot(),
     BlueriqTextItemModule,
     SharedModule,
+
+    BlueriqModule.forRoot(), // using bqClasses (which triggers to use the css to use colors)
 
     /* Material modules */
     MatIconModule

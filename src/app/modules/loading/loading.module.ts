@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { BlueriqComponents } from '@blueriq/angular';
 import { LoadingComponent } from './loading.component';
 
 const LOADING_COMPONENTS = [
@@ -10,9 +9,6 @@ const LOADING_COMPONENTS = [
 @NgModule({
   declarations: [
     LOADING_COMPONENTS
-  ],
-  providers: [
-    BlueriqComponents.register(LOADING_COMPONENTS)
   ],
   imports: [
     CommonModule

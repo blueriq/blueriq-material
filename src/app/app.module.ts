@@ -1,14 +1,9 @@
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { BlueriqModule } from '@blueriq/angular';
 import { V1BackendModule } from '@blueriq/angular/backend/v1';
-import { FormattingModule } from '@blueriq/angular/formatting';
-import { BlueriqFormsModule } from '@blueriq/angular/forms';
 import { BlueriqStoreModule } from '@blueriq/angular/store';
-import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
@@ -53,22 +48,18 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
-    StoreModule.forRoot({}), // ????
-    EffectsModule.forRoot([]), // ????
-    BlueriqModule.forRoot(), // ????
-    V1BackendModule.forRoot({ // ????
+    V1BackendModule.forRoot({
       baseUrl: environment.baseUrl
     }),
-    BrowserAnimationsModule, // ????
-    FormsModule, // ????
-    BlueriqFormsModule.forRoot(), // ????
-    FormattingModule.forRoot(), // ????
-    ReactiveFormsModule, // ????
-    BlueriqStoreModule.forRoot(), // ????
-    StoreDevtoolsModule.instrument({ // ????
+
+    // ngrx
+    StoreModule.forRoot({}),
+    StoreDevtoolsModule.instrument({
       name: 'Blueriq',
       logOnly: environment.production // Restrict extension to log-only mode
     }),
+    BlueriqStoreModule.forRoot(),
+    BlueriqModule.forRoot(), // Also used in some sub modules
 
     /* Blueriq Modules */
     AssetModule,

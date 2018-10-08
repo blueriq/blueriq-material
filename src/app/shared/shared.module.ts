@@ -20,6 +20,7 @@ const SHARED_COMPONENTS = [
   imports: [
     CommonModule,
     FormsModule,
+    EffectsModule.forRoot([]),
     EffectsModule.forFeature([
       ValidationEffect
     ]),

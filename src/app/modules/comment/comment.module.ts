@@ -34,7 +34,7 @@ const COMMENT_COMPONENTS = [
     BrowserModule,
     CommonModule,
     ReactiveFormsModule,
-    BlueriqModule.forRoot(),
+    BlueriqModule.forRoot(),  // for directive bqElement
     FlexLayoutModule,
     SharedModule,
 

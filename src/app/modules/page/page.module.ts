@@ -18,7 +18,7 @@ const BLUERIQ_COMPONENTS = [
   ],
   imports: [
     CommonModule,
-    BlueriqModule.forRoot(),
+    BlueriqModule.forRoot(), // for pipe bqIncluded
 
     /* Blueriq modules */
     HeaderModule,

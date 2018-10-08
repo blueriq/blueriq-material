@@ -4,7 +4,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqModule } from '@blueriq/angular';
 import { LoginComponent } from './login.component';
 
 const STATIC_PAGES_COMPONENTS = [
@@ -19,7 +18,6 @@ const STATIC_PAGES_COMPONENTS = [
     BrowserAnimationsModule,
     CommonModule,
     ReactiveFormsModule,
-    BlueriqModule.forRoot(),
     FlexLayoutModule,
     FormsModule,
 

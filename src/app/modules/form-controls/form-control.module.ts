@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   ErrorStateMatcher,
   MatAutocompleteModule,
@@ -17,6 +17,7 @@ import {
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
+import { BlueriqFormsModule } from '@blueriq/angular/forms';
 import { SharedModule } from '@shared/shared.module';
 import { OwlDateTimeModule } from 'ng-pick-datetime';
 import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
@@ -75,7 +76,9 @@ const FORM_CONTROL_COMPONENTS = [
     FlexLayoutModule,
     OwlDateTimeModule,
     OwlMomentDateTimeModule,
+    FormsModule,
     ReactiveFormsModule,
+    BlueriqFormsModule.forRoot(),
 
     /* Material modules */
     MatIconModule,
