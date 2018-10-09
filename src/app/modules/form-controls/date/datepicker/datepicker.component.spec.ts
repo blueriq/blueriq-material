@@ -1,14 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { MaterialModule } from '../../../../material.module';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
-import { MomentTransformer } from '../moment-transformer';
+import { FormControlModule } from '../../form-control.module';
 import { DatepickerComponent } from './datepicker.component';
 
 describe('DatepickerComponent', () => {
@@ -18,14 +14,10 @@ describe('DatepickerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [DatepickerComponent],
-      providers: [BlueriqComponents.register([DatepickerComponent]), MomentTransformer],
       imports: [
-        MaterialModule,
         NoopAnimationsModule,
         BlueriqTestingModule,
-        FlexLayoutModule,
-        FormsModule
+        FormControlModule
       ]
     });
   }));
@@ -34,10 +26,6 @@ describe('DatepickerComponent', () => {
     field = FieldTemplate.date().styles(BqPresentationStyles.DATEPICKERMATERIAL);
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(DatepickerComponent);
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
   });
 
   it('should have a hint', () => {

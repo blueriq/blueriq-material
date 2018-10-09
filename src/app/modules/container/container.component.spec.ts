@@ -1,14 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate } from '@blueriq/core/testing';
 import { SharedModule } from '@shared/shared.module';
-import { MaterialModule } from '../../material.module';
 import { BqPresentationStyles } from '../BqPresentationStyles';
 import { ContainerComponent } from './container.component';
-import { HorizontalFlexChildDirective } from './horizontal-flex-child.directive';
+import { ContainerModule } from './container.module';
 
 describe('ContainerComponent', () => {
   let containerTemplate: ContainerTemplate;
@@ -17,14 +14,11 @@ describe('ContainerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ContainerComponent, HorizontalFlexChildDirective],
-      providers: [BlueriqComponents.register([ContainerComponent])],
       imports: [
-        MaterialModule,
         NoopAnimationsModule,
         BlueriqTestingModule,
-        FormsModule,
-        SharedModule
+        SharedModule,
+        ContainerModule
       ]
     });
   }));

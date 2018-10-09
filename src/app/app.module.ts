@@ -1,42 +1,30 @@
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
-import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
+import { BlueriqModule } from '@blueriq/angular';
 import { V1BackendModule } from '@blueriq/angular/backend/v1';
-import { FormattingModule } from '@blueriq/angular/formatting';
-import { BlueriqFormsModule } from '@blueriq/angular/forms';
 import { BlueriqStoreModule } from '@blueriq/angular/store';
-import { TextItemModule } from '@blueriq/angular/textitems';
-import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { SharedModule } from '@shared/shared.module';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
-import { MaterialModule } from './material.module';
-import { AssetComponent } from './modules/asset/asset.component';
-import { ButtonComponent } from './modules/button/button.component';
+import { AssetModule } from './modules/asset/asset.module';
+import { ButtonModule } from './modules/button/button.module';
 import { CommentModule } from './modules/comment/comment.module';
-import { ContainerComponent } from './modules/container/container.component';
-import { FailedComponent } from './modules/container/failed/failed.component';
-import { HorizontalFlexChildDirective } from './modules/container/horizontal-flex-child.directive';
-import { ErrorComponent } from './modules/error/error.component';
+import { ContainerModule } from './modules/container/container.module';
+import { ErrorModule } from './modules/error/error.module';
 import { FileModule } from './modules/file/file.modules';
-import { MomentTransformer } from './modules/form-controls/date/moment-transformer';
 import { FormControlModule } from './modules/form-controls/form-control.module';
-import { HeaderComponent } from './modules/header/header.component';
+import { HeaderModule } from './modules/header/header.module';
 import { ListModule } from './modules/list/list.module';
-import { LoadingComponent } from './modules/loading/loading.component';
+import { LoadingModule } from './modules/loading/loading.module';
 import { MenuModule } from './modules/menu/menu.module';
-import { PageComponent } from './modules/page/page.component';
-import { ReadonlyComponent } from './modules/readonly/readonly.component';
+import { PageModule } from './modules/page/page.module';
+import { ReadonlyModule } from './modules/readonly/readonly.module';
 import { LoginComponent } from './modules/static-pages/login.component';
 import { StaticPagesModule } from './modules/static-pages/static-pages.module';
 import { TabModule } from './modules/tab/tabs.module';
-import { TextItemComponent } from './modules/textitem/textitem.component';
+import { TextItemModule } from './modules/textitem/textitem.module';
 import { TimelineModule } from './modules/timeline/timeline.module';
 import { VisualizationModule } from './modules/visualization/visualization.module';
 import { WidgetModule } from './modules/widget/widget.module';
@@ -52,70 +40,51 @@ const routes: Routes = [
   { path: '**', redirectTo: 'shortcut/default', pathMatch: 'full' }
 ];
 
-const BQ_COMPONENTS = [
-  AssetComponent,
-  ButtonComponent,
-  ContainerComponent,
-  FailedComponent,
-  HeaderComponent,
-  PageComponent,
-  ReadonlyComponent,
-  TextItemComponent
-];
-
 @NgModule({
   declarations: [
     AppComponent,
-    ErrorComponent,
-    HorizontalFlexChildDirective,
-    LoadingComponent,
-    ProjectComponent,
-    BQ_COMPONENTS
+    ProjectComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
-    StoreModule.forRoot({}),
-    EffectsModule.forRoot([]),
-    BlueriqModule.forRoot(),
     V1BackendModule.forRoot({
       baseUrl: environment.baseUrl
     }),
-    BrowserAnimationsModule,
-    MaterialModule,
-    FormsModule,
-    BlueriqFormsModule.forRoot(),
-    FlexLayoutModule,
-    FormattingModule.forRoot(),
-    ReactiveFormsModule,
-    BlueriqStoreModule.forRoot(),
+
+    // ngrx
+    StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({
       name: 'Blueriq',
       logOnly: environment.production // Restrict extension to log-only mode
     }),
-    /* bq modules */
-    SharedModule,
-    FileModule,
+    BlueriqStoreModule.forRoot(),
+    BlueriqModule.forRoot(), // Also used in some sub modules
+
+    /* Blueriq Modules */
+    AssetModule,
+    ButtonModule,
     CommentModule,
+    ContainerModule,
+    FileModule,
     FormControlModule,
+    HeaderModule,
+    ListModule,
     MenuModule,
-    StaticPagesModule,
+    PageModule,
+    ReadonlyModule,
+    TabModule,
     TextItemModule,
     TimelineModule,
-    ListModule,
-    TabModule,
     VisualizationModule,
-    WidgetModule
-  ],
-  exports: [
-    LoadingComponent
-  ],
-  providers: [
-    BlueriqComponents.register(BQ_COMPONENTS),
-    MomentTransformer
+    WidgetModule,
+
+    /* Non-Blueriq modules */
+    LoadingModule,
+    StaticPagesModule,
+    ErrorModule
   ],
   bootstrap: [AppComponent]
 })
-
 export class AppModule {
 }

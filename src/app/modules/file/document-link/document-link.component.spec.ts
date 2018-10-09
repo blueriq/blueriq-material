@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DocumentLink } from '@blueriq/angular/files';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
@@ -28,8 +27,7 @@ describe('DocumentLinkComponent DocumentLink', () => {
       imports: [
         FileModule,
         NoopAnimationsModule,
-        BlueriqTestingModule,
-        FormsModule
+        BlueriqTestingModule
       ]
     });
   }));
@@ -41,10 +39,6 @@ describe('DocumentLinkComponent DocumentLink', () => {
     );
     session = BlueriqSessionTemplate.create().build(container);
     component = session.get(DocumentLinkComponent);
-  });
-
-  it('should be created', () => {
-    expect(component).toBeTruthy();
   });
 
   it('should contain the correct data', () => {

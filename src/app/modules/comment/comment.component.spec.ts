@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComment } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ButtonTemplate, ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
-import { MaterialModule } from '../../material.module';
 import { FormControlModule } from '../form-controls/form-control.module';
 import { CommentComponent } from './comment.component';
 import { CommentModule } from './comment.module';
@@ -18,7 +18,7 @@ describe('CommentComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        MaterialModule,
+        NoopAnimationsModule,
         BlueriqTestingModule,
         CommentModule,
         FormControlModule
@@ -37,10 +37,6 @@ describe('CommentComponent', () => {
     );
     session = BlueriqSessionTemplate.create().build(container);
     component = session.get(CommentComponent);
-  });
-
-  it('should be created', () => {
-    expect(component).toBeTruthy();
   });
 
   it('should render the textarea', () => {

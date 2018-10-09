@@ -1,13 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqComponents } from '@blueriq/angular';
-import { FormattingModule } from '@blueriq/angular/formatting';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { MaterialModule } from '../../material.module';
 
 import { ReadonlyComponent } from './readonly.component';
+import { ReadonlyModule } from './readonly.module';
 
 describe('ReadonlyComponent', () => {
   let field: FieldTemplate;
@@ -16,14 +13,10 @@ describe('ReadonlyComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ReadonlyComponent],
-      providers: [BlueriqComponents.register([ReadonlyComponent])],
       imports: [
-        MaterialModule,
-        BrowserAnimationsModule, // or NoopAnimationsModule
+        NoopAnimationsModule,
         BlueriqTestingModule,
-        FormsModule,
-        FormattingModule.forRoot()
+        ReadonlyModule
       ]
     });
   }));

@@ -1,16 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { OwlDateTimeModule } from 'ng-pick-datetime';
-import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
-import { MaterialModule } from '../../../../material.module';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
-import { MomentTransformer } from '../moment-transformer';
+import { FormControlModule } from '../../form-control.module';
 import { DateTimepickerComponent } from './datetimepicker.component';
 
 describe('DateTimepickerComponent', () => {
@@ -20,16 +14,10 @@ describe('DateTimepickerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [DateTimepickerComponent],
-      providers: [BlueriqComponents.register([DateTimepickerComponent]), MomentTransformer],
       imports: [
-        MaterialModule,
         NoopAnimationsModule,
         BlueriqTestingModule,
-        FormsModule,
-        FlexLayoutModule,
-        OwlDateTimeModule,
-        OwlMomentDateTimeModule
+        FormControlModule
       ]
     });
   }));
@@ -38,10 +26,6 @@ describe('DateTimepickerComponent', () => {
     field = FieldTemplate.datetime();
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(DateTimepickerComponent);
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
   });
 
   it('should render date and time picker for datetime fields', () => {

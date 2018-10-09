@@ -1,11 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqComponents } from '@blueriq/angular';
-import { FormattingModule } from '@blueriq/angular/formatting';
 import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
 import { BlueriqTestSession } from '@blueriq/angular/testing/src/test_session';
-import { TextItemModule } from '@blueriq/angular/textitems';
 import {
   ButtonTemplate,
   ContainerTemplate,
@@ -13,11 +9,9 @@ import {
   StaticNodeTemplate,
   TextItemTemplate
 } from '@blueriq/core/testing';
-import { SharedModule } from '@shared/shared.module';
-import { MaterialModule } from '../../material.module';
-import { ButtonComponent } from '../button/button.component';
-import { ReadonlyComponent } from '../readonly/readonly.component';
-import { TextItemComponent } from '../textitem/textitem.component';
+import { ButtonModule } from '../button/button.module';
+import { ReadonlyModule } from '../readonly/readonly.module';
+import { TextItemModule } from '../textitem/textitem.module';
 import { ListComponent } from './list.component';
 import { ListModule } from './list.module';
 import { TableComponent } from './table.component';
@@ -29,17 +23,13 @@ describe('TableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ButtonComponent, ReadonlyComponent, TextItemComponent],
-      providers: [BlueriqComponents.register([ButtonComponent, ReadonlyComponent, TextItemComponent])],
       imports: [
-        MaterialModule,
         NoopAnimationsModule,
         BlueriqTestingModule,
-        FormsModule,
-        FormattingModule.forRoot(),
-        ListModule,
+        ButtonModule,
+        ReadonlyModule,
         TextItemModule,
-        SharedModule
+        ListModule
       ]
     });
   }));
@@ -119,10 +109,6 @@ describe('TableComponent', () => {
     const list = ContainerTemplate.create().children(tableTemplate, pagination);
     session = BlueriqSessionTemplate.create().build(list);
     component = session.get(ListComponent);
-  });
-
-  it('should have been created', () => {
-    expect(component).toBeTruthy();
   });
 
   it('should have a header displayed with the correct content', () => {

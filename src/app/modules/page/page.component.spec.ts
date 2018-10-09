@@ -1,15 +1,12 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { PageTemplate } from '@blueriq/core/testing';
-import { MaterialModule } from '../../material.module';
 import { BqContentStyles } from '../BqContentStyles';
-import { HeaderComponent } from '../header/header.component';
 import { PageComponent } from './page.component';
+import { PageModule } from './page.module';
 
 describe('PageComponent', () => {
   let pageTemplate: PageTemplate;
@@ -18,14 +15,12 @@ describe('PageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [PageComponent, HeaderComponent],
-      providers: [BlueriqComponents.register([PageComponent]), { provide: APP_BASE_HREF, useValue: '/' }],
+      providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
       imports: [
-        MaterialModule,
         NoopAnimationsModule,
         BlueriqTestingModule,
-        FormsModule,
-        RouterModule.forRoot([])
+        RouterModule.forRoot([]),
+        PageModule
       ]
     });
   }));

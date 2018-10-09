@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatDividerModule, MatIconModule } from '@angular/material';
-import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
+import { BlueriqComponents } from '@blueriq/angular';
 import { SharedModule } from '@shared/shared.module';
 import { TimelineComponent } from './timeline.component';
 
@@ -20,7 +20,6 @@ const BQ_TIMELINE_COMPONENTS = [
   imports: [
     /* Basic */
     CommonModule,
-    BlueriqCommonModule,
     FlexLayoutModule,
     SharedModule,
 
@@ -31,5 +30,4 @@ const BQ_TIMELINE_COMPONENTS = [
   exports: [BQ_TIMELINE_COMPONENTS]
 })
 export class TimelineModule {
-
 }
