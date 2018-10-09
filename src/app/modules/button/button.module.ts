@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { MatButtonModule, MatIconModule } from '@angular/material';
-import { BlueriqComponents } from '@blueriq/angular';
+import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
 import { SharedModule } from '@shared/shared.module';
 import { ButtonComponent } from './button.component';
 
@@ -16,7 +16,7 @@ const BLUERIQ_COMPONENTS = [
     BlueriqComponents.register(BLUERIQ_COMPONENTS)
   ],
   imports: [
-    // TODO : sollution to fix test? BlueriqModule.forRoot(), // using bqClasses
+    BlueriqModule.forRoot(), // using bqClasses
     SharedModule,
 
     /* Material modules */

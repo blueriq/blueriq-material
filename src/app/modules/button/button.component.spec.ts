@@ -83,7 +83,7 @@ describe('ButtonComponent', () => {
     expect(classes).not.toContain('mat-primary');
   });
 
-  xit('should be tertiary colored', () => {
+  it('should be tertiary colored', () => {
     session.update(
       button.styles(BqPresentationStyles.TERTIARY)
     );
