@@ -32,10 +32,6 @@ describe('SelectComponent', () => {
     component = session.get(SelectComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should be disabled', () => {
     let selectDisabled = component.nativeElement.querySelector('.mat-select-disabled');
     expect(selectDisabled).toBeFalsy();

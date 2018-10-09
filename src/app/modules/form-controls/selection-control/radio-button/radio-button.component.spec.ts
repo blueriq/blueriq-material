@@ -34,10 +34,6 @@ describe('RadioButtonComponent', () => {
     component = session.get(RadioButtonComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should be checked', () => {
     let inputField = component.nativeElement.querySelector('.mat-radio-checked');
     expect(inputField).toBeFalsy('by default nothing is checked');

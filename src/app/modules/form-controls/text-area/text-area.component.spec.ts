@@ -27,10 +27,6 @@ describe('TextAreaComponent', () => {
     component = session.get(TextAreaComponent);
   });
 
-  it('should have been created', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should have been created with old presentation style memo', () => {
     session.update(
       field.styles(BqPresentationStyles.MEMO)

@@ -53,7 +53,6 @@ describe('FileUploadComponent', () => {
   });
 
   it('should be created', () => {
-    expect(component).toBeTruthy();
     expect(fileSelectDirective).toBeDefined();
   });
 

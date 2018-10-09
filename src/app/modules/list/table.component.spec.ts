@@ -111,10 +111,6 @@ describe('TableComponent', () => {
     component = session.get(ListComponent);
   });
 
-  it('should have been created', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should have a header displayed with the correct content', () => {
     const matRows = component.nativeElement.querySelectorAll('.mat-row');
     expect(matRows.length).toBe(2);

@@ -25,7 +25,6 @@ describe('ErrorComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
     expect(fixture.nativeElement.querySelector('.button')).toBeFalsy();
     expect(fixture.nativeElement.querySelector('.severity-error')).toBeTruthy();
     expect(fixture.nativeElement.querySelector('.severity-notice')).toBeFalsy();

@@ -26,10 +26,6 @@ describe('PercentageFieldComponent', () => {
     component = session.get(PercentageFieldComponent);
   });
 
-  it('should create PercentageFieldComponent', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should contain percentage sign', () => {
     const suffix = component.nativeElement.querySelector('.mat-form-field-suffix').innerText;
     expect(suffix).toBe('%');

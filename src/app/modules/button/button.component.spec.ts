@@ -31,10 +31,6 @@ describe('ButtonComponent', () => {
     component = session.get(ButtonComponent);
   });
 
-  it('should be created', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should display the button text', () => {
     const buttonText: string = component.nativeElement.querySelector('.mat-button-wrapper').textContent.trim();
     expect(buttonText).toBe('Click me!');

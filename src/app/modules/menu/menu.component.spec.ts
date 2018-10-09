@@ -47,10 +47,6 @@ describe('MenuComponent', () => {
       component = session.get(MenuComponent);
     });
 
-    it('should create menu', () => {
-      expect(component).toBeTruthy();
-    });
-
     it(' buttons that are not a submenu should trigger the blueriq session pressed', (done) => {
       // retrieve the trigger
       const selectTrigger = component.debugElement.query(By.directive(MatMenuTrigger));

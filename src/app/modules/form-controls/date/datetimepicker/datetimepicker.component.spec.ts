@@ -28,10 +28,6 @@ describe('DateTimepickerComponent', () => {
     component = session.get(DateTimepickerComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should render date and time picker for datetime fields', () => {
     expect(component.componentInstance.getPickerType()).toEqual('both');
   });

@@ -33,10 +33,6 @@ describe('AutocompleteComponent', () => {
     component = session.get(AutocompleteComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should be disabled', () => {
     let autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
     expect(autocompleteInput.properties['disabled']).toBe(false);

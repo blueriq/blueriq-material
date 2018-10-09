@@ -35,10 +35,6 @@ describe('CommentListComponent', () => {
     component.detectChanges();
   });
 
-  it('should be created', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should contain correct header text', () => {
     // init
     const headers = component.nativeElement.querySelectorAll('.header');

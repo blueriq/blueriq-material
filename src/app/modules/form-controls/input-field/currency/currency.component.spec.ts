@@ -26,10 +26,6 @@ describe('CurrencyFieldComponent', () => {
     component = session.get(CurrencyFieldComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should contain euro sign', () => {
     const prefix = component.nativeElement.querySelector('.mat-form-field-prefix').innerText;
     expect(prefix.trim()).toBe('euro_symbol');

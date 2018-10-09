@@ -28,10 +28,6 @@ describe('SlideToggleComponent', () => {
     component = session.get(SlideToggleComponent);
   });
 
-  it('should be created', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should be changed', () => {
     session.update(
       field.value('true')

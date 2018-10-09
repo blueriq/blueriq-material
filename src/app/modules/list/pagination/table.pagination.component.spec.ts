@@ -182,9 +182,6 @@ describe('TablePaginationComponent', () => {
 
   function executedSharedTests() {
     describe('should', () => {
-      it('have been created', () => {
-        expect(component).toBeTruthy();
-      });
 
       it('have a firstpage that cannot navigate to previous page', () => {
         const pageLabel = component.nativeElement.querySelector(LABEL).innerHTML;

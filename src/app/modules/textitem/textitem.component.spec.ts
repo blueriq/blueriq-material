@@ -30,10 +30,6 @@ describe('TextItemComponent', () => {
     component = session.get(TextItemComponent);
   });
 
-  it('should be created', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should display the text', () => {
     const staticNode: TextItemNodeTemplate = StaticNodeTemplate.create('Lorem ipsum');
 

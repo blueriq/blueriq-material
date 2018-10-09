@@ -41,10 +41,6 @@ describe('DocumentLinkComponent DocumentLink', () => {
     component = session.get(DocumentLinkComponent);
   });
 
-  it('should be created', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should contain the correct data', () => {
     const element = component.nativeElement.querySelector('button');
     expect(element.getAttribute('class')).toContain('plain-link');

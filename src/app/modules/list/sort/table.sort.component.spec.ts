@@ -29,10 +29,6 @@ describe('TableSortComponent', () => {
     component.autoDetectChanges();
   });
 
-  it('should have been created', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should display the right material icon', () => {
     let iconElement = component.debugElement.query(By.css('.material-icons')).nativeElement;
     let currentIcon = component.componentInstance.getIconByDirection();

@@ -27,10 +27,6 @@ describe('CheckboxComponent', () => {
     component = session.get(CheckboxComponent);
   });
 
-  it('should be created', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should be changed', () => {
     // Change
     session.update(

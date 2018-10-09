@@ -39,10 +39,6 @@ describe('CommentComponent', () => {
     component = session.get(CommentComponent);
   });
 
-  it('should be created', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should render the textarea', () => {
     expect(component.nativeElement.querySelector('bq-text-area')).toBeTruthy();
   });
