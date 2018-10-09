@@ -27,7 +27,7 @@ describe('DatepickerComponent', () => {
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(DatepickerComponent);
   });
-  
+
   it('should have a hint', () => {
     session.update(
       field.explainText('explaining it')

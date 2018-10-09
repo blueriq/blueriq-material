@@ -27,7 +27,7 @@ describe('SelectionControlComponent', () => {
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(CheckboxComponent);
   });
-  
+
   it('should display hint', () => {
     session.update(
       field.explainText('explaintext')
