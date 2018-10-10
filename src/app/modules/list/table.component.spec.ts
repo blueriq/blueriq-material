@@ -10,6 +10,7 @@ import {
   TextItemTemplate
 } from '@blueriq/core/testing';
 import { ButtonModule } from '../button/button.module';
+import { FormControlModule } from '../form-controls/form-control.module';
 import { ReadonlyModule } from '../readonly/readonly.module';
 import { TextItemModule } from '../textitem/textitem.module';
 import { ListComponent } from './list.component';
@@ -29,6 +30,7 @@ describe('TableComponent', () => {
         ButtonModule,
         ReadonlyModule,
         TextItemModule,
+        FormControlModule,
         ListModule
       ]
     });
@@ -59,7 +61,8 @@ describe('TableComponent', () => {
       .contentStyle('tablerow')
       .children(
         FieldTemplate.text('Person.Name').value('Mike').readonly(true),
-        ButtonTemplate.create('mybutton').caption('clickme')
+        ButtonTemplate.create('mybutton').caption('clickme'),
+        FieldTemplate.boolean('true').explainText('checkme').questionText('checkmeout')
       ),
       // ---------- Row #2 ----------
       ContainerTemplate
@@ -67,7 +70,8 @@ describe('TableComponent', () => {
       .contentStyle('tablerow')
       .children(
         FieldTemplate.text('Person.Name').value('Tilly').readonly(true),
-        ButtonTemplate.create('mybutton').caption('clickme')
+        ButtonTemplate.create('mybutton').caption('clickme'),
+        FieldTemplate.boolean('false').explainText('checkme').questionText('checkmeout')
       )
       // ---------- End ----------
     );
@@ -118,15 +122,15 @@ describe('TableComponent', () => {
     expect(matRows[1].innerText.trim()).toBe('Tilly\nCLICKME');
   });
 
-  it('should have a row with the correct content', () => {
+  it('should have a row with correct header content', () => {
     const matHeaderCell = component.nativeElement.querySelectorAll('.mat-header-cell');
-    expect(matHeaderCell.length).toBe(2);
+    expect(matHeaderCell.length).toBe(3);
 
     const headerCellContent = matHeaderCell[0].querySelector('bq-textitem-static').innerText;
     expect(headerCellContent.trim()).toBe('Name');
   });
 
-  it('should have a row with the correct content', () => {
+  it('should have a row with the correct label content', () => {
     const readonlyCells = component.nativeElement.querySelectorAll('bq-readonly');
     expect(readonlyCells.length).toBe(2);
     expect(readonlyCells[0].querySelector('label')).toBeFalsy();
@@ -140,5 +144,14 @@ describe('TableComponent', () => {
   it('should not have a mat-raised-button in a tablecell', () => {
     const matRaisedButtons = component.nativeElement.querySelectorAll('.mat-raised-button');
     expect(matRaisedButtons.length).toBe(0);
+  });
+
+  it('should have a row with the correct checkbox content', () => {
+    const checkboxCells = component.nativeElement.querySelectorAll('bq-checkbox');
+    expect(checkboxCells.length).toBe(2);
+    expect(checkboxCells[0]).not.toContain('checkme');
+    expect(checkboxCells[0]).not.toContain('checkmeout');
+    expect(checkboxCells[1]).not.toContain('checkme');
+    expect(checkboxCells[1]).not.toContain('checkmeout');
   });
 });
