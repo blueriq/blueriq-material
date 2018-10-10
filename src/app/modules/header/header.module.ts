@@ -21,7 +21,7 @@ const BLUERIQ_COMPONENTS = [
     CommonModule,
     BlueriqModule.forRoot(),  // using bqIncluded
     FlexLayoutModule,
-    SharedModule,// using bqKey
+    SharedModule, // using bqKey
 
     /* Material modules */
     MatToolbarModule,
