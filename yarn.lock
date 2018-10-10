@@ -2,46 +2,37 @@
 # yarn lockfile v1
 
 
-"@angular-devkit/architect@0.6.8":
-  version "0.6.8"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular-devkit/architect/-/architect-0.6.8.tgz#977acc605aba45d21b95ca704cc99492e14299dd"
+"@angular-devkit/architect@0.8.4":
+  version "0.8.4"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular-devkit/architect/-/architect-0.8.4.tgz#095b382908d7dfaa2f64edfe93555dfac42957aa"
   dependencies:
-    "@angular-devkit/core" "0.6.8"
-    rxjs "^6.0.0"
+    "@angular-devkit/core" "0.8.4"
+    rxjs "~6.2.0"
 
-"@angular-devkit/architect@0.7.3":
-  version "0.7.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular-devkit/architect/-/architect-0.7.3.tgz#d51f1c58c53f51be4a9789f11dfccdbbc4a56f25"
+"@angular-devkit/build-angular@0.8.4":
+  version "0.8.4"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular-devkit/build-angular/-/build-angular-0.8.4.tgz#15e15a5026a6cd51dcf99d989379b6603e9d96ea"
   dependencies:
-    "@angular-devkit/core" "0.7.3"
-    rxjs "^6.0.0"
-
-"@angular-devkit/build-angular@0.6.8":
-  version "0.6.8"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular-devkit/build-angular/-/build-angular-0.6.8.tgz#ea108509f970efc9cd9087a47894c0164dd2d0c0"
-  dependencies:
-    "@angular-devkit/architect" "0.6.8"
-    "@angular-devkit/build-optimizer" "0.6.8"
-    "@angular-devkit/core" "0.6.8"
-    "@ngtools/webpack" "6.0.8"
+    "@angular-devkit/architect" "0.8.4"
+    "@angular-devkit/build-optimizer" "0.8.4"
+    "@angular-devkit/build-webpack" "0.8.4"
+    "@angular-devkit/core" "0.8.4"
+    "@ngtools/webpack" "6.2.4"
     ajv "~6.4.0"
     autoprefixer "^8.4.1"
-    cache-loader "^1.2.2"
-    chalk "~2.2.2"
     circular-dependency-plugin "^5.0.2"
     clean-css "^4.1.11"
-    copy-webpack-plugin "^4.5.1"
+    copy-webpack-plugin "^4.5.2"
     file-loader "^1.1.11"
     glob "^7.0.3"
     html-webpack-plugin "^3.0.6"
     istanbul "^0.4.5"
     istanbul-instrumenter-loader "^3.0.1"
     karma-source-map-support "^1.2.0"
-    less "^3.0.4"
+    less "^3.7.1"
     less-loader "^4.1.0"
     license-webpack-plugin "^1.3.1"
-    lodash "^4.17.4"
-    memory-fs "^0.4.1"
+    loader-utils "^1.1.0"
     mini-css-extract-plugin "~0.4.0"
     minimatch "^3.0.4"
     opn "^5.1.0"
@@ -52,10 +43,10 @@
     postcss-loader "^2.1.5"
     postcss-url "^7.3.2"
     raw-loader "^0.5.1"
-    resolve "^1.5.0"
-    rxjs "^6.0.0"
-    sass-loader "^7.0.1"
-    silent-error "^1.1.0"
+    rxjs "~6.2.0"
+    sass-loader "^7.1.0"
+    semver "^5.5.0"
+    source-map-loader "^0.2.3"
     source-map-support "^0.5.0"
     stats-webpack-plugin "^0.6.2"
     style-loader "^0.21.0"
@@ -64,148 +55,148 @@
     tree-kill "^1.2.0"
     uglifyjs-webpack-plugin "^1.2.5"
     url-loader "^1.0.1"
-    webpack "~4.8.1"
+    webpack "^4.15.1"
     webpack-dev-middleware "^3.1.3"
     webpack-dev-server "^3.1.4"
     webpack-merge "^4.1.2"
     webpack-sources "^1.1.0"
     webpack-subresource-integrity "^1.1.0-rc.4"
   optionalDependencies:
-    node-sass "^4.9.0"
+    node-sass "^4.9.3"
 
-"@angular-devkit/build-optimizer@0.6.8":
-  version "0.6.8"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular-devkit/build-optimizer/-/build-optimizer-0.6.8.tgz#9e18a4f447290d3a8e32df1110aac8b98b80dec2"
+"@angular-devkit/build-optimizer@0.8.4":
+  version "0.8.4"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular-devkit/build-optimizer/-/build-optimizer-0.8.4.tgz#3131eb5a53b51f9914df5ea73ba8b6dca6b401a1"
   dependencies:
     loader-utils "^1.1.0"
     source-map "^0.5.6"
-    typescript "~2.9.1"
+    typescript "~2.9.2"
     webpack-sources "^1.1.0"
 
-"@angular-devkit/core@0.6.8":
-  version "0.6.8"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular-devkit/core/-/core-0.6.8.tgz#3b09d97bd2588f0091df11921f7ed772431806aa"
+"@angular-devkit/build-webpack@0.8.4":
+  version "0.8.4"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular-devkit/build-webpack/-/build-webpack-0.8.4.tgz#44dbd6f7b181d4f58d87cd6f3926ed7bed621b93"
+  dependencies:
+    "@angular-devkit/architect" "0.8.4"
+    "@angular-devkit/core" "0.8.4"
+    rxjs "~6.2.0"
+
+"@angular-devkit/core@0.8.4":
+  version "0.8.4"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular-devkit/core/-/core-0.8.4.tgz#ccc73308990c7bc912e2f2759bf29e069eabf42f"
   dependencies:
     ajv "~6.4.0"
     chokidar "^2.0.3"
-    rxjs "^6.0.0"
+    rxjs "~6.2.0"
     source-map "^0.5.6"
 
-"@angular-devkit/core@0.7.3":
-  version "0.7.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular-devkit/core/-/core-0.7.3.tgz#a18f7b922390503b5226b3d64c4c54fb43ad15e2"
+"@angular-devkit/schematics@0.8.4":
+  version "0.8.4"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular-devkit/schematics/-/schematics-0.8.4.tgz#e19f6fc8b1e88277d921a286914dc9d01f139738"
   dependencies:
-    ajv "~6.4.0"
-    chokidar "^2.0.3"
-    rxjs "^6.0.0"
-    source-map "^0.5.6"
+    "@angular-devkit/core" "0.8.4"
+    rxjs "~6.2.0"
 
-"@angular-devkit/schematics@0.7.3":
-  version "0.7.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular-devkit/schematics/-/schematics-0.7.3.tgz#49dc93d55246814924e19db37dae43867ed563ea"
-  dependencies:
-    "@angular-devkit/core" "0.7.3"
-    rxjs "^6.0.0"
-
-"@angular/animations@6.1.3":
-  version "6.1.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/animations/-/animations-6.1.3.tgz#c7b1cf407e5087a499532999cb412a546f9ba855"
+"@angular/animations@6.1.9":
+  version "6.1.9"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/animations/-/animations-6.1.9.tgz#1d87469e6f6b89a8713570dfbe97700ea85bd007"
   dependencies:
     tslib "^1.9.0"
 
-"@angular/cdk@6.3.2":
-  version "6.3.2"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/cdk/-/cdk-6.3.2.tgz#d1a9599275fd08f5a996c668985a39e4ce1c514b"
+"@angular/cdk@6.4.7":
+  version "6.4.7"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/cdk/-/cdk-6.4.7.tgz#1549b304dd412e82bd854cc55a7d5c6772ee0411"
   dependencies:
     tslib "^1.7.1"
 
-"@angular/cli@6.1.3":
-  version "6.1.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/cli/-/cli-6.1.3.tgz#a4cc751c96423cea17628d94c1419d334d7adfbf"
+"@angular/cli@6.2.4":
+  version "6.2.4"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/cli/-/cli-6.2.4.tgz#e292a5e4d3184a40caec0337d8bc3cd597c5f292"
   dependencies:
-    "@angular-devkit/architect" "0.7.3"
-    "@angular-devkit/core" "0.7.3"
-    "@angular-devkit/schematics" "0.7.3"
-    "@schematics/angular" "0.7.3"
-    "@schematics/update" "0.7.3"
+    "@angular-devkit/architect" "0.8.4"
+    "@angular-devkit/core" "0.8.4"
+    "@angular-devkit/schematics" "0.8.4"
+    "@schematics/angular" "0.8.4"
+    "@schematics/update" "0.8.4"
+    json-schema-traverse "^0.4.1"
     opn "^5.3.0"
-    rxjs "^6.0.0"
+    rxjs "~6.2.0"
     semver "^5.1.0"
     symbol-observable "^1.2.0"
     yargs-parser "^10.0.0"
 
-"@angular/common@6.1.3":
-  version "6.1.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/common/-/common-6.1.3.tgz#ae3d45224348fd8b682c104ced6345e7bd7e2a64"
+"@angular/common@6.1.9":
+  version "6.1.9"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/common/-/common-6.1.9.tgz#638fa8e8e30626116ea9ea36e6f2f00fed971f77"
   dependencies:
     tslib "^1.9.0"
 
-"@angular/compiler-cli@6.1.3":
-  version "6.1.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/compiler-cli/-/compiler-cli-6.1.3.tgz#f8454d140b875454a9e58944a008ee2592638700"
+"@angular/compiler-cli@6.1.9":
+  version "6.1.9"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/compiler-cli/-/compiler-cli-6.1.9.tgz#9ac56fc3ea274c897ccbb3c3fe0aaa100c01137d"
   dependencies:
     chokidar "^1.4.2"
     minimist "^1.2.0"
     reflect-metadata "^0.1.2"
     tsickle "^0.32.1"
 
-"@angular/compiler@6.1.3":
-  version "6.1.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/compiler/-/compiler-6.1.3.tgz#a02efd29e70bb7d1230ca877f9c720518bdf364c"
+"@angular/compiler@6.1.9":
+  version "6.1.9"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/compiler/-/compiler-6.1.9.tgz#3696659f752b5e239f5186cea72cf17965b59cb8"
   dependencies:
     tslib "^1.9.0"
 
-"@angular/core@6.1.3":
-  version "6.1.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/core/-/core-6.1.3.tgz#6561ba0b40a12758e5237fc05186b56d6d0bdbc9"
+"@angular/core@6.1.9":
+  version "6.1.9"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/core/-/core-6.1.9.tgz#a21a35de551c95f276ecbb1f314949cc69326950"
   dependencies:
     tslib "^1.9.0"
 
-"@angular/flex-layout@6.0.0-beta.16":
-  version "6.0.0-beta.16"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/flex-layout/-/flex-layout-6.0.0-beta.16.tgz#e2749c2609743ff4655b09ae8873709c7a62aeae"
+"@angular/flex-layout@6.0.0-beta.18":
+  version "6.0.0-beta.18"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/flex-layout/-/flex-layout-6.0.0-beta.18.tgz#fdf9d17a45989d0bf0dd1ad466eea503da618276"
   dependencies:
     tslib "^1.7.1"
 
-"@angular/forms@6.1.3":
-  version "6.1.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/forms/-/forms-6.1.3.tgz#92ff08518bafae3c6a8019ac55dada3a9b2f0232"
+"@angular/forms@6.1.9":
+  version "6.1.9"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/forms/-/forms-6.1.9.tgz#d9d8591f4c74270e53e3184eb45e19ba490fdf32"
   dependencies:
     tslib "^1.9.0"
 
-"@angular/language-service@6.1.3":
-  version "6.1.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/language-service/-/language-service-6.1.3.tgz#d8ddf7eabfe39b2f5922893a4ae71c3b9c93b4f1"
+"@angular/language-service@6.1.9":
+  version "6.1.9"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/language-service/-/language-service-6.1.9.tgz#ca82f51775bcf9ccf56421229ac9016bb63b9885"
 
-"@angular/material-moment-adapter@6.3.2":
-  version "6.3.2"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/material-moment-adapter/-/material-moment-adapter-6.3.2.tgz#11f4fe95d832f0b23f31e7f9adce8264904a9ca4"
+"@angular/material-moment-adapter@6.4.7":
+  version "6.4.7"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/material-moment-adapter/-/material-moment-adapter-6.4.7.tgz#1c047d76cbc396816ea588133ec499712242c228"
   dependencies:
     tslib "^1.7.1"
 
-"@angular/material@6.3.2":
-  version "6.3.2"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/material/-/material-6.3.2.tgz#85430c7aefe8d04e770fd1e8cc20ead1726d2fcc"
+"@angular/material@6.4.7":
+  version "6.4.7"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/material/-/material-6.4.7.tgz#3c8f2d6a6a7904d97be29e06a84ffb62a8da6c16"
   dependencies:
     tslib "^1.7.1"
   optionalDependencies:
     parse5 "^5.0.0"
 
-"@angular/platform-browser-dynamic@6.1.3":
-  version "6.1.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/platform-browser-dynamic/-/platform-browser-dynamic-6.1.3.tgz#108c42b7eeee57325b686008323d8ddc46addd8c"
+"@angular/platform-browser-dynamic@6.1.9":
+  version "6.1.9"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/platform-browser-dynamic/-/platform-browser-dynamic-6.1.9.tgz#e00f1a4948b4c299b17c9561d83f7ea588117818"
   dependencies:
     tslib "^1.9.0"
 
-"@angular/platform-browser@6.1.3":
-  version "6.1.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/platform-browser/-/platform-browser-6.1.3.tgz#b918dfd05250e47c650dfe70f65173c65caaab91"
+"@angular/platform-browser@6.1.9":
+  version "6.1.9"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/platform-browser/-/platform-browser-6.1.9.tgz#6c832e528c660ad880a16531754e65b9b97d4f9f"
   dependencies:
     tslib "^1.9.0"
 
-"@angular/router@6.1.3":
-  version "6.1.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/router/-/router-6.1.3.tgz#c11d4b9a9bfaa21d11c2464c82639f6dac3e8170"
+"@angular/router@6.1.9":
+  version "6.1.9"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/router/-/router-6.1.9.tgz#29869e53442703c53a943ce375cbb0a0f36927fb"
   dependencies:
     tslib "^1.9.0"
 
@@ -225,32 +216,34 @@
     date-fns "2.0.0-alpha.7"
     tslib "^1.7.1"
 
-"@compodoc/compodoc@1.1.3":
-  version "1.1.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@compodoc/compodoc/-/compodoc-1.1.3.tgz#6eaa1b578e4865b74b8f32a2ca50bd2c77c6889f"
+"@compodoc/compodoc@1.1.5":
+  version "1.1.5"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@compodoc/compodoc/-/compodoc-1.1.5.tgz#fefd1569e883b159afaf589d4903909c7b74ec86"
   dependencies:
     "@compodoc/ngd-transformer" "^2.0.0"
     chalk "^2.4.1"
     cheerio "^1.0.0-rc.2"
-    chokidar "^2.0.3"
-    colors "^1.2.5"
-    commander "2.15.1"
-    cosmiconfig "^5.0.2"
+    chokidar "^2.0.4"
+    colors "^1.3.2"
+    commander "2.17.1"
+    cosmiconfig "^5.0.6"
     fancy-log "^1.3.2"
     findit2 "^2.2.3"
-    fs-extra "^6.0.1"
+    fs-extra "^7.0.0"
     glob "^7.1.2"
     handlebars "4.0.10"
     html-entities "^1.2.1"
-    json5 "^1.0.1"
+    i18next "^11.6.0"
+    inside "^1.0.0"
+    json5 "^2.0.1"
     live-server "1.1.0"
     lodash "^4.17.10"
-    lunr "2.2.0"
-    marked "^0.3.19"
+    lunr "2.3.2"
+    marked "^0.4.0"
     os-name "^2.0.1"
     traverse "^0.6.6"
-    ts-simple-ast "11.2.0"
-    uuid "^3.2.1"
+    ts-simple-ast "12.4.0"
+    uuid "^3.3.2"
 
 "@compodoc/ngd-core@~2.0.0":
   version "2.0.0"
@@ -276,58 +269,68 @@
     is-absolute "^1.0.0"
     is-negated-glob "^1.0.0"
 
-"@ngrx/effects@6.0.1":
-  version "6.0.1"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@ngrx/effects/-/effects-6.0.1.tgz#b4c0a7918b8c9a4dbc2a663ea7562bea5db21257"
-
-"@ngrx/store-devtools@6.0.1":
-  version "6.0.1"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@ngrx/store-devtools/-/store-devtools-6.0.1.tgz#6049208d1ef8dc5f1f96ffc63373eab2d72f957c"
-
-"@ngrx/store@6.0.1":
-  version "6.0.1"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@ngrx/store/-/store-6.0.1.tgz#02c806ce20c698b997e81f5671e0edc07d32cf86"
-
-"@ngtools/webpack@6.0.8":
-  version "6.0.8"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@ngtools/webpack/-/webpack-6.0.8.tgz#a05bce526aee9da62bb230a95fba83fee99d0bca"
+"@mrmlnc/readdir-enhanced@^2.2.1":
+  version "2.2.1"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
   dependencies:
-    "@angular-devkit/core" "0.6.8"
+    call-me-maybe "^1.0.1"
+    glob-to-regexp "^0.3.0"
+
+"@ngrx/effects@6.1.0":
+  version "6.1.0"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@ngrx/effects/-/effects-6.1.0.tgz#3c1e1ab1e5a86c6d9c29d4f3771e42cc9bd8576c"
+
+"@ngrx/store-devtools@6.1.0":
+  version "6.1.0"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@ngrx/store-devtools/-/store-devtools-6.1.0.tgz#cf65a3149628dc37badd094204484dde9ba14200"
+
+"@ngrx/store@6.1.0":
+  version "6.1.0"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@ngrx/store/-/store-6.1.0.tgz#5b027647a797bf027912568214b10375dd75af38"
+
+"@ngtools/webpack@6.2.4":
+  version "6.2.4"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@ngtools/webpack/-/webpack-6.2.4.tgz#68f97eba33400df0604b7ec33532ec49c3cebfda"
+  dependencies:
+    "@angular-devkit/core" "0.8.4"
+    rxjs "~6.2.0"
     tree-kill "^1.0.0"
     webpack-sources "^1.1.0"
 
-"@schematics/angular@0.7.3":
-  version "0.7.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@schematics/angular/-/angular-0.7.3.tgz#d4a33a78b152bded557efddba4616a8fafa9ae24"
+"@nodelib/fs.stat@^1.0.1":
+  version "1.1.2"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@nodelib/fs.stat/-/fs.stat-1.1.2.tgz#54c5a964462be3d4d78af631363c18d6fa91ac26"
+
+"@schematics/angular@0.8.4":
+  version "0.8.4"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@schematics/angular/-/angular-0.8.4.tgz#ee3c8535476d7b49b1a5676f4a5eee3fc158506f"
   dependencies:
-    "@angular-devkit/core" "0.7.3"
-    "@angular-devkit/schematics" "0.7.3"
+    "@angular-devkit/core" "0.8.4"
+    "@angular-devkit/schematics" "0.8.4"
     typescript ">=2.6.2 <2.10"
 
-"@schematics/update@0.7.3":
-  version "0.7.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@schematics/update/-/update-0.7.3.tgz#2ea4819a651bf8f39a4fbb70821972f869fc7ba1"
+"@schematics/update@0.8.4":
+  version "0.8.4"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@schematics/update/-/update-0.8.4.tgz#dddd0f278a21db8d97be102f42ced8b37ba9be7b"
   dependencies:
-    "@angular-devkit/core" "0.7.3"
-    "@angular-devkit/schematics" "0.7.3"
+    "@angular-devkit/core" "0.8.4"
+    "@angular-devkit/schematics" "0.8.4"
     npm-registry-client "^8.5.1"
-    rxjs "^6.0.0"
+    rxjs "~6.2.0"
     semver "^5.3.0"
     semver-intersect "^1.1.2"
 
-"@types/fs-extra@^5.0.2":
-  version "5.0.4"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@types/fs-extra/-/fs-extra-5.0.4.tgz#b971134d162cc0497d221adde3dbb67502225599"
-  dependencies:
-    "@types/node" "*"
-
-"@types/jasmine@*", "@types/jasmine@2.8.8":
+"@types/jasmine@*":
   version "2.8.8"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@types/jasmine/-/jasmine-2.8.8.tgz#bf53a7d193ea8b03867a38bfdb4fbb0e0bf066c9"
 
-"@types/jasminewd2@2.0.3":
-  version "2.0.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@types/jasminewd2/-/jasminewd2-2.0.3.tgz#0d2886b0cbdae4c0eeba55e30792f584bf040a95"
+"@types/jasmine@2.8.9":
+  version "2.8.9"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@types/jasmine/-/jasmine-2.8.9.tgz#e028c891e8551fdf6de905d959581fc4fa0b5509"
+
+"@types/jasminewd2@2.0.5":
+  version "2.0.5"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@types/jasminewd2/-/jasminewd2-2.0.5.tgz#0910db4bd50202dea9fe6ec37517b0ae6a01a9e6"
   dependencies:
     "@types/jasmine" "*"
 
@@ -335,9 +338,9 @@
   version "10.9.4"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@types/node/-/node-10.9.4.tgz#0f4cb2dc7c1de6096055357f70179043c33e9897"
 
-"@types/node@10.9.3":
-  version "10.9.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@types/node/-/node-10.9.3.tgz#85f288502503ade0b3bfc049fe1777b05d0327d5"
+"@types/node@10.11.6":
+  version "10.11.6"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@types/node/-/node-10.11.6.tgz#ce5690df6cd917a9178439a1013e39a7e565c46e"
 
 "@types/node@^6.0.46":
   version "6.0.117"
@@ -347,125 +350,142 @@
   version "0.0.32"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@types/q/-/q-0.0.32.tgz#bd284e57c84f1325da702babfc82a5328190c0c5"
 
-"@types/selenium-webdriver@^2.53.35", "@types/selenium-webdriver@~2.53.39":
-  version "2.53.43"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@types/selenium-webdriver/-/selenium-webdriver-2.53.43.tgz#2de3d718819bc20165754c4a59afb7e9833f6707"
+"@types/selenium-webdriver@^3.0.0":
+  version "3.0.12"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@types/selenium-webdriver/-/selenium-webdriver-3.0.12.tgz#6affe5aed1ba379175075a889adbe2bc3aa62159"
 
-"@webassemblyjs/ast@1.4.3":
-  version "1.4.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@webassemblyjs/ast/-/ast-1.4.3.tgz#3b3f6fced944d8660273347533e6d4d315b5934a"
+"@webassemblyjs/ast@1.7.8":
+  version "1.7.8"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@webassemblyjs/ast/-/ast-1.7.8.tgz#f31f480debeef957f01b623f27eabc695fa4fe8f"
   dependencies:
-    "@webassemblyjs/helper-wasm-bytecode" "1.4.3"
-    "@webassemblyjs/wast-parser" "1.4.3"
-    debug "^3.1.0"
-    webassemblyjs "1.4.3"
+    "@webassemblyjs/helper-module-context" "1.7.8"
+    "@webassemblyjs/helper-wasm-bytecode" "1.7.8"
+    "@webassemblyjs/wast-parser" "1.7.8"
 
-"@webassemblyjs/floating-point-hex-parser@1.4.3":
-  version "1.4.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@webassemblyjs/floating-point-hex-parser/-/floating-point-hex-parser-1.4.3.tgz#f5aee4c376a717c74264d7bacada981e7e44faad"
+"@webassemblyjs/floating-point-hex-parser@1.7.8":
+  version "1.7.8"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@webassemblyjs/floating-point-hex-parser/-/floating-point-hex-parser-1.7.8.tgz#1b3ed0e27e384032254e9322fc646dd3e70ef1b9"
 
-"@webassemblyjs/helper-buffer@1.4.3":
-  version "1.4.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@webassemblyjs/helper-buffer/-/helper-buffer-1.4.3.tgz#0434b55958519bf503697d3824857b1dea80b729"
+"@webassemblyjs/helper-api-error@1.7.8":
+  version "1.7.8"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@webassemblyjs/helper-api-error/-/helper-api-error-1.7.8.tgz#a2b49c11f615e736f815ec927f035dcfa690d572"
+
+"@webassemblyjs/helper-buffer@1.7.8":
+  version "1.7.8"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@webassemblyjs/helper-buffer/-/helper-buffer-1.7.8.tgz#3fc66bfa09c1c60e824cf3d5887826fac062877d"
+
+"@webassemblyjs/helper-code-frame@1.7.8":
+  version "1.7.8"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@webassemblyjs/helper-code-frame/-/helper-code-frame-1.7.8.tgz#cc5a7e9522b70e7580df056dfd34020cf29645b0"
   dependencies:
-    debug "^3.1.0"
+    "@webassemblyjs/wast-printer" "1.7.8"
 
-"@webassemblyjs/helper-code-frame@1.4.3":
-  version "1.4.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@webassemblyjs/helper-code-frame/-/helper-code-frame-1.4.3.tgz#f1349ca3e01a8e29ee2098c770773ef97af43641"
+"@webassemblyjs/helper-fsm@1.7.8":
+  version "1.7.8"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@webassemblyjs/helper-fsm/-/helper-fsm-1.7.8.tgz#fe4607430af466912797c21acafd3046080182ea"
+
+"@webassemblyjs/helper-module-context@1.7.8":
+  version "1.7.8"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@webassemblyjs/helper-module-context/-/helper-module-context-1.7.8.tgz#3c2e7ee93d14ff4768ba66fb1be42fdc9dc7160a"
+
+"@webassemblyjs/helper-wasm-bytecode@1.7.8":
+  version "1.7.8"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@webassemblyjs/helper-wasm-bytecode/-/helper-wasm-bytecode-1.7.8.tgz#89bdb78cd6dd5209ae2ed2925de78d0f0e00b6f0"
+
+"@webassemblyjs/helper-wasm-section@1.7.8":
+  version "1.7.8"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@webassemblyjs/helper-wasm-section/-/helper-wasm-section-1.7.8.tgz#c68ef7d26a6fc12421b2e6e56f9bc810dfb33e87"
   dependencies:
-    "@webassemblyjs/wast-printer" "1.4.3"
+    "@webassemblyjs/ast" "1.7.8"
+    "@webassemblyjs/helper-buffer" "1.7.8"
+    "@webassemblyjs/helper-wasm-bytecode" "1.7.8"
+    "@webassemblyjs/wasm-gen" "1.7.8"
 
-"@webassemblyjs/helper-fsm@1.4.3":
-  version "1.4.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@webassemblyjs/helper-fsm/-/helper-fsm-1.4.3.tgz#65a921db48fb43e868f17b27497870bdcae22b79"
-
-"@webassemblyjs/helper-wasm-bytecode@1.4.3":
-  version "1.4.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@webassemblyjs/helper-wasm-bytecode/-/helper-wasm-bytecode-1.4.3.tgz#0e5b4b5418e33f8a26e940b7809862828c3721a5"
-
-"@webassemblyjs/helper-wasm-section@1.4.3":
-  version "1.4.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@webassemblyjs/helper-wasm-section/-/helper-wasm-section-1.4.3.tgz#9ceedd53a3f152c3412e072887ade668d0b1acbf"
+"@webassemblyjs/ieee754@1.7.8":
+  version "1.7.8"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@webassemblyjs/ieee754/-/ieee754-1.7.8.tgz#1f37974b13cb486a9237e73ce04cac7a2f1265ed"
   dependencies:
-    "@webassemblyjs/ast" "1.4.3"
-    "@webassemblyjs/helper-buffer" "1.4.3"
-    "@webassemblyjs/helper-wasm-bytecode" "1.4.3"
-    "@webassemblyjs/wasm-gen" "1.4.3"
-    debug "^3.1.0"
+    "@xtuc/ieee754" "^1.2.0"
 
-"@webassemblyjs/leb128@1.4.3":
-  version "1.4.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@webassemblyjs/leb128/-/leb128-1.4.3.tgz#5a5e5949dbb5adfe3ae95664d0439927ac557fb8"
+"@webassemblyjs/leb128@1.7.8":
+  version "1.7.8"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@webassemblyjs/leb128/-/leb128-1.7.8.tgz#1bee83426819192db2ea1a234b84c7ebc6d34c1f"
   dependencies:
-    leb "^0.3.0"
+    "@xtuc/long" "4.2.1"
 
-"@webassemblyjs/validation@1.4.3":
-  version "1.4.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@webassemblyjs/validation/-/validation-1.4.3.tgz#9e66c9b3079d7bbcf2070c1bf52a54af2a09aac9"
-  dependencies:
-    "@webassemblyjs/ast" "1.4.3"
+"@webassemblyjs/utf8@1.7.8":
+  version "1.7.8"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@webassemblyjs/utf8/-/utf8-1.7.8.tgz#2b489d5cf43e0aebb93d8e2d792aff9879c61f05"
 
-"@webassemblyjs/wasm-edit@1.4.3":
-  version "1.4.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@webassemblyjs/wasm-edit/-/wasm-edit-1.4.3.tgz#87febd565e0ffb5ae25f6495bb3958d17aa0a779"
+"@webassemblyjs/wasm-edit@1.7.8":
+  version "1.7.8"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@webassemblyjs/wasm-edit/-/wasm-edit-1.7.8.tgz#f8bdbe7088718eca27b1c349bb7c06b8a457950c"
   dependencies:
-    "@webassemblyjs/ast" "1.4.3"
-    "@webassemblyjs/helper-buffer" "1.4.3"
-    "@webassemblyjs/helper-wasm-bytecode" "1.4.3"
-    "@webassemblyjs/helper-wasm-section" "1.4.3"
-    "@webassemblyjs/wasm-gen" "1.4.3"
-    "@webassemblyjs/wasm-opt" "1.4.3"
-    "@webassemblyjs/wasm-parser" "1.4.3"
-    "@webassemblyjs/wast-printer" "1.4.3"
-    debug "^3.1.0"
+    "@webassemblyjs/ast" "1.7.8"
+    "@webassemblyjs/helper-buffer" "1.7.8"
+    "@webassemblyjs/helper-wasm-bytecode" "1.7.8"
+    "@webassemblyjs/helper-wasm-section" "1.7.8"
+    "@webassemblyjs/wasm-gen" "1.7.8"
+    "@webassemblyjs/wasm-opt" "1.7.8"
+    "@webassemblyjs/wasm-parser" "1.7.8"
+    "@webassemblyjs/wast-printer" "1.7.8"
 
-"@webassemblyjs/wasm-gen@1.4.3":
-  version "1.4.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@webassemblyjs/wasm-gen/-/wasm-gen-1.4.3.tgz#8553164d0154a6be8f74d653d7ab355f73240aa4"
+"@webassemblyjs/wasm-gen@1.7.8":
+  version "1.7.8"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@webassemblyjs/wasm-gen/-/wasm-gen-1.7.8.tgz#7e8abf1545eae74ac6781d545c034af3cfd0c7d5"
   dependencies:
-    "@webassemblyjs/ast" "1.4.3"
-    "@webassemblyjs/helper-wasm-bytecode" "1.4.3"
-    "@webassemblyjs/leb128" "1.4.3"
+    "@webassemblyjs/ast" "1.7.8"
+    "@webassemblyjs/helper-wasm-bytecode" "1.7.8"
+    "@webassemblyjs/ieee754" "1.7.8"
+    "@webassemblyjs/leb128" "1.7.8"
+    "@webassemblyjs/utf8" "1.7.8"
 
-"@webassemblyjs/wasm-opt@1.4.3":
-  version "1.4.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@webassemblyjs/wasm-opt/-/wasm-opt-1.4.3.tgz#26c7a23bfb136aa405b1d3410e63408ec60894b8"
+"@webassemblyjs/wasm-opt@1.7.8":
+  version "1.7.8"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@webassemblyjs/wasm-opt/-/wasm-opt-1.7.8.tgz#7ada6e211914728fce02ff0ff9c344edc6d41f26"
   dependencies:
-    "@webassemblyjs/ast" "1.4.3"
-    "@webassemblyjs/helper-buffer" "1.4.3"
-    "@webassemblyjs/wasm-gen" "1.4.3"
-    "@webassemblyjs/wasm-parser" "1.4.3"
-    debug "^3.1.0"
+    "@webassemblyjs/ast" "1.7.8"
+    "@webassemblyjs/helper-buffer" "1.7.8"
+    "@webassemblyjs/wasm-gen" "1.7.8"
+    "@webassemblyjs/wasm-parser" "1.7.8"
 
-"@webassemblyjs/wasm-parser@1.4.3":
-  version "1.4.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@webassemblyjs/wasm-parser/-/wasm-parser-1.4.3.tgz#7ddd3e408f8542647ed612019cfb780830993698"
+"@webassemblyjs/wasm-parser@1.7.8":
+  version "1.7.8"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@webassemblyjs/wasm-parser/-/wasm-parser-1.7.8.tgz#dac47c291fb6a3e63529aecd647592cd34afbf94"
   dependencies:
-    "@webassemblyjs/ast" "1.4.3"
-    "@webassemblyjs/helper-wasm-bytecode" "1.4.3"
-    "@webassemblyjs/leb128" "1.4.3"
-    "@webassemblyjs/wasm-parser" "1.4.3"
-    webassemblyjs "1.4.3"
+    "@webassemblyjs/ast" "1.7.8"
+    "@webassemblyjs/helper-api-error" "1.7.8"
+    "@webassemblyjs/helper-wasm-bytecode" "1.7.8"
+    "@webassemblyjs/ieee754" "1.7.8"
+    "@webassemblyjs/leb128" "1.7.8"
+    "@webassemblyjs/utf8" "1.7.8"
 
-"@webassemblyjs/wast-parser@1.4.3":
-  version "1.4.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@webassemblyjs/wast-parser/-/wast-parser-1.4.3.tgz#3250402e2c5ed53dbe2233c9de1fe1f9f0d51745"
+"@webassemblyjs/wast-parser@1.7.8":
+  version "1.7.8"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@webassemblyjs/wast-parser/-/wast-parser-1.7.8.tgz#f8aab9a450c048c1f9537695c89faeb92fabfba5"
   dependencies:
-    "@webassemblyjs/ast" "1.4.3"
-    "@webassemblyjs/floating-point-hex-parser" "1.4.3"
-    "@webassemblyjs/helper-code-frame" "1.4.3"
-    "@webassemblyjs/helper-fsm" "1.4.3"
-    long "^3.2.0"
-    webassemblyjs "1.4.3"
+    "@webassemblyjs/ast" "1.7.8"
+    "@webassemblyjs/floating-point-hex-parser" "1.7.8"
+    "@webassemblyjs/helper-api-error" "1.7.8"
+    "@webassemblyjs/helper-code-frame" "1.7.8"
+    "@webassemblyjs/helper-fsm" "1.7.8"
+    "@xtuc/long" "4.2.1"
 
-"@webassemblyjs/wast-printer@1.4.3":
-  version "1.4.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@webassemblyjs/wast-printer/-/wast-printer-1.4.3.tgz#3d59aa8d0252d6814a3ef4e6d2a34c9ded3904e0"
+"@webassemblyjs/wast-printer@1.7.8":
+  version "1.7.8"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@webassemblyjs/wast-printer/-/wast-printer-1.7.8.tgz#e7e965782c1912f6a965f14a53ff43d8ad0403a5"
   dependencies:
-    "@webassemblyjs/ast" "1.4.3"
-    "@webassemblyjs/wast-parser" "1.4.3"
-    long "^3.2.0"
+    "@webassemblyjs/ast" "1.7.8"
+    "@webassemblyjs/wast-parser" "1.7.8"
+    "@xtuc/long" "4.2.1"
+
+"@xtuc/ieee754@^1.2.0":
+  version "1.2.0"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@xtuc/ieee754/-/ieee754-1.2.0.tgz#eef014a3145ae477a1cbc00cd1e552336dceb790"
+
+"@xtuc/long@4.2.1":
+  version "4.2.1"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@xtuc/long/-/long-4.2.1.tgz#5c85d662f76fa1d34575766c5dcd6615abcd30d8"
 
 abbrev@1:
   version "1.1.1"
@@ -498,13 +518,9 @@ acorn@^3.0.4:
   version "3.3.0"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/acorn/-/acorn-3.3.0.tgz#45e37fb39e8da3f25baee3ff5369e2bb5f22017a"
 
-acorn@^5.0.0, acorn@^5.5.0:
+acorn@^5.0.0, acorn@^5.5.0, acorn@^5.6.2:
   version "5.7.3"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/acorn/-/acorn-5.7.3.tgz#67aa231bf8812974b85235a96771eb6bd07ea279"
-
-adm-zip@0.4.4:
-  version "0.4.4"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/adm-zip/-/adm-zip-0.4.4.tgz#a61ed5ae6905c3aea58b3a657d25033091052736"
 
 adm-zip@^0.4.9:
   version "0.4.11"
@@ -628,7 +644,7 @@ ansi-styles@^2.2.1:
   version "2.2.1"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/ansi-styles/-/ansi-styles-2.2.1.tgz#b432dd3358b634cf75e1e4664368240533c1ddbe"
 
-ansi-styles@^3.1.0, ansi-styles@^3.2.1:
+ansi-styles@^3.2.1:
   version "3.2.1"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/ansi-styles/-/ansi-styles-3.2.1.tgz#41fbb20243e50b12be0f04b8dedbf07520ce841d"
   dependencies:
@@ -1136,6 +1152,12 @@ browserslist@^3.2.8:
     caniuse-lite "^1.0.30000844"
     electron-to-chromium "^1.3.47"
 
+browserstack@^1.5.1:
+  version "1.5.1"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/browserstack/-/browserstack-1.5.1.tgz#e2dfa66ffee940ebad0a07f7e00fd4687c455d66"
+  dependencies:
+    https-proxy-agent "^2.2.1"
+
 buffer-alloc-unsafe@^1.1.0:
   version "1.1.0"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/buffer-alloc-unsafe/-/buffer-alloc-unsafe-1.1.0.tgz#bd7dc26ae2972d0eda253be061dba992349c19f0"
@@ -1219,14 +1241,9 @@ cache-base@^1.0.1:
     union-value "^1.0.0"
     unset-value "^1.0.0"
 
-cache-loader@^1.2.2:
-  version "1.2.2"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/cache-loader/-/cache-loader-1.2.2.tgz#6d5c38ded959a09cc5d58190ab5af6f73bd353f5"
-  dependencies:
-    loader-utils "^1.1.0"
-    mkdirp "^0.5.1"
-    neo-async "^2.5.0"
-    schema-utils "^0.4.2"
+call-me-maybe@^1.0.1:
+  version "1.0.1"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/call-me-maybe/-/call-me-maybe-1.0.1.tgz#26d208ea89e37b5cbde60250a15f031c16a4d66b"
 
 caller-path@^0.1.0:
   version "0.1.0"
@@ -1305,14 +1322,6 @@ chalk@^2.3.0, chalk@^2.4.1:
     escape-string-regexp "^1.0.5"
     supports-color "^5.3.0"
 
-chalk@~2.2.2:
-  version "2.2.2"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/chalk/-/chalk-2.2.2.tgz#4403f5cf18f35c05f51fbdf152bf588f956cf7cb"
-  dependencies:
-    ansi-styles "^3.1.0"
-    escape-string-regexp "^1.0.5"
-    supports-color "^4.0.0"
-
 chart.js@2.7.2:
   version "2.7.2"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/chart.js/-/chart.js-2.7.2.tgz#3c9fde4dc5b95608211bdefeda7e5d33dffa5714"
@@ -1359,7 +1368,7 @@ chokidar@^1.4.2:
   optionalDependencies:
     fsevents "^1.0.0"
 
-chokidar@^2.0.0, chokidar@^2.0.2, chokidar@^2.0.3:
+chokidar@^2.0.0, chokidar@^2.0.2, chokidar@^2.0.3, chokidar@^2.0.4:
   version "2.0.4"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/chokidar/-/chokidar-2.0.4.tgz#356ff4e2b0e8e43e322d18a372460bbcf3accd26"
   dependencies:
@@ -1382,9 +1391,11 @@ chownr@^1.0.1:
   version "1.0.1"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/chownr/-/chownr-1.0.1.tgz#e2a75042a9551908bebd25b8523d5f9769d79181"
 
-chrome-trace-event@^0.1.1:
-  version "0.1.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/chrome-trace-event/-/chrome-trace-event-0.1.3.tgz#d395af2d31c87b90a716c831fe326f69768ec084"
+chrome-trace-event@^1.0.0:
+  version "1.0.0"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/chrome-trace-event/-/chrome-trace-event-1.0.0.tgz#45a91bd2c20c9411f0963b5aaeb9a1b95e09cc48"
+  dependencies:
+    tslib "^1.9.0"
 
 cipher-base@^1.0.0, cipher-base@^1.0.1, cipher-base@^1.0.3:
   version "1.0.4"
@@ -1471,17 +1482,17 @@ co@^4.6.0:
   version "4.6.0"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/co/-/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
 
-code-block-writer@7.1.0:
-  version "7.1.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/code-block-writer/-/code-block-writer-7.1.0.tgz#00cac1625d8493a7752651909333c81e596a214a"
+code-block-writer@^7.2.0:
+  version "7.2.2"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/code-block-writer/-/code-block-writer-7.2.2.tgz#14ec0120de9a65d2cc5d214561d51d1660dddbb1"
 
 code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
 
-codelyzer@4.4.4:
-  version "4.4.4"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/codelyzer/-/codelyzer-4.4.4.tgz#29b7dbb51ba9ecc45c7300d61280a6564765d402"
+codelyzer@4.5.0:
+  version "4.5.0"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/codelyzer/-/codelyzer-4.5.0.tgz#a65ddeeeca2894653253a89bfa229118ff9f59b1"
   dependencies:
     app-root-path "^2.1.0"
     css-selector-tokenizer "^0.7.0"
@@ -1519,7 +1530,7 @@ colors@1.1.2:
   version "1.1.2"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/colors/-/colors-1.1.2.tgz#168a4701756b6a7f51a12ce0c97bfa28c084ed63"
 
-colors@^1.1.0, colors@^1.2.5, colors@latest:
+colors@^1.1.0, colors@^1.3.2, colors@latest:
   version "1.3.2"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/colors/-/colors-1.3.2.tgz#2df8ff573dfbf255af562f8ce7181d6b971a359b"
 
@@ -1535,11 +1546,7 @@ combined-stream@1.0.6, combined-stream@~1.0.5, combined-stream@~1.0.6:
   dependencies:
     delayed-stream "~1.0.0"
 
-commander@2.15.1:
-  version "2.15.1"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/commander/-/commander-2.15.1.tgz#df46e867d0fc2aec66a34662b406a9ccafff5b0f"
-
-commander@2.17.x, commander@~2.17.1:
+commander@2.17.1, commander@2.17.x, commander@~2.17.1:
   version "2.17.1"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/commander/-/commander-2.17.1.tgz#bd77ab7de6de94205ceacc72f1716d29f20a77bf"
 
@@ -1671,9 +1678,9 @@ copy-descriptor@^0.1.0:
   version "0.1.1"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/copy-descriptor/-/copy-descriptor-0.1.1.tgz#676f6eb3c39997c2ee1ac3a924fd6124748f578d"
 
-copy-webpack-plugin@^4.5.1:
-  version "4.5.2"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/copy-webpack-plugin/-/copy-webpack-plugin-4.5.2.tgz#d53444a8fea2912d806e78937390ddd7e632ee5c"
+copy-webpack-plugin@^4.5.2:
+  version "4.5.3"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/copy-webpack-plugin/-/copy-webpack-plugin-4.5.3.tgz#14a224d205e46f7a79f7956028e1da6df2225ff2"
   dependencies:
     cacache "^10.0.4"
     find-cache-dir "^1.0.0"
@@ -1712,7 +1719,7 @@ cosmiconfig@^4.0.0:
     parse-json "^4.0.0"
     require-from-string "^2.0.1"
 
-cosmiconfig@^5.0.2:
+cosmiconfig@^5.0.6:
   version "5.0.6"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/cosmiconfig/-/cosmiconfig-5.0.6.tgz#dca6cf680a0bd03589aff684700858c81abeeb39"
   dependencies:
@@ -2254,7 +2261,7 @@ engine.io@~3.2.0:
     engine.io-parser "~2.1.0"
     ws "~3.3.1"
 
-enhanced-resolve@^4.0.0:
+enhanced-resolve@^4.1.0:
   version "4.1.0"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/enhanced-resolve/-/enhanced-resolve-4.1.0.tgz#41c7e0bfdfe74ac1ffe1e57ad6a5c6c9f3742a7f"
   dependencies:
@@ -2401,9 +2408,9 @@ escope@^3.6.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-eslint-scope@^3.7.1:
-  version "3.7.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/eslint-scope/-/eslint-scope-3.7.3.tgz#bb507200d3d17f60247636160b4826284b108535"
+eslint-scope@^4.0.0:
+  version "4.0.0"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/eslint-scope/-/eslint-scope-4.0.0.tgz#50bf3071e9338bcdc43331794a0cb533f0136172"
   dependencies:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
@@ -2693,6 +2700,17 @@ fast-deep-equal@^2.0.1:
   version "2.0.1"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/fast-deep-equal/-/fast-deep-equal-2.0.1.tgz#7b05218ddf9667bf7f370bf7fdb2cb15fdd0aa49"
 
+fast-glob@^2.0.2:
+  version "2.2.3"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/fast-glob/-/fast-glob-2.2.3.tgz#d09d378e9ef6b0076a0fa1ba7519d9d4d9699c28"
+  dependencies:
+    "@mrmlnc/readdir-enhanced" "^2.2.1"
+    "@nodelib/fs.stat" "^1.0.1"
+    glob-parent "^3.1.0"
+    is-glob "^4.0.0"
+    merge2 "^1.2.1"
+    micromatch "^3.1.10"
+
 fast-json-stable-stringify@^2.0.0:
   version "2.0.0"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/fast-json-stable-stringify/-/fast-json-stable-stringify-2.0.0.tgz#d5142c0caee6b1189f87d3a76111064f86c8bbf2"
@@ -2947,17 +2965,17 @@ fs-extra@^4.0.1:
     jsonfile "^4.0.0"
     universalify "^0.1.0"
 
-fs-extra@^5.0.0:
-  version "5.0.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/fs-extra/-/fs-extra-5.0.0.tgz#414d0110cdd06705734d055652c5411260c31abd"
+fs-extra@^6.0.1:
+  version "6.0.1"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/fs-extra/-/fs-extra-6.0.1.tgz#8abc128f7946e310135ddc93b98bddb410e7a34b"
   dependencies:
     graceful-fs "^4.1.2"
     jsonfile "^4.0.0"
     universalify "^0.1.0"
 
-fs-extra@^6.0.1:
-  version "6.0.1"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/fs-extra/-/fs-extra-6.0.1.tgz#8abc128f7946e310135ddc93b98bddb410e7a34b"
+fs-extra@^7.0.0:
+  version "7.0.0"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/fs-extra/-/fs-extra-7.0.0.tgz#8cc3f47ce07ef7b3593a11b9fb245f7e34c041d6"
   dependencies:
     graceful-fs "^4.1.2"
     jsonfile "^4.0.0"
@@ -3075,6 +3093,10 @@ glob-parent@^3.1.0:
     is-glob "^3.1.0"
     path-dirname "^1.0.0"
 
+glob-to-regexp@^0.3.0:
+  version "0.3.0"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/glob-to-regexp/-/glob-to-regexp-0.3.0.tgz#8c5a1494d2066c570cc3bfe4496175acc4d502ab"
+
 glob@7.0.x:
   version "7.0.6"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/glob/-/glob-7.0.6.tgz#211bafaf49e525b8cd93260d14ab136152b3f57a"
@@ -3138,6 +3160,18 @@ globby@^7.1.1:
   dependencies:
     array-union "^1.0.1"
     dir-glob "^2.0.0"
+    glob "^7.1.2"
+    ignore "^3.3.5"
+    pify "^3.0.0"
+    slash "^1.0.0"
+
+globby@^8.0.1:
+  version "8.0.1"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/globby/-/globby-8.0.1.tgz#b5ad48b8aa80b35b814fc1281ecc851f1d2b5b50"
+  dependencies:
+    array-union "^1.0.1"
+    dir-glob "^2.0.0"
+    fast-glob "^2.0.2"
     glob "^7.1.2"
     ignore "^3.3.5"
     pify "^3.0.0"
@@ -3226,10 +3260,6 @@ has-cors@1.1.0:
 has-flag@^1.0.0:
   version "1.0.0"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/has-flag/-/has-flag-1.0.0.tgz#9d9e793165ce017a00f00418c43f942a7b1d11fa"
-
-has-flag@^2.0.0:
-  version "2.0.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/has-flag/-/has-flag-2.0.0.tgz#e8207af1cc7b30d446cc70b734b5e8be18f88d51"
 
 has-flag@^3.0.0:
   version "3.0.0"
@@ -3433,6 +3463,10 @@ https-proxy-agent@^2.2.1:
     agent-base "^4.1.0"
     debug "^3.1.0"
 
+i18next@^11.6.0:
+  version "11.9.1"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/i18next/-/i18next-11.9.1.tgz#f2718b11da2460e29e2dbd3dd8dea05dfc88e2dc"
+
 iconv-lite@0.4.19:
   version "0.4.19"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/iconv-lite/-/iconv-lite-0.4.19.tgz#f7468f60135f5e5dad3399c0a81be9a1603a082b"
@@ -3559,6 +3593,10 @@ inquirer@^0.12.0:
     string-width "^1.0.1"
     strip-ansi "^3.0.0"
     through "^2.3.6"
+
+inside@^1.0.0:
+  version "1.0.0"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/inside/-/inside-1.0.0.tgz#db45e993573cdb3db70b9832e8285bad46424770"
 
 internal-ip@^3.0.1:
   version "3.0.1"
@@ -4046,7 +4084,7 @@ jsesc@~0.5.0:
   version "0.5.0"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/jsesc/-/jsesc-0.5.0.tgz#e7dee66e35d6fc16f710fe91d5cf69f70f08911d"
 
-json-parse-better-errors@^1.0.1:
+json-parse-better-errors@^1.0.1, json-parse-better-errors@^1.0.2:
   version "1.0.2"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/json-parse-better-errors/-/json-parse-better-errors-1.0.2.tgz#bb867cfb3450e69107c131d1c514bab3dc8bcaa9"
 
@@ -4080,9 +4118,9 @@ json5@^0.5.0:
   version "0.5.1"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/json5/-/json5-0.5.1.tgz#1eade7acc012034ad84e2396767ead9fa5495821"
 
-json5@^1.0.1:
-  version "1.0.1"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/json5/-/json5-1.0.1.tgz#779fb0018604fa854eacbf6252180d83543e3dbe"
+json5@^2.0.1:
+  version "2.1.0"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/json5/-/json5-2.1.0.tgz#e7a0c62c48285c628d20a10b85c89bb807c32850"
   dependencies:
     minimist "^1.2.0"
 
@@ -4236,10 +4274,6 @@ lcid@^2.0.0:
   dependencies:
     invert-kv "^2.0.0"
 
-leb@^0.3.0:
-  version "0.3.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/leb/-/leb-0.3.0.tgz#32bee9fad168328d6aea8522d833f4180eed1da3"
-
 less-loader@^4.1.0:
   version "4.1.0"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/less-loader/-/less-loader-4.1.0.tgz#2c1352c5b09a4f84101490274fd51674de41363e"
@@ -4248,7 +4282,7 @@ less-loader@^4.1.0:
     loader-utils "^1.1.0"
     pify "^3.0.0"
 
-less@^3.0.4:
+less@^3.7.1:
   version "3.8.1"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/less/-/less-3.8.1.tgz#f31758598ef5a1930dd4caefa9e4340641e71e1d"
   dependencies:
@@ -4391,10 +4425,6 @@ loglevel@^1.4.1:
   version "1.6.1"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/loglevel/-/loglevel-1.6.1.tgz#e0fc95133b6ef276cdc8887cdaf24aa6f156f8fa"
 
-long@^3.2.0:
-  version "3.2.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/long/-/long-3.2.0.tgz#d821b7138ca1cb581c172990ef14db200b5c474b"
-
 longest@^1.0.1:
   version "1.0.1"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/longest/-/longest-1.0.1.tgz#30a0b2da38f73770e8294a0d22e6625ed77d0097"
@@ -4427,9 +4457,9 @@ lru-cache@^4.0.1, lru-cache@^4.1.1:
     pseudomap "^1.0.2"
     yallist "^2.1.2"
 
-lunr@2.2.0:
-  version "2.2.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/lunr/-/lunr-2.2.0.tgz#ab66b8853e8f420cd018d9b474a650537d78a86f"
+lunr@2.3.2:
+  version "2.3.2"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/lunr/-/lunr-2.3.2.tgz#7164301092b2d7ab664573156f686df5c25c4185"
 
 macos-release@^1.0.0:
   version "1.1.0"
@@ -4469,9 +4499,9 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
-marked@^0.3.19:
-  version "0.3.19"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/marked/-/marked-0.3.19.tgz#5d47f709c4c9fc3c216b6d46127280f40b39d790"
+marked@^0.4.0:
+  version "0.4.0"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/marked/-/marked-0.4.0.tgz#9ad2c2a7a1791f10a852e0112f77b571dce10c66"
 
 material-design-icons@3.0.1:
   version "3.0.1"
@@ -4500,7 +4530,7 @@ mem@^4.0.0:
     mimic-fn "^1.0.0"
     p-is-promise "^1.1.0"
 
-memory-fs@^0.4.0, memory-fs@^0.4.1, memory-fs@~0.4.1:
+memory-fs@^0.4.0, memory-fs@~0.4.1:
   version "0.4.1"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/memory-fs/-/memory-fs-0.4.1.tgz#3a9a20b8462523e447cfbc7e8bb80ed667bfc552"
   dependencies:
@@ -4525,6 +4555,10 @@ meow@^3.7.0:
 merge-descriptors@1.0.1:
   version "1.0.1"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/merge-descriptors/-/merge-descriptors-1.0.1.tgz#b00aaa556dd8b44568150ec9d1b953f3f90cbb61"
+
+merge2@^1.2.1:
+  version "1.2.2"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/merge2/-/merge2-1.2.2.tgz#03212e3da8d86c4d8523cebd6318193414f94e34"
 
 merge@^1.2.0:
   version "1.2.0"
@@ -4552,7 +4586,7 @@ micromatch@^2.1.5:
     parse-glob "^3.0.4"
     regex-cache "^0.4.2"
 
-micromatch@^3.1.4, micromatch@^3.1.8, micromatch@^3.1.9:
+micromatch@^3.1.10, micromatch@^3.1.4, micromatch@^3.1.8, micromatch@^3.1.9:
   version "3.1.10"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/micromatch/-/micromatch-3.1.10.tgz#70859bc95c9840952f359a068a3fc49f9ecfac23"
   dependencies:
@@ -4876,7 +4910,7 @@ node-pre-gyp@^0.10.0:
     semver "^5.3.0"
     tar "^4"
 
-node-sass@^4.9.0:
+node-sass@^4.9.3:
   version "4.9.3"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/node-sass/-/node-sass-4.9.3.tgz#f407cf3d66f78308bb1e346b24fa428703196224"
   dependencies:
@@ -5108,10 +5142,6 @@ optionator@^0.8.1:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
     wordwrap "~1.0.0"
-
-options@>=0.0.5:
-  version "0.0.6"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/options/-/options-0.0.6.tgz#ec22d312806bb53e731773e7cdaefcf1c643128f"
 
 original@>=0.0.5:
   version "1.0.2"
@@ -5507,14 +5537,15 @@ protractor-jasmine2-html-reporter@0.0.7:
     mkdirp "^0.5.0"
     string.prototype.startswith "^0.2.0"
 
-protractor@5.3.2:
-  version "5.3.2"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/protractor/-/protractor-5.3.2.tgz#b8278f3131d9d52fa1172ed0f7fec03085fbe0ce"
+protractor@5.4.1:
+  version "5.4.1"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/protractor/-/protractor-5.4.1.tgz#011a99e38df7aa45d22455b889ffbb13a6ce0bd9"
   dependencies:
     "@types/node" "^6.0.46"
     "@types/q" "^0.0.32"
-    "@types/selenium-webdriver" "~2.53.39"
+    "@types/selenium-webdriver" "^3.0.0"
     blocking-proxy "^1.0.0"
+    browserstack "^1.5.1"
     chalk "^1.1.3"
     glob "^7.0.3"
     jasmine "2.8.0"
@@ -5524,7 +5555,7 @@ protractor@5.3.2:
     saucelabs "^1.5.0"
     selenium-webdriver "3.6.0"
     source-map-support "~0.4.0"
-    webdriver-js-extender "^1.0.0"
+    webdriver-js-extender "2.1.0"
     webdriver-manager "^12.0.6"
 
 proxy-addr@~2.0.3:
@@ -5926,7 +5957,7 @@ resolve@1.1.x:
   version "1.1.7"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/resolve/-/resolve-1.1.7.tgz#203114d82ad2c5ed9e8e0411b3932875e889e97b"
 
-resolve@^1.1.7, resolve@^1.3.2, resolve@^1.5.0:
+resolve@^1.1.7, resolve@^1.3.2:
   version "1.8.1"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/resolve/-/resolve-1.8.1.tgz#82f1ec19a423ac1fbd080b0bab06ba36e84a7a26"
   dependencies:
@@ -5990,19 +6021,19 @@ rx-lite@^3.1.2:
   version "3.1.2"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/rx-lite/-/rx-lite-3.1.2.tgz#19ce502ca572665f3b647b10939f97fd1615f102"
 
-rxjs-compat@6.2.2:
-  version "6.2.2"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/rxjs-compat/-/rxjs-compat-6.2.2.tgz#3c0fcdb46130cc70aa55412c2b1147905ab4680a"
+rxjs-compat@6.3.3:
+  version "6.3.3"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/rxjs-compat/-/rxjs-compat-6.3.3.tgz#2ab3b9ac0dac0c073749d55fef9c03ea1df2045c"
 
-rxjs@6.2.2:
-  version "6.2.2"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/rxjs/-/rxjs-6.2.2.tgz#eb75fa3c186ff5289907d06483a77884586e1cf9"
+rxjs@6.3.3:
+  version "6.3.3"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/rxjs/-/rxjs-6.3.3.tgz#3c6a7fa420e844a81390fb1158a9ec614f4bad55"
   dependencies:
     tslib "^1.9.0"
 
-rxjs@^6.0.0:
-  version "6.3.2"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/rxjs/-/rxjs-6.3.2.tgz#6a688b16c4e6e980e62ea805ec30648e1c60907f"
+rxjs@~6.2.0:
+  version "6.2.2"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/rxjs/-/rxjs-6.2.2.tgz#eb75fa3c186ff5289907d06483a77884586e1cf9"
   dependencies:
     tslib "^1.9.0"
 
@@ -6065,7 +6096,7 @@ sass-lint@1.12.1:
     path-is-absolute "^1.0.0"
     util "^0.10.3"
 
-sass-loader@^7.0.1:
+sass-loader@^7.1.0:
   version "7.1.0"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/sass-loader/-/sass-loader-7.1.0.tgz#16fd5138cb8b424bf8a759528a1972d72aad069d"
   dependencies:
@@ -6086,10 +6117,6 @@ sax@0.5.x:
   version "0.5.8"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/sax/-/sax-0.5.8.tgz#d472db228eb331c2506b0e8c15524adb939d12c1"
 
-sax@0.6.x:
-  version "0.6.1"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/sax/-/sax-0.6.1.tgz#563b19c7c1de892e09bfc4f2fc30e3c27f0952b9"
-
 sax@>=0.6.0, sax@^1.2.4:
   version "1.2.4"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
@@ -6108,7 +6135,7 @@ schema-utils@^0.3.0:
   dependencies:
     ajv "^5.0.0"
 
-schema-utils@^0.4.0, schema-utils@^0.4.2, schema-utils@^0.4.4, schema-utils@^0.4.5:
+schema-utils@^0.4.0, schema-utils@^0.4.4, schema-utils@^0.4.5:
   version "0.4.7"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/schema-utils/-/schema-utils-0.4.7.tgz#ba74f597d2be2ea880131746ee17d0a093c68187"
   dependencies:
@@ -6134,7 +6161,7 @@ select-hose@^2.0.0:
   version "2.0.0"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/select-hose/-/select-hose-2.0.0.tgz#625d8658f865af43ec962bfc376a37359a4994ca"
 
-selenium-webdriver@3.6.0:
+selenium-webdriver@3.6.0, selenium-webdriver@^3.0.1:
   version "3.6.0"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/selenium-webdriver/-/selenium-webdriver-3.6.0.tgz#2ba87a1662c020b8988c981ae62cb2a01298eafc"
   dependencies:
@@ -6142,16 +6169,6 @@ selenium-webdriver@3.6.0:
     rimraf "^2.5.4"
     tmp "0.0.30"
     xml2js "^0.4.17"
-
-selenium-webdriver@^2.53.2:
-  version "2.53.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/selenium-webdriver/-/selenium-webdriver-2.53.3.tgz#d29ff5a957dff1a1b49dc457756e4e4bfbdce085"
-  dependencies:
-    adm-zip "0.4.4"
-    rimraf "^2.2.8"
-    tmp "0.0.24"
-    ws "^1.0.1"
-    xml2js "0.4.4"
 
 selfsigned@^1.9.1:
   version "1.10.3"
@@ -6293,12 +6310,6 @@ signal-exit@^3.0.0:
   version "3.0.2"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
 
-silent-error@^1.1.0:
-  version "1.1.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/silent-error/-/silent-error-1.1.0.tgz#2209706f1c850a9f1d10d0d840918b46f26e1bc9"
-  dependencies:
-    debug "^2.2.0"
-
 slash@^1.0.0:
   version "1.0.0"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/slash/-/slash-1.0.0.tgz#c41f2f6c39fc16d1cd17ad4b5d896114ae470d55"
@@ -6405,6 +6416,13 @@ source-list-map@^2.0.0:
 source-list-map@~0.1.7:
   version "0.1.8"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/source-list-map/-/source-list-map-0.1.8.tgz#c550b2ab5427f6b3f21f5afead88c4f5587b2106"
+
+source-map-loader@^0.2.3:
+  version "0.2.4"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/source-map-loader/-/source-map-loader-0.2.4.tgz#c18b0dc6e23bf66f6792437557c569a11e072271"
+  dependencies:
+    async "^2.5.0"
+    loader-utils "^1.1.0"
 
 source-map-resolve@^0.5.0:
   version "0.5.2"
@@ -6725,12 +6743,6 @@ supports-color@^3.1.0, supports-color@^3.1.2:
   dependencies:
     has-flag "^1.0.0"
 
-supports-color@^4.0.0:
-  version "4.5.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/supports-color/-/supports-color-4.5.0.tgz#be7a0de484dec5c5cddf8b3d59125044912f635b"
-  dependencies:
-    has-flag "^2.0.0"
-
 supports-color@^5.1.0, supports-color@^5.3.0, supports-color@^5.4.0:
   version "5.5.0"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/supports-color/-/supports-color-5.5.0.tgz#e2e69a44ac8772f78a1ec0b35b689df6530efc8f"
@@ -6752,7 +6764,7 @@ table@^3.7.8:
     slice-ansi "0.0.4"
     string-width "^2.0.0"
 
-tapable@^1.0.0:
+tapable@^1.0.0, tapable@^1.1.0:
   version "1.1.0"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/tapable/-/tapable-1.1.0.tgz#0d076a172e3d9ba088fd2272b2668fb8d194b78c"
 
@@ -6821,10 +6833,6 @@ timers-browserify@^2.0.4:
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/timers-browserify/-/timers-browserify-2.0.10.tgz#1d28e3d2aadf1d5a5996c4e9f95601cd053480ae"
   dependencies:
     setimmediate "^1.0.4"
-
-tmp@0.0.24:
-  version "0.0.24"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/tmp/-/tmp-0.0.24.tgz#d6a5e198d14a9835cc6f2d7c3d9e302428c8cf12"
 
 tmp@0.0.30:
   version "0.0.30"
@@ -6924,21 +6932,20 @@ ts-node@7.0.1:
     source-map-support "^0.5.6"
     yn "^2.0.0"
 
-ts-simple-ast@11.2.0:
-  version "11.2.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/ts-simple-ast/-/ts-simple-ast-11.2.0.tgz#58a4469de5391c5e1f9d5f5eb57d675c1e315636"
+ts-simple-ast@12.4.0:
+  version "12.4.0"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/ts-simple-ast/-/ts-simple-ast-12.4.0.tgz#6b53f6d6a59145da637dfe0e8c646d1e66ba278a"
   dependencies:
     "@dsherret/to-absolute-glob" "^2.0.2"
-    "@types/fs-extra" "^5.0.2"
-    code-block-writer "7.1.0"
-    fs-extra "^5.0.0"
+    code-block-writer "^7.2.0"
+    fs-extra "^6.0.1"
     glob-parent "^3.1.0"
-    globby "^6.1.0"
+    globby "^8.0.1"
     is-negated-glob "^1.0.0"
     multimatch "^2.1.0"
     object-assign "^4.1.1"
     tslib "^1.9.0"
-    typescript "2.8.3"
+    typescript "2.9.1"
 
 tsickle@^0.32.1:
   version "0.32.1"
@@ -7014,11 +7021,11 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-typescript@2.8.3:
-  version "2.8.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/typescript/-/typescript-2.8.3.tgz#5d817f9b6f31bb871835f4edf0089f21abe6c170"
+typescript@2.9.1:
+  version "2.9.1"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/typescript/-/typescript-2.9.1.tgz#fdb19d2c67a15d11995fd15640e373e09ab09961"
 
-typescript@2.9.2, "typescript@>=2.6.2 <2.10", typescript@^2.4.2, typescript@~2.9.1:
+typescript@2.9.2, "typescript@>=2.6.2 <2.10", typescript@^2.4.2, typescript@~2.9.2:
   version "2.9.2"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/typescript/-/typescript-2.9.2.tgz#1cbf61d05d6b96269244eb6a3bce4bd914e0f00c"
 
@@ -7061,10 +7068,6 @@ uglifyjs-webpack-plugin@^1.2.4, uglifyjs-webpack-plugin@^1.2.5:
     uglify-es "^3.3.4"
     webpack-sources "^1.1.0"
     worker-farm "^1.5.2"
-
-ultron@1.0.x:
-  version "1.0.2"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/ultron/-/ultron-1.0.2.tgz#ace116ab557cd197386a4e88f4685378c8b2e4fa"
 
 ultron@~1.1.0:
   version "1.1.1"
@@ -7226,7 +7229,7 @@ utils-merge@1.0.1:
   version "1.0.1"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
 
-uuid@^3.0.1, uuid@^3.1.0, uuid@^3.2.1, uuid@^3.3.2:
+uuid@^3.0.1, uuid@^3.1.0, uuid@^3.3.2:
   version "3.3.2"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
 
@@ -7300,22 +7303,12 @@ web-animations-js@2.3.1:
   version "2.3.1"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/web-animations-js/-/web-animations-js-2.3.1.tgz#3a6d9bc15196377a90f8e2803fa5262165b04510"
 
-webassemblyjs@1.4.3:
-  version "1.4.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/webassemblyjs/-/webassemblyjs-1.4.3.tgz#0591893efb8fbde74498251cbe4b2d83df9239cb"
+webdriver-js-extender@2.1.0:
+  version "2.1.0"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/webdriver-js-extender/-/webdriver-js-extender-2.1.0.tgz#57d7a93c00db4cc8d556e4d3db4b5db0a80c3bb7"
   dependencies:
-    "@webassemblyjs/ast" "1.4.3"
-    "@webassemblyjs/validation" "1.4.3"
-    "@webassemblyjs/wasm-parser" "1.4.3"
-    "@webassemblyjs/wast-parser" "1.4.3"
-    long "^3.2.0"
-
-webdriver-js-extender@^1.0.0:
-  version "1.0.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/webdriver-js-extender/-/webdriver-js-extender-1.0.0.tgz#81c533a9e33d5bfb597b4e63e2cdb25b54777515"
-  dependencies:
-    "@types/selenium-webdriver" "^2.53.35"
-    selenium-webdriver "^2.53.2"
+    "@types/selenium-webdriver" "^3.0.0"
+    selenium-webdriver "^3.0.1"
 
 webdriver-manager@12.1.0, webdriver-manager@^12.0.6:
   version "12.1.0"
@@ -7409,9 +7402,16 @@ webpack-merge@^4.1.2:
   dependencies:
     lodash "^4.17.5"
 
-webpack-sources@^1.0.1, webpack-sources@^1.1.0:
+webpack-sources@^1.1.0:
   version "1.2.0"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/webpack-sources/-/webpack-sources-1.2.0.tgz#18181e0d013fce096faf6f8e6d41eeffffdceac2"
+  dependencies:
+    source-list-map "^2.0.0"
+    source-map "~0.6.1"
+
+webpack-sources@^1.3.0:
+  version "1.3.0"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/webpack-sources/-/webpack-sources-1.3.0.tgz#2a28dcb9f1f45fe960d8f1493252b5ee6530fa85"
   dependencies:
     source-list-map "^2.0.0"
     source-map "~0.6.1"
@@ -7422,20 +7422,22 @@ webpack-subresource-integrity@^1.1.0-rc.4:
   dependencies:
     webpack-core "^0.6.8"
 
-webpack@~4.8.1:
-  version "4.8.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/webpack/-/webpack-4.8.3.tgz#957c8e80000f9e5cc03d775e78b472d8954f4eeb"
+webpack@^4.15.1:
+  version "4.20.2"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/webpack/-/webpack-4.20.2.tgz#89f6486b6bb276a91b0823453d377501fc625b5a"
   dependencies:
-    "@webassemblyjs/ast" "1.4.3"
-    "@webassemblyjs/wasm-edit" "1.4.3"
-    "@webassemblyjs/wasm-parser" "1.4.3"
-    acorn "^5.0.0"
+    "@webassemblyjs/ast" "1.7.8"
+    "@webassemblyjs/helper-module-context" "1.7.8"
+    "@webassemblyjs/wasm-edit" "1.7.8"
+    "@webassemblyjs/wasm-parser" "1.7.8"
+    acorn "^5.6.2"
     acorn-dynamic-import "^3.0.0"
     ajv "^6.1.0"
     ajv-keywords "^3.1.0"
-    chrome-trace-event "^0.1.1"
-    enhanced-resolve "^4.0.0"
-    eslint-scope "^3.7.1"
+    chrome-trace-event "^1.0.0"
+    enhanced-resolve "^4.1.0"
+    eslint-scope "^4.0.0"
+    json-parse-better-errors "^1.0.2"
     loader-runner "^2.3.0"
     loader-utils "^1.1.0"
     memory-fs "~0.4.1"
@@ -7444,10 +7446,10 @@ webpack@~4.8.1:
     neo-async "^2.5.0"
     node-libs-browser "^2.0.0"
     schema-utils "^0.4.4"
-    tapable "^1.0.0"
+    tapable "^1.1.0"
     uglifyjs-webpack-plugin "^1.2.4"
     watchpack "^1.5.0"
-    webpack-sources "^1.0.1"
+    webpack-sources "^1.3.0"
 
 websocket-driver@>=0.5.1:
   version "0.7.0"
@@ -7529,13 +7531,6 @@ write@^0.2.1:
   dependencies:
     mkdirp "^0.5.1"
 
-ws@^1.0.1:
-  version "1.1.5"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/ws/-/ws-1.1.5.tgz#cbd9e6e75e09fc5d2c90015f21f0c40875e0dd51"
-  dependencies:
-    options ">=0.0.5"
-    ultron "1.0.x"
-
 ws@~3.3.1:
   version "3.3.3"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/ws/-/ws-3.3.3.tgz#f1cf84fe2d5e901ebce94efaece785f187a228f2"
@@ -7543,13 +7538,6 @@ ws@~3.3.1:
     async-limiter "~1.0.0"
     safe-buffer "~5.1.0"
     ultron "~1.1.0"
-
-xml2js@0.4.4:
-  version "0.4.4"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/xml2js/-/xml2js-0.4.4.tgz#3111010003008ae19240eba17497b57c729c555d"
-  dependencies:
-    sax "0.6.x"
-    xmlbuilder ">=1.0.0"
 
 xml2js@^0.4.17:
   version "0.4.19"
@@ -7561,10 +7549,6 @@ xml2js@^0.4.17:
 xmlbuilder@8.2.2:
   version "8.2.2"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/xmlbuilder/-/xmlbuilder-8.2.2.tgz#69248673410b4ba42e1a6136551d2922335aa773"
-
-xmlbuilder@>=1.0.0:
-  version "10.0.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/xmlbuilder/-/xmlbuilder-10.0.0.tgz#c64e52f8ae097fe5fd46d1c38adaade071ee1b55"
 
 xmlbuilder@~9.0.1:
   version "9.0.7"
