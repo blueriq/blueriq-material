@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
+import { Element } from '@blueriq/core';
 import { ContainerTemplate, PageTemplate, TextItemTemplate } from '@blueriq/core/testing';
 import { PageComponent } from '../page/page.component';
 import { PageModule } from '../page/page.module';
@@ -19,11 +20,13 @@ describe('HeaderComponent', () => {
         {
           provide: APP_BASE_HREF,
           useValue: '/'
-        }],
+        },
+        Element
+      ],
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        RouterModule.forRoot([]), // TODO needed?
+        RouterModule.forRoot([]),
         HeaderModule,
         PageModule
       ]
