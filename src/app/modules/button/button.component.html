@@ -1,11 +1,11 @@
 <button bqKey bqClasses mat-button
-  [class.mat-raised-button]="shouldRaiseButton()"
-  [class.mat-icon-button]="!hasCaption()"
+  [class.mat-raised-button]="isRaisedButton()"
+  [class.mat-icon-button]="isIconButton()"
   [color]="getColor()"
   [disabled]="isDisabled()"
   (click)="onClick()"
   [class.default-styling]="hasDefaultStyling()">
-  <mat-icon [bqIcon]="button.styles"></mat-icon>
+  <mat-icon *ngIf="isIconButton()" [bqIcon]="button.styles"></mat-icon>
+  <ng-container *ngIf="!isIconButton() && !button.caption">{{ "["+button.name+"]" }}</ng-container>
   {{ button.caption }}
 </button>
-

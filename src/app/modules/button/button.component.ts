@@ -19,12 +19,13 @@ export class ButtonComponent {
               @Optional() @Host() public readonly table: Table) {
   }
 
-  shouldRaiseButton(): boolean {
+  isRaisedButton(): boolean {
     return !(this.table || this.button.styles.has(BqPresentationStyles.FLAT_BUTTON));
   }
 
-  hasCaption(): boolean {
-    return !!this.button.caption;
+  isIconButton(): boolean {
+    return this.button.styles && this.button.styles.has(style => style.startsWith(BqPresentationStyles.ICON_FA_PREFIX)
+      || style.startsWith(BqPresentationStyles.ICON_MAT_PREFIX));
   }
 
   getColor(): string | null {
