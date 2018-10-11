@@ -62,3 +62,7 @@ $width-extra-large: 1240px;
 $gutter-width-small: $bq-margin;
 $gutter-width-medium: $bq-margin-double;
 $gutter-width-large: $bq-margin-quadruple;
+
+$bq-mat-typography: mat-typography-config(
+  $font-family: quote($bq-font-family)
+);

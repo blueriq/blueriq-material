@@ -25,15 +25,15 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/assets",
-              "src/theme/images"
+              "src/theme/blueriq/images"
             ],
             "styles": [
-              "src/theme/index.scss",
+              "src/theme/blueriq/index.scss",
               "src/theme/splashscreen.scss"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "./src/theme"
+                "./src/theme/blueriq"
               ]
             },
             "scripts": []
@@ -111,7 +111,7 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "./src/theme"
+                "./src/theme/blueriq"
               ]
             },
             "scripts": [],

@@ -20,7 +20,7 @@ const BQ_MENU_COMPONENTS = [
   imports: [
     /* Basic */
     CommonModule,
-    BlueriqCommonModule,
+    BlueriqCommonModule, // using: bqButton directive
 
     /* Material Modules */
     MatMenuModule,
@@ -29,6 +29,5 @@ const BQ_MENU_COMPONENTS = [
   ],
   exports: [BQ_MENU_COMPONENTS]
 })
-
 export class MenuModule {
 }

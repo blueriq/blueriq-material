@@ -23,6 +23,10 @@ export class ButtonComponent {
     return !(this.table || this.button.styles.has(BqPresentationStyles.FLAT_BUTTON));
   }
 
+  hasCaption(): boolean {
+    return !!this.button.caption;
+  }
+
   getColor(): string | null {
     if (this.button.styles.has(BqPresentationStyles.PRIMARY)) {
       return 'primary';

@@ -1,13 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqComponents } from '@blueriq/angular';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
 import { BlueriqTestSession } from '@blueriq/angular/testing/src/test_session';
 import { ButtonTemplate } from '@blueriq/core/testing';
-import { MaterialModule } from '../../../material.module';
-import { ButtonComponent } from '../../button/button.component';
+import { ListModule } from '../list.module';
 import { TableSortComponent } from './table.sort.component';
 
 describe('TableSortComponent', () => {
@@ -17,15 +14,10 @@ describe('TableSortComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TableSortComponent, ButtonComponent],
-      providers: [
-        BlueriqComponents.register([TableSortComponent, ButtonComponent])
-      ],
       imports: [
-        MaterialModule,
-        BrowserAnimationsModule, // or NoopAnimationsModule
+        NoopAnimationsModule,
         BlueriqTestingModule,
-        FormsModule
+        ListModule
       ]
     });
   });
@@ -35,10 +27,6 @@ describe('TableSortComponent', () => {
     session = BlueriqSessionTemplate.create().build(button);
     component = session.get(TableSortComponent);
     component.autoDetectChanges();
-  });
-
-  it('should have been created', () => {
-    expect(component).toBeTruthy();
   });
 
   it('should display the right material icon', () => {

@@ -1,11 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqComponents } from '@blueriq/angular';
-import { FormattingModule } from '@blueriq/angular/formatting';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
 import { BlueriqTestSession } from '@blueriq/angular/testing/src/test_session';
-import { TextItemModule } from '@blueriq/angular/textitems';
 import {
   ButtonTemplate,
   ContainerTemplate,
@@ -13,10 +9,9 @@ import {
   StaticNodeTemplate,
   TextItemTemplate
 } from '@blueriq/core/testing';
-import { MaterialModule } from '../../material.module';
-import { ButtonComponent } from '../button/button.component';
-import { ReadonlyComponent } from '../readonly/readonly.component';
-import { TextItemComponent } from '../textitem/textitem.component';
+import { ButtonModule } from '../button/button.module';
+import { ReadonlyModule } from '../readonly/readonly.module';
+import { TextItemModule } from '../textitem/textitem.module';
 import { ListComponent } from './list.component';
 import { ListModule } from './list.module';
 import { TableComponent } from './table.component';
@@ -28,19 +23,12 @@ describe('TableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ButtonComponent, ReadonlyComponent,
-        TextItemComponent],
-      providers: [BlueriqComponents.register([
-        ButtonComponent, ReadonlyComponent,
-        TextItemComponent])
-      ],
       imports: [
-        MaterialModule,
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         BlueriqTestingModule,
-        FormsModule,
+        ButtonModule,
+        ReadonlyModule,
         TextItemModule,
-        FormattingModule.forRoot(),
         ListModule
       ]
     });
@@ -84,47 +72,43 @@ describe('TableComponent', () => {
       // ---------- End ----------
     );
     const btnFirst = ButtonTemplate.create('first')
-                                   .caption('<<')
-                                   .disabled(true)
-                                   .styles('pagination');
+    .caption('<<')
+    .disabled(true)
+    .styles('pagination');
 
     const btnPrevious = ButtonTemplate.create('previous')
-                                      .caption('<')
-                                      .disabled(true)
-                                      .styles('pagination');
+    .caption('<')
+    .disabled(true)
+    .styles('pagination');
 
     const currentPageNumber = FieldTemplate.integer('InstanceListContainer_currentPageNumber')
-                                           .domain({ 1: '1', 2: '2', 3: '3' })
-                                           .styles('paginationNumber')
-                                           .value('1');
+    .domain({ 1: '1', 2: '2', 3: '3' })
+    .styles('paginationNumber')
+    .value('1');
 
     const btnNext = ButtonTemplate.create('next')
-                                  .caption('>')
-                                  .styles('pagination');
+    .caption('>')
+    .styles('pagination');
 
     const btnLast = ButtonTemplate.create('last')
-                                  .caption('>>')
-                                  .styles('pagination');
+    .caption('>>')
+    .styles('pagination');
 
     const pagination = ContainerTemplate.create()
-                                        .name('navigationContainer')
-                                        .displayName('DisplayName')
-                                        .styles('navigationContainer')
-                                        .contentStyle('tablenavigation')
-                                        .children(
-                                          btnFirst,
-                                          btnPrevious,
-                                          currentPageNumber,
-                                          btnNext,
-                                          btnLast
-                                        );
+    .name('navigationContainer')
+    .displayName('DisplayName')
+    .styles('navigationContainer')
+    .contentStyle('tablenavigation')
+    .children(
+      btnFirst,
+      btnPrevious,
+      currentPageNumber,
+      btnNext,
+      btnLast
+    );
     const list = ContainerTemplate.create().children(tableTemplate, pagination);
     session = BlueriqSessionTemplate.create().build(list);
     component = session.get(ListComponent);
-  });
-
-  it('should have been created', () => {
-    expect(component).toBeTruthy();
   });
 
   it('should have a header displayed with the correct content', () => {

@@ -1,12 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqComponents, BlueriqSession } from '@blueriq/angular';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BlueriqSession } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ButtonTemplate } from '@blueriq/core/testing';
-import { MaterialModule } from '../../material.module';
 import { BqPresentationStyles } from '../BqPresentationStyles';
 import { ButtonComponent } from './button.component';
+import { ButtonModule } from './button.module';
 
 describe('ButtonComponent', () => {
   let button: ButtonTemplate;
@@ -15,13 +15,11 @@ describe('ButtonComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ButtonComponent],
-      providers: [BlueriqComponents.register([ButtonComponent])],
       imports: [
-        MaterialModule,
-        BrowserAnimationsModule, // or NoopAnimationsModule
+        NoopAnimationsModule,
         BlueriqTestingModule,
-        FormsModule
+        FormsModule,
+        ButtonModule
       ]
     });
   }));
@@ -33,13 +31,10 @@ describe('ButtonComponent', () => {
     component = session.get(ButtonComponent);
   });
 
-  it('should be created', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should display the button text', () => {
     const buttonText: string = component.nativeElement.querySelector('.mat-button-wrapper').textContent.trim();
     expect(buttonText).toBe('Click me!');
+
   });
 
   it('should be disabled', () => {

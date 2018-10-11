@@ -13,6 +13,7 @@ import {
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
+import { SharedModule } from '@shared/shared.module';
 import { CommentComponent } from './comment.component';
 import { CommentListComponent } from './list/comment.list.component';
 
@@ -33,8 +34,9 @@ const COMMENT_COMPONENTS = [
     BrowserModule,
     CommonModule,
     ReactiveFormsModule,
-    BlueriqModule.forRoot(),
+    BlueriqModule.forRoot(),  // for directive bqElement
     FlexLayoutModule,
+    SharedModule,
 
     /* Material modules */
     MatDividerModule,

@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate } from '@blueriq/core/testing';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
+import { VisualizationModule } from '../visualization.module';
 import { StatisticComponent } from './statistic.component';
 
 describe('StatisticComponent', () => {
@@ -14,11 +14,10 @@ describe('StatisticComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [StatisticComponent],
-      providers: [BlueriqComponents.register([StatisticComponent])],
       imports: [
         NoopAnimationsModule,
-        BlueriqTestingModule
+        BlueriqTestingModule,
+        VisualizationModule
       ]
     });
   }));

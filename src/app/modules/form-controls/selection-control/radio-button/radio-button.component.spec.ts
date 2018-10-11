@@ -1,11 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { BlueriqComponents } from '@blueriq/angular';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { MaterialModule } from '../../../../material.module';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
-import { SelectionControlComponent } from '../selection-control.component';
+import { FormControlModule } from '../../form-control.module';
 
 import { RadioButtonComponent } from './radio-button.component';
 
@@ -16,12 +14,10 @@ describe('RadioButtonComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [RadioButtonComponent, SelectionControlComponent],
-      providers: [BlueriqComponents.register([RadioButtonComponent])],
       imports: [
-        MaterialModule,
-        FlexLayoutModule,
-        BlueriqTestingModule
+        NoopAnimationsModule,
+        BlueriqTestingModule,
+        FormControlModule
       ]
     });
   }));
@@ -36,10 +32,6 @@ describe('RadioButtonComponent', () => {
     field.styles(BqPresentationStyles.RADIO).readonly(false).value('');
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(RadioButtonComponent);
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
   });
 
   it('should be checked', () => {

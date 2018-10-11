@@ -2,8 +2,8 @@ import { Directive, Input, OnDestroy, Renderer2 } from '@angular/core';
 import { BlueriqListeners, getAngularComponent } from '@blueriq/angular';
 import { Element } from '@blueriq/core';
 import { Subscription } from 'rxjs';
-import { BqContentStyles } from '../BqContentStyles';
-import { BqPresentationStyles } from '../BqPresentationStyles';
+import { BqContentStyles } from '../../../modules/BqContentStyles';
+import { BqPresentationStyles } from '../../../modules/BqPresentationStyles';
 
 /**
  * This directive can be added to a container to add a flex-grow style to it, based on the container's content style.

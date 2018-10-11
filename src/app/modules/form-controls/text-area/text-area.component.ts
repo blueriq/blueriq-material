@@ -1,5 +1,5 @@
 import { Component, Host } from '@angular/core';
-import { BlueriqComponent } from '@blueriq/angular';
+import { BlueriqComponent, bySelector } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { Field, FieldMessages } from '@blueriq/core';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
@@ -11,8 +11,8 @@ import { BqPresentationStyles } from '../../BqPresentationStyles';
 @BlueriqComponent({
   type: Field,
   // Textfield with presentationstyle largetext/memo or a texfield within a AQ_Dashboard_Comment container
-  selector: '[dataType=text].' + BqPresentationStyles.LARGETEXT + ', [dataType=text].' + BqPresentationStyles.MEMO +
-    ', storecomment > [dataType=text]'
+  selector: bySelector('[dataType=text].' + BqPresentationStyles.LARGETEXT + ', [dataType=text].' + BqPresentationStyles.MEMO +
+    ', storecomment > [dataType=text]', { priorityOffset: 100 })
 })
 export class TextAreaComponent {
 

@@ -19,7 +19,6 @@ import { FlowWidgetComponent } from './flow-widget.component';
   type: Page
 })
 class MockPageComponent {
-
   constructor(@Host() public readonly page: Page) {
   }
 }

@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
 import { MatMenuTrigger } from '@angular/material';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,10 +18,9 @@ describe('MenuComponent', () => {
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [
-          MenuModule,
           NoopAnimationsModule,
           BlueriqTestingModule,
-          FormsModule
+          MenuModule
         ]
       });
     }));
@@ -49,11 +47,7 @@ describe('MenuComponent', () => {
       component = session.get(MenuComponent);
     });
 
-    it('should create menu', () => {
-      expect(component).toBeTruthy();
-    });
-
-    it(' buttons that are not a submenu should trigger the blueriq session pressed', () => {
+    it(' buttons that are not a submenu should trigger the blueriq session pressed', (done) => {
       // retrieve the trigger
       const selectTrigger = component.debugElement.query(By.directive(MatMenuTrigger));
 
@@ -70,6 +64,7 @@ describe('MenuComponent', () => {
         menuButtons[0].click();
         menuButtons[1].click(); // is disabled
         expect(BlueriqSession.prototype.pressed).toHaveBeenCalledTimes(1);
+        done();
       });
 
     });

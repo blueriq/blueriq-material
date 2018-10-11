@@ -1,5 +1,5 @@
 import { ButtonTemplate } from '@blueriq/core/testing';
-import { BqKeyDirective } from '@shared/bq-key/bq-key.directive';
+import { BqKeyDirective } from '@shared/directive/bq-key/bq-key.directive';
 
 describe('BqKeyDirective', () => {
   let bqKeyDirective: BqKeyDirective;

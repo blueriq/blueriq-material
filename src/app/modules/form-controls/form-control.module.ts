@@ -1,11 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { ReactiveFormsModule } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material';
-import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  ErrorStateMatcher,
+  MatAutocompleteModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatRadioModule,
+  MatSelectModule,
+  MatSlideToggleModule
+} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
+import { BlueriqFormsModule } from '@blueriq/angular/forms';
 import { SharedModule } from '@shared/shared.module';
 import { OwlDateTimeModule } from 'ng-pick-datetime';
 import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
@@ -13,9 +25,11 @@ import { MaterialModule } from '../../material.module';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 import { DomainValueTransformer } from './autocomplete/domain-value-transformer';
 import { BqErrorStateMatcher } from './bq-errorstatematcher';
+import { ChiplistComponent } from './chiplist/chiplist.component';
 import { DatepickerComponent } from './date/datepicker/datepicker.component';
 import { DateTimepickerComponent } from './date/datetimepicker/datetimepicker.component';
 import { TableDatetimepickerComponent } from './date/datetimepicker/table-datetimepicker.component';
+import { MomentTransformer } from './date/moment-transformer';
 import { CurrencyFieldComponent } from './input-field/currency/currency.component';
 import { IntegerFieldComponent } from './input-field/integer/integer.component';
 import { NumberFieldComponent } from './input-field/number/number.component';
@@ -30,21 +44,26 @@ import { SlideToggleComponent } from './selection-control/slide-toggle/slide-tog
 import { TextAreaComponent } from './text-area/text-area.component';
 
 const FORM_CONTROL_COMPONENTS = [
+  AutocompleteComponent,
   CheckboxComponent,
-  DatepickerComponent,
+  ChiplistComponent,
+  CurrencyFieldComponent,
   DateTimepickerComponent,
-  StringFieldComponent,
+  DatepickerComponent,
   IntegerFieldComponent,
   NumberFieldComponent,
+  PercentageFieldComponent,
   RadioButtonComponent,
-  CurrencyFieldComponent,
+  SelectComponent,
+  StringFieldComponent,
   SlideToggleComponent,
   SelectComponent,
   AutocompleteComponent,
   TextAreaComponent,
   PercentageFieldComponent,
   TableDatetimepickerComponent,
-  TableSelectComponent
+  TableSelectComponent,
+  TextAreaComponent
 ];
 
 @NgModule({
@@ -56,18 +75,33 @@ const FORM_CONTROL_COMPONENTS = [
     BlueriqComponents.register(FORM_CONTROL_COMPONENTS),
     SelectionControlComponent,
     DomainValueTransformer,
+    MomentTransformer,
     { provide: ErrorStateMatcher, useClass: BqErrorStateMatcher }
   ],
   imports: [
     BrowserAnimationsModule,
-    BrowserModule,
     CommonModule,
     SharedModule,
     FlexLayoutModule,
     OwlDateTimeModule,
     OwlMomentDateTimeModule,
+    FormsModule,
     ReactiveFormsModule,
-    MaterialModule
+    BlueriqFormsModule.forRoot(),
+
+    /* Material modules */
+    MatIconModule,
+
+    // In order of appearance
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    MatChipsModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatRadioModule,
+    MatSlideToggleModule
   ],
   exports: [FORM_CONTROL_COMPONENTS, SelectionControlComponent]
 })

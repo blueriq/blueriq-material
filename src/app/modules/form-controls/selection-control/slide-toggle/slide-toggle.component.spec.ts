@@ -1,13 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqComponents } from '@blueriq/angular';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { MaterialModule } from '../../../../material.module';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
-import { SelectionControlComponent } from '../selection-control.component';
+import { FormControlModule } from '../../form-control.module';
 import { SlideToggleComponent } from './slide-toggle.component';
 
 describe('SlideToggleComponent', () => {
@@ -17,14 +13,10 @@ describe('SlideToggleComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SlideToggleComponent, SelectionControlComponent],
-      providers: [BlueriqComponents.register([SlideToggleComponent])],
       imports: [
-        MaterialModule,
-        BrowserAnimationsModule, // or NoopAnimationsModule
+        NoopAnimationsModule,
         BlueriqTestingModule,
-        FlexLayoutModule,
-        FormsModule
+        FormControlModule
       ]
     });
   }));
@@ -34,10 +26,6 @@ describe('SlideToggleComponent', () => {
     field.styles(BqPresentationStyles.TOGGLE);
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(SlideToggleComponent);
-  });
-
-  it('should be created', () => {
-    expect(component).toBeTruthy();
   });
 
   it('should be changed', () => {

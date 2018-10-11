@@ -29,10 +29,6 @@ describe('FileDownloadComponent', () => {
     component = session.get(FileDownloadComponent);
   }));
 
-  it('should be created', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should override the onClick and use the downloadService', () => {
     // Init
     const authDownload: AuthorizedDownload = { type: 'authorized', url: '/some/url' };
