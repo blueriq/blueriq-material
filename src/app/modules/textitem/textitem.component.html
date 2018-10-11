@@ -3,6 +3,8 @@
     <mat-icon class="aligner">{{getGutterIcon()}}</mat-icon>
   </div>
   <div class="aligner">
-    <ng-container [bqTextItemNode]="textItem.rootNode"></ng-container>
+    <!--<ng-container [bqTextItemNode]="textItem.rootNode"></ng-container>-->
+    <ng-container *ngIf="textItem.rootNode.plainText" [bqTextItemNode]="textItem.rootNode"></ng-container>
+    <ng-container *ngIf="!textItem.rootNode.plainText">{{textItem.plainText}}</ng-container>
   </div>
 </div>
