@@ -5,7 +5,7 @@
   [disabled]="isDisabled()"
   (click)="onClick()"
   [class.default-styling]="hasDefaultStyling()">
-  <mat-icon *ngIf="isIconButton()" [bqIcon]="button.styles"></mat-icon>
-  <ng-container *ngIf="!isIconButton() && !button.caption">{{ "["+button.name+"]" }}</ng-container>
+  <mat-icon [bqIcon]="button.styles"></mat-icon>
+  <ng-container *ngIf="!this.hasCaption() && !this.hasIconStyle()">{{ "["+button.name+"]" }}</ng-container>
   {{ button.caption }}
 </button>

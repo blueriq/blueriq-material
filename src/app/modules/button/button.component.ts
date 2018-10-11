@@ -23,8 +23,21 @@ export class ButtonComponent {
     return !(this.table || this.button.styles.has(BqPresentationStyles.FLAT_BUTTON));
   }
 
+  /**
+   * A button is an icon button (round button with only icon) if it has no caption and a icon presentation style.
+   * If the button has an icon presentation style but also a caption, a normal button is rendered since icon buttons
+   * are too small to present captions.
+   */
   isIconButton(): boolean {
-    return this.button.styles && this.button.styles.has(style => style.startsWith(BqPresentationStyles.ICON_FA_PREFIX)
+    return !this.hasCaption() && this.hasIconStyle();
+  }
+
+  hasCaption(): boolean {
+    return !!this.button.caption;
+  }
+
+  hasIconStyle(): boolean {
+    return this.button.styles.has(style => style.startsWith(BqPresentationStyles.ICON_FA_PREFIX)
       || style.startsWith(BqPresentationStyles.ICON_MAT_PREFIX));
   }
 
