@@ -21,7 +21,6 @@ import { BlueriqFormsModule } from '@blueriq/angular/forms';
 import { SharedModule } from '@shared/shared.module';
 import { OwlDateTimeModule } from 'ng-pick-datetime';
 import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
-import { MaterialModule } from '../../material.module';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 import { DomainValueTransformer } from './autocomplete/domain-value-transformer';
 import { BqErrorStateMatcher } from './bq-errorstatematcher';
