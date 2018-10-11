@@ -1,4 +1,4 @@
-<div bqKey class="selection-control">
+<div bqKey [class.selection-control]="!table">
   <div>
     <mat-checkbox [required]="field.required" [formControl]="formControl" color="primary">
       {{ table ? '' : field.questionText}}
