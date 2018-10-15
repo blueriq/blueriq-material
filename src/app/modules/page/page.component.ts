@@ -4,6 +4,7 @@ import { Container, Page } from '@blueriq/core';
 import { BqContentStyles } from '../BqContentStyles';
 
 @Component({
+  selector: 'bq-page',
   templateUrl: './page.component.html',
   styleUrls: ['./page.component.scss']
 })

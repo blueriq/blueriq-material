@@ -1,9 +1,10 @@
 import { Component, Host, Self } from '@angular/core';
 import { BlueriqComponent, FailedAction, FlowWidget } from '@blueriq/angular';
-import { Container } from '@blueriq/core';
+import { Container, Page } from '@blueriq/core';
 import { BqContentStyles } from '../../BqContentStyles';
 
 @Component({
+  selector: 'bq-flow-widget',
   templateUrl: './flow-widget.component.html',
   styleUrls: ['./flow-widget.component.scss'],
   providers: [FlowWidget]
@@ -18,8 +19,11 @@ export class FlowWidgetComponent {
   private expired = false;
   private flowEnded = false;
 
+  private topWidget = false;
+
   constructor(@Host() public widgetContainer: Container,
               @Self() public flowWidget: FlowWidget) {
+    this.topWidget = this.widgetContainer.parent instanceof Page;
   }
 
   get errorMessage(): string {
@@ -45,6 +49,5 @@ export class FlowWidgetComponent {
 
   handleSessionExpired(): void {
     this.expired = true;
-
   }
 }
