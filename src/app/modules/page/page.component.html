@@ -4,7 +4,7 @@
   <ng-container *ngIf="dashboardMenu" [bqElement]="dashboardMenu"></ng-container>
 </div>
 
-<div [class]="pageSize" [class.page]="!blueriqSession.isWidget">
+<div [ngClass]="[blueriqSession.isWidget ? '':'page', pageSize]">
   <div *ngFor="let child of page.children | bqIncluded" [bqElement]="child"></div>
 </div>
 
