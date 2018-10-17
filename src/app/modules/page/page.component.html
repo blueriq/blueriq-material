@@ -1,10 +1,10 @@
 <div class="header" *ngIf="blueriqSession.isRoot">
-  <bq-header [page]="page" *ngIf="!dashboardHeader"></bq-header>
+  <bq-header *ngIf="!dashboardHeader" [page]="page"></bq-header>
   <ng-container *ngIf="dashboardHeader" [bqElement]="dashboardHeader"></ng-container>
-  <ng-container *ngIf="dashboardMenu" [bqElement]="dashboardMenu"></ng-container>
+  <ng-container *ngFor="let dashboardMenu of dashboardMenus" [bqElement]="dashboardMenu"></ng-container>
 </div>
 
-<div [ngClass]="[blueriqSession.isWidget ? '':'page', pageSize]">
+<div [ngClass]="['page', pageSize, 'margin-'+toolbarsCounter]">
   <div *ngFor="let child of page.children | bqIncluded" [bqElement]="child"></div>
 </div>
 
