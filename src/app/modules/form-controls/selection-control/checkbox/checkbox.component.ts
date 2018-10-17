@@ -1,13 +1,14 @@
 import { Component, Host, Optional } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
-import { BlueriqFormBuilder } from '@blueriq/angular/forms';
+import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { Table } from '@blueriq/angular/lists';
-import { Field } from '@blueriq/core';
+import { Field, FieldMessages } from '@blueriq/core';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
 
 @Component({
   selector: 'bq-checkbox',
-  templateUrl: './checkbox.component.html'
+  templateUrl: './checkbox.component.html',
+  styleUrls: ['./checkbox.component.scss']
 })
 @BlueriqComponent({
   type: Field,
@@ -24,5 +25,9 @@ export class CheckboxComponent {
   constructor(@Host() public field: Field,
               private form: BlueriqFormBuilder,
               @Host() @Optional() public readonly table: Table) {
+  }
+
+  getMessages(): FieldMessages {
+    return getFieldMessages(this.formControl);
   }
 }
