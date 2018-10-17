@@ -19,7 +19,7 @@ export class FlowWidgetComponent {
   private expired = false;
   private flowEnded = false;
 
-  private topWidget = false;
+  topWidget = false;
 
   constructor(@Host() public widgetContainer: Container,
               @Self() public flowWidget: FlowWidget) {
