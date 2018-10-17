@@ -10,10 +10,11 @@ import { BqPresentationStyles } from '../../../modules/BqPresentationStyles';
   selector: '[bqIcon]'
 })
 export class BqIconDirective {
-  constructor(private elementRef: ElementRef) {
-  }
 
   private _class: string;
+
+  constructor(private elementRef: ElementRef) {
+  }
 
   @HostBinding('attr.class')
   get class(): string {
