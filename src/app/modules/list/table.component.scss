@@ -1,0 +1,35 @@
+@import 'globals/variables';
+
+:host ::ng-deep {
+
+  .mat-row:hover {
+    background-color: mat-color($bq-mat-grey-light, 50);
+  }
+
+  .mat-form-field-appearance-fill,
+  .mat-form-field-flex,
+  .mat-form-field-infix {
+    background-color: white;
+    border-top: 0;
+  }
+
+  .mat-form-field-wrapper {
+    padding-bottom: 0em;
+  }
+
+  .mat-form-field-underline {
+    display: none;
+    bottom: 0em;
+  }
+
+  .mat-form-field-wrapper:hover {
+    .mat-form-field-underline {
+      display: block;
+    }
+  }
+
+  // .mat-form-field-infix {
+  // width: 100%; // TODO content fit in cell...
+  // }
+
+}
