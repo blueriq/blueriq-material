@@ -1,7 +1,7 @@
 import { Component, Host, OnDestroy, Optional, Self, ViewEncapsulation } from '@angular/core';
 import { AuthorizedDownload, BlueriqComponent, BlueriqSession } from '@blueriq/angular';
 import { FileDownload } from '@blueriq/angular/files';
-import { Table } from '@blueriq/angular/lists';
+import { List } from '@blueriq/angular/lists';
 import { Container } from '@blueriq/core';
 import { Subscription } from 'rxjs/Subscription';
 import { ButtonComponent } from '../../button/button.component';
@@ -24,7 +24,7 @@ export class FileDownloadComponent extends ButtonComponent implements OnDestroy 
 
   constructor(@Self() public fileDownload: FileDownload,
               public session: BlueriqSession,
-              @Optional() @Host() public readonly table: Table,
+              @Optional() @Host() public readonly table: List,
               public fileDownloadService: FileDownloadService) {
     super(fileDownload.downloadButton, session, table);
   }

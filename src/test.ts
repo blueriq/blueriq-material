@@ -4,9 +4,13 @@
 import 'zone.js/dist/zone-testing';
 import { getTestBed } from '@angular/core/testing';
 import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
+import { TestContext } from '@blueriq/core/testing';
+import { MomentDateFormatting } from '@shared/date/date-formatting-library';
 // tslint:enable:ordered-imports
 
 declare const require: any;
+
+TestContext.DEFAULT.dateLibrary = new MomentDateFormatting();
 
 // First, initialize the Angular testing environment.
 getTestBed().initTestEnvironment(

@@ -2,6 +2,8 @@ import { Component, Host } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { List } from '@blueriq/angular/lists';
 import { Container } from '@blueriq/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   templateUrl: './table.filter-icon.component.html'
@@ -12,21 +14,20 @@ import { Container } from '@blueriq/core';
 })
 export class TableFilterIconComponent {
 
-  hovering = false;
-  private readonly columnIndex;
+  isColumnFiltered$: Observable<boolean>;
 
   constructor(@Host() private readonly list: List, @Host() private readonly container: Container) {
-    this.columnIndex = this.container.properties['index'];
+    this.isColumnFiltered$ = list.filter$.pipe(
+      map(filter => {
+        const columnIndex = container.properties['index'];
+
+        if (!filter || columnIndex === undefined) {
+          return false;
+        }
+
+        return filter.filterValues.some(value => value.selectedOption ? value.selectedOption.index === columnIndex : false);
+      })
+    );
   }
 
-  isColumnFiltered(): boolean {
-    if (this.columnIndex !== undefined && this.list.filter) {
-      for (const value of this.list.filter.filterValues) {
-        if (value.selectedOption && value.selectedOption.index === this.columnIndex) {
-          return true;
-        }
-      }
-    }
-    return false;
-  }
 }

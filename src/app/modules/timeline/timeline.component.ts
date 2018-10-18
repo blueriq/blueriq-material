@@ -21,10 +21,10 @@ export class TimelineComponent {
   }
 
   dateToHumanReadableFormat(date: Date): string {
-    return dateFromNowHumanReadable(date, this.session, false);
+    return dateFromNowHumanReadable(date, this.session.localization, false);
   }
 
   dateToShortTime(date: Date): string {
-    return dateToShortTime(date, this.session);
+    return dateToShortTime(date, this.session.localization);
   }
 }

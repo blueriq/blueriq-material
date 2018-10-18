@@ -4,8 +4,7 @@ import { Table } from '@blueriq/angular/lists';
 @Component({
   selector: 'bq-table',
   templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss'],
-  providers: [Table]
+  styleUrls: ['./table.component.scss']
 })
 export class TableComponent {
 
