@@ -7,7 +7,8 @@ import { ButtonTemplate } from '@blueriq/core/testing';
 import { ListModule } from '../list.module';
 import { TableSortComponent } from './table.sort.component';
 
-describe('TableSortComponent', () => {
+// TODO move testcase
+xdescribe('TableSortComponent', () => {
   let button: ButtonTemplate;
   let session: BlueriqTestSession;
   let component: ComponentFixture<TableSortComponent>;

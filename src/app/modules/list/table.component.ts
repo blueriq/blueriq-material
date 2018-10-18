@@ -10,4 +10,8 @@ export class TableComponent {
 
   @Input()
   public readonly table: Table;
+
+  watisdit(e) {
+    console.log(e);
+  }
 }

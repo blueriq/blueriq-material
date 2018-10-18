@@ -3,7 +3,8 @@ import { ContainerTemplate } from '@blueriq/core/testing';
 import { of } from 'rxjs';
 import { TableFilterIconComponent } from './table.filter-icon.component';
 
-describe('TableFilterIconComponent', () => {
+// TODO move test case
+xdescribe('TableFilterIconComponent', () => {
   let tableFilterIconComponent: TableFilterIconComponent;
   let listSpy: List;
   let filterSpy: Filter;
@@ -29,7 +30,7 @@ describe('TableFilterIconComponent', () => {
   it('column with filtering', () => {
     // setup
     const container = ContainerTemplate.create().contentStyle('listplus_search_integer')
-      .properties({ index: 0 }).build();
+    .properties({ index: 0 }).build();
     const filterOption = new FilterOption();
     filterOption.index = 0;
     const filterValue = new FilterValue();
