@@ -3,6 +3,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSession } from '@blueriq/angular';
 import { FilterOption, FilterValue } from '@blueriq/angular/lists';
 import { BlueriqTestingModule } from '@blueriq/angular/testing';
+import { LocalizationTemplate } from '@blueriq/core/testing';
 import { MomentTransformer } from '../../form-controls/date/moment-transformer';
 import { TableFilterValueComponent } from '../filter/table.filter-value.component';
 import { ListModule } from '../list.module';
@@ -14,14 +15,8 @@ describe('TableFilterValueComponent', () => {
 
   beforeEach(() => {
     // mocking the session
-    spyOnProperty(BlueriqSession.prototype, 'language', 'get').and.returnValue({
-      languageCode: 'nl-NL',
-      patterns: {
-        date: 'dd-mm-yyyy',
-        datetime:
-          'dd-mm-yyyy hh:mm:ss'
-      }
-    });
+    const localization = LocalizationTemplate.create().build();
+    spyOnProperty(BlueriqSession.prototype, 'localization', 'get').and.returnValue(localization);
 
     TestBed.configureTestingModule({
       providers: [MomentTransformer, BlueriqSession],
@@ -75,8 +70,8 @@ describe('TableFilterValueComponent', () => {
     const specifiedElement = fixture.nativeElement.querySelector('#specifiedElement');
     expect(specifiedElement.querySelector('owl-date-time')).toBeTruthy();
     expect(specifiedElement.querySelector('input')
-    .getAttribute('ng-reflect-value'))
-    .toBe('12-12-2012 10:11:12', 'The format should be dd-mm-yyyy hh:mm:ss (see mock)');
+      .getAttribute('ng-reflect-value'))
+      .toBe('12-12-2012 10:11:12', 'The format should be dd-mm-yyyy hh:mm:ss (see mock)');
   });
 
   it('should render a inputfield by default', () => {
@@ -126,20 +121,18 @@ describe('TableFilterValueComponent', () => {
     expect(tableFilterValueComponent.filterValue.isValid()).toBeTruthy();
   });
 
-  it('remove filter value', (done) => {
+  it('remove filter value', () => {
     // setup
-    let receivedEvent;
-    const subscription = tableFilterValueComponent.remove.subscribe((event) => {
-      receivedEvent = event;
-      done();
-    });
+    let receivedEvent = false;
+    const subscription = tableFilterValueComponent.remove.subscribe(() => receivedEvent = true);
 
     // SUT
     tableFilterValueComponent.removeFilter();
 
     // verify
-    expect(receivedEvent).toBeTruthy();
-    expect(receivedEvent).toEqual('remove me');
+    expect(receivedEvent).toBe(true);
+
+    subscription.unsubscribe();
   });
 
   function switchSpecifiedElementByType(type, value) {

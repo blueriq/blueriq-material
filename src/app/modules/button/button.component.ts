@@ -1,6 +1,6 @@
 import { Component, Host, Optional } from '@angular/core';
 import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
-import { Table } from '@blueriq/angular/lists';
+import { List } from '@blueriq/angular/lists';
 import { Button } from '@blueriq/core';
 import { BqPresentationStyles } from '../BqPresentationStyles';
 
@@ -16,15 +16,29 @@ export class ButtonComponent {
 
   constructor(@Host() public button: Button,
               public session: BlueriqSession,
-              @Optional() @Host() public readonly table: Table) {
+              @Optional() @Host() public readonly table: List) {
   }
 
-  shouldRaiseButton(): boolean {
+  isRaisedButton(): boolean {
     return !(this.table || this.button.styles.has(BqPresentationStyles.FLAT_BUTTON));
+  }
+
+  /**
+   * A button is an icon button (round button with only icon) if it has no caption and a icon presentation style.
+   * If the button has an icon presentation style but also a caption, a normal button is rendered since icon buttons
+   * are too small to present captions.
+   */
+  isIconButton(): boolean {
+    return !this.hasCaption() && this.hasIconStyle();
   }
 
   hasCaption(): boolean {
     return !!this.button.caption;
+  }
+
+  hasIconStyle(): boolean {
+    return this.button.styles.has(style => style.startsWith(BqPresentationStyles.ICON_FA_PREFIX)
+      || style.startsWith(BqPresentationStyles.ICON_MAT_PREFIX));
   }
 
   getColor(): string | null {
