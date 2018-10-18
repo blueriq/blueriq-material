@@ -29,7 +29,7 @@ export class DateTimepickerComponent {
   constructor(@Host() public field: Field,
               private form: BlueriqFormBuilder,
               session: BlueriqSession) {
-    this.firstDayOfWeek = computeFirstDayOfWeek(session);
+    this.firstDayOfWeek = computeFirstDayOfWeek(session.localization);
   }
 
   /**

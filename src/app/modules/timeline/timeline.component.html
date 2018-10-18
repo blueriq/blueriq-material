@@ -3,11 +3,11 @@
   {{ timeline.displayName }}
 </h2>
 <div class="timeline">
-  <div *ngFor="let entry of timeline.entries$ | async; let i = index" fxLayout="row">
+  <div *ngFor="let entry of timeline.entries$ | async; let first = first" fxLayout="row">
 
     <!-- left side of the timeline -->
     <div fxFlex="20" class="line">
-      <div *ngIf="i == 0" class="dotted-border"></div>
+      <div *ngIf="first" class="dotted-border"></div>
       <div class="content">
         <p class="date">{{ dateToHumanReadableFormat(entry.datetime) }}</p>
       </div>

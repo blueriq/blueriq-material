@@ -4,8 +4,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { BlueriqModule } from '@blueriq/angular';
 import { V1BackendModule } from '@blueriq/angular/backend/v1';
 import { BlueriqStoreModule } from '@blueriq/angular/store';
+import { DateFormats } from '@blueriq/core';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { provideDateFormats } from '@shared/date/bq-date-parser';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { AssetModule } from './modules/asset/asset.module';
@@ -83,6 +85,9 @@ const routes: Routes = [
     LoadingModule,
     StaticPagesModule,
     ErrorModule
+  ],
+  providers: [
+    { provide: DateFormats, useFactory: provideDateFormats }
   ],
   bootstrap: [AppComponent]
 })
