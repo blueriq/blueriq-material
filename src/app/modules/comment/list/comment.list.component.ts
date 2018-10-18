@@ -19,6 +19,6 @@ export class CommentListComponent {
   }
 
   dateToHumanReadableFormat(date: Date): string {
-    return dateFromNowHumanReadable(date, this.session);
+    return dateFromNowHumanReadable(date, this.session.localization);
   }
 }
