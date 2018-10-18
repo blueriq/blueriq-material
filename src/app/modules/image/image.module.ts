@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BlueriqComponents } from '@blueriq/angular';
+import { SharedModule } from '@shared/shared.module';
 import { ImageComponent } from './image.component';
 
 const BLUERIQ_COMPONENTS = [
@@ -7,6 +8,9 @@ const BLUERIQ_COMPONENTS = [
 ];
 
 @NgModule({
+  imports: [
+    SharedModule
+  ],
   declarations: [
     BLUERIQ_COMPONENTS
   ],

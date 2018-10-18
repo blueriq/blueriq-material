@@ -1,13 +1,13 @@
 import { Component, Host } from '@angular/core';
 import { BlueriqComponent, ImageInfo } from '@blueriq/angular';
-import { ImageUrl } from '@blueriq/angular/files';
+import { ImageResource } from '@blueriq/angular/files';
 import { Image } from '@blueriq/core';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'bq-image',
   templateUrl: './image.component.html',
-  providers: [ImageUrl]
+  providers: [ImageResource]
 })
 @BlueriqComponent({
   type: Image
@@ -18,9 +18,9 @@ export class ImageComponent {
   private imageInfoSubscription: Subscription;
 
   constructor(@Host() public image: Image,
-              private imageUrl: ImageUrl) {
+              private imageResource: ImageResource) {
 
-    this.imageInfoSubscription = this.imageUrl.getImageInfo().subscribe((info: ImageInfo) => {
+    this.imageInfoSubscription = this.imageResource.getImageInfo().subscribe((info: ImageInfo) => {
       this.imageInfo = info;
     });
   }
