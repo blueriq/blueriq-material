@@ -1,7 +1,7 @@
 import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 import { BlueriqSession } from '@blueriq/angular';
 import { FilterOption, FilterValue } from '@blueriq/angular/lists';
-import { computeFirstDayOfWeek, momentToBackendFormat } from '@shared/date/bq-date-parser';
+import { computeFirstDayOfWeek } from '@shared/date/bq-date-parser';
 import * as moment from 'moment';
 import { dateTimeFormatProvider } from '../../form-controls/date/datetimepicker/datetimepicker.owl';
 
@@ -22,12 +22,12 @@ export class TableFilterValueComponent {
   filterOptions: FilterOption[];
 
   @Output()
-  remove = new EventEmitter<any>();
+  remove = new EventEmitter<void>();
 
   firstDayOfWeek: number;
 
-  constructor(session: BlueriqSession) {
-    this.firstDayOfWeek = computeFirstDayOfWeek(session);
+  constructor(private readonly session: BlueriqSession) {
+    this.firstDayOfWeek = computeFirstDayOfWeek(session.localization);
   }
 
   onColumn(selectedOption: FilterOption): void {
@@ -46,11 +46,17 @@ export class TableFilterValueComponent {
   }
 
   onValue(value: string): void {
-    if (this.filterValue.selectedOption!.type === 'date' || this.filterValue.selectedOption!.type === 'datetime') {
-      if (moment.isMoment(value)) {
-        value = momentToBackendFormat(value);
+    if (moment.isMoment(value)) {
+      switch (this.filterValue.selectedOption!.type) {
+        case 'date':
+          value = this.session.localization.dateFormats.date.format(value.toDate());
+          break;
+        case 'datetime':
+          value = this.session.localization.dateFormats.dateTime.format(value.toDate());
+          break;
       }
     }
+
     this.filterValue.value = value;
     this.filterValue.showAll = false;
   }
@@ -60,7 +66,7 @@ export class TableFilterValueComponent {
   }
 
   removeFilter(): void {
-    this.remove.emit('remove me');
+    this.remove.emit();
   }
 
 }

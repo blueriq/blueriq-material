@@ -54,8 +54,11 @@ export class ChiplistComponent implements OnInit, OnUpdate {
   }
 
   findDomainValueByValue(value): { displayValue: string, value: string } {
-    const val = this.field.domain.options.find(d => d.value === value);
-    return val ? val : { displayValue: value, value: value };
+    const domainValue = this.field.domain.options.find(d => d.value === value);
+    return {
+      value: domainValue ? domainValue.value : value,
+      displayValue: domainValue ? domainValue.displayValue : value
+    };
   }
 
   /**

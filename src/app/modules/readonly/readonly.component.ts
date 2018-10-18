@@ -1,6 +1,6 @@
 import { Component, Host, Optional } from '@angular/core';
 import { BlueriqComponent, bySelector } from '@blueriq/angular';
-import { Table } from '@blueriq/angular/lists';
+import { List } from '@blueriq/angular/lists';
 import { Field } from '@blueriq/core';
 
 @Component({
@@ -15,7 +15,7 @@ import { Field } from '@blueriq/core';
 export class ReadonlyComponent {
 
   constructor(@Host() public readonly field: Field,
-              @Optional() @Host() public readonly table: Table) {
+              @Optional() @Host() public readonly table: List) {
   }
 
   getValue(): string {

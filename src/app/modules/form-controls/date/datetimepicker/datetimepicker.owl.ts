@@ -1,5 +1,5 @@
 import { BlueriqSession } from '@blueriq/angular';
-import { parseBqDateTimePattern, parseBqLocale } from '@shared/date/bq-date-parser';
+import { parseBqLocale } from '@shared/date/bq-date-parser';
 import {
   DateTimeAdapter,
   OWL_DATE_TIME_FORMATS,
@@ -11,18 +11,18 @@ import { MomentDateTimeAdapter } from 'ng-pick-datetime-moment';
 import { OwlDateTimeIntlFactory } from '../../../../configuration/date/owl-datetime-intl-factory';
 
 export function localeFactory(session: BlueriqSession): string {
-  return parseBqLocale(session);
+  return parseBqLocale(session.localization);
 }
 
 export function dateTimeFormatFactory(session: BlueriqSession): OwlDateTimeFormats {
-  const bqDateTimePattern = parseBqDateTimePattern(session);
+  const dateFormats = session.localization.dateFormats;
   return {
-    parseInput: bqDateTimePattern.dateTimePattern,
-    fullPickerInput: bqDateTimePattern.dateTimePattern,
-    datePickerInput: bqDateTimePattern.datePattern,
-    timePickerInput: bqDateTimePattern.timePattern,
+    parseInput: dateFormats.dateTime.inputFormat,
+    fullPickerInput: dateFormats.dateTime.inputFormat,
+    datePickerInput: dateFormats.date.inputFormat,
+    timePickerInput: dateFormats.time.inputFormat,
     monthYearLabel: 'MMMM YYYY',
-    dateA11yLabel: bqDateTimePattern.dateTimePattern,
+    dateA11yLabel: dateFormats.dateTime.inputFormat,
     monthYearA11yLabel: 'MMMM YYYY'
   };
 }

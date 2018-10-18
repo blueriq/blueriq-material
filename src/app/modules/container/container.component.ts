@@ -1,7 +1,7 @@
 import { animateChild, query, transition, trigger } from '@angular/animations';
 import { Component, Host, OnInit, Optional } from '@angular/core';
 import { BlueriqComponent, BlueriqSession, OnUpdate } from '@blueriq/angular';
-import { Table } from '@blueriq/angular/lists';
+import { List } from '@blueriq/angular/lists';
 import { Container, Page } from '@blueriq/core';
 import { BqContentStyles } from '../BqContentStyles';
 import { BqPresentationStyles } from '../BqPresentationStyles';
@@ -35,7 +35,7 @@ export class ContainerComponent implements OnInit, OnUpdate {
   public alignRight = false;
 
   constructor(@Host() public container: Container,
-              @Optional() @Host() public readonly table: Table,
+              @Optional() @Host() public readonly table: List,
               private blueriqSession: BlueriqSession
   ) {
   }
