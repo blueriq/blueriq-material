@@ -16,26 +16,38 @@ export class BqIconDirective {
   constructor(private elementRef: ElementRef) {
   }
 
+  @HostBinding('attr.class')
+  get class(): string {
+    return this._class;
+  }
+
   @Input()
   set bqIcon(presentationStyles: PresentationStyles) {
-    const fontAwesomeIcons = presentationStyles.get(style => style.startsWith(BqPresentationStyles.ICON_FA_PREFIX));
-    const materialIcons = presentationStyles.get(style => style.startsWith(BqPresentationStyles.ICON_MAT_PREFIX));
-    if (fontAwesomeIcons) {
-      let iconName = fontAwesomeIcons.replace(new RegExp('^' + BqPresentationStyles.ICON_FA_PREFIX), '');
+    const firstFontAwesomeIcon = BqIconDirective.getFirstFontAwesomeIcon(presentationStyles);
+    const firstMaterialIcon = BqIconDirective.getFirstMaterialIcon(presentationStyles);
+    if (firstFontAwesomeIcon) {
+      let iconName = firstFontAwesomeIcon.replace(new RegExp('^' + BqPresentationStyles.ICON_FA_PREFIX), '');
       iconName = iconName.replace(new RegExp('_', 'g'), '-');
       iconName = this.getMappedFaIcon(iconName);
       this._class = 'fa fa-' + iconName;
-    } else if (materialIcons) {
-      let iconName = materialIcons.replace(new RegExp('^' + BqPresentationStyles.ICON_MAT_PREFIX), '');
+    } else if (firstMaterialIcon) {
+      let iconName = firstMaterialIcon.replace(new RegExp('^' + BqPresentationStyles.ICON_MAT_PREFIX), '');
       iconName = iconName.toLowerCase();
       this._class = 'mat-icon material-icons ' + iconName;
       this.elementRef.nativeElement.innerHTML = iconName;
     }
   }
 
-  @HostBinding('attr.class')
-  get class(): string {
-    return this._class;
+  static hasIcon(presentationStyles: PresentationStyles): boolean {
+    return BqIconDirective.getFirstFontAwesomeIcon(presentationStyles) || BqIconDirective.getFirstMaterialIcon(presentationStyles) ? true : false;
+  }
+
+  static getFirstFontAwesomeIcon(presentationStyles: PresentationStyles): string | undefined {
+    return presentationStyles.get(style => style.startsWith(BqPresentationStyles.ICON_FA_PREFIX));
+  }
+
+  static getFirstMaterialIcon(presentationStyles: PresentationStyles): string | undefined {
+    return presentationStyles.get(style => style.startsWith(BqPresentationStyles.ICON_MAT_PREFIX));
   }
 
   /**
