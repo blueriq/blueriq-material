@@ -5,6 +5,7 @@ import { List } from '@blueriq/angular/lists';
 import { Container, Page } from '@blueriq/core';
 import { BqContentStyles } from '../BqContentStyles';
 import { BqPresentationStyles } from '../BqPresentationStyles';
+import { ContainerComponentMatcher } from './container-component-matcher';
 
 @Component({
   selector: 'bq-container',
@@ -19,8 +20,10 @@ import { BqPresentationStyles } from '../BqPresentationStyles';
   ]
 })
 @BlueriqComponent({
-  type: Container
+  type: Container,
+  selector: new ContainerComponentMatcher()
 })
+
 export class ContainerComponent implements OnInit, OnUpdate {
 
   public dashboardwidget = false;
@@ -35,6 +38,10 @@ export class ContainerComponent implements OnInit, OnUpdate {
               @Optional() @Host() public readonly table: List,
               private blueriqSession: BlueriqSession
   ) {
+  }
+
+  get isWidget(): boolean {
+    return this.blueriqSession.isWidget;
   }
 
   ngOnInit() {
@@ -60,10 +67,6 @@ export class ContainerComponent implements OnInit, OnUpdate {
     this.horizontal = this.container.styles.has(BqPresentationStyles.HORIZONTAL) || isDashboardrow;
     this.alignRight = this.container.styles.hasAny(BqPresentationStyles.ALIGNRIGHT,
       BqPresentationStyles.DEPRECATED_ALIGNRIGHT);
-  }
-
-  get isWidget(): boolean {
-    return this.blueriqSession.isWidget;
   }
 
 }
