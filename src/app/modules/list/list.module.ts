@@ -31,7 +31,7 @@ const LIST_COMPONENTS = [
   TableComponent,
   TableFilterComponent,
   TableSearchComponent,
-  TableSortComponent,
+  TableHeaderColumnComponent,
   TablePaginationComponent,
   ListComponent,
   TableFilterValueComponent
@@ -42,7 +42,7 @@ const LIST_COMPONENTS = [
     LIST_COMPONENTS
   ],
   providers: [
-    BlueriqComponents.register([ListComponent, TableSortComponent, TableFilterIconComponent])
+    BlueriqComponents.register([ListComponent])
   ],
   imports: [
     BrowserAnimationsModule,
