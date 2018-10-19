@@ -1,7 +1,7 @@
 import { Component, Host, OnInit, Optional } from '@angular/core';
 import { BlueriqComponent, OnUpdate } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
-import { Table } from '@blueriq/angular/lists';
+import { List } from '@blueriq/angular/lists';
 import { Field, FieldMessages } from '@blueriq/core';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
 
@@ -27,7 +27,7 @@ export class RadioButtonComponent implements OnInit, OnUpdate {
 
   constructor(@Host() public field: Field,
               private form: BlueriqFormBuilder,
-              @Host() @Optional() public readonly table: Table) {
+              @Host() @Optional() public readonly list: List) {
   }
 
   ngOnInit() {

@@ -1,7 +1,7 @@
 import { Component, Host, Optional } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { BlueriqFormBuilder } from '@blueriq/angular/forms';
-import { Table } from '@blueriq/angular/lists';
+import { List } from '@blueriq/angular/lists';
 import { Field } from '@blueriq/core';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
 
@@ -24,6 +24,6 @@ export class SlideToggleComponent {
 
   constructor(@Host() public field: Field,
               private form: BlueriqFormBuilder,
-              @Host() @Optional() public readonly table: Table) {
+              @Host() @Optional() public readonly list: List) {
   }
 }

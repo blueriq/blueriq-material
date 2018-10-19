@@ -9,7 +9,7 @@
   }">
   <img *ngIf="introduction" src="./theme/blueriq/images/blueriq-technology.svg">
   
-  <ng-container *ngIf="container.displayName && !table">
+  <ng-container *ngIf="container.displayName && !list">
     <h2 *ngIf="!isWidget">
       <mat-icon [bqIcon]="container.styles"></mat-icon>
       {{ container.displayName }}

@@ -1,4 +1,4 @@
-<bq-selection-control [control]="formControl" [inTable]="!!table">
+<bq-selection-control [control]="formControl" [inTable]="!!list">
   <mat-radio-group [required]="field.required" [formControl]="formControl">
     <div [fxLayout]="direction === 'vertical' ? 'column' : 'row wrap'">
       <mat-radio-button *ngFor="let option of field.domain.options" [value]="option.value" color="primary">

@@ -35,7 +35,7 @@ export class ContainerComponent implements OnInit, OnUpdate {
   public alignRight = false;
 
   constructor(@Host() public container: Container,
-              @Optional() @Host() public readonly table: List,
+              @Optional() @Host() public readonly list: List,
               private blueriqSession: BlueriqSession
   ) {
   }
