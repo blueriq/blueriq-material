@@ -1,0 +1,16 @@
+<div class="header" fxLayout="row" fxLayoutAlign="start center" (mouseenter)="column.hover = true" (mouseleave)="column.hover = false">
+  
+  <!-- Header name -->
+  <ng-container [bqElement]="column.header"></ng-container>
+  
+  <!-- Sorting -->
+  <button *ngIf="!!column.hover || isSorting(column.sort)" mat-icon-button [bqButton]="column.sort">
+    <mat-icon aria-label="sort button">{{getIconByDirection(column.sort)}}</mat-icon>
+  </button>
+  
+  <!-- Filtering -->
+  <button mat-icon-button fxLayoutAlign="center center" [disabled]="true">
+    <mat-icon *ngIf="isColumnFiltered$ | async">filter_list</mat-icon>
+  </button>
+
+</div>

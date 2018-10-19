@@ -1,63 +1,37 @@
-import { Component, Host, Input, OnInit } from '@angular/core';
+import { Component, Host, Input } from '@angular/core';
 import { List, TableColumn } from '@blueriq/angular/lists';
-import { Container } from '@blueriq/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'bq-header-column',
-  template: `
-
-    <div class="header" fxLayout="row" fxLayoutAlign="start center" (mouseenter)="column.hover = true" (mouseleave)="column.hover = false">
-      <ng-container [bqElement]="column.header"></ng-container>
-
-      <!-- Explain text -->
-      <button mat-icon-button [matTooltip]="getTooltip()">
-        <mat-icon aria-label="Show explain text">info</mat-icon>
-      </button>
-
-      <!-- Sorting -->
-      <button *ngIf="!!column.hover || isSorting(column.sort)" mat-icon-button [bqButton]="column.sort">
-        <mat-icon aria-label="sort button">{{getIconByDirection(column.sort)}}</mat-icon>
-      </button>
-
-      <!-- Filtering -->
-      <button mat-icon-button fxLayoutAlign="center center" [disabled]="true">
-        <mat-icon *ngIf="isColumnFiltered$ | async">filter_list</mat-icon>
-      </button>
-
-    </div>
-
-  `,
+  templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   providers: [List]
 })
-export class TableHeaderColumnComponent implements OnInit {
+export class TableHeaderColumnComponent {
 
   @Input()
   public column: TableColumn;
 
   isColumnFiltered$: Observable<boolean>;
 
-  constructor(@Host() private readonly list: List, private readonly container: Container) {
+  constructor(@Host() private readonly list: List) {
     this.isColumnFiltered$ = list.filter$.pipe(
       map(filter => {
+
+        console.log('111', this.column);
+        // TODO - must check on index since name of header can differ (check if statement is true)
         const columnName = this.column.header ? this.column.header.name : undefined;
+        console.log('222', columnName);
         if (!filter || columnName === undefined) {
+          console.log('false re');
           return false;
         }
+        console.log('true re');
         return filter.filterValues.some(value => value.selectedOption ? value.selectedOption.title === columnName : false);
       })
     );
-  }
-
-  ngOnInit(): void {
-    // TODO delete me
-    // TODO header click == sort
-  }
-
-  getTooltip(): string {
-    return 'nog niks';
   }
 
   isSorting() {
