@@ -1,7 +1,7 @@
 <div bqKey [class.selection-control]="!list">
   <div>
     <mat-checkbox [required]="field.required" [formControl]="formControl" color="primary">
-      {{ table ? '' : field.questionText}}
+      {{ list ? '' : field.questionText}}
     </mat-checkbox>
   </div>
   <ng-container *ngIf="!list">

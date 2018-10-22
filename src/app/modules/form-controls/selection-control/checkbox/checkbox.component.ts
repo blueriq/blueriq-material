@@ -8,7 +8,7 @@ import { BqPresentationStyles } from '../../../BqPresentationStyles';
 @Component({
   selector: 'bq-checkbox',
   templateUrl: './checkbox.component.html',
-  styleUrls: ['./checkbox.component.scss']
+  styleUrls: ['../selection-control.component.scss']
 })
 @BlueriqComponent({
   type: Field,

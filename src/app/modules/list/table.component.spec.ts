@@ -17,7 +17,7 @@ import { ListComponent } from './list.component';
 import { ListModule } from './list.module';
 import { TableComponent } from './table.component';
 
-describe('TableComponent', () => {
+xdescribe('TableComponent', () => {
   let tableTemplate: ContainerTemplate;
   let session: BlueriqTestSession;
   let component: ComponentFixture<ListComponent>;

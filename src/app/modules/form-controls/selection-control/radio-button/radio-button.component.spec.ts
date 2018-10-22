@@ -32,6 +32,7 @@ describe('RadioButtonComponent', () => {
     field.styles(BqPresentationStyles.RADIO).readonly(false).value('');
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(RadioButtonComponent);
+    component.autoDetectChanges();
   });
 
   it('should be checked', () => {

@@ -38,7 +38,6 @@ import { SelectComponent } from './select/select.component';
 import { TableSelectComponent } from './select/table-select.component';
 import { CheckboxComponent } from './selection-control/checkbox/checkbox.component';
 import { RadioButtonComponent } from './selection-control/radio-button/radio-button.component';
-import { SelectionControlComponent } from './selection-control/selection-control.component';
 import { SlideToggleComponent } from './selection-control/slide-toggle/slide-toggle.component';
 import { TextAreaComponent } from './text-area/text-area.component';
 
@@ -67,12 +66,10 @@ const FORM_CONTROL_COMPONENTS = [
 
 @NgModule({
   declarations: [
-    FORM_CONTROL_COMPONENTS,
-    SelectionControlComponent
+    FORM_CONTROL_COMPONENTS
   ],
   providers: [
     BlueriqComponents.register(FORM_CONTROL_COMPONENTS),
-    SelectionControlComponent,
     DomainValueTransformer,
     MomentTransformer,
     { provide: ErrorStateMatcher, useClass: BqErrorStateMatcher }
@@ -102,7 +99,7 @@ const FORM_CONTROL_COMPONENTS = [
     MatRadioModule,
     MatSlideToggleModule
   ],
-  exports: [FORM_CONTROL_COMPONENTS, SelectionControlComponent]
+  exports: [FORM_CONTROL_COMPONENTS]
 })
 
 export class FormControlModule {

@@ -1,9 +1,18 @@
-<bq-selection-control [control]="formControl" [inTable]="!!list">
-  <mat-radio-group [required]="field.required" [formControl]="formControl">
-    <div [fxLayout]="direction === 'vertical' ? 'column' : 'row wrap'">
-      <mat-radio-button *ngFor="let option of field.domain.options" [value]="option.value" color="primary">
-        {{option.displayValue}}
-      </mat-radio-button>
+<div bqKey class="selection-control">
+  <p *ngIf="field.questionText">{{field.questionText}}</p>
+  <div>
+    <mat-radio-group [required]="field.required" [formControl]="formControl">
+      <div [fxLayout]="direction === 'vertical' ? 'column' : 'row wrap'">
+        <mat-radio-button *ngFor="let option of field.domain.options" [value]="option.value" color="primary">
+          {{option.displayValue}}
+        </mat-radio-button>
+      </div>
+    </mat-radio-group>
+  </div>
+  <ng-container *ngIf="!list">
+    <mat-hint *ngIf="!getMessages().hasMessages">{{field.explainText}}</mat-hint>
+    <div *ngIf="getMessages().hasMessages">
+      <mat-error *ngFor="let msg of getMessages()">{{ msg.text }}</mat-error>
     </div>
-  </mat-radio-group>
-</bq-selection-control>
+  </ng-container>
+</div>
