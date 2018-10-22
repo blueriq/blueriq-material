@@ -11,6 +11,7 @@
   .mat-form-field-appearance-fill,
   .mat-form-field-flex,
   .mat-form-field-infix {
+    align-items: center;
     border-top: 0;
     background-color: mat-color($bq-mat-grey-light, A100);
   }
