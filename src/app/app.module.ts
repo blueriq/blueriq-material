@@ -18,6 +18,7 @@ import { ErrorModule } from './modules/error/error.module';
 import { FileModule } from './modules/file/file.modules';
 import { FormControlModule } from './modules/form-controls/form-control.module';
 import { HeaderModule } from './modules/header/header.module';
+import { ImageModule } from './modules/image/image.module';
 import { ListModule } from './modules/list/list.module';
 import { LoadingModule } from './modules/loading/loading.module';
 import { MenuModule } from './modules/menu/menu.module';
@@ -71,6 +72,7 @@ const routes: Routes = [
     FileModule,
     FormControlModule,
     HeaderModule,
+    ImageModule,
     ListModule,
     MenuModule,
     PageModule,
