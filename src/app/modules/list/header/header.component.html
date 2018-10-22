@@ -4,8 +4,8 @@
   <ng-container [bqElement]="column.header"></ng-container>
   
   <!-- Sorting -->
-  <button *ngIf="hovering || isSorting(column.sort)" mat-icon-button [bqButton]="column.sort">
-    <mat-icon aria-label="sort button">{{getIconByDirection(column.sort)}}</mat-icon>
+  <button *ngIf="hovering || isSorting()" mat-icon-button [bqButton]="column.sort">
+    <mat-icon aria-label="sort button">{{getIconByDirection()}}</mat-icon>
   </button>
   
   <!-- Filtering -->
