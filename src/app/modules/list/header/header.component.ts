@@ -19,16 +19,10 @@ export class TableHeaderColumnComponent {
   constructor(@Host() private readonly list: List) {
     this.isColumnFiltered$ = list.filter$.pipe(
       map(filter => {
-
-        console.log('111', this.column);
-        // TODO - must check on index since name of header can differ (check if statement is true)
         const columnName = this.column.header ? this.column.header.name : undefined;
-        console.log('222', columnName);
         if (!filter || columnName === undefined) {
-          console.log('false re');
           return false;
         }
-        console.log('true re');
         return filter.filterValues.some(value => value.selectedOption ? value.selectedOption.title === columnName : false);
       })
     );

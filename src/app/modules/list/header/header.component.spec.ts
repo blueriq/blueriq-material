@@ -2,56 +2,64 @@ import { Filter, FilterOption, FilterValue, List, TableColumn } from '@blueriq/a
 import { of } from 'rxjs';
 import { TableHeaderColumnComponent } from './header.component';
 
-fdescribe('TableHeaderColumnComponent', () => {
+describe('TableHeaderColumnComponent', () => {
+
   let headerComponent: TableHeaderColumnComponent;
-  let listSpy: List;
-  let filterSpy: Filter;
-  let columnSpy: TableColumn;
 
-  beforeEach(() => {
-    filterSpy = jasmine.createSpyObj<Filter>(['addFilter']);
-    filterSpy.filterValues = [];
-    listSpy = { filter$: of(filterSpy) } as any;
-    // todo columnSpy set header text
+  fdescribe('filtering', () => {
+
+    let listSpy: List;
+    let filterSpy: Filter;
+    let columnSpy;
+
+    beforeEach(() => {
+      filterSpy = jasmine.createSpyObj<Filter>(['addFilter']);
+      filterSpy.filterValues = [];
+      listSpy = { filter$: of(filterSpy) } as any;
+      const filterOption = new FilterOption();
+      filterOption.title = 'age';
+      const filterValue = new FilterValue();
+      filterValue.selectedOption = filterOption;
+      filterSpy.filterValues.push(filterValue);
+      headerComponent = new TableHeaderColumnComponent(listSpy);
+      columnSpy = jasmine.createSpyObj<TableColumn>('TableColumn', ['cellFor']);
+      headerComponent.column = columnSpy;
+    });
+
+    it('column without filtering', (done) => {
+      let isColumnFiltered!: boolean;
+      headerComponent.isColumnFiltered$.subscribe(isFiltered => {
+        isColumnFiltered = isFiltered;
+        done();
+      }).unsubscribe();
+
+      // verify
+      expect(isColumnFiltered).toBe(false);
+    });
+
+    it('column with filtering', (done) => {
+      // Setup
+      // Set column age so the (which is also filtered on) so filtering results in true
+      const column: TableColumn | any = {
+        header: {
+          name: 'age'
+        }
+      };
+      headerComponent.column = column;
+      let isColumnFiltered!: boolean;
+      headerComponent.isColumnFiltered$.subscribe(isFiltered => {
+        isColumnFiltered = isFiltered;
+        done();
+      }).unsubscribe();
+
+      // verify
+      expect(isColumnFiltered).toBe(true);
+    });
+
   });
 
-  fit('column without filtering', (done) => {
-    // setup
-    headerComponent = new TableHeaderColumnComponent(listSpy);
-    headerComponent.column = columnSpy;
+  fdescribe('sorting', () => {
 
-    // todo fixture detectChanges
-
-    let isColumnFiltered!: boolean;
-    headerComponent.isColumnFiltered$.subscribe(isFiltered => {
-      isColumnFiltered = isFiltered;
-      console.log(isFiltered);
-      done();
-    }).unsubscribe();
-
-    // verify
-    // expect(isColumnFiltered).toBe(false);
-  });
-
-  it('column with filtering', () => {
-    // setup
-    const filterOption = new FilterOption();
-    filterOption.index = 0;
-    const filterValue = new FilterValue();
-    filterValue.selectedOption = filterOption;
-    filterSpy.filterValues.push(filterValue);
-    headerComponent = new TableHeaderColumnComponent(listSpy);
-
-    let isColumnFiltered!: boolean;
-    headerComponent.isColumnFiltered$.subscribe(isFiltered => isColumnFiltered = isFiltered).unsubscribe();
-
-    // verify
-    expect(isColumnFiltered).toBe(true);
-  });
-});
-
-// enable these testcases
-// xdescribe('TableSortComponent', () => {
 //   let button: ButtonTemplate;
 //   let session: BlueriqTestSession;
 //   let component: ComponentFixture<TableSortComponent>;
@@ -64,9 +72,8 @@ fdescribe('TableHeaderColumnComponent', () => {
 //         ListModule
 //       ]
 //     });
-//   });
-//
-//   beforeEach(() => {
+
+    //   beforeEach(() => {
 //     button = ButtonTemplate.create().styles('sort');
 //     session = BlueriqSessionTemplate.create().build(button);
 //     component = session.get(TableSortComponent);
@@ -115,14 +122,17 @@ fdescribe('TableHeaderColumnComponent', () => {
 //     expect(isHovering).toBeFalsy();
 //     expect(currentIcon).toBe('');
 //   });
-//
-//   function fireEvent(element, event) {
-//     if (element.fireEvent) {
-//       element.fireEvent('on' + event);
-//     } else {
-//       const evObj = document.createEvent('Events');
-//       evObj.initEvent(event, true, false);
-//       element.dispatchEvent(evObj);
-//     }
-//   }
-// });
+
+    function fireEvent(element, event) {
+      if (element.fireEvent) {
+        element.fireEvent('on' + event);
+      } else {
+        const evObj = document.createEvent('Events');
+        evObj.initEvent(event, true, false);
+        element.dispatchEvent(evObj);
+      }
+    }
+  });
+
+});
+
