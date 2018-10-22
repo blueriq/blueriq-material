@@ -74,7 +74,7 @@ describe('TableHeaderColumnComponent', () => {
     });
 
     it('should display the right material icon if no direction', () => {
-      let currentIcon = headerComponent.getIconByDirection();
+      const currentIcon = headerComponent.getIconByDirection();
       expect(currentIcon).toBe('');
       expect(headerComponent.isSorting()).toBeFalsy();
     });
@@ -84,7 +84,7 @@ describe('TableHeaderColumnComponent', () => {
         sort: ButtonTemplate.create('sort').styles('descending').build()
       };
       headerComponent.column = column;
-      let currentIcon = headerComponent.getIconByDirection();
+      const currentIcon = headerComponent.getIconByDirection();
       expect(currentIcon).toBe('arrow_upward');
       expect(headerComponent.isSorting()).toBeTruthy();
     });
@@ -94,7 +94,7 @@ describe('TableHeaderColumnComponent', () => {
         sort: ButtonTemplate.create('sort').styles('ascending').build()
       };
       headerComponent.column = column;
-      let currentIcon = headerComponent.getIconByDirection();
+      const currentIcon = headerComponent.getIconByDirection();
       expect(currentIcon).toBe('arrow_downward');
       expect(headerComponent.isSorting()).toBeTruthy();
     });
