@@ -2,7 +2,6 @@
 @import 'globals/variables';
 
 .mat-toolbar {
-  position: fixed;
   top: 0;
 
   min-height: $bq-toolbar-height;
@@ -18,8 +17,6 @@
   );
 
   color: $light-primary-text;
-
-  z-index: $z-index-drawer + 10;
 
   // sass-lint:disable-all
   h1 {

@@ -5,12 +5,27 @@ $bq-footer-height: 200px;
 
 .header {
   @include mat-elevation(1);
+  position: fixed;
+  width: 100%;
+  z-index: $z-index-drawer + 10;
 }
 
 .page {
   margin-bottom: $bq-margin-double;
-  padding-top: $bq-toolbar-height;
 }
+
+/* There could be more toolbars on the page
+*  this takes care for at least 5 toolbars
+*/
+@mixin margins {
+  @for $i from 1 through 5 {
+    .margin-#{$i} {
+      padding-top: $bq-toolbar-height * $i;
+    }
+  }
+}
+
+@include margins;
 
 footer {
   max-width: 1080px;

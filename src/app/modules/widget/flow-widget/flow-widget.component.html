@@ -1,14 +1,19 @@
-<div bqKey bqClasses class="elevate bq-widget flow-widget">
-
+<div bqKey bqClasses [ngClass]="{
+    'elevate': true,
+    'bq-widget': true,
+    'flow-widget': true,
+    'top-widget': topWidget
+  }">
+  
   <h2 *ngIf="widgetContainer.displayName">{{widgetContainer.displayName}}</h2>
-
+  
   <bq-session
     *ngIf="!shouldDisplayError()"
     [sessionName]="flowWidget.sessionName"
     (flowEnded)="handleFlowEnded()"
     (expired)="handleSessionExpired()"
     (error)="handleError($event)"></bq-session>
-
+  
   <div *ngIf="shouldDisplayError()">
     <mat-error fxLayout="row" fxLayoutAlign="center">
       <mat-icon>error</mat-icon>

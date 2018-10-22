@@ -3,8 +3,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
-import { PageTemplate } from '@blueriq/core/testing';
+import { ContainerTemplate, PageTemplate } from '@blueriq/core/testing';
 import { BqContentStyles } from '../BqContentStyles';
+import { MenuModule } from '../menu/menu.module';
 import { PageComponent } from './page.component';
 import { PageModule } from './page.module';
 
@@ -20,16 +21,31 @@ describe('PageComponent', () => {
         NoopAnimationsModule,
         BlueriqTestingModule,
         RouterModule.forRoot([]),
-        PageModule
+        PageModule,
+        MenuModule
       ]
     });
   }));
 
   beforeEach(() => {
-    pageTemplate = PageTemplate.create();
+    pageTemplate = PageTemplate.create().children(
+      // Add 2 menubars
+      ContainerTemplate.create().contentStyle(BqContentStyles.DASHBOARD_MENU).children(ContainerTemplate.create().contentStyle('menubar')),
+      ContainerTemplate.create().contentStyle(BqContentStyles.DASHBOARD_MENU).children(ContainerTemplate.create().contentStyle('menubar'))
+    );
     session = BlueriqSessionTemplate.create().build(pageTemplate);
     pageComponent = session.get(PageComponent);
     pageComponent.autoDetectChanges();
+  });
+
+  it('should render the header correctly and use the correct margins based on how many headers', () => {
+    const header = pageComponent.nativeElement.querySelector('.header');
+    const page = pageComponent.nativeElement.querySelector('.page');
+
+    expect(header.querySelector('bq-header')).toBeTruthy('No header is set, so the default header should be rendered');
+    expect(header.querySelectorAll('bq-menu').length).toBe(2);
+    expect(page.classList).toContain('margin-3', 'Having a bq-header and bq-menus adds up to having 3 components, ' +
+      'so this margin selector is expected');
   });
 
   it('should be rendered by default', () => {

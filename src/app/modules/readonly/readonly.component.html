@@ -1,5 +1,5 @@
 <div *ngIf="!list" bqKey>
-  <mat-form-field fxFlex>
+  <mat-form-field fxFlex floatLabel="always">
     <mat-label>{{field.questionText}}</mat-label>
     <input matInput type="text" [readonly]="true" [value]="getValue() | bqDisplay">
   </mat-form-field>

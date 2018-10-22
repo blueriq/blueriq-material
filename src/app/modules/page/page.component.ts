@@ -1,9 +1,10 @@
 import { Component, Host, OnInit } from '@angular/core';
-import { BlueriqChild, BlueriqComponent, BlueriqSession, OnUpdate } from '@blueriq/angular';
+import { BlueriqChild, BlueriqChildren, BlueriqComponent, BlueriqSession, OnUpdate } from '@blueriq/angular';
 import { Container, Page } from '@blueriq/core';
 import { BqContentStyles } from '../BqContentStyles';
 
 @Component({
+  selector: 'bq-page',
   templateUrl: './page.component.html',
   styleUrls: ['./page.component.scss']
 })
@@ -12,13 +13,15 @@ import { BqContentStyles } from '../BqContentStyles';
 })
 export class PageComponent implements OnInit, OnUpdate {
 
-  @BlueriqChild(Container, 'dashboard_header', { exclude: true, optional: true })
+  @BlueriqChild(Container, BqContentStyles.DASHBOARD_HEADER, { exclude: true, optional: true })
   dashboardHeader: Container;
 
-  @BlueriqChild(Container, 'dashboard_menu', { exclude: true, optional: true })
-  dashboardMenu: Container;
+  @BlueriqChildren(Container, BqContentStyles.DASHBOARD_MENU, { exclude: true })
+  dashboardMenus: Container[];
 
   pageSize: string;
+
+  toolbarsCounter = 1;
 
   constructor(@Host() public page: Page,
               public blueriqSession: BlueriqSession) {
@@ -26,10 +29,17 @@ export class PageComponent implements OnInit, OnUpdate {
   }
 
   /**
-   * Scroll to the top of the page whenever a new page is loaded.
+   * - Scroll to the top of the page whenever a new page is loaded.
+   * - Decide on how many toolbars are rendered so the page can use margin-top * toolbars
    */
   ngOnInit(): void {
     window.scroll(0, 0);
+
+    this.toolbarsCounter = this.dashboardMenus.length;
+    // We always render a default toolbar when root
+    if (this.blueriqSession.isRoot) {
+      this.toolbarsCounter += 1;
+    }
   }
 
   bqOnUpdate(): void {
@@ -51,4 +61,5 @@ export class PageComponent implements OnInit, OnUpdate {
     }
     return 'responsive';
   }
+
 }
