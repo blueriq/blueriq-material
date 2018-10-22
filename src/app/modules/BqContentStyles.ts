@@ -7,6 +7,7 @@ export class BqContentStyles {
   static WIDTH_FULL = 'full';
   static WIDTH_RESPONSIVE = 'responsive';
 
+  static DASHBOARD_HEADER = 'dashboard_header';
   static DASHBOARD_MENU = 'dashboard_menu';
   static DASHBOARD_BODY = 'dashboard_body';
   static DASHBOARD_ROW = 'dashboard_row';

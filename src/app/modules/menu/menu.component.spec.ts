@@ -5,6 +5,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSession } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ButtonTemplate, ContainerTemplate } from '@blueriq/core/testing';
+import { BqContentStyles } from '../BqContentStyles';
 import { MenuComponent } from './menu.component';
 import { MenuModule } from './menu.module';
 
@@ -26,7 +27,7 @@ describe('MenuComponent', () => {
     }));
 
     beforeEach(() => {
-      menu = ContainerTemplate.create().contentStyle('dashboard_menu');
+      menu = ContainerTemplate.create().contentStyle(BqContentStyles.DASHBOARD_MENU);
       btnPublicA = ButtonTemplate.create('Public').caption('Public-A');
       btnPublicB = ButtonTemplate.create('Public').caption('Public-B');
       menu.children(

@@ -7,6 +7,11 @@
   }
 }
 
+.top-widget {
+  margin: $bq-margin-double;
+  padding: $bq-margin-double;
+}
+
 :host {
   &:last-child {
     .flow-widget {
