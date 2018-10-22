@@ -16,6 +16,8 @@ export class TableHeaderColumnComponent {
 
   isColumnFiltered$: Observable<boolean>;
 
+  hovering: boolean;
+
   constructor(@Host() private readonly list: List) {
     this.isColumnFiltered$ = list.filter$.pipe(
       map(filter => {
