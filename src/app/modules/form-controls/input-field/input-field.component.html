@@ -12,8 +12,8 @@
 </p>
 <mat-form-field bqKey *ngIf="list">
   <span matPrefix *ngIf="fieldPrefix">{{fieldPrefix}}</span>
+  <mat-label><!-- So placeholder works --></mat-label>
   <span matPrefix *ngIf="iconPrefix"><mat-icon>{{iconPrefix}}</mat-icon></span>
-  <input matInput type="text" [placeholder]="field.placeholder" [required]="field.required"
-    [formControl]="formControl">
+  <input matInput type="text" [placeholder]="placeholder" [formControl]="formControl">
   <span matSuffix *ngIf="fieldSuffix">{{fieldSuffix}}</span>
 </mat-form-field>
