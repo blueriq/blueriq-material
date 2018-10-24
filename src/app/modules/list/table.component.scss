@@ -1,0 +1,71 @@
+@import 'globals/variables';
+
+:host ::ng-deep {
+
+  .mat-row {
+    &:hover {
+      background-color: mat-color($bq-mat-grey-light, 50);
+    }
+  }
+
+  /* Header cell has both margins
+  *  where the cells itself have the base margin and half margin based on what element.
+  */
+  .mat-header-cell {
+    padding-left: $bq-base-margin + $bq-margin-half;
+  }
+
+  .mat-cell {
+    padding-left: $bq-base-margin;
+
+    input {
+      margin-left: $bq-margin-half;
+    }
+
+    bq-readonly {
+      text-indent: $bq-margin-half;
+    }
+
+    mat-checkbox {
+      margin-left: $bq-margin-half;
+    }
+
+    mat-select {
+      margin-left: $bq-margin-half;
+    }
+
+    bq-container {
+      width: 100%;
+    }
+  }
+
+  /* Adjust the form-fields to fit in a table */
+  .mat-form-field-appearance-fill,
+  .mat-form-field-flex,
+  .mat-form-field-infix {
+    display: flex;
+    align-items: center;
+    border-top: 0;
+    background-color: mat-color($bq-mat-grey-light, A100);
+
+    .mat-form-field-prefix {
+      margin: 0 2px 0 $bq-margin-half;
+    }
+  }
+
+  .mat-form-field-wrapper {
+    padding-bottom: 0;
+
+    .mat-form-field-underline {
+      display: none;
+      bottom: 0;
+    }
+
+    &:hover {
+      .mat-form-field-underline {
+        display: block;
+      }
+    }
+  }
+
+}

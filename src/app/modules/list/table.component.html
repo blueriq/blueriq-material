@@ -1,18 +1,15 @@
 <mat-table bqKey bqClasses [dataSource]="table.rows$">
-
+  
   <ng-container *ngFor="let column of table.columns$ | async" [matColumnDef]="column.name">
     <mat-header-cell *matHeaderCellDef>
-      <ng-container [bqElement]="column.header"></ng-container>
-      <!-- sorting button -->
-      <ng-container [bqElement]="column.sort"></ng-container>
-      <ng-container [bqElement]="column.search"></ng-container>
+      <bq-header-column [column]="column"></bq-header-column>
     </mat-header-cell>
-
+    
     <mat-cell *matCellDef="let row">
       <ng-container [bqElement]="row.cellFor(column).element"></ng-container>
     </mat-cell>
   </ng-container>
-
+  
   <mat-header-row *matHeaderRowDef="table.columnNames$ | async"></mat-header-row>
   <mat-row *matRowDef="let row; columns: table.columnNames$ | async"></mat-row>
 

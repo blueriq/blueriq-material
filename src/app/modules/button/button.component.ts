@@ -16,11 +16,11 @@ export class ButtonComponent {
 
   constructor(@Host() public button: Button,
               public session: BlueriqSession,
-              @Optional() @Host() public readonly table: List) {
+              @Optional() @Host() public readonly list: List) {
   }
 
   isRaisedButton(): boolean {
-    return !(this.table || this.button.styles.has(BqPresentationStyles.FLAT_BUTTON));
+    return !(this.list || this.button.styles.has(BqPresentationStyles.FLAT_BUTTON));
   }
 
   /**
