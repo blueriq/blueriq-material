@@ -25,10 +25,6 @@ export class KinderbijslagFlow {
     return this.getTitleTextFor(this.PAGE_ID_RESULTAAT_BEREKENING + '_Resultaatberekening_1');
   }
 
-  private getTitleTextFor(id: string): Promise<string> {
-    return element(by.id(id)).element(by.tagName('h1')).getText();
-  }
-
   get nrOfButtons(): Promise<number> {
     return element.all(by.tagName('button')).count();
   }
@@ -61,6 +57,10 @@ export class KinderbijslagFlow {
     return element(by.id(page + '_' + field + '_1')).element(by.tagName('input'));
   }
 
+  getTextareaFor(page: string, field: string): ElementFinder {
+    return element(by.id(page + '_' + field + '_1')).element(by.tagName('textarea'));
+  }
+
   getTextFor(page: string, field: string): Promise<string> {
     return element(by.id(page + '_' + field + '_1')).getText();
   }
@@ -79,6 +79,10 @@ export class KinderbijslagFlow {
 
   reset() {
     browser.restart();
+  }
+
+  private getTitleTextFor(id: string): Promise<string> {
+    return element(by.id(id)).element(by.tagName('h1')).getText();
   }
 
 }
