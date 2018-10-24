@@ -1,11 +1,17 @@
-// sass-lint:disable-all
-:host::ng-deep {
-  .mat-form-field-underline {
-    display: none;
+@import 'globals/variables';
+@import '~@angular/material/theming';
+
+// Suppress the border on the bottom of the field
+:host {
+  ::ng-deep {
+    .mat-form-field-underline {
+      display: none;
+    }
   }
 }
 
-// sass-lint:enable-all
 .mat-form-field {
-  padding-left: 12px;
+  padding: 0 $bq-margin;
+  font-size: 14px;
+  line-height: 20px;
 }
