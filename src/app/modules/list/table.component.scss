@@ -8,8 +8,20 @@
     }
   }
 
+  .mat-header-cell {
+    padding-left: $bq-base-margin + $bq-margin-half;
+  }
+
   .mat-cell {
     padding-left: $bq-base-margin;
+
+    input {
+      margin-left: $bq-margin-half;
+    }
+
+    bq-readonly {
+      text-indent: $bq-margin-half;
+    }
   }
 
   .mat-form-field-appearance-fill,
@@ -19,10 +31,6 @@
     align-items: center;
     border-top: 0;
     background-color: mat-color($bq-mat-grey-light, A100);
-
-    input {
-      margin-left: $bq-margin-half;
-    }
   }
 
   .mat-form-field-wrapper {
