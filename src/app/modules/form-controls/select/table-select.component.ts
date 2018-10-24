@@ -9,7 +9,7 @@ import { SelectComponent } from './select.component';
 })
 @BlueriqComponent({
   type: Field,
-  selector: 'table [hasDomain=true]'
+  selector: 'table [hasDomain]'
 })
 export class TableSelectComponent extends SelectComponent {
 }

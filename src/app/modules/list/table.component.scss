@@ -8,6 +8,9 @@
     }
   }
 
+  /* Header cell has both margins
+  *  where the cells itself have the base margin and half margin based on what element.
+  */
   .mat-header-cell {
     padding-left: $bq-base-margin + $bq-margin-half;
   }
@@ -22,19 +25,34 @@
     bq-readonly {
       text-indent: $bq-margin-half;
     }
+
+    mat-checkbox {
+      margin-left: $bq-margin-half;
+    }
+
+    mat-select {
+      margin-left: $bq-margin-half;
+    }
+
+    bq-container {
+      width: 100%;
+    }
   }
 
+  /* Adjust the form-fields to fit in a table */
   .mat-form-field-appearance-fill,
   .mat-form-field-flex,
   .mat-form-field-infix {
-    // margin-left: $bq-margin-half;
-    align-items: center;
+    display: flex;
     border-top: 0;
     background-color: mat-color($bq-mat-grey-light, A100);
+
+    .mat-form-field-prefix {
+      margin: 0 2px 0 $bq-margin-half;
+    }
   }
 
   .mat-form-field-wrapper {
-
     padding-bottom: 0;
 
     .mat-form-field-underline {
