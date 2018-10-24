@@ -44,9 +44,9 @@
   .mat-form-field-flex,
   .mat-form-field-infix {
     display: flex;
+    align-items: center;
     border-top: 0;
     background-color: mat-color($bq-mat-grey-light, A100);
-    align-items: center;
 
     .mat-form-field-prefix {
       margin: 0 2px 0 $bq-margin-half;
