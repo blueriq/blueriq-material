@@ -27,7 +27,6 @@ const BLUERIQ_COMPONENTS = [
     CommonModule,
     BlueriqCommonModule,
     FlexLayoutModule,
-    CommonModule,
 
     /* Material modules */
     MatIconModule,

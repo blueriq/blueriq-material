@@ -70,3 +70,30 @@ h6 {
     font-size: $h6-widget-size;
   }
 }
+
+// TODO find a better place for these
+.top-container {
+  margin: $bq-margin-double;
+  padding: $bq-margin-double;
+}
+
+.card {
+  @include mat-elevation(1);
+  background: map-get($mat-light-theme-background, card);
+}
+
+.align-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.introduction {
+  background: {
+    image: url('../../theme/blueriq/images/blueriq-technology.svg');
+    background-position: left top;
+    repeat: no-repeat;
+    size: 39px;
+  }
+}
+
+

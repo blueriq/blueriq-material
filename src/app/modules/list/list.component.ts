@@ -15,6 +15,7 @@ import { BqContentStyles } from '../BqContentStyles';
 })
 export class ListComponent {
 
-  constructor(@Host() public readonly list: List) {
+  constructor(@Host() public container: Container,
+              @Host() public readonly list: List) {
   }
 }

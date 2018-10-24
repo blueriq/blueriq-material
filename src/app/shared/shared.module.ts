@@ -7,10 +7,12 @@ import { BqKeyDirective } from '@shared/directive/bq-key/bq-key.directive';
 import { BqIconDirective } from '@shared/directive/icon/icon.directive';
 
 import { ValidationEffect } from '@shared/effects/validation/validation.effect';
+import { ContainerDirective } from '../modules/container/container.directive';
 
 const SHARED_COMPONENTS = [
   BqKeyDirective,
-  BqIconDirective
+  BqIconDirective,
+  ContainerDirective
 ];
 
 @NgModule({
