@@ -1,13 +1,14 @@
-import { Component, Host } from '@angular/core';
+import { Component, Host, Optional } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
-import { BlueriqFormBuilder } from '@blueriq/angular/forms';
-import { Field } from '@blueriq/core';
+import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
+import { List } from '@blueriq/angular/lists';
+import { Field, FieldMessages } from '@blueriq/core';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
 
 @Component({
   selector: 'bq-slide-toggle',
   templateUrl: './slide-toggle.component.html',
-  styleUrls: ['./slide-toggle.component.scss']
+  styleUrls: ['../selection-control.component.scss']
 })
 @BlueriqComponent({
   type: Field,
@@ -21,6 +22,12 @@ export class SlideToggleComponent {
     disableWhen: BqPresentationStyles.DISABLED
   });
 
-  constructor(@Host() public field: Field, private form: BlueriqFormBuilder) {
+  constructor(@Host() public field: Field,
+              private form: BlueriqFormBuilder,
+              @Host() @Optional() public readonly list: List) {
+  }
+
+  getMessages(): FieldMessages {
+    return getFieldMessages(this.formControl);
   }
 }

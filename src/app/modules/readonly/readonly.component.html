@@ -1,9 +1,9 @@
-<div *ngIf="!table" bqKey bqClasses>
+<div *ngIf="!list" bqKey bqClasses>
   <mat-form-field fxFlex floatLabel="always">
     <mat-label>{{field.questionText}}</mat-label>
     <textarea matInput mat-autosize [readonly]="true" [value]="field.getValue() | bqDisplay"></textarea>
   </mat-form-field>
 </div>
-<div *ngIf="table" bqKey bqClasses>
+<div *ngIf="list" bqKey bqClasses>
   {{ field.getValue() | bqDisplay}}
 </div>
