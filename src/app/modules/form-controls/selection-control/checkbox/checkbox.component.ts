@@ -8,7 +8,7 @@ import { BqPresentationStyles } from '../../../BqPresentationStyles';
 @Component({
   selector: 'bq-checkbox',
   templateUrl: './checkbox.component.html',
-  styleUrls: ['./checkbox.component.scss']
+  styleUrls: ['../selection-control.component.scss']
 })
 @BlueriqComponent({
   type: Field,
@@ -24,7 +24,7 @@ export class CheckboxComponent {
 
   constructor(@Host() public field: Field,
               private form: BlueriqFormBuilder,
-              @Optional() @Host() public readonly table: List) {
+              @Optional() @Host() public readonly list: List) {
   }
 
   getMessages(): FieldMessages {
