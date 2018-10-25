@@ -1,0 +1,8 @@
+<div class="dismiss">
+  <button class="mat-icon-button" (click)="dismiss()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<div *ngFor="let message of messages">
+  {{message.text}}
+</div>

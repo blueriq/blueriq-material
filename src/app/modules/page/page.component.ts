@@ -1,7 +1,9 @@
 import { Component, Host, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 import { BlueriqChild, BlueriqChildren, BlueriqComponent, BlueriqSession, OnUpdate } from '@blueriq/angular';
 import { Container, Page } from '@blueriq/core';
 import { BqContentStyles } from '../BqContentStyles';
+import { PageMessagesComponent } from './page.messages.component';
 
 @Component({
   selector: 'bq-page',
@@ -24,7 +26,8 @@ export class PageComponent implements OnInit, OnUpdate {
   toolbarsCounter = 1;
 
   constructor(@Host() public page: Page,
-              public blueriqSession: BlueriqSession) {
+              public blueriqSession: BlueriqSession,
+              private snackbar: MatSnackBar) {
     this.pageSize = this.determinePageSize();
   }
 
@@ -40,10 +43,12 @@ export class PageComponent implements OnInit, OnUpdate {
     if (this.blueriqSession.isRoot) {
       this.toolbarsCounter += 1;
     }
+    this.checkPageMessages();
   }
 
   bqOnUpdate(): void {
     this.pageSize = this.determinePageSize();
+    this.checkPageMessages();
   }
 
   determinePageSize(): string {
@@ -62,4 +67,18 @@ export class PageComponent implements OnInit, OnUpdate {
     return 'responsive';
   }
 
+  checkPageMessages(): void {
+    // due to a bug in Angular, this function needs to be wrapped in a setTimeout call. If this is omitted,
+    // you get an ExpressionChangedAfterItHasBeenCheckedError on the snackbar position.
+    // See this thread for more info and this workaround:
+    // https://github.com/angular/angular/issues/15634#issuecomment-345504902
+    setTimeout(() => {
+      if (this.page.messages.hasMessages) {
+        this.snackbar.openFromComponent(PageMessagesComponent, {
+          data: this.page.messages.all,
+          panelClass: this.page.messages.hasErrors ? 'snackbar-error' : 'snackbar-warning'
+        });
+      }
+    });
+  }
 }
