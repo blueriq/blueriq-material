@@ -15,3 +15,6 @@ There are 5 content styles that influence the page's behavior:
   * It is extra large (1240 pixels) on screens wider than 1240 pixels.
   
 The widths mentioned can easily be changed to suit your needs in the `theme/globals/_responsive-layout.scss` file.
+
+### Messages
+When there is a problem rendering the page (which is different than a validation error), a generic page error or warning is displayed in a snackbar (popup on the bottom of the screen). 
