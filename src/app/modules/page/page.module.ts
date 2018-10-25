@@ -1,14 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatDividerModule, MatIconModule, MatSnackBarModule } from '@angular/material';
+import { MatDividerModule } from '@angular/material';
 import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
 import { HeaderModule } from '../header/header.module';
 import { PageComponent } from './page.component';
-import { PageMessagesComponent } from './page.messages.component';
 
 const BLUERIQ_COMPONENTS = [
-  PageComponent,
-  PageMessagesComponent
+  PageComponent
 ];
 
 @NgModule({
@@ -26,9 +24,7 @@ const BLUERIQ_COMPONENTS = [
     HeaderModule,
 
     /* Material modules */
-    MatDividerModule,
-    MatIconModule,
-    MatSnackBarModule
+    MatDividerModule
   ],
   exports: [BLUERIQ_COMPONENTS]
 })
