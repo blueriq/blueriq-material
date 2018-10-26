@@ -2,13 +2,13 @@ import { Directive, ElementRef, Input, OnDestroy, OnInit, Renderer2 } from '@ang
 import { BlueriqListeners, BlueriqSession } from '@blueriq/angular';
 import { Container, Page } from '@blueriq/core';
 import { Subscription } from 'rxjs';
-import { BqContentStyles } from '../BqContentStyles';
-import { BqPresentationStyles } from '../BqPresentationStyles';
+import { BqContentStyles } from '../../../modules/BqContentStyles';
+import { BqPresentationStyles } from '../../../modules/BqPresentationStyles';
 
 @Directive({
   selector: '[bqContainer]'
 })
-export class ContainerDirective implements OnInit, OnDestroy {
+export class BqContainerDirective implements OnInit, OnDestroy {
 
   private _container: Container;
 
@@ -33,6 +33,7 @@ export class ContainerDirective implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this._subscription = this.listeners.listen(this._container).subscribe(() => {
+      this.renderer.removeClass(this.hostElement.nativeElement, 'card');
       this.determineDisplayStyle(this._container);
     });
     this.determineDisplayStyle(this._container);
@@ -55,10 +56,10 @@ export class ContainerDirective implements OnInit, OnDestroy {
     if (introduction) {
       this.renderer.addClass(this.hostElement.nativeElement, 'introduction');
     }
-    if (transparent) {
+    else if (transparent) {
       this.renderer.addClass(this.hostElement.nativeElement, 'transparent');
     }
-    if (card) {
+    else if (card) {
       this.renderer.addClass(this.hostElement.nativeElement, 'card');
     }
     if (alignRight) {

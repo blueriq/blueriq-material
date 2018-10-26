@@ -66,14 +66,4 @@ describe('TabComponent', () => {
     const activeLabel = tabFixture.nativeElement.querySelector('.mat-tab-label-active');
     expect(activeLabel.innerText).toEqual('News', 'First tab should be selected');
   });
-
-  it('show an icon on inactive tab that has validation messages', () => {
-    session.update(
-      tabField.error('an error')
-    );
-    const matHeaderLabels = tabFixture.nativeElement.querySelectorAll('.mat-tab-label');
-    const matIcon = matHeaderLabels[3].querySelector('.mat-icon');
-    expect(matIcon).toBeTruthy();
-    expect(matIcon.innerText).toEqual('error_outline');
-  });
 });
