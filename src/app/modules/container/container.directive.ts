@@ -1,7 +1,7 @@
-import { Directive, ElementRef, Host, Input, Optional, Renderer2 } from '@angular/core';
-import { BlueriqSession } from '@blueriq/angular';
-import { List } from '@blueriq/angular/lists';
+import { Directive, ElementRef, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { BlueriqListeners, BlueriqSession } from '@blueriq/angular';
 import { Container, Page } from '@blueriq/core';
+import { Subscription } from 'rxjs';
 import { BqContentStyles } from '../BqContentStyles';
 import { BqPresentationStyles } from '../BqPresentationStyles';
 
@@ -13,10 +13,7 @@ export class ContainerDirective {
   constructor(private hostElement: ElementRef,
               private blueriqSession: BlueriqSession,
               private renderer: Renderer2,
-              @Optional() @Host() public readonly table: List
-              /*private listeners: BlueriqListeners*/) {
-    renderer.addClass(hostElement.nativeElement, 'container');
-    console.log('inTable?:', !!this.table);
+              private listeners: BlueriqListeners) {
   }
 
   /**
@@ -31,12 +28,11 @@ export class ContainerDirective {
     const topcontainer = container.parent instanceof Page && this.blueriqSession.isRoot;
     const transparent = container.styles.has(BqPresentationStyles.TRANSPARENT);
     const introduction = container.styles.has(BqPresentationStyles.INTRODUCTION);
-    const card = (topcontainer && !isDashboardbody && !transparent && !introduction)
-      || dashboardwidget;
+    const card = (topContainer && !isDashboardBody && !transparent && !introduction)
+      || dashboardWidget;
     const alignRight = container.styles.hasAny(BqPresentationStyles.ALIGNRIGHT,
       BqPresentationStyles.DEPRECATED_ALIGNRIGHT);
-
-    if (topcontainer) {
+    if (topContainer) {
       this.renderer.addClass(this.hostElement.nativeElement, 'top-container');
     }
     if (introduction) {
@@ -51,7 +47,7 @@ export class ContainerDirective {
     if (alignRight) {
       this.renderer.addClass(this.hostElement.nativeElement, 'align-right');
     }
-    if (dashboardwidget) {
+    if (dashboardWidget) {
       this.renderer.addClass(this.hostElement.nativeElement, 'bq-widget');
     }
   }

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule, MatInputModule } from '@angular/material';
 import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
+import { SharedModule } from '@shared/shared.module';
 import { FlowWidgetComponent } from './flow-widget/flow-widget.component';
 
 const WIDGET_CONTROL_COMPONENTS = [
@@ -19,6 +20,7 @@ const WIDGET_CONTROL_COMPONENTS = [
   imports: [
     BlueriqCommonModule, // using: bq-session
     CommonModule,
+    SharedModule,
     FlexLayoutModule,
 
     /* Material modules */

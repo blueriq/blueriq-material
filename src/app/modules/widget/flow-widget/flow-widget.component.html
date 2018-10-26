@@ -1,9 +1,4 @@
-<div bqKey bqClasses [ngClass]="{
-    'elevate': true,
-    'bq-widget': true,
-    'flow-widget': true,
-    'top-widget': topWidget
-  }">
+<div bqKey bqClasses [bqContainer]="widgetContainer">
   
   <h2 *ngIf="widgetContainer.displayName">{{widgetContainer.displayName}}</h2>
   

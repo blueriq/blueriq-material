@@ -71,22 +71,19 @@ h6 {
   }
 }
 
-// TODO find a better place for these
+/* Containers that are directly on a page */
 .top-container {
   margin: $bq-margin-double;
   padding: $bq-margin-double;
 }
 
+/* Display containers as card */
 .card {
   @include mat-elevation(1);
   background: map-get($mat-light-theme-background, card);
 }
 
-.align-right {
-  display: flex;
-  justify-content: flex-end;
-}
-
+/* Display containers as transparant with a small image in the corner */
 .introduction {
   background: {
     image: url('../../theme/blueriq/images/blueriq-technology.svg');
@@ -95,5 +92,11 @@ h6 {
     size: 39px;
   }
 }
+
+.align-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
 
 
