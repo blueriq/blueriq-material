@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
 import { BlueriqComponents } from '@blueriq/angular';
 import { FormattingModule } from '@blueriq/angular/formatting';
@@ -21,6 +22,7 @@ const BLUERIQ_COMPONENTS = [
     CommonModule,
     SharedModule,
     FormattingModule.forRoot(), // for pipe 'bqDisplay'
+    FlexLayoutModule,
 
     /* Material modules */
     MatFormFieldModule,
