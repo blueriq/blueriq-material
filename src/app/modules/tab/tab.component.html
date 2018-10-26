@@ -3,7 +3,6 @@
 <mat-tab-group>
   <mat-tab *ngFor="let child of container.children">
     <ng-template mat-tab-label>
-      <mat-icon *ngIf="hasValidationErrors(child)">error_outline</mat-icon>
       {{child.displayName || '['+child.name+']'}}
     </ng-template>
     <ng-container [bqElement]="child"></ng-container>
