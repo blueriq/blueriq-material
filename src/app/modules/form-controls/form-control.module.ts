@@ -27,6 +27,7 @@ import { BqErrorStateMatcher } from './bq-errorstatematcher';
 import { ChiplistComponent } from './chiplist/chiplist.component';
 import { DatepickerComponent } from './date/datepicker/datepicker.component';
 import { DateTimepickerComponent } from './date/datetimepicker/datetimepicker.component';
+import { TableDatetimepickerComponent } from './date/datetimepicker/table-datetimepicker.component';
 import { MomentTransformer } from './date/moment-transformer';
 import { CurrencyFieldComponent } from './input-field/currency/currency.component';
 import { IntegerFieldComponent } from './input-field/integer/integer.component';
@@ -34,9 +35,9 @@ import { NumberFieldComponent } from './input-field/number/number.component';
 import { PercentageFieldComponent } from './input-field/percentage/percentage.component';
 import { StringFieldComponent } from './input-field/string/string.component';
 import { SelectComponent } from './select/select.component';
+import { TableSelectComponent } from './select/table-select.component';
 import { CheckboxComponent } from './selection-control/checkbox/checkbox.component';
 import { RadioButtonComponent } from './selection-control/radio-button/radio-button.component';
-import { SelectionControlComponent } from './selection-control/selection-control.component';
 import { SlideToggleComponent } from './selection-control/slide-toggle/slide-toggle.component';
 import { TextAreaComponent } from './text-area/text-area.component';
 
@@ -54,17 +55,21 @@ const FORM_CONTROL_COMPONENTS = [
   SelectComponent,
   StringFieldComponent,
   SlideToggleComponent,
+  SelectComponent,
+  AutocompleteComponent,
+  TextAreaComponent,
+  PercentageFieldComponent,
+  TableDatetimepickerComponent,
+  TableSelectComponent,
   TextAreaComponent
 ];
 
 @NgModule({
   declarations: [
-    FORM_CONTROL_COMPONENTS,
-    SelectionControlComponent
+    FORM_CONTROL_COMPONENTS
   ],
   providers: [
     BlueriqComponents.register(FORM_CONTROL_COMPONENTS),
-    SelectionControlComponent,
     DomainValueTransformer,
     MomentTransformer,
     { provide: ErrorStateMatcher, useClass: BqErrorStateMatcher }
@@ -94,7 +99,7 @@ const FORM_CONTROL_COMPONENTS = [
     MatRadioModule,
     MatSlideToggleModule
   ],
-  exports: [FORM_CONTROL_COMPONENTS, SelectionControlComponent]
+  exports: [FORM_CONTROL_COMPONENTS]
 })
 
 export class FormControlModule {

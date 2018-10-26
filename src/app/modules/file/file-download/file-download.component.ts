@@ -24,17 +24,17 @@ export class FileDownloadComponent extends ButtonComponent implements OnDestroy 
 
   constructor(@Self() public fileDownload: FileDownload,
               public session: BlueriqSession,
-              @Optional() @Host() public readonly table: List,
+              @Optional() @Host() public readonly list: List,
               public fileDownloadService: FileDownloadService) {
-    super(fileDownload.downloadButton, session, table);
+    super(fileDownload.downloadButton, session, list);
   }
 
   /* Overrides */
   onClick(): void {
     this.downloadSubscription = this.fileDownload.getDownloadInfo()
-      .subscribe((downloadInfo: AuthorizedDownload) => {
-        this.fileDownloadService.download(downloadInfo.url);
-      });
+    .subscribe((downloadInfo: AuthorizedDownload) => {
+      this.fileDownloadService.download(downloadInfo.url);
+    });
   }
 
   ngOnDestroy() {

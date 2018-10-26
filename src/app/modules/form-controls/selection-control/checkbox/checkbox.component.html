@@ -1,10 +1,10 @@
-<div bqKey [class.selection-control]="!table">
+<div bqKey [class.selection-control]="!list">
   <div>
     <mat-checkbox [required]="field.required" [formControl]="formControl" color="primary">
-      {{ table ? '' : field.questionText}}
+      {{ list ? '' : field.questionText}}
     </mat-checkbox>
   </div>
-  <ng-container *ngIf="!table">
+  <ng-container *ngIf="!list">
     <mat-hint *ngIf="!getMessages().hasMessages">{{field.explainText}}</mat-hint>
     <div *ngIf="getMessages().hasMessages">
       <mat-error *ngFor="let msg of getMessages()">{{ msg.text }}</mat-error>

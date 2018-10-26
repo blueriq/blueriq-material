@@ -1,9 +1,9 @@
-<div *ngIf="!table" bqKey>
+<div *ngIf="!list" bqKey>
   <mat-form-field fxFlex floatLabel="always">
     <mat-label>{{field.questionText}}</mat-label>
     <input matInput type="text" [readonly]="true" [value]="field.getValue() | bqDisplay">
   </mat-form-field>
 </div>
-<div *ngIf="table">
+<div *ngIf="list">
   {{ field.getValue() | bqDisplay}}
 </div>
