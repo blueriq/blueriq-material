@@ -1,10 +1,12 @@
-<h2>
-  <mat-icon [bqIcon]="container.styles"></mat-icon>
-  {{container.displayName}}
-</h2>
-<ng-container [bqElement]="comment.commentField"></ng-container>
-<div fxLayout="row" fxLayoutAlign="end">
-  <button bqKey bqClasses mat-raised-button (click)="onClick()" color="primary">
-    {{comment.caption}}
-  </button>
+<div [bqContainer]="container">
+  <h2>
+    <mat-icon [bqIcon]="container.styles"></mat-icon>
+    {{container.displayName}}
+  </h2>
+  <ng-container [bqElement]="comment.commentField"></ng-container>
+  <div fxLayout="row" fxLayoutAlign="end">
+    <button bqKey bqClasses mat-raised-button (click)="onClick()" color="primary">
+      {{comment.caption}}
+    </button>
+  </div>
 </div>

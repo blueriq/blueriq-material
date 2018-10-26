@@ -22,7 +22,6 @@ import { ContainerComponentMatcher } from './container-component-matcher';
   type: Container,
   selector: new ContainerComponentMatcher()
 })
-
 export class ContainerComponent implements OnInit, OnUpdate {
 
   public horizontal = false;

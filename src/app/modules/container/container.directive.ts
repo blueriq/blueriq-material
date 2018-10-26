@@ -8,7 +8,14 @@ import { BqPresentationStyles } from '../BqPresentationStyles';
 @Directive({
   selector: '[bqContainer]'
 })
-export class ContainerDirective {
+export class ContainerDirective implements OnInit, OnDestroy {
+
+  private _container: Container;
+
+  @Input('bqDisableHeader')
+  _disableHeader: boolean;
+
+  private _subscription: Subscription | undefined;
 
   constructor(private hostElement: ElementRef,
               private blueriqSession: BlueriqSession,
@@ -21,11 +28,21 @@ export class ContainerDirective {
    */
   @Input('bqContainer')
   set bqContainer(container: Container) {
-    // TODO const isDashboardrow = container.contentStyle === BqContentStyles.DASHBOARD_ROW;
-    // TODO const horizontal = container.styles.has(BqPresentationStyles.HORIZONTAL) || isDashboardrow;
-    const isDashboardbody = container.contentStyle === BqContentStyles.DASHBOARD_BODY;
-    const dashboardwidget = container.contentStyle === BqContentStyles.DASHBOARD_WIDGET;
-    const topcontainer = container.parent instanceof Page && this.blueriqSession.isRoot;
+    this._container = container;
+  }
+
+  ngOnInit(): void {
+    this._subscription = this.listeners.listen(this._container).subscribe(() => {
+      this.determineDisplayStyle(this._container);
+    });
+    this.determineDisplayStyle(this._container);
+  }
+
+  private determineDisplayStyle(container: Container) {
+    const isDashboardBody = container.contentStyle === BqContentStyles.DASHBOARD_BODY;
+    const dashboardWidget = container.contentStyle === BqContentStyles.DASHBOARD_WIDGET ||
+      container.contentStyle === BqContentStyles.DASHBOARD_FLOWWIDGET;
+    const topContainer = container.parent instanceof Page && this.blueriqSession.isRoot;
     const transparent = container.styles.has(BqPresentationStyles.TRANSPARENT);
     const introduction = container.styles.has(BqPresentationStyles.INTRODUCTION);
     const card = (topContainer && !isDashboardBody && !transparent && !introduction)
@@ -52,13 +69,10 @@ export class ContainerDirective {
     }
   }
 
-  // TODO ?
-  // ngOnInit() {
-  //   this.determineDisplayStyle();
-  // }
-  //
-  // bqOnUpdate() {
-  //   this.determineDisplayStyle();
-  // }
+  ngOnDestroy(): void {
+    if (this._subscription) {
+      this._subscription.unsubscribe();
+    }
+  }
 
 }
