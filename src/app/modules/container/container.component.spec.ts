@@ -86,4 +86,9 @@ describe('ContainerComponent', () => {
     expect(containerComponent.debugElement.query(By.directive(BqContainerDirective))).toBeTruthy();
   });
 
+  it('should use the bq-heading to display header', () => {
+    // Verify
+    expect(containerComponent.nativeElement.querySelector('bq-heading')).toBeTruthy();
+  });
+
 });

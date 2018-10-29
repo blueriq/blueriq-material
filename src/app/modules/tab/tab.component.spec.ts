@@ -1,7 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
+import { BqContainerDirective } from '@shared/directive/container/bq-container.directive';
 import { SharedModule } from '@shared/shared.module';
 import { BqContentStyles } from '../BqContentStyles';
 import { ContainerModule } from '../container/container.module';
@@ -44,10 +46,6 @@ describe('TabComponent', () => {
 
   });
 
-  it('should display the displayname', () => {
-    expect(tabFixture.nativeElement.querySelector('h2').innerHTML).toBe('Tweakers');
-  });
-
   it('should display the correct tab headers', () => {
     const matHeaderLabels = tabFixture.nativeElement.querySelectorAll('.mat-tab-label');
 
@@ -66,4 +64,15 @@ describe('TabComponent', () => {
     const activeLabel = tabFixture.nativeElement.querySelector('.mat-tab-label-active');
     expect(activeLabel.innerText).toEqual('News', 'First tab should be selected');
   });
+
+  it('should use the bqContainer directive', () => {
+    // Verify
+    expect(tabFixture.debugElement.query(By.directive(BqContainerDirective))).toBeTruthy();
+  });
+
+  it('should use the bq-heading to display header', () => {
+    // Verify
+    expect(tabFixture.nativeElement.querySelector('bq-heading')).toBeTruthy();
+  });
+
 });

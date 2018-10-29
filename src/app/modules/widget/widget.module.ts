@@ -4,6 +4,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule, MatInputModule } from '@angular/material';
 import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
 import { SharedModule } from '@shared/shared.module';
+import { HeadingModule } from '../heading/heading.module';
 import { FlowWidgetComponent } from './flow-widget/flow-widget.component';
 
 const WIDGET_CONTROL_COMPONENTS = [
@@ -21,6 +22,7 @@ const WIDGET_CONTROL_COMPONENTS = [
     BlueriqCommonModule, // using: bq-session
     CommonModule,
     SharedModule,
+    HeadingModule,
     FlexLayoutModule,
 
     /* Material modules */

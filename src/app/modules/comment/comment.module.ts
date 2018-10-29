@@ -14,6 +14,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
 import { SharedModule } from '@shared/shared.module';
+import { HeadingModule } from '../heading/heading.module';
 import { CommentComponent } from './comment.component';
 import { CommentListComponent } from './list/comment.list.component';
 
@@ -37,6 +38,7 @@ const COMMENT_COMPONENTS = [
     BlueriqModule.forRoot(),  // for directive bqElement
     FlexLayoutModule,
     SharedModule,
+    HeadingModule,
 
     /* Material modules */
     MatDividerModule,

@@ -1,4 +1,4 @@
-<h2 *ngIf="container.displayName">{{ container.displayName }}</h2>
+<bq-heading [title]="container.displayName" [styles]="container.styles"></bq-heading>
 
 <button style="display: block;" mat-raised-button color="primary" (click)="fileInput.click()">{{fileUpload.uploadLabel}}</button>
 <input hidden ng2FileSelect type="file" [uploader]="uploader" [multiple]="fileUpload.multiple" #fileInput>

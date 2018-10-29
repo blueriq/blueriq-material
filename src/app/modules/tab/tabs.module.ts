@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { MatIconModule, MatTabsModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
+import { HeadingModule } from '../heading/heading.module';
 import { TabComponent } from './tab.component';
 
 const BLUERIQ_COMPONENTS = [
@@ -20,6 +21,7 @@ const BLUERIQ_COMPONENTS = [
     BlueriqCommonModule, // using: [bqElement] directive
     BrowserAnimationsModule,
     CommonModule,
+    HeadingModule,
 
     /* Material modules */
     MatTabsModule,

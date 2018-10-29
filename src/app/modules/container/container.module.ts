@@ -4,6 +4,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule, MatIconModule } from '@angular/material';
 import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
 import { SharedModule } from '@shared/shared.module';
+import { HeadingModule } from '../heading/heading.module';
 import { ContainerComponent } from './container.component';
 import { FailedComponent } from './failed/failed.component';
 import { HorizontalFlexChildDirective } from './flex/horizontal-flex-child.directive';
@@ -26,6 +27,7 @@ const BLUERIQ_COMPONENTS = [
     SharedModule,
     CommonModule,
     BlueriqCommonModule,
+    HeadingModule,
     FlexLayoutModule,
 
     /* Material modules */

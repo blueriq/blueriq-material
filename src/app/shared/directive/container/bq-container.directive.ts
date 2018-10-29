@@ -11,10 +11,6 @@ import { BqPresentationStyles } from '../../../modules/BqPresentationStyles';
 export class BqContainerDirective implements OnInit, OnDestroy {
 
   private _container: Container;
-
-  @Input('bqDisableHeader')
-  _disableHeader: boolean;
-
   private _subscription: Subscription | undefined;
 
   constructor(private hostElement: ElementRef,
@@ -44,29 +40,26 @@ export class BqContainerDirective implements OnInit, OnDestroy {
     const dashboardWidget = container.contentStyle === BqContentStyles.DASHBOARD_WIDGET ||
       container.contentStyle === BqContentStyles.DASHBOARD_FLOWWIDGET;
     const topContainer = container.parent instanceof Page && this.blueriqSession.isRoot;
-    const transparent = container.styles.has(BqPresentationStyles.TRANSPARENT);
-    const introduction = container.styles.has(BqPresentationStyles.INTRODUCTION);
-    const card = (topContainer && !isDashboardBody && !transparent && !introduction)
-      || dashboardWidget;
     const alignRight = container.styles.hasAny(BqPresentationStyles.ALIGNRIGHT,
       BqPresentationStyles.DEPRECATED_ALIGNRIGHT);
+
     if (topContainer) {
       this.renderer.addClass(this.hostElement.nativeElement, 'top-container');
-    }
-    if (introduction) {
-      this.renderer.addClass(this.hostElement.nativeElement, 'introduction');
-    }
-    else if (transparent) {
-      this.renderer.addClass(this.hostElement.nativeElement, 'transparent');
-    }
-    else if (card) {
-      this.renderer.addClass(this.hostElement.nativeElement, 'card');
     }
     if (alignRight) {
       this.renderer.addClass(this.hostElement.nativeElement, 'align-right');
     }
     if (dashboardWidget) {
       this.renderer.addClass(this.hostElement.nativeElement, 'bq-widget');
+    }
+    /* A container can have one of the following styling:
+     * Introduction / Transparent / Card (default) */
+    if (container.styles.has(BqPresentationStyles.INTRODUCTION)) {
+      this.renderer.addClass(this.hostElement.nativeElement, 'introduction');
+    } else if (container.styles.has(BqPresentationStyles.TRANSPARENT)) {
+      this.renderer.addClass(this.hostElement.nativeElement, 'transparent');
+    } else if ((topContainer && !isDashboardBody) || dashboardWidget) {
+      this.renderer.addClass(this.hostElement.nativeElement, 'card');
     }
   }
 

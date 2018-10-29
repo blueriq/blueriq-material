@@ -1,8 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComment } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ButtonTemplate, ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
+import { BqContainerDirective } from '@shared/directive/container/bq-container.directive';
 import { FormControlModule } from '../form-controls/form-control.module';
 import { CommentComponent } from './comment.component';
 import { CommentModule } from './comment.module';
@@ -66,5 +68,15 @@ describe('CommentComponent', () => {
 
     // Verify
     expect(commentSpy).toHaveBeenCalled();
+  });
+
+  it('should use the bqContainer directive', () => {
+    // Verify
+    expect(component.debugElement.query(By.directive(BqContainerDirective))).toBeTruthy();
+  });
+
+  it('should use the bq-heading to display header', () => {
+    // Verify
+    expect(component.nativeElement.querySelector('bq-heading')).toBeTruthy();
   });
 });

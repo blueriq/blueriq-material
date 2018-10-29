@@ -19,6 +19,7 @@ import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
 import { SharedModule } from '@shared/shared.module';
 import { OwlDateTimeModule } from 'ng-pick-datetime';
 import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
+import { HeadingModule } from '../heading/heading.module';
 import { TableFilterValueComponent } from './filter/table.filter-value.component';
 import { TableFilterComponent } from './filter/table.filter.component';
 import { TableHeaderColumnComponent } from './header/header.component';
@@ -48,6 +49,7 @@ const LIST_COMPONENTS = [
     BrowserAnimationsModule,
     BlueriqCommonModule,
     CommonModule,
+    HeadingModule,
     FlexLayoutModule,
     SharedModule,
     OwlDateTimeModule, // used in filter component

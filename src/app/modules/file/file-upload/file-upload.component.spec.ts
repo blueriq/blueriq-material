@@ -154,6 +154,11 @@ describe('FileUploadComponent', () => {
     expect(CustomFileUploader.prototype.uploadAll).toHaveBeenCalled();
   });
 
+  it('should use the bq-heading to display header', () => {
+    // Verify
+    expect(component.nativeElement.querySelector('bq-heading')).toBeTruthy();
+  });
+
   function createFile(): FileItem {
     const file = new File([], 'file.txt', { type: 'text/plain', lastModified: new Date().getTime() });
     return new FileItem(fileSelectDirective.uploader, file, {});

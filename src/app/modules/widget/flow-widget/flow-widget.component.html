@@ -1,6 +1,6 @@
 <div bqKey bqClasses [bqContainer]="widgetContainer">
   
-  <h2 *ngIf="widgetContainer.displayName">{{widgetContainer.displayName}}</h2>
+  <bq-heading [title]="widgetContainer.displayName" [styles]="widgetContainer.styles"></bq-heading>
   
   <bq-session
     *ngIf="!shouldDisplayError()"

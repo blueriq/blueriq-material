@@ -1,4 +1,5 @@
 <div bqKey bqClasses [bqContainer]="container">
+  <bq-heading [title]="container.displayName" [styles]="container.styles"></bq-heading>
   <bq-table-search *ngIf="list.search$ | async as search" [search]="search"></bq-table-search>
   <bq-table-filter *ngIf="list.filter$ | async as filter" [filter]="filter"></bq-table-filter>
   <bq-table [table]="list.table$ | async"></bq-table>

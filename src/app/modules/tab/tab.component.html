@@ -1,4 +1,4 @@
-<h2 *ngIf="container.displayName">{{container.displayName}}</h2>
+<bq-heading [title]="container.displayName" [styles]="container.styles"></bq-heading>
 
 <mat-tab-group>
   <mat-tab *ngFor="let child of container.children">

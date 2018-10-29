@@ -59,16 +59,6 @@ describe('WidgetComponent', () => {
     component = session.get(FlowWidgetComponent);
   });
 
-  it('should contain the correct header', () => {
-    // Init
-    const header2 = component.nativeElement.querySelector('h2');
-    const widgetSessionSpan = component.nativeElement.querySelector('#widgetSessionDisplayName');
-
-    // Verify
-    expect(header2.innerHTML).toEqual('Container display name');
-    expect(widgetSessionSpan.innerHTML).toEqual('Widget display name');
-  });
-
   it('should use the bqContainer directive', () => {
     // Verify
     expect(component.debugElement.query(By.directive(BqContainerDirective))).toBeTruthy();
@@ -86,6 +76,19 @@ describe('WidgetComponent', () => {
     expect(widgetSessionSpan).toBeFalsy();
     expect(errorElement).toBeTruthy();
     expect(errorElement.innerText).toContain('whoops');
+  });
+
+  it('should use the bqContainer directive', () => {
+    // Verify
+    expect(component.debugElement.query(By.directive(BqContainerDirective))).toBeTruthy();
+  });
+
+  it('should use the bq-heading to display header', () => {
+    const widgetSessionSpan = component.nativeElement.querySelector('#widgetSessionDisplayName');
+
+    // Verify
+    expect(component.nativeElement.querySelector('bq-heading')).toBeTruthy();
+    expect(widgetSessionSpan.innerHTML).toEqual('Widget display name');
   });
 
 });

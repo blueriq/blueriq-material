@@ -1,8 +1,5 @@
 <div [bqContainer]="container">
-  <h2>
-    <mat-icon [bqIcon]="container.styles"></mat-icon>
-    {{ timeline.displayName }}
-  </h2>
+  <bq-heading [title]="timeline.displayName" [styles]="container.styles"></bq-heading>
   <div class="timeline">
     <div *ngFor="let entry of timeline.entries$ | async; let first = first" fxLayout="row">
       
