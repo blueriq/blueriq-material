@@ -17,7 +17,6 @@ import { CustomFileUploader } from './custom-file-uploader';
 export class FileUploadComponent {
 
   uploader: CustomFileUploader;
-  hasDropZoneOver = false;
   errorMessage: string;
   isBusy = false;
 

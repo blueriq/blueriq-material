@@ -1,7 +1,6 @@
 import { animateChild, query, transition, trigger } from '@angular/animations';
-import { Component, Host, OnInit, Optional } from '@angular/core';
-import { BlueriqComponent, BlueriqSession, OnUpdate } from '@blueriq/angular';
-import { List } from '@blueriq/angular/lists';
+import { Component, Host, OnInit } from '@angular/core';
+import { BlueriqComponent, OnUpdate } from '@blueriq/angular';
 import { Container } from '@blueriq/core';
 import { BqContentStyles } from '../BqContentStyles';
 import { BqPresentationStyles } from '../BqPresentationStyles';
@@ -26,14 +25,7 @@ export class ContainerComponent implements OnInit, OnUpdate {
 
   public horizontal = false;
 
-  constructor(@Host() public container: Container,
-              @Optional() @Host() public readonly list: List,
-              private blueriqSession: BlueriqSession
-  ) {
-  }
-
-  get isWidget(): boolean {
-    return this.blueriqSession.isWidget;
+  constructor(@Host() public container: Container) {
   }
 
   ngOnInit() {
