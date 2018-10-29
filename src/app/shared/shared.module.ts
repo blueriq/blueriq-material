@@ -28,7 +28,7 @@ const SHARED_COMPONENTS = [
     ]),
 
     /* Material Modules */
-    MatSnackBarModule // used in validation.effect
+    MatSnackBarModule // used in validation.effect & messages.effect
   ],
   exports: [
     SHARED_COMPONENTS, CommonModule, FormsModule
