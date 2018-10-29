@@ -9,7 +9,7 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { MessagesEffect } from '@shared/effects/messages/messages.effect';
 import { Subject } from 'rxjs/Subject';
 
-fdescribe('MessagesEffect', () => {
+describe('MessagesEffect', () => {
   let actions: Subject<any>;
   let snackBarSpy: jasmine.SpyObj<MatSnackBar>;
   let effects: MessagesEffect;
