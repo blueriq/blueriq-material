@@ -1,4 +1,4 @@
-import { Component, Host } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Host } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { DomainValue, Field, FieldMessages } from '@blueriq/core';
@@ -6,7 +6,8 @@ import { BqPresentationStyles } from '../../BqPresentationStyles';
 
 @Component({
   selector: 'bq-select',
-  templateUrl: './select.component.html'
+  templateUrl: './select.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 @BlueriqComponent({
   type: Field,

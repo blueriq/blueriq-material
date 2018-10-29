@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { Field } from '@blueriq/core';
 import { InputFieldComponent } from '../input-field.component';
 
 @Component({
   selector: 'bq-percentage-field',
-  templateUrl: '../input-field.component.html'
+  templateUrl: '../input-field.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 @BlueriqComponent({
   type: Field,
