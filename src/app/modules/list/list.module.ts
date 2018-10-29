@@ -21,6 +21,7 @@ import { OwlDateTimeModule } from 'ng-pick-datetime';
 import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
 import { TableFilterValueComponent } from './filter/table.filter-value.component';
 import { TableFilterComponent } from './filter/table.filter.component';
+import { TableFormControlModule } from './form-controls/table-form-control.module';
 import { TableHeaderColumnComponent } from './header/header.component';
 import { ListComponent } from './list.component';
 import { TablePaginationComponent } from './pagination/table.pagination.component';
@@ -50,6 +51,7 @@ const LIST_COMPONENTS = [
     CommonModule,
     FlexLayoutModule,
     SharedModule,
+    TableFormControlModule, // form controls that have different appearance within a table
     OwlDateTimeModule, // used in filter component
     OwlMomentDateTimeModule, // used in filter component
 

@@ -1,0 +1,16 @@
+@import 'globals/variables';
+
+.mat-form-field {
+  width: 100%;
+
+  /* TODO when xx this style is used... */
+  &.validations {
+    .mat-form-field-flex {
+      border: 1px solid mat-color($bq-error-palette, 500, 0.8);
+    }
+  }
+}
+
+.tooltip-error {
+  background: mat-color($bq-error-palette, 500, 0.8);
+}
