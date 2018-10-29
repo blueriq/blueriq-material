@@ -3,7 +3,7 @@ import { MatSnackBar } from '@angular/material';
 import {
   Action,
   ButtonPressHandledAction,
-  SessionActions,
+  SessionEventActions,
   SessionLoadedAction,
   SessionRegistry,
   StartupActions
@@ -15,9 +15,11 @@ import { tap } from 'rxjs/operators';
 @Injectable()
 export class MessagesEffect {
 
+  currentMessages: string;
+
   @Effect({ dispatch: false })
-  buttonActions$: Observable<any> = this.actions$.pipe(
-    ofType<Action>(StartupActions.SESSION_LOADED, SessionActions.BUTTON_PRESS_HANDLED),
+  sessionActions$: Observable<any> = this.actions$.pipe(
+    ofType<Action>(StartupActions.SESSION_LOADED, SessionEventActions.CHANGED_PAGE, SessionEventActions.PAGE_UPDATED),
     tap(action => this.showSnackBar(action))
   );
 
@@ -32,11 +34,15 @@ export class MessagesEffect {
     if (session) {
       const messages = session.pageModel.page.messages;
       if (messages.hasMessages) {
-        const msgAsText: string[] = [];
-        messages.all.forEach(message => msgAsText.push(message.text));
-        this.snackBar.open(msgAsText.join(), undefined, {
-          panelClass: 'snackbar-error'
-        });
+        // concatenate all messages, as only one snackbar can be shown at a time
+        const messagesAsText = messages.all.map(message => message.text).join(', ');
+        // snackbar currently cannot be dismissed, so check if the messages are already displayed
+        if (messagesAsText !== this.currentMessages) {
+          this.currentMessages = messagesAsText;
+          this.snackBar.open(this.currentMessages, undefined, {
+            panelClass: (messages.hasErrors) ? 'snackbar-error' : 'snackbar-warning'
+          });
+        }
       }
     }
   }
