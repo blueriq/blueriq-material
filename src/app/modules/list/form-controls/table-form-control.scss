@@ -10,8 +10,40 @@
       color: mat-color($bq-error-palette, 500, 0.8);
     }
   }
+
+  /* Adjust the form-fields to fit in a table */
+  .mat-form-field-appearance-fill,
+  .mat-form-field-flex,
+  .mat-form-field-infix {
+    display: flex;
+    align-items: center;
+    border-top: 0;
+    background-color: mat-color($bq-mat-grey-light, A100);
+
+    .mat-form-field-prefix {
+      margin: 0 2px 0 $bq-margin-half;
+    }
+  }
+
+  /* Only underline the fields when hovered upon */
+  .mat-form-field-wrapper {
+    padding-bottom: 0;
+
+    .mat-form-field-underline {
+      display: none;
+      bottom: 0;
+    }
+
+    &:hover {
+      .mat-form-field-underline {
+        display: block;
+      }
+    }
+  }
+
 }
 
 .tooltip-error {
   background: mat-color($bq-error-palette, 500, 0.8);
 }
+

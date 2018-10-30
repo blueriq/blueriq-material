@@ -9,7 +9,6 @@ import {
   MatIconModule,
   MatInputModule,
   MatSelectModule,
-  MatSlideToggleModule,
   MatTooltipModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -43,9 +42,6 @@ const TABLE_FORM_CONTROL_COMPONENTS = [
   ],
   providers: [
     BlueriqComponents.register(TABLE_FORM_CONTROL_COMPONENTS)
-    // DomainValueTransformer,
-    // MomentTransformer,
-    // { provide: ErrorStateMatcher, useClass: BqErrorStateMatcher }
   ],
   imports: [
     BrowserAnimationsModule,
@@ -67,7 +63,6 @@ const TABLE_FORM_CONTROL_COMPONENTS = [
     MatDatepickerModule,
     MatInputModule,
     MatSelectModule,
-    MatSlideToggleModule,
     MatTooltipModule
   ],
   exports: [TABLE_FORM_CONTROL_COMPONENTS]

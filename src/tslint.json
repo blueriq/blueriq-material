@@ -168,6 +168,22 @@
     "unified-signatures": true,
     "variable-name": false,
     "no-output-on-prefix": true,
+    "directive-selector": [
+      true,
+      "attribute",
+      [
+        "bq"
+      ],
+      "camelCase"
+    ],
+    "component-selector": [
+      true,
+      "element",
+      [
+        "bq"
+      ],
+      "kebab-case"
+    ],
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,
