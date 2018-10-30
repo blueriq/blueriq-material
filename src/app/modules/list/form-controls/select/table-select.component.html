@@ -1,5 +1,5 @@
 <mat-form-field bqKey fxFlex bqClasses [style.width]="'100%'"
-  [class.validations]="getMessages().hasErrors"
+  [class.validations]="getMessages().hasMessages"
   [matTooltip]="getErrors()"
   matTooltipClass="tooltip-error">
   <mat-select [required]="field.required" [formControl]="formControl" [multiple]="field.multiValued" [placeholder]="field.placeholder">

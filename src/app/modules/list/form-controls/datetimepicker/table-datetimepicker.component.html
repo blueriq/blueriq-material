@@ -1,5 +1,5 @@
 <mat-form-field bqKey
-  [class.validations]="getMessages().hasErrors"
+  [class.validations]="getMessages().hasMessages"
   [matTooltip]="getErrors()"
   matTooltipClass="tooltip-error">
   <input matInput [placeholder]="field.placeholder" [formControl]="formControl" [required]="field.required" [owlDateTime]="dtPicker" (dateTimeChange)="formatOnChange($event)" [owlDateTimeTrigger]="dtPicker">

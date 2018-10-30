@@ -15,7 +15,7 @@ import { SelectComponent } from '../../../form-controls/select/select.component'
 export class TableSelectComponent extends SelectComponent {
 
   getErrors(): string {
-    return getFieldMessages(this.formControl).errors.map(error => error.text).toString();
+    return getFieldMessages(this.formControl).all.map(error => error.text).toString();
   }
 
 }

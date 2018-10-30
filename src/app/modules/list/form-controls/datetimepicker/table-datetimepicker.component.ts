@@ -20,7 +20,7 @@ import { dateTimeFormatProvider } from '../../../form-controls/date/datetimepick
 export class TableDatetimepickerComponent extends DateTimepickerComponent {
 
   getErrors(): string {
-    return getFieldMessages(this.formControl).errors.map(error => error.text).toString();
+    return getFieldMessages(this.formControl).all.map(error => error.text).toString();
   }
 
 }

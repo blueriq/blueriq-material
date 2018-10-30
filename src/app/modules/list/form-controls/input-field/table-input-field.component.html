@@ -1,5 +1,5 @@
 <mat-form-field bqKey
-  [class.validations]="getFieldMessages().hasErrors"
+  [class.validations]="getFieldMessages().hasMessages"
   [matTooltip]="getErrors()"
   matTooltipClass="tooltip-error">
   <span matPrefix *ngIf="fieldPrefix">{{fieldPrefix}}</span>

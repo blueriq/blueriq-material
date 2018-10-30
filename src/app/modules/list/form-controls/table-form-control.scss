@@ -7,6 +7,7 @@
   &.validations {
     .mat-form-field-flex {
       border: 1px solid mat-color($bq-error-palette, 500, 0.8);
+      color: mat-color($bq-error-palette, 500, 0.8);
     }
   }
 }
