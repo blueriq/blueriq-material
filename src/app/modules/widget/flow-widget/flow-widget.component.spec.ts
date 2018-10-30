@@ -1,5 +1,6 @@
 import { Component, Host } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { BlueriqComponent, BlueriqComponents, FailedAction, SessionRegistry } from '@blueriq/angular';
 import {
   BlueriqSessionTemplate,
@@ -9,6 +10,7 @@ import {
 } from '@blueriq/angular/testing';
 import { Page } from '@blueriq/core';
 import { ContainerTemplate, PageModelTemplate, PageTemplate } from '@blueriq/core/testing';
+import { BqContainerDirective } from '@shared/directive/container/bq-container.directive';
 import { WidgetModule } from '../widget.module';
 import { FlowWidgetComponent } from './flow-widget.component';
 
@@ -57,16 +59,9 @@ describe('WidgetComponent', () => {
     component = session.get(FlowWidgetComponent);
   });
 
-  it('should contain the correct elements', () => {
-    // Init
-    const header2 = component.nativeElement.querySelector('h2');
-    const widgetSessionSpan = component.nativeElement.querySelector('#widgetSessionDisplayName');
-
+  it('should use the bqContainer directive', () => {
     // Verify
-    expect(component.nativeElement.children[0].classList).toContain('flow-widget');
-    expect(component.nativeElement.children[0].classList).toContain('elevate');
-    expect(header2.innerHTML).toEqual('Container display name');
-    expect(widgetSessionSpan.innerHTML).toEqual('Widget display name');
+    expect(component.debugElement.query(By.directive(BqContainerDirective))).toBeTruthy();
   });
 
   it('should display an error message when widget fails to load', () => {
@@ -81,6 +76,19 @@ describe('WidgetComponent', () => {
     expect(widgetSessionSpan).toBeFalsy();
     expect(errorElement).toBeTruthy();
     expect(errorElement.innerText).toContain('whoops');
+  });
+
+  it('should use the bqContainer directive', () => {
+    // Verify
+    expect(component.debugElement.query(By.directive(BqContainerDirective))).toBeTruthy();
+  });
+
+  it('should use the bq-heading to display header', () => {
+    const widgetSessionSpan = component.nativeElement.querySelector('#widgetSessionDisplayName');
+
+    // Verify
+    expect(component.nativeElement.querySelector('bq-heading')).toBeTruthy();
+    expect(widgetSessionSpan.innerHTML).toEqual('Widget display name');
   });
 
 });

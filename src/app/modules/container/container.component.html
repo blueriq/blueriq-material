@@ -1,27 +1,11 @@
-<div bqKey bqClasses [ngClass]="{
-    'container': true,
-    'top-container': topcontainer,
-    'introduction': introduction,
-    'transparent': transparent,
-    'card': card,
-    'align-right': alignRight,
-    'bq-widget': dashboardwidget
-  }">
-  <img *ngIf="introduction" src="./theme/blueriq/images/blueriq-technology.svg">
+<div bqKey bqClasses [bqContainer]="container">
   
-  <ng-container *ngIf="container.displayName && !list">
-    <h2 *ngIf="!isWidget">
-      <mat-icon [bqIcon]="container.styles"></mat-icon>
-      {{ container.displayName }}
-    </h2>
-    <h3 *ngIf="isWidget" class="widget">
-      <mat-icon [bqIcon]="container.styles"></mat-icon>
-      {{ container.displayName }}
-    </h3>
-  </ng-container>
+  <bq-heading [title]="container.displayName" [styles]="container.styles"></bq-heading>
   
   <div [class.bq-row]="horizontal">
-    <ng-container *ngFor="let child of container.children | bqIncluded" [bqElement]="child" [bqFlexChild]="horizontal"></ng-container>
+    <ng-container *ngFor="let child of container.children | bqIncluded"
+      [bqElement]="child"
+      [bqFlexChild]="horizontal"></ng-container>
   </div>
 
 </div>

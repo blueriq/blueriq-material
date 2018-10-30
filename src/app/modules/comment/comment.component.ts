@@ -1,5 +1,5 @@
 import { Component, Host, Self } from '@angular/core';
-import { BlueriqComponent, BlueriqSession, DashboardComment } from '@blueriq/angular';
+import { BlueriqComponent, DashboardComment } from '@blueriq/angular';
 import { Container } from '@blueriq/core';
 
 @Component({
@@ -15,8 +15,7 @@ import { Container } from '@blueriq/core';
 export class CommentComponent {
 
   constructor(@Host() public container: Container,
-              @Self() public comment: DashboardComment,
-              public session: BlueriqSession) {
+              @Self() public comment: DashboardComment) {
   }
 
   onClick() {

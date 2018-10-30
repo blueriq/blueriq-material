@@ -1,7 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate } from '@blueriq/core/testing';
+import { BqContainerDirective } from '@shared/directive/container/bq-container.directive';
 import { SharedModule } from '@shared/shared.module';
 import { BqPresentationStyles } from '../BqPresentationStyles';
 import { ContainerComponent } from './container.component';
@@ -34,11 +36,10 @@ describe('ContainerComponent', () => {
     containerComponent = session.get(ContainerComponent);
   });
 
-  it('should have default expectations', () => {
+  it('should have be card and not horizontal by default', () => {
     const container = containerComponent.componentInstance;
 
-    expect(container.card).toBe(true);
-    expect(containerComponent.nativeElement.querySelector('.container.card')).toBeTruthy();
+    expect(containerComponent.nativeElement.querySelector('.card')).toBeTruthy();
     expect(container.horizontal).toBe(false);
   });
 
@@ -48,8 +49,7 @@ describe('ContainerComponent', () => {
       containerTemplate.styles(BqPresentationStyles.INTRODUCTION)
     );
 
-    expect(container.introduction).toBe(true);
-    expect(containerComponent.nativeElement.querySelector('.container.introduction')).toBeTruthy();
+    expect(containerComponent.nativeElement.querySelector('.introduction')).toBeTruthy();
   });
 
   it('should have transparent class when presentationstyle is set', () => {
@@ -58,8 +58,7 @@ describe('ContainerComponent', () => {
       containerTemplate.styles(BqPresentationStyles.TRANSPARENT)
     );
 
-    expect(container.transparent).toBe(true);
-    expect(containerComponent.nativeElement.querySelector('.container.transparent')).toBeTruthy();
+    expect(containerComponent.nativeElement.querySelector('.transparent')).toBeTruthy();
   });
 
   it('should be horizontal class when presentationstyle is set', () => {
@@ -79,7 +78,17 @@ describe('ContainerComponent', () => {
       containerTemplate.styles(BqPresentationStyles.ALIGNRIGHT)
     );
 
-    expect(container.alignRight).toBe(true);
-    expect(containerComponent.nativeElement.querySelector('.container.align-right')).toBeTruthy();
+    expect(containerComponent.nativeElement.querySelector('.align-right')).toBeTruthy();
   });
+
+  it('should use the bqContainer directive', () => {
+    // Verify
+    expect(containerComponent.debugElement.query(By.directive(BqContainerDirective))).toBeTruthy();
+  });
+
+  it('should use the bq-heading to display header', () => {
+    // Verify
+    expect(containerComponent.nativeElement.querySelector('bq-heading')).toBeTruthy();
+  });
+
 });
