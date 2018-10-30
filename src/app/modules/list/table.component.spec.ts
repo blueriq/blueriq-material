@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
 import { BlueriqTestSession } from '@blueriq/angular/testing/src/test_session';
@@ -9,6 +10,7 @@ import {
   StaticNodeTemplate,
   TextItemTemplate
 } from '@blueriq/core/testing';
+import { BqContainerDirective } from '@shared/directive/container/bq-container.directive';
 import { ButtonModule } from '../button/button.module';
 import { FormControlModule } from '../form-controls/form-control.module';
 import { ReadonlyModule } from '../readonly/readonly.module';
@@ -153,5 +155,15 @@ describe('TableComponent', () => {
     expect(checkboxCells[0]).not.toContain('checkmeout');
     expect(checkboxCells[1]).not.toContain('checkme');
     expect(checkboxCells[1]).not.toContain('checkmeout');
+  });
+
+  it('should use the bqContainer directive', () => {
+    // Verify
+    expect(component.debugElement.query(By.directive(BqContainerDirective))).toBeTruthy();
+  });
+
+  it('should use the bq-heading to display header', () => {
+    // Verify
+    expect(component.nativeElement.querySelector('bq-heading')).toBeTruthy();
   });
 });

@@ -6,7 +6,6 @@ import { BqContentStyles } from '../../BqContentStyles';
 @Component({
   selector: 'bq-flow-widget',
   templateUrl: './flow-widget.component.html',
-  styleUrls: ['./flow-widget.component.scss'],
   providers: [FlowWidget]
 })
 @BlueriqComponent({

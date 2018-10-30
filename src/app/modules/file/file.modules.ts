@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { SharedModule } from '@shared/shared.module';
 import { FileUploadModule } from 'ng2-file-upload';
+import { HeadingModule } from '../heading/heading.module';
 import { DocumentLinkComponent } from './document-link/document-link.component';
 import { FileDownloadComponent } from './file-download/file-download.component';
 import { FileDownloadService } from './file-download/file-download.service';
@@ -29,6 +30,7 @@ const FILE_COMPONENTS = [
     CommonModule,
     SharedModule,
     FileUploadModule,
+    HeadingModule,
 
     /* Material modules */
     MatIconModule,

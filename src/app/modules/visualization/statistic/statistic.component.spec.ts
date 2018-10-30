@@ -1,7 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate } from '@blueriq/core/testing';
+import { BqContainerDirective } from '@shared/directive/container/bq-container.directive';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
 import { VisualizationModule } from '../visualization.module';
 import { StatisticComponent } from './statistic.component';
@@ -99,6 +101,22 @@ describe('StatisticComponent', () => {
     session = BlueriqSessionTemplate.create().build(container);
     component = session.get(StatisticComponent);
     expect(component.componentInstance.chart.config.type).toBe('polarArea');
+  });
+
+  it('should use the bqContainer directive', () => {
+    // Verify
+    container = createVisualizationContainer(BqPresentationStyles.STATISTICPOLAR);
+    session = BlueriqSessionTemplate.create().build(container);
+    component = session.get(StatisticComponent);
+    expect(component.debugElement.query(By.directive(BqContainerDirective))).toBeTruthy();
+  });
+
+  it('should use the bq-heading to display header', () => {
+    // Verify
+    container = createVisualizationContainer(BqPresentationStyles.STATISTICPOLAR);
+    session = BlueriqSessionTemplate.create().build(container);
+    component = session.get(StatisticComponent);
+    expect(component.nativeElement.querySelector('bq-heading')).toBeTruthy();
   });
 
   function createVisualizationContainer(presentationStyle?: string) {

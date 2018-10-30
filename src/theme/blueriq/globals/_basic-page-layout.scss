@@ -12,61 +12,36 @@ body {
   font-family: $bq-font-family;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin-top: 0;
-  color: $bq-header-color;
-  font-weight: 400;
+/*
+* The following styles are part of the directive: BqContainer
+*/
+
+/* Containers that are directly on a page */
+.top-container {
+  margin: $bq-margin-double;
+  padding: $bq-margin-double;
 }
 
-h1 {
-  font-size: $h1-size;
+/* Display containers as card */
+.card {
+  @include mat-elevation(1);
+  background: map-get($mat-light-theme-background, card);
+}
 
-  &.widget {
-    font-size: $h1-widget-size;
+/* Display containers as transparent with a small image in the corner */
+.introduction {
+  background: {
+    position: left top;
+    image: url('../../theme/blueriq/images/blueriq-technology.svg');
+    repeat: no-repeat;
+    size: 39px;
   }
 }
 
-h2 {
-  font-size: $h2-size;
-
-  &.widget {
-    font-size: $h2-widget-size;
-  }
+.align-right {
+  display: flex;
+  justify-content: flex-end;
 }
 
-h3 {
-  font-size: $h3-size;
 
-  &.widget {
-    font-size: $h3-widget-size;
-  }
-}
 
-h4 {
-  font-size: $h4-size;
-
-  &.widget {
-    font-size: $h4-widget-size;
-  }
-}
-
-h5 {
-  font-size: $h5-size;
-
-  &.widget {
-    font-size: $h5-widget-size;
-  }
-}
-
-h6 {
-  font-size: $h6-size;
-
-  &.widget {
-    font-size: $h6-widget-size;
-  }
-}

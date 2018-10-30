@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { FileUpload } from '@blueriq/angular/files';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ButtonTemplate, ContainerTemplate } from '@blueriq/core/testing';
+import { BqContainerDirective } from '@shared/directive/container/bq-container.directive';
 import { FileSelectDirective, FileUploader } from 'ng2-file-upload';
 import { FileItem } from 'ng2-file-upload/file-upload/file-item.class';
 import { FileLikeObject } from 'ng2-file-upload/file-upload/file-like-object.class';
@@ -152,6 +153,16 @@ describe('FileUploadComponent', () => {
 
     // Verify
     expect(CustomFileUploader.prototype.uploadAll).toHaveBeenCalled();
+  });
+
+  it('should use the bq-heading to display header', () => {
+    // Verify
+    expect(component.nativeElement.querySelector('bq-heading')).toBeTruthy();
+  });
+
+  it('should use the bqContainer directive', () => {
+    // Verify
+    expect(component.debugElement.query(By.directive(BqContainerDirective))).toBeTruthy();
   });
 
   function createFile(): FileItem {

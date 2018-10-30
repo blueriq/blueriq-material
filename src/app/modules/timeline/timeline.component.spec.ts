@@ -1,7 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate } from '@blueriq/core/testing';
 import { DEFAULT_DATE_FROM_NOW_FORMAT } from '@shared/date/bq-date-parser';
+import { BqContainerDirective } from '@shared/directive/container/bq-container.directive';
 import * as moment from 'moment';
 import { TimelineComponent } from './timeline.component';
 import { TimelineModule } from './timeline.module';
@@ -66,6 +68,16 @@ describe('TimelineComponent', () => {
     expect(time.length).toBe(2);
     expect(time[0].innerHTML).toBe('17:00');
     expect(time[1].innerHTML).toBe(moment(now).format('HH:mm'));
+  });
+
+  it('should use the bqContainer directive', () => {
+    // Verify
+    expect(component.debugElement.query(By.directive(BqContainerDirective))).toBeTruthy();
+  });
+
+  it('should use the bq-heading to display header', () => {
+    // Verify
+    expect(component.nativeElement.querySelector('bq-heading')).toBeTruthy();
   });
 
   function createTimelineEntry(username, datetime,
