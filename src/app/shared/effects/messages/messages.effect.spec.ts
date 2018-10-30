@@ -96,8 +96,8 @@ describe('MessagesEffect', () => {
   it('opens snackbar with multiple error messages', fakeAsync(() => {
     const anotherErrorMsg = 'Another error message';
     const session = SessionTemplate.create()
-    .sessionName('my-session')
-    .pageModel(PageModelTemplate.create(PageTemplate.create().error(errorMsg).error(anotherErrorMsg))).build();
+      .sessionName('my-session')
+      .pageModel(PageModelTemplate.create(PageTemplate.create().error(errorMsg).error(anotherErrorMsg))).build();
     sessionRegistry.register(session);
 
     const action = new PageUpdatedAction('my-session', [{}] as any);
@@ -108,6 +108,24 @@ describe('MessagesEffect', () => {
     tick();
 
     expect(snackBarSpy.open).toHaveBeenCalledWith(`${errorMsg}, ${anotherErrorMsg}`, undefined, {
+      panelClass: 'snackbar-error'
+    });
+  }));
+
+  it('opens error snackbar with mixed error and warning messages', fakeAsync(() => {
+    const session = SessionTemplate.create()
+    .sessionName('my-session')
+    .pageModel(PageModelTemplate.create(PageTemplate.create().error(errorMsg).warning(warnMsg))).build();
+    sessionRegistry.register(session);
+
+    const action = new PageUpdatedAction('my-session', [{}] as any);
+
+    effects.sessionActions$.subscribe();
+    actions.next(action);
+
+    tick();
+
+    expect(snackBarSpy.open).toHaveBeenCalledWith(`${errorMsg}, ${warnMsg}`, undefined, {
       panelClass: 'snackbar-error'
     });
   }));
