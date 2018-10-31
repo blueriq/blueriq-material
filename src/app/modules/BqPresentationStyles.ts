@@ -24,10 +24,13 @@ export class BqPresentationStyles {
   static DANGER = 'Danger';
   static DISABLED = 'Disabled';
   static INFO = 'Info';
+  static MEMO = 'memo';
   static PRIMARY = 'Primary';
   static SUCCESS = 'Success';
+  static TEXTEMPHASIS = 'TextEmphasis';
+  static TEXTEMPHASIS_SUBTLE = 'TextEmphasisSubtle';
+  static TEXTEMPHASIS_INTENSE = 'TextEmphasisIntense';
   static TOGGLE = 'toggle'; // Could be refactored to 'Toggle'
-  static MEMO = 'memo';
   // Presentation styles which are not used in studio
   static EXPLAINICON = 'explainicon';
   // Prefixes
