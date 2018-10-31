@@ -56,15 +56,15 @@
   }
 
   ::ng-deep {
-    .TextEmphasis { // sass-lint:disable-line class-name-format
+    .emphasis {
       font-weight: bold;
     }
 
-    .TextEmphasisSubtle { // sass-lint:disable-line class-name-format
+    .subtle {
       text-decoration: underline;
     }
 
-    .TextEmphasisIntense { // sass-lint:disable-line class-name-format
+    .intense {
       font-style: italic;
     }
   }

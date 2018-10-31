@@ -112,4 +112,24 @@ describe('TextItemComponent', () => {
     expect(iconInfoClass).toBe('info');
   });
 
+  it('should have class `emphasis`', () => {
+    session.update(textItem.styles(BqPresentationStyles.TEXTEMPHASIS));
+
+    const classes: string = component.nativeElement.querySelector('div').getAttribute('class');
+    expect(classes).toContain('emphasis');
+  });
+
+  it('should have class `subtle`', () => {
+    session.update(textItem.styles(BqPresentationStyles.TEXTEMPHASIS_SUBTLE));
+
+    const classes: string = component.nativeElement.querySelector('div').getAttribute('class');
+    expect(classes).toContain('subtle');
+  });
+
+  it('should have class `intense`', () => {
+    session.update(textItem.styles(BqPresentationStyles.TEXTEMPHASIS_INTENSE));
+
+    const classes: string = component.nativeElement.querySelector('div').getAttribute('class');
+    expect(classes).toContain('intense');
+  });
 });
