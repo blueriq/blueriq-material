@@ -54,4 +54,18 @@
       color: mat-color($bq-success-palette, 800);
     }
   }
+
+  ::ng-deep {
+    .TextEmphasis { // sass-lint:disable-line class-name-format
+      font-weight: bold;
+    }
+
+    .TextEmphasisSubtle { // sass-lint:disable-line class-name-format
+      text-decoration: underline;
+    }
+
+    .TextEmphasisIntense { // sass-lint:disable-line class-name-format
+      font-style: italic;
+    }
+  }
 }
