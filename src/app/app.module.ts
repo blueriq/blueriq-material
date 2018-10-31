@@ -14,6 +14,7 @@ import { AssetModule } from './modules/asset/asset.module';
 import { ButtonModule } from './modules/button/button.module';
 import { CommentModule } from './modules/comment/comment.module';
 import { ContainerModule } from './modules/container/container.module';
+import { ContentItemModule } from './modules/contentitem/contentitem.module';
 import { ErrorModule } from './modules/error/error.module';
 import { FileModule } from './modules/file/file.modules';
 import { FormControlModule } from './modules/form-controls/form-control.module';
@@ -69,6 +70,7 @@ const routes: Routes = [
     ButtonModule,
     CommentModule,
     ContainerModule,
+    ContentItemModule,
     FileModule,
     FormControlModule,
     HeaderModule,
