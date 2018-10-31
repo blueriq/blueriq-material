@@ -46,8 +46,9 @@ describe('Kinderbijslag App', () => {
 
     // Verify
     expect(app.pageTitleAanvragenKinderbijslag).toBe('Aanvragen kinderbijslag');
-    expect(app.getTableCellFor(app.PAGE_ID_AANVRAGEN_KINDERBIJSLAG + '_cell_1')).toBe('Jack');
-    expect(app.getTableCellFor(app.PAGE_ID_AANVRAGEN_KINDERBIJSLAG + '_cell_2')).toBe('Sparrow');
+
+    expect(app.getInputFor(app.PAGE_ID_AANVRAGEN_KINDERBIJSLAG, 'Kind-Voornaam').getAttribute('value')).toBe('Jack');
+    expect(app.getInputFor(app.PAGE_ID_AANVRAGEN_KINDERBIJSLAG, 'Kind-Achternaam').getAttribute('value')).toBe('Sparrow');
     expect(app.getTableCellFor(app.PAGE_ID_AANVRAGEN_KINDERBIJSLAG + '_cell_3')).toBe('01-01-2018');
   });
 
@@ -63,7 +64,8 @@ describe('Kinderbijslag App', () => {
 
     // Verify
     expect(app.pageTitleResultaatBerekening).toBe('Resultaat berekening');
-    expect(app.getTableCellFor(app.PAGE_ID_RESULTAAT_BEREKENING + '_cell_4')).toBe('€ 188,57');
+    expect(app.getTableCellFor(app.PAGE_ID_RESULTAAT_BEREKENING + '_cell_4')).toBe('euro_symbol');
+    expect(app.getInputFor(app.PAGE_ID_RESULTAAT_BEREKENING, 'Kind-BedragKinderbijslag').getAttribute('value')).toBe('188,57');
     expect(app.getTextareaFor(app.PAGE_ID_RESULTAAT_BEREKENING, 'Verzekerde-Kinderbijslag').getAttribute('value')).toBe('€ 188,57');
     expect(app.getTextareaFor(app.PAGE_ID_RESULTAAT_BEREKENING, 'Verzekerde-AantalKinderen').getAttribute('value')).toBe('1');
   });
