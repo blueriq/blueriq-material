@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatIconModule, MatMenuModule, MatToolbarModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatMenuModule, MatToolbarModule } from '@angular/material';
 import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
 import { SharedModule } from '@shared/shared.module';
 import { HeaderComponent } from './header.component';
@@ -26,6 +26,7 @@ const BLUERIQ_COMPONENTS = [
     /* Material modules */
     MatToolbarModule,
     MatMenuModule,
+    MatButtonModule,
     MatIconModule
   ],
   exports: [BLUERIQ_COMPONENTS]
