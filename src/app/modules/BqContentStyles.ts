@@ -17,4 +17,6 @@ export class BqContentStyles {
   static DASHBOARD_COLUMN_PREFIX = 'dashboard_column';
 
   static TAB = 'tabs';
+
+  static WEIGHT_REGEXP = new RegExp('^' + BqContentStyles.DASHBOARD_COLUMN_PREFIX + '(\\d+)$');
 }
