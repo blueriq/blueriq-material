@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { Field } from '@blueriq/core';
-import { TableInputFieldComponent } from './table-input-field.component';
+import { TableInputFieldComponent } from '../table-input-field.component';
 
 @Component({
   selector: 'bq-table-percentage-field',
-  templateUrl: './table-input-field.component.html',
-  styleUrls: ['../table-form-control.scss'],
+  templateUrl: '../table-input-field.component.html',
+  styleUrls: ['../../table-form-control.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })

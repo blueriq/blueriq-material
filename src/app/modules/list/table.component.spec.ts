@@ -11,6 +11,7 @@ import {
   TextItemTemplate
 } from '@blueriq/core/testing';
 import { BqContainerDirective } from '@shared/directive/container/bq-container.directive';
+import { BqContentStyles } from '../BqContentStyles';
 import { ButtonModule } from '../button/button.module';
 import { FormControlModule } from '../form-controls/form-control.module';
 import { ReadonlyModule } from '../readonly/readonly.module';
@@ -40,7 +41,7 @@ describe('TableComponent', () => {
 
   beforeEach(() => {
     tableTemplate = ContainerTemplate.create();
-    tableTemplate.contentStyle('table');
+    tableTemplate.contentStyle(BqContentStyles.TABLE);
     // Simulate a table so the red-cow framework detects this and can be tested on.
     tableTemplate.children(
       // ---------- Header ----------

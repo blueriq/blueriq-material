@@ -4,7 +4,7 @@ import { InputFieldComponent } from '../../../form-controls/input-field/input-fi
 export class TableInputFieldComponent extends InputFieldComponent {
 
   getErrors(): string {
-    return getFieldMessages(this.formControl).all.map(error => error.text).toString();
+    return getFieldMessages(this.formControl).all.map(error => error.text).join('\n');
   }
 
 }

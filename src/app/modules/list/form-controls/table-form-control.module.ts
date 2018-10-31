@@ -18,11 +18,11 @@ import { SharedModule } from '@shared/shared.module';
 import { OwlDateTimeModule } from 'ng-pick-datetime';
 import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
 import { TableDatetimepickerComponent } from './datetimepicker/table-datetimepicker.component';
-import { TableCurrencyFieldComponent } from './input-field/table-currency.component';
-import { TableIntegerFieldComponent } from './input-field/table-integer.component';
-import { TableNumberFieldComponent } from './input-field/table-number.component';
-import { TablePercentageFieldComponent } from './input-field/table-percentage.component';
-import { TableStringFieldComponent } from './input-field/table-string.component';
+import { TableCurrencyFieldComponent } from './input-field/currency/table-currency.component';
+import { TableIntegerFieldComponent } from './input-field/integer/table-integer.component';
+import { TableNumberFieldComponent } from './input-field/number/table-number.component';
+import { TablePercentageFieldComponent } from './input-field/percentage/table-percentage.component';
+import { TableStringFieldComponent } from './input-field/string/table-string.component';
 import { TableSelectComponent } from './select/table-select.component';
 
 const TABLE_FORM_CONTROL_COMPONENTS = [

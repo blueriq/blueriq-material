@@ -45,5 +45,6 @@
 
 .tooltip-error {
   background: mat-color($bq-error-palette, 500, .8);
+  white-space: pre-line;
 }
 
