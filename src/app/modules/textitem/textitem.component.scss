@@ -54,4 +54,18 @@
       color: mat-color($bq-success-palette, 800);
     }
   }
+
+  ::ng-deep {
+    .emphasis {
+      font-weight: bold;
+    }
+
+    .subtle {
+      text-decoration: underline;
+    }
+
+    .intense {
+      font-style: italic;
+    }
+  }
 }
