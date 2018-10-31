@@ -2,12 +2,12 @@ import { Directive, Input, OnDestroy, Renderer2 } from '@angular/core';
 import { BlueriqListeners, getAngularComponent } from '@blueriq/angular';
 import { Element } from '@blueriq/core';
 import { Subscription } from 'rxjs';
-import { BqContentStyles } from '../../../modules/BqContentStyles';
-import { BqPresentationStyles } from '../../../modules/BqPresentationStyles';
+import { BqContentStyles } from '../../BqContentStyles';
+import { BqPresentationStyles } from '../../BqPresentationStyles';
 
 /**
  * This directive can be added to a container to add a flex-grow style to it, based on the container's content style.
- * It is meant for dashboard columns only!
+ * It is meant for children of containers with presentation style 'horizontal' only!
  */
 @Directive({
   selector: '[bqFlexChild]'
@@ -15,10 +15,6 @@ import { BqPresentationStyles } from '../../../modules/BqPresentationStyles';
 export class HorizontalFlexChildDirective implements OnDestroy {
 
   private static REGEXP_PS = new RegExp('^' + BqPresentationStyles.WEIGHT_PREFIX + '(\\d+)$');
-  private static REGEXP_CS = new RegExp('^' + BqContentStyles.DASHBOARD_COLUMN_PREFIX + '(\\d+)$');
-
-  @Input('bqFlexChild')
-  enableFlexChild: boolean;
 
   private _subscription: Subscription | undefined;
 
@@ -28,17 +24,15 @@ export class HorizontalFlexChildDirective implements OnDestroy {
 
   @Input()
   set bqElement(element: Element) {
-    if (this.enableFlexChild) {
-      if (this._subscription) {
-        this._subscription.unsubscribe();
-      }
-
-      this._subscription = this.listeners.listen(element).subscribe(() => {
-        this.applyStylesIfRequired(element);
-      });
-
-      this.applyStylesIfRequired(element);
+    if (this._subscription) {
+      this._subscription.unsubscribe();
     }
+
+    this._subscription = this.listeners.listen(element).subscribe(() => {
+      this.applyStylesIfRequired(element);
+    });
+
+    this.applyStylesIfRequired(element);
   }
 
   ngOnDestroy() {
@@ -50,14 +44,14 @@ export class HorizontalFlexChildDirective implements OnDestroy {
   private applyStylesIfRequired(element: Element): void {
     const weightStyle = element.styles.get(style => style.startsWith(BqPresentationStyles.WEIGHT_PREFIX));
     if (weightStyle) {
-      if (this.decorateHostElement(element, weightStyle, HorizontalFlexChildDirective.REGEXP_PS)) {
+      if (this.decorateHostElement(element, weightStyle, BqPresentationStyles.WEIGHT_REGEXP)) {
         return;
       }
     }
 
     // (legacy) content style
     if (element.contentStyle) {
-      if (this.decorateHostElement(element, element.contentStyle, HorizontalFlexChildDirective.REGEXP_CS)) {
+      if (this.decorateHostElement(element, element.contentStyle, BqContentStyles.WEIGHT_REGEXP)) {
         return;
       }
     }
