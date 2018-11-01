@@ -13,6 +13,7 @@ import {
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
+import { FormattingModule } from '@blueriq/angular/formatting';
 import { BlueriqFormsModule } from '@blueriq/angular/forms';
 import { SharedModule } from '@shared/shared.module';
 import { OwlDateTimeModule } from 'ng-pick-datetime';
@@ -23,6 +24,7 @@ import { TableIntegerFieldComponent } from './input-field/integer/table-integer.
 import { TableNumberFieldComponent } from './input-field/number/table-number.component';
 import { TablePercentageFieldComponent } from './input-field/percentage/table-percentage.component';
 import { TableStringFieldComponent } from './input-field/string/table-string.component';
+import { TableReadonlyComponent } from './readonly/table-readonly.component';
 import { TableSelectComponent } from './select/table-select.component';
 
 export const TABLE_FORM_CONTROL_COMPONENTS = [
@@ -33,7 +35,8 @@ export const TABLE_FORM_CONTROL_COMPONENTS = [
   TablePercentageFieldComponent,
   TableCurrencyFieldComponent,
   TableDatetimepickerComponent,
-  TableSelectComponent
+  TableSelectComponent,
+  TableReadonlyComponent
 ];
 
 @NgModule({
@@ -53,6 +56,7 @@ export const TABLE_FORM_CONTROL_COMPONENTS = [
     BlueriqCommonModule,
     FormsModule,
     ReactiveFormsModule,
+    FormattingModule.forRoot(),
     BlueriqFormsModule.forRoot(),
 
     /* Material modules */
