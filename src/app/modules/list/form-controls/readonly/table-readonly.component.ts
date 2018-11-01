@@ -10,7 +10,7 @@ import { ReadonlyComponent } from '../../../readonly/readonly.component';
 })
 @BlueriqComponent({
   type: Field,
-  selector: bySelector('[readonly]:not([dataType=boolean])', { priorityOffset: 1000 })
+  selector: bySelector('[readonly]:not([dataType=boolean])', { priorityOffset: 100 })
 })
 export class TableReadonlyComponent extends ReadonlyComponent {
 }
