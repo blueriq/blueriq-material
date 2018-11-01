@@ -7,6 +7,7 @@ import { SharedModule } from '@shared/shared.module';
 import { HeadingModule } from '../heading/heading.module';
 import { ContainerComponent } from './container.component';
 import { FailedComponent } from './failed/failed.component';
+import { FlexColumnDirective } from './flex/flex-column.directive';
 import { HorizontalFlexChildDirective } from './flex/horizontal-flex-child.directive';
 
 const BLUERIQ_COMPONENTS = [
@@ -17,7 +18,8 @@ const BLUERIQ_COMPONENTS = [
 @NgModule({
   declarations: [
     BLUERIQ_COMPONENTS,
-    HorizontalFlexChildDirective
+    HorizontalFlexChildDirective,
+    FlexColumnDirective
   ],
   providers: [
     BlueriqComponents.register(BLUERIQ_COMPONENTS),

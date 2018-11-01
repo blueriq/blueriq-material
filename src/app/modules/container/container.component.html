@@ -1,11 +1,19 @@
 <div bqKey bqClasses [bqContainer]="container">
-  
+
   <bq-heading [title]="container.displayName" [styles]="container.styles"></bq-heading>
-  
-  <div [class.bq-row]="horizontal">
+
+  <!-- Container has presentation style 'horizontal', direct children should be rendered horizontally -->
+  <div *ngIf="isHorizontal" class="bq-row">
     <ng-container *ngFor="let child of container.children | bqIncluded"
       [bqElement]="child"
-      [bqFlexChild]="horizontal"></ng-container>
+      bqFlexChild></ng-container>
+  </div>
+
+  <!-- Default case, direct children will be rendered vertically, unless the bqFlexColumn directive changes this-->
+  <div *ngIf="!isHorizontal">
+    <ng-container *ngFor="let child of container.children | bqIncluded"
+      [bqElement]="child"
+      bqFlexColumn></ng-container>
   </div>
 
 </div>

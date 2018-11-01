@@ -23,7 +23,7 @@ import { ContainerComponentMatcher } from './container-component-matcher';
 })
 export class ContainerComponent implements OnInit, OnUpdate {
 
-  public horizontal = false;
+  public isHorizontal = false;
 
   constructor(@Host() public container: Container) {
   }
@@ -40,7 +40,7 @@ export class ContainerComponent implements OnInit, OnUpdate {
    * Finds presentation styles to determine if it is a horizontal view
    */
   private determineDisplayStyle() {
-    this.horizontal = this.container.styles.has(BqPresentationStyles.HORIZONTAL) || this.container.contentStyle === BqContentStyles.DASHBOARD_ROW;
+    this.isHorizontal = this.container.styles.has(BqPresentationStyles.HORIZONTAL);
   }
 
 }
