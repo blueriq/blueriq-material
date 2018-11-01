@@ -14,8 +14,6 @@ import { BqPresentationStyles } from '../../BqPresentationStyles';
 })
 export class HorizontalFlexChildDirective implements OnDestroy {
 
-  private static REGEXP_PS = new RegExp('^' + BqPresentationStyles.WEIGHT_PREFIX + '(\\d+)$');
-
   private _subscription: Subscription | undefined;
 
   constructor(private renderer: Renderer2,
