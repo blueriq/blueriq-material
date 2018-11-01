@@ -121,8 +121,8 @@ describe('TableComponent', () => {
   it('should have a header displayed with the correct content', () => {
     const matRows = component.nativeElement.querySelectorAll('.mat-row');
     expect(matRows.length).toBe(2);
-    expect(matRows[0].innerText.trim()).toBe('Mike\nCLICKME');
-    expect(matRows[1].innerText.trim()).toBe('Tilly\nCLICKME');
+    expect(matRows[0].querySelector('input').value).toBe('Mike');
+    expect(matRows[1].querySelector('input').value).toBe('Tilly');
   });
 
   it('should have a row with correct header content', () => {
@@ -131,12 +131,6 @@ describe('TableComponent', () => {
 
     const headerCellContent = matHeaderCell[0].querySelector('bq-textitem-static').innerText;
     expect(headerCellContent.trim()).toBe('Name');
-  });
-
-  it('should have a row with the correct label content', () => {
-    const readonlyCells = component.nativeElement.querySelectorAll('bq-readonly');
-    expect(readonlyCells.length).toBe(2);
-    expect(readonlyCells[0].querySelector('label')).toBeFalsy();
   });
 
   it('should have a mat-button in a tablecell', () => {
