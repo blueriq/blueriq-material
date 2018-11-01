@@ -1,50 +1,59 @@
 @import 'globals/variables';
 
-.mat-form-field {
-  width: 100%;
+$bq-transparent-error-color: mat-color($bq-error-palette, 500, .8);
 
-  /* When a field has messages this class will be set */
-  &.validations {
-    .mat-form-field-flex {
-      border: 1px solid mat-color($bq-error-palette, 500, .8);
-      color: mat-color($bq-error-palette, 500, .8);
-    }
-  }
+:host ::ng-deep {
 
-  /* Adjust the form-fields to fit in a table */
-  .mat-form-field-appearance-fill,
-  .mat-form-field-flex,
-  .mat-form-field-infix {
-    display: flex;
-    align-items: center;
-    border-top: 0;
-    background-color: mat-color($bq-mat-grey-light, A100);
+  .mat-form-field {
+    width: 100%;
 
-    .mat-form-field-prefix {
-      margin: 0 2px 0 $bq-margin-half;
-    }
-  }
-
-  /* Only underline the fields when hovered upon */
-  .mat-form-field-wrapper {
-    padding-bottom: 0;
-
-    .mat-form-field-underline {
-      display: none;
-      bottom: 0;
-    }
-
-    &:hover {
-      .mat-form-field-underline {
-        display: block;
+    /* When a field has messages this class will be set */
+    &.validations {
+      .mat-form-field-flex {
+        border: 1px solid $bq-transparent-error-color;
+        color: $bq-transparent-error-color;
       }
     }
+
+    /* Adjust the form-fields to fit in a table */
+    .mat-form-field-appearance-fill,
+    .mat-form-field-flex,
+    .mat-form-field-infix {
+      display: flex;
+      align-items: center;
+      border-top: 0;
+      background-color: mat-color($bq-mat-grey-light, A100);
+
+      .mat-form-field-prefix {
+        margin: 0 2px 0 $bq-margin-half;
+      }
+
+      .mat-form-field-suffix {
+        margin: 0 $bq-margin-half 0 2px;
+      }
+    }
+
+    /* Only underline the fields when hovered upon */
+    .mat-form-field-wrapper {
+      padding-bottom: 0;
+
+      .mat-form-field-underline {
+        display: none;
+        bottom: 0;
+      }
+
+      &:hover {
+        .mat-form-field-underline {
+          display: block;
+        }
+      }
+    }
+
+  }
+
+  .tooltip-error {
+    background: $bq-transparent-error-color;
+    white-space: pre-line;
   }
 
 }
-
-.tooltip-error {
-  background: mat-color($bq-error-palette, 500, .8);
-  white-space: pre-line;
-}
-

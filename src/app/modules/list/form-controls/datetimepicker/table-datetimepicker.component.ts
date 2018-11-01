@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { getFieldMessages } from '@blueriq/angular/forms';
 import { Field } from '@blueriq/core';
@@ -10,12 +10,11 @@ import { dateTimeFormatProvider } from '../../../form-controls/date/datetimepick
   templateUrl: './table-datetimepicker.component.html',
   styleUrls: ['../table-form-control.scss'],
   providers: [dateTimeFormatProvider],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 @BlueriqComponent({
   type: Field,
-  selector: 'table [dataType=date], table [dataType=datetime]'
+  selector: '[dataType=date], [dataType=datetime]'
 })
 export class TableDatetimepickerComponent extends DateTimepickerComponent {
 

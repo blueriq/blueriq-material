@@ -12,7 +12,7 @@ import {
   MatTooltipModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqComponents } from '@blueriq/angular';
+import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
 import { BlueriqFormsModule } from '@blueriq/angular/forms';
 import { SharedModule } from '@shared/shared.module';
 import { OwlDateTimeModule } from 'ng-pick-datetime';
@@ -25,7 +25,7 @@ import { TablePercentageFieldComponent } from './input-field/percentage/table-pe
 import { TableStringFieldComponent } from './input-field/string/table-string.component';
 import { TableSelectComponent } from './select/table-select.component';
 
-const TABLE_FORM_CONTROL_COMPONENTS = [
+export const TABLE_FORM_CONTROL_COMPONENTS = [
   TableStringFieldComponent,
   TablePercentageFieldComponent,
   TableIntegerFieldComponent,
@@ -50,6 +50,7 @@ const TABLE_FORM_CONTROL_COMPONENTS = [
     FlexLayoutModule,
     OwlDateTimeModule,
     OwlMomentDateTimeModule,
+    BlueriqCommonModule,
     FormsModule,
     ReactiveFormsModule,
     BlueriqFormsModule.forRoot(),

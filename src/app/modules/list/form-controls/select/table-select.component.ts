@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { getFieldMessages } from '@blueriq/angular/forms';
 import { Field } from '@blueriq/core';
@@ -8,12 +8,11 @@ import { SelectComponent } from '../../../form-controls/select/select.component'
   selector: 'bq-table-select',
   templateUrl: './table-select.component.html',
   styleUrls: ['../table-form-control.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 @BlueriqComponent({
   type: Field,
-  selector: 'table [hasDomain]'
+  selector: '[hasDomain]'
 })
 export class TableSelectComponent extends SelectComponent {
 
