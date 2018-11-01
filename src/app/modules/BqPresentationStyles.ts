@@ -48,4 +48,6 @@ export class BqPresentationStyles {
   static DEPRECATED_STATISTIC_RADAR = 'radar';
   static DEPRECATED_STATISTIC_LINE = 'line';
   static DEPRECATED_STATISTIC_POLAR = 'polar';
+
+  static WEIGHT_REGEXP = new RegExp('^' + BqPresentationStyles.WEIGHT_PREFIX + '(\\d+)$');
 }

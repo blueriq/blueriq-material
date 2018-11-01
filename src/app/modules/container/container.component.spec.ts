@@ -27,11 +27,11 @@ describe('ContainerComponent', () => {
 
   beforeEach(() => {
     containerTemplate = ContainerTemplate.create()
-    .children(
-      ContainerTemplate.create(),
-      ContainerTemplate.create(),
-      ContainerTemplate.create()
-    );
+      .children(
+        ContainerTemplate.create(),
+        ContainerTemplate.create(),
+        ContainerTemplate.create()
+      );
     session = BlueriqSessionTemplate.create().build(containerTemplate);
     containerComponent = session.get(ContainerComponent);
   });
@@ -40,7 +40,7 @@ describe('ContainerComponent', () => {
     const container = containerComponent.componentInstance;
 
     expect(containerComponent.nativeElement.querySelector('.card')).toBeTruthy();
-    expect(container.horizontal).toBe(false);
+    expect(container.isHorizontal).toBe(false);
   });
 
   it('should have introduction class when presentation style is set', () => {
@@ -67,7 +67,7 @@ describe('ContainerComponent', () => {
       containerTemplate.styles(BqPresentationStyles.HORIZONTAL)
     );
 
-    expect(container.horizontal).toBe(true);
+    expect(container.isHorizontal).toBe(true);
     expect(containerComponent.nativeElement.querySelector('.bq-row')).toBeTruthy();
     expect(containerComponent.nativeElement.querySelectorAll('.bq-row > *').length).toBe(3);
   });

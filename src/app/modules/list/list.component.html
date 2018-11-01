@@ -4,4 +4,5 @@
   <bq-table-filter *ngIf="list.filter$ | async as filter" [filter]="filter"></bq-table-filter>
   <bq-table [table]="list.table$ | async"></bq-table>
   <bq-table-pagination *ngIf="list.pagination$ | async as pagination" [pagination]="pagination"></bq-table-pagination>
+  <bq-table-limit *ngIf="list.limit$ | async as limit" [limit]="limit"></bq-table-limit>
 </div>

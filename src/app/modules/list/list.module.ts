@@ -23,6 +23,7 @@ import { HeadingModule } from '../heading/heading.module';
 import { TableFilterValueComponent } from './filter/table.filter-value.component';
 import { TableFilterComponent } from './filter/table.filter.component';
 import { TableHeaderColumnComponent } from './header/header.component';
+import { TableLimitComponent } from './limit/table.limit.component';
 import { ListComponent } from './list.component';
 import { TablePaginationComponent } from './pagination/table.pagination.component';
 import { TableSearchComponent } from './search/table.search.component';
@@ -35,7 +36,8 @@ const LIST_COMPONENTS = [
   TableHeaderColumnComponent,
   TablePaginationComponent,
   ListComponent,
-  TableFilterValueComponent
+  TableFilterValueComponent,
+  TableLimitComponent
 ];
 
 @NgModule({
