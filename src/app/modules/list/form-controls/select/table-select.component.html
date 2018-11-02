@@ -1,4 +1,7 @@
-<mat-form-field bqKey fxFlex bqClasses [style.width]="'100%'">
+<mat-form-field bqKey fxFlex bqClasses
+  [class.validations]="getMessages().hasMessages"
+  [matTooltip]="getErrors()"
+  matTooltipClass="tooltip-error">
   <mat-select [required]="field.required" [formControl]="formControl" [multiple]="field.multiValued" [placeholder]="field.placeholder">
     <mat-option *ngIf="!field.multiValued"></mat-option>
     <mat-option *ngFor="let option of getOptions()" [value]="option.value">

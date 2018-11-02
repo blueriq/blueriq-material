@@ -13,7 +13,8 @@ import {
   MatInputModule,
   MatRadioModule,
   MatSelectModule,
-  MatSlideToggleModule
+  MatSlideToggleModule,
+  MatTooltipModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
@@ -27,7 +28,6 @@ import { BqErrorStateMatcher } from './bq-errorstatematcher';
 import { ChiplistComponent } from './chiplist/chiplist.component';
 import { DatepickerComponent } from './date/datepicker/datepicker.component';
 import { DateTimepickerComponent } from './date/datetimepicker/datetimepicker.component';
-import { TableDatetimepickerComponent } from './date/datetimepicker/table-datetimepicker.component';
 import { MomentTransformer } from './date/moment-transformer';
 import { CurrencyFieldComponent } from './input-field/currency/currency.component';
 import { IntegerFieldComponent } from './input-field/integer/integer.component';
@@ -35,7 +35,6 @@ import { NumberFieldComponent } from './input-field/number/number.component';
 import { PercentageFieldComponent } from './input-field/percentage/percentage.component';
 import { StringFieldComponent } from './input-field/string/string.component';
 import { SelectComponent } from './select/select.component';
-import { TableSelectComponent } from './select/table-select.component';
 import { CheckboxComponent } from './selection-control/checkbox/checkbox.component';
 import { RadioButtonComponent } from './selection-control/radio-button/radio-button.component';
 import { SlideToggleComponent } from './selection-control/slide-toggle/slide-toggle.component';
@@ -59,8 +58,6 @@ const FORM_CONTROL_COMPONENTS = [
   AutocompleteComponent,
   TextAreaComponent,
   PercentageFieldComponent,
-  TableDatetimepickerComponent,
-  TableSelectComponent,
   TextAreaComponent
 ];
 
@@ -97,7 +94,8 @@ const FORM_CONTROL_COMPONENTS = [
     MatSelectModule,
     MatCheckboxModule,
     MatRadioModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatTooltipModule
   ],
   exports: [FORM_CONTROL_COMPONENTS]
 })

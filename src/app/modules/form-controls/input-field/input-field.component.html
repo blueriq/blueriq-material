@@ -1,5 +1,5 @@
-<p *ngIf="!list">
-  <mat-form-field bqKey fxFlex appearance="fill">
+<p>
+  <mat-form-field bqKey bqClasses fxFlex appearance="fill">
     <span matPrefix *ngIf="fieldPrefix">{{fieldPrefix}}</span>
     <span matPrefix *ngIf="iconPrefix"><mat-icon>{{iconPrefix}}</mat-icon></span>
     <mat-label>{{field.questionText}}</mat-label>
@@ -7,13 +7,6 @@
       [formControl]="formControl">
     <span matSuffix *ngIf="fieldSuffix">{{fieldSuffix}}</span>
     <mat-hint>{{field.explainText}}</mat-hint>
-    <mat-error *ngFor="let msg of getErrors()">{{msg.text}}</mat-error>
+    <mat-error *ngFor="let msg of getFieldMessages()">{{msg.text}}</mat-error>
   </mat-form-field>
 </p>
-<mat-form-field bqKey *ngIf="list">
-  <span matPrefix *ngIf="fieldPrefix">{{fieldPrefix}}</span>
-  <mat-label><!-- So placeholder works --></mat-label>
-  <span matPrefix *ngIf="iconPrefix"><mat-icon>{{iconPrefix}}</mat-icon></span>
-  <input matInput type="text" [placeholder]="placeholder" [formControl]="formControl">
-  <span matSuffix *ngIf="fieldSuffix">{{fieldSuffix}}</span>
-</mat-form-field>
