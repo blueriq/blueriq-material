@@ -2,6 +2,15 @@
 
 :host ::ng-deep {
 
+  // The rule below is used to fix vertical alignment issues in IE.
+  // It is not required for the other browsers, but it doesn't break them.
+  // should be removed when support for IE is dropped.
+  mat-cell,
+  mat-header-cell,
+  mat-footer-cell {
+    min-height: 0;
+  }
+
   .mat-row {
     &:hover {
       background-color: mat-color($bq-mat-grey-light, 50);
