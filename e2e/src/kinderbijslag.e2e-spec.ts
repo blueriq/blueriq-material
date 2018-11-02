@@ -46,6 +46,7 @@ describe('Kinderbijslag App', () => {
 
     // Verify
     expect(app.pageTitleAanvragenKinderbijslag).toBe('Aanvragen kinderbijslag');
+
     expect(app.getTableCellFor(app.PAGE_ID_AANVRAGEN_KINDERBIJSLAG + '_cell_1')).toBe('Jack');
     expect(app.getTableCellFor(app.PAGE_ID_AANVRAGEN_KINDERBIJSLAG + '_cell_2')).toBe('Sparrow');
     expect(app.getTableCellFor(app.PAGE_ID_AANVRAGEN_KINDERBIJSLAG + '_cell_3')).toBe('01-01-2018');
