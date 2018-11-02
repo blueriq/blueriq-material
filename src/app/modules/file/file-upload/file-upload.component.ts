@@ -23,17 +23,17 @@ export class FileUploadComponent {
 
   constructor(@Self() public fileUpload: FileUpload, @Host() public container: Container) {
 
-    const options: FileUploaderOptions = {
+    const uploadOptions: FileUploaderOptions = {
       url: this.fileUpload.uploadUrl,
       maxFileSize: this.fileUpload.maxFileSize,
       autoUpload: true
     };
 
     if (this.fileUpload.allowedExtensions && this.fileUpload.allowedExtensions.length > 0) {
-      options.allowedFileType = this.fileUpload.allowedExtensions;
+      uploadOptions.allowedFileType = this.fileUpload.allowedExtensions;
     }
 
-    this.uploader = new CustomFileUploader(options);
+    this.uploader = new CustomFileUploader(uploadOptions);
 
     /**
      * When adding a file is done hide the progress bar
