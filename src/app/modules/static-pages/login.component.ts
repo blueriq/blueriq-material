@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, isDevMode } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@blueriq/angular';
@@ -33,14 +33,21 @@ export class LoginComponent {
           } else if (project && flow) {
             this.router.navigate(['/flow', project, flow]);
           } else {
-            this.failed = true;
+            /* In the old days we had a logout page
+             * Now we navigate to root
+             * Change this navigation to your liking
+             * */
+            this.router.navigate(['/']);
           }
         } else {
           this.failed = true;
         }
       },
-      error: () => {
+      error: (e) => {
         this.failed = true;
+        if (isDevMode()) {
+          console.error(e);
+        }
       }
     });
   }
