@@ -11,6 +11,7 @@ import {
   TextItemTemplate
 } from '@blueriq/core/testing';
 import { BqContainerDirective } from '@shared/directive/container/bq-container.directive';
+import { BqContentStyles } from '../BqContentStyles';
 import { ButtonModule } from '../button/button.module';
 import { FormControlModule } from '../form-controls/form-control.module';
 import { ReadonlyModule } from '../readonly/readonly.module';
@@ -40,7 +41,7 @@ describe('TableComponent', () => {
 
   beforeEach(() => {
     tableTemplate = ContainerTemplate.create();
-    tableTemplate.contentStyle('table');
+    tableTemplate.contentStyle(BqContentStyles.TABLE);
     // Simulate a table so the red-cow framework detects this and can be tested on.
     tableTemplate.children(
       // ---------- Header ----------
@@ -130,12 +131,6 @@ describe('TableComponent', () => {
 
     const headerCellContent = matHeaderCell[0].querySelector('bq-textitem-static').innerText;
     expect(headerCellContent.trim()).toBe('Name');
-  });
-
-  it('should have a row with the correct label content', () => {
-    const readonlyCells = component.nativeElement.querySelectorAll('bq-readonly');
-    expect(readonlyCells.length).toBe(2);
-    expect(readonlyCells[0].querySelector('label')).toBeFalsy();
   });
 
   it('should have a mat-button in a tablecell', () => {
