@@ -9,8 +9,11 @@ describe('Blueriq ProjectComponent Routes', () => {
 
   const app: RoutesApp = new RoutesApp();
 
+  beforeEach(() => {
+    app.reset(); // in beforeEach because taking screenshot for failing tests fails when placed in the afterEach
+  });
+
   it('should start flow Kinderbijslag.Start', () => {
-    app.reset();
     app.start(startFlowPath);
 
     // Verify
@@ -18,7 +21,6 @@ describe('Blueriq ProjectComponent Routes', () => {
   });
 
   it('should start flow Kinderbijslag.Start with version', () => {
-    app.reset();
     app.start(startFlowVersionPath);
 
     // Verify
@@ -26,7 +28,6 @@ describe('Blueriq ProjectComponent Routes', () => {
   });
 
   it('should start flow Kinderbijslag.Start with version and language', () => {
-    app.reset();
     app.start(startFlowVersionLanguagePath);
 
     // Verify
@@ -34,7 +35,6 @@ describe('Blueriq ProjectComponent Routes', () => {
   });
 
   it('should start Kinderbijslag shortcut', () => {
-    app.reset();
     app.start(startShortcutPath);
 
     // Verify
@@ -42,7 +42,6 @@ describe('Blueriq ProjectComponent Routes', () => {
   });
 
   it('should start default shortcut', () => {
-    app.reset();
     app.start(startDefaultShortcutPath);
 
     // Verify
@@ -50,7 +49,6 @@ describe('Blueriq ProjectComponent Routes', () => {
   });
 
   it('should start app for sessionId', () => {
-    app.reset();
     app.start(startDefaultShortcutPath);
 
     // Route to the just create BlueriqSession

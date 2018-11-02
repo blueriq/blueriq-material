@@ -1,0 +1,10 @@
+<mat-form-field bqKey bqClasses
+  [class.validations]="getFieldMessages().hasMessages"
+  [matTooltip]="getErrors()"
+  matTooltipClass="tooltip-error">
+  <span matPrefix *ngIf="fieldPrefix">{{fieldPrefix}}</span>
+  <mat-label><!-- Must be here so the placeholder for input renders properly --></mat-label>
+  <span matPrefix *ngIf="iconPrefix"><mat-icon>{{iconPrefix}}</mat-icon></span>
+  <input matInput type="text" [placeholder]="placeholder" [formControl]="formControl">
+  <span matSuffix *ngIf="fieldSuffix">{{fieldSuffix}}</span>
+</mat-form-field>
