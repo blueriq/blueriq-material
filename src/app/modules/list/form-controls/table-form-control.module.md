@@ -14,4 +14,4 @@ This module takes care of the following components:
 
 The list.component.ts file has these elements scoped: 
 ``BlueriqComponents.scoped(TABLE_FORM_CONTROL_COMPONENTS)``
-If no element could be picker from this list it will a component registered in the app.module.ts
+If no element could be picked from this list it will a component registered in the app.module.ts
