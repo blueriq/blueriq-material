@@ -90,6 +90,18 @@ describe('FileUploadComponent', () => {
     expect(hints[1].innerHTML).toBe(component.componentInstance.fileUpload.maxFileSizeDescription);
   });
 
+  it('should display a hint message for the upload criterion', () => {
+    // Init
+    session.update(
+      container.properties({ allowedExtensions: '' })
+    );
+    const hints = component.nativeElement.querySelectorAll('mat-hint');
+
+    // Verify
+    expect(hints.length).toBe(1);
+    expect(hints[0].innerHTML).toBe(component.componentInstance.fileUpload.maxFileSizeDescription);
+  });
+
   it('should display an error message when file type is incorrect', () => {
     // Sut
     component.componentInstance.uploader.onWhenAddingFileFailed(new FileLikeObject({}), { name: 'fileType' }, {});
