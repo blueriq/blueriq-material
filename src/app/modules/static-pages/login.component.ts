@@ -29,22 +29,17 @@ export class LoginComponent {
         if (result.success) {
           const { flow, project, version } = this.route.snapshot.queryParams;
           if (version) {
-            console.log('cool 1');
             this.router.navigate(['/flow', project, flow, version]);
           } else if (project && flow) {
-            console.log('cool 2');
             this.router.navigate(['/flow', project, flow]);
           } else {
-            console.log('Unsufficient params', this.route.snapshot.queryParams);
             this.failed = true;
           }
         } else {
-          console.log('no success', result);
           this.failed = true;
         }
       },
       error: (e) => {
-        console.log('Dikke error', e);
         this.failed = true;
       }
     });
