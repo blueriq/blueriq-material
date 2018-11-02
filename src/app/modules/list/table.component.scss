@@ -32,7 +32,8 @@
     }
 
     bq-readonly {
-      text-indent: $bq-margin-half;
+      display: inline-block;
+      margin-left: $bq-margin-half;
     }
 
     mat-checkbox {
