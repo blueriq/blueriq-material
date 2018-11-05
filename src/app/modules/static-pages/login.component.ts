@@ -28,10 +28,12 @@ export class LoginComponent {
       next: result => {
         if (result.success) {
           const { flow, project, version } = this.route.snapshot.queryParams;
-          if (version) {
-            this.router.navigate(['/flow', project, flow, version]);
-          } else if (project && flow) {
-            this.router.navigate(['/flow', project, flow]);
+          if (project && flow) {
+            if (version) {
+              this.router.navigate(['/flow', project, flow, version]);
+            } else {
+              this.router.navigate(['/flow', project, flow]);
+            }
           } else {
             // We don't know the flow that the user wants to start, so navigate to the default shortcut.
             // You can change this to suit your needs.
