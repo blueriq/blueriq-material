@@ -105,7 +105,7 @@ describe('SelectComponent', () => {
     expect(selectList.length).toBe(1);
   });
 
-  it('should have more values selected', () => {
+  it('should have more values selected', (done) => {
     let selectedMoreValues = component.nativeElement.querySelector('.mat-select').getAttribute('ng-reflect-value');
     expect(selectedMoreValues).toBeNull();
 
@@ -118,10 +118,11 @@ describe('SelectComponent', () => {
       component.detectChanges();
       selectedMoreValues = component.nativeElement.querySelector('.mat-select-value-text').innerText;
       expect(selectedMoreValues).toBe('Blue, Pink, White');
+      done();
     });
   });
 
-  it('should set selected value to fieldValue', () => {
+  it('should set selected value to fieldValue', (done) => {
     component.detectChanges();
     const trigger = component.debugElement.query(By.css('.mat-select-trigger')).nativeElement;
     trigger.click();
@@ -140,10 +141,11 @@ describe('SelectComponent', () => {
       component.detectChanges();
       // Verify
       expect(component.componentInstance.field.getValue()).toBe('blue');
+      done();
     });
   });
 
-  it('should contain all options in select', () => {
+  it('should contain all options in select', (done) => {
     const selectTrigger = component.debugElement.query(By.css('.mat-select-trigger'));
     expect(selectTrigger).toBeTruthy();
 
@@ -163,6 +165,7 @@ describe('SelectComponent', () => {
       expect(selectOptions[1].getAttribute('ng-reflect-value')).toBe('blue');
       expect(selectOptions[2].getAttribute('ng-reflect-value')).toBe('pink');
       expect(selectOptions[3].getAttribute('ng-reflect-value')).toBe('white');
+      done();
     });
   });
 
