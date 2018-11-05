@@ -4,9 +4,9 @@
 // The rule below is used to fix vertical alignment issues, due to a flexbox bug in IE.
 // Can be removed when support for IE is dropped.
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) { // sass-lint:disable-line no-vendor-prefixes
-  mat-cell,
-  mat-header-cell,
-  mat-footer-cell {
+  .mat-cell,
+  .mat-header-cell,
+  .mat-footer-cell {
     min-height: 0;
   }
 }
