@@ -33,10 +33,8 @@ export class LoginComponent {
           } else if (project && flow) {
             this.router.navigate(['/flow', project, flow]);
           } else {
-            /* In the old days we had a logout page
-             * Now we navigate to root
-             * Change this navigation to your liking
-             * */
+            // We don't know the flow that the user wants to start, so navigate to the default shortcut.
+            // You can change this to suit your needs.
             this.router.navigate(['/']);
           }
         } else {
