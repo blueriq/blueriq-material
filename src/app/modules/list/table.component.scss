@@ -1,12 +1,22 @@
 @import 'globals/variables';
 
-.mat-row {
-  &:hover {
-    background-color: mat-color($bq-mat-grey-light, 50);
+// IE ONLY
+// The rule below is used to fix vertical alignment issues, due to a flexbox bug in IE.
+// Can be removed when support for IE is dropped.
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) { // sass-lint:disable-line no-vendor-prefixes
+  .mat-cell,
+  .mat-header-cell,
+  .mat-footer-cell {
+    min-height: 0;
   }
 }
 
 :host ::ng-deep {
+  .mat-row {
+    &:hover {
+      background-color: mat-color($bq-mat-grey-light, 50);
+    }
+  }
 
   /* Header cell has both margins
   *  where the cells itself have the base margin and half margin based on what element.
@@ -20,7 +30,8 @@
 
     bq-asset,
     bq-table-readonly {
-      text-indent: $bq-margin-half;
+      display: inline-block;
+      margin-left: $bq-margin-half;
     }
 
     input,

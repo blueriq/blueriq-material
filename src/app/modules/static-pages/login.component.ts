@@ -39,7 +39,7 @@ export class LoginComponent {
           this.failed = true;
         }
       },
-      error: () => {
+      error: (e) => {
         this.failed = true;
       }
     });
