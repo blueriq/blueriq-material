@@ -8,6 +8,7 @@ import {
   MatDividerModule,
   MatFormFieldModule,
   MatIconModule,
+  MatInputModule,
   MatListModule
 } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
@@ -46,7 +47,8 @@ const COMMENT_COMPONENTS = [
     MatCardModule,
     MatButtonModule,
     MatIconModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatInputModule
   ],
   exports: [COMMENT_COMPONENTS]
 })
