@@ -41,7 +41,7 @@ $background-card: map-get($mat-light-theme-background, card);
 }
 
 // ---- Right side of the timeline ---
-.card {
+.time-card {
   $card-left-margin: $bq-margin;
   position: relative;
 
