@@ -16,8 +16,15 @@ export class TableFilterComponent implements OnInit {
   filter: Filter;
 
   private filterDialog: MatDialogRef<any, any>;
+  showUnknownLabel: string;
 
   constructor(public dialog: MatDialog) {
+  }
+
+  ngOnInit(): void {
+    this.filterCandidates = this.filter.filterValues.length > 0 ? this.filter.filterValues : [new FilterValue()];
+    const label = this.filter.filterOptions.find(f => f && !!f.showUnknownLabel);
+    this.showUnknownLabel = label ? label.showUnknownLabel : '';
   }
 
   addFilter(): void {
@@ -60,10 +67,6 @@ export class TableFilterComponent implements OnInit {
       return 'primary';
     }
     return '';
-  }
-
-  ngOnInit(): void {
-    this.filterCandidates = this.filter.filterValues.length > 0 ? this.filter.filterValues : [new FilterValue()];
   }
 
 }

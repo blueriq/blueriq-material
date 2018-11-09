@@ -26,21 +26,21 @@
         <mat-label>Value</mat-label>
       </div>
       <div fxFlex="5">
-        <mat-label>{{filter.filterOptions[0].showUnknownLabel}}</mat-label>
+        <mat-label>{{showUnknownLabel}}</mat-label>
       </div>
       <div fxFlex="5"></div>
     </div>
-
+    
     <bq-table-filter-value *ngFor="let filterValue of filterCandidates"
       [filterValue]="filterValue" (remove)="removeFilter(filterValue)"
       [filterOptions]="filter.filterOptions"></bq-table-filter-value>
-
+    
     <div fxLayout="row" fxLayoutGap="10px">
       <button mat-button class="plain-link" (click)="addFilter()">Add filter</button>
     </div>
     <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end center">
       <button mat-flat-button [color]="'primary'" (click)="doFilter()">Apply filter</button>
     </div>
-
+  
   </div>
 </ng-template>
