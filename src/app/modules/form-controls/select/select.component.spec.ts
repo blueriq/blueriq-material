@@ -1,4 +1,5 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { OverlayContainer } from '@angular/cdk/overlay';
+import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
@@ -11,6 +12,7 @@ describe('SelectComponent', () => {
   let field: FieldTemplate;
   let session: BlueriqTestSession;
   let component: ComponentFixture<SelectComponent>;
+  let _containerElement;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -20,6 +22,9 @@ describe('SelectComponent', () => {
         FormControlModule
       ]
     });
+    inject([OverlayContainer], (oc: OverlayContainer) => {
+      _containerElement = oc.getContainerElement();
+    })();
   });
 
   beforeEach(() => {
@@ -100,7 +105,7 @@ describe('SelectComponent', () => {
     expect(selectList.length).toBe(1);
   });
 
-  it('should have more values selected', () => {
+  it('should have more values selected', (done) => {
     let selectedMoreValues = component.nativeElement.querySelector('.mat-select').getAttribute('ng-reflect-value');
     expect(selectedMoreValues).toBeNull();
 
@@ -113,19 +118,20 @@ describe('SelectComponent', () => {
       component.detectChanges();
       selectedMoreValues = component.nativeElement.querySelector('.mat-select-value-text').innerText;
       expect(selectedMoreValues).toBe('Blue, Pink, White');
+      done();
     });
   });
 
-  it('should set selected value to fieldValue', () => {
-    const selectTrigger = component.debugElement.query(By.css('.mat-select-trigger'));
-    expect(selectTrigger).toBeTruthy();
+  it('should set selected value to fieldValue', (done) => {
+    component.detectChanges();
+    const trigger = component.debugElement.query(By.css('.mat-select-trigger')).nativeElement;
+    trigger.click();
+    component.detectChanges();
 
-    selectTrigger.nativeElement.click();
     component.whenStable()
     .then(() => {
       component.detectChanges();
-      const selectContent = component.debugElement.query(By.css('.mat-select-content')).nativeElement;
-      const selectOptions = selectContent.querySelectorAll('mat-option') as NodeListOf<HTMLElement>;
+      const selectOptions = getMatOptionsFromOverlay();
       expect(selectOptions).toBeTruthy();
       selectOptions[1].click();
     });
@@ -135,10 +141,11 @@ describe('SelectComponent', () => {
       component.detectChanges();
       // Verify
       expect(component.componentInstance.field.getValue()).toBe('blue');
+      done();
     });
   });
 
-  it('should contain all options in select', () => {
+  it('should contain all options in select', (done) => {
     const selectTrigger = component.debugElement.query(By.css('.mat-select-trigger'));
     expect(selectTrigger).toBeTruthy();
 
@@ -146,9 +153,11 @@ describe('SelectComponent', () => {
     component.whenStable()
     .then(() => {
       component.detectChanges();
+      const trigger = component.debugElement.query(By.css('.mat-select-trigger')).nativeElement;
+      trigger.click();
+      component.detectChanges();
 
-      const selectContent = component.debugElement.query(By.css('.mat-select-content')).nativeElement;
-      const selectOptions = selectContent.querySelectorAll('mat-option') as NodeListOf<HTMLElement>;
+      const selectOptions = getMatOptionsFromOverlay();
 
       // Verify
       expect(selectOptions.length).toBe(4);
@@ -156,8 +165,13 @@ describe('SelectComponent', () => {
       expect(selectOptions[1].getAttribute('ng-reflect-value')).toBe('blue');
       expect(selectOptions[2].getAttribute('ng-reflect-value')).toBe('pink');
       expect(selectOptions[3].getAttribute('ng-reflect-value')).toBe('white');
+      done();
     });
   });
+
+  function getMatOptionsFromOverlay(): HTMLElement[] {
+    return Array.from(_containerElement.querySelectorAll('mat-option'));
+  }
 
 });
 
