@@ -1,5 +1,5 @@
 import { MatDialog, MatDialogRef } from '@angular/material';
-import { Filter, FilterValue } from '@blueriq/angular/lists';
+import { Filter, FilterOption, FilterValue } from '@blueriq/angular/lists';
 import { TableFilterComponent } from './table.filter.component';
 
 describe('TableValueComponent', () => {
@@ -82,5 +82,21 @@ describe('TableValueComponent', () => {
 
     // verify
     expect(tableFilterComponent.isFiltered()).toEqual('primary');
+  });
+
+  it('should show correct unknownlabel', () => {
+    // Setup
+    tableFilterComponent.filter.filterOptions = [];
+    tableFilterComponent.filter.filterValues = [];
+    tableFilterComponent.filter.filterOptions.push(
+      { title: '' } as FilterOption, // Without setting showUnknownLabel
+      { showUnknownLabel: '' } as FilterOption,
+      { showUnknownLabel: 'Toon onbekend' } as FilterOption);
+
+    // SUT
+    tableFilterComponent.ngOnInit();
+
+    // verify
+    expect(tableFilterComponent.showUnknownLabel).toEqual('Toon onbekend');
   });
 });
