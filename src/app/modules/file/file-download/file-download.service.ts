@@ -8,14 +8,16 @@ export class FileDownloadService {
   }
 
   download(url: string) {
-    this.document.location.href = this.toAbsoluteLink(url);
+    if (this.document && this.document.location) {
+      this.document.location.href = this.toAbsoluteLink(url);
+    }
   }
 
   // Dirty hack to fix a bug where IE would interpret a relative link differently than Chrome:
   // relative to the current URL in the browser instead of relative to the location of index.html
   // See: BQ-5234
   private toAbsoluteLink(linkText: string): string {
-    const temp = document.createElement('a');
+    const temp: HTMLElement | any = document.createElement('a');
     temp.href = linkText;
     return temp.href;
   }
