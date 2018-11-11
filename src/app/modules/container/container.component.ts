@@ -2,9 +2,7 @@ import { animateChild, query, transition, trigger } from '@angular/animations';
 import { Component, Host, OnInit } from '@angular/core';
 import { BlueriqComponent, OnUpdate } from '@blueriq/angular';
 import { Container } from '@blueriq/core';
-import { BqContentStyles } from '../BqContentStyles';
 import { BqPresentationStyles } from '../BqPresentationStyles';
-import { ContainerComponentMatcher } from './container-component-matcher';
 
 @Component({
   selector: 'bq-container',
@@ -18,8 +16,7 @@ import { ContainerComponentMatcher } from './container-component-matcher';
   ]
 })
 @BlueriqComponent({
-  type: Container,
-  selector: new ContainerComponentMatcher()
+  type: Container
 })
 export class ContainerComponent implements OnInit, OnUpdate {
 

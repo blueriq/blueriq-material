@@ -5,7 +5,7 @@ import { Container, FailedElementJson } from '@blueriq/core';
 import { CompositeElementTemplate, ContainerTemplate } from '@blueriq/core/testing';
 import { SharedModule } from '@shared/shared.module';
 import { ContainerModule } from '../container.module';
-import { FailedComponent } from './failed.component';
+import { ContainerFailedComponent } from './container.failed.component';
 
 export class FailedElementTemplate extends CompositeElementTemplate<Container> {
 
@@ -35,8 +35,8 @@ describe('FailedContainerComponent', () => {
 
   let failedTemplate: ContainerTemplate;
   let session: BlueriqTestSession;
-  let fixture: ComponentFixture<FailedComponent>;
-  let component: FailedComponent;
+  let fixture: ComponentFixture<ContainerFailedComponent>;
+  let component: ContainerFailedComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -54,7 +54,7 @@ describe('FailedContainerComponent', () => {
       FailedElementTemplate.create('hoppa')
     );
     session = BlueriqSessionTemplate.create().build(failedTemplate);
-    fixture = session.get(FailedComponent);
+    fixture = session.get(ContainerFailedComponent);
     fixture.componentInstance.failedElement.message = 'Some error has occured';
     fixture.componentInstance.failedElement.stacktrace = 'blueriq.com.error';
     component = fixture.componentInstance;
