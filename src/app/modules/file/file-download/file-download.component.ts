@@ -1,4 +1,4 @@
-import { Component, Host, OnDestroy, Optional, Self, ViewEncapsulation } from '@angular/core';
+import { Component, Host, OnDestroy, Optional, Self } from '@angular/core';
 import { AuthorizedDownload, BlueriqComponent, BlueriqSession } from '@blueriq/angular';
 import { FileDownload } from '@blueriq/angular/files';
 import { List } from '@blueriq/angular/lists';
@@ -9,10 +9,9 @@ import { FileDownloadService } from './file-download.service';
 
 @Component({
   selector: 'bq-file-download',
-  templateUrl: '../../button/button.component.html',
-  styleUrls: ['../../button/button.component.scss'],
-  providers: [FileDownload],
-  encapsulation: ViewEncapsulation.None
+  templateUrl: './file-download.component.html',
+  styleUrls: ['./file-download.component.scss'],
+  providers: [FileDownload]
 })
 @BlueriqComponent({
   type: Container,
