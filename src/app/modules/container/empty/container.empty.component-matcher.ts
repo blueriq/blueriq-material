@@ -4,7 +4,7 @@ import { BqIconDirective } from '../../../shared/directive/icon/icon.directive';
 
 export class ContainerEmptyComponentMatcher implements ComponentMatcher<Container> {
   matches(element: Container): boolean {
-    // Has no splayName and has no icon and has no child elements
+    // Has no displayName and has no icon and has no child elements
     return !!!element.displayName && !BqIconDirective.hasIcon(element.styles) && element.children.length === 0;
   }
 
