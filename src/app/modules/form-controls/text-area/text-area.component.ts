@@ -10,9 +10,8 @@ import { BqPresentationStyles } from '../../BqPresentationStyles';
 })
 @BlueriqComponent({
   type: Field,
-  // Textfield with presentationstyle largetext/memo or a texfield within a AQ_Dashboard_Comment container
-  selector: bySelector('[dataType=text].' + BqPresentationStyles.LARGETEXT + ', [dataType=text].' + BqPresentationStyles.MEMO +
-    ', storecomment > [dataType=text]', { priorityOffset: 100 })
+  selector: bySelector('[dataType=text].' + BqPresentationStyles.LARGETEXT +
+    ', [dataType=text].' + BqPresentationStyles.MEMO, { priorityOffset: 100 })
 })
 export class TextAreaComponent {
 

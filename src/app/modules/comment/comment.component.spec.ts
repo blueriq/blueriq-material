@@ -42,7 +42,7 @@ describe('CommentComponent', () => {
   });
 
   it('should render the textarea', () => {
-    expect(component.nativeElement.querySelector('bq-text-area')).toBeTruthy();
+    expect(component.nativeElement.querySelector('textarea')).toBeTruthy();
   });
 
   it('should render the button', () => {
