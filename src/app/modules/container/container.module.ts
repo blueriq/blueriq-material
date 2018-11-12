@@ -6,13 +6,15 @@ import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
 import { SharedModule } from '@shared/shared.module';
 import { HeadingModule } from '../heading/heading.module';
 import { ContainerComponent } from './container.component';
-import { FailedComponent } from './failed/failed.component';
+import { ContainerEmptyComponent } from './empty/container.empty.component';
+import { ContainerFailedComponent } from './failed/container.failed.component';
 import { FlexColumnDirective } from './flex/flex-column.directive';
 import { HorizontalFlexChildDirective } from './flex/horizontal-flex-child.directive';
 
 const BLUERIQ_COMPONENTS = [
   ContainerComponent,
-  FailedComponent
+  ContainerEmptyComponent,
+  ContainerFailedComponent
 ];
 
 @NgModule({
