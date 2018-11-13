@@ -100,4 +100,14 @@ describe('HorizontalFlexChildDirective', () => {
     expect(fixture.nativeElement.querySelector('.bq-column')).toBeTruthy();
     expect(fixture.nativeElement.querySelector('.bq-column').style.flexGrow).toBe('4');
   });
+
+  it('should render child component with invalid Weight presentation style and dashboard_column content style', () => {
+    session.update(
+      childTemplate.styles('WeightSmall'),
+      childTemplate.contentStyle('dashboard_column7')
+    );
+    expect(fixture.nativeElement.querySelector('.child')).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('.bq-column')).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('.bq-column').style.flexGrow).toBe('7');
+  });
 });
