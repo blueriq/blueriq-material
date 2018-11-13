@@ -4,3 +4,14 @@ button {
   margin: $bq-base-margin $bq-base-margin $bq-base-margin 0;
   text-transform: uppercase;
 }
+
+// Default buttons in cards or elevated widgets get a slightly darker background compared to default
+// buttons in transparent containers.
+::ng-deep {
+  .card,
+  .flow-widget.elevate { // sass-lint:disable-line force-element-nesting
+    .default-styling { // sass-lint:disable-line force-element-nesting
+      background: $bq-card-button-background;
+    }
+  }
+}
