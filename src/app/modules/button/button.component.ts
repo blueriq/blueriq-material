@@ -2,6 +2,7 @@ import { Component, Host, Optional } from '@angular/core';
 import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
 import { List } from '@blueriq/angular/lists';
 import { Button } from '@blueriq/core';
+import { BqIconDirective } from '@shared/directive/icon/icon.directive';
 import { BqPresentationStyles } from '../BqPresentationStyles';
 
 @Component({
@@ -37,8 +38,7 @@ export class ButtonComponent {
   }
 
   hasIconStyle(): boolean {
-    return this.button.styles.has(style => style.startsWith(BqPresentationStyles.ICON_FA_PREFIX)
-      || style.startsWith(BqPresentationStyles.ICON_MAT_PREFIX));
+    return BqIconDirective.hasIcon(this.button.styles);
   }
 
   getColor(): string | null {
