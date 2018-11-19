@@ -1,8 +1,7 @@
 import { async, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { MatSnackBar } from '@angular/material';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ChangedPageAction, PageUpdatedAction, SessionLoadedAction, SessionRegistry } from '@blueriq/angular';
-import { BlueriqTestingModule, SessionTemplate } from '@blueriq/angular/testing';
+import { SessionTemplate } from '@blueriq/angular/testing';
 import { LanguageConfiguration } from '@blueriq/core';
 import { PageModelTemplate, PageTemplate } from '@blueriq/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
@@ -30,11 +29,8 @@ describe('MessagesEffect', () => {
     actions = new Subject();
 
     TestBed.configureTestingModule({
-      imports: [
-        NoopAnimationsModule,
-        BlueriqTestingModule
-      ],
       providers: [
+        SessionRegistry,
         MessagesEffect,
         provideMockActions(() => actions),
         { provide: MatSnackBar, useValue: snackBarSpy }
@@ -44,9 +40,33 @@ describe('MessagesEffect', () => {
     effects = TestBed.get(MessagesEffect);
   }));
 
-  it('opens snackbar with an error message when session is loaded', fakeAsync(() => {
-    const action = new SessionLoadedAction('Main', '1', '2', 3, '', languageConf, [pageWithError.toJson()]);
+  it('does not animate snackbar when it already displays the messages', fakeAsync(() => {
+    // set currently displayed messages
+    effects.currentMessages = errorMsg;
 
+    const session = SessionTemplate.create()
+    .sessionName('Main')
+    .pageModel(PageModelTemplate.create(PageTemplate.create().error(errorMsg))).build();
+    sessionRegistry.register(session);
+
+    const action = new SessionLoadedAction('Main', '1', '2', 3, '', languageConf, [pageWithError.toJson()]);
+    effects.sessionActions$.subscribe();
+    actions.next(action);
+
+    tick();
+
+    // messages are already displayed, so snackbar should not be called
+    expect(snackBarSpy.open).not.toHaveBeenCalled();
+  }));
+
+  it('opens snackbar with an error message when session is loaded', fakeAsync(() => {
+
+    const session = SessionTemplate.create()
+    .sessionName('Main')
+    .pageModel(PageModelTemplate.create(PageTemplate.create().error(errorMsg))).build();
+    sessionRegistry.register(session);
+
+    const action = new SessionLoadedAction('Main', '1', '2', 3, '', languageConf, [pageWithError.toJson()]);
     effects.sessionActions$.subscribe();
     actions.next(action);
 
@@ -96,8 +116,8 @@ describe('MessagesEffect', () => {
   it('opens snackbar with multiple error messages', fakeAsync(() => {
     const anotherErrorMsg = 'Another error message';
     const session = SessionTemplate.create()
-      .sessionName('my-session')
-      .pageModel(PageModelTemplate.create(PageTemplate.create().error(errorMsg).error(anotherErrorMsg))).build();
+    .sessionName('my-session')
+    .pageModel(PageModelTemplate.create(PageTemplate.create().error(errorMsg).error(anotherErrorMsg))).build();
     sessionRegistry.register(session);
 
     const action = new PageUpdatedAction('my-session', [{}] as any);
@@ -146,21 +166,6 @@ describe('MessagesEffect', () => {
     expect(snackBarSpy.open).toHaveBeenCalledWith(warnMsg, undefined, {
       panelClass: 'snackbar-warning'
     });
-  }));
-
-  it('does not animate snackbar when it already displays the messages', fakeAsync(() => {
-    // set currently displayed messages
-    effects.currentMessages = errorMsg;
-
-    const action = new SessionLoadedAction('Main', '1', '2', 3, '', languageConf, [pageWithError.toJson()]);
-
-    effects.sessionActions$.subscribe();
-    actions.next(action);
-
-    tick();
-
-    // messages are already displayed, so snackbar should not be called
-    expect(snackBarSpy.open).not.toHaveBeenCalled();
   }));
 
   it('does not do anything when page has no errors or warnings', fakeAsync(() => {

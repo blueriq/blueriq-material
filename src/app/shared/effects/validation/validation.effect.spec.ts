@@ -2,7 +2,6 @@ import { async, TestBed } from '@angular/core/testing';
 import { MatSnackBar } from '@angular/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { InvalidFormAction } from '@blueriq/angular/forms';
-import { BlueriqTestingModule } from '@blueriq/angular/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Subject } from 'rxjs/Subject';
 import { ValidationEffect } from './validation.effect';
@@ -18,8 +17,7 @@ describe('ValidationEffect', () => {
 
     TestBed.configureTestingModule({
       imports: [
-        NoopAnimationsModule,
-        BlueriqTestingModule
+        NoopAnimationsModule
       ],
       providers: [
         ValidationEffect,
