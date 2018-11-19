@@ -62,7 +62,7 @@ describe('CustomFileUploader', () => {
       expect(filterResults).toBeFalsy();
     });
 
-    it('should fail when no file has no extension', () => {
+    it('should succeed when no extension option is set', () => {
       // Init
       const uploadOptions: FileUploaderOptions = {
         url: 'www.some-url.com',
@@ -72,10 +72,10 @@ describe('CustomFileUploader', () => {
       customFileUploader = new CustomFileUploader(uploadOptions);
 
       // SUT
-      const filterResults = customFileUploader._fileTypeFilter(createFile('hello_no_extension_file.').file);
+      const filterResults = customFileUploader._fileTypeFilter(createFile('hello.doesnotmatter').file);
 
       // Verify
-      expect(filterResults).toBeFalsy();
+      expect(filterResults).toBeTruthy();
     });
   });
 
