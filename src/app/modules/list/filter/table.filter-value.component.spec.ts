@@ -58,8 +58,9 @@ describe('TableFilterValueComponent', () => {
     // Verify
     const specifiedElement = fixture.nativeElement.querySelector('#specifiedElement');
     expect(specifiedElement.querySelector('owl-date-time')).toBeTruthy();
-    expect(specifiedElement.querySelector('input').value).toBe('12-12-2012',
-      'The format should be dd-mm-yyyy (see mock)');
+    expect(specifiedElement.querySelector('input')
+    .getAttribute('ng-reflect-value'))
+    .toBe('12-12-2012', 'The format should be dd-mm-yyyy (see mock)');
   });
 
   it('should render a owl-date when filtering on datetime', () => {
@@ -70,8 +71,8 @@ describe('TableFilterValueComponent', () => {
     const specifiedElement = fixture.nativeElement.querySelector('#specifiedElement');
     expect(specifiedElement.querySelector('owl-date-time')).toBeTruthy();
     expect(specifiedElement.querySelector('input')
-      .getAttribute('ng-reflect-value'))
-      .toBe('12-12-2012 10:11:12', 'The format should be dd-mm-yyyy hh:mm:ss (see mock)');
+    .getAttribute('ng-reflect-value'))
+    .toBe('12-12-2012 10:11:12', 'The format should be dd-mm-yyyy hh:mm:ss (see mock)');
   });
 
   it('should render a inputfield by default', () => {
@@ -137,9 +138,9 @@ describe('TableFilterValueComponent', () => {
 
   function switchSpecifiedElementByType(type, value) {
     tableFilterValueComponent.filterValue = new FilterValue();
-    tableFilterValueComponent.filterValue.value = value;
     tableFilterValueComponent.filterValue.selectedOption = new FilterOption();
     tableFilterValueComponent.filterValue.selectedOption.type = type;
+    tableFilterValueComponent.onValue(value);
     fixture.detectChanges();
   }
 });

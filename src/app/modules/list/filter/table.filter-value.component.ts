@@ -46,13 +46,14 @@ export class TableFilterValueComponent {
   }
 
   onValue(value: string): void {
-    if (moment.isMoment(value)) {
+    const momentValue = moment(value);
+    if (momentValue.isValid()) {
       switch (this.filterValue.selectedOption!.type) {
         case 'date':
-          value = this.session.localization.dateFormats.date.format(value.toDate());
+          value = this.session.localization.dateFormats.date.format(momentValue.toDate());
           break;
         case 'datetime':
-          value = this.session.localization.dateFormats.dateTime.format(value.toDate());
+          value = this.session.localization.dateFormats.dateTime.format(momentValue.toDate());
           break;
       }
     }
