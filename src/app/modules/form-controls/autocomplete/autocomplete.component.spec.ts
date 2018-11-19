@@ -199,6 +199,30 @@ describe('AutocompleteComponent', () => {
     });
   });
 
+  it('should remain the value on correct input', () => {
+    let input = component.nativeElement.querySelector('.mat-input-element');
+    input.setAttribute('value', 'White');
+
+    // SUT
+    input.dispatchEvent(new Event('blur'));
+
+    // Verify
+    input = component.nativeElement.querySelector('.mat-input-element');
+    expect(input.value).toBe('White');
+  });
+
+  it('should clear the value on incorrect input', () => {
+    let input = component.nativeElement.querySelector('.mat-input-element');
+    input.setAttribute('value', 'ThisIsNotAColor');
+
+    // SUT
+    input.dispatchEvent(new Event('blur'));
+
+    // Verify
+    input = component.nativeElement.querySelector('.mat-input-element');
+    expect(input.value).toBe('', 'The value should be cleared when onblur and has incorrect value');
+  });
+
   it('should reset input value when the value is not within the domain', () => {
     const autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
     expect(autocompleteInput).toBeTruthy();
