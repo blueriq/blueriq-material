@@ -101,10 +101,6 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "sourceMap": true,
-            "codeCoverageExclude": [
-              "**/BqContentStyles.ts",
-              "**/BqPresentationStyles.ts"
-            ],
             "stylePreprocessorOptions": {
               "includePaths": [
                 "./src/theme/blueriq"
