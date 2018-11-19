@@ -10,7 +10,7 @@ import { TableInputFieldComponent } from './table-input-field.component';
 
 describe('TableInputFieldComponent', () => {
   let tableTemplate: ContainerTemplate;
-  let fieldInteger = FieldTemplate.integer();
+  let fieldIntegerTemplate: FieldTemplate;
   let component: ComponentFixture<ListComponent>;
   let session: BlueriqTestSession;
 
@@ -25,7 +25,7 @@ describe('TableInputFieldComponent', () => {
   }));
 
   beforeEach(() => {
-    fieldInteger.error('Invalid value').warning('Incorrect value');
+    fieldIntegerTemplate = FieldTemplate.integer().error('Invalid value').warning('Incorrect value');
 
     tableTemplate = ContainerTemplate.create()
     .contentStyle(BqContentStyles.TABLE)
@@ -35,7 +35,7 @@ describe('TableInputFieldComponent', () => {
       .create('row')
       .contentStyle('tablerow')
       .children(
-        fieldInteger
+        fieldIntegerTemplate
       )
       // ---------- End ----------
     );
@@ -50,8 +50,8 @@ describe('TableInputFieldComponent', () => {
 
   it('should have required marker in placeholder text', () => {
     session.update(
-      fieldInteger.placeholder('myPlaceholder'),
-      fieldInteger.required(true)
+      fieldIntegerTemplate.placeholder('myPlaceholder'),
+      fieldIntegerTemplate.required(true)
     );
     expect(component.nativeElement.querySelector('input[placeholder]')).toBeTruthy();
     expect(component.nativeElement.querySelector('input').getAttribute('placeholder')).toBe('myPlaceholder *');
