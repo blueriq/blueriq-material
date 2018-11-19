@@ -18,4 +18,11 @@ export class MenuItemComponent {
     return element as Container;
   }
 
+  isRootOfMenubar(element: Element): boolean {
+    if (element.parent instanceof Container) {
+      return element.parent.contentStyle === 'menubar';
+    }
+    return false;
+  }
+
 }

@@ -1,6 +1,6 @@
 <div [ngSwitch]="child.type">
   <!-- button -->
-  <button *ngSwitchCase="'button'" mat-menu-item [bqButton]="child">
+  <button *ngSwitchCase="'button'" mat-button class="mat-menu-item" [bqButton]="child">
     <mat-icon [bqIcon]="child.styles"></mat-icon>
     {{ asButton(child).caption }}
   </button>
@@ -9,6 +9,7 @@
   <ng-container *ngSwitchCase="'container'">
     <button mat-menu-item [matMenuTriggerFor]="menu">
       {{ asContainer(child).displayName }}
+      <mat-icon *ngIf="isRootOfMenubar(child)">arrow_drop_down</mat-icon>
     </button>
     <mat-menu #menu="matMenu" [overlapTrigger]="false">
       <bq-menu-item *ngFor="let grandchild of asContainer(child).children | bqIncluded"
