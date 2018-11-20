@@ -56,6 +56,27 @@ describe('ChiplistComponent', () => {
       }
     });
 
+    it('should add a chip for float value', () => {
+      fieldTemplate = FieldTemplate.currency('salary').value(['123.99', '234.50', '456.00']);
+      session = BlueriqSessionTemplate.create().build(fieldTemplate);
+      fixture = session.get(ChiplistComponent);
+      component = fixture.componentInstance;
+
+      const inputField = fixture.nativeElement.querySelector('.mat-input-element');
+      expect(inputField).toBeTruthy();
+
+      if (inputField) {
+        inputField.value = '678.20';
+        inputField.dispatchEvent(new Event('blur'));
+
+        fixture.detectChanges();
+        expect(component.values.length).toBe(4);
+        expect(fixture.nativeElement.querySelectorAll('mat-chip').length).toBe(4);
+        expect(inputField.value).toBe('');
+        expect(BlueriqSession.prototype.changed).toHaveBeenCalledWith(component.field);
+      }
+    });
+
     it('should remove a chip', () => {
       const chipRemoveButton = fixture.nativeElement.querySelectorAll('.mat-chip-remove')[0];
       if (chipRemoveButton) {

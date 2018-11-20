@@ -18,16 +18,16 @@ export class FailedElementTemplate extends CompositeElementTemplate<Container> {
     super(name);
   }
 
-  static create(name?: string): FailedElementTemplate {
-    return new FailedElementTemplate(name);
-  }
-
   get type(): string {
     return 'failedelement';
   }
 
   get prefix(): string {
     return 'F';
+  }
+
+  static create(name?: string): FailedElementTemplate {
+    return new FailedElementTemplate(name);
   }
 }
 
@@ -66,15 +66,25 @@ describe('FailedContainerComponent', () => {
     expect(fixture.nativeElement.querySelector('.trace')).toBeFalsy();
   });
 
-  it('should display the stracktrace when clicked on expanding', () => {
+  it('should copy to clipboard', () => {
     spyOn(document, 'execCommand').and.callThrough();
     const buttons = fixture.nativeElement.querySelector('.message').querySelectorAll('button');
-    const buttoncopyToClipBoard = buttons[0];
-    buttoncopyToClipBoard.click();
+    const buttonCopyToClipBoard = buttons[0];
+    buttonCopyToClipBoard.click();
     expect(document.execCommand).toHaveBeenCalledWith('copy');
   });
 
-  it('should copy to clipboard', () => {
+  it('should copy to clipboard with missing stacktrace', () => {
+    fixture.componentInstance.failedElement.stacktrace = undefined;
+
+    spyOn(document, 'execCommand').and.callThrough();
+    const buttons = fixture.nativeElement.querySelector('.message').querySelectorAll('button');
+    const buttonCopyToClipBoard = buttons[0];
+    buttonCopyToClipBoard.click();
+    expect(document.execCommand).toHaveBeenCalledWith('copy');
+  });
+
+  it('should display the stacktrace when clicked on expanding', () => {
     const buttons = fixture.nativeElement.querySelector('.message').querySelectorAll('button');
     const buttonShowTrace = buttons[1];
     buttonShowTrace.click();

@@ -44,6 +44,15 @@ describe('InputFieldComponent', () => {
     expect(component.nativeElement.querySelector('input').getAttribute('placeholder')).toBe('myPlaceholder');
   });
 
+  it('should NOT have required marker in placeholder text', () => {
+    session.update(
+      field.placeholder('myPlaceholder'),
+      field.required(true)
+    );
+    expect(component.nativeElement.querySelector('input[placeholder]')).toBeTruthy();
+    expect(component.nativeElement.querySelector('input').getAttribute('placeholder')).toBe('myPlaceholder');
+  });
+
   it('should have a error', () => {
     expect(component.nativeElement.querySelector('mat-error')).toBeFalsy();
     component.componentInstance.formControl.markAsTouched();

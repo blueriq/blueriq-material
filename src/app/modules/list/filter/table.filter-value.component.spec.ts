@@ -4,6 +4,7 @@ import { BlueriqSession } from '@blueriq/angular';
 import { FilterOption, FilterValue } from '@blueriq/angular/lists';
 import { BlueriqTestingModule } from '@blueriq/angular/testing';
 import { LocalizationTemplate } from '@blueriq/core/testing';
+import * as moment from 'moment';
 import { MomentTransformer } from '../../form-controls/date/moment-transformer';
 import { TableFilterValueComponent } from '../filter/table.filter-value.component';
 import { ListModule } from '../list.module';
@@ -53,25 +54,26 @@ describe('TableFilterValueComponent', () => {
 
   it('should render a owl-date when filtering on date', () => {
     // setup
-    switchSpecifiedElementByType('date', '2012-12-12');
-
-    // Verify
-    const specifiedElement = fixture.nativeElement.querySelector('#specifiedElement');
-    expect(specifiedElement.querySelector('owl-date-time')).toBeTruthy();
-    expect(specifiedElement.querySelector('input').value).toBe('12-12-2012',
-      'The format should be dd-mm-yyyy (see mock)');
-  });
-
-  it('should render a owl-date when filtering on datetime', () => {
-    // setup
-    switchSpecifiedElementByType('datetime', '12-12-2012 10:11:12');
+    switchSpecifiedElementByType('date', moment('2015-07-18', 'YYYY-MM-DD'));
 
     // Verify
     const specifiedElement = fixture.nativeElement.querySelector('#specifiedElement');
     expect(specifiedElement.querySelector('owl-date-time')).toBeTruthy();
     expect(specifiedElement.querySelector('input')
-      .getAttribute('ng-reflect-value'))
-      .toBe('12-12-2012 10:11:12', 'The format should be dd-mm-yyyy hh:mm:ss (see mock)');
+    .getAttribute('ng-reflect-value'))
+    .toBe('18-07-2015', 'The format should be dd-mm-yyyy (see mock)');
+  });
+
+  it('should render a owl-date when filtering on datetime', () => {
+    // setup
+    switchSpecifiedElementByType('datetime', moment('24-09-2013 14:36:45', 'DD-MM-YYYY HH:mm:ss'));
+
+    // Verify
+    const specifiedElement = fixture.nativeElement.querySelector('#specifiedElement');
+    expect(specifiedElement.querySelector('owl-date-time')).toBeTruthy();
+    expect(specifiedElement.querySelector('input')
+    .getAttribute('ng-reflect-value'))
+    .toBe('24-09-2013 14:36:45', 'The format should be dd-mm-yyyy hh:mm:ss (see mock)');
   });
 
   it('should render a inputfield by default', () => {
@@ -137,9 +139,9 @@ describe('TableFilterValueComponent', () => {
 
   function switchSpecifiedElementByType(type, value) {
     tableFilterValueComponent.filterValue = new FilterValue();
-    tableFilterValueComponent.filterValue.value = value;
     tableFilterValueComponent.filterValue.selectedOption = new FilterOption();
     tableFilterValueComponent.filterValue.selectedOption.type = type;
+    tableFilterValueComponent.onValue(value);
     fixture.detectChanges();
   }
 });

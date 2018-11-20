@@ -111,4 +111,16 @@ describe('FlexColumnDirective', () => {
     expect(fixture.nativeElement.querySelector('.bq-column')).toBeTruthy();
     expect(fixture.nativeElement.querySelector('.bq-column').style.flexGrow).toBe('14');
   });
+
+  it('should NOT use the weight from the dashboard_column7 content style when presentation style with invalid weight value is set', () => {
+    session.update(
+      // Set invalid (no trailing number) weight presentation style
+      childTemplate.styles('WeightBig'),
+      childTemplate.contentStyle('dashboard_column7')
+    );
+    expect(fixture.nativeElement.querySelector('.child')).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('.bq-row')).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('.bq-column')).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('.bq-column').style.flexGrow).toBe('1');
+  });
 });

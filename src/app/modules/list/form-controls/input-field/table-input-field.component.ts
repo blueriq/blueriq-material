@@ -7,5 +7,8 @@ export class TableInputFieldComponent extends InputFieldComponent {
     return getFieldMessages(this.formControl).all.map(error => error.text).join('\n');
   }
 
+  protected determinePlaceholder() {
+    this.placeholder = (this.field.placeholder || '') + (this.field.required ? ' *' : '');
+  }
 }
 

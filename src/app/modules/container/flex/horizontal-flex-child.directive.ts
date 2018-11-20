@@ -40,9 +40,9 @@ export class HorizontalFlexChildDirective implements OnDestroy {
   }
 
   private applyStylesIfRequired(element: Element): void {
-    const weightStyle = element.styles.get(style => style.startsWith(BqPresentationStyles.WEIGHT_PREFIX));
-    if (weightStyle) {
-      if (this.decorateHostElement(element, weightStyle, BqPresentationStyles.WEIGHT_REGEXP)) {
+    const weightPresentationStyle = element.styles.get(style => style.startsWith(BqPresentationStyles.WEIGHT_PREFIX));
+    if (weightPresentationStyle) {
+      if (this.decorateHostElement(element, weightPresentationStyle, BqPresentationStyles.WEIGHT_REGEXP)) {
         return;
       }
     }

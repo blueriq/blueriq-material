@@ -2,7 +2,7 @@ import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/co
 import { BlueriqSession } from '@blueriq/angular';
 import { FilterOption, FilterValue } from '@blueriq/angular/lists';
 import { computeFirstDayOfWeek } from '@shared/date/bq-date-parser';
-import * as moment from 'moment';
+import { isMoment, Moment } from 'moment';
 import { dateTimeFormatProvider } from '../../form-controls/date/datetimepicker/datetimepicker.owl';
 
 @Component({
@@ -45,19 +45,20 @@ export class TableFilterValueComponent {
     this.filterValue.operation = operation;
   }
 
-  onValue(value: string): void {
-    if (moment.isMoment(value)) {
+  onValue(value: string | Moment): void {
+    if (isMoment(value)) {
       switch (this.filterValue.selectedOption!.type) {
         case 'date':
-          value = this.session.localization.dateFormats.date.format(value.toDate());
+          this.filterValue.value = this.session.localization.dateFormats.date.format(value.toDate());
           break;
         case 'datetime':
-          value = this.session.localization.dateFormats.dateTime.format(value.toDate());
+          this.filterValue.value = this.session.localization.dateFormats.dateTime.format(value.toDate());
           break;
       }
+    } else {
+      this.filterValue.value = value;
     }
 
-    this.filterValue.value = value;
     this.filterValue.showAll = false;
   }
 
