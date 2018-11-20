@@ -18,8 +18,8 @@ describe('AssetComponent', () => {
         NoopAnimationsModule,
         BlueriqTestingModule,
         AssetModule,
-        TextItemModule
-      ]
+        TextItemModule,
+      ],
     });
   }));
 

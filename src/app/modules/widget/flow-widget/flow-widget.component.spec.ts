@@ -6,7 +6,7 @@ import {
   BlueriqSessionTemplate,
   BlueriqTestingModule,
   BlueriqTestSession,
-  SessionTemplate
+  SessionTemplate,
 } from '@blueriq/angular/testing';
 import { Page } from '@blueriq/core';
 import { ContainerTemplate, PageModelTemplate, PageTemplate } from '@blueriq/core/testing';
@@ -15,10 +15,10 @@ import { WidgetModule } from '../widget.module';
 import { FlowWidgetComponent } from './flow-widget.component';
 
 @Component({
-  template: '<span id="widgetSessionDisplayName">{{page.displayName}}</span>'
+  template: '<span id="widgetSessionDisplayName">{{page.displayName}}</span>',
 })
 @BlueriqComponent({
-  type: Page
+  type: Page,
 })
 class MockPageComponent {
   constructor(@Host() public readonly page: Page) {
@@ -36,8 +36,8 @@ describe('FlowWidgetComponent', () => {
       providers: [BlueriqComponents.register([MockPageComponent])],
       imports: [
         BlueriqTestingModule,
-        WidgetModule
-      ]
+        WidgetModule,
+      ],
     });
   }));
 

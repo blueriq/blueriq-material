@@ -18,8 +18,8 @@ describe('TableLimitComponent', () => {
         NoopAnimationsModule,
         BlueriqTestingModule,
         ButtonModule,
-        ListModule
-      ]
+        ListModule,
+      ],
     });
   });
 
@@ -27,7 +27,7 @@ describe('TableLimitComponent', () => {
 
     const limit = ContainerTemplate.create('limitContainer').children(
       AssetTemplate.create().text('Showing only the first 42 results'),
-      ButtonTemplate.create().caption('Show all')
+      ButtonTemplate.create().caption('Show all'),
     );
 
     const header = ContainerTemplate.create('listplus_header').children(limit);

@@ -9,7 +9,7 @@ import { dateTimeFormatProvider } from '../../form-controls/date/datetimepicker/
   selector: 'bq-table-filter-value',
   templateUrl: './table.filter-value.component.html',
   styleUrls: ['./table.filter-value.component.scss'],
-  providers: [dateTimeFormatProvider]
+  providers: [dateTimeFormatProvider],
 })
 export class TableFilterValueComponent {
 

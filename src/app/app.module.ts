@@ -41,26 +41,26 @@ const routes: Routes = [
   { path: 'flow/:project/:flow/:version', component: ProjectComponent },
   { path: 'flow/:project/:flow/:version/:languageCode', component: ProjectComponent },
   { path: 'login', component: LoginComponent },
-  { path: '**', redirectTo: 'shortcut/default', pathMatch: 'full' }
+  { path: '**', redirectTo: 'shortcut/default', pathMatch: 'full' },
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProjectComponent
+    ProjectComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     V1BackendModule.forRoot({
-      baseUrl: environment.baseUrl
+      baseUrl: environment.baseUrl,
     }),
 
     // ngrx
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({
       name: 'Blueriq',
-      logOnly: environment.production // Restrict extension to log-only mode
+      logOnly: environment.production, // Restrict extension to log-only mode
     }),
     BlueriqStoreModule.forRoot(),
     BlueriqModule.forRoot(), // Also used in some sub modules
@@ -88,12 +88,12 @@ const routes: Routes = [
     /* Non-Blueriq modules */
     LoadingModule,
     StaticPagesModule,
-    ErrorModule
+    ErrorModule,
   ],
   providers: [
-    { provide: DateFormats, useFactory: provideDateFormats }
+    { provide: DateFormats, useFactory: provideDateFormats },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }

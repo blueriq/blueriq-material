@@ -6,11 +6,11 @@ import { Container, Page, TextItem } from '@blueriq/core';
 @Component({
   selector: 'bq-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 @BlueriqComponent({
   type: Container,
-  selector: 'dashboard_header'
+  selector: 'dashboard_header',
 })
 export class HeaderComponent implements OnInit {
 

@@ -19,8 +19,8 @@ describe('TextItemComponent', () => {
         NoopAnimationsModule,
         BlueriqTestingModule,
         TextItemModule,
-        BlueriqTextItemModule
-      ]
+        BlueriqTextItemModule,
+      ],
     });
   }));
 
@@ -69,7 +69,7 @@ describe('TextItemComponent', () => {
 
   it('should be composed as danger', () => {
     session.update(
-      textItem.styles(BqPresentationStyles.DANGER)
+      textItem.styles(BqPresentationStyles.DANGER),
     );
 
     const iconGutter = component.debugElement.query(By.css('div[class=gutter]'));

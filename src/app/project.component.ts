@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 import { ErrorModel } from './modules/error/error.model';
 
 @Component({
-  templateUrl: './project.component.html'
+  templateUrl: './project.component.html',
 })
 export class ProjectComponent implements OnInit {
 
@@ -48,7 +48,7 @@ export class ProjectComponent implements OnInit {
     this.error = new ErrorModel(
       ErrorType.UnknownSession,
       'Session expired',
-      'Your session has expired due to inactivity'
+      'Your session has expired due to inactivity',
     );
   }
 
@@ -57,7 +57,7 @@ export class ProjectComponent implements OnInit {
     this.error = new ErrorModel(
       ErrorType.FlowEnded,
       'Flow ended',
-      'The flow has ended'
+      'The flow has ended',
     );
   }
 

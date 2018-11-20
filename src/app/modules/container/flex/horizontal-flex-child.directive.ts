@@ -10,7 +10,7 @@ import { BqPresentationStyles } from '../../BqPresentationStyles';
  * It is meant for children of containers with presentation style 'horizontal' only!
  */
 @Directive({
-  selector: '[bqFlexChild]'
+  selector: '[bqFlexChild]',
 })
 export class HorizontalFlexChildDirective implements OnDestroy {
 

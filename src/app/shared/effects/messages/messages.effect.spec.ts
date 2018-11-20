@@ -21,7 +21,7 @@ describe('MessagesEffect', () => {
   const languageConf: LanguageConfiguration = {
     languageCode: 'nl-NL',
     patterns: {},
-    messages: {}
+    messages: {},
   };
 
   beforeEach(async(() => {
@@ -33,8 +33,8 @@ describe('MessagesEffect', () => {
         SessionRegistry,
         MessagesEffect,
         provideMockActions(() => actions),
-        { provide: MatSnackBar, useValue: snackBarSpy }
-      ]
+        { provide: MatSnackBar, useValue: snackBarSpy },
+      ],
     });
     sessionRegistry = TestBed.get(SessionRegistry);
     effects = TestBed.get(MessagesEffect);
@@ -73,7 +73,7 @@ describe('MessagesEffect', () => {
     tick();
 
     expect(snackBarSpy.open).toHaveBeenCalledWith(errorMsg, undefined, {
-      panelClass: 'snackbar-error'
+      panelClass: 'snackbar-error',
     });
   }));
 
@@ -91,7 +91,7 @@ describe('MessagesEffect', () => {
     tick();
 
     expect(snackBarSpy.open).toHaveBeenCalledWith(errorMsg, undefined, {
-      panelClass: 'snackbar-error'
+      panelClass: 'snackbar-error',
     });
   }));
 
@@ -109,7 +109,7 @@ describe('MessagesEffect', () => {
     tick();
 
     expect(snackBarSpy.open).toHaveBeenCalledWith(errorMsg, undefined, {
-      panelClass: 'snackbar-error'
+      panelClass: 'snackbar-error',
     });
   }));
 
@@ -128,7 +128,7 @@ describe('MessagesEffect', () => {
     tick();
 
     expect(snackBarSpy.open).toHaveBeenCalledWith(`${errorMsg}, ${anotherErrorMsg}`, undefined, {
-      panelClass: 'snackbar-error'
+      panelClass: 'snackbar-error',
     });
   }));
 
@@ -146,7 +146,7 @@ describe('MessagesEffect', () => {
     tick();
 
     expect(snackBarSpy.open).toHaveBeenCalledWith(`${errorMsg}, ${warnMsg}`, undefined, {
-      panelClass: 'snackbar-error'
+      panelClass: 'snackbar-error',
     });
   }));
 
@@ -164,7 +164,7 @@ describe('MessagesEffect', () => {
     tick();
 
     expect(snackBarSpy.open).toHaveBeenCalledWith(warnMsg, undefined, {
-      panelClass: 'snackbar-warning'
+      panelClass: 'snackbar-warning',
     });
   }));
 

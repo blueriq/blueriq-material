@@ -11,11 +11,11 @@ import { FileDownloadService } from './file-download.service';
   selector: 'bq-file-download',
   templateUrl: './file-download.component.html',
   styleUrls: ['./file-download.component.scss'],
-  providers: [FileDownload]
+  providers: [FileDownload],
 })
 @BlueriqComponent({
   type: Container,
-  selector: 'filedownload'
+  selector: 'filedownload',
 })
 export class FileDownloadComponent extends ButtonComponent implements OnDestroy {
 

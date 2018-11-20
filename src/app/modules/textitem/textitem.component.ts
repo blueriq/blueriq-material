@@ -5,11 +5,11 @@ import { BqPresentationStyles } from '../BqPresentationStyles';
 
 @Component({
   templateUrl: './textitem.component.html',
-  styleUrls: ['./textitem.component.scss']
+  styleUrls: ['./textitem.component.scss'],
 })
 
 @BlueriqComponent({
-  type: TextItem
+  type: TextItem,
 })
 
 export class TextItemComponent {
@@ -22,7 +22,7 @@ export class TextItemComponent {
       BqPresentationStyles.DANGER,
       BqPresentationStyles.WARNING,
       BqPresentationStyles.INFO,
-      BqPresentationStyles.SUCCESS
+      BqPresentationStyles.SUCCESS,
     );
   }
 

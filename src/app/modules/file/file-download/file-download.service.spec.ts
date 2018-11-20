@@ -9,8 +9,8 @@ describe('FileDownloadService', () => {
     TestBed.configureTestingModule({
       providers: [
         FileDownloadService,
-        { provide: DOCUMENT, useValue: mockDocument }
-      ]
+        { provide: DOCUMENT, useValue: mockDocument },
+      ],
     });
   });
 

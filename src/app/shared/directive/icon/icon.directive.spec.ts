@@ -5,7 +5,7 @@ import { PresentationStyles } from '@blueriq/core';
 import { BqIconDirective } from '@shared/directive/icon/icon.directive';
 
 @Component({
-  template: '<mat-icon [bqIcon]="styles"></mat-icon>'
+  template: '<mat-icon [bqIcon]="styles"></mat-icon>',
 })
 export class MockIconComponent {
 
@@ -25,7 +25,7 @@ describe('Icon Directive', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [MockIconComponent, BqIconDirective],
-      imports: [MatIconModule]
+      imports: [MatIconModule],
     });
     fixture = TestBed.createComponent(MockIconComponent);
     component = fixture.componentInstance;

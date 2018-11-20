@@ -6,12 +6,12 @@ import { BqPresentationStyles } from '../../BqPresentationStyles';
 
 @Component({
   selector: 'bq-text-area',
-  templateUrl: './text-area.component.html'
+  templateUrl: './text-area.component.html',
 })
 @BlueriqComponent({
   type: Field,
   selector: bySelector('[dataType=text].' + BqPresentationStyles.LARGETEXT +
-    ', [dataType=text].' + BqPresentationStyles.MEMO, { priorityOffset: 100 })
+    ', [dataType=text].' + BqPresentationStyles.MEMO, { priorityOffset: 100 }),
 })
 export class TextAreaComponent {
 

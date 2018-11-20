@@ -7,11 +7,11 @@ import { TableInputFieldComponent } from '../table-input-field.component';
   selector: 'bq-table-string-field',
   templateUrl: '../table-input-field.component.html',
   styleUrls: ['../../table-form-control.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 @BlueriqComponent({
   type: Field,
-  selector: '[dataType=text]:not([hasDomain])'
+  selector: '[dataType=text]:not([hasDomain])',
 })
 export class TableStringFieldComponent extends TableInputFieldComponent {
 }

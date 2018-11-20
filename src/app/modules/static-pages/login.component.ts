@@ -6,7 +6,7 @@ import { AuthService } from '@blueriq/angular';
 @Component({
   selector: 'bq-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
 
@@ -14,7 +14,7 @@ export class LoginComponent {
   password = new FormControl('', Validators.required);
   loginForm = new FormGroup({
     username: this.username,
-    password: this.password
+    password: this.password,
   });
   failed = false;
 
@@ -48,7 +48,7 @@ export class LoginComponent {
         if (isDevMode()) {
           console.error(e);
         }
-      }
+      },
     });
   }
 

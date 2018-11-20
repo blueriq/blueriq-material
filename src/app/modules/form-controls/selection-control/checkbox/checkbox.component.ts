@@ -8,18 +8,18 @@ import { BqPresentationStyles } from '../../../BqPresentationStyles';
 @Component({
   selector: 'bq-checkbox',
   templateUrl: './checkbox.component.html',
-  styleUrls: ['../selection-control.component.scss']
+  styleUrls: ['../selection-control.component.scss'],
 })
 @BlueriqComponent({
   type: Field,
-  selector: '[dataType=boolean]'
+  selector: '[dataType=boolean]',
 })
 export class CheckboxComponent {
 
   formControl = this.form.control(this.field, {
     syncOn: 'update',
     ifUnknown: false,
-    disableWhen: BqPresentationStyles.DISABLED
+    disableWhen: BqPresentationStyles.DISABLED,
   });
 
   constructor(@Host() public field: Field,

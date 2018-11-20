@@ -20,18 +20,18 @@ describe('ContainerComponent', () => {
         NoopAnimationsModule,
         BlueriqTestingModule,
         SharedModule,
-        ContainerModule
-      ]
+        ContainerModule,
+      ],
     });
   }));
 
   beforeEach(() => {
     containerTemplate = ContainerTemplate.create()
-      .children(
-        ContainerTemplate.create(),
-        ContainerTemplate.create(),
-        ContainerTemplate.create()
-      );
+    .children(
+      ContainerTemplate.create(),
+      ContainerTemplate.create(),
+      ContainerTemplate.create(),
+    );
     session = BlueriqSessionTemplate.create().build(containerTemplate);
     containerComponent = session.get(ContainerComponent);
   });
@@ -46,7 +46,7 @@ describe('ContainerComponent', () => {
   it('should have introduction class when presentation style is set', () => {
     const container = containerComponent.componentInstance;
     session.update(
-      containerTemplate.styles(BqPresentationStyles.INTRODUCTION)
+      containerTemplate.styles(BqPresentationStyles.INTRODUCTION),
     );
 
     expect(containerComponent.nativeElement.querySelector('.introduction')).toBeTruthy();
@@ -55,7 +55,7 @@ describe('ContainerComponent', () => {
   it('should have transparent class when presentationstyle is set', () => {
     const container = containerComponent.componentInstance;
     session.update(
-      containerTemplate.styles(BqPresentationStyles.TRANSPARENT)
+      containerTemplate.styles(BqPresentationStyles.TRANSPARENT),
     );
 
     expect(containerComponent.nativeElement.querySelector('.transparent')).toBeTruthy();
@@ -64,7 +64,7 @@ describe('ContainerComponent', () => {
   it('should be horizontal class when presentationstyle is set', () => {
     const container = containerComponent.componentInstance;
     session.update(
-      containerTemplate.styles(BqPresentationStyles.HORIZONTAL)
+      containerTemplate.styles(BqPresentationStyles.HORIZONTAL),
     );
 
     expect(container.isHorizontal).toBe(true);
@@ -75,7 +75,7 @@ describe('ContainerComponent', () => {
   it('should have alignright class when presentationstyle is set', () => {
     const container = containerComponent.componentInstance;
     session.update(
-      containerTemplate.styles(BqPresentationStyles.ALIGNRIGHT)
+      containerTemplate.styles(BqPresentationStyles.ALIGNRIGHT),
     );
 
     expect(containerComponent.nativeElement.querySelector('.align-right')).toBeTruthy();

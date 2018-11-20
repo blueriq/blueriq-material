@@ -19,8 +19,8 @@ describe('TableStringFieldComponent', () => {
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        ListModule
-      ]
+        ListModule,
+      ],
     });
   }));
 
@@ -36,8 +36,8 @@ describe('TableStringFieldComponent', () => {
       .create('row')
       .contentStyle('tablerow')
       .children(
-        fieldString
-      )
+        fieldString,
+      ),
       // ---------- End ----------
     );
     const list = ContainerTemplate.create().children(tableTemplate);

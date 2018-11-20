@@ -6,7 +6,7 @@ import { PresentationStyles } from '@blueriq/core';
 @Component({
   selector: 'bq-heading',
   templateUrl: './heading.component.html',
-  styleUrls: ['./heading.component.scss']
+  styleUrls: ['./heading.component.scss'],
 })
 export class HeadingComponent {
 

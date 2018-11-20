@@ -14,7 +14,7 @@ import {
   MatRadioModule,
   MatSelectModule,
   MatSlideToggleModule,
-  MatTooltipModule
+  MatTooltipModule,
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
@@ -58,18 +58,18 @@ const FORM_CONTROL_COMPONENTS = [
   AutocompleteComponent,
   TextAreaComponent,
   PercentageFieldComponent,
-  TextAreaComponent
+  TextAreaComponent,
 ];
 
 @NgModule({
   declarations: [
-    FORM_CONTROL_COMPONENTS
+    FORM_CONTROL_COMPONENTS,
   ],
   providers: [
     BlueriqComponents.register(FORM_CONTROL_COMPONENTS),
     DomainValueTransformer,
     MomentTransformer,
-    { provide: ErrorStateMatcher, useClass: BqErrorStateMatcher }
+    { provide: ErrorStateMatcher, useClass: BqErrorStateMatcher },
   ],
   imports: [
     BrowserAnimationsModule,
@@ -95,9 +95,9 @@ const FORM_CONTROL_COMPONENTS = [
     MatCheckboxModule,
     MatRadioModule,
     MatSlideToggleModule,
-    MatTooltipModule
+    MatTooltipModule,
   ],
-  exports: [FORM_CONTROL_COMPONENTS]
+  exports: [FORM_CONTROL_COMPONENTS],
 })
 
 export class FormControlModule {

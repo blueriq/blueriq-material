@@ -11,7 +11,7 @@ export class FailedElementTemplate extends CompositeElementTemplate<Container> {
 
   private readonly _container: Partial<FailedElementJson> = {
     message: '',
-    stackTrace: ''
+    stackTrace: '',
   };
 
   protected constructor(name?: string) {
@@ -44,14 +44,14 @@ describe('FailedContainerComponent', () => {
         NoopAnimationsModule,
         BlueriqTestingModule,
         SharedModule,
-        ContainerModule
-      ]
+        ContainerModule,
+      ],
     });
   }));
 
   beforeEach(() => {
     failedTemplate = ContainerTemplate.create().children(
-      FailedElementTemplate.create('hoppa')
+      FailedElementTemplate.create('hoppa'),
     );
     session = BlueriqSessionTemplate.create().build(failedTemplate);
     fixture = session.get(ContainerFailedComponent);

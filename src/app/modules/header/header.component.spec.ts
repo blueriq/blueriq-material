@@ -19,17 +19,17 @@ describe('HeaderComponent', () => {
       providers: [
         {
           provide: APP_BASE_HREF,
-          useValue: '/'
+          useValue: '/',
         },
-        Element
+        Element,
       ],
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
         RouterModule.forRoot([]),
         HeaderModule,
-        PageModule
-      ]
+        PageModule,
+      ],
     });
   }));
 
@@ -61,7 +61,7 @@ describe('HeaderComponent', () => {
       headerTemplate.contentStyle('dashboard_header');
       headerTemplate.children(
         TextItemTemplate.create().plainText('Requester').styles('authenticated_user'),
-        TextItemTemplate.create().plainText('Logoff').styles('logout_link')
+        TextItemTemplate.create().plainText('Logoff').styles('logout_link'),
       );
       pageTemplate.children(headerTemplate);
       session = BlueriqSessionTemplate.create().build(pageTemplate);

@@ -22,20 +22,20 @@ describe('DocumentLinkComponent DocumentLink', () => {
     mockFileDownloadService = jasmine.createSpyObj(['download']);
     TestBed.configureTestingModule({
       providers: [
-        { provide: FileDownloadService, useValue: mockFileDownloadService }
+        { provide: FileDownloadService, useValue: mockFileDownloadService },
       ],
       imports: [
         FileModule,
         NoopAnimationsModule,
-        BlueriqTestingModule
-      ]
+        BlueriqTestingModule,
+      ],
     });
   }));
 
   beforeEach(() => {
     container = ContainerTemplate.create('DocumentLink');
     container.children(
-      LinkTemplate.create().text(LINK_TEXT).document(DOCUMENT_NAME, 'pdf')
+      LinkTemplate.create().text(LINK_TEXT).document(DOCUMENT_NAME, 'pdf'),
     );
     session = BlueriqSessionTemplate.create().build(container);
     component = session.get(DocumentLinkComponent);
@@ -49,7 +49,7 @@ describe('DocumentLinkComponent DocumentLink', () => {
 
   it('should contain the correct data when presentation style "Button" is set', () => {
     session.update(
-      container.styles(BqPresentationStyles.BUTTON)
+      container.styles(BqPresentationStyles.BUTTON),
     );
     const element = component.nativeElement.querySelector('button');
     expect(element.getAttribute('class')).toContain('mat-raised-button');
@@ -58,7 +58,7 @@ describe('DocumentLinkComponent DocumentLink', () => {
 
   it('should contain the correct class when presentation styles "Button" and "primary" are set', () => {
     session.update(
-      container.styles(BqPresentationStyles.BUTTON, BqPresentationStyles.PRIMARY)
+      container.styles(BqPresentationStyles.BUTTON, BqPresentationStyles.PRIMARY),
     );
     const element = component.nativeElement.querySelector('button');
     expect(element.getAttribute('class')).toContain('mat-raised-button');
@@ -68,7 +68,7 @@ describe('DocumentLinkComponent DocumentLink', () => {
 
   it('should contain the correct class when presentation styles "Button" and "tertiary" are set', () => {
     session.update(
-      container.styles(BqPresentationStyles.BUTTON, BqPresentationStyles.TERTIARY)
+      container.styles(BqPresentationStyles.BUTTON, BqPresentationStyles.TERTIARY),
     );
     const element = component.nativeElement.querySelector('button');
     expect(element.getAttribute('class')).toContain('mat-raised-button');

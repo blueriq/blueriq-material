@@ -7,11 +7,11 @@ import { TableInputFieldComponent } from '../table-input-field.component';
   selector: 'bq-table-integer-field',
   templateUrl: '../table-input-field.component.html',
   styleUrls: ['../../table-form-control.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 @BlueriqComponent({
   type: Field,
-  selector: '[dataType=number]:not([hasDomain])'
+  selector: '[dataType=number]:not([hasDomain])',
 })
 export class TableNumberFieldComponent extends TableInputFieldComponent {
 }

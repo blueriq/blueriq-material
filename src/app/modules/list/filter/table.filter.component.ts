@@ -5,7 +5,7 @@ import { Filter, FilterValue } from '@blueriq/angular/lists';
 @Component({
   selector: 'bq-table-filter',
   templateUrl: './table.filter.component.html',
-  styleUrls: ['./table.filter.component.scss']
+  styleUrls: ['./table.filter.component.scss'],
 })
 export class TableFilterComponent implements OnInit {
 
@@ -14,9 +14,8 @@ export class TableFilterComponent implements OnInit {
 
   @Input()
   filter: Filter;
-
-  private filterDialog: MatDialogRef<any, any>;
   showUnknownLabel: string;
+  private filterDialog: MatDialogRef<any, any>;
 
   constructor(public dialog: MatDialog) {
   }
@@ -58,7 +57,7 @@ export class TableFilterComponent implements OnInit {
 
   showFilter(templateRef: TemplateRef<any>): void {
     this.filterDialog = this.dialog.open(templateRef, {
-      minWidth: '700px'
+      minWidth: '700px',
     });
   }
 

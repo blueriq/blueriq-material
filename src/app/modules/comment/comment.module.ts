@@ -9,7 +9,7 @@ import {
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatListModule
+  MatListModule,
 } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,15 +21,15 @@ import { CommentListComponent } from './list/comment.list.component';
 
 const COMMENT_COMPONENTS = [
   CommentComponent,
-  CommentListComponent
+  CommentListComponent,
 ];
 
 @NgModule({
   declarations: [
-    COMMENT_COMPONENTS
+    COMMENT_COMPONENTS,
   ],
   providers: [
-    BlueriqComponents.register(COMMENT_COMPONENTS)
+    BlueriqComponents.register(COMMENT_COMPONENTS),
   ],
   imports: [
     BrowserAnimationsModule,
@@ -48,9 +48,9 @@ const COMMENT_COMPONENTS = [
     MatButtonModule,
     MatIconModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
   ],
-  exports: [COMMENT_COMPONENTS]
+  exports: [COMMENT_COMPONENTS],
 })
 
 export class CommentModule {

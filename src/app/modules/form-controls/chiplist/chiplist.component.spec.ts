@@ -20,8 +20,8 @@ describe('ChiplistComponent', () => {
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        FormControlModule
-      ]
+        FormControlModule,
+      ],
     });
   });
 
@@ -119,7 +119,7 @@ describe('ChiplistComponent', () => {
         'b': 'White',
         'c': 'Blue',
         'd': 'Orange',
-        'e': 'Green'
+        'e': 'Green',
       });
       session = BlueriqSessionTemplate.create().build(fieldTemplate);
       fixture = session.get(ChiplistComponent);
@@ -133,7 +133,7 @@ describe('ChiplistComponent', () => {
 
     it('should not be editable or chips be deletable when presentation style \'Disabled\' is set', () => {
       session.update(
-        fieldTemplate.styles(BqPresentationStyles.DISABLED)
+        fieldTemplate.styles(BqPresentationStyles.DISABLED),
       );
       const chipRemoveButton = fixture.nativeElement.querySelectorAll('.mat-chip-remove');
       expect(chipRemoveButton.length).toBe(0);

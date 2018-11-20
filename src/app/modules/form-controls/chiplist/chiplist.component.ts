@@ -8,13 +8,13 @@ import { BqPresentationStyles } from '../../BqPresentationStyles';
 
 @Component({
   selector: 'bq-chiplist',
-  templateUrl: './chiplist.component.html'
+  templateUrl: './chiplist.component.html',
 })
 @BlueriqComponent({
   type: Field,
   selector: bySelector(
     '[multiValued].' + BqPresentationStyles.AUTOCOMPLETE +
-    ',[multiValued][hasDomain=false]', { priorityOffset: 100 })
+    ',[multiValued][hasDomain=false]', { priorityOffset: 100 }),
 })
 export class ChiplistComponent implements OnInit, OnUpdate {
 
@@ -57,7 +57,7 @@ export class ChiplistComponent implements OnInit, OnUpdate {
     const domainValue = this.field.domain.options.find(d => d.value === value);
     return {
       value: domainValue ? domainValue.value : value,
-      displayValue: domainValue ? domainValue.displayValue : value
+      displayValue: domainValue ? domainValue.displayValue : value,
     };
   }
 

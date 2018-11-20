@@ -14,16 +14,16 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 const FILE_COMPONENTS = [
   FileDownloadComponent,
   FileUploadComponent,
-  DocumentLinkComponent
+  DocumentLinkComponent,
 ];
 
 @NgModule({
   declarations: [
-    FILE_COMPONENTS
+    FILE_COMPONENTS,
   ],
   providers: [
     BlueriqComponents.register(FILE_COMPONENTS),
-    FileDownloadService
+    FileDownloadService,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -36,9 +36,9 @@ const FILE_COMPONENTS = [
     MatIconModule,
     MatButtonModule,
     MatProgressBarModule,
-    MatFormFieldModule
+    MatFormFieldModule,
   ],
-  exports: [FILE_COMPONENTS]
+  exports: [FILE_COMPONENTS],
 })
 export class FileModule {
 }

@@ -19,8 +19,8 @@ describe('SelectComponent', () => {
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        FormControlModule
-      ]
+        FormControlModule,
+      ],
     });
     inject([OverlayContainer], (oc: OverlayContainer) => {
       _containerElement = oc.getContainerElement();
@@ -31,7 +31,7 @@ describe('SelectComponent', () => {
     field = FieldTemplate.text('colour').domain({
       'blue': 'Blue',
       'pink': 'Pink',
-      'white': 'White'
+      'white': 'White',
     });
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(SelectComponent);
@@ -63,7 +63,7 @@ describe('SelectComponent', () => {
 
   it('should have a hint', () => {
     session.update(
-      field.explainText('explaining it')
+      field.explainText('explaining it'),
     );
     expect(component.nativeElement.querySelector('mat-hint')).toBeTruthy();
     expect(component.nativeElement.querySelector('mat-hint').innerHTML).toContain('explaining it');
@@ -71,7 +71,7 @@ describe('SelectComponent', () => {
 
   it('should have a placeholder', () => {
     session.update(
-      field.placeholder('myPlaceholder')
+      field.placeholder('myPlaceholder'),
     );
     expect(component.nativeElement.querySelector('.mat-select-placeholder')).toBeTruthy();
     expect(component.nativeElement.querySelector('.mat-select-placeholder').innerText).toBe('myPlaceholder');
@@ -83,7 +83,7 @@ describe('SelectComponent', () => {
     component.detectChanges();
     session.update(
       field.required(true),
-      field.error('wrong IBAN')
+      field.error('wrong IBAN'),
     );
     expect(component.nativeElement.querySelector('mat-error')).toBeTruthy();
   });
@@ -93,7 +93,7 @@ describe('SelectComponent', () => {
     expect(selectedOneValue).toBeNull();
 
     session.update(
-      field.value('blue')
+      field.value('blue'),
     );
 
     selectedOneValue = component.nativeElement.querySelector('.mat-select-value-text').innerText;

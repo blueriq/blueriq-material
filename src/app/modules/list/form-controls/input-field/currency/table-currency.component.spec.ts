@@ -19,8 +19,8 @@ describe('TableCurrencyFieldComponent', () => {
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        ListModule
-      ]
+        ListModule,
+      ],
     });
   }));
 
@@ -36,8 +36,8 @@ describe('TableCurrencyFieldComponent', () => {
       .create('row')
       .contentStyle('tablerow')
       .children(
-        fieldCurrency
-      )
+        fieldCurrency,
+      ),
       // ---------- End ----------
     );
     const list = ContainerTemplate.create().children(tableTemplate);

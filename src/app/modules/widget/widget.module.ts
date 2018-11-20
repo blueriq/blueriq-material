@@ -8,15 +8,15 @@ import { HeadingModule } from '../heading/heading.module';
 import { FlowWidgetComponent } from './flow-widget/flow-widget.component';
 
 const WIDGET_CONTROL_COMPONENTS = [
-  FlowWidgetComponent
+  FlowWidgetComponent,
 ];
 
 @NgModule({
   declarations: [
-    WIDGET_CONTROL_COMPONENTS
+    WIDGET_CONTROL_COMPONENTS,
   ],
   providers: [
-    BlueriqComponents.register(WIDGET_CONTROL_COMPONENTS)
+    BlueriqComponents.register(WIDGET_CONTROL_COMPONENTS),
   ],
   imports: [
     BlueriqCommonModule, // using: bq-session
@@ -27,9 +27,9 @@ const WIDGET_CONTROL_COMPONENTS = [
 
     /* Material modules */
     MatIconModule,
-    MatInputModule
+    MatInputModule,
   ],
-  exports: [WIDGET_CONTROL_COMPONENTS]
+  exports: [WIDGET_CONTROL_COMPONENTS],
 })
 export class WidgetModule {
 }

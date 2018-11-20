@@ -19,8 +19,8 @@ describe('TablePercentageFieldComponent', () => {
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        ListModule
-      ]
+        ListModule,
+      ],
     });
   }));
 
@@ -36,8 +36,8 @@ describe('TablePercentageFieldComponent', () => {
       .create('row')
       .contentStyle('tablerow')
       .children(
-        fieldPercentage
-      )
+        fieldPercentage,
+      ),
       // ---------- End ----------
     );
     const list = ContainerTemplate.create().children(tableTemplate);

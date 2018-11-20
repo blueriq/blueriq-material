@@ -20,8 +20,8 @@ describe('BqContainerDirective', () => {
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        ContainerModule
-      ]
+        ContainerModule,
+      ],
     });
   });
 
@@ -49,7 +49,7 @@ describe('BqContainerDirective', () => {
     let classes = fixture.nativeElement.querySelector('div').classList;
     expect(classes).not.toContain('introduction');
     session.update(
-      template.styles(BqPresentationStyles.INTRODUCTION)
+      template.styles(BqPresentationStyles.INTRODUCTION),
     );
     classes = fixture.nativeElement.querySelector('div').classList;
     expect(classes).toContain('introduction');
@@ -61,7 +61,7 @@ describe('BqContainerDirective', () => {
     let classes = fixture.nativeElement.querySelector('div').classList;
     expect(classes).not.toContain('transparent');
     session.update(
-      template.styles(BqPresentationStyles.TRANSPARENT)
+      template.styles(BqPresentationStyles.TRANSPARENT),
     );
     classes = fixture.nativeElement.querySelector('div').classList;
     expect(classes).toContain('transparent');
@@ -73,7 +73,7 @@ describe('BqContainerDirective', () => {
     let classes = fixture.nativeElement.querySelector('div').classList;
     expect(classes).not.toContain('align-right');
     session.update(
-      template.styles(BqPresentationStyles.ALIGNRIGHT)
+      template.styles(BqPresentationStyles.ALIGNRIGHT),
     );
     classes = fixture.nativeElement.querySelector('div').classList;
     expect(classes).toContain('align-right');
@@ -84,13 +84,13 @@ describe('BqContainerDirective', () => {
     expect(classes).not.toContain('bq-widget');
     // Dashboard widget
     session.update(
-      template.contentStyle(BqContentStyles.DASHBOARD_WIDGET)
+      template.contentStyle(BqContentStyles.DASHBOARD_WIDGET),
     );
     classes = fixture.nativeElement.querySelector('div').classList;
     expect(classes).toContain('bq-widget');
     // or Dashboard flow widget
     session.update(
-      template.contentStyle(BqContentStyles.DASHBOARD_FLOWWIDGET)
+      template.contentStyle(BqContentStyles.DASHBOARD_FLOWWIDGET),
     );
     classes = fixture.nativeElement.querySelector('div').classList;
     expect(classes).toContain('bq-widget');

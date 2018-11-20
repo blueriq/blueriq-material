@@ -14,9 +14,9 @@ describe('LoadingComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        LoadingModule
+        LoadingModule,
       ],
-      providers: [GlobalLoadingActivity]
+      providers: [GlobalLoadingActivity],
     });
   }));
 

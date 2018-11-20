@@ -7,10 +7,10 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'bq-image',
   templateUrl: './image.component.html',
-  providers: [ImageResource]
+  providers: [ImageResource],
 })
 @BlueriqComponent({
-  type: Image
+  type: Image,
 })
 export class ImageComponent {
 

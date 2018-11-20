@@ -17,14 +17,14 @@ describe('FileDownloadComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BlueriqTestingModule, FileModule]
+      imports: [BlueriqTestingModule, FileModule],
     });
   }));
 
   beforeEach(async(() => {
     container = ContainerTemplate.create().contentStyle('filedownload').children(
       ButtonTemplate.create('downloadButton'),
-      ButtonTemplate.create('Unauthorized')
+      ButtonTemplate.create('Unauthorized'),
     );
     session = BlueriqSessionTemplate.create().build(container);
     component = session.get(FileDownloadComponent);

@@ -8,11 +8,11 @@ import { SelectComponent } from '../../../form-controls/select/select.component'
   selector: 'bq-table-select',
   templateUrl: './table-select.component.html',
   styleUrls: ['../table-form-control.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 @BlueriqComponent({
   type: Field,
-  selector: '[hasDomain]'
+  selector: '[hasDomain]',
 })
 export class TableSelectComponent extends SelectComponent {
 

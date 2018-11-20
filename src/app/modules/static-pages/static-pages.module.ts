@@ -7,12 +7,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login.component';
 
 const STATIC_PAGES_COMPONENTS = [
-  LoginComponent
+  LoginComponent,
 ];
 
 @NgModule({
   declarations: [
-    STATIC_PAGES_COMPONENTS
+    STATIC_PAGES_COMPONENTS,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -25,9 +25,9 @@ const STATIC_PAGES_COMPONENTS = [
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
   ],
-  exports: [STATIC_PAGES_COMPONENTS]
+  exports: [STATIC_PAGES_COMPONENTS],
 })
 
 export class StaticPagesModule {

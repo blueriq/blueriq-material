@@ -6,11 +6,11 @@ import { BqContentStyles } from '../../BqContentStyles';
 @Component({
   selector: 'bq-flow-widget',
   templateUrl: './flow-widget.component.html',
-  providers: [FlowWidget]
+  providers: [FlowWidget],
 })
 @BlueriqComponent({
   type: Container,
-  selector: BqContentStyles.DASHBOARD_FLOWWIDGET
+  selector: BqContentStyles.DASHBOARD_FLOWWIDGET,
 })
 export class FlowWidgetComponent {
 

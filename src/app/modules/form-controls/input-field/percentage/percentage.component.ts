@@ -6,11 +6,11 @@ import { InputFieldComponent } from '../input-field.component';
 @Component({
   selector: 'bq-percentage-field',
   templateUrl: '../input-field.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 @BlueriqComponent({
   type: Field,
-  selector: '[dataType=percentage]:not([hasDomain])'
+  selector: '[dataType=percentage]:not([hasDomain])',
 })
 export class PercentageFieldComponent extends InputFieldComponent {
 

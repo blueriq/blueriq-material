@@ -5,11 +5,11 @@ import { Field } from '@blueriq/core';
 @Component({
   selector: 'bq-readonly',
   templateUrl: './readonly.component.html',
-  styleUrls: ['./readonly.component.scss']
+  styleUrls: ['./readonly.component.scss'],
 })
 @BlueriqComponent({
   type: Field,
-  selector: bySelector('[readonly]:not([dataType=boolean])', { priorityOffset: 1000 })
+  selector: bySelector('[readonly]:not([dataType=boolean])', { priorityOffset: 1000 }),
 })
 export class ReadonlyComponent {
 

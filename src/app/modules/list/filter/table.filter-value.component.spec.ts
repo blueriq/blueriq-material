@@ -24,8 +24,8 @@ describe('TableFilterValueComponent', () => {
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        ListModule
-      ]
+        ListModule,
+      ],
     });
     fixture = TestBed.createComponent(TableFilterValueComponent);
     tableFilterValueComponent = fixture.componentInstance;

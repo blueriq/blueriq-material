@@ -4,20 +4,20 @@ import { SharedModule } from '@shared/shared.module';
 import { ImageComponent } from './image.component';
 
 const BLUERIQ_COMPONENTS = [
-  ImageComponent
+  ImageComponent,
 ];
 
 @NgModule({
   imports: [
-    SharedModule
+    SharedModule,
   ],
   declarations: [
-    BLUERIQ_COMPONENTS
+    BLUERIQ_COMPONENTS,
   ],
   providers: [
-    BlueriqComponents.register(BLUERIQ_COMPONENTS)
+    BlueriqComponents.register(BLUERIQ_COMPONENTS),
   ],
-  exports: [BLUERIQ_COMPONENTS]
+  exports: [BLUERIQ_COMPONENTS],
 })
 export class ImageModule {
 }

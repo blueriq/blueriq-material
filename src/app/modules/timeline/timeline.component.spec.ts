@@ -19,8 +19,8 @@ describe('TimelineComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         BlueriqTestingModule,
-        TimelineModule
-      ]
+        TimelineModule,
+      ],
     });
   }));
 
@@ -29,7 +29,7 @@ describe('TimelineComponent', () => {
     container = ContainerTemplate.create('statisticContainer')
     .contentStyle('timeline').children(
       createTimelineEntry('Henk', new Date('2018-05-05 17:00:00'), 'Request driving licence', 'RequestLicence'),
-      createTimelineEntry('Klaas', now, 'Accept driving licence', 'AcceptLicence')
+      createTimelineEntry('Klaas', now, 'Accept driving licence', 'AcceptLicence'),
     );
     session = BlueriqSessionTemplate.create().build(container);
     component = session.get(TimelineComponent);
@@ -88,7 +88,7 @@ describe('TimelineComponent', () => {
       'username': username,
       'datetime': datetime,
       'actionname': actionName,
-      'entryname': entryName
+      'entryname': entryName,
     });
   }
 

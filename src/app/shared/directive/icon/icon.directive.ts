@@ -7,7 +7,7 @@ import { BqPresentationStyles } from '../../../modules/BqPresentationStyles';
  * It is meant for use in mat-icon only!
  */
 @Directive({
-  selector: '[bqIcon]'
+  selector: '[bqIcon]',
 })
 export class BqIconDirective {
 
@@ -67,7 +67,7 @@ export class BqIconDirective {
       'signout': 'sign-out',
       'file': 'file-o',
       'file_pdf': 'file-pdf-o',
-      'file_image': 'file-image-o'
+      'file_image': 'file-image-o',
     };
     const mappedName = mappedIcons[name];
     return mappedName ? mappedName : name;

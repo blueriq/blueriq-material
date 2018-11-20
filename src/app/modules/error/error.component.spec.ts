@@ -10,7 +10,7 @@ describe('ErrorComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ErrorModule]
+      imports: [ErrorModule],
     });
 
     fixture = TestBed.createComponent(ErrorComponent);
@@ -19,7 +19,7 @@ describe('ErrorComponent', () => {
       ErrorType.NotFound,
       'Not found',
       'Unknown flow: Demo',
-      'Some stack trace'
+      'Some stack trace',
     );
     fixture.detectChanges();
   });
@@ -45,7 +45,7 @@ describe('ErrorComponent', () => {
     component.error = new ErrorModel(
       ErrorType.UnknownSession,
       'Session Expired',
-      'Your session has expired'
+      'Your session has expired',
     );
     fixture.detectChanges();
 
@@ -57,7 +57,7 @@ describe('ErrorComponent', () => {
     component.error = new ErrorModel(
       ErrorType.UnknownSession,
       'Session Expired',
-      'Your session has expired'
+      'Your session has expired',
     );
     fixture.detectChanges();
 

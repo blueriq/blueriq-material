@@ -10,13 +10,13 @@ import { BqPresentationStyles } from '../BqPresentationStyles';
   animations: [
     trigger('animate', [
       transition(':leave', [
-        query('@*', animateChild(), { optional: true })
-      ])
-    ])
-  ]
+        query('@*', animateChild(), { optional: true }),
+      ]),
+    ]),
+  ],
 })
 @BlueriqComponent({
-  type: Container
+  type: Container,
 })
 export class ContainerComponent implements OnInit, OnUpdate {
 

@@ -26,8 +26,8 @@ describe('TabComponent', () => {
         BlueriqTestingModule,
         SharedModule,
         TabModule,
-        ContainerModule
-      ]
+        ContainerModule,
+      ],
     });
     tabField = FieldTemplate.text('field');
     extraTab = ContainerTemplate.create().name('tab4').children(tabField);
@@ -38,7 +38,7 @@ describe('TabComponent', () => {
       ContainerTemplate.create('tab1').displayName('News'),
       ContainerTemplate.create('tab2').displayName('Reviews'),
       ContainerTemplate.create('tab3').displayName('Pricewatch'),
-      extraTab
+      extraTab,
     );
     session = BlueriqSessionTemplate.create().build(tabTemplate);
     tabFixture = session.get(TabComponent);

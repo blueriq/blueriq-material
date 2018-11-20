@@ -21,8 +21,8 @@ describe('MenuComponent', () => {
         imports: [
           NoopAnimationsModule,
           BlueriqTestingModule,
-          MenuModule
-        ]
+          MenuModule,
+        ],
       });
     }));
 
@@ -38,10 +38,10 @@ describe('MenuComponent', () => {
             ButtonTemplate.create('Finance').caption('Finance').disabled(true),
             ContainerTemplate.create().displayName('Public').children(
               btnPublicA,
-              btnPublicB
-            )
-          )
-        )
+              btnPublicB,
+            ),
+          ),
+        ),
       );
       // reset field to default
       session = BlueriqSessionTemplate.create().build(menu);
@@ -113,5 +113,5 @@ describe('MenuComponent', () => {
 
     //
 
-  }
+  },
 );

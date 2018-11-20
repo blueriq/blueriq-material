@@ -4,18 +4,18 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ErrorComponent } from './error.component';
 
 const ERROR_COMPONENTS = [
-  ErrorComponent
+  ErrorComponent,
 ];
 
 @NgModule({
   declarations: [
-    ERROR_COMPONENTS
+    ERROR_COMPONENTS,
   ],
   imports: [
     CommonModule,
-    FlexLayoutModule
+    FlexLayoutModule,
   ],
-  exports: [ERROR_COMPONENTS]
+  exports: [ERROR_COMPONENTS],
 })
 export class ErrorModule {
 }

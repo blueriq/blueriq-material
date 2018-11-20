@@ -9,9 +9,9 @@ import { HeadingComponent } from './heading.component';
   imports: [
     CommonModule,
     SharedModule,
-    MatIconModule
+    MatIconModule,
   ],
-  exports: [HeadingComponent]
+  exports: [HeadingComponent],
 })
 export class HeadingModule {
 }
