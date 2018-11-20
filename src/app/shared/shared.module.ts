@@ -13,12 +13,12 @@ import { ValidationEffect } from '@shared/effects/validation/validation.effect';
 const SHARED_COMPONENTS = [
   BqKeyDirective,
   BqIconDirective,
-  BqContainerDirective
+  BqContainerDirective,
 ];
 
 @NgModule({
   declarations: [
-    SHARED_COMPONENTS
+    SHARED_COMPONENTS,
   ],
   imports: [
     CommonModule,
@@ -26,15 +26,15 @@ const SHARED_COMPONENTS = [
     EffectsModule.forRoot([]),
     EffectsModule.forFeature([
       MessagesEffect,
-      ValidationEffect
+      ValidationEffect,
     ]),
 
     /* Material Modules */
-    MatSnackBarModule // used in validation.effect & messages.effect
+    MatSnackBarModule, // used in validation.effect & messages.effect
   ],
   exports: [
-    SHARED_COMPONENTS, CommonModule, FormsModule
-  ]
+    SHARED_COMPONENTS, CommonModule, FormsModule,
+  ],
 })
 export class SharedModule {
 }

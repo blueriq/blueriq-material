@@ -48,11 +48,11 @@ interface ChartOptions {
 
 @Component({
   templateUrl: './statistic.component.html',
-  providers: [Statistics]
+  providers: [Statistics],
 })
 @BlueriqComponent({
   type: Container,
-  selector: 'visualization'
+  selector: 'visualization',
 })
 export class StatisticComponent implements AfterViewInit {
 
@@ -67,7 +67,7 @@ export class StatisticComponent implements AfterViewInit {
   private colors: string[] = [
     'rgba(0, 119, 229, 0.65)', 'rgba(120,59,149, 0.65)', 'rgba(120,55,215, 0.65)',
     'rgba(0,120,130, 0.65)', 'rgba(0,164,130, 0.65)', 'rgba(42,191,173, 0.65)',
-    'rgba(220,66,80, 0.65)', 'rgba(248,121, 0.65)', 'rgba(248,193,75, 0.65)'
+    'rgba(220,66,80, 0.65)', 'rgba(248,121, 0.65)', 'rgba(248,193,75, 0.65)',
   ];
 
   private animationLength = 800;
@@ -85,7 +85,7 @@ export class StatisticComponent implements AfterViewInit {
     this.chart = new Chart(this.canvas.nativeElement.getContext('2d'), {
       type: this.presentationStylesToChartType(),
       data: this.getData([], []),
-      options: this.getOptions()
+      options: this.getOptions(),
     });
 
     this.statistics.statistics$.subscribe((stats: Statistic[]) => {
@@ -111,19 +111,19 @@ export class StatisticComponent implements AfterViewInit {
         display: this.container.styles.hasAny(
           BqPresentationStyles.STATISTICPIE, BqPresentationStyles.DEPRECATED_STATISTIC_PIE,
           BqPresentationStyles.STATISTICDOUGHNUT, BqPresentationStyles.DEPRECATED_STATISTIC_DOUGHNUT,
-          BqPresentationStyles.STATISTICPOLAR, BqPresentationStyles.DEPRECATED_STATISTIC_POLAR
+          BqPresentationStyles.STATISTICPOLAR, BqPresentationStyles.DEPRECATED_STATISTIC_POLAR,
         ),
         labels: {
           boxWidth: this.boxWidth,
           fontSize: this.fontSize,
           fontColor: this.fontColor,
-          padding: this.padding
-        }
+          padding: this.padding,
+        },
       },
       animation: {
         duration: this.container.styles.hasAny(
-          BqPresentationStyles.ANIMATION, BqPresentationStyles.DEPRECATED_ANIMATE) ? this.animationLength : 0
-      }
+          BqPresentationStyles.ANIMATION, BqPresentationStyles.DEPRECATED_ANIMATE) ? this.animationLength : 0,
+      },
     };
     if (this.container.styles.hasAny(
       BqPresentationStyles.STATISTICBAR, BqPresentationStyles.DEPRECATED_STATISTIC_BAR,
@@ -131,16 +131,16 @@ export class StatisticComponent implements AfterViewInit {
       options.scales = {
         yAxes: [{
           ticks: {
-            beginAtZero: true
-          }
-        }]
+            beginAtZero: true,
+          },
+        }],
       };
     } else if (this.container.styles.hasAny(BqPresentationStyles.STATISTICRADAR,
       BqPresentationStyles.DEPRECATED_STATISTIC_RADAR)) {
       options.scale = {
         ticks: {
-          beginAtZero: true
-        }
+          beginAtZero: true,
+        },
       };
     }
     return options;
@@ -155,9 +155,9 @@ export class StatisticComponent implements AfterViewInit {
         datasets: [{
           data: data,
           backgroundColor: this.colors[0],
-          borderColor: this.colors[0]
+          borderColor: this.colors[0],
         }],
-        labels: labels
+        labels: labels,
       };
     } else if (this.container.styles.hasAny(BqPresentationStyles.STATISTICLINE,
       BqPresentationStyles.DEPRECATED_STATISTIC_LINE)) {
@@ -166,17 +166,17 @@ export class StatisticComponent implements AfterViewInit {
           data: data,
           backgroundColor: this.colors[0],
           borderColor: this.colors[0],
-          fill: false
+          fill: false,
         }],
-        labels: labels
+        labels: labels,
       };
     }
     return {
       datasets: [{
         data: data,
-        backgroundColor: this.colors
+        backgroundColor: this.colors,
       }],
-      labels: labels
+      labels: labels,
     };
   }
 
@@ -187,7 +187,7 @@ export class StatisticComponent implements AfterViewInit {
       BqPresentationStyles.STATISTICDOUGHNUT, BqPresentationStyles.DEPRECATED_STATISTIC_DOUGHNUT,
       BqPresentationStyles.STATISTICRADAR, BqPresentationStyles.DEPRECATED_STATISTIC_RADAR,
       BqPresentationStyles.STATISTICLINE, BqPresentationStyles.DEPRECATED_STATISTIC_LINE,
-      BqPresentationStyles.STATISTICPOLAR, BqPresentationStyles.DEPRECATED_STATISTIC_POLAR
+      BqPresentationStyles.STATISTICPOLAR, BqPresentationStyles.DEPRECATED_STATISTIC_POLAR,
     );
     if (chartPresentationStyle.count === 0) {
       return 'doughnut';

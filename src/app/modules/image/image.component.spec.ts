@@ -17,8 +17,8 @@ describe('ImageComponent', () => {
         NoopAnimationsModule,
         BlueriqTestingModule,
         SharedModule,
-        ImageModule
-      ]
+        ImageModule,
+      ],
     });
   }));
 
@@ -32,13 +32,13 @@ describe('ImageComponent', () => {
     expect(component.nativeElement.querySelector('img').getAttribute('width')).toBeFalsy();
     expect(component.nativeElement.querySelector('img').getAttribute('height')).toBeFalsy();
     expect(component.nativeElement.querySelector('img').getAttribute('src'))
-      .toBe('/blueriq/api/v1/subscription/subscription-id/session/session-id/image/myImage/key/P0-I0');
+    .toBe('/blueriq/api/v1/subscription/subscription-id/session/session-id/image/myImage/key/P0-I0');
   });
 
   it('should have the correct dimensions set', () => {
     session.update(
       imageTemplate.width(10),
-      imageTemplate.height(1100)
+      imageTemplate.height(1100),
     );
     expect(component.nativeElement.querySelector('img').getAttribute('width')).toBe('10');
     expect(component.nativeElement.querySelector('img').getAttribute('height')).toBe('1100');

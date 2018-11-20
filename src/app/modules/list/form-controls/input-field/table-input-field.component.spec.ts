@@ -19,8 +19,8 @@ describe('TableInputFieldComponent', () => {
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        ListModule
-      ]
+        ListModule,
+      ],
     });
   }));
 
@@ -35,8 +35,8 @@ describe('TableInputFieldComponent', () => {
       .create('row')
       .contentStyle('tablerow')
       .children(
-        fieldIntegerTemplate
-      )
+        fieldIntegerTemplate,
+      ),
       // ---------- End ----------
     );
     const list = ContainerTemplate.create().children(tableTemplate);
@@ -51,7 +51,7 @@ describe('TableInputFieldComponent', () => {
   it('should have required marker in placeholder text', () => {
     session.update(
       fieldIntegerTemplate.placeholder('myPlaceholder'),
-      fieldIntegerTemplate.required(true)
+      fieldIntegerTemplate.required(true),
     );
     expect(component.nativeElement.querySelector('input[placeholder]')).toBeTruthy();
     expect(component.nativeElement.querySelector('input').getAttribute('placeholder')).toBe('myPlaceholder *');

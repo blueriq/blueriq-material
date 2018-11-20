@@ -7,16 +7,16 @@ import { MenuItemComponent } from './menu-item/menu-item.component';
 import { MenuComponent } from './menu.component';
 
 const BQ_MENU_COMPONENTS = [
-  MenuComponent
+  MenuComponent,
 ];
 
 @NgModule({
   declarations: [
     BQ_MENU_COMPONENTS,
-    MenuItemComponent
+    MenuItemComponent,
   ],
   providers: [
-    BlueriqComponents.register(BQ_MENU_COMPONENTS)
+    BlueriqComponents.register(BQ_MENU_COMPONENTS),
   ],
   imports: [
     /* Basic */
@@ -28,9 +28,9 @@ const BQ_MENU_COMPONENTS = [
     MatMenuModule,
     MatToolbarModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
   ],
-  exports: [BQ_MENU_COMPONENTS]
+  exports: [BQ_MENU_COMPONENTS],
 })
 export class MenuModule {
 }

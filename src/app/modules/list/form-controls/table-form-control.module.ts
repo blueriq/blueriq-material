@@ -9,7 +9,7 @@ import {
   MatIconModule,
   MatInputModule,
   MatSelectModule,
-  MatTooltipModule
+  MatTooltipModule,
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
@@ -36,15 +36,15 @@ export const TABLE_FORM_CONTROL_COMPONENTS = [
   TableCurrencyFieldComponent,
   TableDatetimepickerComponent,
   TableSelectComponent,
-  TableReadonlyComponent
+  TableReadonlyComponent,
 ];
 
 @NgModule({
   declarations: [
-    TABLE_FORM_CONTROL_COMPONENTS
+    TABLE_FORM_CONTROL_COMPONENTS,
   ],
   providers: [
-    BlueriqComponents.register(TABLE_FORM_CONTROL_COMPONENTS)
+    BlueriqComponents.register(TABLE_FORM_CONTROL_COMPONENTS),
   ],
   imports: [
     BrowserAnimationsModule,
@@ -68,9 +68,9 @@ export const TABLE_FORM_CONTROL_COMPONENTS = [
     MatDatepickerModule,
     MatInputModule,
     MatSelectModule,
-    MatTooltipModule
+    MatTooltipModule,
   ],
-  exports: [TABLE_FORM_CONTROL_COMPONENTS]
+  exports: [TABLE_FORM_CONTROL_COMPONENTS],
 })
 
 export class TableFormControlModule {

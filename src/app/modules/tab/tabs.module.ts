@@ -7,15 +7,15 @@ import { HeadingModule } from '../heading/heading.module';
 import { TabComponent } from './tab.component';
 
 const BLUERIQ_COMPONENTS = [
-  TabComponent
+  TabComponent,
 ];
 
 @NgModule({
   declarations: [
-    BLUERIQ_COMPONENTS
+    BLUERIQ_COMPONENTS,
   ],
   providers: [
-    BlueriqComponents.register(BLUERIQ_COMPONENTS)
+    BlueriqComponents.register(BLUERIQ_COMPONENTS),
   ],
   imports: [
     BlueriqCommonModule, // using: [bqElement] directive
@@ -25,9 +25,9 @@ const BLUERIQ_COMPONENTS = [
 
     /* Material modules */
     MatTabsModule,
-    MatIconModule
+    MatIconModule,
   ],
-  exports: [BLUERIQ_COMPONENTS]
+  exports: [BLUERIQ_COMPONENTS],
 })
 export class TabModule {
 }

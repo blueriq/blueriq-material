@@ -12,7 +12,7 @@ export function provideDateFormats(): DateFormats {
   return new DateFormats(new MomentDateFormatting(), {
     date: DEFAULT_DATE_PATTERN,
     time: DEFAULT_TIME_PATTERN,
-    dateTime: DEFAULT_DATETIME_PATTERN
+    dateTime: DEFAULT_DATETIME_PATTERN,
   }, 'en-US');
 }
 

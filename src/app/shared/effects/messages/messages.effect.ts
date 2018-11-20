@@ -6,7 +6,7 @@ import {
   SessionEventActions,
   SessionLoadedAction,
   SessionRegistry,
-  StartupActions
+  StartupActions,
 } from '@blueriq/angular';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable } from 'rxjs';
@@ -20,7 +20,7 @@ export class MessagesEffect {
   @Effect({ dispatch: false })
   sessionActions$: Observable<any> = this.actions$.pipe(
     ofType<Action>(StartupActions.SESSION_LOADED, SessionEventActions.CHANGED_PAGE, SessionEventActions.PAGE_UPDATED),
-    tap(action => this.showSnackBar(action))
+    tap(action => this.showSnackBar(action)),
   );
 
   constructor(private actions$: Actions,
@@ -40,7 +40,7 @@ export class MessagesEffect {
         if (messagesAsText !== this.currentMessages) {
           this.currentMessages = messagesAsText;
           this.snackBar.open(this.currentMessages, undefined, {
-            panelClass: (messages.hasErrors) ? 'snackbar-error' : 'snackbar-warning'
+            panelClass: (messages.hasErrors) ? 'snackbar-error' : 'snackbar-warning',
           });
         }
       }

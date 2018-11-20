@@ -6,11 +6,11 @@ import { InputFieldComponent } from '../input-field.component';
 @Component({
   selector: 'bq-currency-field',
   templateUrl: '../input-field.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 @BlueriqComponent({
   type: Field,
-  selector: '[dataType=currency]:not([hasDomain])'
+  selector: '[dataType=currency]:not([hasDomain])',
 })
 export class CurrencyFieldComponent extends InputFieldComponent {
 

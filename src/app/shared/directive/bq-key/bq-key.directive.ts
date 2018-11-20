@@ -2,7 +2,7 @@ import { Directive, HostBinding } from '@angular/core';
 import { Element } from '@blueriq/core';
 
 @Directive({
-  selector: '[bqKey]'
+  selector: '[bqKey]',
 })
 export class BqKeyDirective {
 

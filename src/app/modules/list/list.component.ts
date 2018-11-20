@@ -8,11 +8,11 @@ import { TABLE_FORM_CONTROL_COMPONENTS } from './form-controls/table-form-contro
 @Component({
   selector: 'bq-list',
   templateUrl: './list.component.html',
-  providers: [List, BlueriqComponents.scoped(TABLE_FORM_CONTROL_COMPONENTS)]
+  providers: [List, BlueriqComponents.scoped(TABLE_FORM_CONTROL_COMPONENTS)],
 })
 @BlueriqComponent({
   type: Container,
-  selector: `:has(* > ${BqContentStyles.TABLE})`
+  selector: `:has(* > ${BqContentStyles.TABLE})`,
 })
 export class ListComponent {
 

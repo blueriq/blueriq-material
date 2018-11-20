@@ -31,8 +31,8 @@ describe('TablePaginationComponent', () => {
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        ListModule
-      ]
+        ListModule,
+      ],
     });
   });
 
@@ -71,7 +71,7 @@ describe('TablePaginationComponent', () => {
         btnPrevious,
         currentPageNumber,
         btnNext,
-        btnLast
+        btnLast,
       );
       const table = ContainerTemplate.create().contentStyle('table');
       const list = ContainerTemplate.create().children(table, pagination);
@@ -100,7 +100,7 @@ describe('TablePaginationComponent', () => {
       pagingSelector = ContainerTemplate.create('pagingSelector').children(
         prefixAsset,
         currentPageNumber,
-        suffixAsset
+        suffixAsset,
       );
 
       btnNext = ButtonTemplate.create('next')
@@ -120,7 +120,7 @@ describe('TablePaginationComponent', () => {
         btnPrevious,
         pagingSelector,
         btnNext,
-        btnLast
+        btnLast,
       );
       const table = ContainerTemplate.create().contentStyle('table');
       const list = ContainerTemplate.create().children(table, pagination);
@@ -149,7 +149,7 @@ describe('TablePaginationComponent', () => {
       pagingSelector = ContainerTemplate.create('pagingSelector').children(
         prefixAsset,
         currentPageNumber,
-        suffixAsset
+        suffixAsset,
       );
 
       btnNext = ButtonTemplate.create('next')
@@ -170,7 +170,7 @@ describe('TablePaginationComponent', () => {
         btnPrevious,
         pagingSelector,
         btnNext,
-        btnLast
+        btnLast,
       );
       const table = ContainerTemplate.create().contentStyle('table');
       const list = ContainerTemplate.create().children(table, pagination);
@@ -204,7 +204,7 @@ describe('TablePaginationComponent', () => {
           btnNext.disabled(false),
           btnPrevious.disabled(false),
           btnFirst.disabled(false),
-          btnLast.disabled(false)
+          btnLast.disabled(false),
         );
 
         const pageLabel = component.nativeElement.querySelector(LABEL).innerHTML;
@@ -227,7 +227,7 @@ describe('TablePaginationComponent', () => {
           btnPrevious.disabled(false),
           btnNext.disabled(true),
           btnFirst.disabled(false),
-          btnLast.disabled(true)
+          btnLast.disabled(true),
         );
 
         const pageLabel = component.nativeElement.querySelector(LABEL).innerHTML;

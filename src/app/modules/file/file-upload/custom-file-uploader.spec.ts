@@ -10,7 +10,7 @@ describe('CustomFileUploader', () => {
     const uploadOptions: FileUploaderOptions = {
       url: 'www.some-url.com',
       maxFileSize: 256,
-      autoUpload: true
+      autoUpload: true,
     };
     customFileUploader = new CustomFileUploader(uploadOptions);
     spyOn(XMLHttpRequest.prototype, 'send').and.callThrough();
@@ -34,7 +34,7 @@ describe('CustomFileUploader', () => {
         url: 'www.some-url.com',
         maxFileSize: 256,
         autoUpload: true,
-        allowedFileType: ['txt']
+        allowedFileType: ['txt'],
       };
       customFileUploader = new CustomFileUploader(uploadOptions);
 
@@ -51,7 +51,7 @@ describe('CustomFileUploader', () => {
         url: 'www.some-url.com',
         maxFileSize: 256,
         autoUpload: true,
-        allowedFileType: ['doc']
+        allowedFileType: ['doc'],
       };
       customFileUploader = new CustomFileUploader(uploadOptions);
 
@@ -67,7 +67,7 @@ describe('CustomFileUploader', () => {
       const uploadOptions: FileUploaderOptions = {
         url: 'www.some-url.com',
         maxFileSize: 256,
-        autoUpload: true
+        autoUpload: true,
       };
       customFileUploader = new CustomFileUploader(uploadOptions);
 

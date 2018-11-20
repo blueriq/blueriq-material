@@ -6,11 +6,11 @@ import { InputFieldComponent } from '../input-field.component';
 @Component({
   selector: 'bq-string-field',
   templateUrl: '../input-field.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 @BlueriqComponent({
   type: Field,
-  selector: '[dataType=text]:not([hasDomain])'
+  selector: '[dataType=text]:not([hasDomain])',
 })
 export class StringFieldComponent extends InputFieldComponent {
 }

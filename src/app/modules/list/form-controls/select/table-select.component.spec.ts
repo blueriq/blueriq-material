@@ -19,8 +19,8 @@ describe('TableSelectComponent', () => {
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        ListModule
-      ]
+        ListModule,
+      ],
     });
   }));
 
@@ -29,7 +29,7 @@ describe('TableSelectComponent', () => {
     .domain({
       'blue': 'Blue',
       'pink': 'Pink',
-      'white': 'White'
+      'white': 'White',
     })
     .error('Invalid color').warning('Incorrect color');
 
@@ -41,8 +41,8 @@ describe('TableSelectComponent', () => {
       .create('row')
       .contentStyle('tablerow')
       .children(
-        tableSelect
-      )
+        tableSelect,
+      ),
       // ---------- End ----------
     );
     const list = ContainerTemplate.create().children(tableTemplate);

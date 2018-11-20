@@ -43,8 +43,8 @@ describe('TableHeaderColumnComponent', () => {
       // Set column age so the (which is also filtered on) so filtering results in true
       const column: TableColumn | any = {
         header: {
-          name: 'age'
-        }
+          name: 'age',
+        },
       };
       headerComponent.column = column;
       let isColumnFiltered!: boolean;
@@ -81,7 +81,7 @@ describe('TableHeaderColumnComponent', () => {
 
     it('should display the right material icon if direction is descending', () => {
       const column: TableColumn | any = {
-        sort: ButtonTemplate.create('sort').styles('descending').build()
+        sort: ButtonTemplate.create('sort').styles('descending').build(),
       };
       headerComponent.column = column;
       const currentIcon = headerComponent.getIconByDirection();
@@ -91,7 +91,7 @@ describe('TableHeaderColumnComponent', () => {
 
     it('should display the right material icon if direction is ascending', () => {
       const column: TableColumn | any = {
-        sort: ButtonTemplate.create('sort').styles('ascending').build()
+        sort: ButtonTemplate.create('sort').styles('ascending').build(),
       };
       headerComponent.column = column;
       const currentIcon = headerComponent.getIconByDirection();

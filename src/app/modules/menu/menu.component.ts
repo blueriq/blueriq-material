@@ -6,11 +6,11 @@ import { BqContentStyles } from '../BqContentStyles';
 @Component({
   selector: 'bq-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss']
+  styleUrls: ['./menu.component.scss'],
 })
 @BlueriqComponent({
   type: Container,
-  selector: BqContentStyles.DASHBOARD_MENU
+  selector: BqContentStyles.DASHBOARD_MENU,
 })
 export class MenuComponent {
 

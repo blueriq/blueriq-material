@@ -10,14 +10,14 @@ type RadioButtonDirection = 'vertical' | 'horizontal';
 @Component({
   selector: 'bq-radio-button',
   templateUrl: './radio-button.component.html',
-  styleUrls: ['./radio-button.component.scss', '../selection-control.component.scss']
+  styleUrls: ['./radio-button.component.scss', '../selection-control.component.scss'],
 })
 @BlueriqComponent({
   type: Field,
   selector: '.Radio[hasDomain], .' +
     BqPresentationStyles.DEPRECATED_HORIZONTAL + '[hasDomain] , .' +
     BqPresentationStyles.DEPRECATED_VERTICAL + '[hasDomain], .' +
-    BqPresentationStyles.HORIZONTAL + '[hasDomain]'
+    BqPresentationStyles.HORIZONTAL + '[hasDomain]',
 })
 export class RadioButtonComponent implements OnInit, OnUpdate {
 

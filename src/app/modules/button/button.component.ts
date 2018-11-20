@@ -8,10 +8,10 @@ import { BqPresentationStyles } from '../BqPresentationStyles';
 @Component({
   selector: 'bq-button',
   templateUrl: './button.component.html',
-  styleUrls: ['./button.component.scss']
+  styleUrls: ['./button.component.scss'],
 })
 @BlueriqComponent({
-  type: Button
+  type: Button,
 })
 export class ButtonComponent {
 

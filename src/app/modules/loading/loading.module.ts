@@ -3,17 +3,17 @@ import { NgModule } from '@angular/core';
 import { LoadingComponent } from './loading.component';
 
 const LOADING_COMPONENTS = [
-  LoadingComponent
+  LoadingComponent,
 ];
 
 @NgModule({
   declarations: [
-    LOADING_COMPONENTS
+    LOADING_COMPONENTS,
   ],
   imports: [
-    CommonModule
+    CommonModule,
   ],
-  exports: [LOADING_COMPONENTS]
+  exports: [LOADING_COMPONENTS],
 })
 export class LoadingModule {
 }

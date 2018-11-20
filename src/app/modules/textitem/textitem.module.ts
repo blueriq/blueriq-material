@@ -9,12 +9,12 @@ import { BqPresentationStyles } from '../BqPresentationStyles';
 import { TextItemComponent } from './textitem.component';
 
 const BLUERIQ_COMPONENTS = [
-  TextItemComponent
+  TextItemComponent,
 ];
 
 @NgModule({
   declarations: [
-    BLUERIQ_COMPONENTS
+    BLUERIQ_COMPONENTS,
   ],
   providers: [
     BlueriqComponents.register(BLUERIQ_COMPONENTS),
@@ -22,19 +22,19 @@ const BLUERIQ_COMPONENTS = [
       {
         from: BqPresentationStyles.TEXTEMPHASIS,
         to: 'emphasis',
-        when: { type: TextItem }
+        when: { type: TextItem },
       },
       {
         from: BqPresentationStyles.TEXTEMPHASIS_SUBTLE,
         to: 'subtle',
-        when: { type: TextItem }
+        when: { type: TextItem },
       },
       {
         from: BqPresentationStyles.TEXTEMPHASIS_INTENSE,
         to: 'intense',
-        when: { type: TextItem }
-      }
-    ])
+        when: { type: TextItem },
+      },
+    ]),
   ],
   imports: [
     CommonModule,
@@ -44,9 +44,9 @@ const BLUERIQ_COMPONENTS = [
     BlueriqModule.forRoot(), // using bqClasses (which triggers to use the css to use colors)
 
     /* Material modules */
-    MatIconModule
+    MatIconModule,
   ],
-  exports: [BLUERIQ_COMPONENTS]
+  exports: [BLUERIQ_COMPONENTS],
 })
 export class TextItemModule {
 }

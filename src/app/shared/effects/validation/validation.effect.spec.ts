@@ -17,13 +17,13 @@ describe('ValidationEffect', () => {
 
     TestBed.configureTestingModule({
       imports: [
-        NoopAnimationsModule
+        NoopAnimationsModule,
       ],
       providers: [
         ValidationEffect,
         provideMockActions(() => actions),
-        { provide: MatSnackBar, useValue: snackBarSpy }
-      ]
+        { provide: MatSnackBar, useValue: snackBarSpy },
+      ],
     });
 
     effects = TestBed.get(ValidationEffect);
@@ -38,7 +38,7 @@ describe('ValidationEffect', () => {
 
       expect(snackBarSpy.open).toHaveBeenCalledWith('There are validation errors on the page', undefined, {
         duration: 5000,
-        panelClass: 'snackbar-error'
+        panelClass: 'snackbar-error',
       });
     });
 
@@ -50,7 +50,7 @@ describe('ValidationEffect', () => {
 
       expect(snackBarSpy.open).toHaveBeenCalledWith('There are validation errors on the page', undefined, {
         duration: 5000,
-        panelClass: 'snackbar-error'
+        panelClass: 'snackbar-error',
       });
     });
   });
@@ -64,7 +64,7 @@ describe('ValidationEffect', () => {
 
       expect(snackBarSpy.open).toHaveBeenCalledWith('There are validation warnings on the page', undefined, {
         duration: 5000,
-        panelClass: 'snackbar-warning'
+        panelClass: 'snackbar-warning',
       });
     });
 
@@ -76,7 +76,7 @@ describe('ValidationEffect', () => {
 
       expect(snackBarSpy.open).toHaveBeenCalledWith('There are validation warnings on the page', undefined, {
         duration: 5000,
-        panelClass: 'snackbar-warning'
+        panelClass: 'snackbar-warning',
       });
     });
   });

@@ -20,59 +20,59 @@ describe('TableSearchComponent', () => {
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        ListModule
-      ]
+        ListModule,
+      ],
     });
   });
 
   beforeEach(() => {
     field = FieldTemplate.text('searchField')
-      .value([])
-      .styles('searchField');
+    .value([])
+    .styles('searchField');
 
     button = ButtonTemplate.create('searchButton')
-      .styles('searchButton')
-      .caption('Zoeken');
+    .styles('searchButton')
+    .caption('Zoeken');
 
     tableSearch = ContainerTemplate.create('searchContainer')
-      .contentStyle('table')
-      .children(field, button);
+    .contentStyle('table')
+    .children(field, button);
 
     const btnFirst = ButtonTemplate.create('first')
-      .caption('<<')
-      .disabled(true)
-      .styles('pagination');
+    .caption('<<')
+    .disabled(true)
+    .styles('pagination');
 
     const btnPrevious = ButtonTemplate.create('previous')
-      .caption('<')
-      .disabled(true)
-      .styles('pagination');
+    .caption('<')
+    .disabled(true)
+    .styles('pagination');
 
     const currentPageNumber = FieldTemplate.integer('InstanceListContainer_currentPageNumber')
-      .domain({ 1: '1', 2: '2', 3: '3' })
-      .styles('paginationNumber')
-      .value('1');
+    .domain({ 1: '1', 2: '2', 3: '3' })
+    .styles('paginationNumber')
+    .value('1');
 
     const btnNext = ButtonTemplate.create('next')
-      .caption('>')
-      .styles('pagination');
+    .caption('>')
+    .styles('pagination');
 
     const btnLast = ButtonTemplate.create('last')
-      .caption('>>')
-      .styles('pagination');
+    .caption('>>')
+    .styles('pagination');
 
     const pagination = ContainerTemplate.create()
-      .name('navigationContainer')
-      .displayName('DisplayName')
-      .styles('navigationContainer')
-      .contentStyle('tablenavigation')
-      .children(
-        btnFirst,
-        btnPrevious,
-        currentPageNumber,
-        btnNext,
-        btnLast
-      );
+    .name('navigationContainer')
+    .displayName('DisplayName')
+    .styles('navigationContainer')
+    .contentStyle('tablenavigation')
+    .children(
+      btnFirst,
+      btnPrevious,
+      currentPageNumber,
+      btnNext,
+      btnLast,
+    );
     const table = ContainerTemplate.create().contentStyle('table');
     const list = ContainerTemplate.create().children(tableSearch, table, pagination);
     session = BlueriqSessionTemplate.create().build(list);
@@ -103,7 +103,7 @@ describe('TableSearchComponent', () => {
 
   it('should render multiple chips', () => {
     session.update(
-      field.value(['term1', 'term2', 'term3'])
+      field.value(['term1', 'term2', 'term3']),
     );
 
     expect(component.nativeElement.querySelectorAll('mat-chip').length).toBe(3);

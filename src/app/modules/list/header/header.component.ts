@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
   selector: 'bq-header-column',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  providers: [List]
+  providers: [List],
 })
 export class TableHeaderColumnComponent {
 
@@ -26,7 +26,7 @@ export class TableHeaderColumnComponent {
           return false;
         }
         return filter.filterValues.some(value => value.selectedOption ? value.selectedOption.title === columnName : false);
-      })
+      }),
     );
   }
 

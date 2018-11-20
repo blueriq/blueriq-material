@@ -7,15 +7,15 @@ import { SharedModule } from '@shared/shared.module';
 import { HeaderComponent } from './header.component';
 
 const BLUERIQ_COMPONENTS = [
-  HeaderComponent
+  HeaderComponent,
 ];
 
 @NgModule({
   declarations: [
-    BLUERIQ_COMPONENTS
+    BLUERIQ_COMPONENTS,
   ],
   providers: [
-    BlueriqComponents.register(BLUERIQ_COMPONENTS)
+    BlueriqComponents.register(BLUERIQ_COMPONENTS),
   ],
   imports: [
     CommonModule,
@@ -27,9 +27,9 @@ const BLUERIQ_COMPONENTS = [
     MatToolbarModule,
     MatMenuModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
   ],
-  exports: [BLUERIQ_COMPONENTS]
+  exports: [BLUERIQ_COMPONENTS],
 })
 export class HeaderModule {
 }

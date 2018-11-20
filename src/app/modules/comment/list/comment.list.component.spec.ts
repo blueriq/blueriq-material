@@ -17,8 +17,8 @@ describe('CommentListComponent', () => {
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        CommentModule
-      ]
+        CommentModule,
+      ],
     });
   }));
 
@@ -28,7 +28,7 @@ describe('CommentListComponent', () => {
     .children(
       generateCommentEntry('hello', new Date('2012-12-12'), 'title1', 'Tilly'),
       generateCommentEntry('done things', new Date('2014-12-12'), 'title2', 'Tine'),
-      generateCommentEntry('end case', new Date(), 'title1', 'Double G')
+      generateCommentEntry('end case', new Date(), 'title1', 'Double G'),
     );
     session = BlueriqSessionTemplate.create().build(container);
     component = session.get(CommentListComponent);
@@ -106,8 +106,8 @@ describe('CommentListComponent', () => {
         'comment': comment,
         'date': date,
         'title': title,
-        'username': username
-      }
+        'username': username,
+      },
     );
   }
 });

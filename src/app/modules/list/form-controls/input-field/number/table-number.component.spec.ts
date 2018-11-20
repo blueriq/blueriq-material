@@ -19,8 +19,8 @@ describe('TableNumberFieldComponent', () => {
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        ListModule
-      ]
+        ListModule,
+      ],
     });
   }));
 
@@ -36,8 +36,8 @@ describe('TableNumberFieldComponent', () => {
       .create('row')
       .contentStyle('tablerow')
       .children(
-        fieldNumber
-      )
+        fieldNumber,
+      ),
       // ---------- End ----------
     );
     const list = ContainerTemplate.create().children(tableTemplate);

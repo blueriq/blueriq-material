@@ -16,8 +16,8 @@ describe('ReadonlyComponent', () => {
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        ReadonlyModule
-      ]
+        ReadonlyModule,
+      ],
     });
   }));
 

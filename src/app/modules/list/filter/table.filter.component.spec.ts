@@ -27,7 +27,7 @@ describe('TableValueComponent', () => {
     // verify
     expect(dialogSpy.open).toHaveBeenCalledTimes(1);
     expect(dialogSpy.open).toHaveBeenCalledWith(template, {
-      minWidth: '700px'
+      minWidth: '700px',
     });
   });
 

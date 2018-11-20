@@ -7,11 +7,11 @@ import { ContainerTemplate } from '@blueriq/core/testing';
 import { FlexColumnDirective } from './flex-column.directive';
 
 @Component({
-  template: '<div><ng-container [bqElement]="container.children[0]" bqFlexColumn></ng-container></div>'
+  template: '<div><ng-container [bqElement]="container.children[0]" bqFlexColumn></ng-container></div>',
 })
 @BlueriqComponent({
   type: Container,
-  selector: 'parent'
+  selector: 'parent',
 })
 class MockFlexParentComponent {
   constructor(@Host() public container: Container) {
@@ -19,10 +19,10 @@ class MockFlexParentComponent {
 }
 
 @Component({
-  template: '<div class="child"></div>'
+  template: '<div class="child"></div>',
 })
 @BlueriqComponent({
-  type: Container
+  type: Container,
 })
 class MockFlexChildComponent {
 }
@@ -39,19 +39,19 @@ describe('FlexColumnDirective', () => {
       declarations: [
         FlexColumnDirective,
         MockFlexChildComponent,
-        MockFlexParentComponent
+        MockFlexParentComponent,
       ],
       providers: [BlueriqComponents.register([
         MockFlexChildComponent,
-        MockFlexParentComponent
+        MockFlexParentComponent,
       ])],
-      imports: [BlueriqTestingModule]
+      imports: [BlueriqTestingModule],
     });
   }));
 
   beforeEach(() => {
     parentTemplate = ContainerTemplate.create().contentStyle('parent').children(
-      childTemplate = ContainerTemplate.create()
+      childTemplate = ContainerTemplate.create(),
     );
     session = BlueriqSessionTemplate.create().build(parentTemplate);
     fixture = session.get(MockFlexParentComponent);
@@ -65,7 +65,7 @@ describe('FlexColumnDirective', () => {
 
   it('should have no effect when the child is not a dashboard_column and a Weight presentation style is present', () => {
     session.update(
-      childTemplate.styles('Weight9')
+      childTemplate.styles('Weight9'),
     );
     expect(fixture.nativeElement.querySelector('.child')).toBeTruthy();
     expect(fixture.nativeElement.querySelector('.bq-column')).toBeFalsy();
@@ -73,7 +73,7 @@ describe('FlexColumnDirective', () => {
 
   it('should have a default weight with the dashboard_column content style', () => {
     session.update(
-      childTemplate.contentStyle('dashboard_column')
+      childTemplate.contentStyle('dashboard_column'),
     );
     expect(fixture.nativeElement.querySelector('.child')).toBeTruthy();
     expect(fixture.nativeElement.querySelector('.bq-row')).toBeTruthy();
@@ -83,7 +83,7 @@ describe('FlexColumnDirective', () => {
 
   it('should use the weight from the Weight6 presentation style', () => {
     session.update(
-      childTemplate.styles('Weight6').contentStyle('dashboard_column')
+      childTemplate.styles('Weight6').contentStyle('dashboard_column'),
     );
     expect(fixture.nativeElement.querySelector('.child')).toBeTruthy();
     expect(fixture.nativeElement.querySelector('.bq-row')).toBeTruthy();
@@ -93,7 +93,7 @@ describe('FlexColumnDirective', () => {
 
   it('should use the weight from the dashboard_column8 content style', () => {
     session.update(
-      childTemplate.contentStyle('dashboard_column8')
+      childTemplate.contentStyle('dashboard_column8'),
     );
     expect(fixture.nativeElement.querySelector('.child')).toBeTruthy();
     expect(fixture.nativeElement.querySelector('.bq-row')).toBeTruthy();
@@ -104,7 +104,7 @@ describe('FlexColumnDirective', () => {
   it('should use the weight from the Weight14 presentation style over the dashboard_column7 content style', () => {
     session.update(
       childTemplate.styles('Weight14'),
-      childTemplate.contentStyle('dashboard_column7')
+      childTemplate.contentStyle('dashboard_column7'),
     );
     expect(fixture.nativeElement.querySelector('.child')).toBeTruthy();
     expect(fixture.nativeElement.querySelector('.bq-row')).toBeTruthy();
@@ -116,7 +116,7 @@ describe('FlexColumnDirective', () => {
     session.update(
       // Set invalid (no trailing number) weight presentation style
       childTemplate.styles('WeightBig'),
-      childTemplate.contentStyle('dashboard_column7')
+      childTemplate.contentStyle('dashboard_column7'),
     );
     expect(fixture.nativeElement.querySelector('.child')).toBeTruthy();
     expect(fixture.nativeElement.querySelector('.bq-row')).toBeTruthy();

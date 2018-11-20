@@ -14,18 +14,18 @@ import { HorizontalFlexChildDirective } from './flex/horizontal-flex-child.direc
 const BLUERIQ_COMPONENTS = [
   ContainerComponent,
   ContainerEmptyComponent,
-  ContainerFailedComponent
+  ContainerFailedComponent,
 ];
 
 @NgModule({
   declarations: [
     BLUERIQ_COMPONENTS,
     HorizontalFlexChildDirective,
-    FlexColumnDirective
+    FlexColumnDirective,
   ],
   providers: [
     BlueriqComponents.register(BLUERIQ_COMPONENTS),
-    HorizontalFlexChildDirective
+    HorizontalFlexChildDirective,
   ],
   imports: [
     SharedModule,
@@ -36,9 +36,9 @@ const BLUERIQ_COMPONENTS = [
 
     /* Material modules */
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
   ],
-  exports: [BLUERIQ_COMPONENTS]
+  exports: [BLUERIQ_COMPONENTS],
 })
 export class ContainerModule {
 }

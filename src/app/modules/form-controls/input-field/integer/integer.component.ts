@@ -6,11 +6,11 @@ import { InputFieldComponent } from '../input-field.component';
 @Component({
   selector: 'bq-integer-field',
   templateUrl: '../input-field.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 @BlueriqComponent({
   type: Field,
-  selector: '[dataType=integer]:not([hasDomain])'
+  selector: '[dataType=integer]:not([hasDomain])',
 })
 export class IntegerFieldComponent extends InputFieldComponent {
 }

@@ -16,8 +16,8 @@ describe('CheckboxComponent', () => {
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        FormControlModule
-      ]
+        FormControlModule,
+      ],
     });
   }));
 
@@ -30,14 +30,14 @@ describe('CheckboxComponent', () => {
   it('should be changed', () => {
     // Change
     session.update(
-      field.value('true')
+      field.value('true'),
     );
     let inputField = component.nativeElement.querySelector('.mat-checkbox-input').getAttribute('aria-checked');
     expect(inputField).toBe('true');
 
     // Change again
     session.update(
-      field.value('false')
+      field.value('false'),
     );
     inputField = component.nativeElement.querySelector('.mat-checkbox-input').getAttribute('aria-checked');
     expect(inputField).toBe('false');

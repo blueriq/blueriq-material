@@ -12,7 +12,7 @@ import {
   MatOptionModule,
   MatSelectModule,
   MatTableModule,
-  MatTooltipModule
+  MatTooltipModule,
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
@@ -38,15 +38,15 @@ const LIST_COMPONENTS = [
   TablePaginationComponent,
   ListComponent,
   TableFilterValueComponent,
-  TableLimitComponent
+  TableLimitComponent,
 ];
 
 @NgModule({
   declarations: [
-    LIST_COMPONENTS
+    LIST_COMPONENTS,
   ],
   providers: [
-    BlueriqComponents.register([ListComponent])
+    BlueriqComponents.register([ListComponent]),
   ],
   imports: [
     BrowserAnimationsModule,
@@ -70,9 +70,9 @@ const LIST_COMPONENTS = [
     MatSelectModule,
     MatFormFieldModule,
     MatTooltipModule,
-    MatInputModule
+    MatInputModule,
   ],
-  exports: [LIST_COMPONENTS]
+  exports: [LIST_COMPONENTS],
 })
 export class ListModule {
 }

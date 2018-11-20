@@ -4,7 +4,7 @@ import { Button, Container, Element } from '@blueriq/core';
 @Component({
   selector: 'bq-menu-item',
   templateUrl: './menu-item.component.html',
-  styleUrls: ['./menu-item.component.scss']
+  styleUrls: ['./menu-item.component.scss'],
 })
 export class MenuItemComponent {
 

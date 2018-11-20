@@ -8,15 +8,15 @@ import { SharedModule } from '@shared/shared.module';
 import { ReadonlyComponent } from './readonly.component';
 
 const BLUERIQ_COMPONENTS = [
-  ReadonlyComponent
+  ReadonlyComponent,
 ];
 
 @NgModule({
   declarations: [
-    BLUERIQ_COMPONENTS
+    BLUERIQ_COMPONENTS,
   ],
   providers: [
-    BlueriqComponents.register(BLUERIQ_COMPONENTS)
+    BlueriqComponents.register(BLUERIQ_COMPONENTS),
   ],
   imports: [
     CommonModule,
@@ -26,9 +26,9 @@ const BLUERIQ_COMPONENTS = [
 
     /* Material modules */
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
   ],
-  exports: [BLUERIQ_COMPONENTS]
+  exports: [BLUERIQ_COMPONENTS],
 })
 export class ReadonlyModule {
 }

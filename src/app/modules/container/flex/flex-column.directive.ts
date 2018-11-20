@@ -10,7 +10,7 @@ import { BqPresentationStyles } from '../../BqPresentationStyles';
  * style that starts with `dashboard_column`
  */
 @Directive({
-  selector: '[bqFlexColumn]'
+  selector: '[bqFlexColumn]',
 })
 export class FlexColumnDirective implements OnDestroy {
 

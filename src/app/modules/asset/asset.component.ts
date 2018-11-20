@@ -5,10 +5,10 @@ import { Asset } from '@blueriq/core';
 @Component({
   selector: 'bq-asset',
   styleUrls: ['./asset.component.scss'],
-  templateUrl: './asset.component.html'
+  templateUrl: './asset.component.html',
 })
 @BlueriqComponent({
-  type: Asset
+  type: Asset,
 })
 export class AssetComponent {
 

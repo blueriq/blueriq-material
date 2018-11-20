@@ -19,8 +19,8 @@ describe('StatisticComponent', () => {
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        VisualizationModule
-      ]
+        VisualizationModule,
+      ],
     });
   }));
 
@@ -124,7 +124,7 @@ describe('StatisticComponent', () => {
       createStatisticContainer('Age between 0-20', '2'), // In the sentence: 2 people are between 0-20
       createStatisticContainer('Age between 20-40', '19'),
       createStatisticContainer('Age between 40-60', '8'),
-      createStatisticContainer('Age greater than 60', '1')
+      createStatisticContainer('Age greater than 60', '1'),
     );
     if (presentationStyle) {
       visualizationContainer.styles(presentationStyle);
