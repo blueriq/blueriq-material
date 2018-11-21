@@ -38,7 +38,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     // If we are a dashboardHeader, look up the parent page
-    // TODO: this is done by getting the direct parent now. But we should query the Page parent
     if (this.dashboardHeader) {
       const parent = this.dashboardHeader.parent;
       if (parent instanceof Page) {

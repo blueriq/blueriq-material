@@ -11,7 +11,7 @@ import { BqPresentationStyles } from '../../BqPresentationStyles';
 @BlueriqComponent({
   type: Field,
   selector: bySelector('[dataType=text].' + BqPresentationStyles.LARGETEXT +
-    ', [dataType=text].' + BqPresentationStyles.MEMO, { priorityOffset: 100 }),
+    ', [dataType=text].' + BqPresentationStyles.DEPRECATED_MEMO, { priorityOffset: 100 }),
 })
 export class TextAreaComponent {
 
