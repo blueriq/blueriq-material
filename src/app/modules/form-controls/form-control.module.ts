@@ -54,10 +54,6 @@ const FORM_CONTROL_COMPONENTS = [
   SelectComponent,
   StringFieldComponent,
   SlideToggleComponent,
-  SelectComponent,
-  AutocompleteComponent,
-  TextAreaComponent,
-  PercentageFieldComponent,
   TextAreaComponent,
 ];
 
