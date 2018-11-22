@@ -42,15 +42,16 @@ export class DcmFlow {
   get buttonLogout(): ElementFinder {
     const userMenu = this.projectPage.element(by.className('active-user-menu'));
     userMenu.click();
+    browser.waitForAngular();
     return element(by.buttonText('Uitloggen'));
   }
 
   start() {
-    browser.get(this.path);
+    return browser.get(this.path);
   }
 
   reset() {
-    browser.restart();
+    return browser.restart();
   }
 
 }
