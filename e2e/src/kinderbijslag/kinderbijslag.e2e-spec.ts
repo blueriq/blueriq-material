@@ -1,13 +1,13 @@
-import { protractor } from 'protractor';
+import { browser, protractor } from 'protractor';
 import { KinderbijslagFlow } from './kinderbijslag.flow';
 
 describe('Kinderbijslag App', () => {
 
   let app: KinderbijslagFlow = new KinderbijslagFlow();
 
-  beforeEach(() => {
+  beforeEach(async() => {
     app.reset(); // in beforeEach because taking screenshot for failing tests fails when placed in the afterEach
-    app.start();
+    await app.start();
   });
 
   it('should display header with text', () => {
@@ -20,6 +20,8 @@ describe('Kinderbijslag App', () => {
 
   it('should display a validation message when flowing to the next page', () => {
     app.buttonBereken.click();
+    browser.waitForAngular(); //
+
     expect(app.nrOfValidations).toBe(8);
   });
 
