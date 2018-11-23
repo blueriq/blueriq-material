@@ -1,17 +1,18 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSession } from '@blueriq/angular';
-import { FilterOption, FilterValue } from '@blueriq/angular/lists';
+import { ColumnFilter } from '@blueriq/angular/lists';
 import { BlueriqTestingModule } from '@blueriq/angular/testing';
 import { LocalizationTemplate } from '@blueriq/core/testing';
 import * as moment from 'moment';
 import { MomentTransformer } from '../../form-controls/date/moment-transformer';
 import { TableFilterValueComponent } from '../filter/table.filter-value.component';
 import { ListModule } from '../list.module';
+import { FilterValue, Operation } from './types';
 
 describe('TableFilterValueComponent', () => {
 
-  let tableFilterValueComponent;
+  let tableFilterValueComponent: TableFilterValueComponent;
   let fixture: ComponentFixture<TableFilterValueComponent>;
 
   beforeEach(() => {
@@ -31,7 +32,7 @@ describe('TableFilterValueComponent', () => {
     tableFilterValueComponent = fixture.componentInstance;
   });
 
-  it('should render a mat-select when filtering on domain', () => {
+  it('should render a mat-select when filtering on domain', fakeAsync(() => {
     // setup
     switchSpecifiedElementByType('domain', 'kip,hond');
 
@@ -39,9 +40,9 @@ describe('TableFilterValueComponent', () => {
     const specifiedElement = fixture.nativeElement.querySelector('#specifiedElement');
     const matSelect = specifiedElement.querySelector('mat-select');
     expect(matSelect).toBeTruthy();
-  });
+  }));
 
-  it('should render a mat-checkbox when filtering on boolean', () => {
+  it('should render a mat-checkbox when filtering on boolean', fakeAsync(() => {
     // setup
     switchSpecifiedElementByType('boolean', true);
 
@@ -50,33 +51,33 @@ describe('TableFilterValueComponent', () => {
     const matCheckbox = specifiedElement.querySelector('mat-checkbox');
     expect(matCheckbox.getAttribute('ng-reflect-checked')).toBe('true');
     expect(matCheckbox).toBeTruthy();
-  });
+  }));
 
-  it('should render a owl-date when filtering on date', () => {
+  it('should render an owl-date when filtering on date', fakeAsync(() => {
     // setup
-    switchSpecifiedElementByType('date', moment('2015-07-18', 'YYYY-MM-DD'));
+    const date = moment('2015-07-18', 'YYYY-MM-DD');
+    switchSpecifiedElementByType('date', date);
 
     // Verify
     const specifiedElement = fixture.nativeElement.querySelector('#specifiedElement');
     expect(specifiedElement.querySelector('owl-date-time')).toBeTruthy();
-    expect(specifiedElement.querySelector('input')
-    .getAttribute('ng-reflect-value'))
-    .toBe('18-07-2015', 'The format should be dd-mm-yyyy (see mock)');
-  });
+    expect(specifiedElement.querySelector('input').value)
+      .toBe('18-07-2015', 'The format should be dd-mm-yyyy');
+  }));
 
-  it('should render a owl-date when filtering on datetime', () => {
+  it('should render an owl-date when filtering on datetime', fakeAsync(() => {
     // setup
-    switchSpecifiedElementByType('datetime', moment('24-09-2013 14:36:45', 'DD-MM-YYYY HH:mm:ss'));
+    const date = moment('24-09-2013 14:36:45', 'DD-MM-YYYY HH:mm:ss');
+    switchSpecifiedElementByType('datetime', date);
 
     // Verify
     const specifiedElement = fixture.nativeElement.querySelector('#specifiedElement');
     expect(specifiedElement.querySelector('owl-date-time')).toBeTruthy();
-    expect(specifiedElement.querySelector('input')
-    .getAttribute('ng-reflect-value'))
-    .toBe('24-09-2013 14:36:45', 'The format should be dd-mm-yyyy hh:mm:ss (see mock)');
-  });
+    expect(specifiedElement.querySelector('input').value)
+      .toBe('24-09-2013 14:36:45', 'The format should be dd-mm-yyyy hh:mm:ss');
+  }));
 
-  it('should render a inputfield by default', () => {
+  it('should render an inputfield by default', fakeAsync(() => {
     // setup
     switchSpecifiedElementByType('other', 'some value');
 
@@ -85,15 +86,12 @@ describe('TableFilterValueComponent', () => {
     const matInput = specifiedElement.querySelector('input');
     expect(matInput).toBeTruthy();
     expect(matInput.value).toBe('some value');
-  });
+  }));
 
   it('FilterValue operations', () => {
     // setup
-    const filterOption = new FilterOption();
-    filterOption.type = 'integer';
-    filterOption.operations = ['eq', 'lte', 'gte'];
-    filterOption.index = 0;
-    tableFilterValueComponent.filterOptions = [filterOption];
+    const columnFilter = { type: 'integer' } as ColumnFilter;
+    tableFilterValueComponent.currentColumns = [columnFilter];
     tableFilterValueComponent.filterValue = new FilterValue();
     // nothing selected
     expect(tableFilterValueComponent.filterValue.operation).toBeFalsy();
@@ -104,21 +102,20 @@ describe('TableFilterValueComponent', () => {
     expect(tableFilterValueComponent.getOperations()).toEqual([]);
 
     // select option
-    tableFilterValueComponent.onColumn(filterOption);
+    tableFilterValueComponent.onColumn(columnFilter);
     // retrieve operations, the first operation is automatically set as selected operation
     tableFilterValueComponent.getOperations();
     // set value
     tableFilterValueComponent.onValue('filter');
 
     // verify
-    expect(tableFilterValueComponent.filterValue.operation).toEqual(filterOption.operations[0]);
+    expect(tableFilterValueComponent.filterValue.operation).toEqual(Operation.EQ);
     // select other operation
-    tableFilterValueComponent.onOperation(filterOption.operations[1]);
+    tableFilterValueComponent.onOperation(Operation.LTE);
     // verify #2
-    expect(tableFilterValueComponent.filterValue.operation).toEqual(filterOption.operations[1]);
-    expect(tableFilterValueComponent.filterValue.selectedOption).toEqual(filterOption);
+    expect(tableFilterValueComponent.filterValue.operation).toEqual(Operation.LTE);
+    expect(tableFilterValueComponent.filterValue.selectedOption).toEqual(columnFilter);
     expect(tableFilterValueComponent.filterValue.value).toEqual('filter');
-    expect(tableFilterValueComponent.filterValue.showAll).toBeFalsy();
     expect(tableFilterValueComponent.filterValue.showUnknown).toBeTruthy();
     expect(tableFilterValueComponent.filterValue.isValid()).toBeTruthy();
   });
@@ -137,12 +134,15 @@ describe('TableFilterValueComponent', () => {
     subscription.unsubscribe();
   });
 
-  function switchSpecifiedElementByType(type, value) {
+  function switchSpecifiedElementByType(type: string, value: string | boolean | moment.Moment) {
     tableFilterValueComponent.filterValue = new FilterValue();
-    tableFilterValueComponent.filterValue.selectedOption = new FilterOption();
-    tableFilterValueComponent.filterValue.selectedOption.type = type;
-    tableFilterValueComponent.onValue(value);
+    tableFilterValueComponent.filterValue.selectedOption = { type } as ColumnFilter;
+    if (moment.isMoment(value)) {
+      tableFilterValueComponent.onDateValue({ value, source: {} });
+    } else {
+      tableFilterValueComponent.onValue(value as string);
+    }
     fixture.detectChanges();
+    tick();
   }
 });
-

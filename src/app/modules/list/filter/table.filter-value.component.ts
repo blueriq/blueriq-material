@@ -1,9 +1,10 @@
 import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 import { BlueriqSession } from '@blueriq/angular';
-import { FilterOption, FilterValue } from '@blueriq/angular/lists';
+import { ColumnFilter } from '@blueriq/angular/lists';
 import { computeFirstDayOfWeek } from '@shared/date/bq-date-parser';
-import { isMoment, Moment } from 'moment';
+import { Moment } from 'moment';
 import { dateTimeFormatProvider } from '../../form-controls/date/datetimepicker/datetimepicker.owl';
+import { FilterValue, Operation } from './types';
 
 @Component({
   selector: 'bq-table-filter-value',
@@ -19,7 +20,7 @@ export class TableFilterValueComponent {
   filterValue: FilterValue;
 
   @Input()
-  filterOptions: FilterOption[];
+  currentColumns: ColumnFilter[];
 
   @Output()
   remove = new EventEmitter<void>();
@@ -30,40 +31,33 @@ export class TableFilterValueComponent {
     this.firstDayOfWeek = computeFirstDayOfWeek(session.localization);
   }
 
-  onColumn(selectedOption: FilterOption): void {
+  onColumn(selectedOption: ColumnFilter): void {
     this.filterValue.selectedOption = selectedOption;
+
     // reset filter values because they depend on selected option
-    if (selectedOption.operations.length > 0) {
-      // select the first operation for convenience
-      this.filterValue.operation = selectedOption.operations[0];
-    }
-    this.filterValue.value = '';
-    this.filterValue.showAll = false;
+    this.filterValue.operation = this.getOperations()[0] || Operation.IS; // select the first operation for convenience
+    this.onValue('');
   }
 
-  onOperation(operation: string): void {
+  onOperation(operation: Operation): void {
     this.filterValue.operation = operation;
   }
 
-  onValue(value: string | Moment): void {
-    if (isMoment(value)) {
-      switch (this.filterValue.selectedOption!.type) {
-        case 'date':
-          this.filterValue.value = this.session.localization.dateFormats.date.format(value.toDate());
-          break;
-        case 'datetime':
-          this.filterValue.value = this.session.localization.dateFormats.dateTime.format(value.toDate());
-          break;
-      }
-    } else {
-      this.filterValue.value = value;
-    }
-
-    this.filterValue.showAll = false;
+  onValue(value: string): void {
+    this.filterValue.value = value;
+    this.filterValue.date = undefined;
   }
 
-  getOperations(): string[] {
-    return this.filterValue.selectedOption ? this.filterValue.selectedOption.operations : [];
+  onDateValue(event: { source: any, value: Moment | undefined }): void {
+    if (event.value) {
+      event.source.value = event.value;
+    }
+    this.filterValue.value = '';
+    this.filterValue.date = event.value;
+  }
+
+  getOperations(): Operation[] {
+    return this.filterValue.getOperations();
   }
 
   removeFilter(): void {

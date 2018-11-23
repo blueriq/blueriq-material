@@ -4,6 +4,16 @@
   width: 100%;
   height: 100%;
 
+  .sort-toggle.none {
+    display: none;
+  }
+
+  &:hover {
+    .sort-toggle.none {
+      display: block;
+    }
+  }
+
   ::ng-deep {
     bq-textitem-static {
       color: mat-color($bq-mat-grey-medium, 300);

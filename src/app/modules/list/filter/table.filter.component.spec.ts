@@ -1,20 +1,25 @@
 import { MatDialog, MatDialogRef } from '@angular/material';
-import { Filter, FilterOption, FilterValue } from '@blueriq/angular/lists';
+import { CurrentFilters, Filter2 } from '@blueriq/angular/lists';
 import { TableFilterComponent } from './table.filter.component';
+import { FilterValue } from './types';
 
-describe('TableValueComponent', () => {
+describe('TableFilterComponent', () => {
   let tableFilterComponent: TableFilterComponent;
-  let dialogSpy;
-  let dialogRefSpy;
-  let filterSpy;
+  let dialogSpy: jasmine.SpyObj<MatDialog>;
+  let dialogRefSpy: jasmine.SpyObj<MatDialogRef<any, any>>;
+  let currentFiltersSpy: jasmine.SpyObj<CurrentFilters>;
+  let filter: Filter2;
 
   beforeEach(() => {
     dialogSpy = jasmine.createSpyObj<MatDialog>(['open']);
     dialogRefSpy = jasmine.createSpyObj<MatDialogRef<any, any>>(['close']);
+    currentFiltersSpy = jasmine.createSpyObj<CurrentFilters>(['clear']);
     dialogSpy.open.and.returnValue(dialogRefSpy);
     tableFilterComponent = new TableFilterComponent(dialogSpy);
-    filterSpy = jasmine.createSpyObj<Filter>(['addFilter', 'applyFilters', 'clearFilters']);
-    tableFilterComponent.filter = filterSpy;
+    filter = {
+      currentFilters: currentFiltersSpy, apply: jasmine.createSpy(),
+    } as unknown as Filter2;
+    tableFilterComponent.filter = filter;
   });
 
   it('open dialog for filtering', () => {
@@ -39,7 +44,7 @@ describe('TableValueComponent', () => {
     tableFilterComponent.doFilter();
 
     // verify
-    expect(filterSpy.applyFilters).toHaveBeenCalledTimes(1);
+    expect(filter.apply).toHaveBeenCalledTimes(1);
     expect(dialogRefSpy.close).toHaveBeenCalledTimes(1);
   });
 
@@ -47,7 +52,7 @@ describe('TableValueComponent', () => {
     tableFilterComponent.clearFilters();
 
     // verify
-    expect(filterSpy.clearFilters).toHaveBeenCalledTimes(1);
+    expect(currentFiltersSpy.clear).toHaveBeenCalledTimes(1);
     // always leave an empty filter to quickly start filtering again
     expect(tableFilterComponent.filterCandidates.length).toEqual(1);
   });
@@ -70,33 +75,4 @@ describe('TableValueComponent', () => {
     expect(tableFilterComponent.filterCandidates.length).toEqual(2);
   });
 
-  it('are filters applied', () => {
-    // setup
-    tableFilterComponent.filter.filterValues = [];
-
-    // verify
-    expect(tableFilterComponent.isFiltered()).toEqual('');
-
-    // SUT
-    tableFilterComponent.filter.filterValues.push(new FilterValue());
-
-    // verify
-    expect(tableFilterComponent.isFiltered()).toEqual('primary');
-  });
-
-  it('should show correct unknownlabel', () => {
-    // Setup
-    tableFilterComponent.filter.filterOptions = [];
-    tableFilterComponent.filter.filterValues = [];
-    tableFilterComponent.filter.filterOptions.push(
-      { title: '' } as FilterOption, // Without setting showUnknownLabel
-      { showUnknownLabel: '' } as FilterOption,
-      { showUnknownLabel: 'Toon onbekend' } as FilterOption);
-
-    // SUT
-    tableFilterComponent.ngOnInit();
-
-    // verify
-    expect(tableFilterComponent.showUnknownLabel).toEqual('Toon onbekend');
-  });
 });
