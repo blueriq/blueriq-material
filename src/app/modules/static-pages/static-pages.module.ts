@@ -3,23 +3,25 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule } from '@angular/material';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
+import { ErrorModule } from '../error/error.module';
 import { LoginComponent } from './login.component';
-
-const STATIC_PAGES_COMPONENTS = [
-  LoginComponent,
-];
+import { OpenIdConnectVerifyComponent } from './openid-connect-verify/openid-connect-verify.component';
 
 @NgModule({
   declarations: [
-    STATIC_PAGES_COMPONENTS,
+    LoginComponent,
+    OpenIdConnectVerifyComponent,
   ],
   imports: [
-    BrowserAnimationsModule,
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    FormsModule,
+    RouterModule,
+
+    /* Theme modules */
+    ErrorModule,
 
     /* Material modules */
     MatFormFieldModule,
@@ -27,7 +29,6 @@ const STATIC_PAGES_COMPONENTS = [
     MatButtonModule,
     MatCardModule,
   ],
-  exports: [STATIC_PAGES_COMPONENTS],
 })
 
 export class StaticPagesModule {

@@ -1,9 +1,10 @@
 import { Component, isDevMode, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FailedAction, isBlueriqError, ShortcutDetails, UnauthorizedProjectAction } from '@blueriq/angular';
+import { ActivatedRoute } from '@angular/router';
+import { FailedAction, ForbiddenProjectAction, isBlueriqError, UnauthorizedProjectAction } from '@blueriq/angular';
 import { ErrorType, SessionId } from '@blueriq/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { AuthService } from './auth/auth.service';
 import { ErrorModel } from './modules/error/error.model';
 
 @Component({
@@ -19,9 +20,10 @@ export class ProjectComponent implements OnInit {
   flow: Observable<string | null>;
   languageCode: Observable<string | null>;
 
-  error: ErrorModel | null;
+  error: ErrorModel | undefined;
 
-  constructor(private readonly route: ActivatedRoute, private router: Router) {
+  constructor(private readonly auth: AuthService,
+              private readonly route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -40,7 +42,7 @@ export class ProjectComponent implements OnInit {
 
   /** Call this method to clear the error and thus removing it from view */
   clearError(): void {
-    this.error = null;
+    this.error = undefined;
   }
 
   /** Handler for Session Expired events */
@@ -63,14 +65,16 @@ export class ProjectComponent implements OnInit {
 
   /** Handler for unauthorized events, navigate to login page */
   onUnauthorized(details: UnauthorizedProjectAction) {
-    if (details.details instanceof ShortcutDetails) {
-      const returnUrl = 'shortcut/' + details.details.shortcut;
-      this.router.navigate(['/login'], { queryParams: { returnUrl } });
-    } else {
-      const { flow, project, version } = details.details.params;
-      const returnUrl = `flow/${project}/${flow}/${version || ''}`;
-      this.router.navigate(['/login'], { queryParams: { returnUrl } });
-    }
+    this.auth.navigateToLogin();
+  }
+
+  /** Handler for forbidden events, shows error with logout button */
+  onForbidden(action: ForbiddenProjectAction) {
+    this.error = new ErrorModel(ErrorType.Forbidden, 'Forbidden', action.error.cause.message);
+    this.error.dismiss = this.auth.canLogout() ? {
+      label: 'logout',
+      action: () => this.auth.logoutAndNavigate(),
+    } : undefined;
   }
 
   onError(action: FailedAction): void {
@@ -80,7 +84,7 @@ export class ProjectComponent implements OnInit {
     if (isBlueriqError(action.error)) {
       const { errorType, message, title } = action.error.cause;
 
-      this.error = new ErrorModel((errorType || ErrorType.Exception) as any, title, message);
+      this.error = new ErrorModel(errorType, title, message);
     } else {
       this.error = new ErrorModel(ErrorType.Exception, 'Oops!', 'An unknown error occurred');
     }

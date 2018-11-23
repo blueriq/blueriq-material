@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatButton } from '@angular/material';
+import { By } from '@angular/platform-browser';
 import { ErrorType } from '@blueriq/core';
 import { ErrorComponent } from './error.component';
 import { ErrorModel } from './error.model';
@@ -30,15 +32,22 @@ describe('ErrorComponent', () => {
     expect(fixture.nativeElement.querySelector('.severity-notice')).toBeFalsy();
   });
 
-  it('should render close button and emit dismiss event for a non fatal error', () => {
-    spyOn(component.dismissed, 'emit').and.callThrough();
-    component.error.isFatal = false;
+  it('should render dismiss button when dismiss action is set', () => {
+    let dismissed = false;
+    component.error.dismiss = {
+      label: 'Dismiss',
+      action(): void {
+        dismissed = true;
+      },
+    };
     fixture.detectChanges();
 
-    expect(fixture.nativeElement.querySelector('.button')).toBeTruthy();
+    const dismissButton = fixture.debugElement.query(By.directive(MatButton));
+    expect(dismissButton).toBeTruthy();
 
-    component.dismiss();
-    expect(component.dismissed.emit).toHaveBeenCalledTimes(1);
+    dismissButton.nativeElement.click();
+
+    expect(dismissed).toBe(true);
   });
 
   it('should render severity notice on session expired', () => {

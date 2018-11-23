@@ -1,7 +1,7 @@
 import { Component, isDevMode } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '@blueriq/angular';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'bq-login',
@@ -19,16 +19,16 @@ export class LoginComponent {
   failed = false;
 
   constructor(private readonly authService: AuthService,
-              private route: ActivatedRoute,
-              private router: Router) {
+              private readonly route: ActivatedRoute,
+              private readonly router: Router) {
   }
 
   login() {
     this.authService.login(this.username.value, this.password.value).subscribe({
       next: result => {
         if (result.success) {
-          const { returnUrl } = this.route.snapshot.queryParams;
-          this.router.navigate([returnUrl || '/']);
+          const returnPath = this.route.snapshot.queryParams['returnPath'];
+          this.router.navigate([returnPath || '/']);
         } else {
           this.failed = true;
         }

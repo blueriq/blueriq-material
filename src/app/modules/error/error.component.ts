@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ErrorModel } from './error.model';
 
 @Component({
@@ -10,12 +10,5 @@ export class ErrorComponent {
 
   @Input()
   error: ErrorModel;
-
-  @Output()
-  dismissed = new EventEmitter<void>();
-
-  dismiss(): void {
-    this.dismissed.emit();
-  }
 
 }

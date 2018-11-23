@@ -9,14 +9,11 @@
       <img src="./theme/blueriq/images/session-expired.svg" height="175" *ngIf="error.severity == 'notice'">
 
       <p class="title">{{ error.title }}</p>
+      <p class="message">{{ error.message }}</p>
+      <p class="details" *ngIf="error.details">{{ error.details }}</p>
 
-      <p class="message" innerHTML="{{ error.message }}"></p>
-
-      <p class="details" *ngIf="error.details">
-        {{ error.details }} </p>
-
-      <p class="button" *ngIf="!error.isFatal" fxLayout="column" fxLayoutAlign="start center">
-        <button mat-button (click)="dismiss()">close</button>
+      <p class="button" *ngIf="error.dismiss" fxLayout="column" fxLayoutAlign="start center">
+        <button mat-button (click)="error.dismiss.action()">{{ error.dismiss.label }}</button>
       </p>
     </div>
 
