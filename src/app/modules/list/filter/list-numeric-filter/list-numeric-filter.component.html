@@ -1,0 +1,19 @@
+<div fxLayout="row" fxLayoutGap="1em">
+  <div fxFlex="0 0 14em">
+    <mat-form-field appearance="fill">
+      <mat-select [value]="operator" (selectionChange)="onOperatorChanged($event.value)">
+        <mat-option [value]="operations.lte">Less Than or Equal To</mat-option>
+        <mat-option [value]="operations.equals">Equal to</mat-option>
+        <mat-option [value]="operations.gte">Greater Than or Equal To</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div fxFlex="0 0 14em">
+    <mat-form-field appearance="fill">
+      <input matInput [value]="value" (change)="onValueChanged($event.target.value)">
+    </mat-form-field>
+  </div>
+  <div fxFlex="0 0 2em" fxLayoutAlign="start start">
+    <mat-checkbox [checked]="showUnknown" (change)="onUnknownChanged($event.checked)" color="primary"></mat-checkbox>
+  </div>
+</div>

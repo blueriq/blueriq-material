@@ -1,7 +1,7 @@
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { CurrentFilters, Filter2 } from '@blueriq/angular/lists';
 import { TableFilterComponent } from './table.filter.component';
-import { FilterValue } from './types';
+import { FilterCandidate } from './types';
 
 describe('TableFilterComponent', () => {
   let tableFilterComponent: TableFilterComponent;
@@ -41,7 +41,7 @@ describe('TableFilterComponent', () => {
     // show filter dialog
     tableFilterComponent.showFilter('' as any);
     // filter, so dialog closes
-    tableFilterComponent.doFilter();
+    tableFilterComponent.applyFilters();
 
     // verify
     expect(filter.apply).toHaveBeenCalledTimes(1);
@@ -71,7 +71,7 @@ describe('TableFilterComponent', () => {
     expect(tableFilterComponent.filterCandidates.length).toEqual(2);
 
     // remove a filter that is not in the list, does not change the list
-    tableFilterComponent.removeFilter(new FilterValue());
+    tableFilterComponent.removeFilter(new FilterCandidate());
     expect(tableFilterComponent.filterCandidates.length).toEqual(2);
   });
 

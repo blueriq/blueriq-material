@@ -10,7 +10,7 @@
   </button>
 
   <!-- Filtering -->
-  <button *ngIf="column.filter" mat-icon-button fxLayoutAlign="center center" [disabled]="true">
+  <button *ngIf="column.filter" mat-icon-button fxLayoutAlign="center center" disabled>
     <mat-icon *ngIf="column.filter.isActive$ | async">filter_list</mat-icon>
   </button>
 

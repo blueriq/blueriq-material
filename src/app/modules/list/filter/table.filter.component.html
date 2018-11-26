@@ -16,31 +16,24 @@
 
 <ng-template #filterDialog>
   <div class="margin">
-    <div fxLayout="row" class="header">
-      <div fxFlex="30">
-        <mat-label>Column name</mat-label>
-      </div>
-      <div fxFlex="30">
-        <mat-label>Operation</mat-label>
-      </div>
-      <div fxFlex="30">
-        <mat-label>Value</mat-label>
-      </div>
-      <div fxFlex="5">
-        <mat-label>{{showUnknownLabel}}</mat-label>
-      </div>
-      <div fxFlex="5"></div>
+    <div fxLayout="row" fxLayoutGap="1em" fxFlexAlign="start end" class="header">
+      <mat-label fxFlex="0 0 14em">Column name</mat-label>
+      <mat-label fxFlex="0 0 14em">Operation</mat-label>
+      <mat-label fxFlex="0 0 14em">Value</mat-label>
+      <mat-label fxFlex="0 0 4em">{{showUnknownLabel}}</mat-label>
     </div>
 
-    <bq-table-filter-value *ngFor="let filterValue of filterCandidates"
-                           [filterValue]="filterValue" (remove)="removeFilter(filterValue)"
-                           [currentColumns]="filter.currentColumns"></bq-table-filter-value>
+    <bq-list-filter-row *ngFor="let candidate of filterCandidates"
+                        [currentColumns]="filter.currentColumns"
+                        [candidate]="candidate"
+                        (removed)="removeFilter(candidate)">
+    </bq-list-filter-row>
 
     <div *ngIf="canAddFilter()" fxLayout="row" fxLayoutGap="10px">
-      <button mat-button class="plain-link" (click)="addFilter()" [disabled]="!canAddFilter()">Add filter</button>
+      <button mat-button class="plain-link" (click)="addFilter()">Add filter</button>
     </div>
     <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end center">
-      <button mat-flat-button [color]="'primary'" (click)="doFilter()">Apply filter</button>
+      <button mat-flat-button [color]="'primary'" (click)="applyFilters()">Apply filter</button>
     </div>
 
   </div>
