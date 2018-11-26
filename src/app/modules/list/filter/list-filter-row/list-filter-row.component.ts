@@ -5,6 +5,7 @@ import { FilterCandidate } from '../types';
 @Component({
   selector: 'bq-list-filter-row',
   templateUrl: './list-filter-row.component.html',
+  styleUrls: ['./list-filter-row.component.scss'],
 })
 export class ListFilterRowComponent {
 
