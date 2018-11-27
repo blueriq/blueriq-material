@@ -29,7 +29,7 @@ describe('TextAreaComponent', () => {
 
   it('should have been created with old presentation style memo', () => {
     session.update(
-      field.styles(BqPresentationStyles.MEMO),
+      field.styles(BqPresentationStyles.DEPRECATED_MEMO),
     );
     expect(component).toBeTruthy();
   });
