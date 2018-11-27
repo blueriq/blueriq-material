@@ -8,7 +8,6 @@ import { ValidationEffect } from '@shared/effects/validation/validation.effect';
 @NgModule({
   imports: [
     CommonModule,
-    EffectsModule,
     EffectsModule.forFeature([
       MessagesEffect,
       ValidationEffect,
