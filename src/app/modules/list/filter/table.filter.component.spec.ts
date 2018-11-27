@@ -7,19 +7,25 @@ describe('TableFilterComponent', () => {
   let tableFilterComponent: TableFilterComponent;
   let dialogSpy: jasmine.SpyObj<MatDialog>;
   let dialogRefSpy: jasmine.SpyObj<MatDialogRef<any, any>>;
-  let currentFiltersSpy: jasmine.SpyObj<CurrentFilters>;
+  let currentFiltersSpy: CurrentFilters;
   let filter: Filter2;
 
   beforeEach(() => {
     dialogSpy = jasmine.createSpyObj<MatDialog>(['open']);
     dialogRefSpy = jasmine.createSpyObj<MatDialogRef<any, any>>(['close']);
-    currentFiltersSpy = jasmine.createSpyObj<CurrentFilters>(['clear']);
+    currentFiltersSpy = {
+      all: [],
+      clear: jasmine.createSpy(),
+    } as unknown as CurrentFilters;
     dialogSpy.open.and.returnValue(dialogRefSpy);
     tableFilterComponent = new TableFilterComponent(dialogSpy);
     filter = {
-      currentFilters: currentFiltersSpy, apply: jasmine.createSpy(),
+      currentFilters: currentFiltersSpy,
+      currentColumns: [],
+      apply: jasmine.createSpy(),
     } as unknown as Filter2;
     tableFilterComponent.filter = filter;
+    tableFilterComponent.ngOnInit();
   });
 
   it('open dialog for filtering', () => {
@@ -31,9 +37,7 @@ describe('TableFilterComponent', () => {
 
     // verify
     expect(dialogSpy.open).toHaveBeenCalledTimes(1);
-    expect(dialogSpy.open).toHaveBeenCalledWith(template, {
-      minWidth: '700px',
-    });
+    expect(dialogSpy.open).toHaveBeenCalledWith(template);
   });
 
   it('close dialog on filter', () => {
@@ -59,7 +63,6 @@ describe('TableFilterComponent', () => {
 
   it('adding and removing filters', () => {
     // SUT
-    tableFilterComponent.addFilter();
     tableFilterComponent.addFilter();
     tableFilterComponent.addFilter();
 

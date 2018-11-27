@@ -1,4 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { TableFilterModule } from '../table.filter.module';
 
 import { ListBooleanFilterComponent } from './list-boolean-filter.component';
 
@@ -8,9 +10,12 @@ describe('ListBooleanFilterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-        declarations: [ListBooleanFilterComponent],
-      })
-      .compileComponents();
+      imports: [
+        NoopAnimationsModule,
+        TableFilterModule,
+      ],
+    })
+    .compileComponents();
   }));
 
   beforeEach(() => {

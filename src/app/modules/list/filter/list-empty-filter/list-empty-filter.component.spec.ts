@@ -1,4 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { TableFilterModule } from '../table.filter.module';
 
 import { ListEmptyFilterComponent } from './list-empty-filter.component';
 
@@ -8,9 +10,12 @@ describe('ListEmptyFilterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-        declarations: [ListEmptyFilterComponent],
-      })
-      .compileComponents();
+      imports: [
+        NoopAnimationsModule,
+        TableFilterModule,
+      ],
+    })
+    .compileComponents();
   }));
 
   beforeEach(() => {
