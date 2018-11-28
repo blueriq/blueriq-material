@@ -12,7 +12,7 @@ import { BqPresentationStyles } from '../../../BqPresentationStyles';
 })
 @BlueriqComponent({
   type: Field,
-  selector: '[dataType=boolean]',
+  selector: '[dataType=boolean]:not([hasDomain])',
 })
 export class CheckboxComponent {
 

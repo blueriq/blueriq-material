@@ -12,8 +12,8 @@ import { BqPresentationStyles } from '../../../BqPresentationStyles';
 })
 @BlueriqComponent({
   type: Field,
-  selector: '.' + BqPresentationStyles.DEPRECATED_TOGGLE + '[dataType=boolean], ' +
-    '.' + BqPresentationStyles.TOGGLE + '[dataType=boolean]',
+  selector: '.' + BqPresentationStyles.DEPRECATED_TOGGLE + '[dataType=boolean]:not([hasDomain]), ' +
+    '.' + BqPresentationStyles.TOGGLE + '[dataType=boolean]:not([hasDomain])',
 })
 export class SlideToggleComponent {
 

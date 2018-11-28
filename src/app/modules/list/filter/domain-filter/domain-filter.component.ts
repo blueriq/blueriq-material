@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { DomainPredicate } from '@blueriq/angular/lists';
-import { Domain } from '@blueriq/core';
+import { Domain, TechnicalValue } from '@blueriq/core';
 import { FilterCandidate } from '../types';
 
 @Component({
@@ -10,7 +10,7 @@ import { FilterCandidate } from '../types';
 export class DomainFilterComponent {
   private _candidate: FilterCandidate;
 
-  values: string[];
+  values: TechnicalValue[];
   showUnknown: boolean;
 
   @Input()

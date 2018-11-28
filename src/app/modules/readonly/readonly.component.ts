@@ -9,7 +9,8 @@ import { Field } from '@blueriq/core';
 })
 @BlueriqComponent({
   type: Field,
-  selector: bySelector('[readonly]:not([dataType=boolean])', { priorityOffset: 1000 }),
+  selector: bySelector('[readonly]:not([dataType=boolean]),' +
+    '[readonly][hasDomain]', { priorityOffset: 1000 }),
 })
 export class ReadonlyComponent {
 
