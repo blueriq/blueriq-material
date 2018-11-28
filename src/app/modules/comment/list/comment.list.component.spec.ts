@@ -12,6 +12,10 @@ describe('CommentListComponent', () => {
   let component: ComponentFixture<CommentListComponent>;
   let session: BlueriqTestSession;
 
+  const now = moment();
+  const fiveDecember2017 = moment('2017-12-05', 'YYYY-MM-DD');
+  const fiveDecember2016 = moment('2016-12-05', 'YYYY-MM-DD');
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -24,12 +28,12 @@ describe('CommentListComponent', () => {
 
   beforeEach(() => {
     container = ContainerTemplate.create()
-    .contentStyle('commentlist')
-    .children(
-      generateCommentEntry('hello', new Date('2012-12-12'), 'title1', 'Tilly'),
-      generateCommentEntry('done things', new Date('2014-12-12'), 'title2', 'Tine'),
-      generateCommentEntry('end case', new Date(), 'title1', 'Double G'),
-    );
+      .contentStyle('commentlist')
+      .children(
+        generateCommentEntry('hello', fiveDecember2016, 'title1', 'Tilly'),
+        generateCommentEntry('done things', fiveDecember2017, 'title2', 'Tine'),
+        generateCommentEntry('end case', now, 'title1', 'Double G'),
+      );
     session = BlueriqSessionTemplate.create().build(container);
     component = session.get(CommentListComponent);
     component.detectChanges();
@@ -58,9 +62,9 @@ describe('CommentListComponent', () => {
 
     // verify
     expect(dates.length).toBe(3);
-    expect(dates[0].innerHTML).toBe(moment(new Date('2012-12-12')).format(DEFAULT_DATETIME_FROM_NOW_FORMAT));
-    expect(dates[1].innerHTML).toBe(moment(new Date('2014-12-12')).format(DEFAULT_DATETIME_FROM_NOW_FORMAT));
-    expect(dates[2].innerHTML).toBe(moment(new Date()).fromNow(false));
+    expect(dates[0].innerHTML).toBe(fiveDecember2016.format(DEFAULT_DATETIME_FROM_NOW_FORMAT));
+    expect(dates[1].innerHTML).toBe(fiveDecember2017.format(DEFAULT_DATETIME_FROM_NOW_FORMAT));
+    expect(dates[2].innerHTML).toBe(now.fromNow(false));
   });
 
   it('should contain correct comment text', () => {
@@ -74,40 +78,17 @@ describe('CommentListComponent', () => {
     expect(comments[2].innerHTML).toBe('end case');
   });
 
-  it('should parse the date correctly', () => {
-    // init
-    const commentListComponent: CommentListComponent = component.componentInstance;
-
-    // SUT
-    const now = commentListComponent.dateToHumanReadableFormat(new Date());
-    const longTimeAgo = commentListComponent.dateToHumanReadableFormat(new Date('2010-12-12'));
-
-    // Verify
-    expect(now).toBe(moment(new Date()).fromNow(false));
-    expect(longTimeAgo).toBe(moment(new Date('2010-12-12')).format(DEFAULT_DATETIME_FROM_NOW_FORMAT));
-  });
-
-  it('should contain 3 parsed CommentEntries', () => {
-    // init
-    const commentListComponent: CommentListComponent = component.componentInstance;
-
-    // Verify
-    expect(commentListComponent.commentList.entries$.subscribe(entries => {
-      expect(entries.length).toBe(3);
-    }));
-  });
-
-  function generateCommentEntry(comment, date, title, username) {
+  function generateCommentEntry(comment: string, date: moment.Moment, title: string, username: string) {
     return ContainerTemplate
-    .create('commentEntry')
-    .contentStyle('commentEntry')
-    .properties(
-      {
-        'comment': comment,
-        'date': date,
-        'title': title,
-        'username': username,
-      },
-    );
+      .create('commentEntry')
+      .contentStyle('commentEntry')
+      .properties(
+        {
+          'comment': comment,
+          'date': date.format('DD-MM-YYYY HH:mm:ss'),
+          'title': title,
+          'username': username,
+        },
+      );
   }
 });

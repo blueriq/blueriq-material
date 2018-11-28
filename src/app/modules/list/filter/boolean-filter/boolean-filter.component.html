@@ -1,0 +1,16 @@
+<div fxLayout="row" fxLayoutGap="1em">
+  <div fxFlex="0 0 14em">
+    <mat-form-field appearance="fill">
+      <mat-select [value]="operation" (selectionChange)="onOperationChanged($event.value)">
+        <mat-option value="true">Only Yes</mat-option>
+        <mat-option value="false">Only No</mat-option>
+        <mat-option value="both">Show Both</mat-option>
+        <mat-option value="none">Show Neither</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div fxFlex="0 0 14em"></div>
+  <div fxFlex="0 0 2em" fxLayoutAlign="start start">
+    <mat-checkbox [checked]="showUnknown" (change)="onUnknownChanged($event.checked)" color="primary"></mat-checkbox>
+  </div>
+</div>

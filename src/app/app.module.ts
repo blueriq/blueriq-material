@@ -5,9 +5,11 @@ import { BlueriqModule } from '@blueriq/angular';
 import { V1BackendModule } from '@blueriq/angular/backend/v1';
 import { BlueriqStoreModule } from '@blueriq/angular/store';
 import { DateFormats } from '@blueriq/core';
+import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { provideDateFormats } from '@shared/date/bq-date-parser';
+import { BqEffectsModule } from '@shared/effects/bq-effects.module';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { AssetModule } from './modules/asset/asset.module';
@@ -58,6 +60,7 @@ const routes: Routes = [
 
     // ngrx
     StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
       name: 'Blueriq',
       logOnly: environment.production, // Restrict extension to log-only mode
@@ -67,6 +70,7 @@ const routes: Routes = [
 
     /* Blueriq Modules */
     AssetModule,
+    BqEffectsModule,
     ButtonModule,
     CommentModule,
     ContainerModule,
