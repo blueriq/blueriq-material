@@ -22,11 +22,11 @@ describe('DateTimepickerComponent', () => {
     });
   }));
 
-  beforeEach(() => {
+  beforeEach(async(() => {
     field = FieldTemplate.datetime();
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(DateTimepickerComponent);
-  });
+  }));
 
   it('should render date and time picker for datetime fields', () => {
     expect(component.componentInstance.getPickerType()).toEqual('both');
@@ -82,11 +82,11 @@ describe('DateTimepickerComponent', () => {
     component.componentInstance.formControl.markAsTouched();
     component.detectChanges();
     component.whenStable()
-    .then(() => {
-      const errorElement = component.nativeElement.querySelector('mat-error');
-      expect(errorElement).toBeTruthy();
-      expect(errorElement.innerText).toBe('invalid input');
-    });
+      .then(() => {
+        const errorElement = component.nativeElement.querySelector('mat-error');
+        expect(errorElement).toBeTruthy();
+        expect(errorElement.innerText).toBe('invalid input');
+      });
   });
 
   it('should be disabled', () => {
