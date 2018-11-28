@@ -3,7 +3,7 @@ import { CurrentFilters, Filter2 } from '@blueriq/angular/lists';
 import { FilterComponent } from './filter.component';
 import { FilterCandidate } from './types';
 
-describe('TableFilterComponent', () => {
+describe('FilterComponent', () => {
   let tableFilterComponent: FilterComponent;
   let dialogSpy: jasmine.SpyObj<MatDialog>;
   let dialogRefSpy: jasmine.SpyObj<MatDialogRef<any, any>>;

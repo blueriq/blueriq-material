@@ -16,7 +16,7 @@ import { FilterCandidate } from '../types';
 
 import { FilterRowComponent } from './filter-row.component';
 
-describe('ListFilterRowComponent', () => {
+describe('FilterRowComponent', () => {
   let component: FilterRowComponent;
   let fixture: ComponentFixture<FilterRowComponent>;
 

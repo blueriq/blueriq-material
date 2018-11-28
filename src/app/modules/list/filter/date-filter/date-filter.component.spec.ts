@@ -1,5 +1,5 @@
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSession } from '@blueriq/angular';
@@ -10,7 +10,7 @@ import { FilterCandidate } from '../types';
 
 import { DateFilterComponent } from './date-filter.component';
 
-describe('ListDateFilterComponent', () => {
+describe('DateFilterComponent', () => {
   let component: DateFilterComponent;
   let fixture: ComponentFixture<DateFilterComponent>;
 
@@ -40,7 +40,7 @@ describe('ListDateFilterComponent', () => {
     expect(checkbox).toBe('true');
   });
 
-  it('select date filter after', fakeAsync(() => {
+  it('select date filter after', () => {
     const trigger = fixture.debugElement.query(By.css('.mat-select-trigger')).nativeElement;
     trigger.click();
     fixture.detectChanges();
@@ -48,9 +48,11 @@ describe('ListDateFilterComponent', () => {
     const selectOptions = getMatOptionsFromOverlay();
     expect(selectOptions).toBeTruthy();
     selectOptions[2].click();
+    fixture.detectChanges();
+
     // Verify
     expect(component.operator).toBe(DateOperator.After);
-  }));
+  });
 
   function getMatOptionsFromOverlay(): HTMLElement[] {
     const _containerElement = TestBed.get(OverlayContainer).getContainerElement();

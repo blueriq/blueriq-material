@@ -6,7 +6,7 @@ import { FilterCandidate } from '../types';
 
 import { BooleanFilterComponent } from './boolean-filter.component';
 
-describe('ListBooleanFilterComponent', () => {
+describe('BooleanFilterComponent', () => {
   let component: BooleanFilterComponent;
   let fixture: ComponentFixture<BooleanFilterComponent>;
   const columnFilter: ColumnFilter = {} as ColumnFilter;
