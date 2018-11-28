@@ -12,7 +12,7 @@ import {
   MatTooltipModule,
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
+import { BlueriqCommonModule } from '@blueriq/angular';
 import { FormattingModule } from '@blueriq/angular/formatting';
 import { BlueriqFormsModule } from '@blueriq/angular/forms';
 import { SharedModule } from '@shared/shared.module';
@@ -42,9 +42,6 @@ export const TABLE_FORM_CONTROL_COMPONENTS = [
 @NgModule({
   declarations: [
     TABLE_FORM_CONTROL_COMPONENTS,
-  ],
-  providers: [
-    BlueriqComponents.register(TABLE_FORM_CONTROL_COMPONENTS),
   ],
   imports: [
     BrowserAnimationsModule,
