@@ -4,7 +4,7 @@ import { FilterModule } from '../filter.module';
 
 import { EmptyFilterComponent } from './empty-filter.component';
 
-describe('ListEmptyFilterComponent', () => {
+describe('EmptyFilterComponent', () => {
   let component: EmptyFilterComponent;
   let fixture: ComponentFixture<EmptyFilterComponent>;
 

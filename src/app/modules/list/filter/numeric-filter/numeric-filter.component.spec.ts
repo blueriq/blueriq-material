@@ -1,5 +1,5 @@
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NumericOperator } from '@blueriq/angular/lists';
@@ -8,7 +8,7 @@ import { FilterCandidate } from '../types';
 
 import { NumericFilterComponent } from './numeric-filter.component';
 
-describe('ListNumericFilterComponent', () => {
+describe('NumericFilterComponent', () => {
   let component: NumericFilterComponent;
   let fixture: ComponentFixture<NumericFilterComponent>;
 
@@ -34,7 +34,7 @@ describe('ListNumericFilterComponent', () => {
     expect(showUnknown).toBe('true');
   });
 
-  it('select greater than or equals operator', fakeAsync(() => {
+  it('select greater than or equals operator', () => {
     component.candidate = new FilterCandidate();
     fixture.detectChanges();
 
@@ -45,9 +45,11 @@ describe('ListNumericFilterComponent', () => {
     const selectOptions = getMatOptionsFromOverlay();
     expect(selectOptions).toBeTruthy();
     selectOptions[2].click();
+    fixture.detectChanges();
+
     // Verify
     expect(component.operator).toBe(NumericOperator.GreaterThanEquals);
-  }));
+  });
 
   function getMatOptionsFromOverlay(): HTMLElement[] {
     const _containerElement = TestBed.get(OverlayContainer).getContainerElement();

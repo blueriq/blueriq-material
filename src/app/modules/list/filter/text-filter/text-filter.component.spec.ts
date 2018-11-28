@@ -8,7 +8,7 @@ import { FilterCandidate } from '../types';
 
 import { TextFilterComponent } from './text-filter.component';
 
-describe('ListStringFilterComponent', () => {
+describe('TextFilterComponent', () => {
   let component: TextFilterComponent;
   let fixture: ComponentFixture<TextFilterComponent>;
   let candidate: FilterCandidate;

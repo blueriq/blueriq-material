@@ -1,5 +1,5 @@
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DomainPredicate } from '@blueriq/angular/lists';
@@ -9,7 +9,7 @@ import { FilterCandidate } from '../types';
 
 import { DomainFilterComponent } from './domain-filter.component';
 
-describe('ListDomainFilterComponent', () => {
+describe('DomainFilterComponent', () => {
   let component: DomainFilterComponent;
   let fixture: ComponentFixture<DomainFilterComponent>;
 
@@ -27,7 +27,7 @@ describe('ListDomainFilterComponent', () => {
     fixture.detectChanges();
   }));
 
-  it('domain filter with options', fakeAsync(() => {
+  it('domain filter with options', () => {
     const candidate = component.candidate = new FilterCandidate();
     // there are two mat-selects, the first is for operator, second is domain values, which is the one we need
     const triggers = fixture.debugElement.queryAll(By.css('.mat-select-trigger'));
@@ -39,10 +39,11 @@ describe('ListDomainFilterComponent', () => {
     expect(selectOptions[1].innerText.trim()).toBe('twee');
     expect(selectOptions[2].innerText.trim()).toBe('drie');
     selectOptions[2].click();
+    fixture.detectChanges();
 
     // Verify
     expect((candidate.predicate as DomainPredicate).values).toEqual(['three']);
-  }));
+  });
 
   function getMatOptionsFromOverlay(): HTMLElement[] {
     const _containerElement = TestBed.get(OverlayContainer).getContainerElement();
