@@ -10,7 +10,7 @@ import {
   DEFAULT_DATETIME_PATTERN,
   DEFAULT_TIME_PATTERN,
   parseBqLocale,
-  provideDateFormats
+  provideDateFormats,
 } from './bq-date-parser';
 
 describe('bq-date-parser', () => {

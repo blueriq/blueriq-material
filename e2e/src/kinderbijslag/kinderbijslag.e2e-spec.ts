@@ -1,13 +1,13 @@
-import { protractor } from 'protractor';
+import { browser, protractor } from 'protractor';
 import { KinderbijslagFlow } from './kinderbijslag.flow';
 
 describe('Kinderbijslag App', () => {
 
   let app: KinderbijslagFlow = new KinderbijslagFlow();
 
-  beforeEach(() => {
-    app.reset(); // in beforeEach because taking screenshot for failing tests fails when placed in the afterEach
-    app.start();
+  beforeEach(async() => {
+    await app.reset(); // in beforeEach because taking screenshot for failing tests fails when placed in the afterEach
+    await app.start();
   });
 
   it('should display header with text', () => {
@@ -20,6 +20,8 @@ describe('Kinderbijslag App', () => {
 
   it('should display a validation message when flowing to the next page', () => {
     app.buttonBereken.click();
+    browser.waitForAngular();
+
     expect(app.nrOfValidations).toBe(8);
   });
 
@@ -28,6 +30,7 @@ describe('Kinderbijslag App', () => {
 
     // navigate to page 'kind toevoegen'
     app.buttonAddChild.click();
+    browser.waitForAngular();
 
     // Verify
     expect(app.pageTitleVragenlijstOverOuderskind).toBe('Vragen over het kind');
@@ -36,13 +39,16 @@ describe('Kinderbijslag App', () => {
   it('should be able to add a child', () => {
     fillInRequiredFieldsVerzekerde();
     app.buttonAddChild.click();
+    browser.waitForAngular();
 
     fillInQuestionsOuderKind();
     app.buttonVerder.click();
+    browser.waitForAngular();
     expect(app.pageTitleKindGegevens).toBe('Gegevens kind');
 
     fillInRequiredFieldsKind();
     app.buttonOpslaanKind.click();
+    browser.waitForAngular();
 
     // Verify
     expect(app.pageTitleAanvragenKinderbijslag).toBe('Aanvragen kinderbijslag');
@@ -55,12 +61,18 @@ describe('Kinderbijslag App', () => {
   it('should calculate Kinderbijslag', () => {
     fillInRequiredFieldsVerzekerde();
     app.buttonAddChild.click();
+    browser.waitForAngular();
+
     fillInQuestionsOuderKind();
     app.buttonVerder.click();
+    browser.waitForAngular();
+
     fillInRequiredFieldsKind();
     app.buttonOpslaanKind.click();
+    browser.waitForAngular();
 
     app.buttonBereken.click();
+    browser.waitForAngular();
 
     // Verify
     expect(app.pageTitleResultaatBerekening).toBe('Resultaat berekening');

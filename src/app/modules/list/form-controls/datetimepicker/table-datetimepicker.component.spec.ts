@@ -22,8 +22,8 @@ describe('TableDatetimePickerComponent', () => {
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        ListModule
-      ]
+        ListModule,
+      ],
     });
   }));
 
@@ -39,8 +39,8 @@ describe('TableDatetimePickerComponent', () => {
       .create('row')
       .contentStyle('tablerow')
       .children(
-        datetimeField
-      )
+        datetimeField,
+      ),
       // ---------- End ----------
     );
     const list = ContainerTemplate.create().children(tableTemplate);

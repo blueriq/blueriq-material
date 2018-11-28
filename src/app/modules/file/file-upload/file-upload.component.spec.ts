@@ -25,8 +25,8 @@ describe('FileUploadComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         BlueriqTestingModule,
-        FileModule
-      ]
+        FileModule,
+      ],
     });
   }));
 
@@ -41,10 +41,10 @@ describe('FileUploadComponent', () => {
       'extensionvalidationmessage': 'File type not allowed',
       'filesizevalidationmessage': 'File is too large',
       'singleuploadlabel': 'Add file...',
-      'multiuploadlabel': 'Add files...'
+      'multiuploadlabel': 'Add files...',
     }).children(
       ButtonTemplate.create('FileUploaded'),
-      ButtonTemplate.create('Unauthorized')
+      ButtonTemplate.create('Unauthorized'),
     );
     session = BlueriqSessionTemplate.create().build(container);
     component = session.get(FileUploadComponent);
@@ -93,7 +93,7 @@ describe('FileUploadComponent', () => {
   it('should display a hint message for the upload criterion', () => {
     // Init
     session.update(
-      container.properties({ allowedExtensions: '' })
+      container.properties({ allowedExtensions: '' }),
     );
     const hints = component.nativeElement.querySelectorAll('mat-hint');
 
@@ -156,8 +156,8 @@ describe('FileUploadComponent', () => {
     spyOn(CustomFileUploader.prototype, 'uploadAll').and.callThrough();
     session.update(
       container.properties({
-        'singlefilemode': false
-      })
+        'singlefilemode': false,
+      }),
     );
 
     // Sut

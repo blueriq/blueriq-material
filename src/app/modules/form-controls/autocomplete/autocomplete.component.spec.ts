@@ -17,8 +17,8 @@ describe('AutocompleteComponent', () => {
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        FormControlModule
-      ]
+        FormControlModule,
+      ],
     });
   });
 
@@ -27,7 +27,7 @@ describe('AutocompleteComponent', () => {
       'a': 'Red',
       'b': 'White',
       'c': 'Blue',
-      'd': 'Orange'
+      'd': 'Orange',
     });
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(AutocompleteComponent);
@@ -59,7 +59,7 @@ describe('AutocompleteComponent', () => {
 
   it('should have a hint', () => {
     session.update(
-      field.explainText('explaining it')
+      field.explainText('explaining it'),
     );
     expect(component.nativeElement.querySelector('mat-hint')).toBeTruthy();
     expect(component.nativeElement.querySelector('mat-hint').innerHTML).toContain('explaining it');
@@ -67,7 +67,7 @@ describe('AutocompleteComponent', () => {
 
   it('should have a placeholder', () => {
     session.update(
-      field.placeholder('myPlaceholder')
+      field.placeholder('myPlaceholder'),
     );
     const autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
     expect(autocompleteInput.attributes['placeholder']).toBe('myPlaceholder');
@@ -79,7 +79,7 @@ describe('AutocompleteComponent', () => {
     component.detectChanges();
     session.update(
       field.required(true),
-      field.error('wrong IBAN')
+      field.error('wrong IBAN'),
     );
     expect(component.nativeElement.querySelector('mat-error')).toBeTruthy();
   });
@@ -89,7 +89,7 @@ describe('AutocompleteComponent', () => {
     expect(autocompleteInput.nativeElement.value).toBe('');
 
     session.update(
-      field.value('c')
+      field.value('c'),
     );
 
     component.whenStable()
@@ -197,6 +197,30 @@ describe('AutocompleteComponent', () => {
       // The technical value for 'Blue' is 'c'
       expect(component.componentInstance.field.getValue()).toBe('c');
     });
+  });
+
+  it('should remain the value on correct input', () => {
+    let input = component.nativeElement.querySelector('.mat-input-element');
+    input.setAttribute('value', 'White');
+
+    // SUT
+    input.dispatchEvent(new Event('blur'));
+
+    // Verify
+    input = component.nativeElement.querySelector('.mat-input-element');
+    expect(input.value).toBe('White');
+  });
+
+  it('should clear the value on incorrect input', () => {
+    let input = component.nativeElement.querySelector('.mat-input-element');
+    input.setAttribute('value', 'ThisIsNotAColor');
+
+    // SUT
+    input.dispatchEvent(new Event('blur'));
+
+    // Verify
+    input = component.nativeElement.querySelector('.mat-input-element');
+    expect(input.value).toBe('', 'The value should be cleared when onblur and has incorrect value');
   });
 
   it('should reset input value when the value is not within the domain', () => {

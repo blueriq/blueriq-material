@@ -12,14 +12,14 @@ export function dateFormatFactory(session: BlueriqSession): MatDateFormats {
   const datePattern = dateFormats.date.inputFormat;
   return {
     parse: {
-      dateInput: datePattern
+      dateInput: datePattern,
     },
     display: {
       dateInput: datePattern,
       monthYearLabel: 'MMMM YYYY',
       dateA11yLabel: datePattern,
-      monthYearA11yLabel: 'MMMM YYYY'
-    }
+      monthYearA11yLabel: 'MMMM YYYY',
+    },
   };
 }
 
@@ -27,15 +27,15 @@ export const dateFormatProvider = [
   {
     provide: MAT_DATE_LOCALE,
     useFactory: localeFactory,
-    deps: [BlueriqSession]
+    deps: [BlueriqSession],
   },
   {
     provide: DateAdapter,
-    useClass: MomentDateAdapter
+    useClass: MomentDateAdapter,
   },
   {
     provide: MAT_DATE_FORMATS,
     useFactory: dateFormatFactory,
-    deps: [BlueriqSession]
-  }
+    deps: [BlueriqSession],
+  },
 ];

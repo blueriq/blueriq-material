@@ -7,11 +7,11 @@ import { dateFromNowHumanReadable, dateToShortTime } from '@shared/date/bq-date-
   selector: 'bq-timeline',
   templateUrl: './timeline.component.html',
   styleUrls: ['./timeline.component.scss'],
-  providers: [DashboardTimeline]
+  providers: [DashboardTimeline],
 })
 @BlueriqComponent({
   type: Container,
-  selector: 'timeline'
+  selector: 'timeline',
 })
 export class TimelineComponent {
 

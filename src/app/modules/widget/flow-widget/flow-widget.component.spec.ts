@@ -6,7 +6,7 @@ import {
   BlueriqSessionTemplate,
   BlueriqTestingModule,
   BlueriqTestSession,
-  SessionTemplate
+  SessionTemplate,
 } from '@blueriq/angular/testing';
 import { Page } from '@blueriq/core';
 import { ContainerTemplate, PageModelTemplate, PageTemplate } from '@blueriq/core/testing';
@@ -15,17 +15,17 @@ import { WidgetModule } from '../widget.module';
 import { FlowWidgetComponent } from './flow-widget.component';
 
 @Component({
-  template: '<span id="widgetSessionDisplayName">{{page.displayName}}</span>'
+  template: '<span id="widgetSessionDisplayName">{{page.displayName}}</span>',
 })
 @BlueriqComponent({
-  type: Page
+  type: Page,
 })
 class MockPageComponent {
   constructor(@Host() public readonly page: Page) {
   }
 }
 
-describe('WidgetComponent', () => {
+describe('FlowWidgetComponent', () => {
   let container: ContainerTemplate;
   let component: ComponentFixture<FlowWidgetComponent>;
   let session: BlueriqTestSession;
@@ -36,8 +36,8 @@ describe('WidgetComponent', () => {
       providers: [BlueriqComponents.register([MockPageComponent])],
       imports: [
         BlueriqTestingModule,
-        WidgetModule
-      ]
+        WidgetModule,
+      ],
     });
   }));
 
@@ -66,16 +66,42 @@ describe('WidgetComponent', () => {
 
   it('should display an error message when widget fails to load', () => {
     const bqError: FailedAction = { error: { cause: { message: 'whoops' } }, type: 'some_error' };
-    component.componentInstance.bqError = bqError;
+    component.componentInstance.handleError(bqError);
     component.detectChanges();
 
     const widgetSessionSpan = component.nativeElement.querySelector('#widgetSessionDisplayName');
     const errorElement = component.nativeElement.querySelector('mat-error');
 
     // Verify
-    expect(widgetSessionSpan).toBeFalsy();
+    expect(widgetSessionSpan).toBeFalsy('No widget should be shown');
     expect(errorElement).toBeTruthy();
     expect(errorElement.innerText).toContain('whoops');
+  });
+
+  it('should display an error message when widget session is expired', () => {
+    component.componentInstance.handleSessionExpired();
+    component.detectChanges();
+
+    const widgetSessionSpan = component.nativeElement.querySelector('#widgetSessionDisplayName');
+    const errorElement = component.nativeElement.querySelector('mat-error');
+
+    // Verify
+    expect(widgetSessionSpan).toBeFalsy('No widget should be shown');
+    expect(errorElement).toBeTruthy();
+    expect(errorElement.innerText).toContain('Your session has expired');
+  });
+
+  it('should display an error message when flow has ended', () => {
+    component.componentInstance.handleFlowEnded();
+    component.detectChanges();
+
+    const widgetSessionSpan = component.nativeElement.querySelector('#widgetSessionDisplayName');
+    const errorElement = component.nativeElement.querySelector('mat-error');
+
+    // Verify
+    expect(widgetSessionSpan).toBeFalsy('No widget should be shown');
+    expect(errorElement).toBeTruthy();
+    expect(errorElement.innerText).toContain('The flow has ended');
   });
 
   it('should use the bqContainer directive', () => {

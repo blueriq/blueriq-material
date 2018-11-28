@@ -5,23 +5,23 @@ import { SharedModule } from '@shared/shared.module';
 import { ContentItemComponent } from './contentitem.component';
 
 const BLUERIQ_COMPONENTS = [
-  ContentItemComponent
+  ContentItemComponent,
 ];
 
 @NgModule({
   declarations: [
-    BLUERIQ_COMPONENTS
+    BLUERIQ_COMPONENTS,
   ],
   providers: [
-    BlueriqComponents.register(BLUERIQ_COMPONENTS)
+    BlueriqComponents.register(BLUERIQ_COMPONENTS),
   ],
   imports: [
     CommonModule,
     SharedModule,
 
-    BlueriqModule.forRoot() // using bqClasses (which triggers to use the css to use colors)
+    BlueriqModule.forRoot(), // using bqClasses (which triggers to use the css to use colors)
   ],
-  exports: [BLUERIQ_COMPONENTS]
+  exports: [BLUERIQ_COMPONENTS],
 })
 export class ContentItemModule {
 }

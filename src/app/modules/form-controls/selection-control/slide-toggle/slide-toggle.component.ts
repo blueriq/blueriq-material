@@ -8,18 +8,19 @@ import { BqPresentationStyles } from '../../../BqPresentationStyles';
 @Component({
   selector: 'bq-slide-toggle',
   templateUrl: './slide-toggle.component.html',
-  styleUrls: ['../selection-control.component.scss']
+  styleUrls: ['../selection-control.component.scss'],
 })
 @BlueriqComponent({
   type: Field,
-  selector: '.' + BqPresentationStyles.TOGGLE + '[dataType=boolean]'
+  selector: '.' + BqPresentationStyles.DEPRECATED_TOGGLE + '[dataType=boolean], ' +
+    '.' + BqPresentationStyles.TOGGLE + '[dataType=boolean]',
 })
 export class SlideToggleComponent {
 
   formControl = this.form.control(this.field, {
     syncOn: 'update',
     ifUnknown: false,
-    disableWhen: BqPresentationStyles.DISABLED
+    disableWhen: BqPresentationStyles.DISABLED,
   });
 
   constructor(@Host() public field: Field,

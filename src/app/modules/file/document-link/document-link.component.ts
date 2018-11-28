@@ -9,11 +9,11 @@ import { FileDownloadService } from '../file-download/file-download.service';
 @Component({
   templateUrl: './document-link.component.html',
   styleUrls: ['./document-link.component.scss'],
-  providers: [DocumentLink]
+  providers: [DocumentLink],
 })
 @BlueriqComponent({
   type: Container,
-  selector: '*:has(* > [type=link])'
+  selector: '*:has(* > [type=link])',
 })
 export class DocumentLinkComponent implements OnDestroy {
 
@@ -26,9 +26,9 @@ export class DocumentLinkComponent implements OnDestroy {
 
   onClick(): void {
     this.downloadSubscription = this.documentLink.getDownloadInfo()
-      .subscribe((downloadInfo: AuthorizedDownload) => {
-        this.fileDownloadService.download(downloadInfo.url);
-      });
+    .subscribe((downloadInfo: AuthorizedDownload) => {
+      this.fileDownloadService.download(downloadInfo.url);
+    });
   }
 
   getDisplayText(): string {

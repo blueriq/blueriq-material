@@ -13,24 +13,25 @@ describe('TimelineComponent', () => {
   let container: ContainerTemplate;
   let component: ComponentFixture<TimelineComponent>;
   let session: BlueriqTestSession;
-  let now: Date;
+
+  const now = moment();
+  const fiveDecember2017 = moment('2017-12-05 17:00:00', 'YYYY-MM-DD HH:mm:ss');
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         BlueriqTestingModule,
-        TimelineModule
-      ]
+        TimelineModule,
+      ],
     });
   }));
 
   beforeEach(() => {
-    now = new Date();
     container = ContainerTemplate.create('statisticContainer')
-    .contentStyle('timeline').children(
-      createTimelineEntry('Henk', new Date('2018-05-05 17:00:00'), 'Request driving licence', 'RequestLicence'),
-      createTimelineEntry('Klaas', now, 'Accept driving licence', 'AcceptLicence')
-    );
+      .contentStyle('timeline').children(
+        createTimelineEntry('Henk', fiveDecember2017, 'Request driving licence', 'RequestLicence'),
+        createTimelineEntry('Klaas', now, 'Accept driving licence', 'AcceptLicence'),
+      );
     session = BlueriqSessionTemplate.create().build(container);
     component = session.get(TimelineComponent);
   });
@@ -59,15 +60,15 @@ describe('TimelineComponent', () => {
   it('should render the correct entry date', () => {
     const date = component.nativeElement.querySelectorAll('.date');
     expect(date.length).toBe(2);
-    expect(date[0].innerHTML).toBe(moment(new Date('2018-05-05 17:00:00')).format(DEFAULT_DATE_FROM_NOW_FORMAT));
-    expect(date[1].innerHTML).toBe(moment(now).fromNow(false));
+    expect(date[0].innerHTML).toBe(fiveDecember2017.format(DEFAULT_DATE_FROM_NOW_FORMAT));
+    expect(date[1].innerHTML).toBe(now.fromNow(false));
   });
 
   it('should render the correct timestamp', () => {
     const time = component.nativeElement.querySelectorAll('.time');
     expect(time.length).toBe(2);
     expect(time[0].innerHTML).toBe('17:00');
-    expect(time[1].innerHTML).toBe(moment(now).format('HH:mm'));
+    expect(time[1].innerHTML).toBe(now.format('HH:mm'));
   });
 
   it('should use the bqContainer directive', () => {
@@ -80,16 +81,16 @@ describe('TimelineComponent', () => {
     expect(component.nativeElement.querySelector('bq-heading')).toBeTruthy();
   });
 
-  function createTimelineEntry(username, datetime,
-                               actionName, entryName): ContainerTemplate {
+  function createTimelineEntry(username: string, datetime: moment.Moment,
+                               actionName: string, entryName: string): ContainerTemplate {
     return ContainerTemplate.create('someTimelineEntry')
-    .contentStyle('timelineEntry')
-    .properties({
-      'username': username,
-      'datetime': datetime,
-      'actionname': actionName,
-      'entryname': entryName
-    });
+      .contentStyle('timelineEntry')
+      .properties({
+        'username': username,
+        'datetime': datetime.format('DD-MM-YYYY HH:mm:ss'),
+        'actionname': actionName,
+        'entryname': entryName,
+      });
   }
 
 });

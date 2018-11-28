@@ -5,9 +5,11 @@ import { BlueriqModule } from '@blueriq/angular';
 import { V1BackendModule } from '@blueriq/angular/backend/v1';
 import { BlueriqStoreModule } from '@blueriq/angular/store';
 import { DateFormats } from '@blueriq/core';
+import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { provideDateFormats } from '@shared/date/bq-date-parser';
+import { BqEffectsModule } from '@shared/effects/bq-effects.module';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { AssetModule } from './modules/asset/asset.module';
@@ -41,32 +43,34 @@ const routes: Routes = [
   { path: 'flow/:project/:flow/:version', component: ProjectComponent },
   { path: 'flow/:project/:flow/:version/:languageCode', component: ProjectComponent },
   { path: 'login', component: LoginComponent },
-  { path: '**', redirectTo: 'shortcut/default', pathMatch: 'full' }
+  { path: '**', redirectTo: 'shortcut/default', pathMatch: 'full' },
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProjectComponent
+    ProjectComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     V1BackendModule.forRoot({
-      baseUrl: environment.baseUrl
+      baseUrl: environment.baseUrl,
     }),
 
     // ngrx
     StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
       name: 'Blueriq',
-      logOnly: environment.production // Restrict extension to log-only mode
+      logOnly: environment.production, // Restrict extension to log-only mode
     }),
     BlueriqStoreModule.forRoot(),
     BlueriqModule.forRoot(), // Also used in some sub modules
 
     /* Blueriq Modules */
     AssetModule,
+    BqEffectsModule,
     ButtonModule,
     CommentModule,
     ContainerModule,
@@ -88,12 +92,12 @@ const routes: Routes = [
     /* Non-Blueriq modules */
     LoadingModule,
     StaticPagesModule,
-    ErrorModule
+    ErrorModule,
   ],
   providers: [
-    { provide: DateFormats, useFactory: provideDateFormats }
+    { provide: DateFormats, useFactory: provideDateFormats },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }

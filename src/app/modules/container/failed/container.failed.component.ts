@@ -5,11 +5,11 @@ import { Container, FailedElement } from '@blueriq/core';
 @Component({
   selector: 'bq-failed',
   styleUrls: ['./container.failed.component.scss'],
-  templateUrl: './container.failed.component.html'
+  templateUrl: './container.failed.component.html',
 })
 @BlueriqComponent({
   type: Container,
-  selector: ':has(* > [type=failedelement])'
+  selector: ':has(* > [type=failedelement])',
 })
 export class ContainerFailedComponent {
 

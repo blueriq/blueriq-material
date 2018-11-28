@@ -6,15 +6,15 @@ import { HeaderModule } from '../header/header.module';
 import { PageComponent } from './page.component';
 
 const BLUERIQ_COMPONENTS = [
-  PageComponent
+  PageComponent,
 ];
 
 @NgModule({
   declarations: [
-    BLUERIQ_COMPONENTS
+    BLUERIQ_COMPONENTS,
   ],
   providers: [
-    BlueriqComponents.register(BLUERIQ_COMPONENTS)
+    BlueriqComponents.register(BLUERIQ_COMPONENTS),
   ],
   imports: [
     CommonModule,
@@ -24,9 +24,9 @@ const BLUERIQ_COMPONENTS = [
     HeaderModule,
 
     /* Material modules */
-    MatDividerModule
+    MatDividerModule,
   ],
-  exports: [BLUERIQ_COMPONENTS]
+  exports: [BLUERIQ_COMPONENTS],
 })
 export class PageModule {
 }

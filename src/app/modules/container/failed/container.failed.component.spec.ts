@@ -11,15 +11,11 @@ export class FailedElementTemplate extends CompositeElementTemplate<Container> {
 
   private readonly _container: Partial<FailedElementJson> = {
     message: '',
-    stackTrace: ''
+    stackTrace: '',
   };
 
   protected constructor(name?: string) {
     super(name);
-  }
-
-  static create(name?: string): FailedElementTemplate {
-    return new FailedElementTemplate(name);
   }
 
   get type(): string {
@@ -28,6 +24,10 @@ export class FailedElementTemplate extends CompositeElementTemplate<Container> {
 
   get prefix(): string {
     return 'F';
+  }
+
+  static create(name?: string): FailedElementTemplate {
+    return new FailedElementTemplate(name);
   }
 }
 
@@ -44,14 +44,14 @@ describe('FailedContainerComponent', () => {
         NoopAnimationsModule,
         BlueriqTestingModule,
         SharedModule,
-        ContainerModule
-      ]
+        ContainerModule,
+      ],
     });
   }));
 
   beforeEach(() => {
     failedTemplate = ContainerTemplate.create().children(
-      FailedElementTemplate.create('hoppa')
+      FailedElementTemplate.create('hoppa'),
     );
     session = BlueriqSessionTemplate.create().build(failedTemplate);
     fixture = session.get(ContainerFailedComponent);
@@ -66,15 +66,25 @@ describe('FailedContainerComponent', () => {
     expect(fixture.nativeElement.querySelector('.trace')).toBeFalsy();
   });
 
-  it('should display the stracktrace when clicked on expanding', () => {
+  it('should copy to clipboard', () => {
     spyOn(document, 'execCommand').and.callThrough();
     const buttons = fixture.nativeElement.querySelector('.message').querySelectorAll('button');
-    const buttoncopyToClipBoard = buttons[0];
-    buttoncopyToClipBoard.click();
+    const buttonCopyToClipBoard = buttons[0];
+    buttonCopyToClipBoard.click();
     expect(document.execCommand).toHaveBeenCalledWith('copy');
   });
 
-  it('should copy to clipboard', () => {
+  it('should copy to clipboard with missing stacktrace', () => {
+    fixture.componentInstance.failedElement.stacktrace = undefined;
+
+    spyOn(document, 'execCommand').and.callThrough();
+    const buttons = fixture.nativeElement.querySelector('.message').querySelectorAll('button');
+    const buttonCopyToClipBoard = buttons[0];
+    buttonCopyToClipBoard.click();
+    expect(document.execCommand).toHaveBeenCalledWith('copy');
+  });
+
+  it('should display the stacktrace when clicked on expanding', () => {
     const buttons = fixture.nativeElement.querySelector('.message').querySelectorAll('button');
     const buttonShowTrace = buttons[1];
     buttonShowTrace.click();

@@ -17,8 +17,8 @@ describe('InputFieldComponent', () => {
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        FormControlModule
-      ]
+        FormControlModule,
+      ],
     });
   }));
 
@@ -30,7 +30,7 @@ describe('InputFieldComponent', () => {
 
   it('should have a hint', () => {
     session.update(
-      field.explainText('explaining it')
+      field.explainText('explaining it'),
     );
     expect(component.nativeElement.querySelector('mat-hint')).toBeTruthy();
     expect(component.nativeElement.querySelector('mat-hint').innerHTML).toContain('explaining it');
@@ -38,7 +38,16 @@ describe('InputFieldComponent', () => {
 
   it('should have a placeholder', () => {
     session.update(
-      field.placeholder('myPlaceholder')
+      field.placeholder('myPlaceholder'),
+    );
+    expect(component.nativeElement.querySelector('input[placeholder]')).toBeTruthy();
+    expect(component.nativeElement.querySelector('input').getAttribute('placeholder')).toBe('myPlaceholder');
+  });
+
+  it('should NOT have required marker in placeholder text', () => {
+    session.update(
+      field.placeholder('myPlaceholder'),
+      field.required(true),
     );
     expect(component.nativeElement.querySelector('input[placeholder]')).toBeTruthy();
     expect(component.nativeElement.querySelector('input').getAttribute('placeholder')).toBe('myPlaceholder');
@@ -50,7 +59,7 @@ describe('InputFieldComponent', () => {
     component.detectChanges();
     session.update(
       field.required(true),
-      field.error('wrong IBAN')
+      field.error('wrong IBAN'),
     );
     expect(component.nativeElement.querySelector('mat-error')).toBeTruthy();
   });

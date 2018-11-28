@@ -1,5 +1,5 @@
 import Promise = promise.Promise;
-import { browser, by, element, ElementFinder, promise, protractor } from 'protractor';
+import { browser, by, element, ElementFinder, promise } from 'protractor';
 
 export class KinderbijslagFlow {
   public PAGE_ID_AANVRAGEN_KINDERBIJSLAG: string = 'P960';
@@ -69,16 +69,16 @@ export class KinderbijslagFlow {
     return element(by.id(page + '_' + field + '_1')).element(by.tagName('mat-select'));
   }
 
-  getTableCellFor(id:string): Promise<string> {
+  getTableCellFor(id: string): Promise<string> {
     return element(by.id(id)).getText();
   }
 
   start() {
-    browser.get(this.path);
+    return browser.get(this.path);
   }
 
   reset() {
-    browser.restart();
+    return browser.restart();
   }
 
   private getTitleTextFor(id: string): Promise<string> {

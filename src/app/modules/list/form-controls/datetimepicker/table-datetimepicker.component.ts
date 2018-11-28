@@ -10,11 +10,11 @@ import { dateTimeFormatProvider } from '../../../form-controls/date/datetimepick
   templateUrl: './table-datetimepicker.component.html',
   styleUrls: ['../table-form-control.scss'],
   providers: [dateTimeFormatProvider],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 @BlueriqComponent({
   type: Field,
-  selector: '[dataType=date], [dataType=datetime]'
+  selector: '[dataType=date], [dataType=datetime]',
 })
 export class TableDatetimepickerComponent extends DateTimepickerComponent {
 

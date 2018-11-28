@@ -17,16 +17,16 @@ describe('DateTimepickerComponent', () => {
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        FormControlModule
-      ]
+        FormControlModule,
+      ],
     });
   }));
 
-  beforeEach(() => {
+  beforeEach(async(() => {
     field = FieldTemplate.datetime();
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(DateTimepickerComponent);
-  });
+  }));
 
   it('should render date and time picker for datetime fields', () => {
     expect(component.componentInstance.getPickerType()).toEqual('both');
@@ -41,7 +41,7 @@ describe('DateTimepickerComponent', () => {
 
   it('should have a hint', () => {
     session.update(
-      field.explainText('explaining it')
+      field.explainText('explaining it'),
     );
     expect(component.nativeElement.querySelector('mat-hint')).toBeTruthy();
     expect(component.nativeElement.querySelector('mat-hint').innerHTML).toContain('explaining it');
@@ -49,7 +49,7 @@ describe('DateTimepickerComponent', () => {
 
   it('should have a placeholder', () => {
     session.update(
-      field.placeholder('myPlaceholder')
+      field.placeholder('myPlaceholder'),
     );
     expect(component.nativeElement.querySelector('input[placeholder]')).toBeTruthy();
     expect(component.nativeElement.querySelector('input').getAttribute('placeholder')).toBe('myPlaceholder');
@@ -60,7 +60,7 @@ describe('DateTimepickerComponent', () => {
     component.componentInstance.formControl.markAsTouched();
     component.detectChanges();
     session.update(
-      field.error('wrong IBAN')
+      field.error('wrong IBAN'),
     );
     expect(component.nativeElement.querySelector('mat-error')).toBeTruthy();
   });
@@ -82,11 +82,11 @@ describe('DateTimepickerComponent', () => {
     component.componentInstance.formControl.markAsTouched();
     component.detectChanges();
     component.whenStable()
-    .then(() => {
-      const errorElement = component.nativeElement.querySelector('mat-error');
-      expect(errorElement).toBeTruthy();
-      expect(errorElement.innerText).toBe('invalid input');
-    });
+      .then(() => {
+        const errorElement = component.nativeElement.querySelector('mat-error');
+        expect(errorElement).toBeTruthy();
+        expect(errorElement.innerText).toBe('invalid input');
+      });
   });
 
   it('should be disabled', () => {
@@ -125,8 +125,8 @@ describe('DateTimepickerComponent', () => {
     let eventJson: any = {
       value: '18-01-02', // from
       source: {
-        value: '' // to
-      }
+        value: '', // to
+      },
     };
 
     // SUT
@@ -139,8 +139,8 @@ describe('DateTimepickerComponent', () => {
     eventJson = {
       value: null, // from
       source: {
-        value: '' // to
-      }
+        value: '', // to
+      },
     };
 
     // SUT

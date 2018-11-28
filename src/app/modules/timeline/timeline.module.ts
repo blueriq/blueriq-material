@@ -8,15 +8,15 @@ import { HeadingModule } from '../heading/heading.module';
 import { TimelineComponent } from './timeline.component';
 
 const BQ_TIMELINE_COMPONENTS = [
-  TimelineComponent
+  TimelineComponent,
 ];
 
 @NgModule({
   declarations: [
-    BQ_TIMELINE_COMPONENTS
+    BQ_TIMELINE_COMPONENTS,
   ],
   providers: [
-    BlueriqComponents.register(BQ_TIMELINE_COMPONENTS)
+    BlueriqComponents.register(BQ_TIMELINE_COMPONENTS),
   ],
   imports: [
     /* Basic */
@@ -27,9 +27,9 @@ const BQ_TIMELINE_COMPONENTS = [
 
     /* Material modules */
     MatDividerModule,
-    MatIconModule
+    MatIconModule,
   ],
-  exports: [BQ_TIMELINE_COMPONENTS]
+  exports: [BQ_TIMELINE_COMPONENTS],
 })
 export class TimelineModule {
 }

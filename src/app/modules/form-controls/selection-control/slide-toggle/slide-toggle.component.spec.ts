@@ -16,8 +16,8 @@ describe('SlideToggleComponent', () => {
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        FormControlModule
-      ]
+        FormControlModule,
+      ],
     });
   }));
 
@@ -30,13 +30,13 @@ describe('SlideToggleComponent', () => {
 
   it('should be changed', () => {
     session.update(
-      field.value('true')
+      field.value('true'),
     );
     let inputField = component.nativeElement.querySelector('.mat-checked');
     expect(inputField).toBeTruthy();
 
     session.update(
-      field.value('false')
+      field.value('false'),
     );
     inputField = component.nativeElement.querySelector('.mat-checked');
     expect(inputField).toBeFalsy();

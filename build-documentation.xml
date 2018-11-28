@@ -2,7 +2,8 @@
 <project name="documentation" basedir=".">
 	<property name="documentation" location=".\dist\docs"/>
 	<property name="documentationZip" location=".\dist\docs\documentation.zip"/>
-	<property name="communityDocsFolder" value="/var/confluence-home/confluence/ApiDocs/material/${releaseVersion}"/>
+	<property name="communityDocsBase" value="/var/confluence-home/confluence/ApiDocs/material"/>
+	<property name="communityDocsFolder" value="${communityDocsBase}/${releaseVersion}"/>
 	
 	<target name="deployDocumentation">
 		<property name="sourceDocs" location="${documentation}\*"/>
@@ -25,6 +26,14 @@
 			<param name="command" value="unzip ${communityDocsFolder}/documentation.zip -d ${communityDocsFolder}"/>
 		</antcall>
 				
+		<antcall target="executeCommandOnDocumentationServer">
+			<param name="command" value="rm -rf ${communityDocsBase}/latest"/>
+		</antcall>
+
+		<antcall target="executeCommandOnDocumentationServer">
+			<param name="command" value="cp -r ${communityDocsFolder} ${communityDocsBase}/latest"/>
+		</antcall>
+
 		<antcall target="executeCommandOnDocumentationServer">
 			<param name="command" value="rm -rf ${communityDocsFolder}/documentation.zip"/>
 		</antcall>

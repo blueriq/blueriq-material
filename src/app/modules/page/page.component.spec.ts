@@ -22,8 +22,8 @@ describe('PageComponent', () => {
         BlueriqTestingModule,
         RouterModule.forRoot([]),
         PageModule,
-        MenuModule
-      ]
+        MenuModule,
+      ],
     });
   }));
 
@@ -31,7 +31,7 @@ describe('PageComponent', () => {
     pageTemplate = PageTemplate.create().children(
       // Add 2 menubars
       ContainerTemplate.create().contentStyle(BqContentStyles.DASHBOARD_MENU).children(ContainerTemplate.create().contentStyle('menubar')),
-      ContainerTemplate.create().contentStyle(BqContentStyles.DASHBOARD_MENU).children(ContainerTemplate.create().contentStyle('menubar'))
+      ContainerTemplate.create().contentStyle(BqContentStyles.DASHBOARD_MENU).children(ContainerTemplate.create().contentStyle('menubar')),
     );
     session = BlueriqSessionTemplate.create().build(pageTemplate);
     pageComponent = session.get(PageComponent);
@@ -60,25 +60,25 @@ describe('PageComponent', () => {
     const page = pageComponent.componentInstance;
 
     session.update(
-      pageTemplate.contentStyle(BqContentStyles.WIDTH_FULL)
+      pageTemplate.contentStyle(BqContentStyles.WIDTH_FULL),
     );
     expect(page.pageSize).toBe('full');
     expect(pageComponent.nativeElement.querySelector('.page.full')).toBeTruthy();
 
     session.update(
-      pageTemplate.contentStyle(BqContentStyles.WIDTH_LARGE)
+      pageTemplate.contentStyle(BqContentStyles.WIDTH_LARGE),
     );
     expect(page.pageSize).toBe('large');
     expect(pageComponent.nativeElement.querySelector('.page.large')).toBeTruthy();
 
     session.update(
-      pageTemplate.contentStyle(BqContentStyles.WIDTH_MEDIUM)
+      pageTemplate.contentStyle(BqContentStyles.WIDTH_MEDIUM),
     );
     expect(page.pageSize).toBe('medium');
     expect(pageComponent.nativeElement.querySelector('.page.medium')).toBeTruthy();
 
     session.update(
-      pageTemplate.contentStyle(BqContentStyles.WIDTH_SMALL)
+      pageTemplate.contentStyle(BqContentStyles.WIDTH_SMALL),
     );
     expect(page.pageSize).toBe('small');
     expect(pageComponent.nativeElement.querySelector('.page.small')).toBeTruthy();

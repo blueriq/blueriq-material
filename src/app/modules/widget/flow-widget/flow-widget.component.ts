@@ -1,28 +1,25 @@
 import { Component, Host, Self } from '@angular/core';
 import { BlueriqComponent, FailedAction, FlowWidget } from '@blueriq/angular';
-import { Container, Page } from '@blueriq/core';
+import { Container } from '@blueriq/core';
 import { BqContentStyles } from '../../BqContentStyles';
 
 @Component({
   selector: 'bq-flow-widget',
   templateUrl: './flow-widget.component.html',
-  providers: [FlowWidget]
+  providers: [FlowWidget],
 })
 @BlueriqComponent({
   type: Container,
-  selector: BqContentStyles.DASHBOARD_FLOWWIDGET
+  selector: BqContentStyles.DASHBOARD_FLOWWIDGET,
 })
 export class FlowWidgetComponent {
 
-  bqError: FailedAction;
+  private bqError: FailedAction;
   private expired = false;
   private flowEnded = false;
 
-  topWidget = false;
-
   constructor(@Host() public widgetContainer: Container,
               @Self() public flowWidget: FlowWidget) {
-    this.topWidget = this.widgetContainer.parent instanceof Page;
   }
 
   get errorMessage(): string {

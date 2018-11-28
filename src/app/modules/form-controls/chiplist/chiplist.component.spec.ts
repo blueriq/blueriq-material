@@ -20,8 +20,8 @@ describe('ChiplistComponent', () => {
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        FormControlModule
-      ]
+        FormControlModule,
+      ],
     });
   });
 
@@ -46,6 +46,27 @@ describe('ChiplistComponent', () => {
 
       if (inputField) {
         inputField.value = 'Yellow';
+        inputField.dispatchEvent(new Event('blur'));
+
+        fixture.detectChanges();
+        expect(component.values.length).toBe(4);
+        expect(fixture.nativeElement.querySelectorAll('mat-chip').length).toBe(4);
+        expect(inputField.value).toBe('');
+        expect(BlueriqSession.prototype.changed).toHaveBeenCalledWith(component.field);
+      }
+    });
+
+    it('should add a chip for float value', () => {
+      fieldTemplate = FieldTemplate.currency('salary').value(['123.99', '234.50', '456.00']);
+      session = BlueriqSessionTemplate.create().build(fieldTemplate);
+      fixture = session.get(ChiplistComponent);
+      component = fixture.componentInstance;
+
+      const inputField = fixture.nativeElement.querySelector('.mat-input-element');
+      expect(inputField).toBeTruthy();
+
+      if (inputField) {
+        inputField.value = '678.20';
         inputField.dispatchEvent(new Event('blur'));
 
         fixture.detectChanges();
@@ -98,7 +119,7 @@ describe('ChiplistComponent', () => {
         'b': 'White',
         'c': 'Blue',
         'd': 'Orange',
-        'e': 'Green'
+        'e': 'Green',
       });
       session = BlueriqSessionTemplate.create().build(fieldTemplate);
       fixture = session.get(ChiplistComponent);
@@ -112,7 +133,7 @@ describe('ChiplistComponent', () => {
 
     it('should not be editable or chips be deletable when presentation style \'Disabled\' is set', () => {
       session.update(
-        fieldTemplate.styles(BqPresentationStyles.DISABLED)
+        fieldTemplate.styles(BqPresentationStyles.DISABLED),
       );
       const chipRemoveButton = fixture.nativeElement.querySelectorAll('.mat-chip-remove');
       expect(chipRemoveButton.length).toBe(0);

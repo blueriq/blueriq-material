@@ -3,11 +3,11 @@ import { BlueriqComponent } from '@blueriq/angular';
 import { ContentItem } from '@blueriq/core';
 
 @Component({
-  templateUrl: './contentitem.component.html'
+  templateUrl: './contentitem.component.html',
 })
 
 @BlueriqComponent({
-  type: ContentItem
+  type: ContentItem,
 })
 
 export class ContentItemComponent {

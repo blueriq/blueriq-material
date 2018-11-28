@@ -6,11 +6,11 @@ import { BqContentStyles } from '../BqContentStyles';
 @Component({
   selector: 'bq-tab',
   templateUrl: './tab.component.html',
-  styleUrls: ['./tab.component.scss']
+  styleUrls: ['./tab.component.scss'],
 })
 @BlueriqComponent({
   type: Container,
-  selector: BqContentStyles.TAB
+  selector: BqContentStyles.TAB,
 })
 export class TabComponent {
 

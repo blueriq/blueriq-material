@@ -19,8 +19,8 @@ describe('TableReadonlyComponent', () => {
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        ListModule
-      ]
+        ListModule,
+      ],
     });
   }));
 
@@ -35,8 +35,8 @@ describe('TableReadonlyComponent', () => {
       .create('row')
       .contentStyle('tablerow')
       .children(
-        tableSelect
-      )
+        tableSelect,
+      ),
       // ---------- End ----------
     );
     const list = ContainerTemplate.create().children(readonlyTemplate);

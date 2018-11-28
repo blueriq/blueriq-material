@@ -10,7 +10,7 @@ import { BqPresentationStyles } from '../../BqPresentationStyles';
  * style that starts with `dashboard_column`
  */
 @Directive({
-  selector: '[bqFlexColumn]'
+  selector: '[bqFlexColumn]',
 })
 export class FlexColumnDirective implements OnDestroy {
 
@@ -55,9 +55,9 @@ export class FlexColumnDirective implements OnDestroy {
 
   private determineWeight(element: Element): number {
     let weight = 1;
-    const weightStyle = element.styles.get(style => style.startsWith(BqPresentationStyles.WEIGHT_PREFIX));
-    if (weightStyle) {
-      const matches = weightStyle.match(BqPresentationStyles.WEIGHT_REGEXP);
+    const weightPresentationStyle = element.styles.get(style => style.startsWith(BqPresentationStyles.WEIGHT_PREFIX));
+    if (weightPresentationStyle) {
+      const matches = weightPresentationStyle.match(BqPresentationStyles.WEIGHT_REGEXP);
       if (matches) {
         weight = +matches[1];
       }

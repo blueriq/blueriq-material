@@ -14,9 +14,9 @@ describe('LoadingComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        LoadingModule
+        LoadingModule,
       ],
-      providers: [GlobalLoadingActivity]
+      providers: [GlobalLoadingActivity],
     });
   }));
 
@@ -35,16 +35,18 @@ describe('LoadingComponent', () => {
     expect(state).toEqual('idle');
   });
 
-  it('is starting when a session is starting', () => {
+  it('is starting when a session is starting', fakeAsync(() => {
     let state!: string;
     component.state$.subscribe(s => state = s);
 
     loadingActivity.start(ActivityType.StartingSession);
+    tick();
     expect(state).toEqual('starting');
 
     loadingActivity.stop(ActivityType.StartingSession);
+    tick();
     expect(state).toEqual('idle');
-  });
+  }));
 
   it('is loading on interaction activity', fakeAsync(() => {
     let state!: string;

@@ -8,17 +8,17 @@ import { BqPresentationStyles } from '../BqPresentationStyles';
   selector: 'bq-comment',
   templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.scss'],
-  providers: [DashboardComment]
+  providers: [DashboardComment],
 })
 @BlueriqComponent({
   type: Container,
-  selector: 'storecomment'
+  selector: 'storecomment',
 })
 export class CommentComponent {
 
   formControl = this.form.control(this.comment.commentField, {
     updateOn: 'blur',
-    disableWhen: BqPresentationStyles.DISABLED
+    disableWhen: BqPresentationStyles.DISABLED,
   });
 
   constructor(@Host() public container: Container,

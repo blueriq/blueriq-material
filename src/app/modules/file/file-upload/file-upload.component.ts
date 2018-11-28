@@ -9,11 +9,11 @@ import { CustomFileUploader } from './custom-file-uploader';
   selector: 'bq-file-upload',
   templateUrl: './file-upload.component.html',
   styleUrls: ['./file-upload.component.scss'],
-  providers: [FileUpload]
+  providers: [FileUpload],
 })
 @BlueriqComponent({
   type: Container,
-  selector: 'fileupload'
+  selector: 'fileupload',
 })
 export class FileUploadComponent {
 
@@ -26,7 +26,7 @@ export class FileUploadComponent {
     const uploadOptions: FileUploaderOptions = {
       url: this.fileUpload.uploadUrl,
       maxFileSize: this.fileUpload.maxFileSize,
-      autoUpload: true
+      autoUpload: true,
     };
 
     if (this.fileUpload.allowedExtensions && this.fileUpload.allowedExtensions.length > 0) {

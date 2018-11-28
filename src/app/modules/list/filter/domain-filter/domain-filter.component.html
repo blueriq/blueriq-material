@@ -1,0 +1,19 @@
+<div fxLayout="row" fxLayoutGap="1em">
+  <div fxFlex="0 0 14em">
+    <mat-form-field appearance="fill">
+      <mat-select value="in">
+        <mat-option value="in">One of</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div fxFlex="0 0 14em">
+    <mat-form-field appearance="fill">
+      <mat-select multiple [value]="values" (selectionChange)="onValueChanged($event.value)">
+        <mat-option *ngFor="let option of domain.options" [value]="option.value">{{option.displayValue}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div fxFlex="0 0 2em" fxLayoutAlign="start start">
+    <mat-checkbox [checked]="showUnknown" (change)="onUnknownChanged($event.checked)" color="primary"></mat-checkbox>
+  </div>
+</div>

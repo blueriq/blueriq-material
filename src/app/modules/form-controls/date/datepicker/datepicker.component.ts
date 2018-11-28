@@ -9,18 +9,18 @@ import { dateFormatProvider } from './datepicker.material';
 @Component({
   selector: 'bq-datepicker',
   templateUrl: './datepicker.component.html',
-  providers: [dateFormatProvider]
+  providers: [dateFormatProvider],
 })
 @BlueriqComponent({
   type: Field,
-  selector: '.DatepickerMaterial[dataType=date]'
+  selector: '.DatepickerMaterial[dataType=date]',
 })
 export class DatepickerComponent {
 
   formControl = this.form.control(this.field, {
     updateOn: 'blur',
     transformer: MomentTransformer,
-    disableWhen: BqPresentationStyles.DISABLED
+    disableWhen: BqPresentationStyles.DISABLED,
   });
 
   constructor(@Host() public field: Field,

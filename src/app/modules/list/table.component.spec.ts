@@ -8,7 +8,7 @@ import {
   ContainerTemplate,
   FieldTemplate,
   StaticNodeTemplate,
-  TextItemTemplate
+  TextItemTemplate,
 } from '@blueriq/core/testing';
 import { BqContainerDirective } from '@shared/directive/container/bq-container.directive';
 import { BqContentStyles } from '../BqContentStyles';
@@ -34,8 +34,8 @@ describe('TableComponent', () => {
         ReadonlyModule,
         TextItemModule,
         FormControlModule,
-        ListModule
-      ]
+        ListModule,
+      ],
     });
   }));
 
@@ -55,8 +55,8 @@ describe('TableComponent', () => {
         .children(
           TextItemTemplate.create('Name').nodes(StaticNodeTemplate.create('Name')),
           /* 'descending' itself cannot be tested, since this is done by the backend */
-          ButtonTemplate.create().styles('sort', 'descending')
-        )
+          ButtonTemplate.create().styles('sort', 'descending'),
+        ),
       ),
       // ---------- Row #1 ----------
       ContainerTemplate
@@ -65,7 +65,7 @@ describe('TableComponent', () => {
       .children(
         FieldTemplate.text('Person.Name').value('Mike').readonly(true),
         ButtonTemplate.create('mybutton').caption('clickme'),
-        FieldTemplate.boolean('true').explainText('checkme').questionText('checkmeout')
+        FieldTemplate.boolean('true').explainText('checkme').questionText('checkmeout'),
       ),
       // ---------- Row #2 ----------
       ContainerTemplate
@@ -74,8 +74,8 @@ describe('TableComponent', () => {
       .children(
         FieldTemplate.text('Person.Name').value('Tilly').readonly(true),
         ButtonTemplate.create('mybutton').caption('clickme'),
-        FieldTemplate.boolean('false').explainText('checkme').questionText('checkmeout')
-      )
+        FieldTemplate.boolean('false').explainText('checkme').questionText('checkmeout'),
+      ),
       // ---------- End ----------
     );
     const btnFirst = ButtonTemplate.create('first')
@@ -111,7 +111,7 @@ describe('TableComponent', () => {
       btnPrevious,
       currentPageNumber,
       btnNext,
-      btnLast
+      btnLast,
     );
     const list = ContainerTemplate.create().children(tableTemplate, pagination);
     session = BlueriqSessionTemplate.create().build(list);

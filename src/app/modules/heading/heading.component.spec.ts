@@ -9,10 +9,10 @@ import { BqPresentationStyles } from '../BqPresentationStyles';
 import { HeadingModule } from './heading.module';
 
 @BlueriqComponent({
-  type: Container
+  type: Container,
 })
 @Component({
-  template: '<div><bq-heading [title]="container.displayName" [styles]="container.styles"></bq-heading></div>'
+  template: '<div><bq-heading [title]="container.displayName" [styles]="container.styles"></bq-heading></div>',
 })
 class MockContainerComponent {
   constructor(@Host() public container: Container) {
@@ -32,8 +32,8 @@ describe('HeadingComponent', () => {
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        HeadingModule
-      ]
+        HeadingModule,
+      ],
     });
   });
 

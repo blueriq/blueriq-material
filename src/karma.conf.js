@@ -4,6 +4,9 @@
 module.exports = function (config) {
   config.set({
     basePath: '',
+    proxies: {
+      '/theme/blueriq/images/': '/base/theme/blueriq/images/'
+    },
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: [
       'karma-jasmine',

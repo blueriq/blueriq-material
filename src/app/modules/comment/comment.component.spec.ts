@@ -23,8 +23,8 @@ describe('CommentComponent', () => {
         NoopAnimationsModule,
         BlueriqTestingModule,
         CommentModule,
-        FormControlModule
-      ]
+        FormControlModule,
+      ],
     });
   }));
 
@@ -35,7 +35,7 @@ describe('CommentComponent', () => {
     .contentStyle('storecomment')
     .children(
       commentField,
-      commentButton
+      commentButton,
     );
     session = BlueriqSessionTemplate.create().build(container);
     component = session.get(CommentComponent);
@@ -59,7 +59,7 @@ describe('CommentComponent', () => {
     const commentSpy = spyOn(DashboardComment.prototype, 'comment');
     const button = component.nativeElement.querySelector('button');
     session.update(
-      commentField.value('this is my first comment')
+      commentField.value('this is my first comment'),
     );
 
     // SUT

@@ -41,12 +41,12 @@
       true,
       {
         "multiline": {
-          "objects": "ignore",
-          "arrays": "ignore",
-          "functions": "never",
+          "objects": "always",
+          "arrays": "always",
+          "functions": "always",
           "typeLiterals": "ignore"
         },
-        "singleline": "never"
+        "esSpecCompliant": true
       }
     ],
     "import-spacing": true,
