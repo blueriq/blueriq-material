@@ -2,7 +2,7 @@
   <!-- button -->
   <button *ngSwitchCase="'button'" mat-button class="mat-menu-item" [bqButton]="child">
     <mat-icon [bqIcon]="child.styles"></mat-icon>
-    {{ asButton(child).caption }}
+    {{ asButton(child).caption || "["+asButton(child).name+"]" }}
   </button>
   
   <!-- container with button(s) -->
