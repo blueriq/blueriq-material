@@ -26,6 +26,17 @@ export function parseBqLocale(localization: Localization): string {
 }
 
 /**
+ * Converts a JS Date object to a moment object, using the specified localization
+ * @param date the JS Date object
+ * @param localization the localization information to use
+ * @returns a moment object
+ */
+export function convertBqDateToMoment(date: Date, localization: Localization): moment.Moment {
+  moment.locale(parseBqLocale(localization));
+  return moment(date, localization.dateFormats.dateTime.inputFormat);
+}
+
+/**
  * Provides a human readable form of the given date relative to now. If the given date is more
  * than a week ago, the full date is outputted. If less than a week ago, the date is described
  * as <period> ago, where period is seconds, minutes, hours or days.
@@ -36,7 +47,7 @@ export function parseBqLocale(localization: Localization): string {
  * this is more than a week ago
  */
 export function dateFromNowHumanReadable(date: Date, localization: Localization, showTime = true): string {
-  const mdate = moment(date);
+  const mdate = convertBqDateToMoment(date, localization);
   if (moment().diff(mdate, 'days') >= 7) {
     return mdate.format(showTime ? DEFAULT_DATETIME_FROM_NOW_FORMAT : DEFAULT_DATE_FROM_NOW_FORMAT);
   }
@@ -50,7 +61,8 @@ export function dateFromNowHumanReadable(date: Date, localization: Localization,
  * @returns string with the time (24H notation)
  */
 export function dateToShortTime(date: Date, localization: Localization): string {
-  return moment(date).format('HH:mm');
+  const mdate = convertBqDateToMoment(date, localization);
+  return mdate.format('HH:mm');
 }
 
 /**
