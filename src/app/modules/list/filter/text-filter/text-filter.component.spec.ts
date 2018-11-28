@@ -3,28 +3,28 @@ import { MatInput } from '@angular/material';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TextPredicate } from '@blueriq/angular/lists';
-import { TableFilterModule } from '../table.filter.module';
+import { FilterModule } from '../filter.module';
 import { FilterCandidate } from '../types';
 
-import { ListTextFilterComponent } from './list-text-filter.component';
+import { TextFilterComponent } from './text-filter.component';
 
 describe('ListStringFilterComponent', () => {
-  let component: ListTextFilterComponent;
-  let fixture: ComponentFixture<ListTextFilterComponent>;
+  let component: TextFilterComponent;
+  let fixture: ComponentFixture<TextFilterComponent>;
   let candidate: FilterCandidate;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        TableFilterModule,
+        FilterModule,
       ],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListTextFilterComponent);
+    fixture = TestBed.createComponent(TextFilterComponent);
     component = fixture.componentInstance;
     candidate = component.candidate = new FilterCandidate();
     fixture.detectChanges();

@@ -7,9 +7,9 @@ import { FilterCandidate } from './types';
 const MAX_FILTERS = 8;
 
 @Component({
-  selector: 'bq-table-filter',
-  templateUrl: './table.filter.component.html',
-  styleUrls: ['./table.filter.component.scss'],
+  selector: 'bq-filter',
+  templateUrl: './filter.component.html',
+  styleUrls: ['./filter.component.scss'],
   animations: [
     trigger('clearFilters', [
       transition(':enter', [
@@ -23,7 +23,7 @@ const MAX_FILTERS = 8;
     ]),
   ],
 })
-export class TableFilterComponent implements OnInit {
+export class FilterComponent implements OnInit {
 
   @Input()
   filter: Filter2;

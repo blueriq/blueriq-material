@@ -9,10 +9,10 @@ const operations = {
 };
 
 @Component({
-  selector: 'bq-list-numeric-filter',
-  templateUrl: './list-numeric-filter.component.html',
+  selector: 'bq-numeric-filter',
+  templateUrl: './numeric-filter.component.html',
 })
-export class ListNumericFilterComponent {
+export class NumericFilterComponent {
   readonly operations = operations;
   private _candidate: FilterCandidate;
 

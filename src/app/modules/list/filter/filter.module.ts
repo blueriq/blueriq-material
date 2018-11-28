@@ -19,24 +19,24 @@ import { FormattingModule } from '@blueriq/angular/formatting';
 import { SharedModule } from '@shared/shared.module';
 import { OwlDateTimeModule } from 'ng-pick-datetime';
 import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
-import { ListBooleanFilterComponent } from './list-boolean-filter/list-boolean-filter.component';
-import { ListDateFilterComponent } from './list-date-filter/list-date-filter.component';
-import { ListDomainFilterComponent } from './list-domain-filter/list-domain-filter.component';
-import { ListEmptyFilterComponent } from './list-empty-filter/list-empty-filter.component';
-import { ListFilterRowComponent } from './list-filter-row/list-filter-row.component';
-import { ListNumericFilterComponent } from './list-numeric-filter/list-numeric-filter.component';
-import { ListTextFilterComponent } from './list-text-filter/list-text-filter.component';
-import { TableFilterComponent } from './table.filter.component';
+import { BooleanFilterComponent } from './boolean-filter/boolean-filter.component';
+import { DateFilterComponent } from './date-filter/date-filter.component';
+import { DomainFilterComponent } from './domain-filter/domain-filter.component';
+import { EmptyFilterComponent } from './empty-filter/empty-filter.component';
+import { FilterRowComponent } from './filter-row/filter-row.component';
+import { NumericFilterComponent } from './numeric-filter/numeric-filter.component';
+import { TextFilterComponent } from './text-filter/text-filter.component';
+import { FilterComponent } from './filter.component';
 
 export const TABLE_FILTER_COMPONENTS = [
-  TableFilterComponent,
-  ListBooleanFilterComponent,
-  ListDateFilterComponent,
-  ListDomainFilterComponent,
-  ListEmptyFilterComponent,
-  ListFilterRowComponent,
-  ListNumericFilterComponent,
-  ListTextFilterComponent,
+  FilterComponent,
+  BooleanFilterComponent,
+  DateFilterComponent,
+  DomainFilterComponent,
+  EmptyFilterComponent,
+  FilterRowComponent,
+  NumericFilterComponent,
+  TextFilterComponent,
 ];
 
 @NgModule({
@@ -69,5 +69,5 @@ export const TABLE_FILTER_COMPONENTS = [
   exports: [TABLE_FILTER_COMPONENTS],
 })
 
-export class TableFilterModule {
+export class FilterModule {
 }

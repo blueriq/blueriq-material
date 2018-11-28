@@ -5,27 +5,27 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSession } from '@blueriq/angular';
 import { ColumnFilter } from '@blueriq/angular/lists';
 import { FieldTemplate, LocalizationTemplate } from '@blueriq/core/testing';
-import { ListBooleanFilterComponent } from '../list-boolean-filter/list-boolean-filter.component';
-import { ListDateFilterComponent } from '../list-date-filter/list-date-filter.component';
-import { ListDomainFilterComponent } from '../list-domain-filter/list-domain-filter.component';
-import { ListEmptyFilterComponent } from '../list-empty-filter/list-empty-filter.component';
-import { ListNumericFilterComponent } from '../list-numeric-filter/list-numeric-filter.component';
-import { ListTextFilterComponent } from '../list-text-filter/list-text-filter.component';
-import { TableFilterModule } from '../table.filter.module';
+import { BooleanFilterComponent } from '../boolean-filter/boolean-filter.component';
+import { DateFilterComponent } from '../date-filter/date-filter.component';
+import { DomainFilterComponent } from '../domain-filter/domain-filter.component';
+import { EmptyFilterComponent } from '../empty-filter/empty-filter.component';
+import { NumericFilterComponent } from '../numeric-filter/numeric-filter.component';
+import { TextFilterComponent } from '../text-filter/text-filter.component';
+import { FilterModule } from '../filter.module';
 import { FilterCandidate } from '../types';
 
-import { ListFilterRowComponent } from './list-filter-row.component';
+import { FilterRowComponent } from './filter-row.component';
 
 describe('ListFilterRowComponent', () => {
-  let component: ListFilterRowComponent;
-  let fixture: ComponentFixture<ListFilterRowComponent>;
+  let component: FilterRowComponent;
+  let fixture: ComponentFixture<FilterRowComponent>;
 
   beforeEach(async(() => {
     const session = { localization: LocalizationTemplate.create().build() } as BlueriqSession;
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        TableFilterModule,
+        FilterModule,
       ],
       providers: [
         { provide: BlueriqSession, useValue: session },
@@ -35,7 +35,7 @@ describe('ListFilterRowComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListFilterRowComponent);
+    fixture = TestBed.createComponent(FilterRowComponent);
     component = fixture.componentInstance;
 
     const columns: ColumnFilter[] = [
@@ -59,7 +59,7 @@ describe('ListFilterRowComponent', () => {
 
     const selectOptions = getMatOptionsFromOverlay();
     expect(selectOptions.length).toBe(6);
-    const emptyComponent = fixture.debugElement.query(By.directive(ListEmptyFilterComponent));
+    const emptyComponent = fixture.debugElement.query(By.directive(EmptyFilterComponent));
     expect(emptyComponent).toBeTruthy();
   });
 
@@ -76,37 +76,37 @@ describe('ListFilterRowComponent', () => {
 
   it('select boolean', () => {
     selectColumn('boolean');
-    expect(fixture.debugElement.query(By.directive(ListBooleanFilterComponent))).toBeTruthy();
+    expect(fixture.debugElement.query(By.directive(BooleanFilterComponent))).toBeTruthy();
     expect(component.candidate.predicate!.type).toBe('boolean');
   });
 
   it('select date', () => {
     selectColumn('date');
-    expect(fixture.debugElement.query(By.directive(ListDateFilterComponent))).toBeTruthy();
+    expect(fixture.debugElement.query(By.directive(DateFilterComponent))).toBeTruthy();
     expect(component.candidate.predicate!.type).toBe('date');
   });
 
   it('select datetime', () => {
     selectColumn('datetime');
-    expect(fixture.debugElement.query(By.directive(ListDateFilterComponent))).toBeTruthy();
+    expect(fixture.debugElement.query(By.directive(DateFilterComponent))).toBeTruthy();
     expect(component.candidate.predicate!.type).toBe('date');
   });
 
   it('select domain', () => {
     selectColumn('domain');
-    expect(fixture.debugElement.query(By.directive(ListDomainFilterComponent))).toBeTruthy();
+    expect(fixture.debugElement.query(By.directive(DomainFilterComponent))).toBeTruthy();
     expect(component.candidate.predicate!.type).toBe('domain');
   });
 
   it('select number', () => {
     selectColumn('number');
-    expect(fixture.debugElement.query(By.directive(ListNumericFilterComponent))).toBeTruthy();
+    expect(fixture.debugElement.query(By.directive(NumericFilterComponent))).toBeTruthy();
     expect(component.candidate.predicate!.type).toBe('numeric');
   });
 
   it('select text', () => {
     selectColumn('text');
-    expect(fixture.debugElement.query(By.directive(ListTextFilterComponent))).toBeTruthy();
+    expect(fixture.debugElement.query(By.directive(TextFilterComponent))).toBeTruthy();
     expect(component.candidate.predicate!.type).toBe('text');
   });
 

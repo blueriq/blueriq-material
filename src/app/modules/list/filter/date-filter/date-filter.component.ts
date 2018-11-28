@@ -14,11 +14,11 @@ const operations = {
 };
 
 @Component({
-  selector: 'bq-list-date-filter',
-  templateUrl: './list-date-filter.component.html',
+  selector: 'bq-date-filter',
+  templateUrl: './date-filter.component.html',
   providers: [dateTimeFormatProvider],
 })
-export class ListDateFilterComponent {
+export class DateFilterComponent {
   readonly operations = operations;
   private _candidate: FilterCandidate;
 

@@ -3,11 +3,11 @@ import { ColumnFilter } from '@blueriq/angular/lists';
 import { FilterCandidate } from '../types';
 
 @Component({
-  selector: 'bq-list-filter-row',
-  templateUrl: './list-filter-row.component.html',
-  styleUrls: ['./list-filter-row.component.scss'],
+  selector: 'bq-filter-row',
+  templateUrl: './filter-row.component.html',
+  styleUrls: ['./filter-row.component.scss'],
 })
-export class ListFilterRowComponent {
+export class FilterRowComponent {
 
   @Input()
   currentColumns: ColumnFilter[];

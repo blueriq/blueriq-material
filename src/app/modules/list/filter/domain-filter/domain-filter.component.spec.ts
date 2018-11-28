@@ -4,27 +4,27 @@ import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DomainPredicate } from '@blueriq/angular/lists';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { TableFilterModule } from '../table.filter.module';
+import { FilterModule } from '../filter.module';
 import { FilterCandidate } from '../types';
 
-import { ListDomainFilterComponent } from './list-domain-filter.component';
+import { DomainFilterComponent } from './domain-filter.component';
 
 describe('ListDomainFilterComponent', () => {
-  let component: ListDomainFilterComponent;
-  let fixture: ComponentFixture<ListDomainFilterComponent>;
+  let component: DomainFilterComponent;
+  let fixture: ComponentFixture<DomainFilterComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        TableFilterModule,
+        FilterModule,
       ],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListDomainFilterComponent);
+    fixture = TestBed.createComponent(DomainFilterComponent);
     component = fixture.componentInstance;
     // there is no DomainTemplate yet so we create a Domain via a FieldTemplate
     component.domain = FieldTemplate.text().domain({ one: 'een', two: 'twee', three: 'drie' }).build().domain;

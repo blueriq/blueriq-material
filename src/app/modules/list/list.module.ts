@@ -6,7 +6,7 @@ import { MatButtonModule, MatChipsModule, MatFormFieldModule, MatIconModule, Mat
 import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
 import { SharedModule } from '@shared/shared.module';
 import { HeadingModule } from '../heading/heading.module';
-import { TableFilterModule } from './filter/table.filter.module';
+import { FilterModule } from './filter/filter.module';
 import { TableFormControlModule } from './form-controls/table-form-control.module';
 import { TableHeaderColumnComponent } from './header/header.component';
 import { TableLimitComponent } from './limit/table.limit.component';
@@ -38,7 +38,7 @@ const LIST_COMPONENTS = [
     FlexLayoutModule,
     SharedModule,
     ReactiveFormsModule,
-    TableFilterModule,
+    FilterModule,
     TableFormControlModule, // form controls that have different appearance within a table
 
     /* Material modules */

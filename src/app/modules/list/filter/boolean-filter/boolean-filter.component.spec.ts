@@ -1,28 +1,28 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BooleanPredicate, ColumnFilter } from '@blueriq/angular/lists';
-import { TableFilterModule } from '../table.filter.module';
+import { FilterModule } from '../filter.module';
 import { FilterCandidate } from '../types';
 
-import { ListBooleanFilterComponent } from './list-boolean-filter.component';
+import { BooleanFilterComponent } from './boolean-filter.component';
 
 describe('ListBooleanFilterComponent', () => {
-  let component: ListBooleanFilterComponent;
-  let fixture: ComponentFixture<ListBooleanFilterComponent>;
+  let component: BooleanFilterComponent;
+  let fixture: ComponentFixture<BooleanFilterComponent>;
   const columnFilter: ColumnFilter = {} as ColumnFilter;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        TableFilterModule,
+        FilterModule,
       ],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListBooleanFilterComponent);
+    fixture = TestBed.createComponent(BooleanFilterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

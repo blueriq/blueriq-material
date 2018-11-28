@@ -2,43 +2,49 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { NumericOperator } from '@blueriq/angular/lists';
-import { TableFilterModule } from '../table.filter.module';
+import { BlueriqSession } from '@blueriq/angular';
+import { DateOperator } from '@blueriq/angular/lists';
+import { LocalizationTemplate } from '@blueriq/core/testing';
+import { FilterModule } from '../filter.module';
 import { FilterCandidate } from '../types';
 
-import { ListNumericFilterComponent } from './list-numeric-filter.component';
+import { DateFilterComponent } from './date-filter.component';
 
-describe('ListNumericFilterComponent', () => {
-  let component: ListNumericFilterComponent;
-  let fixture: ComponentFixture<ListNumericFilterComponent>;
+describe('ListDateFilterComponent', () => {
+  let component: DateFilterComponent;
+  let fixture: ComponentFixture<DateFilterComponent>;
 
   beforeEach(async(() => {
+    const session = { localization: LocalizationTemplate.create().build() } as BlueriqSession;
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        TableFilterModule,
+        FilterModule,
+      ],
+      providers: [
+        { provide: BlueriqSession, useValue: session },
       ],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListNumericFilterComponent);
+    fixture = TestBed.createComponent(DateFilterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('default filter is equals and show unknown', () => {
+  it('new date filter default shows on and unknown', () => {
     component.candidate = new FilterCandidate();
     fixture.detectChanges();
 
     const operation = fixture.nativeElement.querySelector('.mat-select-value-text').innerText;
-    expect(operation).toBe('Equal to');
-    const showUnknown = fixture.nativeElement.querySelector('.mat-checkbox-input').getAttribute('aria-checked');
-    expect(showUnknown).toBe('true');
+    expect(operation).toBe('On');
+    const checkbox = fixture.nativeElement.querySelector('.mat-checkbox-input').getAttribute('aria-checked');
+    expect(checkbox).toBe('true');
   });
 
-  it('select greater than or equals operator', fakeAsync(() => {
+  it('select date filter after', fakeAsync(() => {
     component.candidate = new FilterCandidate();
     fixture.detectChanges();
 
@@ -50,7 +56,7 @@ describe('ListNumericFilterComponent', () => {
     expect(selectOptions).toBeTruthy();
     selectOptions[2].click();
     // Verify
-    expect(component.operator).toBe(NumericOperator.GreaterThanEquals);
+    expect(component.operator).toBe(DateOperator.After);
   }));
 
   function getMatOptionsFromOverlay(): HTMLElement[] {

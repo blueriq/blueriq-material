@@ -1,10 +1,10 @@
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { CurrentFilters, Filter2 } from '@blueriq/angular/lists';
-import { TableFilterComponent } from './table.filter.component';
+import { FilterComponent } from './filter.component';
 import { FilterCandidate } from './types';
 
 describe('TableFilterComponent', () => {
-  let tableFilterComponent: TableFilterComponent;
+  let tableFilterComponent: FilterComponent;
   let dialogSpy: jasmine.SpyObj<MatDialog>;
   let dialogRefSpy: jasmine.SpyObj<MatDialogRef<any, any>>;
   let currentFiltersSpy: CurrentFilters;
@@ -18,7 +18,7 @@ describe('TableFilterComponent', () => {
       clear: jasmine.createSpy(),
     } as unknown as CurrentFilters;
     dialogSpy.open.and.returnValue(dialogRefSpy);
-    tableFilterComponent = new TableFilterComponent(dialogSpy);
+    tableFilterComponent = new FilterComponent(dialogSpy);
     filter = {
       currentFilters: currentFiltersSpy,
       currentColumns: [],

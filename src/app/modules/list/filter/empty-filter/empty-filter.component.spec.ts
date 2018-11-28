@@ -1,25 +1,25 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { TableFilterModule } from '../table.filter.module';
+import { FilterModule } from '../filter.module';
 
-import { ListEmptyFilterComponent } from './list-empty-filter.component';
+import { EmptyFilterComponent } from './empty-filter.component';
 
 describe('ListEmptyFilterComponent', () => {
-  let component: ListEmptyFilterComponent;
-  let fixture: ComponentFixture<ListEmptyFilterComponent>;
+  let component: EmptyFilterComponent;
+  let fixture: ComponentFixture<EmptyFilterComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        TableFilterModule,
+        FilterModule,
       ],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListEmptyFilterComponent);
+    fixture = TestBed.createComponent(EmptyFilterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

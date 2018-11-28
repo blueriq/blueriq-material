@@ -1,7 +1,7 @@
 <div bqKey bqClasses [bqContainer]="container">
   <bq-heading [title]="container.displayName" [styles]="container.styles"></bq-heading>
   <bq-table-search *ngIf="list.search$ | async as search" [search]="search"></bq-table-search>
-  <bq-table-filter *ngIf="list.filter2$ | async as filter" [filter]="filter"></bq-table-filter>
+  <bq-filter *ngIf="list.filter2$ | async as filter" [filter]="filter"></bq-filter>
   <bq-table [table]="list.table$ | async"></bq-table>
   <bq-table-pagination *ngIf="list.pagination$ | async as pagination" [pagination]="pagination"></bq-table-pagination>
   <bq-table-limit *ngIf="list.limit$ | async as limit" [limit]="limit"></bq-table-limit>

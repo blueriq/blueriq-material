@@ -3,10 +3,10 @@ import { BooleanPredicate } from '@blueriq/angular/lists';
 import { FilterCandidate } from '../types';
 
 @Component({
-  selector: 'bq-list-boolean-filter',
-  templateUrl: './list-boolean-filter.component.html',
+  selector: 'bq-boolean-filter',
+  templateUrl: './boolean-filter.component.html',
 })
-export class ListBooleanFilterComponent {
+export class BooleanFilterComponent {
   private _candidate: FilterCandidate;
 
   operation: 'true' | 'false' | 'both' | 'none';

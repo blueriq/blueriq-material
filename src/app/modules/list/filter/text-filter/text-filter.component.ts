@@ -1,34 +1,30 @@
 import { Component, Input } from '@angular/core';
-import { DomainPredicate } from '@blueriq/angular/lists';
-import { Domain } from '@blueriq/core';
+import { TextPredicate } from '@blueriq/angular/lists';
 import { FilterCandidate } from '../types';
 
 @Component({
-  selector: 'bq-list-domain-filter',
-  templateUrl: './list-domain-filter.component.html',
+  selector: 'bq-text-filter',
+  templateUrl: './text-filter.component.html',
 })
-export class ListDomainFilterComponent {
+export class TextFilterComponent {
   private _candidate: FilterCandidate;
 
-  values: string[];
+  value: string;
   showUnknown: boolean;
 
   @Input()
-  domain: Domain;
-
-  @Input()
   set candidate(candidate: FilterCandidate) {
-    const predicate = candidate.predicate as DomainPredicate | undefined;
+    const predicate = candidate.predicate as TextPredicate | undefined;
 
-    this.values = predicate ? predicate.values : [];
+    this.value = predicate ? predicate.text : '';
     this.showUnknown = predicate ? predicate.showUnknown : true;
 
     this._candidate = candidate;
     this.updateCandidate();
   }
 
-  onValueChanged(values: string[]) {
-    this.values = values;
+  onValueChanged(value: string) {
+    this.value = value;
     this.updateCandidate();
   }
 
@@ -38,12 +34,12 @@ export class ListDomainFilterComponent {
   }
 
   private updateCandidate(): void {
-    const { values, showUnknown } = this;
+    const { value, showUnknown } = this;
     this._candidate.update({
-      valid: showUnknown || values.length > 0,
+      valid: showUnknown || !!value,
       predicate: {
-        type: 'domain',
-        values,
+        type: 'text',
+        text: value,
         showUnknown,
       },
     });

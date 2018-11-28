@@ -23,11 +23,11 @@
       <mat-label fxFlex="0 0 4em">{{showUnknownLabel}}</mat-label>
     </div>
 
-    <bq-list-filter-row *ngFor="let candidate of filterCandidates"
+    <bq-filter-row *ngFor="let candidate of filterCandidates"
                         [currentColumns]="filter.currentColumns"
                         [candidate]="candidate"
                         (removed)="removeFilter(candidate)">
-    </bq-list-filter-row>
+    </bq-filter-row>
 
     <div *ngIf="canAddFilter()" fxLayout="row" fxLayoutGap="10px">
       <button mat-button class="plain-link" (click)="addFilter()">Add filter</button>
