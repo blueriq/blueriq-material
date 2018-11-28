@@ -3,10 +3,10 @@ import { TextPredicate } from '@blueriq/angular/lists';
 import { FilterCandidate } from '../types';
 
 @Component({
-  selector: 'bq-list-string-filter',
-  templateUrl: './list-string-filter.component.html',
+  selector: 'bq-list-text-filter',
+  templateUrl: './list-text-filter.component.html',
 })
-export class ListStringFilterComponent {
+export class ListTextFilterComponent {
   private _candidate: FilterCandidate;
 
   value: string;

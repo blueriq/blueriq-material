@@ -18,7 +18,7 @@ export class ListFilterRowComponent {
   @Output()
   removed = new EventEmitter<void>();
 
-  getType(): 'empty' | 'domain' | 'boolean' | 'numeric' | 'date' | 'datetime' | 'string' {
+  getType(): 'empty' | 'domain' | 'boolean' | 'numeric' | 'date' | 'datetime' | 'text' {
     if (!this.candidate.selectedColumn) {
       return 'empty';
     }
@@ -36,7 +36,7 @@ export class ListFilterRowComponent {
       case 'integer':
         return 'numeric';
       default:
-        return 'string';
+        return 'text';
     }
   }
 

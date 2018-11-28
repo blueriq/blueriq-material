@@ -25,8 +25,8 @@
     <bq-list-date-filter *ngSwitchCase="'datetime'" type="datetime"
                          [candidate]="candidate"></bq-list-date-filter>
 
-    <bq-list-string-filter *ngSwitchCase="'string'"
-                           [candidate]="candidate"></bq-list-string-filter>
+    <bq-list-text-filter *ngSwitchCase="'text'"
+                           [candidate]="candidate"></bq-list-text-filter>
 
     <bq-list-empty-filter *ngSwitchDefault></bq-list-empty-filter>
   </div>
