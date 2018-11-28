@@ -18,15 +18,11 @@ describe('ListNumericFilterComponent', () => {
         NoopAnimationsModule,
         FilterModule,
       ],
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
+    }).compileComponents();
     fixture = TestBed.createComponent(NumericFilterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+  }));
 
   it('default filter is equals and show unknown', () => {
     component.candidate = new FilterCandidate();

@@ -14,15 +14,11 @@ describe('ListEmptyFilterComponent', () => {
         NoopAnimationsModule,
         FilterModule,
       ],
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
+    }).compileComponents();
     fixture = TestBed.createComponent(EmptyFilterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+  }));
 
   it('should create', () => {
     expect(component).toBeTruthy();

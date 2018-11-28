@@ -19,16 +19,12 @@ describe('ListStringFilterComponent', () => {
         NoopAnimationsModule,
         FilterModule,
       ],
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
+    }).compileComponents();
     fixture = TestBed.createComponent(TextFilterComponent);
     component = fixture.componentInstance;
     candidate = component.candidate = new FilterCandidate();
     fixture.detectChanges();
-  });
+  }));
 
   it('input text should result in predicate value being set', () => {
     const input: HTMLInputElement = fixture.debugElement.query(By.directive(MatInput)).nativeElement;

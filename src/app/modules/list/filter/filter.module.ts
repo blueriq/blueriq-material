@@ -24,9 +24,9 @@ import { DateFilterComponent } from './date-filter/date-filter.component';
 import { DomainFilterComponent } from './domain-filter/domain-filter.component';
 import { EmptyFilterComponent } from './empty-filter/empty-filter.component';
 import { FilterRowComponent } from './filter-row/filter-row.component';
+import { FilterComponent } from './filter.component';
 import { NumericFilterComponent } from './numeric-filter/numeric-filter.component';
 import { TextFilterComponent } from './text-filter/text-filter.component';
-import { FilterComponent } from './filter.component';
 
 export const TABLE_FILTER_COMPONENTS = [
   FilterComponent,

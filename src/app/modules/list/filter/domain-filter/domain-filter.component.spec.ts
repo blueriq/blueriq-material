@@ -19,17 +19,13 @@ describe('ListDomainFilterComponent', () => {
         NoopAnimationsModule,
         FilterModule,
       ],
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
+    }).compileComponents();
     fixture = TestBed.createComponent(DomainFilterComponent);
     component = fixture.componentInstance;
     // there is no DomainTemplate yet so we create a Domain via a FieldTemplate
     component.domain = FieldTemplate.text().domain({ one: 'een', two: 'twee', three: 'drie' }).build().domain;
     fixture.detectChanges();
-  });
+  }));
 
   it('domain filter with options', fakeAsync(() => {
     const candidate = component.candidate = new FilterCandidate();

@@ -17,15 +17,11 @@ describe('ListBooleanFilterComponent', () => {
         NoopAnimationsModule,
         FilterModule,
       ],
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
+    }).compileComponents();
     fixture = TestBed.createComponent(BooleanFilterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+  }));
 
   it('new boolean filter default shows true and unknown', () => {
     component.candidate = new FilterCandidate();
