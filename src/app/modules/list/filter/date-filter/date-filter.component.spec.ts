@@ -24,20 +24,16 @@ describe('ListDateFilterComponent', () => {
       providers: [
         { provide: BlueriqSession, useValue: session },
       ],
-    })
-    .compileComponents();
-  }));
+    }).compileComponents();
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(DateFilterComponent);
-    component = fixture.componentInstance;
     fixture.detectChanges();
-  });
-
-  it('new date filter default shows on and unknown', () => {
+    component = fixture.componentInstance;
     component.candidate = new FilterCandidate();
     fixture.detectChanges();
+  }));
 
+  it('new date filter default shows on and unknown', () => {
     const operation = fixture.nativeElement.querySelector('.mat-select-value-text').innerText;
     expect(operation).toBe('On');
     const checkbox = fixture.nativeElement.querySelector('.mat-checkbox-input').getAttribute('aria-checked');
@@ -45,9 +41,6 @@ describe('ListDateFilterComponent', () => {
   });
 
   it('select date filter after', fakeAsync(() => {
-    component.candidate = new FilterCandidate();
-    fixture.detectChanges();
-
     const trigger = fixture.debugElement.query(By.css('.mat-select-trigger')).nativeElement;
     trigger.click();
     fixture.detectChanges();
