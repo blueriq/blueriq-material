@@ -21,7 +21,7 @@ export class BqPresentationStyles {
   static STATISTICRADAR = 'StatisticRadar';
   static STATISTICLINE = 'StatisticLine';
   static STATISTICPOLAR = 'StatisticPolar';
-  static TOGGLE = 'Toggle';
+  static SWITCH = 'Switch';
 
   // Presentation styles reused from AquimaLibrary, these can be refactored in the future
   static DANGER = 'Danger';
@@ -44,7 +44,7 @@ export class BqPresentationStyles {
   static DEPRECATED_ANIMATE = 'animate'; // New style is 'Animation'
   static DEPRECATED_HORIZONTAL = 'options_horizontal'; // New style is 'Horizontal'
   static DEPRECATED_VERTICAL = 'options_vertical'; // New style is 'Radio'
-  static DEPRECATED_TOGGLE = 'toggle'; // New style is 'Toggle'
+  static DEPRECATED_TOGGLE = 'toggle'; // New style is 'Switch'
   static DEPRECATED_MEMO = 'memo'; // New style is 'LargeText'
   static DEPRECATED_STATISTIC_PIE = 'pie';
   static DEPRECATED_STATISTIC_BAR = 'bar';

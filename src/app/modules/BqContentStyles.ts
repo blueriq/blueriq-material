@@ -1,11 +1,11 @@
 export class BqContentStyles {
   static TABLE = 'table';
 
-  static WIDTH_SMALL = 'small';
-  static WIDTH_MEDIUM = 'medium';
-  static WIDTH_LARGE = 'large';
-  static WIDTH_FULL = 'full';
-  static WIDTH_RESPONSIVE = 'responsive';
+  static WIDTH_SMALL = 'Small';
+  static WIDTH_MEDIUM = 'Medium';
+  static WIDTH_LARGE = 'Large';
+  static WIDTH_FULL = 'Full';
+  static WIDTH_RESPONSIVE = 'Responsive';
 
   static DASHBOARD_HEADER = 'dashboard_header';
   static DASHBOARD_MENU = 'dashboard_menu';
@@ -13,7 +13,6 @@ export class BqContentStyles {
   static DASHBOARD_ROW = 'dashboard_row';
   static DASHBOARD_WIDGET = 'dashboard_widget';
   static DASHBOARD_FLOWWIDGET = 'dashboard_flowwidget';
-  static DASHBOARD_COLUMN = 'dashboard_column';
   static DASHBOARD_COLUMN_PREFIX = 'dashboard_column';
 
   static TAB = 'tabs';

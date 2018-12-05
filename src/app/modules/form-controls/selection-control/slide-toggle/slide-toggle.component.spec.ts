@@ -23,7 +23,7 @@ describe('SlideToggleComponent', () => {
 
   beforeEach(() => {
     field = FieldTemplate.boolean();
-    field.styles(BqPresentationStyles.TOGGLE);
+    field.styles(BqPresentationStyles.SWITCH);
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(SlideToggleComponent);
   });
@@ -43,7 +43,7 @@ describe('SlideToggleComponent', () => {
   });
 
   it('should be disabled', () => {
-    field.styles(BqPresentationStyles.TOGGLE, BqPresentationStyles.DISABLED);
+    field.styles(BqPresentationStyles.SWITCH, BqPresentationStyles.DISABLED);
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(SlideToggleComponent);
 
