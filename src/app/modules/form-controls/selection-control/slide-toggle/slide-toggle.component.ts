@@ -13,7 +13,7 @@ import { BqPresentationStyles } from '../../../BqPresentationStyles';
 @BlueriqComponent({
   type: Field,
   selector: '.' + BqPresentationStyles.DEPRECATED_TOGGLE + '[dataType=boolean]:not([hasDomain]), ' +
-    '.' + BqPresentationStyles.TOGGLE + '[dataType=boolean]:not([hasDomain])',
+    '.' + BqPresentationStyles.SWITCH + '[dataType=boolean]:not([hasDomain])',
 })
 export class SlideToggleComponent {
 
