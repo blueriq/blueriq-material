@@ -10,13 +10,12 @@
 
   <div fxFlex="0 0 auto" class="application-actions" *ngIf="authenticatedUser || logoutLink">
 
-    <button type="button" mat-button [matMenuTriggerFor]="userMenu" aria-label="Open user menu"
-      class="active-user-menu">
+    <button type="button" mat-button [matMenuTriggerFor]="userMenu" aria-label="Open user menu" class="active-user-menu">
       <div fxLayout="row" fxLayoutGap="12px" class="icon">
         <div fxLayoutAlign="center center">
           <mat-icon>account_circle</mat-icon>
         </div>
-        <div class="username">
+        <div class="username" *ngIf="authenticatedUser">
           <span>{{ authenticatedUser.plainText }}</span>
         </div>
       </div>
