@@ -1,9 +1,10 @@
 # Header 
-A header will be displayed when a container with content style `dashboard_header`.
+The header will always be displayed. When a container with content style `dashboard_header` is present, its content 
+will be rendered inside the header.
 
 ### Content 
-A header will display a logo and possible children within a container.
+The header will display a logo and possible children within a container.
 
-A header can also have a authenticated user name displayed and therefor also a logout link. Both require the following textItems with presentation styles:
-- username: textitem with presentation style `authenticated_user` 
-- logout link: textitem with presentation style `logout_link`
+The following optional items will have special handling in the header:
+- username: text item with presentation style `authenticated_user` 
+- logout link: text item with presentation style `logout_link`
