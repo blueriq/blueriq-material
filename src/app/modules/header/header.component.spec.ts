@@ -76,4 +76,55 @@ describe('HeaderComponent', () => {
       expect(fixture.nativeElement.querySelector('mat-menu').getAttribute('ng-reflect-overlap-trigger')).toBe('false');
     });
   });
+
+  describe('rendered with dashboard_header and no username', () => {
+    let fixture: ComponentFixture<PageComponent>;
+    let pageTemplate: PageTemplate;
+
+    beforeEach(() => {
+      pageTemplate = PageTemplate.create();
+      pageTemplate.displayName('Page Title');
+      headerTemplate = ContainerTemplate.create();
+      headerTemplate.contentStyle('dashboard_header');
+      headerTemplate.children(
+        TextItemTemplate.create().plainText('Logoff').styles('logout_link'),
+      );
+      pageTemplate.children(headerTemplate);
+      session = BlueriqSessionTemplate.create().build(pageTemplate);
+      fixture = session.get(PageComponent);
+      fixture.autoDetectChanges();
+    });
+
+    it('should render properly', () => {
+      expect(fixture.nativeElement.querySelector('img')).toBeTruthy();
+      expect(fixture.nativeElement.querySelector('h1').innerText).toBe('Page Title');
+      expect(fixture.nativeElement.querySelector('.username')).toBeFalsy();
+      expect(fixture.nativeElement.querySelector('mat-menu').getAttribute('ng-reflect-overlap-trigger')).toBe('false');
+    });
+  });
+
+  describe('rendered with dashboard_header and no logout', () => {
+    let fixture: ComponentFixture<PageComponent>;
+    let pageTemplate: PageTemplate;
+
+    beforeEach(() => {
+      pageTemplate = PageTemplate.create();
+      pageTemplate.displayName('Page Title');
+      headerTemplate = ContainerTemplate.create();
+      headerTemplate.contentStyle('dashboard_header');
+      headerTemplate.children(
+        TextItemTemplate.create().plainText('Requester').styles('authenticated_user'),
+      );
+      pageTemplate.children(headerTemplate);
+      session = BlueriqSessionTemplate.create().build(pageTemplate);
+      fixture = session.get(PageComponent);
+      fixture.autoDetectChanges();
+    });
+
+    it('should render properly', () => {
+      expect(fixture.nativeElement.querySelector('img')).toBeTruthy();
+      expect(fixture.nativeElement.querySelector('h1').innerText).toBe('Page Title');
+      expect(fixture.nativeElement.querySelector('.username').innerText.toLowerCase()).toBe('requester');
+    });
+  });
 });
