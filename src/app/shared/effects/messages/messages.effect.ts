@@ -15,8 +15,6 @@ import { tap } from 'rxjs/operators';
 @Injectable()
 export class MessagesEffect {
 
-  currentMessages: string;
-
   @Effect({ dispatch: false })
   sessionActions$: Observable<any> = this.actions$.pipe(
     ofType<Action>(StartupActions.SESSION_LOADED, SessionEventActions.CHANGED_PAGE, SessionEventActions.PAGE_UPDATED),
@@ -30,19 +28,14 @@ export class MessagesEffect {
 
   private showSnackBar(action: ButtonPressHandledAction | SessionLoadedAction): void {
     const session = this.sessionRegistry.getByNameOptionally(action.sessionName);
-
     if (session) {
       const messages = session.pageModel.page.messages;
       if (messages.hasMessages) {
         // concatenate all messages, as only one snackbar can be shown at a time
         const messagesAsText = messages.all.map(message => message.text).join(', ');
-        // snackbar currently cannot be dismissed, so check if the messages are already displayed
-        if (messagesAsText !== this.currentMessages) {
-          this.currentMessages = messagesAsText;
-          this.snackBar.open(this.currentMessages, undefined, {
-            panelClass: (messages.hasErrors) ? 'snackbar-error' : 'snackbar-warning',
-          });
-        }
+        this.snackBar.open(messagesAsText, 'Ok', {
+          panelClass: (messages.hasErrors) ? 'snackbar-error' : 'snackbar-warning',
+        });
       }
     }
   }

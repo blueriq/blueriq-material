@@ -40,7 +40,7 @@ describe('MessagesEffect', () => {
     effects = TestBed.get(MessagesEffect);
   }));
 
-  it('does not animate snackbar when it already displays the messages', fakeAsync(() => {
+  it('does animate snackbar again even if already displayed the message', fakeAsync(() => {
     // set currently displayed messages
     effects.currentMessages = errorMsg;
 
@@ -56,7 +56,7 @@ describe('MessagesEffect', () => {
     tick();
 
     // messages are already displayed, so snackbar should not be called
-    expect(snackBarSpy.open).not.toHaveBeenCalled();
+    expect(snackBarSpy.open).toHaveBeenCalled();
   }));
 
   it('opens snackbar with an error message when session is loaded', fakeAsync(() => {
@@ -72,7 +72,7 @@ describe('MessagesEffect', () => {
 
     tick();
 
-    expect(snackBarSpy.open).toHaveBeenCalledWith(errorMsg, undefined, {
+    expect(snackBarSpy.open).toHaveBeenCalledWith(errorMsg, 'Ok', {
       panelClass: 'snackbar-error',
     });
   }));
@@ -90,7 +90,7 @@ describe('MessagesEffect', () => {
 
     tick();
 
-    expect(snackBarSpy.open).toHaveBeenCalledWith(errorMsg, undefined, {
+    expect(snackBarSpy.open).toHaveBeenCalledWith(errorMsg, 'Ok', {
       panelClass: 'snackbar-error',
     });
   }));
@@ -108,7 +108,7 @@ describe('MessagesEffect', () => {
 
     tick();
 
-    expect(snackBarSpy.open).toHaveBeenCalledWith(errorMsg, undefined, {
+    expect(snackBarSpy.open).toHaveBeenCalledWith(errorMsg, 'Ok', {
       panelClass: 'snackbar-error',
     });
   }));
@@ -127,7 +127,7 @@ describe('MessagesEffect', () => {
 
     tick();
 
-    expect(snackBarSpy.open).toHaveBeenCalledWith(`${errorMsg}, ${anotherErrorMsg}`, undefined, {
+    expect(snackBarSpy.open).toHaveBeenCalledWith(`${errorMsg}, ${anotherErrorMsg}`, 'Ok', {
       panelClass: 'snackbar-error',
     });
   }));
@@ -145,7 +145,7 @@ describe('MessagesEffect', () => {
 
     tick();
 
-    expect(snackBarSpy.open).toHaveBeenCalledWith(`${errorMsg}, ${warnMsg}`, undefined, {
+    expect(snackBarSpy.open).toHaveBeenCalledWith(`${errorMsg}, ${warnMsg}`, 'Ok', {
       panelClass: 'snackbar-error',
     });
   }));
@@ -163,7 +163,7 @@ describe('MessagesEffect', () => {
 
     tick();
 
-    expect(snackBarSpy.open).toHaveBeenCalledWith(warnMsg, undefined, {
+    expect(snackBarSpy.open).toHaveBeenCalledWith(warnMsg, 'Ok', {
       panelClass: 'snackbar-warning',
     });
   }));
