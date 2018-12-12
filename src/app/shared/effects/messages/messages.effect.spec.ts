@@ -41,9 +41,6 @@ describe('MessagesEffect', () => {
   }));
 
   it('does animate snackbar again even if already displayed the message', fakeAsync(() => {
-    // set currently displayed messages
-    effects.currentMessages = errorMsg;
-
     const session = SessionTemplate.create()
     .sessionName('Main')
     .pageModel(PageModelTemplate.create(PageTemplate.create().error(errorMsg))).build();
