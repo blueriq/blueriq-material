@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqSession } from '@blueriq/angular';
+import { BlueriqCommonModule } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ButtonTemplate } from '@blueriq/core/testing';
 import { BqPresentationStyles } from '../BqPresentationStyles';
@@ -18,6 +18,7 @@ describe('ButtonComponent', () => {
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
+        BlueriqCommonModule,
         FormsModule,
         ButtonModule,
       ],
@@ -103,20 +104,9 @@ describe('ButtonComponent', () => {
     expect(classes).not.toContain('mat-raised-button');
   });
 
-  it('should call the session when it gets clicked', () => {
-    spyOn(BlueriqSession.prototype, 'pressed');
-    const buttonComponent: ButtonComponent = component.componentInstance;
-    session.update(
-      button.disabled(true),
-    );
-    buttonComponent.onClick();
-    expect(BlueriqSession.prototype.pressed).not.toHaveBeenCalled();
-
-    session.update(
-      button.disabled(false),
-    );
-    buttonComponent.onClick();
-    expect(BlueriqSession.prototype.pressed).toHaveBeenCalledTimes(1);
+  it('should use the bqbutton directive', () => {
+    // Verify
+    expect(component.nativeElement.querySelector('button[bqbutton]')).toBeTruthy();
   });
 
 });
