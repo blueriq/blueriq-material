@@ -1,4 +1,4 @@
-### Page messages
+#Page messages
 In Blueriq, a page can contain messages. These messages are errors and/or warnings that are thrown by services or when
 a flow failed to execute properly for instance. The messages effect is used to display these page messages.
  
@@ -20,3 +20,6 @@ system or a configuration issue that needs to be resolved before normal operatio
  
 Because of this, whenever a snackbar needs to be displayed, it is first checked that the message is not already
 displayed, to prevent animations of the snackbar without presenting new information.
+
+### Limitation
+The error doesn't return when dismissed, until you trigger another page error.

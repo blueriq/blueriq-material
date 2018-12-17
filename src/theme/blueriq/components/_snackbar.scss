@@ -8,4 +8,9 @@
   &.snackbar-warning {
     background-color: mat-color($bq-warn-palette);
   }
+
+  button {
+    background: mat-color($bq-error-palette, 400);
+    color: $light-primary-text;
+  }
 }

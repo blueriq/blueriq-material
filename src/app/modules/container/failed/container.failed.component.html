@@ -1,14 +1,16 @@
 <div>
   <div class="message" fxLayout="row" (dblclick)="showTrace=!showTrace">
     {{failedElement.message}}
-    <button mat-icon-button matTooltip="Copy trace to clipboard" (click)="copyToClipboard()">
-      <mat-icon aria-label="Copy to clipboard">assignment</mat-icon>
-    </button>
-    <button mat-icon-button matTooltip="Show stacktrace" (click)="showTrace=!showTrace">
-      <mat-icon aria-label="Show stacktrace">more</mat-icon>
-    </button>
+    <ng-container *ngIf="isDev">
+      <button mat-icon-button matTooltip="Copy trace to clipboard" (click)="copyToClipboard()">
+        <mat-icon aria-label="Copy to clipboard">assignment</mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="Show stacktrace" (click)="showTrace=!showTrace">
+        <mat-icon aria-label="Show stacktrace">more</mat-icon>
+      </button>
+    </ng-container>
   </div>
-  <div class="trace" fxLayout="row" *ngIf="showTrace && isDev">
+  <div *ngIf="isDev && showTrace" class="trace" fxLayout="row">
     <pre>{{failedElement.stacktrace}}</pre>
   </div>
 </div>
