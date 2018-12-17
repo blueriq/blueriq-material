@@ -1,5 +1,5 @@
 import { Component, Host, OnDestroy, Optional, Self } from '@angular/core';
-import { AuthorizedDownload, BlueriqComponent, BlueriqSession } from '@blueriq/angular';
+import { AuthorizedDownload, BlueriqComponent } from '@blueriq/angular';
 import { FileDownload } from '@blueriq/angular/files';
 import { List } from '@blueriq/angular/lists';
 import { Container } from '@blueriq/core';
@@ -22,10 +22,9 @@ export class FileDownloadComponent extends ButtonComponent implements OnDestroy 
   downloadSubscription: Subscription | undefined;
 
   constructor(@Self() public fileDownload: FileDownload,
-              public session: BlueriqSession,
               @Optional() @Host() public readonly list: List,
               public fileDownloadService: FileDownloadService) {
-    super(fileDownload.downloadButton, session, list);
+    super(fileDownload.downloadButton, list);
   }
 
   /* Overrides */

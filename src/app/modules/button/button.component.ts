@@ -1,5 +1,5 @@
 import { Component, Host, Optional } from '@angular/core';
-import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
+import { BlueriqComponent } from '@blueriq/angular';
 import { List } from '@blueriq/angular/lists';
 import { Button } from '@blueriq/core';
 import { BqIconDirective } from '@shared/directive/icon/icon.directive';
@@ -16,7 +16,6 @@ import { BqPresentationStyles } from '../BqPresentationStyles';
 export class ButtonComponent {
 
   constructor(@Host() public button: Button,
-              public session: BlueriqSession,
               @Optional() @Host() public readonly list: List) {
   }
 
@@ -64,9 +63,4 @@ export class ButtonComponent {
     return this.button.disabled || this.button.styles.has(BqPresentationStyles.DISABLED);
   }
 
-  onClick(): void {
-    if (this.button.enabled) {
-      this.session.pressed(this.button);
-    }
-  }
 }
