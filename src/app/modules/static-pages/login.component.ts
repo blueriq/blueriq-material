@@ -27,8 +27,10 @@ export class LoginComponent {
     this.authService.login(this.username.value, this.password.value).subscribe({
       next: result => {
         if (result.success) {
-          const { flow, project, version } = this.route.snapshot.queryParams;
-          if (project && flow) {
+          const { flow, project, version, shortcut } = this.route.snapshot.queryParams;
+          if (shortcut) {
+            this.router.navigate(['/shortcut', shortcut]);
+          } else if (project && flow) {
             if (version) {
               this.router.navigate(['/flow', project, flow, version]);
             } else {
