@@ -38,6 +38,9 @@ describe('FailedContainerComponent', () => {
   let fixture: ComponentFixture<ContainerFailedComponent>;
   let component: ContainerFailedComponent;
 
+  const CLASS_MESSAGE = '.message';
+  const CLASS_TRACE = '.trace';
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -62,13 +65,14 @@ describe('FailedContainerComponent', () => {
   });
 
   it('should display the message and no stacktrace', () => {
-    expect(fixture.nativeElement.querySelector('.message').innerHTML).toContain('Some error has occured');
-    expect(fixture.nativeElement.querySelector('.trace')).toBeFalsy();
+    expect(fixture.nativeElement.querySelector(CLASS_MESSAGE).innerHTML).toContain('Some error has occured');
+    expect(fixture.nativeElement.querySelector(CLASS_TRACE)).toBeFalsy();
+    expect(component.showTrace).toBeFalsy('by default this should be false');
   });
 
   it('should copy to clipboard', () => {
     spyOn(document, 'execCommand').and.callThrough();
-    const buttons = fixture.nativeElement.querySelector('.message').querySelectorAll('button');
+    const buttons = fixture.nativeElement.querySelector(CLASS_MESSAGE).querySelectorAll('button');
     const buttonCopyToClipBoard = buttons[0];
     buttonCopyToClipBoard.click();
     expect(document.execCommand).toHaveBeenCalledWith('copy');
@@ -78,17 +82,29 @@ describe('FailedContainerComponent', () => {
     fixture.componentInstance.failedElement.stacktrace = undefined;
 
     spyOn(document, 'execCommand').and.callThrough();
-    const buttons = fixture.nativeElement.querySelector('.message').querySelectorAll('button');
+    const buttons = fixture.nativeElement.querySelector(CLASS_MESSAGE).querySelectorAll('button');
     const buttonCopyToClipBoard = buttons[0];
     buttonCopyToClipBoard.click();
     expect(document.execCommand).toHaveBeenCalledWith('copy');
   });
 
   it('should display the stacktrace when clicked on expanding', () => {
-    const buttons = fixture.nativeElement.querySelector('.message').querySelectorAll('button');
+    const buttons = fixture.nativeElement.querySelector(CLASS_MESSAGE).querySelectorAll('button');
     const buttonShowTrace = buttons[1];
     buttonShowTrace.click();
-    expect(fixture.nativeElement.querySelector('.trace').innerHTML).toContain('blueriq.com.error');
+    expect(fixture.nativeElement.querySelector(CLASS_TRACE).innerHTML).toContain('blueriq.com.error');
+  });
+
+  it('should not display stacktrace when isDev is false', () => {
+    // Init
+    component.isDev = false;
+    component.showTrace = true;
+    fixture.detectChanges();
+
+    // Verify
+    expect(fixture.nativeElement.querySelector(CLASS_TRACE)).toBeFalsy(
+      'With showTrace true, this still should be visible when not development mode');
+    expect(fixture.nativeElement.querySelector('button')).toBeFalsy('No actions should be available, just the message should be shown');
   });
 
 });

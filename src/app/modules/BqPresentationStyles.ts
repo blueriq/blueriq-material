@@ -14,6 +14,7 @@ export class BqPresentationStyles {
   static WARNING = 'Warning';
   static LARGETEXT = 'LargeText';
   static AUTOCOMPLETE = 'Autocomplete';
+  static ONLYICON = 'OnlyIcon';
   static ANIMATION = 'Animation';
   static STATISTICPIE = 'StatisticPie';
   static STATISTICBAR = 'StatisticBar';
@@ -46,6 +47,7 @@ export class BqPresentationStyles {
   static DEPRECATED_VERTICAL = 'options_vertical'; // New style is 'Radio'
   static DEPRECATED_TOGGLE = 'toggle'; // New style is 'Switch'
   static DEPRECATED_MEMO = 'memo'; // New style is 'LargeText'
+  static DEPRECATED_ONLYICON = 'only_icon'; // New style is 'OnlyIcon'
   static DEPRECATED_STATISTIC_PIE = 'pie';
   static DEPRECATED_STATISTIC_BAR = 'bar';
   static DEPRECATED_STATISTIC_DOUGHNUT = 'doughnut';
