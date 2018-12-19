@@ -1,8 +1,5 @@
 import { ValueTransformer, ValueTransformerContext } from '@blueriq/angular/forms';
-import { DomainValue } from '@blueriq/core';
-
-type TechnicalValue = string;
-type DisplayValue = string;
+import { DisplayValue, DomainValue, TechnicalValue } from '@blueriq/core';
 
 export class DomainValueTransformer implements ValueTransformer<TechnicalValue, DomainValue | DisplayValue> {
   toControl(value: TechnicalValue | null, context: ValueTransformerContext): DomainValue | DisplayValue | null {

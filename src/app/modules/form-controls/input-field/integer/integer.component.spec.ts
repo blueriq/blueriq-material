@@ -1,11 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqComponents } from '@blueriq/angular';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { MaterialModule } from '../../../../material.module';
+import { FormControlModule } from '../../form-control.module';
 import { IntegerFieldComponent } from './integer.component';
 
 describe('IntegerFieldComponent', () => {
@@ -15,15 +12,11 @@ describe('IntegerFieldComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [IntegerFieldComponent],
-      providers: [BlueriqComponents.register([IntegerFieldComponent])],
       imports: [
-        MaterialModule,
-        BrowserAnimationsModule, // or NoopAnimationsModule
+        NoopAnimationsModule,
         BlueriqTestingModule,
-        FlexLayoutModule,
-        FormsModule
-      ]
+        FormControlModule,
+      ],
     });
   }));
 

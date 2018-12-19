@@ -1,7 +1,7 @@
-import { Component, Host, OnDestroy, Optional, Self, ViewEncapsulation } from '@angular/core';
-import { AuthorizedDownload, BlueriqComponent, BlueriqSession } from '@blueriq/angular';
+import { Component, Host, OnDestroy, Optional, Self } from '@angular/core';
+import { AuthorizedDownload, BlueriqComponent } from '@blueriq/angular';
 import { FileDownload } from '@blueriq/angular/files';
-import { Table } from '@blueriq/angular/lists';
+import { List } from '@blueriq/angular/lists';
 import { Container } from '@blueriq/core';
 import { Subscription } from 'rxjs/Subscription';
 import { ButtonComponent } from '../../button/button.component';
@@ -9,32 +9,30 @@ import { FileDownloadService } from './file-download.service';
 
 @Component({
   selector: 'bq-file-download',
-  templateUrl: '../../button/button.component.html',
-  styleUrls: ['../../button/button.component.scss'],
+  templateUrl: './file-download.component.html',
+  styleUrls: ['./file-download.component.scss'],
   providers: [FileDownload],
-  encapsulation: ViewEncapsulation.None
 })
 @BlueriqComponent({
   type: Container,
-  selector: 'filedownload'
+  selector: 'filedownload',
 })
 export class FileDownloadComponent extends ButtonComponent implements OnDestroy {
 
   downloadSubscription: Subscription | undefined;
 
   constructor(@Self() public fileDownload: FileDownload,
-              public session: BlueriqSession,
-              @Optional() @Host() public readonly table: Table,
+              @Optional() @Host() public readonly list: List,
               public fileDownloadService: FileDownloadService) {
-    super(fileDownload.downloadButton, session, table);
+    super(fileDownload.downloadButton, list);
   }
 
   /* Overrides */
   onClick(): void {
     this.downloadSubscription = this.fileDownload.getDownloadInfo()
-      .subscribe((downloadInfo: AuthorizedDownload) => {
-        this.fileDownloadService.download(downloadInfo.url);
-      });
+    .subscribe((downloadInfo: AuthorizedDownload) => {
+      this.fileDownloadService.download(downloadInfo.url);
+    });
   }
 
   ngOnDestroy() {

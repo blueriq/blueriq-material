@@ -1,36 +1,35 @@
-<h2>
-  <mat-icon>timer</mat-icon>
-  {{ timeline.displayName }}
-</h2>
-<div class="timeline">
-  <div *ngFor="let entry of timeline.entries$ | async; let i = index" fxLayout="row">
+<div [bqContainer]="container">
+  <bq-heading [title]="timeline.displayName" [styles]="container.styles"></bq-heading>
+  <div class="timeline">
+    <div *ngFor="let entry of timeline.entries$ | async; let first = first" fxLayout="row">
 
-    <!-- left side of the timeline -->
-    <div fxFlex="20" class="line">
-      <div *ngIf="i == 0" class="dotted-border"></div>
-      <div class="content">
-        <p class="date">{{ dateToHumanReadableFormat(entry.datetime) }}</p>
-      </div>
-      <div class="shape-position">
-        <div class="dot"></div>
-      </div>
-    </div>
-
-    <!-- right side of the timeline -->
-    <div fxFlex="80" class="card">
-      <div class="shape-position">
-        <div class="triangle"></div>
-      </div>
-      <div class="content">
-        <div fxLayout="row">
-          <div fxFlex class="user">{{ entry.username }}</div>
-          <div fxFlex="nogrow" class="time">{{ dateToShortTime(entry.datetime) }}</div>
+      <!-- left side of the timeline -->
+      <div fxFlex="20" class="line">
+        <div *ngIf="first" class="dotted-border"></div>
+        <div class="content">
+          <p class="date">{{ dateToHumanReadableFormat(entry.occurredAt) }}</p>
         </div>
-        <mat-divider></mat-divider>
-        <p class="action-name">{{ entry.actionName }}</p>
-        <p class="entry-name">{{ entry.entryName }}</p>
+        <div class="shape-position">
+          <div class="dot"></div>
+        </div>
       </div>
-    </div>
 
+      <!-- right side of the timeline -->
+      <div fxFlex="80" class="time-card">
+        <div class="shape-position">
+          <div class="triangle"></div>
+        </div>
+        <div class="content">
+          <div fxLayout="row">
+            <div fxFlex class="user">{{ entry.username }}</div>
+            <div fxFlex="nogrow" class="time">{{ dateToShortTime(entry.occurredAt) }}</div>
+          </div>
+          <mat-divider></mat-divider>
+          <p class="action-name">{{ entry.actionName }}</p>
+          <p class="entry-name">{{ entry.entryName }}</p>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>

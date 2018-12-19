@@ -1,0 +1,16 @@
+@import '../globals/variables';
+
+.mat-snack-bar-container {
+  &.snackbar-error {
+    background-color: mat-color($bq-error-palette);
+  }
+
+  &.snackbar-warning {
+    background-color: mat-color($bq-warn-palette);
+  }
+
+  button {
+    background: mat-color($bq-error-palette, 400);
+    color: $light-primary-text;
+  }
+}

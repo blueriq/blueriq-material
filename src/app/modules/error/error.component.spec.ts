@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { ErrorType } from '@blueriq/core';
 import { ErrorComponent } from './error.component';
 import { ErrorModel } from './error.model';
+import { ErrorModule } from './error.module';
 
 describe('ErrorComponent', () => {
   let component: ErrorComponent;
@@ -10,10 +10,8 @@ describe('ErrorComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-        declarations: [ErrorComponent],
-        imports: [FlexLayoutModule]
-      })
-      .compileComponents();
+      imports: [ErrorModule],
+    });
 
     fixture = TestBed.createComponent(ErrorComponent);
     component = fixture.componentInstance;
@@ -21,13 +19,12 @@ describe('ErrorComponent', () => {
       ErrorType.NotFound,
       'Not found',
       'Unknown flow: Demo',
-      'Some stack trace'
+      'Some stack trace',
     );
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
     expect(fixture.nativeElement.querySelector('.button')).toBeFalsy();
     expect(fixture.nativeElement.querySelector('.severity-error')).toBeTruthy();
     expect(fixture.nativeElement.querySelector('.severity-notice')).toBeFalsy();
@@ -48,7 +45,7 @@ describe('ErrorComponent', () => {
     component.error = new ErrorModel(
       ErrorType.UnknownSession,
       'Session Expired',
-      'Your session has expired'
+      'Your session has expired',
     );
     fixture.detectChanges();
 
@@ -60,13 +57,12 @@ describe('ErrorComponent', () => {
     component.error = new ErrorModel(
       ErrorType.UnknownSession,
       'Session Expired',
-      'Your session has expired'
+      'Your session has expired',
     );
     fixture.detectChanges();
 
     expect(fixture.nativeElement.querySelector('.title').textContent).toEqual('Session Expired');
     expect(fixture.nativeElement.querySelector('.message').textContent).toEqual('Your session has expired');
-
   });
 
 });

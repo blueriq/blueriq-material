@@ -1,12 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqComponents } from '@blueriq/angular';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { MaterialModule } from '../../../material.module';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
+import { FormControlModule } from '../form-control.module';
 import { CurrencyFieldComponent } from './currency/currency.component';
 import { InputFieldComponent } from './input-field.component';
 
@@ -17,15 +14,11 @@ describe('InputFieldComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CurrencyFieldComponent],
-      providers: [BlueriqComponents.register([CurrencyFieldComponent]), InputFieldComponent],
       imports: [
-        MaterialModule,
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         BlueriqTestingModule,
-        FlexLayoutModule,
-        FormsModule
-      ]
+        FormControlModule,
+      ],
     });
   }));
 
@@ -37,7 +30,7 @@ describe('InputFieldComponent', () => {
 
   it('should have a hint', () => {
     session.update(
-      field.explainText('explaining it')
+      field.explainText('explaining it'),
     );
     expect(component.nativeElement.querySelector('mat-hint')).toBeTruthy();
     expect(component.nativeElement.querySelector('mat-hint').innerHTML).toContain('explaining it');
@@ -45,7 +38,16 @@ describe('InputFieldComponent', () => {
 
   it('should have a placeholder', () => {
     session.update(
-      field.placeholder('myPlaceholder')
+      field.placeholder('myPlaceholder'),
+    );
+    expect(component.nativeElement.querySelector('input[placeholder]')).toBeTruthy();
+    expect(component.nativeElement.querySelector('input').getAttribute('placeholder')).toBe('myPlaceholder');
+  });
+
+  it('should NOT have required marker in placeholder text', () => {
+    session.update(
+      field.placeholder('myPlaceholder'),
+      field.required(true),
     );
     expect(component.nativeElement.querySelector('input[placeholder]')).toBeTruthy();
     expect(component.nativeElement.querySelector('input').getAttribute('placeholder')).toBe('myPlaceholder');
@@ -57,7 +59,7 @@ describe('InputFieldComponent', () => {
     component.detectChanges();
     session.update(
       field.required(true),
-      field.error('wrong IBAN')
+      field.error('wrong IBAN'),
     );
     expect(component.nativeElement.querySelector('mat-error')).toBeTruthy();
   });

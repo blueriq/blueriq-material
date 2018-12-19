@@ -13,14 +13,14 @@ import { Subscription } from 'rxjs';
     trigger('slideIn', [
       transition(':enter', [
         style({ maxWidth: '0px' }),
-        animate(300, style({ maxWidth: '*' }))
+        animate(300, style({ maxWidth: '*' })),
       ]),
       transition(':leave', [
         style({ maxWidth: '*' }),
-        animate(300, style({ maxWidth: '0px' }))
-      ])
-    ])
-  ]
+        animate(300, style({ maxWidth: '0px' })),
+      ]),
+    ]),
+  ],
 })
 export class TableSearchComponent implements OnInit, OnDestroy {
 

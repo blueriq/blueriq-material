@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { Field } from '@blueriq/core';
 import { InputFieldComponent } from '../input-field.component';
 
 @Component({
   selector: 'bq-string-field',
-  templateUrl: '../input-field.component.html'
+  templateUrl: '../input-field.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 @BlueriqComponent({
   type: Field,
-  selector: '[dataType=text]:not([hasDomain])'
+  selector: '[dataType=text]:not([hasDomain])',
 })
 export class StringFieldComponent extends InputFieldComponent {
 }

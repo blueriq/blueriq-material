@@ -25,15 +25,15 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/assets",
-              "src/theme/images"
+              "src/theme/blueriq/images"
             ],
             "styles": [
-              "src/theme/index.scss",
+              "src/theme/blueriq/index.scss",
               "src/theme/splashscreen.scss"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "./src/theme"
+                "./src/theme/blueriq"
               ]
             },
             "scripts": []
@@ -100,18 +100,10 @@
             "preserveSymlinks": true,
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
-            "codeCoverageExclude": [
-              "**/BqContentStyles.ts",
-              "**/BqPresentationStyles.ts",
-              "**/custom-file-uploader.ts",
-              "**/datepicker.material.ts"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "sourceMap": true,
             "stylePreprocessorOptions": {
               "includePaths": [
-                "./src/theme"
+                "./src/theme/blueriq"
               ]
             },
             "scripts": [],

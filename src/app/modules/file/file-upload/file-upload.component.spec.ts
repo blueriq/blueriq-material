@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { FileUpload } from '@blueriq/angular/files';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ButtonTemplate, ContainerTemplate } from '@blueriq/core/testing';
+import { BqContainerDirective } from '@shared/directive/container/bq-container.directive';
 import { FileSelectDirective, FileUploader } from 'ng2-file-upload';
 import { FileItem } from 'ng2-file-upload/file-upload/file-item.class';
 import { FileLikeObject } from 'ng2-file-upload/file-upload/file-like-object.class';
@@ -24,8 +25,8 @@ describe('FileUploadComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         BlueriqTestingModule,
-        FileModule
-      ]
+        FileModule,
+      ],
     });
   }));
 
@@ -40,10 +41,10 @@ describe('FileUploadComponent', () => {
       'extensionvalidationmessage': 'File type not allowed',
       'filesizevalidationmessage': 'File is too large',
       'singleuploadlabel': 'Add file...',
-      'multiuploadlabel': 'Add files...'
+      'multiuploadlabel': 'Add files...',
     }).children(
       ButtonTemplate.create('FileUploaded'),
-      ButtonTemplate.create('Unauthorized')
+      ButtonTemplate.create('Unauthorized'),
     );
     session = BlueriqSessionTemplate.create().build(container);
     component = session.get(FileUploadComponent);
@@ -53,7 +54,6 @@ describe('FileUploadComponent', () => {
   });
 
   it('should be created', () => {
-    expect(component).toBeTruthy();
     expect(fileSelectDirective).toBeDefined();
   });
 
@@ -88,6 +88,18 @@ describe('FileUploadComponent', () => {
     expect(hints.length).toBe(2);
     expect(hints[0].innerHTML).toBe(component.componentInstance.fileUpload.allowedExtensionsDescription);
     expect(hints[1].innerHTML).toBe(component.componentInstance.fileUpload.maxFileSizeDescription);
+  });
+
+  it('should display a hint message for the upload criterion', () => {
+    // Init
+    session.update(
+      container.properties({ allowedExtensions: '' }),
+    );
+    const hints = component.nativeElement.querySelectorAll('mat-hint');
+
+    // Verify
+    expect(hints.length).toBe(1);
+    expect(hints[0].innerHTML).toBe(component.componentInstance.fileUpload.maxFileSizeDescription);
   });
 
   it('should display an error message when file type is incorrect', () => {
@@ -144,8 +156,8 @@ describe('FileUploadComponent', () => {
     spyOn(CustomFileUploader.prototype, 'uploadAll').and.callThrough();
     session.update(
       container.properties({
-        'singlefilemode': false
-      })
+        'singlefilemode': false,
+      }),
     );
 
     // Sut
@@ -153,6 +165,16 @@ describe('FileUploadComponent', () => {
 
     // Verify
     expect(CustomFileUploader.prototype.uploadAll).toHaveBeenCalled();
+  });
+
+  it('should use the bq-heading to display header', () => {
+    // Verify
+    expect(component.nativeElement.querySelector('bq-heading')).toBeTruthy();
+  });
+
+  it('should use the bqContainer directive', () => {
+    // Verify
+    expect(component.debugElement.query(By.directive(BqContainerDirective))).toBeTruthy();
   });
 
   function createFile(): FileItem {

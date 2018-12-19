@@ -41,12 +41,12 @@
       true,
       {
         "multiline": {
-          "objects": "ignore",
-          "arrays": "ignore",
-          "functions": "never",
+          "objects": "always",
+          "arrays": "always",
+          "functions": "always",
           "typeLiterals": "ignore"
         },
-        "singleline": "never"
+        "esSpecCompliant": true
       }
     ],
     "import-spacing": true,
@@ -88,7 +88,7 @@
     "label-position": true,
     "max-line-length": [
       true,
-      120
+      150
     ],
     "member-access": false,
     "member-ordering": [
@@ -168,6 +168,22 @@
     "unified-signatures": true,
     "variable-name": false,
     "no-output-on-prefix": true,
+    "directive-selector": [
+      true,
+      "attribute",
+      [
+        "bq"
+      ],
+      "camelCase"
+    ],
+    "component-selector": [
+      true,
+      "element",
+      [
+        "bq"
+      ],
+      "kebab-case"
+    ],
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,

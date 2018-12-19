@@ -1,9 +1,9 @@
 import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivityType, GlobalLoadingActivity } from '@blueriq/angular';
-import { BlueriqTestingModule } from '@blueriq/angular/testing';
 
 import { LoadingComponent } from './loading.component';
+import { LoadingModule } from './loading.module';
 
 describe('LoadingComponent', () => {
   let component: LoadingComponent;
@@ -12,12 +12,11 @@ describe('LoadingComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [LoadingComponent],
       imports: [
         NoopAnimationsModule,
-        BlueriqTestingModule
+        LoadingModule,
       ],
-      providers: [GlobalLoadingActivity]
+      providers: [GlobalLoadingActivity],
     });
   }));
 
@@ -36,16 +35,18 @@ describe('LoadingComponent', () => {
     expect(state).toEqual('idle');
   });
 
-  it('is starting when a session is starting', () => {
+  it('is starting when a session is starting', fakeAsync(() => {
     let state!: string;
     component.state$.subscribe(s => state = s);
 
     loadingActivity.start(ActivityType.StartingSession);
+    tick();
     expect(state).toEqual('starting');
 
     loadingActivity.stop(ActivityType.StartingSession);
+    tick();
     expect(state).toEqual('idle');
-  });
+  }));
 
   it('is loading on interaction activity', fakeAsync(() => {
     let state!: string;

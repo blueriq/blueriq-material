@@ -6,5 +6,5 @@
 export const environment = {
   production: false,
   baseUrl: '/Runtime',
-  envName: 'development'
+  envName: 'development',
 };

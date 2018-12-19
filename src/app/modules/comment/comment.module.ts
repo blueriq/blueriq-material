@@ -8,33 +8,38 @@ import {
   MatDividerModule,
   MatFormFieldModule,
   MatIconModule,
-  MatListModule
+  MatInputModule,
+  MatListModule,
 } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
+import { SharedModule } from '@shared/shared.module';
+import { HeadingModule } from '../heading/heading.module';
 import { CommentComponent } from './comment.component';
 import { CommentListComponent } from './list/comment.list.component';
 
 const COMMENT_COMPONENTS = [
   CommentComponent,
-  CommentListComponent
+  CommentListComponent,
 ];
 
 @NgModule({
   declarations: [
-    COMMENT_COMPONENTS
+    COMMENT_COMPONENTS,
   ],
   providers: [
-    BlueriqComponents.register(COMMENT_COMPONENTS)
+    BlueriqComponents.register(COMMENT_COMPONENTS),
   ],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
     CommonModule,
     ReactiveFormsModule,
-    BlueriqModule.forRoot(),
+    BlueriqModule.forRoot(),  // for directive bqElement
     FlexLayoutModule,
+    SharedModule,
+    HeadingModule,
 
     /* Material modules */
     MatDividerModule,
@@ -42,9 +47,10 @@ const COMMENT_COMPONENTS = [
     MatCardModule,
     MatButtonModule,
     MatIconModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatInputModule,
   ],
-  exports: [COMMENT_COMPONENTS]
+  exports: [COMMENT_COMPONENTS],
 })
 
 export class CommentModule {

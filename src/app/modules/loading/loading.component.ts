@@ -11,9 +11,9 @@ import { map } from 'rxjs/operators';
   animations: [
     trigger('state', [
       state('loading, starting', style({ display: 'inline' })),
-      state('idle', style({ display: 'none' }))
-    ])
-  ]
+      state('idle', style({ display: 'none' })),
+    ]),
+  ],
 })
 export class LoadingComponent implements OnInit {
 
@@ -30,7 +30,7 @@ export class LoadingComponent implements OnInit {
     this.state$ = combineLatest(startingSession$, interaction$, fieldRefresh$).pipe(
       map(([isStarting, interaction, fieldRefresh]) => {
         return isStarting ? 'starting' : interaction || fieldRefresh ? 'loading' : 'idle';
-      })
+      }),
     );
   }
 }

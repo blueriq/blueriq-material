@@ -10,18 +10,18 @@ import { dateTimeFormatProvider } from './datetimepicker.owl';
 @Component({
   selector: 'bq-datetimepicker',
   templateUrl: './datetimepicker.component.html',
-  providers: [dateTimeFormatProvider]
+  providers: [dateTimeFormatProvider],
 })
 @BlueriqComponent({
   type: Field,
-  selector: '[dataType=date],[dataType=datetime]'
+  selector: '[dataType=date],[dataType=datetime]',
 })
 export class DateTimepickerComponent {
 
   formControl = this.form.control(this.field, {
     updateOn: 'blur',
     transformer: MomentTransformer,
-    disableWhen: BqPresentationStyles.DISABLED
+    disableWhen: BqPresentationStyles.DISABLED,
   });
 
   firstDayOfWeek: number;
@@ -29,7 +29,7 @@ export class DateTimepickerComponent {
   constructor(@Host() public field: Field,
               private form: BlueriqFormBuilder,
               session: BlueriqSession) {
-    this.firstDayOfWeek = computeFirstDayOfWeek(session);
+    this.firstDayOfWeek = computeFirstDayOfWeek(session.localization);
   }
 
   /**

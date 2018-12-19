@@ -1,0 +1,47 @@
+@import 'variables';
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: map-get($mat-gray, 200);
+  font-family: $bq-font-family;
+}
+
+/*
+* The following styles are part of the directive: BqContainer
+*/
+
+/* Containers that are directly on a page */
+.top-container {
+  margin: $bq-margin-double;
+  padding: $bq-margin-double;
+}
+
+/* Display containers as card */
+.card {
+  @include mat-elevation(1);
+  background: map-get($mat-light-theme-background, card);
+}
+
+/* Display containers as transparent with a small image in the corner */
+.introduction {
+  background: {
+    position: left top;
+    image: url('../../theme/blueriq/images/blueriq-technology.svg');
+    repeat: no-repeat;
+    size: 39px;
+  }
+}
+
+.align-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+

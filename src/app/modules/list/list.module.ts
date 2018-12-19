@@ -2,53 +2,53 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatChipsModule, MatFormFieldModule, MatIconModule, MatTableModule } from '@angular/material';
 import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
 import { SharedModule } from '@shared/shared.module';
-import { OwlDateTimeModule } from 'ng-pick-datetime';
-import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
-import { MaterialModule } from '../../material.module';
-import { TableFilterIconComponent } from './filter/table.filter-icon.component';
-import { TableFilterValueComponent } from './filter/table.filter-value.component';
-import { TableFilterComponent } from './filter/table.filter.component';
+import { HeadingModule } from '../heading/heading.module';
+import { FilterModule } from './filter/filter.module';
+import { TableFormControlModule } from './form-controls/table-form-control.module';
+import { TableHeaderColumnComponent } from './header/header.component';
+import { TableLimitComponent } from './limit/table.limit.component';
 import { ListComponent } from './list.component';
 import { TablePaginationComponent } from './pagination/table.pagination.component';
 import { TableSearchComponent } from './search/table.search.component';
-import { TableSortComponent } from './sort/table.sort.component';
 import { TableComponent } from './table.component';
 
 const LIST_COMPONENTS = [
   TableComponent,
-  TableFilterComponent,
   TableSearchComponent,
-  TableSortComponent,
+  TableHeaderColumnComponent,
   TablePaginationComponent,
   ListComponent,
-  TableFilterValueComponent,
-  TableFilterIconComponent
+  TableLimitComponent,
 ];
 
 @NgModule({
   declarations: [
-    LIST_COMPONENTS
+    LIST_COMPONENTS,
   ],
   providers: [
-    BlueriqComponents.register([ListComponent, TableSortComponent, TableFilterIconComponent])
+    BlueriqComponents.register([ListComponent]),
   ],
   imports: [
-    BrowserAnimationsModule,
-    BrowserModule,
     BlueriqCommonModule,
     CommonModule,
+    HeadingModule,
     FlexLayoutModule,
     SharedModule,
     ReactiveFormsModule,
-    MaterialModule,
-    OwlDateTimeModule,
-    OwlMomentDateTimeModule
+    FilterModule,
+    TableFormControlModule, // form controls that have different appearance within a table
+
+    /* Material modules */
+    MatTableModule,
+    MatButtonModule,
+    MatIconModule,
+    MatChipsModule,
+    MatFormFieldModule,
   ],
-  exports: [LIST_COMPONENTS]
+  exports: [LIST_COMPONENTS],
 })
 export class ListModule {
 }

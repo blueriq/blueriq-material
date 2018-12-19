@@ -1,11 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
 import { MatMenuTrigger } from '@angular/material';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSession } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ButtonTemplate, ContainerTemplate } from '@blueriq/core/testing';
+import { BqContentStyles } from '../BqContentStyles';
 import { MenuComponent } from './menu.component';
 import { MenuModule } from './menu.module';
 
@@ -19,16 +19,15 @@ describe('MenuComponent', () => {
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [
-          MenuModule,
           NoopAnimationsModule,
           BlueriqTestingModule,
-          FormsModule
-        ]
+          MenuModule,
+        ],
       });
     }));
 
     beforeEach(() => {
-      menu = ContainerTemplate.create().contentStyle('dashboard_menu');
+      menu = ContainerTemplate.create().contentStyle(BqContentStyles.DASHBOARD_MENU);
       btnPublicA = ButtonTemplate.create('Public').caption('Public-A');
       btnPublicB = ButtonTemplate.create('Public').caption('Public-B');
       menu.children(
@@ -39,21 +38,17 @@ describe('MenuComponent', () => {
             ButtonTemplate.create('Finance').caption('Finance').disabled(true),
             ContainerTemplate.create().displayName('Public').children(
               btnPublicA,
-              btnPublicB
-            )
-          )
-        )
+              btnPublicB,
+            ),
+          ),
+        ),
       );
       // reset field to default
       session = BlueriqSessionTemplate.create().build(menu);
       component = session.get(MenuComponent);
     });
 
-    it('should create menu', () => {
-      expect(component).toBeTruthy();
-    });
-
-    it(' buttons that are not a submenu should trigger the blueriq session pressed', () => {
+    it(' buttons that are not a submenu should trigger the blueriq session pressed', (done) => {
       // retrieve the trigger
       const selectTrigger = component.debugElement.query(By.directive(MatMenuTrigger));
 
@@ -70,6 +65,7 @@ describe('MenuComponent', () => {
         menuButtons[0].click();
         menuButtons[1].click(); // is disabled
         expect(BlueriqSession.prototype.pressed).toHaveBeenCalledTimes(1);
+        done();
       });
 
     });
@@ -117,5 +113,5 @@ describe('MenuComponent', () => {
 
     //
 
-  }
+  },
 );

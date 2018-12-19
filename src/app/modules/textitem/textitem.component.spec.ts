@@ -1,14 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqComponents } from '@blueriq/angular';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { TextItemModule } from '@blueriq/angular/textitems';
 import { StaticNodeTemplate, StyleNodeTemplate, TextItemNodeTemplate, TextItemTemplate } from '@blueriq/core/testing';
-import { MaterialModule } from '../../material.module';
 import { BqPresentationStyles } from '../BqPresentationStyles';
 import { TextItemComponent } from './textitem.component';
+import { TextItemModule as BlueriqTextItemModule } from './textitem.module';
 
 describe('TextItemComponent', () => {
   let textItem: TextItemTemplate;
@@ -17,15 +15,12 @@ describe('TextItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TextItemComponent],
-      providers: [BlueriqComponents.register([TextItemComponent])],
       imports: [
-        MaterialModule,
-        BrowserAnimationsModule, // or NoopAnimationsModule
+        NoopAnimationsModule,
         BlueriqTestingModule,
-        FormsModule,
-        TextItemModule
-      ]
+        TextItemModule,
+        BlueriqTextItemModule,
+      ],
     });
   }));
 
@@ -33,10 +28,6 @@ describe('TextItemComponent', () => {
     textItem = TextItemTemplate.create();
     session = BlueriqSessionTemplate.create().build(textItem);
     component = session.get(TextItemComponent);
-  });
-
-  it('should be created', () => {
-    expect(component).toBeTruthy();
   });
 
   it('should display the text', () => {
@@ -78,7 +69,7 @@ describe('TextItemComponent', () => {
 
   it('should be composed as danger', () => {
     session.update(
-      textItem.styles(BqPresentationStyles.DANGER)
+      textItem.styles(BqPresentationStyles.DANGER),
     );
 
     const iconGutter = component.debugElement.query(By.css('div[class=gutter]'));
@@ -121,4 +112,24 @@ describe('TextItemComponent', () => {
     expect(iconInfoClass).toBe('info');
   });
 
+  it('should have class `emphasis`', () => {
+    session.update(textItem.styles(BqPresentationStyles.TEXTEMPHASIS));
+
+    const classes: string = component.nativeElement.querySelector('div').getAttribute('class');
+    expect(classes).toContain('emphasis');
+  });
+
+  it('should have class `subtle`', () => {
+    session.update(textItem.styles(BqPresentationStyles.TEXTEMPHASIS_SUBTLE));
+
+    const classes: string = component.nativeElement.querySelector('div').getAttribute('class');
+    expect(classes).toContain('subtle');
+  });
+
+  it('should have class `intense`', () => {
+    session.update(textItem.styles(BqPresentationStyles.TEXTEMPHASIS_INTENSE));
+
+    const classes: string = component.nativeElement.querySelector('div').getAttribute('class');
+    expect(classes).toContain('intense');
+  });
 });

@@ -9,17 +9,17 @@ import { DomainValueTransformer } from './domain-value-transformer';
 
 @Component({
   selector: 'bq-autocomplete',
-  templateUrl: './autocomplete.component.html'
+  templateUrl: './autocomplete.component.html',
 })
 @BlueriqComponent({
   type: Field,
-  selector: '.' + BqPresentationStyles.AUTOCOMPLETE + '[hasDomain][multiValued=false]'
+  selector: '[hasDomain][multiValued=false].' + BqPresentationStyles.AUTOCOMPLETE,
 })
 export class AutocompleteComponent implements OnInit {
   formControl = this.form.control(this.field, {
     syncOn: 'update',
     disableWhen: BqPresentationStyles.DISABLED,
-    transformer: DomainValueTransformer
+    transformer: DomainValueTransformer,
   });
   filteredDomainOptions$: Observable<DomainValue[]>;
 
@@ -32,7 +32,7 @@ export class AutocompleteComponent implements OnInit {
     .pipe(
       startWith<DomainValue | string>(''),
       map(value => this.displayDomainValue(value)),
-      map(displayValue => displayValue ? this.filter(displayValue) : this.field.domain.options.slice())
+      map(displayValue => displayValue ? this.filter(displayValue) : this.field.domain.options.slice()),
     );
   }
 

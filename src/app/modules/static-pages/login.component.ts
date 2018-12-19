@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, isDevMode } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@blueriq/angular';
@@ -6,7 +6,7 @@ import { AuthService } from '@blueriq/angular';
 @Component({
   selector: 'bq-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
 
@@ -14,7 +14,7 @@ export class LoginComponent {
   password = new FormControl('', Validators.required);
   loginForm = new FormGroup({
     username: this.username,
-    password: this.password
+    password: this.password,
   });
   failed = false;
 
@@ -28,20 +28,27 @@ export class LoginComponent {
       next: result => {
         if (result.success) {
           const { flow, project, version } = this.route.snapshot.queryParams;
-          if (version) {
-            this.router.navigate(['/flow', project, flow, version]);
-          } else if (project && flow) {
-            this.router.navigate(['/flow', project, flow]);
+          if (project && flow) {
+            if (version) {
+              this.router.navigate(['/flow', project, flow, version]);
+            } else {
+              this.router.navigate(['/flow', project, flow]);
+            }
           } else {
-            this.failed = true;
+            // We don't know the flow that the user wants to start, so navigate to the default shortcut.
+            // You can change this to suit your needs.
+            this.router.navigate(['/']);
           }
         } else {
           this.failed = true;
         }
       },
-      error: () => {
+      error: (e) => {
         this.failed = true;
-      }
+        if (isDevMode()) {
+          console.error(e);
+        }
+      },
     });
   }
 

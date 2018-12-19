@@ -1,10 +1,16 @@
-<h2>
-  <mat-icon>chat</mat-icon>
-  {{container.displayName}}
-</h2>
-<ng-container [bqElement]="comment.commentField"></ng-container>
-<div fxLayout="row" fxLayoutAlign="end">
-  <button bqKey bqClasses mat-raised-button (click)="onClick()" color="primary">
-    {{comment.caption}}
-  </button>
+<div [bqContainer]="container">
+  <bq-heading [title]="container.displayName" [styles]="container.styles"></bq-heading>
+  
+  <div fxLayout="row">
+    <mat-form-field bqKey fxFlex appearance="fill">
+      <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" [formControl]="formControl"> </textarea>
+    </mat-form-field>
+  </div>
+  
+  <div fxLayout="row" fxLayoutAlign="end">
+    <button bqKey bqClasses mat-raised-button (click)="onClick()" color="primary">
+      {{comment.caption}}
+    </button>
+  </div>
+
 </div>

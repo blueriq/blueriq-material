@@ -1,19 +1,18 @@
 <div class="header" *ngIf="blueriqSession.isRoot">
-  <bq-header [page]="page" *ngIf="!dashboardHeader"></bq-header>
+  <bq-header *ngIf="!dashboardHeader" [page]="page"></bq-header>
   <ng-container *ngIf="dashboardHeader" [bqElement]="dashboardHeader"></ng-container>
-  <ng-container *ngIf="dashboardMenu" [bqElement]="dashboardMenu"></ng-container>
+  <ng-container *ngFor="let dashboardMenu of dashboardMenus" [bqElement]="dashboardMenu"></ng-container>
 </div>
 
-<div class="page {{ pageSize }}">
+<div [ngClass]="['page', pageSize, 'margin-'+toolbarsCounter]">
   <div *ngFor="let child of page.children | bqIncluded" [bqElement]="child"></div>
 </div>
 
 <footer *ngIf="!blueriqSession.isWidget">
   <mat-divider></mat-divider>
-  <img src="./theme/images/blueriq-logo.svg" height="40px"/>
+  <img src="./theme/blueriq/images/blueriq-logo.svg" height="40px"/>
   <address>
-    <a href="tel:0031736450467">+31 (0)73 6450 467</a><br>
-    <a href="https://www.blueriq.com" target="_blank">www.blueriq.com</a><br>
+    <a href="https://my.blueriq.com/" target="_blank">my.blueriq.com</a><br>
     <a href="mailto:support@blueriq.com">support@blueriq.com</a>
   </address>
 </footer>

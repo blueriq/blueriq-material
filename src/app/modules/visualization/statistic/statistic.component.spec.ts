@@ -1,9 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate } from '@blueriq/core/testing';
+import { BqContainerDirective } from '@shared/directive/container/bq-container.directive';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
+import { VisualizationModule } from '../visualization.module';
 import { StatisticComponent } from './statistic.component';
 
 describe('StatisticComponent', () => {
@@ -14,12 +16,11 @@ describe('StatisticComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [StatisticComponent],
-      providers: [BlueriqComponents.register([StatisticComponent])],
       imports: [
         NoopAnimationsModule,
-        BlueriqTestingModule
-      ]
+        BlueriqTestingModule,
+        VisualizationModule,
+      ],
     });
   }));
 
@@ -102,12 +103,28 @@ describe('StatisticComponent', () => {
     expect(component.componentInstance.chart.config.type).toBe('polarArea');
   });
 
+  it('should use the bqContainer directive', () => {
+    // Verify
+    container = createVisualizationContainer(BqPresentationStyles.STATISTICPOLAR);
+    session = BlueriqSessionTemplate.create().build(container);
+    component = session.get(StatisticComponent);
+    expect(component.debugElement.query(By.directive(BqContainerDirective))).toBeTruthy();
+  });
+
+  it('should use the bq-heading to display header', () => {
+    // Verify
+    container = createVisualizationContainer(BqPresentationStyles.STATISTICPOLAR);
+    session = BlueriqSessionTemplate.create().build(container);
+    component = session.get(StatisticComponent);
+    expect(component.nativeElement.querySelector('bq-heading')).toBeTruthy();
+  });
+
   function createVisualizationContainer(presentationStyle?: string) {
     const visualizationContainer = ContainerTemplate.create('myStatistics').contentStyle('visualization').children(
       createStatisticContainer('Age between 0-20', '2'), // In the sentence: 2 people are between 0-20
       createStatisticContainer('Age between 20-40', '19'),
       createStatisticContainer('Age between 40-60', '8'),
-      createStatisticContainer('Age greater than 60', '1')
+      createStatisticContainer('Age greater than 60', '1'),
     );
     if (presentationStyle) {
       visualizationContainer.styles(presentationStyle);

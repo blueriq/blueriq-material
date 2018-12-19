@@ -1,19 +1,21 @@
-<h2 *ngIf="container.displayName">{{ container.displayName }}</h2>
-
-<button style="display: block;" mat-raised-button color="primary" (click)="fileInput.click()">{{fileUpload.uploadLabel}}</button>
-<input hidden ng2FileSelect type="file" [uploader]="uploader" [multiple]="fileUpload.multiple" #fileInput>
-<div>
-  <mat-hint *ngIf="fileUpload.allowedExtensions">{{fileUpload.allowedExtensionsDescription}}</mat-hint>
-  <mat-hint *ngIf="fileUpload.maxFileSize">{{fileUpload.maxFileSizeDescription}}</mat-hint>
-  <mat-error *ngIf="errorMessage">{{errorMessage}}</mat-error>
-</div>
-
-<div *ngIf="isBusy">
+<div [bqContainer]="container">
+  <bq-heading [title]="container.displayName" [styles]="container.styles"></bq-heading>
+  
+  <button style="display: block;" mat-raised-button color="primary" (click)="fileInput.click()">{{fileUpload.uploadLabel}}</button>
+  <input hidden ng2FileSelect type="file" [uploader]="uploader" [multiple]="fileUpload.multiple" #fileInput>
   <div>
-    <mat-progress-bar mode="determinate" value="{{uploader.progress}}"></mat-progress-bar>
+    <mat-hint *ngIf="fileUpload.allowedExtensions">{{fileUpload.allowedExtensionsDescription}}</mat-hint>
+    <mat-hint *ngIf="fileUpload.maxFileSize">{{fileUpload.maxFileSizeDescription}}</mat-hint>
+    <mat-error *ngIf="errorMessage">{{errorMessage}}</mat-error>
   </div>
-  <button mat-icon-button (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
-    <mat-icon>cancel</mat-icon>
-  </button>
-  Cancel all
+  
+  <div *ngIf="isBusy">
+    <div>
+      <mat-progress-bar mode="determinate" value="{{uploader.progress}}"></mat-progress-bar>
+    </div>
+    <button mat-icon-button (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+      <mat-icon>cancel</mat-icon>
+    </button>
+    Cancel all
+  </div>
 </div>

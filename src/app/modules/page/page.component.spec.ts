@@ -1,15 +1,13 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
-import { PageTemplate } from '@blueriq/core/testing';
-import { MaterialModule } from '../../material.module';
+import { ContainerTemplate, PageTemplate } from '@blueriq/core/testing';
 import { BqContentStyles } from '../BqContentStyles';
-import { HeaderComponent } from '../header/header.component';
+import { MenuModule } from '../menu/menu.module';
 import { PageComponent } from './page.component';
+import { PageModule } from './page.module';
 
 describe('PageComponent', () => {
   let pageTemplate: PageTemplate;
@@ -18,23 +16,36 @@ describe('PageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [PageComponent, HeaderComponent],
-      providers: [BlueriqComponents.register([PageComponent]), { provide: APP_BASE_HREF, useValue: '/' }],
+      providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
       imports: [
-        MaterialModule,
         NoopAnimationsModule,
         BlueriqTestingModule,
-        FormsModule,
-        RouterModule.forRoot([])
-      ]
+        RouterModule.forRoot([]),
+        PageModule,
+        MenuModule,
+      ],
     });
   }));
 
   beforeEach(() => {
-    pageTemplate = PageTemplate.create();
+    pageTemplate = PageTemplate.create().children(
+      // Add 2 menubars
+      ContainerTemplate.create().contentStyle(BqContentStyles.DASHBOARD_MENU).children(ContainerTemplate.create().contentStyle('menubar')),
+      ContainerTemplate.create().contentStyle(BqContentStyles.DASHBOARD_MENU).children(ContainerTemplate.create().contentStyle('menubar')),
+    );
     session = BlueriqSessionTemplate.create().build(pageTemplate);
     pageComponent = session.get(PageComponent);
     pageComponent.autoDetectChanges();
+  });
+
+  it('should render the header correctly and use the correct margins based on how many headers', () => {
+    const header = pageComponent.nativeElement.querySelector('.header');
+    const page = pageComponent.nativeElement.querySelector('.page');
+
+    expect(header.querySelector('bq-header')).toBeTruthy('No header is set, so the default header should be rendered');
+    expect(header.querySelectorAll('bq-menu').length).toBe(2);
+    expect(page.classList).toContain('margin-3', 'Having a bq-header and bq-menus adds up to having 3 components, ' +
+      'so this margin selector is expected');
   });
 
   it('should be rendered by default', () => {
@@ -49,25 +60,25 @@ describe('PageComponent', () => {
     const page = pageComponent.componentInstance;
 
     session.update(
-      pageTemplate.contentStyle(BqContentStyles.WIDTH_FULL)
+      pageTemplate.contentStyle(BqContentStyles.WIDTH_FULL),
     );
     expect(page.pageSize).toBe('full');
     expect(pageComponent.nativeElement.querySelector('.page.full')).toBeTruthy();
 
     session.update(
-      pageTemplate.contentStyle(BqContentStyles.WIDTH_LARGE)
+      pageTemplate.contentStyle(BqContentStyles.WIDTH_LARGE),
     );
     expect(page.pageSize).toBe('large');
     expect(pageComponent.nativeElement.querySelector('.page.large')).toBeTruthy();
 
     session.update(
-      pageTemplate.contentStyle(BqContentStyles.WIDTH_MEDIUM)
+      pageTemplate.contentStyle(BqContentStyles.WIDTH_MEDIUM),
     );
     expect(page.pageSize).toBe('medium');
     expect(pageComponent.nativeElement.querySelector('.page.medium')).toBeTruthy();
 
     session.update(
-      pageTemplate.contentStyle(BqContentStyles.WIDTH_SMALL)
+      pageTemplate.contentStyle(BqContentStyles.WIDTH_SMALL),
     );
     expect(page.pageSize).toBe('small');
     expect(pageComponent.nativeElement.querySelector('.page.small')).toBeTruthy();

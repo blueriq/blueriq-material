@@ -2,7 +2,8 @@
 @import 'globals/variables';
 
 .mat-toolbar {
-  margin-top: $bq-toolbar-height;
+  min-height: $bq-toolbar-height;
+
   // sass-lint:disable-all
   background: linear-gradient(
       to right,

@@ -3,29 +3,33 @@ import { NgModule } from '@angular/core';
 import { MatIconModule, MatTabsModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
+import { SharedModule } from '@shared/shared.module';
+import { HeadingModule } from '../heading/heading.module';
 import { TabComponent } from './tab.component';
 
-const TAB_COMPONENTS = [
-  TabComponent
+const BLUERIQ_COMPONENTS = [
+  TabComponent,
 ];
 
 @NgModule({
   declarations: [
-    TAB_COMPONENTS
+    BLUERIQ_COMPONENTS,
   ],
   providers: [
-    BlueriqComponents.register(TAB_COMPONENTS)
+    BlueriqComponents.register(BLUERIQ_COMPONENTS),
   ],
   imports: [
-    BlueriqCommonModule,
+    BlueriqCommonModule, // using: [bqElement] directive
     BrowserAnimationsModule,
     CommonModule,
+    HeadingModule,
+    SharedModule,
+
+    /* Material modules */
     MatTabsModule,
-    MatIconModule
+    MatIconModule,
   ],
-  exports: [TAB_COMPONENTS]
+  exports: [BLUERIQ_COMPONENTS],
 })
-
 export class TabModule {
-
 }

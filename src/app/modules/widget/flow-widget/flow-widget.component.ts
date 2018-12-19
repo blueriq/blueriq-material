@@ -4,17 +4,17 @@ import { Container } from '@blueriq/core';
 import { BqContentStyles } from '../../BqContentStyles';
 
 @Component({
+  selector: 'bq-flow-widget',
   templateUrl: './flow-widget.component.html',
-  styleUrls: ['./flow-widget.component.scss'],
-  providers: [FlowWidget]
+  providers: [FlowWidget],
 })
 @BlueriqComponent({
   type: Container,
-  selector: BqContentStyles.DASHBOARD_FLOWWIDGET
+  selector: BqContentStyles.DASHBOARD_FLOWWIDGET,
 })
 export class FlowWidgetComponent {
 
-  bqError: FailedAction;
+  private bqError: FailedAction;
   private expired = false;
   private flowEnded = false;
 
@@ -45,6 +45,5 @@ export class FlowWidgetComponent {
 
   handleSessionExpired(): void {
     this.expired = true;
-
   }
 }

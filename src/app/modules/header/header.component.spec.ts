@@ -1,14 +1,14 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
+import { Element } from '@blueriq/core';
 import { ContainerTemplate, PageTemplate, TextItemTemplate } from '@blueriq/core/testing';
-import { MaterialModule } from '../../material.module';
 import { PageComponent } from '../page/page.component';
+import { PageModule } from '../page/page.module';
 import { HeaderComponent } from './header.component';
+import { HeaderModule } from './header.module';
 
 describe('HeaderComponent', () => {
   let session: BlueriqTestSession;
@@ -16,25 +16,27 @@ describe('HeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [PageComponent, HeaderComponent],
-      providers: [BlueriqComponents.register([PageComponent, HeaderComponent]), {
-        provide: APP_BASE_HREF,
-        useValue: '/'
-      }],
+      providers: [
+        {
+          provide: APP_BASE_HREF,
+          useValue: '/',
+        },
+        Element,
+      ],
       imports: [
-        MaterialModule,
         NoopAnimationsModule,
         BlueriqTestingModule,
-        FormsModule,
-        RouterModule.forRoot([])
-      ]
-    })
-    .compileComponents();
+        RouterModule.forRoot([]),
+        HeaderModule,
+        PageModule,
+      ],
+    });
   }));
 
   describe('basic behavior', () => {
     let fixture: ComponentFixture<HeaderComponent>;
     let component: HeaderComponent;
+
     beforeEach(() => {
       fixture = TestBed.createComponent(HeaderComponent);
       component = fixture.componentInstance;
@@ -59,7 +61,7 @@ describe('HeaderComponent', () => {
       headerTemplate.contentStyle('dashboard_header');
       headerTemplate.children(
         TextItemTemplate.create().plainText('Requester').styles('authenticated_user'),
-        TextItemTemplate.create().plainText('Logoff').styles('logout_link')
+        TextItemTemplate.create().plainText('Logoff').styles('logout_link'),
       );
       pageTemplate.children(headerTemplate);
       session = BlueriqSessionTemplate.create().build(pageTemplate);
@@ -72,6 +74,57 @@ describe('HeaderComponent', () => {
       expect(fixture.nativeElement.querySelector('h1').innerText).toBe('Page Title');
       expect(fixture.nativeElement.querySelector('.username').innerText.toLowerCase()).toBe('requester');
       expect(fixture.nativeElement.querySelector('mat-menu').getAttribute('ng-reflect-overlap-trigger')).toBe('false');
+    });
+  });
+
+  describe('rendered with dashboard_header and no username', () => {
+    let fixture: ComponentFixture<PageComponent>;
+    let pageTemplate: PageTemplate;
+
+    beforeEach(() => {
+      pageTemplate = PageTemplate.create();
+      pageTemplate.displayName('Page Title');
+      headerTemplate = ContainerTemplate.create();
+      headerTemplate.contentStyle('dashboard_header');
+      headerTemplate.children(
+        TextItemTemplate.create().plainText('Logoff').styles('logout_link'),
+      );
+      pageTemplate.children(headerTemplate);
+      session = BlueriqSessionTemplate.create().build(pageTemplate);
+      fixture = session.get(PageComponent);
+      fixture.autoDetectChanges();
+    });
+
+    it('should render properly', () => {
+      expect(fixture.nativeElement.querySelector('img')).toBeTruthy();
+      expect(fixture.nativeElement.querySelector('h1').innerText).toBe('Page Title');
+      expect(fixture.nativeElement.querySelector('.username')).toBeFalsy();
+      expect(fixture.nativeElement.querySelector('mat-menu').getAttribute('ng-reflect-overlap-trigger')).toBe('false');
+    });
+  });
+
+  describe('rendered with dashboard_header and no logout', () => {
+    let fixture: ComponentFixture<PageComponent>;
+    let pageTemplate: PageTemplate;
+
+    beforeEach(() => {
+      pageTemplate = PageTemplate.create();
+      pageTemplate.displayName('Page Title');
+      headerTemplate = ContainerTemplate.create();
+      headerTemplate.contentStyle('dashboard_header');
+      headerTemplate.children(
+        TextItemTemplate.create().plainText('Requester').styles('authenticated_user'),
+      );
+      pageTemplate.children(headerTemplate);
+      session = BlueriqSessionTemplate.create().build(pageTemplate);
+      fixture = session.get(PageComponent);
+      fixture.autoDetectChanges();
+    });
+
+    it('should render properly', () => {
+      expect(fixture.nativeElement.querySelector('img')).toBeTruthy();
+      expect(fixture.nativeElement.querySelector('h1').innerText).toBe('Page Title');
+      expect(fixture.nativeElement.querySelector('.username').innerText.toLowerCase()).toBe('requester');
     });
   });
 });

@@ -1,13 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqComponents } from '@blueriq/angular';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { MaterialModule } from '../../../../material.module';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
-import { SelectionControlComponent } from '../selection-control.component';
+import { FormControlModule } from '../../form-control.module';
 import { CheckboxComponent } from './checkbox.component';
 
 describe('CheckboxComponent', () => {
@@ -17,15 +13,11 @@ describe('CheckboxComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CheckboxComponent, SelectionControlComponent],
-      providers: [BlueriqComponents.register([CheckboxComponent])],
       imports: [
-        MaterialModule,
-        BrowserAnimationsModule, // or NoopAnimationsModule
+        NoopAnimationsModule,
         BlueriqTestingModule,
-        FlexLayoutModule,
-        FormsModule
-      ]
+        FormControlModule,
+      ],
     });
   }));
 
@@ -35,21 +27,17 @@ describe('CheckboxComponent', () => {
     component = session.get(CheckboxComponent);
   });
 
-  it('should be created', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should be changed', () => {
     // Change
     session.update(
-      field.value('true')
+      field.value('true'),
     );
     let inputField = component.nativeElement.querySelector('.mat-checkbox-input').getAttribute('aria-checked');
     expect(inputField).toBe('true');
 
     // Change again
     session.update(
-      field.value('false')
+      field.value('false'),
     );
     inputField = component.nativeElement.querySelector('.mat-checkbox-input').getAttribute('aria-checked');
     expect(inputField).toBe('false');

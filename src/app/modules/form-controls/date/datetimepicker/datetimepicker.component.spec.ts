@@ -1,16 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { OwlDateTimeModule } from 'ng-pick-datetime';
-import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
-import { MaterialModule } from '../../../../material.module';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
-import { MomentTransformer } from '../moment-transformer';
+import { FormControlModule } from '../../form-control.module';
 import { DateTimepickerComponent } from './datetimepicker.component';
 
 describe('DateTimepickerComponent', () => {
@@ -20,29 +14,19 @@ describe('DateTimepickerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [DateTimepickerComponent],
-      providers: [BlueriqComponents.register([DateTimepickerComponent]), MomentTransformer],
       imports: [
-        MaterialModule,
         NoopAnimationsModule,
         BlueriqTestingModule,
-        FormsModule,
-        FlexLayoutModule,
-        OwlDateTimeModule,
-        OwlMomentDateTimeModule
-      ]
+        FormControlModule,
+      ],
     });
   }));
 
-  beforeEach(() => {
+  beforeEach(async(() => {
     field = FieldTemplate.datetime();
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(DateTimepickerComponent);
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  }));
 
   it('should render date and time picker for datetime fields', () => {
     expect(component.componentInstance.getPickerType()).toEqual('both');
@@ -57,7 +41,7 @@ describe('DateTimepickerComponent', () => {
 
   it('should have a hint', () => {
     session.update(
-      field.explainText('explaining it')
+      field.explainText('explaining it'),
     );
     expect(component.nativeElement.querySelector('mat-hint')).toBeTruthy();
     expect(component.nativeElement.querySelector('mat-hint').innerHTML).toContain('explaining it');
@@ -65,7 +49,7 @@ describe('DateTimepickerComponent', () => {
 
   it('should have a placeholder', () => {
     session.update(
-      field.placeholder('myPlaceholder')
+      field.placeholder('myPlaceholder'),
     );
     expect(component.nativeElement.querySelector('input[placeholder]')).toBeTruthy();
     expect(component.nativeElement.querySelector('input').getAttribute('placeholder')).toBe('myPlaceholder');
@@ -76,7 +60,7 @@ describe('DateTimepickerComponent', () => {
     component.componentInstance.formControl.markAsTouched();
     component.detectChanges();
     session.update(
-      field.error('wrong IBAN')
+      field.error('wrong IBAN'),
     );
     expect(component.nativeElement.querySelector('mat-error')).toBeTruthy();
   });
@@ -98,11 +82,11 @@ describe('DateTimepickerComponent', () => {
     component.componentInstance.formControl.markAsTouched();
     component.detectChanges();
     component.whenStable()
-    .then(() => {
-      const errorElement = component.nativeElement.querySelector('mat-error');
-      expect(errorElement).toBeTruthy();
-      expect(errorElement.innerText).toBe('invalid input');
-    });
+      .then(() => {
+        const errorElement = component.nativeElement.querySelector('mat-error');
+        expect(errorElement).toBeTruthy();
+        expect(errorElement.innerText).toBe('invalid input');
+      });
   });
 
   it('should be disabled', () => {
@@ -141,8 +125,8 @@ describe('DateTimepickerComponent', () => {
     let eventJson: any = {
       value: '18-01-02', // from
       source: {
-        value: '' // to
-      }
+        value: '', // to
+      },
     };
 
     // SUT
@@ -155,8 +139,8 @@ describe('DateTimepickerComponent', () => {
     eventJson = {
       value: null, // from
       source: {
-        value: '' // to
-      }
+        value: '', // to
+      },
     };
 
     // SUT

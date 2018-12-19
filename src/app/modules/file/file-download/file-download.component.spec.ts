@@ -4,6 +4,7 @@ import { AuthorizedDownload } from '@blueriq/angular/src/api/file_handling';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ButtonTemplate, ContainerTemplate } from '@blueriq/core/testing';
 import { of } from 'rxjs/internal/observable/of';
+import { ButtonComponent } from '../../button/button.component';
 import { FileModule } from '../file.modules';
 import { FileDownloadComponent } from './file-download.component';
 import { FileDownloadService } from './file-download.service';
@@ -16,21 +17,21 @@ describe('FileDownloadComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BlueriqTestingModule, FileModule]
+      imports: [BlueriqTestingModule, FileModule],
     });
   }));
 
   beforeEach(async(() => {
     container = ContainerTemplate.create().contentStyle('filedownload').children(
       ButtonTemplate.create('downloadButton'),
-      ButtonTemplate.create('Unauthorized')
+      ButtonTemplate.create('Unauthorized'),
     );
     session = BlueriqSessionTemplate.create().build(container);
     component = session.get(FileDownloadComponent);
   }));
 
-  it('should be created', () => {
-    expect(component).toBeTruthy();
+  it('should extend from button component', () => {
+    expect((FileDownloadComponent.prototype instanceof ButtonComponent)).toBeTruthy();
   });
 
   it('should override the onClick and use the downloadService', () => {

@@ -1,26 +1,28 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
+import { BlueriqComponents } from '@blueriq/angular';
+import { SharedModule } from '@shared/shared.module';
+import { HeadingModule } from '../heading/heading.module';
 import { StatisticComponent } from './statistic/statistic.component';
 
 const BQ_VISUALIZATION_COMPONENTS = [
-  StatisticComponent
+  StatisticComponent,
 ];
 
 @NgModule({
   declarations: [
-    BQ_VISUALIZATION_COMPONENTS
+    BQ_VISUALIZATION_COMPONENTS,
   ],
   providers: [
-    BlueriqComponents.register(BQ_VISUALIZATION_COMPONENTS)
+    BlueriqComponents.register(BQ_VISUALIZATION_COMPONENTS),
   ],
   imports: [
     /* Basic */
     CommonModule,
-    BlueriqCommonModule
+    SharedModule,
+    HeadingModule,
   ],
-  exports: [BQ_VISUALIZATION_COMPONENTS]
+  exports: [BQ_VISUALIZATION_COMPONENTS],
 })
 export class VisualizationModule {
-
 }

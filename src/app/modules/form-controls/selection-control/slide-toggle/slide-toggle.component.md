@@ -3,6 +3,6 @@ For an overview of the slide toggle component you can find the information here:
 
 ### Use Presentation styles Slide toggle Blueriq
 Add the presentation style `Disabled` on an attribute, the component is grayed out.
-Add the presentation style `toggle` on an attribute, the component is showed as a slide-toggle.
+Add the presentation style `Switch` on an attribute, the component is showed as a slide-toggle.
 
 

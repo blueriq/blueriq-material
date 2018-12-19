@@ -1,12 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqComponents, BlueriqSession } from '@blueriq/angular';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BlueriqCommonModule } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ButtonTemplate } from '@blueriq/core/testing';
-import { MaterialModule } from '../../material.module';
 import { BqPresentationStyles } from '../BqPresentationStyles';
 import { ButtonComponent } from './button.component';
+import { ButtonModule } from './button.module';
 
 describe('ButtonComponent', () => {
   let button: ButtonTemplate;
@@ -15,14 +15,13 @@ describe('ButtonComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ButtonComponent],
-      providers: [BlueriqComponents.register([ButtonComponent])],
       imports: [
-        MaterialModule,
-        BrowserAnimationsModule, // or NoopAnimationsModule
+        NoopAnimationsModule,
         BlueriqTestingModule,
-        FormsModule
-      ]
+        BlueriqCommonModule,
+        FormsModule,
+        ButtonModule,
+      ],
     });
   }));
 
@@ -33,13 +32,10 @@ describe('ButtonComponent', () => {
     component = session.get(ButtonComponent);
   });
 
-  it('should be created', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should display the button text', () => {
     const buttonText: string = component.nativeElement.querySelector('.mat-button-wrapper').textContent.trim();
     expect(buttonText).toBe('Click me!');
+
   });
 
   it('should be disabled', () => {
@@ -48,7 +44,7 @@ describe('ButtonComponent', () => {
 
     // Disable
     session.update(
-      button.disabled(true)
+      button.disabled(true),
     );
     disabledAttributePresent = component.nativeElement.querySelector('button').hasAttribute('disabled');
     expect(disabledAttributePresent).toBeTruthy();
@@ -56,7 +52,7 @@ describe('ButtonComponent', () => {
 
   it('should be basic colored', () => {
     session.update(
-      button.styles()
+      button.styles(),
     );
 
     const classes: string = component.nativeElement.querySelector('button').getAttribute('class');
@@ -66,7 +62,7 @@ describe('ButtonComponent', () => {
 
   it('should be primary colored', () => {
     session.update(
-      button.styles(BqPresentationStyles.PRIMARY)
+      button.styles(BqPresentationStyles.PRIMARY),
     );
 
     const classes: string = component.nativeElement.querySelector('button').getAttribute('class');
@@ -76,7 +72,7 @@ describe('ButtonComponent', () => {
 
   it('should be secondary colored', () => {
     session.update(
-      button.styles(BqPresentationStyles.ACCENT)
+      button.styles(BqPresentationStyles.ACCENT),
     );
 
     const classes: string = component.nativeElement.querySelector('button').getAttribute('class');
@@ -86,7 +82,7 @@ describe('ButtonComponent', () => {
 
   it('should be tertiary colored', () => {
     session.update(
-      button.styles(BqPresentationStyles.TERTIARY)
+      button.styles(BqPresentationStyles.TERTIARY),
     );
 
     const classes: string = component.nativeElement.querySelector('button').getAttribute('class');
@@ -101,27 +97,16 @@ describe('ButtonComponent', () => {
 
   it('should be flat on presentation style', () => {
     session.update(
-      button.styles(BqPresentationStyles.FLAT_BUTTON)
+      button.styles(BqPresentationStyles.FLAT_BUTTON),
     );
 
     const classes: string = component.nativeElement.querySelector('button').getAttribute('class');
     expect(classes).not.toContain('mat-raised-button');
   });
 
-  it('should call the session when it gets clicked', () => {
-    spyOn(BlueriqSession.prototype, 'pressed');
-    const buttonComponent: ButtonComponent = component.componentInstance;
-    session.update(
-      button.disabled(true)
-    );
-    buttonComponent.onClick();
-    expect(BlueriqSession.prototype.pressed).not.toHaveBeenCalled();
-
-    session.update(
-      button.disabled(false)
-    );
-    buttonComponent.onClick();
-    expect(BlueriqSession.prototype.pressed).toHaveBeenCalledTimes(1);
+  it('should use the bqbutton directive', () => {
+    // Verify
+    expect(component.nativeElement.querySelector('button[bqbutton]')).toBeTruthy();
   });
 
 });

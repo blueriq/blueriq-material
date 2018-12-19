@@ -1,10 +1,9 @@
-<h2 *ngIf="container.displayName">{{container.displayName}}</h2>
+<bq-heading [styles]="container.styles" [title]="container.displayName"></bq-heading>
 
-<mat-tab-group>
+<mat-tab-group [bqContainer]="container">
   <mat-tab *ngFor="let child of container.children">
     <ng-template mat-tab-label>
-      <mat-icon *ngIf="hasValidationErrors(child)">error_outline</mat-icon>
-      {{child.displayName || '['+child.name+']'}}
+      {{child.displayName || '[' + child.name + ']'}}
     </ng-template>
     <ng-container [bqElement]="child"></ng-container>
   </mat-tab>

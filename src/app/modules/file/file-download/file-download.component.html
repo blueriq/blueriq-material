@@ -1,0 +1,12 @@
+<button bqKey bqClasses mat-button
+  [class.mat-raised-button]="isRaisedButton()"
+  [class.mat-icon-button]="isIconButton()"
+  [color]="getColor()"
+  [disabled]="isDisabled()"
+  (click)="onClick()"
+  [class.default-styling]="hasDefaultStyling()">
+  <mat-icon [bqIcon]="button.styles"></mat-icon>
+  <ng-container *ngIf="!this.hasCaption() && !this.hasIconStyle()">{{ "["+button.name+"]" }}</ng-container>
+  {{ button.caption }}
+</button>
+

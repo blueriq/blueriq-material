@@ -1,21 +1,19 @@
-<div bqKey bqClasses [ngClass]="{
-    'container': true,
-    'top-container': topcontainer,
-    'introduction': introduction,
-    'transparent': transparent,
-    'card': card,
-    'align-right': alignRight,
-    'bq-widget': dashboardwidget
-  }">
-  <img *ngIf="introduction" src="./theme/images/blueriq-technology.svg">
+<div bqKey bqClasses [bqContainer]="container">
 
-  <ng-container *ngIf="container.displayName && !table">
-    <h2 *ngIf="!isWidget">{{ container.displayName }}</h2>
-    <h3 *ngIf="isWidget" class="widget">{{ container.displayName }}</h3>
-  </ng-container>
+  <bq-heading [title]="container.displayName" [styles]="container.styles"></bq-heading>
 
-  <div [class.bq-row]="horizontal">
-    <ng-container *ngFor="let child of container.children | bqIncluded" [bqElement]="child" [bqFlexChild]="horizontal"></ng-container>
+  <!-- Container has presentation style 'horizontal', direct children should be rendered horizontally -->
+  <div *ngIf="isHorizontal" class="bq-row">
+    <ng-container *ngFor="let child of container.children | bqIncluded"
+      [bqElement]="child"
+      bqFlexChild></ng-container>
+  </div>
+
+  <!-- Default case, direct children will be rendered vertically, unless the bqFlexColumn directive changes this-->
+  <div *ngIf="!isHorizontal">
+    <ng-container *ngFor="let child of container.children | bqIncluded"
+      [bqElement]="child"
+      bqFlexColumn></ng-container>
   </div>
 
 </div>

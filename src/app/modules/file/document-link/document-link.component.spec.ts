@@ -1,13 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqComponents } from '@blueriq/angular';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DocumentLink } from '@blueriq/angular/files';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate, LinkTemplate } from '@blueriq/core/testing';
-import { MaterialModule } from '../../../material.module';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
 import { FileDownloadService } from '../file-download/file-download.service';
+import { FileModule } from '../file.modules';
 import { DocumentLinkComponent } from './document-link.component';
 
 describe('DocumentLinkComponent DocumentLink', () => {
@@ -23,31 +21,24 @@ describe('DocumentLinkComponent DocumentLink', () => {
   beforeEach(async(() => {
     mockFileDownloadService = jasmine.createSpyObj(['download']);
     TestBed.configureTestingModule({
-      declarations: [DocumentLinkComponent],
       providers: [
-        BlueriqComponents.register([DocumentLinkComponent]),
-        { provide: FileDownloadService, useValue: mockFileDownloadService }
+        { provide: FileDownloadService, useValue: mockFileDownloadService },
       ],
       imports: [
-        MaterialModule,
-        BrowserAnimationsModule,
+        FileModule,
+        NoopAnimationsModule,
         BlueriqTestingModule,
-        FormsModule
-      ]
+      ],
     });
   }));
 
   beforeEach(() => {
     container = ContainerTemplate.create('DocumentLink');
     container.children(
-      LinkTemplate.create().text(LINK_TEXT).document(DOCUMENT_NAME, 'pdf')
+      LinkTemplate.create().text(LINK_TEXT).document(DOCUMENT_NAME, 'pdf'),
     );
     session = BlueriqSessionTemplate.create().build(container);
     component = session.get(DocumentLinkComponent);
-  });
-
-  it('should be created', () => {
-    expect(component).toBeTruthy();
   });
 
   it('should contain the correct data', () => {
@@ -58,31 +49,31 @@ describe('DocumentLinkComponent DocumentLink', () => {
 
   it('should contain the correct data when presentation style "Button" is set', () => {
     session.update(
-      container.styles(BqPresentationStyles.BUTTON)
+      container.styles(BqPresentationStyles.BUTTON),
     );
     const element = component.nativeElement.querySelector('button');
     expect(element.getAttribute('class')).toContain('mat-raised-button');
-    expect(element.querySelector('span').innerHTML.trim()).toBe(LINK_TEXT);
+    expect(element.querySelector('span').innerHTML.trim()).toContain(LINK_TEXT);
   });
 
   it('should contain the correct class when presentation styles "Button" and "primary" are set', () => {
     session.update(
-      container.styles(BqPresentationStyles.BUTTON, BqPresentationStyles.PRIMARY)
+      container.styles(BqPresentationStyles.BUTTON, BqPresentationStyles.PRIMARY),
     );
     const element = component.nativeElement.querySelector('button');
     expect(element.getAttribute('class')).toContain('mat-raised-button');
     expect(element.getAttribute('class')).toContain('mat-primary');
-    expect(element.querySelector('span').innerHTML.trim()).toBe(LINK_TEXT);
+    expect(element.querySelector('span').innerHTML.trim()).toContain(LINK_TEXT);
   });
 
   it('should contain the correct class when presentation styles "Button" and "tertiary" are set', () => {
     session.update(
-      container.styles(BqPresentationStyles.BUTTON, BqPresentationStyles.TERTIARY)
+      container.styles(BqPresentationStyles.BUTTON, BqPresentationStyles.TERTIARY),
     );
     const element = component.nativeElement.querySelector('button');
     expect(element.getAttribute('class')).toContain('mat-raised-button');
     expect(element.getAttribute('class')).toContain('mat-accent');
-    expect(element.querySelector('span').innerHTML.trim()).toBe(LINK_TEXT);
+    expect(element.querySelector('span').innerHTML.trim()).toContain(LINK_TEXT);
   });
 
   it('should change the href when the download handler is called', () => {

@@ -1,9 +1,0 @@
-@import '~@angular/material/theming';
-@import '~material-design-icons/iconfont/material-icons.css';
-@import '~roboto-fontface/css/roboto/roboto-fontface.css';
-@import 'globals/index';
-@import 'components/index';
-
-@include mat-core;
-
-@include angular-material-theme($bq-theme);
