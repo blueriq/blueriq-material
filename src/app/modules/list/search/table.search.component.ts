@@ -27,11 +27,12 @@ export class TableSearchComponent implements OnInit, OnDestroy {
   @ViewChild('inputField')
   inputField: ElementRef;
 
-  opened = false;
-  searchTerms: string[] = [];
-  readonly separatorKeyCodes = [ENTER, COMMA];
   @Input()
   public search: Search;
+
+  readonly separatorKeyCodes = [ENTER, COMMA];
+  opened = false;
+  searchTerms: string[] = [];
   private subscription: Subscription;
 
   ngOnInit(): void {

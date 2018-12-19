@@ -8,7 +8,6 @@ import { ListModule } from '../list.module';
 import { TableSearchComponent } from './table.search.component';
 
 describe('TableSearchComponent', () => {
-  let tableSearch: ContainerTemplate;
   let field: FieldTemplate;
   let button: ButtonTemplate;
   let session: BlueriqTestSession;
@@ -26,55 +25,7 @@ describe('TableSearchComponent', () => {
   });
 
   beforeEach(() => {
-    field = FieldTemplate.text('searchField')
-    .value([])
-    .styles('searchField');
-
-    button = ButtonTemplate.create('searchButton')
-    .styles('searchButton')
-    .caption('Zoeken');
-
-    tableSearch = ContainerTemplate.create('searchContainer')
-    .contentStyle('table')
-    .children(field, button);
-
-    const btnFirst = ButtonTemplate.create('first')
-    .caption('<<')
-    .disabled(true)
-    .styles('pagination');
-
-    const btnPrevious = ButtonTemplate.create('previous')
-    .caption('<')
-    .disabled(true)
-    .styles('pagination');
-
-    const currentPageNumber = FieldTemplate.integer('InstanceListContainer_currentPageNumber')
-    .domain({ 1: '1', 2: '2', 3: '3' })
-    .styles('paginationNumber')
-    .value('1');
-
-    const btnNext = ButtonTemplate.create('next')
-    .caption('>')
-    .styles('pagination');
-
-    const btnLast = ButtonTemplate.create('last')
-    .caption('>>')
-    .styles('pagination');
-
-    const pagination = ContainerTemplate.create()
-    .name('navigationContainer')
-    .displayName('DisplayName')
-    .styles('navigationContainer')
-    .contentStyle('tablenavigation')
-    .children(
-      btnFirst,
-      btnPrevious,
-      currentPageNumber,
-      btnNext,
-      btnLast,
-    );
-    const table = ContainerTemplate.create().contentStyle('table');
-    const list = ContainerTemplate.create().children(tableSearch, table, pagination);
+    const list = ContainerTemplate.create().children(TableSearchTemplate(), TableTemplate(), PaginationTemplate());
     session = BlueriqSessionTemplate.create().build(list);
     component = session.get(ListComponent);
 
@@ -83,13 +34,25 @@ describe('TableSearchComponent', () => {
 
     tableSearchComponent = new TableSearchComponent();
     tableSearchComponent.search = search;
-
   });
 
   it('should render', () => {
-    expect(component.nativeElement.querySelector('mat-form-field')).toBeFalsy();
-    expect(component.nativeElement.querySelector('button')).toBeTruthy();
-    expect(component.nativeElement.querySelector('button mat-icon').innerText).toMatch(/^search$/i);
+    const tableSearchElement = component.nativeElement.querySelector('bq-table-search');
+    expect(tableSearchElement.querySelector('mat-form-field')).toBeFalsy();
+    expect(tableSearchElement.querySelector('button')).toBeTruthy();
+    expect(tableSearchElement.querySelector('button mat-icon').innerText).toMatch(/^search$/i);
+  });
+
+  /* The search button becomes disabled when a instance list is readonly. The backend can not handle search when this is the case.
+     The fix for now is to not render the search */
+  it('should not render when search button is disabled', () => {
+    const list = ContainerTemplate.create().children(TableSearchTemplate(true), TableTemplate(), PaginationTemplate());
+    session = BlueriqSessionTemplate.create().build(list);
+    component = session.get(ListComponent);
+    const tableSearchElement = component.nativeElement.querySelector('bq-table-search');
+
+    // Verify
+    expect(tableSearchElement.innerText).toBeFalsy();
   });
 
   it('should show empty search field on button click', () => {
@@ -149,5 +112,62 @@ describe('TableSearchComponent', () => {
     expect(tableSearchComponent.searchTerms.length).toBe(3);
 
   });
+
+  function TableTemplate() {
+    return ContainerTemplate.create().contentStyle('table');
+  }
+
+  function TableSearchTemplate(disabledButton = false) {
+    field = FieldTemplate.text('searchField')
+    .value([])
+    .styles('searchField');
+
+    button = ButtonTemplate.create('searchButton')
+    .styles('searchButton')
+    .disabled(disabledButton)
+    .caption('Zoeken');
+
+    return ContainerTemplate.create('searchContainer')
+    .contentStyle('table')
+    .children(field, button);
+  }
+
+  function PaginationTemplate() {
+    const btnFirst = ButtonTemplate.create('first')
+    .caption('<<')
+    .disabled(true)
+    .styles('pagination');
+
+    const btnPrevious = ButtonTemplate.create('previous')
+    .caption('<')
+    .disabled(true)
+    .styles('pagination');
+
+    const currentPageNumber = FieldTemplate.integer('InstanceListContainer_currentPageNumber')
+    .domain({ 1: '1', 2: '2', 3: '3' })
+    .styles('paginationNumber')
+    .value('1');
+
+    const btnNext = ButtonTemplate.create('next')
+    .caption('>')
+    .styles('pagination');
+
+    const btnLast = ButtonTemplate.create('last')
+    .caption('>>')
+    .styles('pagination');
+
+    return ContainerTemplate.create()
+    .name('navigationContainer')
+    .displayName('DisplayName')
+    .styles('navigationContainer')
+    .contentStyle('tablenavigation')
+    .children(
+      btnFirst,
+      btnPrevious,
+      currentPageNumber,
+      btnNext,
+      btnLast,
+    );
+  }
 
 });
