@@ -4,14 +4,13 @@ import { TextItem } from '@blueriq/core';
 import { BqPresentationStyles } from '../BqPresentationStyles';
 
 @Component({
+  selector: 'bq-textitem',
   templateUrl: './textitem.component.html',
   styleUrls: ['./textitem.component.scss'],
 })
-
 @BlueriqComponent({
   type: TextItem,
 })
-
 export class TextItemComponent {
 
   constructor(@Host() public textItem: TextItem) {
