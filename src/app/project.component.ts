@@ -1,6 +1,6 @@
 import { Component, isDevMode, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FailedAction, isBlueriqError, UnauthorizedProjectAction } from '@blueriq/angular';
+import { FailedAction, isBlueriqError, ShortcutDetails, UnauthorizedProjectAction } from '@blueriq/angular';
 import { ErrorType, SessionId } from '@blueriq/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -63,8 +63,14 @@ export class ProjectComponent implements OnInit {
 
   /** Handler for unauthorized events, navigate to login page */
   onUnauthorized(details: UnauthorizedProjectAction) {
-    const { channel, flow, project, version } = details.details.params;
-    this.router.navigate(['/login'], { queryParams: { channel, flow, project, version } });
+    if (details.details instanceof ShortcutDetails) {
+      const returnUrl = 'shortcut/' + details.details.shortcut;
+      this.router.navigate(['/login'], { queryParams: { returnUrl } });
+    } else {
+      const { flow, project, version } = details.details.params;
+      const returnUrl = `flow/${project}/${flow}/${version || ''}`;
+      this.router.navigate(['/login'], { queryParams: { returnUrl } });
+    }
   }
 
   onError(action: FailedAction): void {

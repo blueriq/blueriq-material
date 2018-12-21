@@ -27,18 +27,8 @@ export class LoginComponent {
     this.authService.login(this.username.value, this.password.value).subscribe({
       next: result => {
         if (result.success) {
-          const { flow, project, version } = this.route.snapshot.queryParams;
-          if (project && flow) {
-            if (version) {
-              this.router.navigate(['/flow', project, flow, version]);
-            } else {
-              this.router.navigate(['/flow', project, flow]);
-            }
-          } else {
-            // We don't know the flow that the user wants to start, so navigate to the default shortcut.
-            // You can change this to suit your needs.
-            this.router.navigate(['/']);
-          }
+          const { returnUrl } = this.route.snapshot.queryParams;
+          this.router.navigate([returnUrl || '/']);
         } else {
           this.failed = true;
         }

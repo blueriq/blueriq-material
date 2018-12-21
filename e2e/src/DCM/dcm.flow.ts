@@ -10,6 +10,7 @@ export class DcmFlow {
   public PAGE_PROJECT_TAGNAME: string = 'bq-project';
 
   private path = '/flow/studio-DCM_Foundation-Main_Dashboard/Dashboard';
+  private shortcut = '/shortcut/DCM';
 
   get loginPage(): ElementFinder {
     return element(by.tagName(this.PAGE_LOGIN_TAGNAME));
@@ -48,6 +49,10 @@ export class DcmFlow {
 
   start() {
     return browser.get(this.path);
+  }
+
+  startByShortcut() {
+    return browser.get(this.shortcut);
   }
 
   reset() {
