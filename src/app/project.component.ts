@@ -64,11 +64,12 @@ export class ProjectComponent implements OnInit {
   /** Handler for unauthorized events, navigate to login page */
   onUnauthorized(details: UnauthorizedProjectAction) {
     if (details.details instanceof ShortcutDetails) {
-      const shortcut = details.details.shortcut;
-      this.router.navigate(['/login'], { queryParams: { shortcut } });
+      const returnUrl = 'shortcut/' + details.details.shortcut;
+      this.router.navigate(['/login'], { queryParams: { returnUrl } });
     } else {
-      const { channel, flow, project, version } = details.details.params;
-      this.router.navigate(['/login'], { queryParams: { channel, flow, project, version } });
+      const { flow, project, version } = details.details.params;
+      const returnUrl = `flow/${project}/${flow}/${version || ''}`;
+      this.router.navigate(['/login'], { queryParams: { returnUrl } });
     }
   }
 

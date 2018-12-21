@@ -48,8 +48,9 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authService.logout().subscribe(() => {
-      this.route.params.subscribe(params => {
-        this.router.navigate(['/login'], { queryParams: params });
+      this.route.params.subscribe(() => {
+        const returnUrl = this.router.url;
+        this.router.navigate(['/login'], { queryParams: { returnUrl } });
       });
     });
   }
