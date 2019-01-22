@@ -24,7 +24,9 @@ export class FileUploadComponent {
   constructor(@Self() public fileUpload: FileUpload, @Host() public container: Container) {
 
     const uploadOptions: FileUploaderOptions = {
-      url: this.fileUpload.uploadUrl,
+      url: this.fileUpload.uploadDetails.url,
+      headers: this.fileUpload.uploadDetails.headers,
+      additionalParameter: this.getAdditionalParameters(),
       maxFileSize: this.fileUpload.maxFileSize,
       autoUpload: true,
     };
@@ -69,5 +71,13 @@ export class FileUploadComponent {
       }
     };
 
+  }
+
+  private getAdditionalParameters() {
+    const additionalParams = {};
+    this.fileUpload.uploadDetails.parts.forEach(part => {
+      additionalParams[part.name] = part.body;
+    });
+    return additionalParams;
   }
 }
