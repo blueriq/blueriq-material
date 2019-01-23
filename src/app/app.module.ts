@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { BlueriqModule } from '@blueriq/angular';
-import { V1BackendModule } from '@blueriq/angular/backend/v1';
+import { V2BackendModule } from '@blueriq/angular/backend/v2';
 import { BlueriqStoreModule } from '@blueriq/angular/store';
 import { DateFormats } from '@blueriq/core';
 import { EffectsModule } from '@ngrx/effects';
@@ -54,7 +54,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
-    V1BackendModule.forRoot({
+    V2BackendModule.forRoot({
       baseUrl: environment.baseUrl,
     }),
 
