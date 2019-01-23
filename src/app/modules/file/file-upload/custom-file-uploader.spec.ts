@@ -5,25 +5,37 @@ describe('CustomFileUploader', () => {
 
   let customFileUploader: CustomFileUploader;
 
-  it('should call send with correct formdate', () => {
+  it('should process file uploader options correctly', () => {
     // Init
     const uploadOptions: FileUploaderOptions = {
       url: 'www.some-url.com',
       maxFileSize: 256,
       autoUpload: true,
+      headers: [{name: 'headerName', value: 'headerValue'}],
+      additionalParameter: {'aParam': 'aValue'},
     };
     customFileUploader = new CustomFileUploader(uploadOptions);
-    spyOn(XMLHttpRequest.prototype, 'send').and.callThrough();
+    const xhrSend = spyOn(XMLHttpRequest.prototype, 'send');
+    const xhrHeader = spyOn(XMLHttpRequest.prototype, 'setRequestHeader');
+    const formData = spyOn(FormData.prototype, 'append');
     const fileItem = createFile('hello.txt');
     customFileUploader.queue.push(fileItem);
-    const sendable = new FormData();
-    sendable.append('files[]', fileItem._file, fileItem._file.name);
 
     // SUT
     customFileUploader.uploadAll();
 
     // Verify
-    expect(XMLHttpRequest.prototype.send).toHaveBeenCalledWith(sendable);
+    // file submit
+    expect(formData).toHaveBeenCalledWith('files[]', fileItem._file, fileItem._file.name);
+    // additional parameters
+    expect(formData).toHaveBeenCalledWith('aParam', 'aValue');
+    // verify no more formdata
+    expect(formData).toHaveBeenCalledTimes(2);
+    // headers
+    expect(xhrHeader).toHaveBeenCalledWith('headerName', 'headerValue');
+    // asserting on the formData the XHR has been called with does not look at the contents of the formData,
+    // which is why the formData is asserted directly. Only verify here that send was actually called.
+    expect(xhrSend).toHaveBeenCalled();
   });
 
   describe('_fileTypeFilter', () => {
