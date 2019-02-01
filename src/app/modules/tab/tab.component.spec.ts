@@ -79,7 +79,7 @@ describe('TabComponent', () => {
     // init
     const tabBody = tabFixture.nativeElement.querySelector('.mat-tab-body');
     const tabBodyHeading = tabBody.querySelector('bq-heading');
-    var tabBodyCssDisplayValue = window.getComputedStyle(tabBodyHeading, null).getPropertyValue('display');
+    const tabBodyCssDisplayValue = window.getComputedStyle(tabBodyHeading, null).getPropertyValue('display');
 
     // Verify
     expect(tabBodyCssDisplayValue).toBe('none');
