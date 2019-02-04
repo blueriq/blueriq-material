@@ -1,5 +1,15 @@
 @import 'globals/variables';
 
+::ng-deep {
+  .mat-tab-body {
+    margin: $bq-margin $bq-margin 0;
+
+    bq-heading {
+      display: none;
+    }
+  }
+}
+
 mat-icon {
   color: mat-color($bq-error-palette, 800);
 }

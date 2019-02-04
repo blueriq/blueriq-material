@@ -75,4 +75,14 @@ describe('TabComponent', () => {
     expect(tabFixture.nativeElement.querySelector('bq-heading')).toBeTruthy();
   });
 
+  it('should not show bq-heading within a mat-tab-group', () => {
+    // init
+    const tabBody = tabFixture.nativeElement.querySelector('.mat-tab-body');
+    const tabBodyHeading = tabBody.querySelector('bq-heading');
+    const tabBodyCssDisplayValue = window.getComputedStyle(tabBodyHeading, null).getPropertyValue('display');
+
+    // Verify
+    expect(tabBodyCssDisplayValue).toBe('none');
+  });
+
 });
