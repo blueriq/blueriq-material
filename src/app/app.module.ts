@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { BlueriqModule } from '@blueriq/angular';
 import { V2BackendModule } from '@blueriq/angular/backend/v2';
-import { OpenIdConnectAuthModule } from '@blueriq/angular/openidconnect';
 import { BlueriqStoreModule } from '@blueriq/angular/store';
 import { DateFormats } from '@blueriq/core';
 import { EffectsModule } from '@ngrx/effects';
@@ -13,8 +12,8 @@ import { provideDateFormats } from '@shared/date/bq-date-parser';
 import { BqEffectsModule } from '@shared/effects/bq-effects.module';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
-import { OpenIdConnectLoginGuard } from './auth/openid-connect-login.guard';
-import { OpenIdConnectVerifyGuard } from './auth/openid-connect-verify.guard';
+import { AuthModule } from './auth/auth.module';
+import { AUTH_ROUTES } from './auth/routes';
 import { AssetModule } from './modules/asset/asset.module';
 import { ButtonModule } from './modules/button/button.module';
 import { CommentModule } from './modules/comment/comment.module';
@@ -30,9 +29,6 @@ import { LoadingModule } from './modules/loading/loading.module';
 import { MenuModule } from './modules/menu/menu.module';
 import { PageModule } from './modules/page/page.module';
 import { ReadonlyModule } from './modules/readonly/readonly.module';
-import { LoginComponent } from './modules/static-pages/login.component';
-import { OpenIdConnectVerifyComponent } from './modules/static-pages/openid-connect-verify/openid-connect-verify.component';
-import { StaticPagesModule } from './modules/static-pages/static-pages.module';
 import { TabModule } from './modules/tab/tabs.module';
 import { TextItemModule } from './modules/textitem/textitem.module';
 import { TimelineModule } from './modules/timeline/timeline.module';
@@ -46,8 +42,7 @@ const routes: Routes = [
   { path: 'flow/:project/:flow', component: ProjectComponent },
   { path: 'flow/:project/:flow/:version', component: ProjectComponent },
   { path: 'flow/:project/:flow/:version/:languageCode', component: ProjectComponent },
-  { path: 'login', component: LoginComponent, canActivate: [OpenIdConnectLoginGuard] },
-  { path: 'openidconnect/verify', component: OpenIdConnectVerifyComponent, canActivate: [OpenIdConnectVerifyGuard] },
+  ...AUTH_ROUTES,
   { path: '**', redirectTo: 'shortcut/default', pathMatch: 'full' },
 ];
 
@@ -74,7 +69,6 @@ const routes: Routes = [
     V2BackendModule.forRoot({
       baseUrl: environment.baseUrl,
     }),
-    OpenIdConnectAuthModule,
 
     /* Blueriq Modules */
     AssetModule,
@@ -99,7 +93,7 @@ const routes: Routes = [
 
     /* Non-Blueriq modules */
     LoadingModule,
-    StaticPagesModule,
+    AuthModule,
     ErrorModule,
   ],
   providers: [

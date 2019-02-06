@@ -4,9 +4,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
-import { ErrorModule } from '../error/error.module';
-import { LoginComponent } from './login.component';
-import { OpenIdConnectVerifyComponent } from './openid-connect-verify/openid-connect-verify.component';
+import { OpenIdConnectAuthModule } from '@blueriq/angular/openidconnect';
+import { ErrorModule } from '../modules/error/error.module';
+import { LoginComponent } from './login/login.component';
+import { OpenIdConnectVerifyComponent } from './openid/openid-connect-verify/openid-connect-verify.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { OpenIdConnectVerifyComponent } from './openid-connect-verify/openid-con
     ReactiveFormsModule,
     FlexLayoutModule,
     RouterModule,
+    OpenIdConnectAuthModule,
 
     /* Theme modules */
     ErrorModule,
@@ -31,5 +33,5 @@ import { OpenIdConnectVerifyComponent } from './openid-connect-verify/openid-con
   ],
 })
 
-export class StaticPagesModule {
+export class AuthModule {
 }

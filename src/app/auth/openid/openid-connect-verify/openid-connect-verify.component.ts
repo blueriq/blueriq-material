@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ErrorType } from '@blueriq/core';
-import { ErrorModel } from '../../error/error.model';
+import { ErrorModel } from '../../../modules/error/error.model';
 
 @Component({
   selector: 'bq-openid-connect-verify',

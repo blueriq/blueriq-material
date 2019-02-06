@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { OpenIdConnectAuth } from '@blueriq/angular/openidconnect';
 import { of, throwError } from 'rxjs';
-import { AuthService } from './auth.service';
+import { AuthService } from '../auth.service';
 import { OpenIdConnectVerifyGuard } from './openid-connect-verify.guard';
 
 @Component({

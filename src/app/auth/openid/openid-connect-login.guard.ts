@@ -4,7 +4,7 @@ import { CanActivate, Router } from '@angular/router';
 import { OpenIdConnectAuth } from '@blueriq/angular/openidconnect';
 import { Observable, of } from 'rxjs';
 import { catchError, mapTo, tap } from 'rxjs/operators';
-import { AuthService } from './auth.service';
+import { AuthService } from '../auth.service';
 
 /**
  * This guard attempts to redirect to an OpenId Connect provider, before allowing access to the regular login component.
