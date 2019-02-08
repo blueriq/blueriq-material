@@ -33,16 +33,15 @@ export class AuthService {
     return this.openIdConnect ? this.openIdConnect.canLogout() : true;
   }
 
-  logoutAndNavigate(returnPath: string = this.router.url): void {
-    const ssoLogoutUrl = this.openIdConnect && this.openIdConnect.configuration.logoutUrl;
-
-    // If OpenId Connect is configured we need to redirect the the provided logout endpoint.
-    if (ssoLogoutUrl) {
-      this.document.location!.href = this.addReturnPath(ssoLogoutUrl, returnPath);
-    } else {
-      this.auth.logout().subscribe();
-      this.navigateToLogin(returnPath);
-    }
+  logoutAndNavigate(): void {
+    this.auth.logout().subscribe(response => {
+      // If the response contains an ssoLogoutUrl, we need to redirect to that URL to be logged out from OIDC provider.
+      if (response.ssoLogoutUrl) {
+        this.document.location!.href = this.addReturnPath(response.ssoLogoutUrl, '/logged-out');
+      } else {
+        this.router.navigate(['/logged-out']);
+      }
+    });
   }
 
   navigateToLogin(returnPath: string = this.router.url): void {
@@ -54,13 +53,13 @@ export class AuthService {
   }
 
   private addReturnPath(logoutUrl: string, returnPath: string): string {
-    if (logoutUrl.includes('?redirect_uri=') || logoutUrl.includes('&redirect_uri=')) {
+    if (logoutUrl.includes('?post_logout_redirect_uri=') || logoutUrl.includes('&post_logout_redirect_uri=')) {
       return logoutUrl;
     }
 
     const redirectUrl = this.prepareExternalUrl(returnPath);
     const joiner = logoutUrl.includes('?') ? '&' : '?';
-    return `${logoutUrl}${joiner}redirect_uri=${encodeURIComponent(redirectUrl)}`;
+    return `${logoutUrl}${joiner}post_logout_redirect_uri=${encodeURIComponent(redirectUrl)}`;
   }
 
   private prepareExternalUrl(path: string): string {

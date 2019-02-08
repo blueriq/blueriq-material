@@ -6,12 +6,14 @@ import { MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule } fr
 import { RouterModule } from '@angular/router';
 import { OpenIdConnectAuthModule } from '@blueriq/angular/openidconnect';
 import { ErrorModule } from '../modules/error/error.module';
+import { LoggedOutComponent } from './logged-out/logged-out.component';
 import { LoginComponent } from './login/login.component';
 import { OpenIdConnectVerifyComponent } from './openid/openid-connect-verify/openid-connect-verify.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
+    LoggedOutComponent,
     OpenIdConnectVerifyComponent,
   ],
   imports: [

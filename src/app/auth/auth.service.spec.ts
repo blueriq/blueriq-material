@@ -4,9 +4,9 @@ import { Component } from '@angular/core';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AuthService as BqAuthService } from '@blueriq/angular';
+import { AuthService as BqAuthService, LogoutResult } from '@blueriq/angular';
 import { OpenIdConnectAuth } from '@blueriq/angular/openidconnect';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { AuthService } from './auth.service';
 
 @Component({
@@ -40,6 +40,7 @@ describe('AuthService', () => {
       imports: [
         RouterTestingModule.withRoutes([
           { path: 'login', component: TestComponent },
+          { path: 'logged-out', component: TestComponent },
         ]),
       ],
       providers: [
@@ -62,15 +63,16 @@ describe('AuthService', () => {
     describe('logging out', () => {
       it('should logout from Blueriq and redirect to the login route', fakeAsync(() => {
         let loggedOut = false;
-        blueriqAuth.logout.and.returnValue(Observable.create(() => {
+        blueriqAuth.logout.and.returnValue(new Observable(subscriber => {
           loggedOut = true;
+          subscriber.next({});
         }));
 
-        auth.logoutAndNavigate('/flow/shortcut/default');
+        auth.logoutAndNavigate();
         tick();
 
         expect(loggedOut).toBe(true);
-        expect(router.url).toEqual('/login?returnPath=%2Fflow%2Fshortcut%2Fdefault');
+        expect(router.url).toEqual('/logged-out');
       }));
     });
 
@@ -85,44 +87,57 @@ describe('AuthService', () => {
     });
 
     describe('logging out', () => {
-      it('should redirect to OpenId logout endpoint', () => {
-        openIdConnect.configuration.logoutUrl = 'http://openidconnect.com/logout';
-        auth.logoutAndNavigate('/flow/shortcut/default');
+      const configureLogout = (ssoLogoutUrl: string | undefined) => {
+        const logoutResult: LogoutResult = { ssoLogoutUrl };
+        blueriqAuth.logout.and.returnValue(of(logoutResult));
+      };
+
+      it('should redirect to OpenId logout endpoint if logout endpoint is available', () => {
+        configureLogout('http://openidconnect.com/logout');
+        auth.logoutAndNavigate();
 
         expect(doc.location!.href).toEqual(
-          `http://openidconnect.com/logout?redirect_uri=http%3A%2F%2Fexample.com%2Fflow%2Fshortcut%2Fdefault`);
+          `http://openidconnect.com/logout?post_logout_redirect_uri=http%3A%2F%2Fexample.com%2Flogged-out`);
       });
 
-      it('handles preconfigured ?redirect_uri query parameter', () => {
-        openIdConnect.configuration.logoutUrl = 'http://openidconnect.com/logout?redirect_uri=preconfigured';
-        auth.logoutAndNavigate('/flow/shortcut/default');
+      it('should not redirect to OpenId logout endpoint if logout endpoint is not available', fakeAsync(() => {
+        configureLogout(undefined);
+        auth.logoutAndNavigate();
+        tick();
 
-        expect(doc.location!.href).toEqual('http://openidconnect.com/logout?redirect_uri=preconfigured');
+        expect(router.url).toEqual('/logged-out');
+      }));
+
+      it('handles preconfigured ?post_logout_redirect_uri query parameter', () => {
+        configureLogout('http://openidconnect.com/logout?post_logout_redirect_uri=preconfigured');
+        auth.logoutAndNavigate();
+
+        expect(doc.location!.href).toEqual('http://openidconnect.com/logout?post_logout_redirect_uri=preconfigured');
       });
 
-      it('handles preconfigured &redirect_uri query parameter', () => {
-        openIdConnect.configuration.logoutUrl = 'http://openidconnect.com/logout?test&redirect_uri=preconfigured';
-        auth.logoutAndNavigate('/flow/shortcut/default');
+      it('handles preconfigured &post_logout_redirect_uri query parameter', () => {
+        configureLogout('http://openidconnect.com/logout?test&post_logout_redirect_uri=preconfigured');
+        auth.logoutAndNavigate();
 
-        expect(doc.location!.href).toEqual('http://openidconnect.com/logout?test&redirect_uri=preconfigured');
+        expect(doc.location!.href).toEqual('http://openidconnect.com/logout?test&post_logout_redirect_uri=preconfigured');
       });
 
       it('handles existing query parameters in the logout endpoint', () => {
-        openIdConnect.configuration.logoutUrl = 'http://openidconnect.com/logout?test';
-        auth.logoutAndNavigate('/flow/shortcut/default');
+        configureLogout('http://openidconnect.com/logout?test');
+        auth.logoutAndNavigate();
 
         expect(doc.location!.href).toEqual(
-          `http://openidconnect.com/logout?test&redirect_uri=http%3A%2F%2Fexample.com%2Fflow%2Fshortcut%2Fdefault`);
+          `http://openidconnect.com/logout?test&post_logout_redirect_uri=http%3A%2F%2Fexample.com%2Flogged-out`);
       });
 
       it('includes an application base path if present', () => {
         const locationStrategy: MockLocationStrategy = TestBed.get(LocationStrategy);
         locationStrategy.internalBaseHref = 'Runtime';
-        openIdConnect.configuration.logoutUrl = 'http://openidconnect.com/logout';
-        auth.logoutAndNavigate('/flow/shortcut/default');
+        configureLogout('http://openidconnect.com/logout');
+        auth.logoutAndNavigate();
 
         expect(doc.location!.href).toEqual(
-          `http://openidconnect.com/logout?redirect_uri=http%3A%2F%2Fexample.com%2FRuntime%2Fflow%2Fshortcut%2Fdefault`);
+          `http://openidconnect.com/logout?post_logout_redirect_uri=http%3A%2F%2Fexample.com%2FRuntime%2Flogged-out`);
       });
     });
   });
