@@ -59,14 +59,14 @@ describe('HeadingComponent', () => {
     expect(matIcon.classList.toString()).toContain('my-user-icon');
   });
 
-  it('should contain a h3 when it is a widget', () => {
+  it('should contain a h2 with widget class when it is a widget', () => {
     spyOnProperty(BlueriqSession.prototype, 'isWidget').and.returnValue(true);
     session = BlueriqSessionTemplate.create().build(template);
     fixture = session.get(MockContainerComponent);
-    const h3 = fixture.nativeElement.querySelector('bq-heading').querySelector('h3');
-    expect(h3).toBeTruthy();
-    expect(h3.innerText).toContain('User Details');
-    expect(h3.classList).toContain('widget');
+    const h2 = fixture.nativeElement.querySelector('bq-heading').querySelector('h2');
+    expect(h2).toBeTruthy();
+    expect(h2.innerText).toContain('User Details');
+    expect(h2.classList).toContain('widget');
   });
 
 });
