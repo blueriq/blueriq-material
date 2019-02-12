@@ -1,6 +1,5 @@
-import { Component, Input, Optional, SkipSelf } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BlueriqSession } from '@blueriq/angular';
-import { List } from '@blueriq/angular/lists';
 import { PresentationStyles } from '@blueriq/core';
 
 @Component({
@@ -16,8 +15,11 @@ export class HeadingComponent {
   @Input()
   styles: PresentationStyles;
 
-  constructor(@Optional() @SkipSelf() public readonly list: List,
-              public blueriqSession: BlueriqSession) {
+  constructor(private blueriqSession: BlueriqSession) {
+  }
+
+  get isWidget(): boolean {
+    return this.blueriqSession.isWidget;
   }
 
 }

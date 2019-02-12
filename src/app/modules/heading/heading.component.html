@@ -1,10 +1,4 @@
-<ng-container *ngIf="title && !list">
-  <h2 *ngIf="!blueriqSession.isWidget">
-    <mat-icon [bqIcon]="styles"></mat-icon>
-    {{ title }}
-  </h2>
-  <h3 *ngIf="blueriqSession.isWidget" class="widget">
-    <mat-icon [bqIcon]="styles"></mat-icon>
-    {{ title }}
-  </h3>
-</ng-container>
+<h2 *ngIf="title" [class.widget]="isWidget">
+  <mat-icon [bqIcon]="styles"></mat-icon>
+  {{ title }}
+</h2>
