@@ -39,9 +39,9 @@ describe('HeadingComponent', () => {
 
   beforeEach(() => {
     template = ContainerTemplate
-    .create('UserContainer')
-    .displayName('User Details')
-    .styles(BqPresentationStyles.ICON_FA_PREFIX + 'my_user_icon');
+      .create('UserContainer')
+      .displayName('User Details')
+      .styles(BqPresentationStyles.ICON_FA_PREFIX + 'my_user_icon');
 
     session = BlueriqSessionTemplate.create().build(template);
     fixture = session.get(MockContainerComponent);
@@ -51,6 +51,12 @@ describe('HeadingComponent', () => {
     const h2 = fixture.nativeElement.querySelector('bq-heading').querySelector('h2');
     expect(h2).toBeTruthy();
     expect(h2.innerText).toContain('User Details');
+  });
+
+  it('should not display an empty title', () => {
+    session.update(template.displayName(''));
+    const h2 = fixture.nativeElement.querySelector('bq-heading').querySelector('h2');
+    expect(h2).toBeFalsy();
   });
 
   it('should contain a h2 tag with mat-icon', () => {

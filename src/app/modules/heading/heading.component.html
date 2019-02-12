@@ -1,4 +1,4 @@
-<h2 [class.widget]="isWidget">
+<h2 *ngIf="title" [class.widget]="isWidget">
   <mat-icon [bqIcon]="styles"></mat-icon>
   {{ title }}
 </h2>
