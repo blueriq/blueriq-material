@@ -5,8 +5,6 @@ import { List } from '@blueriq/angular/lists';
 import { Field, FieldMessages } from '@blueriq/core';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
 
-type RadioButtonDirection = 'vertical' | 'horizontal';
-
 @Component({
   selector: 'bq-radio-button',
   templateUrl: './radio-button.component.html',
@@ -21,7 +19,7 @@ type RadioButtonDirection = 'vertical' | 'horizontal';
 })
 export class RadioButtonComponent implements OnInit, OnUpdate {
 
-  public direction: RadioButtonDirection = 'vertical';
+  direction: 'vertical' | 'horizontal';
 
   formControl = this.form.control(this.field, { updateOn: 'blur', disableWhen: BqPresentationStyles.DISABLED });
 
@@ -31,11 +29,11 @@ export class RadioButtonComponent implements OnInit, OnUpdate {
   }
 
   ngOnInit() {
-    this.determineDirection();
+    this.updateDirection();
   }
 
   bqOnUpdate() {
-    this.determineDirection();
+    this.updateDirection();
   }
 
   getMessages(): FieldMessages {
@@ -43,15 +41,16 @@ export class RadioButtonComponent implements OnInit, OnUpdate {
   }
 
   /**
-   * Determines the direction in which the radio buttons are presented.
+   * Sets the direction in which the radio buttons are presented.
    * Options are {@link BqPresentationStyles.VERTICAL}
    * and {@link BqPresentationStyles.HORIZONTAL}
-   * @returns {string} denoting the direction in which the buttons are presented
    */
-  private determineDirection() {
+  private updateDirection() {
     if (this.field.styles.hasAny(BqPresentationStyles.HORIZONTAL, BqPresentationStyles.DEPRECATED_HORIZONTAL)
-      || this.field.domain.options.length === 2) {
+      || this.field.domain.size === 2) {
       this.direction = 'horizontal';
+    } else {
+      this.direction = 'vertical';
     }
   }
 
