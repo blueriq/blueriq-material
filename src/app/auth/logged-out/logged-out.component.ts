@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { ErrorType } from '@blueriq/core';
-import { ErrorModel } from '../../modules/error/error.model';
+import { NotificationModel, NotificationType } from '../../notification-overlay/notification.model';
 
 @Component({
   selector: 'bq-logged-out',
@@ -9,6 +8,6 @@ import { ErrorModel } from '../../modules/error/error.model';
 })
 export class LoggedOutComponent {
 
-  error = new ErrorModel(ErrorType.FlowEnded, 'Logged Out', 'Successfully logged out');
+  notification = new NotificationModel(NotificationType.Error, 'Logged out', 'Successfully logged out');
 
 }

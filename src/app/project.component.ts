@@ -1,11 +1,11 @@
 import { Component, isDevMode, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FailedAction, ForbiddenProjectAction, isBlueriqError, UnauthorizedProjectAction } from '@blueriq/angular';
-import { ErrorType, SessionId } from '@blueriq/core';
+import { SessionId } from '@blueriq/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from './auth/auth.service';
-import { ErrorModel } from './modules/error/error.model';
+import { NotificationModel, NotificationType } from './notification-overlay/notification.model';
 
 @Component({
   templateUrl: './project.component.html',
@@ -20,7 +20,7 @@ export class ProjectComponent implements OnInit {
   flow: Observable<string | null>;
   languageCode: Observable<string | null>;
 
-  error: ErrorModel | undefined;
+  notification: NotificationModel | undefined;
 
   constructor(private readonly auth: AuthService,
               private readonly route: ActivatedRoute) {
@@ -40,15 +40,10 @@ export class ProjectComponent implements OnInit {
     this.languageCode = this.route.paramMap.pipe(map(params => params.get('languageCode')));
   }
 
-  /** Call this method to clear the error and thus removing it from view */
-  clearError(): void {
-    this.error = undefined;
-  }
-
   /** Handler for Session Expired events */
   onSessionExpired() {
-    this.error = new ErrorModel(
-      ErrorType.UnknownSession,
+    this.notification = new NotificationModel(
+      NotificationType.SessionExpired,
       'Session expired',
       'Your session has expired due to inactivity',
     );
@@ -56,38 +51,46 @@ export class ProjectComponent implements OnInit {
 
   /** Handler for Flow Ended events */
   onFlowEnded() {
-    this.error = new ErrorModel(
-      ErrorType.FlowEnded,
+    this.notification = new NotificationModel(
+      NotificationType.Error,
       'Flow ended',
       'The flow has ended',
     );
   }
 
-  /** Handler for unauthorized events, navigate to login page */
+  /** Handler for unauthorized events, navigates to login page */
   onUnauthorized(details: UnauthorizedProjectAction) {
     this.auth.navigateToLogin();
   }
 
   /** Handler for forbidden events, shows error with logout button */
   onForbidden(action: ForbiddenProjectAction) {
-    this.error = new ErrorModel(ErrorType.Forbidden, 'Forbidden', action.error.cause.message);
-    this.error.dismiss = this.auth.canLogout() ? {
-      label: 'logout',
+    this.notification = new NotificationModel(NotificationType.Error, 'Forbidden', action.error.cause.message);
+    this.notification.dismiss = this.auth.canLogout() ? {
+      label: 'Logout',
       action: () => this.auth.logoutAndNavigate(),
     } : undefined;
   }
 
+  /** Handler for technical failures, shows error that can be dismissed */
   onError(action: FailedAction): void {
     if (isDevMode()) {
       console.error(action);
     }
     if (isBlueriqError(action.error)) {
-      const { errorType, message, title } = action.error.cause;
+      const { title, message } = action.error.cause;
 
-      this.error = new ErrorModel(errorType, title, message);
+      this.notification = new NotificationModel(NotificationType.Error, title, message);
     } else {
-      this.error = new ErrorModel(ErrorType.Exception, 'Oops!', 'An unknown error occurred');
+      this.notification = new NotificationModel(NotificationType.Error, 'Oops!', 'An unknown error occurred');
     }
+
+    this.notification.dismiss = {
+      label: 'Dismiss',
+      action: () => {
+        this.notification = undefined;
+      },
+    };
   }
 
 }

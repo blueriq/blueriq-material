@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { ErrorType } from '@blueriq/core';
-import { ErrorModel } from '../../../modules/error/error.model';
+import { NotificationModel, NotificationType } from '../../../notification-overlay/notification.model';
 
 @Component({
   selector: 'bq-openid-connect-verify',
@@ -13,6 +12,6 @@ export class OpenIdConnectVerifyComponent {
    * If this component is actually shown, the {@link OpenIdConnectVerifyGuard} was unable to verify the OpenId Connect
    * callback request and prevented redirecting to the intended route. Hence, we know for a fact that login failed.
    */
-  error = new ErrorModel(ErrorType.Unauthorized, 'Login failed', 'Authentication was not successful');
+  notification = new NotificationModel(NotificationType.Error, 'Login failed', 'Authentication was not successful');
 
 }

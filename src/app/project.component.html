@@ -15,4 +15,4 @@
   (forbidden)="onForbidden($event)">
 </bq-project>
 
-<bq-error *ngIf="error" [error]="error"></bq-error>
+<bq-notification-overlay *ngIf="notification" [notification]="notification"></bq-notification-overlay>

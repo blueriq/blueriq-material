@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { OpenIdConnectAuthModule } from '@blueriq/angular/openidconnect';
-import { ErrorModule } from '../modules/error/error.module';
+import { NotificationOverlayModule } from '../notification-overlay/notification-overlay.module';
 import { LoggedOutComponent } from './logged-out/logged-out.component';
 import { LoginComponent } from './login/login.component';
 import { OpenIdConnectVerifyComponent } from './openid/openid-connect-verify/openid-connect-verify.component';
@@ -25,7 +25,7 @@ import { OpenIdConnectVerifyComponent } from './openid/openid-connect-verify/ope
     OpenIdConnectAuthModule,
 
     /* Theme modules */
-    ErrorModule,
+    NotificationOverlayModule,
 
     /* Material modules */
     MatFormFieldModule,

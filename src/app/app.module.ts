@@ -19,7 +19,6 @@ import { ButtonModule } from './modules/button/button.module';
 import { CommentModule } from './modules/comment/comment.module';
 import { ContainerModule } from './modules/container/container.module';
 import { ContentItemModule } from './modules/contentitem/contentitem.module';
-import { ErrorModule } from './modules/error/error.module';
 import { FileModule } from './modules/file/file.modules';
 import { FormControlModule } from './modules/form-controls/form-control.module';
 import { HeaderModule } from './modules/header/header.module';
@@ -34,6 +33,7 @@ import { TextItemModule } from './modules/textitem/textitem.module';
 import { TimelineModule } from './modules/timeline/timeline.module';
 import { VisualizationModule } from './modules/visualization/visualization.module';
 import { WidgetModule } from './modules/widget/widget.module';
+import { NotificationOverlayModule } from './notification-overlay/notification-overlay.module';
 import { ProjectComponent } from './project.component';
 
 const routes: Routes = [
@@ -94,7 +94,7 @@ const routes: Routes = [
     /* Non-Blueriq modules */
     LoadingModule,
     AuthModule,
-    ErrorModule,
+    NotificationOverlayModule,
   ],
   providers: [
     { provide: DateFormats, useFactory: provideDateFormats },
