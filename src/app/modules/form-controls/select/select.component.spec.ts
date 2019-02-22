@@ -37,13 +37,28 @@ describe('SelectComponent', () => {
     component = session.get(SelectComponent);
   });
 
+  it('should show a disabled option if the current value is not within the domain', async() => {
+    session.update(
+      field.value('unavailable'),
+    );
+
+    await openOverlay();
+    const selectOptions = getMatOptionsFromOverlay();
+
+    expect(selectOptions.length).toBe(5);
+
+    const unavailableOption = selectOptions[4];
+    expect(unavailableOption.innerText).toContain('unavailable');
+    expect(unavailableOption.classList.contains('mat-option-disabled')).toBe(true);
+  });
+
   it('should be disabled', () => {
     let selectDisabled = component.nativeElement.querySelector('.mat-select-disabled');
     expect(selectDisabled).toBeFalsy();
 
-    field.styles(BqPresentationStyles.DISABLED);
-    session = BlueriqSessionTemplate.create().build(field);
-    component = session.get(SelectComponent);
+    session.update(
+      field.styles(BqPresentationStyles.DISABLED),
+    );
 
     selectDisabled = component.nativeElement.querySelector('.mat-select-disabled');
     expect(selectDisabled).toBeTruthy();
@@ -53,9 +68,9 @@ describe('SelectComponent', () => {
     let selectReadonly = component.nativeElement.querySelector('.mat-select-disabled');
     expect(selectReadonly).toBeFalsy();
 
-    field.readonly(true);
-    session = BlueriqSessionTemplate.create().build(field);
-    component = session.get(SelectComponent);
+    session.update(
+      field.readonly(true),
+    );
 
     selectReadonly = component.nativeElement.querySelector('.mat-select-disabled');
     expect(selectReadonly).toBeTruthy();
@@ -77,7 +92,7 @@ describe('SelectComponent', () => {
     expect(component.nativeElement.querySelector('.mat-select-placeholder').innerText).toBe('myPlaceholder');
   });
 
-  it('should have a error', () => {
+  it('should have an error', () => {
     expect(component.nativeElement.querySelector('mat-error')).toBeFalsy();
     component.componentInstance.formControl.markAsTouched();
     component.detectChanges();
@@ -105,74 +120,55 @@ describe('SelectComponent', () => {
     expect(selectList.length).toBe(1);
   });
 
-  it('should have more values selected', (done) => {
-    let selectedMoreValues = component.nativeElement.querySelector('.mat-select').getAttribute('ng-reflect-value');
-    expect(selectedMoreValues).toBeNull();
-
+  it('should have more values selected', async() => {
+    // Fully re-initialize as the select cannot switch from single to multi-mode.
     field.value(['blue', 'pink', 'white']);
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(SelectComponent);
 
-    component.whenStable()
-    .then(() => {
-      component.detectChanges();
-      selectedMoreValues = component.nativeElement.querySelector('.mat-select-value-text').innerText;
-      expect(selectedMoreValues).toBe('Blue, Pink, White');
-      done();
-    });
-  });
-
-  it('should set selected value to fieldValue', (done) => {
-    component.detectChanges();
-    const trigger = component.debugElement.query(By.css('.mat-select-trigger')).nativeElement;
-    trigger.click();
+    await component.whenStable();
     component.detectChanges();
 
-    component.whenStable()
-    .then(() => {
-      component.detectChanges();
-      const selectOptions = getMatOptionsFromOverlay();
-      expect(selectOptions).toBeTruthy();
-      selectOptions[1].click();
-    });
-
-    component.whenStable()
-    .then(() => {
-      component.detectChanges();
-      // Verify
-      expect(component.componentInstance.field.getValue()).toBe('blue');
-      done();
-    });
+    const selectValue = component.nativeElement.querySelector('.mat-select-value-text');
+    expect(selectValue.innerText).toBe('Blue, Pink, White');
   });
 
-  it('should contain all options in select', (done) => {
+  it('should set selected value to fieldValue', async() => {
+    await openOverlay();
+
+    const selectOptions = getMatOptionsFromOverlay();
+    expect(selectOptions).toBeTruthy();
+    selectOptions[1].click();
+
+    await component.whenStable();
+    component.detectChanges();
+
+    // Verify
+    expect(component.componentInstance.field.getValue()).toBe('blue');
+  });
+
+  it('should contain all options in select', async() => {
+    await openOverlay();
+    const selectOptions = getMatOptionsFromOverlay();
+
+    // Verify
+    expect(selectOptions.length).toBe(4);
+    expect(selectOptions[0].innerText).toEqual('');
+    expect(selectOptions[1].innerText).toContain('Blue');
+    expect(selectOptions[2].innerText).toContain('Pink');
+    expect(selectOptions[3].innerText).toContain('White');
+  });
+
+  async function openOverlay() {
     const selectTrigger = component.debugElement.query(By.css('.mat-select-trigger'));
-    expect(selectTrigger).toBeTruthy();
-
     selectTrigger.nativeElement.click();
-    component.whenStable()
-    .then(() => {
-      component.detectChanges();
-      const trigger = component.debugElement.query(By.css('.mat-select-trigger')).nativeElement;
-      trigger.click();
-      component.detectChanges();
 
-      const selectOptions = getMatOptionsFromOverlay();
-
-      // Verify
-      expect(selectOptions.length).toBe(4);
-      expect(selectOptions[0].getAttribute('ng-reflect-value')).toBe(null);
-      expect(selectOptions[1].getAttribute('ng-reflect-value')).toBe('blue');
-      expect(selectOptions[2].getAttribute('ng-reflect-value')).toBe('pink');
-      expect(selectOptions[3].getAttribute('ng-reflect-value')).toBe('white');
-      done();
-    });
-  });
+    await component.whenStable();
+    component.detectChanges();
+  }
 
   function getMatOptionsFromOverlay(): HTMLElement[] {
     return Array.from(_containerElement.querySelectorAll('mat-option'));
   }
 
 });
-
-

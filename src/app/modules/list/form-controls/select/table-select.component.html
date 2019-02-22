@@ -4,7 +4,7 @@
   matTooltipClass="tooltip-error">
   <mat-select [required]="field.required" [formControl]="formControl" [multiple]="field.multiValued" [placeholder]="field.placeholder">
     <mat-option *ngIf="!field.multiValued"></mat-option>
-    <mat-option *ngFor="let option of getOptions()" [value]="option.value">
+    <mat-option *ngFor="let option of field.getFieldOptions()" [value]="option.value" [disabled]="!option.valid">
       {{ option.displayValue }}
     </mat-option>
   </mat-select>

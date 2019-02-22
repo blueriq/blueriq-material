@@ -23,13 +23,15 @@ describe('RadioButtonComponent', () => {
   }));
 
   beforeEach(() => {
-    field = FieldTemplate.text('muppets').domain({
-      'kermit': 'Kermit',
-      'miss_piggy': 'Miss Piggy',
-      'beaker': 'Beaker',
-    });
-    // reset field to default
-    field.styles(BqPresentationStyles.RADIO).readonly(false).value('');
+    field = FieldTemplate.text('muppets')
+      .domain({
+        'kermit': 'Kermit',
+        'miss_piggy': 'Miss Piggy',
+        'beaker': 'Beaker',
+      })
+      .styles(BqPresentationStyles.RADIO)
+      .readonly(false)
+      .value('');
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(RadioButtonComponent);
     component.autoDetectChanges();
@@ -46,25 +48,33 @@ describe('RadioButtonComponent', () => {
     expect(inputField).toBeTruthy();
   });
 
+  it('should show a disabled option if the current value is not within the domain', () => {
+    session.update(
+      field.value('unavailable'),
+    );
+    const inputField = component.nativeElement.querySelector('.mat-radio-checked');
+    expect(inputField).toBeTruthy();
+    expect(inputField.innerText).toContain('unavailable');
+    expect(inputField.classList.contains('mat-radio-disabled')).toBe(true);
+  });
+
   it('should be disabled', () => {
-    let inputField = component.nativeElement.querySelector('input[type=radio]').hasAttribute('disabled');
-    expect(inputField).toBeFalsy('by default nothing is disabled');
+    let isDisabled = component.nativeElement.querySelector('input[type=radio]').hasAttribute('disabled');
+    expect(isDisabled).toBeFalsy('by default nothing is disabled');
 
     field.styles(BqPresentationStyles.RADIO, BqPresentationStyles.DISABLED);
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(RadioButtonComponent);
 
-    inputField = component.nativeElement.querySelector('input[type=radio]').hasAttribute('disabled');
-    expect(inputField).toBeTruthy();
+    isDisabled = component.nativeElement.querySelector('input[type=radio]').hasAttribute('disabled');
+    expect(isDisabled).toBeTruthy();
   });
 
   it('style `radio` is required', () => {
     // remove styles
     field.styles();
     session = BlueriqSessionTemplate.create().build(field);
-    expect(function () {
-      session.get(RadioButtonComponent);
-    }).toThrow();
+    expect(() => session.get(RadioButtonComponent)).toThrow();
   });
 
   it('default direction is `vertical`', () => {
