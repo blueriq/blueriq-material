@@ -1,5 +1,5 @@
 import { Component, Host, Self } from '@angular/core';
-import { BlueriqComponent, FailedAction, FlowWidget } from '@blueriq/angular';
+import { BlueriqComponent, FailedAction, FlowWidget, isBlueriqError } from '@blueriq/angular';
 import { Container } from '@blueriq/core';
 import { BqContentStyles } from '../../BqContentStyles';
 
@@ -14,7 +14,7 @@ import { BqContentStyles } from '../../BqContentStyles';
 })
 export class FlowWidgetComponent {
 
-  private bqError: FailedAction;
+  private error: unknown;
   private expired = false;
   private flowEnded = false;
 
@@ -27,16 +27,19 @@ export class FlowWidgetComponent {
       return 'Your session has expired';
     } else if (this.flowEnded) {
       return 'The flow has ended';
+    } else if (isBlueriqError(this.error)) {
+      return this.error.cause.message;
+    } else {
+      return 'An unknown error occurred';
     }
-    return this.bqError.error.cause.message;
   }
 
   shouldDisplayError(): boolean {
-    return this.expired || this.flowEnded || !!this.bqError;
+    return this.expired || this.flowEnded || !!this.error;
   }
 
-  handleError(error: FailedAction): void {
-    this.bqError = error;
+  handleError(action: FailedAction): void {
+    this.error = action.error;
   }
 
   handleFlowEnded(): void {
