@@ -2,7 +2,6 @@ import { Component, Host, Self } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { FileUpload } from '@blueriq/angular/files';
 import { Container } from '@blueriq/core';
-import { FileUploaderOptions } from 'ng2-file-upload';
 import { CustomFileUploader } from './custom-file-uploader';
 
 @Component({
@@ -22,20 +21,26 @@ export class FileUploadComponent {
   isBusy = false;
 
   constructor(@Self() public fileUpload: FileUpload, @Host() public container: Container) {
+    this.uploader = new CustomFileUploader({ autoUpload: true });
 
-    const uploadOptions: FileUploaderOptions = {
-      url: this.fileUpload.uploadDetails.url,
-      headers: this.fileUpload.uploadDetails.headers,
-      additionalParameter: this.getAdditionalParameters(),
-      maxFileSize: this.fileUpload.maxFileSize,
-      autoUpload: true,
+    /**
+     * When the upload starts, reconfigure the uploader to send along the most up-to-date upload details.
+     */
+    this.uploader.onBuildItemForm = () => {
+      const details = this.fileUpload.getUploadDetails();
+
+      this.uploader.setOptions({
+        filters: [],
+        url: details.url,
+        headers: details.headers,
+        additionalParameter: details.parts.reduce((params, part) => {
+          params[part.name] = part.body;
+          return params;
+        }, {}),
+        maxFileSize: this.fileUpload.maxFileSize,
+        allowedFileType: this.fileUpload.allowedExtensions,
+      });
     };
-
-    if (this.fileUpload.allowedExtensions && this.fileUpload.allowedExtensions.length > 0) {
-      uploadOptions.allowedFileType = this.fileUpload.allowedExtensions;
-    }
-
-    this.uploader = new CustomFileUploader(uploadOptions);
 
     /**
      * When adding a file is done hide the progress bar
@@ -47,10 +52,14 @@ export class FileUploadComponent {
     /**
      * When the upload is completed, the events returned by the runtime need to be handled.
      */
-    this.uploader.onCompleteItem = (item: any, response: string, status: any, headers: any) => {
+    this.uploader.onCompleteItem = (item, body, status, headers) => {
       this.errorMessage = '';
       this.isBusy = false;
-      this.fileUpload.handleFileUploadCompleted(response);
+      this.fileUpload.handleFileUploadCompleted({
+        body,
+        status,
+        headers: Object.entries(headers).map(([name, value]) => ({ name, value })),
+      });
       this.uploader.clearQueue();
     };
 
@@ -71,13 +80,5 @@ export class FileUploadComponent {
       }
     };
 
-  }
-
-  private getAdditionalParameters() {
-    const additionalParams = {};
-    this.fileUpload.uploadDetails.parts.forEach(part => {
-      additionalParams[part.name] = part.body;
-    });
-    return additionalParams;
   }
 }

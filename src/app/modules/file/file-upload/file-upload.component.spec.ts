@@ -1,6 +1,7 @@
 import { DebugElement } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { UploadDetails } from '@blueriq/angular';
 import { FileUpload } from '@blueriq/angular/files';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ButtonTemplate, ContainerTemplate } from '@blueriq/core/testing';
@@ -14,6 +15,7 @@ import { FileUploadComponent } from './file-upload.component';
 
 describe('FileUploadComponent', () => {
 
+  let properties: { [name: string]: any };
   let container: ContainerTemplate;
   let component: ComponentFixture<FileUploadComponent>;
   let session: BlueriqTestSession;
@@ -31,8 +33,7 @@ describe('FileUploadComponent', () => {
   }));
 
   beforeEach(() => {
-    container = ContainerTemplate.create().contentStyle('fileupload')
-    .properties({
+    properties = {
       'allowedextensions': 'txt|doc',
       'maxfilesize': '1337',
       'extensiondescription': 'Allowed file extensions are: {0}',
@@ -42,19 +43,19 @@ describe('FileUploadComponent', () => {
       'filesizevalidationmessage': 'File is too large',
       'singleuploadlabel': 'Add file...',
       'multiuploadlabel': 'Add files...',
-    }).children(
-      ButtonTemplate.create('FileUploaded'),
-      ButtonTemplate.create('Unauthorized'),
-    );
+    };
+    container = ContainerTemplate.create()
+      .contentStyle('fileupload')
+      .properties(properties)
+      .children(
+        ButtonTemplate.create('FileUploaded'),
+        ButtonTemplate.create('Unauthorized'),
+      );
     session = BlueriqSessionTemplate.create().build(container);
     component = session.get(FileUploadComponent);
 
     directiveElement = component.debugElement.query(By.directive(FileSelectDirective));
-    fileSelectDirective = directiveElement.injector.get(FileSelectDirective) as FileSelectDirective;
-  });
-
-  it('should be created', () => {
-    expect(fileSelectDirective).toBeDefined();
+    fileSelectDirective = directiveElement.injector.get(FileSelectDirective);
   });
 
   it('handles change event', () => {
@@ -90,10 +91,10 @@ describe('FileUploadComponent', () => {
     expect(hints[1].innerHTML).toBe(component.componentInstance.fileUpload.maxFileSizeDescription);
   });
 
-  it('should display a hint message for the upload criterion', () => {
+  it('should not display an extension hint when all extensions are allowed', () => {
     // Init
     session.update(
-      container.properties({ allowedExtensions: '' }),
+      container.properties({ ...properties, allowedextensions: '' }),
     );
     const hints = component.nativeElement.querySelectorAll('mat-hint');
 
@@ -135,29 +136,67 @@ describe('FileUploadComponent', () => {
     expect(errors[0].innerHTML).toBe('File could not be uploaded');
   });
 
-  it('should call runtime when upload is complete', () => {
+  it('should apply the upload details when upload starts', () => {
+    const details1: UploadDetails = {
+      url: '/blueriq/upload/1',
+      parts: [{ name: 'pageEvent', body: '1' }],
+      headers: [{ name: 'accept', value: '1' }],
+    };
+    const details2: UploadDetails = {
+      url: '/blueriq/upload/2',
+      parts: [{ name: 'pageEvent', body: '2' }],
+      headers: [{ name: 'accept', value: '2' }],
+    };
+    spyOn(FileUpload.prototype, 'getUploadDetails').and.returnValues(details1, details2);
+
+    // Apply options for the first time
+    fileSelectDirective.uploader.onBuildItemForm(createFile(), null);
+
+    // Verify the initial options
+    const options = fileSelectDirective.uploader.options;
+    expect(options.filters!.length).toBe(3);
+    expect(options.url).toEqual('/blueriq/upload/1');
+    expect(options.additionalParameter).toEqual({ 'pageEvent': '1' });
+    expect(options.headers).toEqual([{ name: 'accept', value: '1' }]);
+
+    // Reconfigure options
+    fileSelectDirective.uploader.onBuildItemForm(createFile(), null);
+
+    // Verify the updated options
+    const newOptions = fileSelectDirective.uploader.options;
+    expect(newOptions.filters!.length).toBe(3, 'Reapplying options should not extend the number of filters');
+    expect(newOptions.url).toEqual('/blueriq/upload/2');
+    expect(newOptions.additionalParameter).toEqual({ 'pageEvent': '2' });
+    expect(newOptions.headers).toEqual([{ name: 'accept', value: '2' }]);
+  });
+
+  it('should relay the upload response when upload is complete', () => {
     // init
     spyOn(FileUpload.prototype, 'handleFileUploadCompleted');
     spyOn(FileUploader.prototype, 'clearQueue');
 
     // Sut
-    fileSelectDirective.uploader.onCompleteItem(createFile(), 'some_response', 200, {});
+    fileSelectDirective.uploader.onCompleteItem(createFile(), 'some_response', 200, {
+      'content-type': 'application/json',
+    });
     component.detectChanges();
 
     // Verify
-    expect(component.componentInstance.fileUpload.handleFileUploadCompleted).toHaveBeenCalledWith('some_response');
+    expect(component.componentInstance.fileUpload.handleFileUploadCompleted).toHaveBeenCalledWith({
+      body: 'some_response',
+      status: 200,
+      headers: [{ name: 'content-type', value: 'application/json' }],
+    });
     expect(fileSelectDirective.uploader.clearQueue).toHaveBeenCalled();
     expect(component.componentInstance.errorMessage).toBe('', 'Clear the error message when a file passes');
-    expect(component.componentInstance.isBusy).toBe(false, 'Upload is compleet, no need to show the progress bar');
+    expect(component.componentInstance.isBusy).toBe(false, 'Upload is complete, no need to show the progress bar');
   });
 
   it('should override the "UploadAll" on FileUploader ', () => {
     // Init
     spyOn(CustomFileUploader.prototype, 'uploadAll').and.callThrough();
     session.update(
-      container.properties({
-        'singlefilemode': false,
-      }),
+      container.properties({ ...properties, 'singlefilemode': false }),
     );
 
     // Sut
