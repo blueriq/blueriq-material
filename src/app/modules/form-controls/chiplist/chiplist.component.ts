@@ -19,9 +19,9 @@ import { BqPresentationStyles } from '../../BqPresentationStyles';
 export class ChiplistComponent implements OnInit, OnUpdate {
 
   separatorKeysCodes = [ENTER, TAB, COMMA];
-  values: { displayValue: string, value: string }[];
+  values: { value: string, displayValue: string }[];
   formControl = this.form.control(this.field, { syncOn: 'blur', disableWhen: BqPresentationStyles.DISABLED });
-  filteredDomainOptions: DomainValue[];
+  filteredDomainOptions: DomainValue[] = [];
 
   @ViewChild('input')
   inputField: ElementRef;
@@ -32,33 +32,23 @@ export class ChiplistComponent implements OnInit, OnUpdate {
   }
 
   ngOnInit() {
-    this.fillValues();
+    this.syncValues();
   }
 
   bqOnUpdate() {
-    this.fillValues();
+    this.syncValues();
   }
 
   /**
-   * Fill the values list that will be used by the chiplist.
-   * These values are based on what was already on the `field`'s listValue
+   * Populates the list of values that will be used by the chiplist.
    */
-  fillValues() {
-    if (this.field.hasDomain) {
-      this.values = this.field.listValue.map(lv => this.findDomainValueByValue(lv));
-    } else {
-      this.values = this.field.listValue.map(lv => {
-        return { displayValue: lv, value: lv };
-      });
-    }
+  syncValues() {
+    this.values = this.field.listValue.map(lv => this.findDomainValueByValue(lv));
   }
 
-  findDomainValueByValue(value): { displayValue: string, value: string } {
-    const domainValue = this.field.domain.options.find(d => d.value === value);
-    return {
-      value: domainValue ? domainValue.value : value,
-      displayValue: domainValue ? domainValue.displayValue : value,
-    };
+  findDomainValueByValue(value: string): { value: string, displayValue: string } {
+    const displayValue = this.field.domain.getDisplayValue(value);
+    return { value, displayValue: displayValue || value };
   }
 
   /**
@@ -75,40 +65,32 @@ export class ChiplistComponent implements OnInit, OnUpdate {
   }
 
   /**
-   * Add items to the values list. (without a domain)
+   * Add items to the values list when no domain is present.
    * Whenever one of the `separatorKeysCodes` was used that piece of text will be added
    */
   addByInput(event: MatChipInputEvent) {
     const input = event.input;
-    if (this.field.hasDomain) {
+    const value = event.value.trim();
+
+    if (!this.field.hasDomain && value !== '' && !this._valueExists(value)) {
+      this.values.push({ displayValue: value, value: value });
+      this.notifyChange();
       input.value = '';
-      this.sessionChanged();
-      return;
-    }
-
-    let sanitizedValue = this._sanitizeValue(event.value);
-    if (sanitizedValue && !this._valueExists(sanitizedValue)) {
-      this.values.push({ displayValue: sanitizedValue, value: sanitizedValue });
-      this.sessionChanged();
-      sanitizedValue = '';
       input.focus();
-      if (input) {
-        input.value = sanitizedValue;
-      }
     }
-
   }
 
   /**
-   * Add items to the values list (With a domain)
-   * Whenever a item is selected from the 'mat-autocomplete' the selected value will be added
+   * Add items to the values list when a domain is present.
+   * Whenever an item is selected from the 'mat-autocomplete' the selected value will be added.
    */
   addByAutoComplete(e: MatOptionSelectionChange) {
-    const selectedValue = e.source.value;
-    if (!this._valueExists(selectedValue.value)) {
-      this.values.push({ displayValue: selectedValue.displayValue, value: selectedValue.value });
-      this.sessionChanged();
+    const { value, displayValue } = e.source.value;
+    if (!this._valueExists(value)) {
+      this.values.push({ displayValue, value });
+      this.notifyChange();
     }
+
     // Reset the filter after adding a chip
     this.filterDomain('');
     this.inputField.nativeElement.focus();
@@ -121,7 +103,7 @@ export class ChiplistComponent implements OnInit, OnUpdate {
     const index = this.values.indexOf(value);
     if (index >= 0) {
       this.values.splice(index, 1);
-      this.sessionChanged();
+      this.notifyChange();
     }
   }
 
@@ -134,12 +116,12 @@ export class ChiplistComponent implements OnInit, OnUpdate {
     if (event && event.target && event.target.value) {
       if (this.field.domain.getValue(event.target.value) === undefined) {
         event.target.value = null;
-        this.sessionChanged();
+        this.notifyChange();
       }
     }
   }
 
-  sessionChanged() {
+  notifyChange() {
     this.field.setValue(this.values.map(v => v.value));
     this.session.changed(this.field);
   }
@@ -148,15 +130,12 @@ export class ChiplistComponent implements OnInit, OnUpdate {
     return this.field.styles.has(BqPresentationStyles.DISABLED);
   }
 
-  private _sanitizeValue(value: string): string {
-    return (value || '').trim();
-  }
+  private _valueExists(value: string): boolean {
+    const dataType = this.field.dataType;
+    const isDecimal = dataType === 'number' || dataType === 'percentage' || dataType === 'currency';
+    const normalize = isDecimal ? parseFloat : (val: string) => val.toLowerCase();
 
-  private _valueExists(value: any): boolean {
-    if (this.field.dataType === 'number' || this.field.dataType === 'percentage' || this.field.dataType === 'currency') {
-      return this.values.map(x => parseFloat(x.value)).includes(parseFloat(value));
-    }
-    return this.values.map(x => x.value.toLowerCase()).includes(value.toLowerCase());
+    return this.values.some(v => normalize(v.value) === normalize(value));
   }
 
 }

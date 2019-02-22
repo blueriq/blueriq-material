@@ -44,16 +44,14 @@ describe('ChiplistComponent', () => {
       const inputField = fixture.nativeElement.querySelector('.mat-input-element');
       expect(inputField).toBeTruthy();
 
-      if (inputField) {
-        inputField.value = 'Yellow';
-        inputField.dispatchEvent(new Event('blur'));
+      inputField.value = 'Yellow';
+      inputField.dispatchEvent(new Event('blur'));
 
-        fixture.detectChanges();
-        expect(component.values.length).toBe(4);
-        expect(fixture.nativeElement.querySelectorAll('mat-chip').length).toBe(4);
-        expect(inputField.value).toBe('');
-        expect(BlueriqSession.prototype.changed).toHaveBeenCalledWith(component.field);
-      }
+      fixture.detectChanges();
+      expect(component.values.length).toBe(4);
+      expect(fixture.nativeElement.querySelectorAll('mat-chip').length).toBe(4);
+      expect(inputField.value).toBe('');
+      expect(BlueriqSession.prototype.changed).toHaveBeenCalledWith(component.field);
     });
 
     it('should add a chip for float value', () => {
@@ -65,42 +63,37 @@ describe('ChiplistComponent', () => {
       const inputField = fixture.nativeElement.querySelector('.mat-input-element');
       expect(inputField).toBeTruthy();
 
-      if (inputField) {
-        inputField.value = '678.20';
-        inputField.dispatchEvent(new Event('blur'));
+      inputField.value = '678.20';
+      inputField.dispatchEvent(new Event('blur'));
 
-        fixture.detectChanges();
-        expect(component.values.length).toBe(4);
-        expect(fixture.nativeElement.querySelectorAll('mat-chip').length).toBe(4);
-        expect(inputField.value).toBe('');
-        expect(BlueriqSession.prototype.changed).toHaveBeenCalledWith(component.field);
-      }
+      fixture.detectChanges();
+      expect(component.values.length).toBe(4);
+      expect(fixture.nativeElement.querySelectorAll('mat-chip').length).toBe(4);
+      expect(inputField.value).toBe('');
+      expect(BlueriqSession.prototype.changed).toHaveBeenCalledWith(component.field);
     });
 
     it('should remove a chip', () => {
       const chipRemoveButton = fixture.nativeElement.querySelectorAll('.mat-chip-remove')[0];
-      if (chipRemoveButton) {
-        chipRemoveButton.dispatchEvent(new Event('click'));
 
-        fixture.detectChanges();
-        expect(component.values.length).toBe(2);
-        expect(fixture.nativeElement.querySelectorAll('mat-chip').length).toBe(2);
-        expect(BlueriqSession.prototype.changed).toHaveBeenCalledWith(component.field);
-      }
+      chipRemoveButton.dispatchEvent(new Event('click'));
+
+      fixture.detectChanges();
+      expect(component.values.length).toBe(2);
+      expect(fixture.nativeElement.querySelectorAll('mat-chip').length).toBe(2);
+      expect(BlueriqSession.prototype.changed).toHaveBeenCalledWith(component.field);
     });
 
     it('should not add an existing chip case insensitive', () => {
       const inputField = fixture.nativeElement.querySelector('.mat-input-element');
       expect(inputField).toBeTruthy();
 
-      if (inputField) {
-        inputField.value = 'red';
-        inputField.dispatchEvent(new Event('blur'));
+      inputField.value = 'red';
+      inputField.dispatchEvent(new Event('blur'));
 
-        fixture.detectChanges();
-        expect(component.values.length).toBe(3);
-        expect(fixture.nativeElement.querySelectorAll('mat-chip').length).toBe(3);
-      }
+      fixture.detectChanges();
+      expect(component.values.length).toBe(3);
+      expect(fixture.nativeElement.querySelectorAll('mat-chip').length).toBe(3);
     });
 
   });
@@ -108,27 +101,24 @@ describe('ChiplistComponent', () => {
   describe('with domain', () => {
 
     beforeEach(() => {
-      spyOn(ChiplistComponent.prototype, 'fillValues').and.callThrough();
       spyOn(BlueriqSession.prototype, 'changed');
-      fieldTemplate = FieldTemplate
-      .text('colour')
-      .value(['a', 'e'])
-      .styles(BqPresentationStyles.AUTOCOMPLETE)
-      .domain({
-        'a': 'Red',
-        'b': 'White',
-        'c': 'Blue',
-        'd': 'Orange',
-        'e': 'Green',
-      });
+      fieldTemplate = FieldTemplate.text('colour')
+        .value(['r', 'g'])
+        .styles(BqPresentationStyles.AUTOCOMPLETE)
+        .domain({
+          'r': 'Red',
+          'w': 'White',
+          'b': 'Blue',
+          'o': 'Orange',
+          'g': 'Green',
+        });
       session = BlueriqSessionTemplate.create().build(fieldTemplate);
       fixture = session.get(ChiplistComponent);
       component = fixture.componentInstance;
     });
 
-    it('should have correctly have mapped the values', () => {
-      expect(component.values.length).toBe(2);
-      expect(component.values).toEqual([{ value: 'a', displayValue: 'Red' }, { value: 'e', displayValue: 'Green' }]);
+    it('should have correctly mapped the values', () => {
+      expect(component.values).toEqual([{ value: 'r', displayValue: 'Red' }, { value: 'g', displayValue: 'Green' }]);
     });
 
     it('should not be editable or chips be deletable when presentation style \'Disabled\' is set', () => {
@@ -139,41 +129,38 @@ describe('ChiplistComponent', () => {
       expect(chipRemoveButton.length).toBe(0);
     });
 
-    it('should add chip from autocomplete selected value', () => {
+    it('should add chip from autocomplete selected value', async() => {
       const autocompleteInput = fixture.debugElement.query(By.css('.mat-input-element'));
       expect(autocompleteInput).toBeTruthy();
-      expect(component.field.getValue()).toEqual(['a', 'e']);
+      expect(component.field.getValue()).toEqual(['r', 'g']);
 
       autocompleteInput.nativeElement.focus();
       autocompleteInput.nativeElement.value = 'bl';
       autocompleteInput.nativeElement.dispatchEvent(new KeyboardEvent('keyup', { 'key': 'Enter' }));
       autocompleteInput.nativeElement.dispatchEvent(new Event('input'));
 
-      fixture.whenStable()
-      .then(() => {
-        fixture.detectChanges();
-        const autocompleteContent = fixture.debugElement.query(By.css('.mat-autocomplete-panel')).nativeElement;
-        const autocompleteOptions = autocompleteContent.querySelector('mat-option');
-        // Click on the 'Blue' option
-        autocompleteOptions.click();
-      });
+      await fixture.whenStable();
+      fixture.detectChanges();
 
-      fixture.whenStable()
-      .then(() => {
-        fixture.detectChanges();
-        // Verify
-        // The technical value for 'Blue' is 'c'
-        expect(component.field.getValue()).toEqual(['a', 'e', 'c']);
-      });
+      const autocompleteContent = fixture.debugElement.query(By.css('.mat-autocomplete-panel')).nativeElement;
+      const autocompleteOptions = autocompleteContent.querySelector('mat-option');
+      // Click on the 'Blue' option
+      autocompleteOptions.click();
+
+      await fixture.whenStable();
+      fixture.detectChanges();
+
+      // Verify
+      // The technical value for 'Blue' is 'b'
+      expect(component.field.getValue()).toEqual(['r', 'g', 'b']);
     });
 
-    it('should call fillValues onInit and onUpdate', () => {
-      expect(ChiplistComponent.prototype.fillValues).toHaveBeenCalledTimes(1);
-      session.update(fieldTemplate.domain({}));
-      expect(ChiplistComponent.prototype.fillValues).toHaveBeenCalledTimes(2);
+    it('should synchronize values when the field is updated', () => {
+      session.update(fieldTemplate.value(['o']));
+
+      expect(component.values).toEqual([{ value: 'o', displayValue: 'Orange' }]);
     });
 
   });
 
-})
-;
+});
