@@ -24,10 +24,10 @@ describe('AutocompleteComponent', () => {
 
   beforeEach(() => {
     field = FieldTemplate.text('colour').styles(BqPresentationStyles.AUTOCOMPLETE).domain({
-      'a': 'Red',
-      'b': 'White',
-      'c': 'Blue',
-      'd': 'Orange',
+      'r': 'Red',
+      'w': 'White',
+      'b': 'Blue',
+      'o': 'Orange',
     });
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(AutocompleteComponent);
@@ -37,9 +37,9 @@ describe('AutocompleteComponent', () => {
     let autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
     expect(autocompleteInput.properties['disabled']).toBe(false);
 
-    field.styles(BqPresentationStyles.AUTOCOMPLETE, BqPresentationStyles.DISABLED);
-    session = BlueriqSessionTemplate.create().build(field);
-    component = session.get(AutocompleteComponent);
+    session.update(
+      field.styles(BqPresentationStyles.AUTOCOMPLETE, BqPresentationStyles.DISABLED),
+    );
 
     autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
     expect(autocompleteInput.properties['disabled']).toBe(true);
@@ -49,9 +49,9 @@ describe('AutocompleteComponent', () => {
     let autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
     expect(autocompleteInput.properties['disabled']).toBe(false);
 
-    field.readonly(true);
-    session = BlueriqSessionTemplate.create().build(field);
-    component = session.get(AutocompleteComponent);
+    session.update(
+      field.readonly(true),
+    );
 
     autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
     expect(autocompleteInput.properties['disabled']).toBe(true);
@@ -73,7 +73,7 @@ describe('AutocompleteComponent', () => {
     expect(autocompleteInput.attributes['placeholder']).toBe('myPlaceholder');
   });
 
-  it('should have a error', () => {
+  it('should have an error', () => {
     expect(component.nativeElement.querySelector('mat-error')).toBeFalsy();
     component.componentInstance.formControl.markAsTouched();
     component.detectChanges();
@@ -84,20 +84,19 @@ describe('AutocompleteComponent', () => {
     expect(component.nativeElement.querySelector('mat-error')).toBeTruthy();
   });
 
-  it('should display value when fieldValue set', () => {
+  it('should display value when fieldValue set', async() => {
     let autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
     expect(autocompleteInput.nativeElement.value).toBe('');
 
     session.update(
-      field.value('c'),
+      field.value('b'),
     );
 
-    component.whenStable()
-    .then(() => {
-      component.detectChanges();
-      autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
-      expect(autocompleteInput.nativeElement.value).toBe('Blue');
-    });
+    await component.whenStable();
+    component.detectChanges();
+
+    autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
+    expect(autocompleteInput.nativeElement.value).toBe('Blue');
   });
 
   it('should only have one mat-autocomplete', () => {
@@ -105,53 +104,50 @@ describe('AutocompleteComponent', () => {
     expect(autocompleteList.length).toBe(1);
   });
 
-  it('should set fieldValue when option clicked', () => {
+  it('should set fieldValue when option clicked', async() => {
     const autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
     expect(autocompleteInput).toBeTruthy();
 
     autocompleteInput.nativeElement.dispatchEvent(new Event('focusin'));
 
-    component.whenStable()
-    .then(() => {
-      component.detectChanges();
-      const autocompleteContent = component.debugElement.query(By.css('.mat-autocomplete-panel')).nativeElement;
-      const autocompleteOptions = autocompleteContent.querySelectorAll('.mat-option-text') as NodeListOf<HTMLElement>;
-      expect(autocompleteOptions).toBeTruthy();
-      // Click on the 'White' option
-      autocompleteOptions[1].click();
-    });
+    await component.whenStable();
+    component.detectChanges();
 
-    component.whenStable()
-    .then(() => {
-      component.detectChanges();
-      // Verify
-      // The technical value for 'White' is 'b'
-      expect(component.componentInstance.field.getValue()).toBe('b');
-    });
+    const autocompleteContent = component.debugElement.query(By.css('.mat-autocomplete-panel')).nativeElement;
+    const autocompleteOptions = autocompleteContent.querySelectorAll('.mat-option-text') as NodeListOf<HTMLElement>;
+    expect(autocompleteOptions).toBeTruthy();
+    // Click on the 'White' option
+    autocompleteOptions[1].click();
+
+    await component.whenStable();
+    component.detectChanges();
+
+    // Verify
+    // The technical value for 'White' is 'w'
+    expect(component.componentInstance.field.getValue()).toBe('w');
   });
 
-  it('initially should contain all domain values in autocomplete', () => {
+  it('initially should contain all domain values in autocomplete', async() => {
     const autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
     expect(autocompleteInput).toBeTruthy();
 
     autocompleteInput.nativeElement.dispatchEvent(new Event('focusin'));
 
-    component.whenStable()
-    .then(() => {
-      component.detectChanges();
-      const autocompleteContent = component.debugElement.query(By.css('.mat-autocomplete-panel')).nativeElement;
-      const autocompleteOptions = autocompleteContent.querySelectorAll('.mat-option-text') as NodeListOf<HTMLElement>;
+    await component.whenStable();
+    component.detectChanges();
 
-      // Verify
-      expect(autocompleteOptions.length).toBe(4);
-      expect(autocompleteOptions[0].textContent).toContain('Red');
-      expect(autocompleteOptions[1].textContent).toContain('White');
-      expect(autocompleteOptions[2].textContent).toContain('Blue');
-      expect(autocompleteOptions[3].textContent).toContain('Orange');
-    });
+    const autocompleteContent = component.debugElement.query(By.css('.mat-autocomplete-panel')).nativeElement;
+    const autocompleteOptions = autocompleteContent.querySelectorAll('.mat-option-text') as NodeListOf<HTMLElement>;
+
+    // Verify
+    expect(autocompleteOptions.length).toBe(4);
+    expect(autocompleteOptions[0].textContent).toContain('Red');
+    expect(autocompleteOptions[1].textContent).toContain('White');
+    expect(autocompleteOptions[2].textContent).toContain('Blue');
+    expect(autocompleteOptions[3].textContent).toContain('Orange');
   });
 
-  it('should contain correct options for filter input', () => {
+  it('should contain correct options for filter input', async() => {
     const autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
     expect(autocompleteInput).toBeTruthy();
 
@@ -159,20 +155,19 @@ describe('AutocompleteComponent', () => {
     autocompleteInput.nativeElement.value = 'r';
     autocompleteInput.nativeElement.dispatchEvent(new Event('input'));
 
-    component.whenStable()
-    .then(() => {
-      component.detectChanges();
-      const autocompleteContent = component.debugElement.query(By.css('.mat-autocomplete-panel')).nativeElement;
-      const autocompleteOptions = autocompleteContent.querySelectorAll('.mat-option-text') as NodeListOf<HTMLElement>;
+    await component.whenStable();
+    component.detectChanges();
 
-      // Verify
-      expect(autocompleteOptions.length).toBe(2);
-      expect(autocompleteOptions[0].textContent).toContain('Red');
-      expect(autocompleteOptions[1].textContent).toContain('Orange');
-    });
+    const autocompleteContent = component.debugElement.query(By.css('.mat-autocomplete-panel')).nativeElement;
+    const autocompleteOptions = autocompleteContent.querySelectorAll('.mat-option-text') as NodeListOf<HTMLElement>;
+
+    // Verify
+    expect(autocompleteOptions.length).toBe(2);
+    expect(autocompleteOptions[0].textContent).toContain('Red');
+    expect(autocompleteOptions[1].textContent).toContain('Orange');
   });
 
-  it('should set fieldValue when part of domain value typed and clicked', () => {
+  it('should set fieldValue when part of domain value typed and clicked', async() => {
     const autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
     expect(autocompleteInput).toBeTruthy();
 
@@ -180,23 +175,21 @@ describe('AutocompleteComponent', () => {
     autocompleteInput.nativeElement.value = 'bl';
     autocompleteInput.nativeElement.dispatchEvent(new Event('input'));
 
-    component.whenStable()
-    .then(() => {
-      component.detectChanges();
-      const autocompleteContent = component.debugElement.query(By.css('.mat-autocomplete-panel')).nativeElement;
-      const autocompleteOptions = autocompleteContent.querySelectorAll('.mat-option-text') as NodeListOf<HTMLElement>;
-      expect(autocompleteOptions).toBeTruthy();
-      // Click on the 'Blue' option
-      autocompleteOptions[0].click();
-    });
+    await component.whenStable();
+    component.detectChanges();
 
-    component.whenStable()
-    .then(() => {
-      component.detectChanges();
-      // Verify
-      // The technical value for 'Blue' is 'c'
-      expect(component.componentInstance.field.getValue()).toBe('c');
-    });
+    const autocompleteContent = component.debugElement.query(By.css('.mat-autocomplete-panel')).nativeElement;
+    const autocompleteOptions = autocompleteContent.querySelectorAll('.mat-option-text') as NodeListOf<HTMLElement>;
+    expect(autocompleteOptions).toBeTruthy();
+    // Click on the 'Blue' option
+    autocompleteOptions[0].click();
+
+    await component.whenStable();
+    component.detectChanges();
+
+    // Verify
+    // The technical value for 'Blue' is 'b'
+    expect(component.componentInstance.field.getValue()).toBe('b');
   });
 
   it('should remain the value on correct input', () => {
@@ -223,7 +216,7 @@ describe('AutocompleteComponent', () => {
     expect(input.value).toBe('', 'The value should be cleared when onblur and has incorrect value');
   });
 
-  it('should reset input value when the value is not within the domain', () => {
+  it('should reset input value when the value is not within the domain', async() => {
     const autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
     expect(autocompleteInput).toBeTruthy();
 
@@ -234,19 +227,18 @@ describe('AutocompleteComponent', () => {
     // trigger blur to check the value
     autocompleteInput.nativeElement.blur();
 
-    component.whenStable()
-    .then(() => {
-      component.detectChanges();
-      const autocompleteContent = component.debugElement.query(By.css('.mat-autocomplete-panel')).nativeElement;
-      const autocompleteOptions = autocompleteContent.querySelectorAll('.mat-option-text') as NodeListOf<HTMLElement>;
-      expect(autocompleteOptions).toBeTruthy();
-      // Verify
-      // all options are filtered out
-      expect(autocompleteOptions.length).toEqual(0);
-      // the field value is still empty
-      expect(component.componentInstance.field.getValue()).toEqual('');
-      // the input value is reset
-      expect(autocompleteInput.nativeElement.value).toEqual('');
-    });
+    await component.whenStable();
+    component.detectChanges();
+
+    const autocompleteContent = component.debugElement.query(By.css('.mat-autocomplete-panel')).nativeElement;
+    const autocompleteOptions = autocompleteContent.querySelectorAll('.mat-option-text') as NodeListOf<HTMLElement>;
+    expect(autocompleteOptions).toBeTruthy();
+    // Verify
+    // all options are filtered out
+    expect(autocompleteOptions.length).toEqual(0);
+    // the field value is still empty
+    expect(component.componentInstance.field.getValue()).toEqual('');
+    // the input value is reset
+    expect(autocompleteInput.nativeElement.value).toEqual('');
   });
 });

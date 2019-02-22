@@ -28,11 +28,9 @@ export class AutocompleteComponent implements OnInit {
 
   ngOnInit() {
     // The possible domain options will be filtered based on the string value from the input field
-    this.filteredDomainOptions$ = this.formControl.valueChanges
-    .pipe(
-      startWith<DomainValue | string>(''),
-      map(value => this.displayDomainValue(value)),
-      map(displayValue => displayValue ? this.filter(displayValue) : this.field.domain.options.slice()),
+    this.filteredDomainOptions$ = this.formControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this.filter(value)),
     );
   }
 
@@ -40,7 +38,7 @@ export class AutocompleteComponent implements OnInit {
     return getFieldMessages(this.formControl);
   }
 
-  displayDomainValue(value: DomainValue | string | null): string | null {
+  toDisplayValue(value: DomainValue | string | null): string | null {
     if (value === null) {
       return null;
     }
@@ -60,8 +58,9 @@ export class AutocompleteComponent implements OnInit {
     }
   }
 
-  private filter(displayValue: string): DomainValue[] {
-    const filterValue = displayValue.toLowerCase();
+  private filter(value: DomainValue | string): DomainValue[] {
+    const displayValue = this.toDisplayValue(value);
+    const filterValue = (displayValue || '').toLowerCase();
 
     return this.field.domain.options.filter(option => option.displayValue.toLowerCase().includes(filterValue));
   }

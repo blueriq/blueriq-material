@@ -6,7 +6,7 @@
       [placeholder]="field.placeholder"
       [matAutocomplete]="matAuto"
       (blur)="checkValidOption($event)">
-    <mat-autocomplete autoActiveFirstOption #matAuto="matAutocomplete" [displayWith]="displayDomainValue">
+    <mat-autocomplete autoActiveFirstOption #matAuto="matAutocomplete" [displayWith]="toDisplayValue">
       <mat-option *ngFor="let domainOption of filteredDomainOptions$ | async" [value]="domainOption">
         {{ domainOption.displayValue }}
       </mat-option>

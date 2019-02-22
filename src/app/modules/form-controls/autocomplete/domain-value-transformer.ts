@@ -5,20 +5,20 @@ export class DomainValueTransformer implements ValueTransformer<TechnicalValue, 
   toControl(value: TechnicalValue | null, context: ValueTransformerContext): DomainValue | DisplayValue | null {
     if (value === null) {
       return null;
-    } else {
-      const domainDisplayValue = value === undefined || null ? undefined : context.field.domain.getDisplayValue(value);
-
-      return domainDisplayValue === undefined ? null : domainDisplayValue;
     }
+
+    const displayValue = context.field.domain.getDisplayValue(value);
+
+    return displayValue === undefined ? null : displayValue;
   }
 
   toField(value: DomainValue | DisplayValue | null, context: ValueTransformerContext): TechnicalValue | null {
     if (value === null) {
       return null;
-    } else {
-      const domainValue = typeof value === 'string' ? context.field.domain.getValue(value) : value.value;
-
-      return domainValue === undefined ? null : domainValue;
     }
+
+    const domainValue = typeof value === 'string' ? context.field.domain.getValue(value) : value.value;
+
+    return domainValue === undefined ? null : domainValue;
   }
 }
