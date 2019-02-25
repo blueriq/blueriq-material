@@ -9,6 +9,7 @@ export interface DismissInfo {
 export const enum NotificationType {
   Error = 'error',
   SessionExpired = 'expired',
+  LoggedOut = 'logged-out',
 }
 
 /**

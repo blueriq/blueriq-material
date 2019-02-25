@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 163 163">
+  <defs>
+    <style>
+      .cls-1 {
+      fill: #fff;
+      }
+
+      .cls-2 {
+      fill: #2abfad;
+      }
+
+      .cls-3 {
+      fill: none;
+      }
+    </style>
+  </defs>
+  <g id="Rounded" transform="translate(34.724 9.587)">
+    <g id="Group_363" data-name="Group 363" transform="translate(2 28.035)">
+      <circle id="Ellipse_36" data-name="Ellipse 36" class="cls-1" cx="81.5" cy="81.5" r="81.5"
+              transform="translate(-36.724 -37.621)"/>
+      <g id="Group_364" data-name="Group 364">
+        <circle id="Ellipse_35" data-name="Ellipse 35" class="cls-2" cx="22.09" cy="22.09" r="22.09"
+                transform="translate(22.09)"/>
+        <path id="Path_97" data-name="Path 97" class="cls-2"
+              d="M45.18,15C30.435,15,1,22.4,1,37.09v5.522a5.539,5.539,0,0,0,5.522,5.522H83.837a5.539,5.539,0,0,0,5.522-5.522V37.09C89.359,22.4,59.924,15,45.18,15Z"
+              transform="translate(-1 40.224)"/>
+      </g>
+    </g>
+    <g id="round-schedule-24px" transform="translate(63.276 26.413)">
+      <g id="Bounding_Boxes">
+        <path id="Path_111" data-name="Path 111" class="cls-3" d="M0,0H51.519V51.519H0Z"/>
+      </g>
+    </g>
+  </g>
+</svg>

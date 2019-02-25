@@ -13,12 +13,12 @@
     background-color: mat-color($bq-error-palette);
   }
 
-  .notification-expired {
-    background-color: mat-color($bq-error-palette);
+  .notification-expired,
+  .notification-logged-out {
+    background-color: mat-color($bq-mat-primary-blue, 500);
   }
 
-  .notification-error,
-  .notification-expired {
+  .notification {
     @include mat-elevation(2);
 
     width: 350px;

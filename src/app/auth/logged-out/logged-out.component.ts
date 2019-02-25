@@ -10,7 +10,7 @@ import { AuthService } from '../auth.service';
 })
 export class LoggedOutComponent {
 
-  notification = new NotificationModel(NotificationType.Error, 'Logged out', 'Successfully logged out');
+  notification = new NotificationModel(NotificationType.LoggedOut, 'Logged out', 'Successfully logged out');
 
   constructor(auth: AuthService, route: ActivatedRoute) {
     this.notification.dismiss = {
