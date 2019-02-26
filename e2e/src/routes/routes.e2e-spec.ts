@@ -52,7 +52,8 @@ describe('Blueriq ProjectComponent Routes', () => {
     await app.start(startDefaultShortcutPath);
 
     // Route to the just create BlueriqSession
-    await app.start('/sessionId/' + app.retrieveSessionId('blueriq-session-default-Main'));
+    const sessionId = await app.retrieveSessionId('blueriq-session-default-Main');
+    await app.start(`/sessionId/${sessionId}`);
 
     // Verify
     expect(app.pageTitleDefaultShortcutFlow).toBe('Start');

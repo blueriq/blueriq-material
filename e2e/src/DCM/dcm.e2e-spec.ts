@@ -1,4 +1,4 @@
-import { browser } from 'protractor';
+import { browser, by } from 'protractor';
 import { DcmFlow } from './dcm.flow';
 
 describe('DCM App', () => {
@@ -50,11 +50,16 @@ describe('DCM App', () => {
 
       // State: logged in
       expect(app.projectPage.isPresent()).toBeTruthy();
-      app.buttonLogout.click();
+
+      // Logout again
+      const userMenu = app.projectPage.element(by.className('active-user-menu'));
+      userMenu.click();
       browser.waitForAngular();
+      browser.sleep(100); // Button would be occluded by overlay if clicked too soon.
+      app.buttonLogout.click();
 
       // State: logged out
-      expect(app.loginPage.isPresent()).toBeTruthy();
+      expect(app.notificationMessage.getText()).toEqual('Successfully logged out');
     });
   }
 

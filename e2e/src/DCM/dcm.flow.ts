@@ -20,6 +20,10 @@ export class DcmFlow {
     return element(by.tagName(this.PAGE_PROJECT_TAGNAME));
   }
 
+  get notificationMessage(): ElementFinder {
+    return element(by.css('bq-notification-overlay .message'));
+  }
+
   get nrOfButtons(): Promise<number> {
     return element.all(by.tagName('button')).count();
   }
@@ -41,9 +45,6 @@ export class DcmFlow {
   }
 
   get buttonLogout(): ElementFinder {
-    const userMenu = this.projectPage.element(by.className('active-user-menu'));
-    userMenu.click();
-    browser.waitForAngular();
     return element(by.buttonText('Uitloggen'));
   }
 
