@@ -1,5 +1,5 @@
 import { MatDialog, MatDialogRef } from '@angular/material';
-import { CurrentFilters, Filter2 } from '@blueriq/angular/lists';
+import { ColumnFilter, CurrentFilters, Filter2, FilterPredicate } from '@blueriq/angular/lists';
 import { FilterComponent } from './filter.component';
 import { FilterCandidate } from './types';
 
@@ -8,11 +8,13 @@ describe('FilterComponent', () => {
   let dialogSpy: jasmine.SpyObj<MatDialog>;
   let dialogRefSpy: jasmine.SpyObj<MatDialogRef<any, any>>;
   let currentFiltersSpy: CurrentFilters;
+  let columnFilterSpy: jasmine.SpyObj<ColumnFilter>;
   let filter: Filter2;
 
   beforeEach(() => {
     dialogSpy = jasmine.createSpyObj<MatDialog>(['open']);
     dialogRefSpy = jasmine.createSpyObj<MatDialogRef<any, any>>(['close']);
+    columnFilterSpy = jasmine.createSpyObj<ColumnFilter>(['clear']);
     currentFiltersSpy = {
       all: [],
       clear: jasmine.createSpy(),
@@ -41,6 +43,11 @@ describe('FilterComponent', () => {
   });
 
   it('close dialog on filter', () => {
+    tableFilterComponent.addFilter();
+    const predicate: FilterPredicate = {showTrue: true, showFalse: false, showUnknown: false, type: 'boolean'};
+    tableFilterComponent.filterCandidates[0].update({predicate: predicate, valid: true});
+    tableFilterComponent.filterCandidates[0].selectedColumn = columnFilterSpy;
+
     // SUT
     // show filter dialog
     tableFilterComponent.showFilter('' as any);
