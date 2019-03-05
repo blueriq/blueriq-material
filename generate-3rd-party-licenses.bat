@@ -1,0 +1,1 @@
+yarn license-checker --production --relativeLicensePath --csv --customPath customLicenseCheckerFormat.json > 3rd-party-licenses.txt
