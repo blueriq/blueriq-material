@@ -106,6 +106,10 @@
                 "./src/theme/blueriq"
               ]
             },
+            "codeCoverageExclude": [
+              "src/app/modules/BqPresentationStyles.ts",
+              "src/app/modules/BqContentStyles.ts"
+            ],
             "scripts": [],
             "assets": [
               "src/favicon.ico",
