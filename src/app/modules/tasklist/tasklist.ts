@@ -1,5 +1,5 @@
 import { Host, Injectable, OnDestroy } from '@angular/core';
-import { BlueriqChild, BlueriqChildren } from '@blueriq/angular';
+import { BlueriqChild, BlueriqChildren, BlueriqQuerying, BlueriqSession } from '@blueriq/angular';
 import { Button, Container, DataType, PresentationStyles, TextItem } from '@blueriq/core';
 import { Subscription } from 'rxjs/Subscription';
 import { Task, TaskService } from './task_service';
@@ -18,23 +18,26 @@ export interface ColumnDefinition {
 @Injectable()
 export class TaskList implements OnDestroy {
 
-  columnDefinitions: ColumnDefinition[];
+  columnDefinitions: ColumnDefinition[] = [];
   pagingSize: number;
   lockedStyle: string | undefined;
   tasks: Task[] = [];
   @BlueriqChildren(Container, 'header_cell', { required: true })
-  private headerContainers: Container[];
+  headerContainers: Container[];
   @BlueriqChild(TextItem, { optional: true })
-  private noResults: TextItem;
+  noResults: TextItem;
   @BlueriqChild(Button, '.TaskListActionButton', { optional: true })
-  private phantomButton: Button;
+  phantomButton: Button;
   private taskSubscription: Subscription;
   private taskEventSubscription: Subscription;
-  private DEFAULT_PAGING_SIZE: 10;
+  private DEFAULT_PAGING_SIZE = 10;
   private containerId: string;
 
-  constructor(@Host() container: Container, private readonly taskService: TaskService) {
-    this.pagingSize = container.properties['pagingSize'] ? container.properties['pagingSize'] : this.DEFAULT_PAGING_SIZE;
+  constructor(@Host() container: Container, private readonly taskService: TaskService,
+              private readonly session: BlueriqSession,
+              private readonly querying: BlueriqQuerying) {
+    this.querying.attach(this);
+    this.pagingSize = container.properties['pagingsize'] ? container.properties['pagingsize'] : this.DEFAULT_PAGING_SIZE;
     this.lockedStyle = container.properties['lockedStyle'];
     this.initColumnDefinitions();
     this.containerId = container.key;
@@ -68,7 +71,7 @@ export class TaskList implements OnDestroy {
     });
 
     // InitialData
-    this.taskSubscription = this.taskService.getAllTasks(this.containerId).subscribe(tasks => {
+    this.taskSubscription = this.taskService.getAllTasks(this.session.current, this.containerId).subscribe(tasks => {
       // TODO, merge the arrays?
       this.tasks = tasks;
     });
@@ -77,10 +80,11 @@ export class TaskList implements OnDestroy {
   ngOnDestroy(): void {
     this.taskSubscription.unsubscribe();
     this.taskEventSubscription.unsubscribe();
+    this.querying.detach(this);
   }
 
   private initColumnDefinitions(): void {
-    for (const headerContainer of this.headerContainers) {
+    this.headerContainers.forEach(headerContainer => {
       let header: string | undefined;
       let action: Button | undefined;
       for (const child of headerContainer.children) {
@@ -95,6 +99,6 @@ export class TaskList implements OnDestroy {
         header, action, styles: headerContainer.styles,
         dataType: 'text',
       });
-    }
+    });
   }
 }

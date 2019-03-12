@@ -7,7 +7,7 @@
         The actual rendered columns are set as a property on the row definition" -->
 
   <!-- 42 Column -->
-  <ng-container matColumnDef="id" *ngFor="let column of tasklist.columnDefinitions; index as i">
+  <ng-container *ngFor="let column of tasklist.columnDefinitions; index as i" [matColumnDef]="'col'+i" >
     <th *matHeaderCellDef mat-header-cell mat-sort-header>{{ column.header }}</th>
     <td *matCellDef="let element" mat-cell>
       <ng-container *ngIf="!column.action">{{ element[i] }}</ng-container>

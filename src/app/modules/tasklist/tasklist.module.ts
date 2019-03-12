@@ -4,16 +4,17 @@ import { NgModule } from '@angular/core';
 import {
   MatButtonModule,
   MatFormFieldModule,
+  MatIconModule,
   MatInputModule,
   MatPaginatorModule,
   MatSortModule,
   MatTableModule,
 } from '@angular/material';
-import { BlueriqComponents, BlueriqModule, BlueriqStyles } from '@blueriq/angular';
-import { TextItem } from '@blueriq/core';
+import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
 import { SharedModule } from '@shared/shared.module';
-import { BqPresentationStyles } from '../BqPresentationStyles';
+import { TaskService } from './task_service';
 import { TasklistComponent } from './tasklist.component';
+import { V2TaskService } from './v2_task_service';
 
 const BLUERIQ_COMPONENTS = [
   TasklistComponent,
@@ -25,23 +26,7 @@ const BLUERIQ_COMPONENTS = [
   ],
   providers: [
     BlueriqComponents.register(BLUERIQ_COMPONENTS),
-    BlueriqStyles.mapping([
-      {
-        from: BqPresentationStyles.TEXTEMPHASIS,
-        to: 'emphasis',
-        when: { type: TextItem },
-      },
-      {
-        from: BqPresentationStyles.TEXTEMPHASIS_SUBTLE,
-        to: 'subtle',
-        when: { type: TextItem },
-      },
-      {
-        from: BqPresentationStyles.TEXTEMPHASIS_INTENSE,
-        to: 'intense',
-        when: { type: TextItem },
-      },
-    ]),
+    { provide: TaskService, useClass: V2TaskService },
   ],
   imports: [
     CommonModule,
@@ -51,6 +36,7 @@ const BLUERIQ_COMPONENTS = [
 
     MatButtonModule,
     MatFormFieldModule,
+    MatIconModule,
     MatInputModule,
     MatTableModule,
     MatPaginatorModule,

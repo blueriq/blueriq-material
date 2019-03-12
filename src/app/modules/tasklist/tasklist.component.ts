@@ -8,7 +8,7 @@ import { TaskList } from './tasklist';
 @Component({
   selector: 'bq-tasklist',
   templateUrl: './tasklist.component.html',
-  styleUrls: ['./tasklist.component.scss'],
+  // styleUrls: ['./tasklist.component.scss'],
   providers: [TaskList],
 })
 @BlueriqComponent({

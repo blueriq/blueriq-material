@@ -1,3 +1,4 @@
+import { Session } from '@blueriq/angular';
 import { Observable } from 'rxjs/Observable';
 
 export interface TaskEvent {
@@ -17,5 +18,5 @@ export interface Task {
 export abstract class TaskService {
   abstract getTaskEvents(): Observable<TaskEvent>;
 
-  abstract getAllTasks(containerId: string): Observable<Task[]>;
+  abstract getAllTasks(session: Session, containerId: string): Observable<Task[]>;
 }
