@@ -30,6 +30,7 @@ import { ReadonlyModule } from './modules/readonly/readonly.module';
 import { LoginComponent } from './modules/static-pages/login.component';
 import { StaticPagesModule } from './modules/static-pages/static-pages.module';
 import { TabModule } from './modules/tab/tabs.module';
+import { TasklistModule } from './modules/tasklist/tasklist.module';
 import { TextItemModule } from './modules/textitem/textitem.module';
 import { TimelineModule } from './modules/timeline/timeline.module';
 import { VisualizationModule } from './modules/visualization/visualization.module';
@@ -84,6 +85,7 @@ const routes: Routes = [
     PageModule,
     ReadonlyModule,
     TabModule,
+    TasklistModule,
     TextItemModule,
     TimelineModule,
     VisualizationModule,
