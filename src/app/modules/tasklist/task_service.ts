@@ -18,5 +18,5 @@ export interface Task {
 export abstract class TaskService {
   abstract getTaskEvents(): Observable<TaskEvent>;
 
-  abstract getAllTasks(session: Session, containerId: string): Observable<Task[]>;
+  abstract getAllTasks(session: Session, containerUuid: string): Observable<Task[]>;
 }

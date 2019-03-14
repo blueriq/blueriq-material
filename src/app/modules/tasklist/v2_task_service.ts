@@ -15,7 +15,7 @@ export class V2TaskService implements TaskService {
     return this.backend.get<TaskEvent>('/api/v2/push-messages');
   }
 
-  getAllTasks(session: Session, containerId: string): Observable<Task[]> {
-    return this.backend.get<Task[]>(`/api/v2/session/${ session.sessionId }/tasks/${ containerId }`);
+  getAllTasks(session: Session, containerUuid: string): Observable<Task[]> {
+    return this.backend.get<Task[]>(`/api/v2/session/${ session.sessionId }/tasks/${ containerUuid }`);
   }
 }

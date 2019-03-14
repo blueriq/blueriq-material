@@ -31,16 +31,16 @@ export class TaskList implements OnDestroy {
   private taskSubscription: Subscription;
   private taskEventSubscription: Subscription;
   private DEFAULT_PAGING_SIZE = 10;
-  private containerId: string;
+  private containerUuid: string;
 
   constructor(@Host() container: Container, private readonly taskService: TaskService,
               private readonly session: BlueriqSession,
               private readonly querying: BlueriqQuerying) {
     this.querying.attach(this);
     this.pagingSize = container.properties['pagingsize'] ? container.properties['pagingsize'] : this.DEFAULT_PAGING_SIZE;
-    this.lockedStyle = container.properties['lockedStyle'];
+    this.lockedStyle = container.properties['lockedstyle'];
+    this.containerUuid = container.properties['containeruuid'];
     this.initColumnDefinitions();
-    this.containerId = container.key;
 
     this.connect();
   }
@@ -71,7 +71,7 @@ export class TaskList implements OnDestroy {
     });
 
     // InitialData
-    this.taskSubscription = this.taskService.getAllTasks(this.session.current, this.containerId).subscribe(tasks => {
+    this.taskSubscription = this.taskService.getAllTasks(this.session.current, this.containerUuid).subscribe(tasks => {
       // TODO, merge the arrays?
       this.tasks = tasks;
     });
