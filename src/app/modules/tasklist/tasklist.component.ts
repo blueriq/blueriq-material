@@ -1,9 +1,8 @@
 import { Component, Host } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
 import { BlueriqComponent } from '@blueriq/angular';
 import { Container } from '@blueriq/core';
 import { Task } from './task_service';
-import { TaskList } from './tasklist';
+import { ColumnDefinition, TaskList } from './tasklist';
 
 @Component({
   selector: 'bq-tasklist',
@@ -16,9 +15,21 @@ import { TaskList } from './tasklist';
   selector: 'tasklist',
 })
 export class TasklistComponent {
-  public dataSource: MatTableDataSource<Task>;
+
+  displayedColumns: string[];
 
   constructor(@Host() public tasklist: TaskList) {
-    this.dataSource = new MatTableDataSource(tasklist.tasks);
+    this.displayedColumns = tasklist.columnDefinitions.map(column => column.identifier);
+  }
+
+  getCellData(task: Task, column: ColumnDefinition) {
+    switch (column.type) {
+      case 'TASKDATA':
+        return task[column.identifier];
+      case 'ACTION':
+        return 'cavia';
+      default:
+        return 'pinguin';
+    }
   }
 }

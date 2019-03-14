@@ -1,23 +1,27 @@
-<mat-form-field>
-  <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filter">
-</mat-form-field>
+<!--<mat-form-field>-->
+  <!--<input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filter">-->
+<!--</mat-form-field>-->
 
-<table [dataSource]="dataSource" class="mat-elevation-z8" mat-table matSort>
+<table [dataSource]="tasklist.tasks" mat-table>
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
 
-  <!-- 42 Column -->
-  <ng-container *ngFor="let column of tasklist.columnDefinitions; index as i" [matColumnDef]="'col'+i" >
-    <th *matHeaderCellDef mat-header-cell mat-sort-header>{{ column.header }}</th>
-    <td *matCellDef="let element" mat-cell>
-      <ng-container *ngIf="!column.action">{{ element[i] }}</ng-container>
-      <button *ngIf="!!column.action" mat-raised-button (click)="doAction(element.identifier)">{{ column.action }}</button>
-    </td>
+  <ng-container *ngFor="let column of tasklist.columnDefinitions" [matColumnDef]="column.identifier">
+    <th mat-header-cell *matHeaderCellDef>{{column.header}}</th>
+    <td mat-cell *matCellDef="let task">{{getCellData(task, column)}}</td>
   </ng-container>
+
+  <!--<ng-container *ngFor="let column of tasklist.columnDefinitions; index as i" [matColumnDef]="'col'+i" >-->
+    <!--<th *matHeaderCellDef mat-header-cell mat-sort-header>{{ column.header }}</th>-->
+    <!--<td *matCellDef="let element" mat-cell>-->
+      <!--<ng-container *ngIf="!column.action">{{ element[i] }}</ng-container>-->
+      <!--<button *ngIf="!!column.action" mat-raised-button (click)="doAction(element.identifier)">{{ column.action }}</button>-->
+    <!--</td>-->
+  <!--</ng-container>-->
 
   <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
   <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
 
 </table>
 
-<mat-paginator [pageSize]="5"></mat-paginator>
+<!--<mat-paginator [pageSize]="5"></mat-paginator>-->

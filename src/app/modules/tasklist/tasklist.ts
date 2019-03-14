@@ -5,6 +5,8 @@ import { Subscription } from 'rxjs/Subscription';
 import { Task, TaskService } from './task_service';
 
 export interface ColumnDefinition {
+  type: 'ACTION' | 'CUSTOMFIELD' | 'TASKDATA';
+  identifier: string;
   header: string | undefined;
   styles: PresentationStyles;
   action: Button | undefined;
@@ -72,7 +74,6 @@ export class TaskList implements OnDestroy {
 
     // InitialData
     this.taskSubscription = this.taskService.getAllTasks(this.session.current, this.containerUuid).subscribe(tasks => {
-      // TODO, merge the arrays?
       this.tasks = tasks;
     });
   }
@@ -96,8 +97,12 @@ export class TaskList implements OnDestroy {
         }
       }
       this.columnDefinitions.push({
-        header, action, styles: headerContainer.styles,
-        dataType: 'text',
+        type: headerContainer.properties['type'],
+        identifier: headerContainer.properties['identifier'],
+        header,
+        action,
+        styles: headerContainer.styles,
+        dataType: headerContainer.properties['datatype'],
       });
     });
   }
