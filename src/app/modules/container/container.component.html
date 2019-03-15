@@ -1,6 +1,6 @@
-<div bqKey bqClasses [bqContainer]="container">
+<div [bqContainer]="container" bqClasses bqKey>
 
-  <bq-heading [title]="container.displayName" [styles]="container.styles"></bq-heading>
+  <bq-heading *ngIf="shouldDisplayHeading()" [styles]="container.styles" [title]="container.displayName"></bq-heading>
 
   <!-- Container has presentation style 'horizontal', direct children should be rendered horizontally -->
   <div *ngIf="isHorizontal" class="bq-row">

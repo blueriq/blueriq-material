@@ -1,4 +1,4 @@
-import { Component, Host } from '@angular/core';
+import { Component } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { Container } from '@blueriq/core';
 import { BqContentStyles } from '../BqContentStyles';
@@ -14,7 +14,7 @@ import { BqContentStyles } from '../BqContentStyles';
 })
 export class TabComponent {
 
-  constructor(@Host() public container: Container) {
+  constructor(public container: Container) {
   }
 
 }
