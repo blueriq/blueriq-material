@@ -1,7 +1,9 @@
 import { animateChild, query, transition, trigger } from '@angular/animations';
-import { Component, Host, OnInit } from '@angular/core';
+import { Component, OnInit, Optional } from '@angular/core';
 import { BlueriqComponent, OnUpdate } from '@blueriq/angular';
+import { List } from '@blueriq/angular/lists';
 import { Container } from '@blueriq/core';
+import { BqContentStyles } from '../BqContentStyles';
 import { BqPresentationStyles } from '../BqPresentationStyles';
 
 @Component({
@@ -22,7 +24,8 @@ export class ContainerComponent implements OnInit, OnUpdate {
 
   public isHorizontal = false;
 
-  constructor(@Host() public container: Container) {
+  constructor(public container: Container,
+              @Optional() public readonly list: List) {
   }
 
   ngOnInit() {
@@ -31,6 +34,24 @@ export class ContainerComponent implements OnInit, OnUpdate {
 
   bqOnUpdate() {
     this.determineDisplayStyle();
+  }
+
+  /**
+   * Whether to display the heading for this container
+   */
+  public shouldDisplayHeading(): boolean {
+    return !this.hasListAsAncestor() && !this.isDirectChildOfTab();
+  }
+
+  private hasListAsAncestor(): boolean {
+    return !!this.list;
+  }
+
+  private isDirectChildOfTab(): boolean {
+    if (this.container.parent) {
+      return this.container.parent.contentStyle === BqContentStyles.TAB;
+    }
+    return false;
   }
 
   /**
