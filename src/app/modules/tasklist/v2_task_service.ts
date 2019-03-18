@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Session } from '@blueriq/angular';
 import { Backend } from '@blueriq/angular/backend/common';
 import { Observable } from 'rxjs';
-import { share } from 'rxjs/operators';
+import { filter, share } from 'rxjs/operators';
 import { Task, TaskEvent, TaskService } from './task_service';
 
 /** @internal */
@@ -23,8 +23,7 @@ export class V2TaskService implements TaskService {
   }
 
   getTaskEvents(containerUuid: string): Observable<TaskEvent> {
-    return this.taskEvents;
-    //return this.taskEvents.pipe(filter(event => event.task.identifier === containerUuid));
+    return this.taskEvents.pipe(filter(event => event.task.caseIdentifier === containerUuid));
   }
 
   getAllTasks(session: Session, containerUuid: string): Observable<Task[]> {

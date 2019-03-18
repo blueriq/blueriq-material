@@ -57,14 +57,14 @@ export class TaskList implements OnDestroy {
           break;
         case 'UPDATED':
           this.tasks.forEach((item: Task, index) => {
-            if (item.id === taskEvent.task.id) {
+            if (item.identifier === taskEvent.task.identifier) {
               this.tasks[index] = taskEvent.task;
             }
           });
           break;
         case 'DELETED':
           this.tasks.forEach((item: Task, index) => {
-            if (item.id === taskEvent.task.id) {
+            if (item.identifier === taskEvent.task.identifier) {
               this.tasks.splice(index, 1);
             }
           });
