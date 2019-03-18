@@ -28,10 +28,9 @@ export class TaskList implements OnDestroy {
   headerContainers: Container[];
   @BlueriqChild(TextItem, { optional: true })
   noResults: TextItem;
-  @BlueriqChild(Button, '.TaskListActionButton', { optional: true })
+  @BlueriqChild(Button, 'phantom_button > #TaskListActionButton', { optional: true })
   phantomButton: Button;
   private taskSubscription: Subscription;
-  private taskEventSubscription: Subscription;
   private DEFAULT_PAGING_SIZE = 10;
   private containerUuid: string;
 
@@ -50,7 +49,8 @@ export class TaskList implements OnDestroy {
   connect(): void {
     // Subscribe for changes
     // TODO: handle data that is out of sync
-    this.taskEventSubscription = this.taskService.getTaskEvents().subscribe(taskEvent => {
+
+    this.taskSubscription = this.taskService.getTaskEvents(this.containerUuid).subscribe(taskEvent => {
       switch (taskEvent.action) {
         case 'CREATED':
           this.tasks.push(taskEvent.task);
@@ -80,8 +80,11 @@ export class TaskList implements OnDestroy {
 
   ngOnDestroy(): void {
     this.taskSubscription.unsubscribe();
-    this.taskEventSubscription.unsubscribe();
     this.querying.detach(this);
+  }
+
+  public buttonPressed(taskIdentifier: string): void {
+    this.session.pressed(this.phantomButton, { taskIdentifier: [taskIdentifier] });
   }
 
   private initColumnDefinitions(): void {
@@ -107,3 +110,4 @@ export class TaskList implements OnDestroy {
     });
   }
 }
+

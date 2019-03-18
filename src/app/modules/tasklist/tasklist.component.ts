@@ -23,13 +23,19 @@ export class TasklistComponent {
   }
 
   getCellData(task: Task, column: ColumnDefinition) {
+    let identifier = column.identifier;
+    if (identifier === 'displayname') {
+      identifier = 'displayName';
+    }
     switch (column.type) {
       case 'TASKDATA':
-        return task[column.identifier];
-      case 'ACTION':
-        return 'cavia';
+        return task[identifier];
       default:
         return 'pinguin';
     }
+  }
+
+  buttonPressed(taskIdentifier: string) {
+    this.tasklist.buttonPressed(taskIdentifier);
   }
 }
