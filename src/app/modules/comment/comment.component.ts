@@ -1,7 +1,7 @@
 import { Component, Host, Self } from '@angular/core';
 import { BlueriqComponent, DashboardComment } from '@blueriq/angular';
-import { BlueriqFormBuilder } from '@blueriq/angular/forms';
-import { Container } from '@blueriq/core';
+import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
+import { Container, FieldMessages } from '@blueriq/core';
 import { BqPresentationStyles } from '../BqPresentationStyles';
 
 @Component({
@@ -24,6 +24,10 @@ export class CommentComponent {
   constructor(@Host() public container: Container,
               @Self() public comment: DashboardComment,
               private form: BlueriqFormBuilder) {
+  }
+
+  getFieldMessages(): FieldMessages {
+    return getFieldMessages(this.formControl);
   }
 
   onClick() {

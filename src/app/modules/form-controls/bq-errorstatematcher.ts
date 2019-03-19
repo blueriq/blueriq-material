@@ -15,7 +15,7 @@ export class BqErrorStateMatcher implements ErrorStateMatcher {
           control.invalid &&
           (control.touched || (form && form.submitted))
         ) ||
-        getFieldMessages(control).hasErrors)
+        getFieldMessages(control).hasMessages)
     );
   }
 }
