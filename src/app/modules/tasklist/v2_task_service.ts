@@ -8,25 +8,39 @@ import { Task, TaskEvent, TaskService } from './task_service';
 /** @internal */
 @Injectable()
 export class V2TaskService implements TaskService {
-  private taskEvents: Observable<TaskEvent>;
+  private pushMessageObserver: Observable<TaskEvent>;
 
   constructor(private readonly backend: Backend) {
-    this.taskEvents = Observable.create(observer => {
+    this.initPushMessageObserver();
+  }
+
+  getTaskEvents(containerUuid: string): Observable<TaskEvent> {
+    return this.pushMessageObserver.pipe(filter(event => event.taskModel.caseIdentifier === containerUuid));
+  }
+
+  getAllTasks(session: Session, containerUuid: string): Observable<Task[]> {
+    return this.backend.get<Task[]>(`/api/v2/session/${ session.sessionId }/tasks/${ containerUuid }`);
+  }
+
+  private initPushMessageObserver(): void {
+    this.pushMessageObserver = Observable.create(observer => {
       const eventSource = new EventSource(this.backend.toUrl('/api/v2/push-messages'));
-      eventSource.onmessage = messageEvent => observer.next(messageEvent.data);
-      eventSource.onerror = errorEvent => observer.error(errorEvent);
+
+      /* TODO: in the future, when we have more event types than just a TaskEvent, we should implement
+       *  eventSource.onmessage instead of adding event listeners. We should not provide a type for the server sent event
+       *  in the runtime, but instead wrap all messages in a class that has a type property
+       */
+      eventSource.addEventListener('taskEvent', messageEvent => {
+        observer.next(JSON.parse((messageEvent as MessageEvent).data));
+      });
+
+      eventSource.onerror = errorEvent => {
+        observer.error(errorEvent);
+      };
 
       return () => {
         eventSource.close();
       };
     }).pipe(share());
-  }
-
-  getTaskEvents(containerUuid: string): Observable<TaskEvent> {
-    return this.taskEvents.pipe(filter(event => event.task.caseIdentifier === containerUuid));
-  }
-
-  getAllTasks(session: Session, containerUuid: string): Observable<Task[]> {
-    return this.backend.get<Task[]>(`/api/v2/session/${ session.sessionId }/tasks/${ containerUuid }`);
   }
 }

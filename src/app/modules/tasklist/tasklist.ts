@@ -1,4 +1,5 @@
 import { Host, Injectable, OnDestroy } from '@angular/core';
+import { MatTableDataSource } from '@angular/material';
 import { BlueriqChild, BlueriqChildren, BlueriqQuerying, BlueriqSession } from '@blueriq/angular';
 import { Button, Container, DataType, PresentationStyles, TextItem } from '@blueriq/core';
 import { Subscription } from 'rxjs/Subscription';
@@ -23,7 +24,7 @@ export class TaskList implements OnDestroy {
   columnDefinitions: ColumnDefinition[] = [];
   pagingSize: number;
   lockedStyle: string | undefined;
-  tasks: Task[] = [];
+  tasks: MatTableDataSource<Task> = new MatTableDataSource<Task>();
   @BlueriqChildren(Container, 'header_cell', { required: true })
   headerContainers: Container[];
   @BlueriqChild(TextItem, { optional: true })
@@ -49,30 +50,34 @@ export class TaskList implements OnDestroy {
     // TODO: handle data that is out of sync
 
     this.taskSubscription = this.taskService.getTaskEvents(this.containerUuid).subscribe(taskEvent => {
+      const data = this.tasks.data;
+
       switch (taskEvent.action) {
         case 'CREATED':
-          this.tasks.push(taskEvent.task);
+          data.push(taskEvent.taskModel);
           break;
         case 'UPDATED':
-          this.tasks.forEach((item: Task, index) => {
-            if (item.identifier === taskEvent.task.identifier) {
-              this.tasks[index] = taskEvent.task;
+          data.forEach((item: Task, index) => {
+            if (item.identifier === taskEvent.taskModel.identifier) {
+              data[index] = taskEvent.taskModel;
             }
           });
           break;
         case 'DELETED':
-          this.tasks.forEach((item: Task, index) => {
-            if (item.identifier === taskEvent.task.identifier) {
-              this.tasks.splice(index, 1);
+          data.forEach((item: Task, index) => {
+            if (item.identifier === taskEvent.taskModel.identifier) {
+              data.splice(index, 1);
             }
           });
           break;
       }
+
+      this.tasks.data = data;
     });
 
     // InitialData
     this.taskSubscription = this.taskService.getAllTasks(this.session.current, this.containerUuid).subscribe(tasks => {
-      this.tasks = tasks;
+      this.tasks.data = tasks;
     });
   }
 

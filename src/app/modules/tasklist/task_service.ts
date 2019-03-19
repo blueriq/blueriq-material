@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 
 export interface TaskEvent {
   action: 'CREATED' | 'UPDATED' | 'DELETED';
-  task: Task;
+  taskModel: Task;
 }
 
 export interface Task {
