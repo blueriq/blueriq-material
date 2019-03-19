@@ -23,9 +23,3 @@ The error doesn't return when dismissed, until you trigger another page error.
 When a user's input is regarded insecure by the Blueriq Runtime, the Security Violation action is published
 containing a general message that you may want to show to the user. By default, a snackbar is shown similar
 to page messages.
-
-### Security messages
-
-When a user's input is regarded insecure by the Blueriq Runtime, the Security Violation action is published
-containing a general message that you may want to show to the user. By default, a snackbar is shown similar
-to page messages.
