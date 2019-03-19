@@ -28,8 +28,6 @@ export class TaskList implements OnDestroy {
   headerContainers: Container[];
   @BlueriqChild(TextItem, { optional: true })
   noResults: TextItem;
-  @BlueriqChild(Button, 'phantom_button > #TaskListActionButton', { optional: true })
-  phantomButton: Button;
   private taskSubscription: Subscription;
   private DEFAULT_PAGING_SIZE = 10;
   private containerUuid: string;
@@ -83,8 +81,8 @@ export class TaskList implements OnDestroy {
     this.querying.detach(this);
   }
 
-  public buttonPressed(taskIdentifier: string): void {
-    this.session.pressed(this.phantomButton, { taskIdentifier: [taskIdentifier] });
+  public buttonPressed(button: Button, taskIdentifier: string): void {
+    this.session.pressed(button, { taskIdentifier: [taskIdentifier] });
   }
 
   private initColumnDefinitions(): void {

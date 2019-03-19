@@ -1,6 +1,6 @@
 import { Component, Host } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
-import { Container } from '@blueriq/core';
+import { Button, Container } from '@blueriq/core';
 import { Task } from './task_service';
 import { ColumnDefinition, TaskList } from './tasklist';
 
@@ -31,11 +31,11 @@ export class TasklistComponent {
       case 'TASKDATA':
         return task[identifier];
       default:
-        return 'pinguin';
+        return '';
     }
   }
 
-  buttonPressed(taskIdentifier: string) {
-    this.tasklist.buttonPressed(taskIdentifier);
+  buttonPressed(button: Button, taskIdentifier: string) {
+    this.tasklist.buttonPressed(button, taskIdentifier);
   }
 }
