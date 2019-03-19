@@ -1,8 +1,14 @@
 import { async, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { MatSnackBar } from '@angular/material';
-import { ChangedPageAction, PageUpdatedAction, SessionLoadedAction, SessionRegistry } from '@blueriq/angular';
+import {
+  ChangedPageAction,
+  PageUpdatedAction,
+  SecurityViolationAction,
+  SessionLoadedAction,
+  SessionRegistry,
+} from '@blueriq/angular';
 import { SessionTemplate } from '@blueriq/angular/testing';
-import { LanguageConfiguration } from '@blueriq/core';
+import { LanguageConfiguration, SecurityViolations } from '@blueriq/core';
 import { PageModelTemplate, PageTemplate } from '@blueriq/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { MessagesEffect } from '@shared/effects/messages/messages.effect';
@@ -42,11 +48,11 @@ describe('MessagesEffect', () => {
 
   it('does animate snackbar again even if already displayed the message', fakeAsync(() => {
     const session = SessionTemplate.create()
-    .sessionName('Main')
-    .pageModel(PageModelTemplate.create(PageTemplate.create().error(errorMsg))).build();
+      .sessionName('Main')
+      .pageModel(PageModelTemplate.create(PageTemplate.create().error(errorMsg))).build();
     sessionRegistry.register(session);
 
-    const action = new SessionLoadedAction('Main', '1', '2', 3, '', languageConf, [pageWithError.toJson()]);
+    const action = new SessionLoadedAction('Main', '1', '2', 3, '', '', languageConf, [pageWithError.toJson()]);
     effects.sessionActions$.subscribe();
     actions.next(action);
 
@@ -59,11 +65,11 @@ describe('MessagesEffect', () => {
   it('opens snackbar with an error message when session is loaded', fakeAsync(() => {
 
     const session = SessionTemplate.create()
-    .sessionName('Main')
-    .pageModel(PageModelTemplate.create(PageTemplate.create().error(errorMsg))).build();
+      .sessionName('Main')
+      .pageModel(PageModelTemplate.create(PageTemplate.create().error(errorMsg))).build();
     sessionRegistry.register(session);
 
-    const action = new SessionLoadedAction('Main', '1', '2', 3, '', languageConf, [pageWithError.toJson()]);
+    const action = new SessionLoadedAction('Main', '1', '2', 3, '', '', languageConf, [pageWithError.toJson()]);
     effects.sessionActions$.subscribe();
     actions.next(action);
 
@@ -76,8 +82,8 @@ describe('MessagesEffect', () => {
 
   it('opens snackbar with an error message when page is updated', fakeAsync(() => {
     const session = SessionTemplate.create()
-    .sessionName('my-session')
-    .pageModel(PageModelTemplate.create(pageWithError)).build();
+      .sessionName('my-session')
+      .pageModel(PageModelTemplate.create(pageWithError)).build();
     sessionRegistry.register(session);
 
     const action = new PageUpdatedAction('my-session', [{}] as any);
@@ -94,8 +100,8 @@ describe('MessagesEffect', () => {
 
   it('opens snackbar with an error message when page is changed', fakeAsync(() => {
     const session = SessionTemplate.create()
-    .sessionName('my-session')
-    .pageModel(PageModelTemplate.create(pageWithError)).build();
+      .sessionName('my-session')
+      .pageModel(PageModelTemplate.create(pageWithError)).build();
     sessionRegistry.register(session);
 
     const action = new ChangedPageAction('my-session', [{}] as any);
@@ -113,8 +119,8 @@ describe('MessagesEffect', () => {
   it('opens snackbar with multiple error messages', fakeAsync(() => {
     const anotherErrorMsg = 'Another error message';
     const session = SessionTemplate.create()
-    .sessionName('my-session')
-    .pageModel(PageModelTemplate.create(PageTemplate.create().error(errorMsg).error(anotherErrorMsg))).build();
+      .sessionName('my-session')
+      .pageModel(PageModelTemplate.create(PageTemplate.create().error(errorMsg).error(anotherErrorMsg))).build();
     sessionRegistry.register(session);
 
     const action = new PageUpdatedAction('my-session', [{}] as any);
@@ -131,8 +137,8 @@ describe('MessagesEffect', () => {
 
   it('opens error snackbar with mixed error and warning messages', fakeAsync(() => {
     const session = SessionTemplate.create()
-    .sessionName('my-session')
-    .pageModel(PageModelTemplate.create(PageTemplate.create().error(errorMsg).warning(warnMsg))).build();
+      .sessionName('my-session')
+      .pageModel(PageModelTemplate.create(PageTemplate.create().error(errorMsg).warning(warnMsg))).build();
     sessionRegistry.register(session);
 
     const action = new PageUpdatedAction('my-session', [{}] as any);
@@ -149,8 +155,8 @@ describe('MessagesEffect', () => {
 
   it('opens snackbar with a warning message', fakeAsync(() => {
     const session = SessionTemplate.create()
-    .sessionName('my-session')
-    .pageModel(PageModelTemplate.create(pageWithWarning)).build();
+      .sessionName('my-session')
+      .pageModel(PageModelTemplate.create(pageWithWarning)).build();
     sessionRegistry.register(session);
 
     const action = new ChangedPageAction('my-session', [{}] as any);
@@ -166,7 +172,7 @@ describe('MessagesEffect', () => {
   }));
 
   it('does not do anything when page has no errors or warnings', fakeAsync(() => {
-    const action = new SessionLoadedAction('Main', '1', '2', 60, '', languageConf, PageModelTemplate.create(PageTemplate.create()).toJson());
+    const action = new SessionLoadedAction('Main', '1', '2', 60, '', '', languageConf, PageModelTemplate.create(PageTemplate.create()).toJson());
 
     effects.sessionActions$.subscribe();
     actions.next(action);
@@ -175,4 +181,39 @@ describe('MessagesEffect', () => {
 
     expect(snackBarSpy.open).not.toHaveBeenCalled();
   }));
+
+  describe('security messages', () => {
+    it('shows a snackbar for security violations', fakeAsync(() => {
+      const msg1 = 'There are insecure fields on the page';
+      const msg2 = 'More messages!';
+      const violations = {
+        messages: [msg1, msg2],
+      } as unknown as SecurityViolations;
+      const action = new SecurityViolationAction('Main', violations);
+
+      effects.securityViolations$.subscribe();
+      actions.next(action);
+
+      tick();
+
+      expect(snackBarSpy.open).toHaveBeenCalledWith(`${msg1}, ${msg2}`, 'Ok', {
+        panelClass: 'snackbar-error',
+      });
+    }));
+
+    it('does not show a snackbar when there are no messages', fakeAsync(() => {
+      const violations = {
+        messages: [],
+      } as unknown as SecurityViolations;
+      const action = new SecurityViolationAction('Main', violations);
+
+      effects.securityViolations$.subscribe();
+      actions.next(action);
+
+      tick();
+
+      expect(snackBarSpy.open).not.toHaveBeenCalled();
+    }));
+  });
+
 });
