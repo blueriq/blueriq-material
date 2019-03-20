@@ -23,7 +23,7 @@ export class V2TaskService implements TaskService {
   }
 
   private initPushMessageObserver(): void {
-    this.pushMessageObserver = Observable.create(observer => {
+    this.pushMessageObserver = new Observable<TaskEvent>(observer => {
       const eventSource = new EventSource(this.backend.toUrl('/api/v2/push-messages'));
 
       /* TODO: in the future, when we have more event types than just a TaskEvent, we should implement
