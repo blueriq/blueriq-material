@@ -12,12 +12,13 @@ import { provideDateFormats } from '@shared/date/bq-date-parser';
 import { BqEffectsModule } from '@shared/effects/bq-effects.module';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
+import { AuthModule } from './auth/auth.module';
+import { AUTH_ROUTES } from './auth/routes';
 import { AssetModule } from './modules/asset/asset.module';
 import { ButtonModule } from './modules/button/button.module';
 import { CommentModule } from './modules/comment/comment.module';
 import { ContainerModule } from './modules/container/container.module';
 import { ContentItemModule } from './modules/contentitem/contentitem.module';
-import { ErrorModule } from './modules/error/error.module';
 import { FileModule } from './modules/file/file.modules';
 import { FormControlModule } from './modules/form-controls/form-control.module';
 import { HeaderModule } from './modules/header/header.module';
@@ -27,14 +28,13 @@ import { LoadingModule } from './modules/loading/loading.module';
 import { MenuModule } from './modules/menu/menu.module';
 import { PageModule } from './modules/page/page.module';
 import { ReadonlyModule } from './modules/readonly/readonly.module';
-import { LoginComponent } from './modules/static-pages/login.component';
-import { StaticPagesModule } from './modules/static-pages/static-pages.module';
 import { TabModule } from './modules/tab/tabs.module';
 import { TasklistModule } from './modules/tasklist/tasklist.module';
 import { TextItemModule } from './modules/textitem/textitem.module';
 import { TimelineModule } from './modules/timeline/timeline.module';
 import { VisualizationModule } from './modules/visualization/visualization.module';
 import { WidgetModule } from './modules/widget/widget.module';
+import { NotificationOverlayModule } from './notification-overlay/notification-overlay.module';
 import { ProjectComponent } from './project.component';
 
 const routes: Routes = [
@@ -43,7 +43,7 @@ const routes: Routes = [
   { path: 'flow/:project/:flow', component: ProjectComponent },
   { path: 'flow/:project/:flow/:version', component: ProjectComponent },
   { path: 'flow/:project/:flow/:version/:languageCode', component: ProjectComponent },
-  { path: 'login', component: LoginComponent },
+  ...AUTH_ROUTES,
   { path: '**', redirectTo: 'shortcut/default', pathMatch: 'full' },
 ];
 
@@ -55,19 +55,21 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
-    V2BackendModule.forRoot({
-      baseUrl: environment.baseUrl,
-    }),
 
-    // ngrx
+    // NgRx
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
       name: 'Blueriq',
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
+
+    // Blueriq
+    BlueriqModule.forRoot(),
     BlueriqStoreModule.forRoot(),
-    BlueriqModule.forRoot(), // Also used in some sub modules
+    V2BackendModule.forRoot({
+      baseUrl: environment.baseUrl,
+    }),
 
     /* Blueriq Modules */
     AssetModule,
@@ -93,8 +95,8 @@ const routes: Routes = [
 
     /* Non-Blueriq modules */
     LoadingModule,
-    StaticPagesModule,
-    ErrorModule,
+    AuthModule,
+    NotificationOverlayModule,
   ],
   providers: [
     { provide: DateFormats, useFactory: provideDateFormats },
