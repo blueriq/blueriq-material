@@ -1,4 +1,4 @@
-import { TasklistComponent } from './textitem.component';
+import { TasklistComponent } from './tasklist.component';
 
 describe('TasklistComponent', () => {
 });
