@@ -1,0 +1,22 @@
+<div class="backdrop"></div>
+
+<div class="error-container" fxFlex fxLayoutAlign="center center">
+  <div [class]="'notification notification-' + notification.type">
+
+    <div fxFlex fxLayout="column" fxLayoutAlign="space-around center">
+
+      <img src="./theme/blueriq/images/oops-icon.svg" height="175" *ngIf="notification.type === 'error'">
+      <img src="./theme/blueriq/images/session-expired.svg" height="175" *ngIf="notification.type === 'expired'">
+      <img src="./theme/blueriq/images/logged-out.svg" height="175" *ngIf="notification.type === 'logged-out'">
+
+      <p class="title">{{ notification.title }}</p>
+      <p class="message">{{ notification.message }}</p>
+      <p class="details" *ngIf="notification.details">{{ notification.details }}</p>
+
+      <p class="button" *ngIf="notification.dismiss" fxLayout="column" fxLayoutAlign="start center">
+        <button mat-button (click)="notification.dismiss.action()">{{ notification.dismiss.label }}</button>
+      </p>
+    </div>
+
+  </div>
+</div>

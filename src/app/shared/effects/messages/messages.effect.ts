@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import {
-  Action,
-  ButtonPressHandledAction,
+  SecurityActions,
+  SecurityViolationAction,
+  SessionAction,
   SessionEventActions,
-  SessionLoadedAction,
   SessionRegistry,
   StartupActions,
 } from '@blueriq/angular';
@@ -17,8 +17,14 @@ export class MessagesEffect {
 
   @Effect({ dispatch: false })
   sessionActions$: Observable<any> = this.actions$.pipe(
-    ofType<Action>(StartupActions.SESSION_LOADED, SessionEventActions.CHANGED_PAGE, SessionEventActions.PAGE_UPDATED),
+    ofType<SessionAction>(StartupActions.SESSION_LOADED, SessionEventActions.CHANGED_PAGE, SessionEventActions.PAGE_UPDATED),
     tap(action => this.showSnackBar(action)),
+  );
+
+  @Effect({ dispatch: false })
+  securityViolations$: Observable<any> = this.actions$.pipe(
+    ofType<SecurityViolationAction>(SecurityActions.SECURITY_VIOLATION),
+    tap(action => this.showSecurityMessages(action.violations.messages)),
   );
 
   constructor(private actions$: Actions,
@@ -26,7 +32,7 @@ export class MessagesEffect {
               private sessionRegistry: SessionRegistry) {
   }
 
-  private showSnackBar(action: ButtonPressHandledAction | SessionLoadedAction): void {
+  private showSnackBar(action: SessionAction): void {
     const session = this.sessionRegistry.getByNameOptionally(action.sessionName);
     if (session) {
       const messages = session.pageModel.page.messages;
@@ -34,9 +40,18 @@ export class MessagesEffect {
         // concatenate all messages, as only one snackbar can be shown at a time
         const messagesAsText = messages.all.map(message => message.text).join(', ');
         this.snackBar.open(messagesAsText, 'Ok', {
-          panelClass: (messages.hasErrors) ? 'snackbar-error' : 'snackbar-warning',
+          panelClass: messages.hasErrors ? 'snackbar-error' : 'snackbar-warning',
         });
       }
+    }
+  }
+
+  private showSecurityMessages(messages: string[]): void {
+    if (messages.length > 0) {
+      const messagesAsText = messages.join(', ');
+      this.snackBar.open(messagesAsText, 'Ok', {
+        panelClass: 'snackbar-error',
+      });
     }
   }
 }

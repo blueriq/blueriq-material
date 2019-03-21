@@ -9,16 +9,16 @@
   left: 0;
   z-index: $z-index-drawer + 200;
 
-  .severity-error {
+  .notification-error {
     background-color: mat-color($bq-error-palette);
   }
 
-  .severity-notice {
-    background-color: mat-color($bq-error-palette);
+  .notification-expired,
+  .notification-logged-out {
+    background-color: mat-color($bq-mat-primary-blue, 500);
   }
 
-  .severity-error,
-  .severity-notice {
+  .notification {
     @include mat-elevation(2);
 
     width: 350px;

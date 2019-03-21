@@ -1,7 +1,7 @@
 import { Component, Host, Input, OnInit, Optional } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService, BlueriqChild, BlueriqComponent } from '@blueriq/angular';
+import { BlueriqChild, BlueriqComponent } from '@blueriq/angular';
 import { Container, Page, TextItem } from '@blueriq/core';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'bq-header',
@@ -24,9 +24,7 @@ export class HeaderComponent implements OnInit {
   page: Page;
 
   constructor(@Host() @Optional() public dashboardHeader: Container,
-              private readonly authService: AuthService,
-              private router: Router,
-              private readonly route: ActivatedRoute) {
+              private readonly authService: AuthService) {
   }
 
   get displayName() {
@@ -41,18 +39,13 @@ export class HeaderComponent implements OnInit {
     if (this.dashboardHeader) {
       const parent = this.dashboardHeader.parent;
       if (parent instanceof Page) {
-        this.page = <Page> parent;
+        this.page = parent;
       }
     }
   }
 
   logout() {
-    this.authService.logout().subscribe(() => {
-      this.route.params.subscribe(() => {
-        const returnUrl = this.router.url;
-        this.router.navigate(['/login'], { queryParams: { returnUrl } });
-      });
-    });
+    this.authService.logoutAndNavigate();
   }
 
 }

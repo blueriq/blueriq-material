@@ -1,4 +1,4 @@
-<bq-loading #loader></bq-loading>
+<bq-loading></bq-loading>
 
 <bq-project
   [sessionName]="sessionName | async"
@@ -11,10 +11,8 @@
   (flowEnded)="onFlowEnded()"
   (expired)="onSessionExpired()"
   (error)="onError($event)"
-  (unauthorized)="onUnauthorized($event)">
+  (unauthorized)="onUnauthorized($event)"
+  (forbidden)="onForbidden($event)">
 </bq-project>
 
-<bq-error
-  *ngIf="error"
-  [error]="error"
-  (onClosed)="clearError()"></bq-error>
+<bq-notification-overlay *ngIf="notification" [notification]="notification"></bq-notification-overlay>

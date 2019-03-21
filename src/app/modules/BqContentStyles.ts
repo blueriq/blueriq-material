@@ -1,3 +1,4 @@
+/* istanbul ignore next */
 export class BqContentStyles {
   static TABLE = 'table';
 

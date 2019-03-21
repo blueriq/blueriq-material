@@ -40,6 +40,7 @@ import 'core-js/es7/array'; // BQ-5059 - fixes the button click bug
 // Used for reflect-metadata in JIT. If you use AOT (and only Angular decorators), you can remove.
 // BQ-5856 - When removed, for prod builds, Angular fails to initialize because of missing Reflect functions
 import 'core-js/es7/reflect';
+import 'core-js/modules/es7.object.entries';
 /**
  * Required to support Web Animations `@angular/platform-browser/animations`.
  * Needed for: All but Chrome, Firefox and Opera. http://caniuse.com/#feat=web-animation

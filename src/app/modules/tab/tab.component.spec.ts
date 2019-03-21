@@ -79,10 +79,9 @@ describe('TabComponent', () => {
     // init
     const tabBody = tabFixture.nativeElement.querySelector('.mat-tab-body');
     const tabBodyHeading = tabBody.querySelector('bq-heading');
-    const tabBodyCssDisplayValue = window.getComputedStyle(tabBodyHeading, null).getPropertyValue('display');
 
     // Verify
-    expect(tabBodyCssDisplayValue).toBe('none');
+    expect(tabBodyHeading).toBeFalsy();
   });
 
 });

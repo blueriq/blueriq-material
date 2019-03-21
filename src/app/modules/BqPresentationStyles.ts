@@ -1,3 +1,4 @@
+/* istanbul ignore next */
 export class BqPresentationStyles {
 
   // New presentation styles
