@@ -3,7 +3,7 @@ import { MatTableDataSource } from '@angular/material';
 import { BlueriqChild, BlueriqChildren, BlueriqQuerying, BlueriqSession } from '@blueriq/angular';
 import { Button, Container, DataType, PresentationStyles, TextItem } from '@blueriq/core';
 import { Subscription } from 'rxjs/Subscription';
-import { Task, TaskService } from './task_service';
+import { Task, TaskEvent, TaskService } from './task_service';
 
 export interface ColumnDefinition {
   type: 'ACTION' | 'CUSTOMFIELD' | 'TASKDATA';
@@ -40,45 +40,14 @@ export class TaskList implements OnDestroy {
     this.pagingSize = container.properties['pagingsize'] ? container.properties['pagingsize'] : this.DEFAULT_PAGING_SIZE;
     this.lockedStyle = container.properties['lockedstyle'];
     this.containerUuid = container.properties['containeruuid'];
-    this.initColumnDefinitions();
 
-    this.connect();
+    this.initColumnDefinitions();
+    this.subscribeToTaskEvents();
+    this.obtainInitialTasks();
   }
 
-  connect(): void {
-    // Subscribe for changes
-    // TODO: handle data that is out of sync
-
-    this.taskSubscription = this.taskService.getTaskEvents(this.containerUuid).subscribe(taskEvent => {
-      const data = this.tasks.data;
-
-      switch (taskEvent.action) {
-        case 'CREATED':
-          data.push(taskEvent.taskModel);
-          break;
-        case 'UPDATED':
-          data.forEach((item: Task, index) => {
-            if (item.identifier === taskEvent.taskModel.identifier) {
-              data[index] = taskEvent.taskModel;
-            }
-          });
-          break;
-        case 'DELETED':
-          data.forEach((item: Task, index) => {
-            if (item.identifier === taskEvent.taskModel.identifier) {
-              data.splice(index, 1);
-            }
-          });
-          break;
-      }
-
-      this.tasks.data = data;
-    });
-
-    // InitialData
-    this.taskSubscription = this.taskService.getAllTasks(this.session.current, this.containerUuid).subscribe(tasks => {
-      this.tasks.data = tasks;
-    });
+  buttonPressed(button: Button, taskIdentifier: string): void {
+    this.session.pressed(button, { taskIdentifier: [taskIdentifier] });
   }
 
   ngOnDestroy(): void {
@@ -86,8 +55,14 @@ export class TaskList implements OnDestroy {
     this.querying.detach(this);
   }
 
-  public buttonPressed(button: Button, taskIdentifier: string): void {
-    this.session.pressed(button, { taskIdentifier: [taskIdentifier] });
+  private subscribeToTaskEvents(): void {
+    this.taskSubscription = this.taskService.getTaskEvents(this.containerUuid).subscribe(this.handleTaskEvent);
+  }
+
+  private obtainInitialTasks(): void {
+    this.taskSubscription = this.taskService.getAllTasks(this.session.current, this.containerUuid).subscribe(tasks => {
+      this.tasks.data = tasks;
+    });
   }
 
   private initColumnDefinitions(): void {
@@ -111,6 +86,32 @@ export class TaskList implements OnDestroy {
         dataType: headerContainer.properties['datatype'],
       });
     });
+  }
+
+  private handleTaskEvent(taskEvent: TaskEvent): void {
+    const data = this.tasks.data;
+
+    switch (taskEvent.action) {
+      case 'CREATED':
+        data.push(taskEvent.taskModel);
+        break;
+      case 'UPDATED':
+        data.forEach((item: Task, index) => {
+          if (item.identifier === taskEvent.taskModel.identifier) {
+            data[index] = taskEvent.taskModel;
+          }
+        });
+        break;
+      case 'DELETED':
+        data.forEach((item: Task, index) => {
+          if (item.identifier === taskEvent.taskModel.identifier) {
+            data.splice(index, 1);
+          }
+        });
+        break;
+    }
+
+    this.tasks.data = data;
   }
 }
 

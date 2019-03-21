@@ -13,11 +13,11 @@ import {
 import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
 import { SharedModule } from '@shared/shared.module';
 import { TaskService } from './task_service';
-import { TasklistComponent } from './tasklist.component';
+import { TaskListComponent } from './tasklist.component';
 import { V2TaskService } from './v2_task_service';
 
 const BLUERIQ_COMPONENTS = [
-  TasklistComponent,
+  TaskListComponent,
 ];
 
 @NgModule({
@@ -46,5 +46,5 @@ const BLUERIQ_COMPONENTS = [
   ],
   exports: [BLUERIQ_COMPONENTS],
 })
-export class TasklistModule {
+export class TaskListModule {
 }

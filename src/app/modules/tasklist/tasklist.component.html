@@ -1,9 +1,13 @@
-<table [dataSource]="tasklist.tasks" mat-table>
+<mat-form-field>
+  <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filter">
+</mat-form-field>
+
+<table [dataSource]="tasklist.tasks" mat-table matSort>
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
 
   <ng-container *ngFor="let column of tasklist.columnDefinitions" [matColumnDef]="column.identifier">
-    <th *matHeaderCellDef mat-header-cell>{{column.header}}</th>
+    <th *matHeaderCellDef [disabled]="!!column.action" mat-header-cell mat-sort-header>{{column.header}}</th>
     <td *matCellDef="let task" mat-cell>
       <button (click)="buttonPressed(column.action, task.identifier)" *ngIf="!!column.action" mat-raised-button>{{ column.action.caption }}</button>
       <ng-container *ngIf="!column.action">
@@ -16,3 +20,5 @@
   <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
 
 </table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

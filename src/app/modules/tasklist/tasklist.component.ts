@@ -1,4 +1,5 @@
-import { Component, Host } from '@angular/core';
+import { Component, Host, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator, MatSort } from '@angular/material';
 import { BlueriqComponent } from '@blueriq/angular';
 import { Button, Container } from '@blueriq/core';
 import { Task } from './task_service';
@@ -14,9 +15,14 @@ import { ColumnDefinition, TaskList } from './tasklist';
   type: Container,
   selector: 'tasklist',
 })
-export class TasklistComponent {
+export class TaskListComponent implements OnInit {
 
   displayedColumns: string[];
+
+  @ViewChild(MatSort)
+  sort: MatSort;
+  @ViewChild(MatPaginator)
+  paginator: MatPaginator;
 
   constructor(@Host() public tasklist: TaskList) {
     this.displayedColumns = tasklist.columnDefinitions.map(column => column.identifier);
@@ -37,5 +43,14 @@ export class TasklistComponent {
 
   buttonPressed(button: Button, taskIdentifier: string) {
     this.tasklist.buttonPressed(button, taskIdentifier);
+  }
+
+  applyFilter(filterValue: string) {
+    this.tasklist.tasks.filter = filterValue.trim().toLowerCase();
+  }
+
+  ngOnInit(): void {
+    this.tasklist.tasks.sort = this.sort;
+    this.tasklist.tasks.paginator = this.paginator;
   }
 }
