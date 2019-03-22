@@ -1,8 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Session } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
-import { BlueriqTestSession } from '@blueriq/angular/testing/src/test_session';
 import { ButtonTemplate, ContainerTemplate, TextItemTemplate } from '@blueriq/core/testing';
 import { Observable } from 'rxjs';
 import 'rxjs-compat/add/observable/of';
@@ -17,10 +15,12 @@ import { TaskListModule } from './tasklist.module';
 
 describe('Task List Component', () => {
   let taskListTemplate: ContainerTemplate;
-  let session: BlueriqTestSession;
   let component: ComponentFixture<TaskListComponent>;
+  let taskService: jasmine.SpyObj<TaskService>;
 
   beforeEach(async(() => {
+    taskService = jasmine.createSpyObj('TaskService', ['getAllTasks', 'getTaskEvents']);
+
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
@@ -32,7 +32,7 @@ describe('Task List Component', () => {
         TaskListModule,
       ],
       providers: [
-        { provide: TaskService, useClass: MockV2TaskService },
+        { provide: TaskService, useValue: taskService },
       ],
     });
   }));
@@ -86,22 +86,43 @@ describe('Task List Component', () => {
         .children(
           ButtonTemplate.create('button').caption('Klik op mij'),
         ),
+        TextItemTemplate.create('NoResults').plainText('Nothing to see here'),
       );
 
-      session = BlueriqSessionTemplate.create().build(taskListTemplate);
-      component = session.get(TaskListComponent);
+      taskService.getAllTasks.and.returnValue(Observable.of(
+        [{
+          caseIdentifier: 'testcase', // haha
+          identifier: '123abc',
+          name: 'task',
+          displayName: 'Taak',
+          status: 'open',
+          customFields: {
+            customField: 'custom',
+          },
+        }, {
+          caseIdentifier: 'kees',
+          identifier: '456',
+          name: 'task2',
+          displayName: 'Taak 2',
+          status: 'started',
+          customFields: {},
+        }] as Task[],
+      ));
+      taskService.getTaskEvents.and.returnValue(new EmptyObservable<TaskEvent>());
     });
 
     it('should have a row with correct header content', () => {
+      component = BlueriqSessionTemplate.create().build(taskListTemplate).get(TaskListComponent);
+
       const headerRows = component.nativeElement.querySelectorAll('.mat-header-row');
       expect(headerRows.length).toBe(1);
 
       const headerCells = headerRows[0].querySelectorAll('.mat-header-cell');
 
       expect(headerCells.length).toBe(4);
-      expect(headerCells[0].innerText).toBe('Name');
-      expect(headerCells[1].innerText).toBe('Status');
-      expect(headerCells[2].innerText).toBe('Custom field');
+      expect(headerCells[0].innerText.trim()).toBe('Name');
+      expect(headerCells[1].innerText.trim()).toBe('Status');
+      expect(headerCells[2].innerText.trim()).toBe('Custom field');
 
       // Although a button is modelled, it should not be visible in the header row, but in the body cells
       const buttons = headerCells[3].querySelectorAll('.mat-raised-button');
@@ -109,6 +130,7 @@ describe('Task List Component', () => {
     });
 
     it('should display content correctly', () => {
+      component = BlueriqSessionTemplate.create().build(taskListTemplate).get(TaskListComponent);
       const matRows = component.nativeElement.querySelectorAll('.mat-row');
       expect(matRows.length).toBe(2);
 
@@ -130,33 +152,13 @@ describe('Task List Component', () => {
       expect(secondRowButtons.length).toBe(1);
       expect(secondRowButtons[0].innerText).toBe('Klik op mij');
     });
+
+    it('should not display rows when the list is empty', () => {
+      taskService.getAllTasks.and.returnValue(new EmptyObservable<Task[]>());
+
+      component = BlueriqSessionTemplate.create().build(taskListTemplate).get(TaskListComponent);
+      const matRows = component.nativeElement.querySelectorAll('.mat-row');
+      expect(matRows.length).toBe(0);
+    });
   });
 });
-
-class MockV2TaskService implements TaskService {
-  getAllTasks(session: Session, containerUuid: string): Observable<Task[]> {
-    return Observable.of(
-      [{
-        caseIdentifier: 'testcase', // haha
-        identifier: '123abc',
-        name: 'task',
-        displayName: 'Taak',
-        status: 'open',
-        customFields: {
-          customField: 'custom',
-        },
-      }, {
-        caseIdentifier: 'kees',
-        identifier: '456',
-        name: 'task2',
-        displayName: 'Taak 2',
-        status: 'started',
-        customFields: {},
-      }] as Task[],
-    );
-  }
-
-  getTaskEvents(containerUuid: string): Observable<TaskEvent> {
-    return new EmptyObservable<TaskEvent>();
-  }
-}
