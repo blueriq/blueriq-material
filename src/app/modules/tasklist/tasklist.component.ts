@@ -1,5 +1,5 @@
 import { Component, Host, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort } from '@angular/material';
+import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { BlueriqComponent } from '@blueriq/angular';
 import { Button, Container } from '@blueriq/core';
 import { Task } from './task_service';
@@ -8,7 +8,6 @@ import { ColumnDefinition, TaskList } from './tasklist';
 @Component({
   selector: 'bq-tasklist',
   templateUrl: './tasklist.component.html',
-  // styleUrls: ['./tasklist.component.scss'],
   providers: [TaskList],
 })
 @BlueriqComponent({
@@ -23,34 +22,41 @@ export class TaskListComponent implements OnInit {
   sort: MatSort;
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
+  taskDataSource: MatTableDataSource<Task>;
 
-  constructor(@Host() public tasklist: TaskList) {
-    this.displayedColumns = tasklist.columnDefinitions.map(column => column.identifier);
+  constructor(@Host() public taskList: TaskList) {
+    this.taskDataSource = new MatTableDataSource([]);
+    this.displayedColumns = taskList.columnDefinitions.map(column => column.identifier);
   }
 
   getCellData(task: Task, column: ColumnDefinition) {
-    let identifier = column.identifier;
-    if (identifier === 'displayname') {
-      identifier = 'displayName';
-    }
+    const identifier = column.identifier;
     switch (column.type) {
       case 'TASKDATA':
-        return task[identifier];
-      default:
-        return '';
+        if (task[identifier]) {
+          return task[identifier];
+        }
+        // identifier might be lowercased in runtime conversion
+        for (const property in task) {
+          if (property.toLowerCase() === identifier) {
+            return task[property];
+          }
+        }
+        break;
     }
   }
 
   buttonPressed(button: Button, taskIdentifier: string) {
-    this.tasklist.buttonPressed(button, taskIdentifier);
+    this.taskList.buttonPressed(button, taskIdentifier);
   }
 
   applyFilter(filterValue: string) {
-    this.tasklist.tasks.filter = filterValue.trim().toLowerCase();
+    this.taskDataSource.filter = filterValue.trim().toLowerCase();
   }
 
   ngOnInit(): void {
-    this.tasklist.tasks.sort = this.sort;
-    this.tasklist.tasks.paginator = this.paginator;
+    this.taskDataSource.sort = this.sort;
+    this.taskDataSource.paginator = this.paginator;
+    this.taskList.taskSubject.subscribe(tasks => this.taskDataSource.data = tasks);
   }
 }

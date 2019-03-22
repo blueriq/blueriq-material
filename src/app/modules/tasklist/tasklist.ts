@@ -1,7 +1,7 @@
 import { Host, Injectable, OnDestroy } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
 import { BlueriqChild, BlueriqChildren, BlueriqQuerying, BlueriqSession } from '@blueriq/angular';
 import { Button, Container, DataType, PresentationStyles, TextItem } from '@blueriq/core';
+import { BehaviorSubject } from 'rxjs';
 import { Subscription } from 'rxjs/Subscription';
 import { Task, TaskEvent, TaskService } from './task_service';
 
@@ -15,21 +15,22 @@ export interface ColumnDefinition {
 }
 
 /**
- * This service is supposed to be declared as provider for a container with content style 'tasklist' and then
+ * This service is supposed to be declared as provider for a container with content style 'taskList' and then
  * injected into its constructor as a {@link Self} dependency.
  */
 @Injectable()
 export class TaskList implements OnDestroy {
 
-  columnDefinitions: ColumnDefinition[] = [];
+  columnDefinitions: ColumnDefinition[];
   pagingSize: number;
   lockedStyle: string | undefined;
-  tasks: MatTableDataSource<Task> = new MatTableDataSource<Task>();
   @BlueriqChildren(Container, 'header_cell', { required: true })
   headerContainers: Container[];
   @BlueriqChild(TextItem, { optional: true })
   noResults: TextItem;
-  private taskSubscription: Subscription;
+  taskSubject: BehaviorSubject<Task[]>;
+
+  private taskEventSubscription: Subscription;
   private DEFAULT_PAGING_SIZE = 10;
   private containerUuid: string;
 
@@ -37,13 +38,17 @@ export class TaskList implements OnDestroy {
               private readonly session: BlueriqSession,
               private readonly querying: BlueriqQuerying) {
     this.querying.attach(this);
+    this.columnDefinitions = [];
     this.pagingSize = container.properties['pagingsize'] ? container.properties['pagingsize'] : this.DEFAULT_PAGING_SIZE;
     this.lockedStyle = container.properties['lockedstyle'];
     this.containerUuid = container.properties['containeruuid'];
 
+    this.taskSubject = new BehaviorSubject<Task[]>([]);
+
     this.initColumnDefinitions();
-    this.subscribeToTaskEvents();
-    this.obtainInitialTasks();
+    this.obtainInitialTasks().add(() => {
+      this.subscribeToTaskEvents();
+    });
   }
 
   buttonPressed(button: Button, taskIdentifier: string): void {
@@ -51,17 +56,19 @@ export class TaskList implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.taskSubscription.unsubscribe();
+    this.taskEventSubscription.unsubscribe();
     this.querying.detach(this);
   }
 
   private subscribeToTaskEvents(): void {
-    this.taskSubscription = this.taskService.getTaskEvents(this.containerUuid).subscribe(this.handleTaskEvent);
+    this.taskEventSubscription = this.taskService.getTaskEvents(this.containerUuid).subscribe(event => {
+      this.handleTaskEvent(event);
+    });
   }
 
-  private obtainInitialTasks(): void {
-    this.taskSubscription = this.taskService.getAllTasks(this.session.current, this.containerUuid).subscribe(tasks => {
-      this.tasks.data = tasks;
+  private obtainInitialTasks(): Subscription {
+    return this.taskService.getAllTasks(this.session.current, this.containerUuid).subscribe(tasks => {
+      this.taskSubject.next(tasks);
     });
   }
 
@@ -89,29 +96,29 @@ export class TaskList implements OnDestroy {
   }
 
   private handleTaskEvent(taskEvent: TaskEvent): void {
-    const data = this.tasks.data;
+    const tasks = this.taskSubject.getValue();
 
     switch (taskEvent.action) {
       case 'CREATED':
-        data.push(taskEvent.taskModel);
+        tasks.push(taskEvent.taskModel);
         break;
       case 'UPDATED':
-        data.forEach((item: Task, index) => {
+        tasks.forEach((item: Task, index) => {
           if (item.identifier === taskEvent.taskModel.identifier) {
-            data[index] = taskEvent.taskModel;
+            tasks[index] = taskEvent.taskModel;
           }
         });
         break;
       case 'DELETED':
-        data.forEach((item: Task, index) => {
+        tasks.forEach((item: Task, index) => {
           if (item.identifier === taskEvent.taskModel.identifier) {
-            data.splice(index, 1);
+            tasks.splice(index, 1);
           }
         });
         break;
     }
 
-    this.tasks.data = data;
+    this.taskSubject.next(tasks);
   }
 }
 

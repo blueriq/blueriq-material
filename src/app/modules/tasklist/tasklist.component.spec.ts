@@ -5,6 +5,7 @@ import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/t
 import { BlueriqTestSession } from '@blueriq/angular/testing/src/test_session';
 import { ButtonTemplate, ContainerTemplate, TextItemTemplate } from '@blueriq/core/testing';
 import { Observable } from 'rxjs';
+import 'rxjs-compat/add/observable/of';
 import { EmptyObservable } from 'rxjs-compat/observable/EmptyObservable';
 import { AssetModule } from '../asset/asset.module';
 import { ButtonModule } from '../button/button.module';
