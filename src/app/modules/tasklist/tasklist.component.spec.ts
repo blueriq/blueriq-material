@@ -48,7 +48,7 @@ describe('Task List Component', () => {
         .contentStyle('header_cell')
         .properties({
           type: 'TASKDATA',
-          identifier: 'name',
+          identifier: 'displayname',
           dataType: 'text',
         })
         .children(
@@ -64,6 +64,17 @@ describe('Task List Component', () => {
         })
         .children(
           TextItemTemplate.create('Status').plainText('Status'),
+        ),
+        ContainerTemplate
+        .create('cell')
+        .contentStyle('header_cell')
+        .properties({
+          type: 'CUSTOMFIELD',
+          identifier: 'customField',
+          dataType: 'text',
+        })
+        .children(
+          TextItemTemplate.create('CustomField').plainText('Custom field'),
         ),
         ContainerTemplate
         .create('cell')
@@ -87,12 +98,13 @@ describe('Task List Component', () => {
 
       const headerCells = headerRows[0].querySelectorAll('.mat-header-cell');
 
-      expect(headerCells.length).toBe(3);
+      expect(headerCells.length).toBe(4);
       expect(headerCells[0].innerText).toBe('Name');
       expect(headerCells[1].innerText).toBe('Status');
+      expect(headerCells[2].innerText).toBe('Custom field');
 
       // Although a button is modelled, it should not be visible in the header row, but in the body cells
-      const buttons = headerCells[2].querySelectorAll('.mat-raised-button');
+      const buttons = headerCells[3].querySelectorAll('.mat-raised-button');
       expect(buttons.length).toBe(0);
     });
 
@@ -101,18 +113,20 @@ describe('Task List Component', () => {
       expect(matRows.length).toBe(2);
 
       const firstRowColumns = matRows[0].querySelectorAll('.mat-cell');
-      expect(firstRowColumns.length).toBe(3);
+      expect(firstRowColumns.length).toBe(4);
       expect(firstRowColumns[0].innerText).toBe('Taak');
       expect(firstRowColumns[1].innerText).toBe('open');
-      const firstRowButtons = firstRowColumns[2].querySelectorAll('.mat-raised-button');
+      expect(firstRowColumns[2].innerText).toBe('custom');
+      const firstRowButtons = firstRowColumns[3].querySelectorAll('.mat-raised-button');
       expect(firstRowButtons.length).toBe(1);
       expect(firstRowButtons[0].innerText).toBe('Klik op mij');
 
       const secondRowColumns = matRows[1].querySelectorAll('.mat-cell');
-      expect(secondRowColumns.length).toBe(3);
+      expect(secondRowColumns.length).toBe(4);
       expect(secondRowColumns[0].innerText).toBe('Taak 2');
       expect(secondRowColumns[1].innerText).toBe('started');
-      const secondRowButtons = secondRowColumns[2].querySelectorAll('.mat-raised-button');
+      expect(secondRowColumns[2].innerText).toBe('');
+      const secondRowButtons = secondRowColumns[3].querySelectorAll('.mat-raised-button');
       expect(secondRowButtons.length).toBe(1);
       expect(secondRowButtons[0].innerText).toBe('Klik op mij');
     });
@@ -125,13 +139,19 @@ class MockV2TaskService implements TaskService {
       [{
         caseIdentifier: 'testcase', // haha
         identifier: '123abc',
-        name: 'Taak',
+        name: 'task',
+        displayName: 'Taak',
         status: 'open',
+        customFields: {
+          customField: 'custom',
+        },
       }, {
         caseIdentifier: 'kees',
         identifier: '456',
-        name: 'Taak 2',
+        name: 'task2',
+        displayName: 'Taak 2',
         status: 'started',
+        customFields: {},
       }] as Task[],
     );
   }

@@ -42,7 +42,12 @@ export class TaskListComponent implements OnInit {
             return task[property];
           }
         }
-        break;
+        return '';
+      case 'CUSTOMFIELD':
+        if (task.customFields && task.customFields[column.identifier]) {
+          return task.customFields[column.identifier];
+        }
+        return '';
     }
   }
 
