@@ -1,4 +1,4 @@
-import { Component, Host, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Host, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { BlueriqComponent } from '@blueriq/angular';
 import { Button, Container } from '@blueriq/core';
@@ -15,7 +15,7 @@ import { ColumnDefinition, TaskList } from './tasklist';
   type: Container,
   selector: 'tasklist',
 })
-export class TaskListComponent implements OnInit {
+export class TaskListComponent implements OnInit, AfterViewInit {
 
   displayedColumns: string[];
 
@@ -68,5 +68,24 @@ export class TaskListComponent implements OnInit {
     this.taskDataSource.sort = this.sort;
     this.taskDataSource.paginator = this.paginator;
     this.taskList.taskSubject.subscribe(tasks => this.taskDataSource.data = tasks);
+  }
+
+  ngAfterViewInit(): void {
+    this.taskDataSource.sortingDataAccessor = (task: Task, columnIdentifier: string): string | number => {
+      if (task[columnIdentifier]) {
+        return task[columnIdentifier];
+      }
+      for (const property in task) {
+        if (property.toLowerCase() === columnIdentifier) {
+          return task[property];
+        }
+      }
+      for (const property in task.customFields) {
+        if (property === columnIdentifier) {
+          return task.customFields[property];
+        }
+      }
+      return '';
+    };
   }
 }
