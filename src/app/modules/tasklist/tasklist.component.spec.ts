@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
+import { Button } from '@blueriq/core';
 import { ButtonTemplate, ContainerTemplate, TextItemTemplate } from '@blueriq/core/testing';
 import { Observable } from 'rxjs';
 import 'rxjs-compat/add/observable/of';
@@ -10,6 +11,7 @@ import { ButtonModule } from '../button/button.module';
 import { ContainerModule } from '../container/container.module';
 import { TextItemModule } from '../textitem/textitem.module';
 import { Task, TaskEvent, TaskService } from './task_service';
+import { TaskList } from './tasklist';
 import { TaskListComponent } from './tasklist.component';
 import { TaskListModule } from './tasklist.module';
 
@@ -17,9 +19,11 @@ describe('Task List Component', () => {
   let taskListTemplate: ContainerTemplate;
   let component: ComponentFixture<TaskListComponent>;
   let taskService: jasmine.SpyObj<TaskService>;
+  let taskList: jasmine.SpyObj<TaskList>;
 
   beforeEach(async(() => {
     taskService = jasmine.createSpyObj('TaskService', ['getAllTasks', 'getTaskEvents']);
+    taskList = jasmine.createSpyObj('TaskList', ['buttonPressed']);
 
     TestBed.configureTestingModule({
       imports: [
@@ -33,6 +37,7 @@ describe('Task List Component', () => {
       ],
       providers: [
         { provide: TaskService, useValue: taskService },
+        { provide: TaskList, useValue: taskList },
       ],
     });
   }));
@@ -159,6 +164,14 @@ describe('Task List Component', () => {
 
       const matRows = component.nativeElement.querySelectorAll('.mat-row');
       expect(matRows.length).toBe(0);
+    });
+
+    it('should pass buttonPressed calls to the taskList service', () => {
+      component = BlueriqSessionTemplate.create().build(taskListTemplate).get(TaskListComponent);
+      const button: Button = ButtonTemplate.create('test').caption('test').build();
+      component.componentInstance.taskList = taskList;
+      component.componentInstance.buttonPressed(button, 'x');
+      expect(taskList.buttonPressed).toHaveBeenCalledWith(button, 'x');
     });
   });
 
