@@ -37,93 +37,82 @@ describe('Task List Component', () => {
     });
   }));
 
+  beforeEach(() => {
+    taskListTemplate = ContainerTemplate.create();
+    taskListTemplate.contentStyle('tasklist');
+
+    taskListTemplate.children(
+      ContainerTemplate
+      .create('cell')
+      .contentStyle('header_cell')
+      .properties({
+        type: 'TASKDATA',
+        identifier: 'displayname',
+        dataType: 'text',
+      })
+      .children(
+        TextItemTemplate.create('Name').plainText('Name'),
+      ),
+      ContainerTemplate
+      .create('cell')
+      .contentStyle('header_cell')
+      .properties({
+        type: 'TASKDATA',
+        identifier: 'status',
+        dataType: 'text',
+      })
+      .children(
+        TextItemTemplate.create('Status').plainText('Status'),
+      ),
+      ContainerTemplate
+      .create('cell')
+      .contentStyle('header_cell')
+      .properties({
+        type: 'CUSTOMFIELD',
+        identifier: 'customField',
+        dataType: 'text',
+      })
+      .children(
+        TextItemTemplate.create('CustomField').plainText('Custom field'),
+      ),
+      ContainerTemplate
+      .create('cell')
+      .contentStyle('header_cell')
+      .properties({
+        type: 'ACTION',
+        identifier: 'actionButton',
+      })
+      .children(
+        ButtonTemplate.create('button').caption('Klik op mij'),
+      ),
+      TextItemTemplate.create('NoResults').plainText('Nothing to see here'),
+    );
+
+    taskService.getAllTasks.and.returnValue(Observable.of(
+      [{
+        caseIdentifier: 'testcase', // haha
+        identifier: '123abc',
+        name: 'task',
+        displayName: 'Taak',
+        status: 'open',
+        customFields: {
+          customField: 'custom',
+        },
+      }, {
+        caseIdentifier: 'kees',
+        identifier: '456',
+        name: 'task2',
+        displayName: 'Taak 2',
+        status: 'started',
+        customFields: {},
+      }] as Task[],
+    ));
+    taskService.getTaskEvents.and.returnValue(new EmptyObservable<TaskEvent>());
+  });
+
   describe('Task list', () => {
-    beforeEach(() => {
-      taskListTemplate = ContainerTemplate.create();
-      taskListTemplate.contentStyle('tasklist');
-
-      taskListTemplate.children(
-        ContainerTemplate
-        .create('cell')
-        .contentStyle('header_cell')
-        .properties({
-          type: 'TASKDATA',
-          identifier: 'displayname',
-          dataType: 'text',
-        })
-        .children(
-          TextItemTemplate.create('Name').plainText('Name'),
-        ),
-        ContainerTemplate
-        .create('cell')
-        .contentStyle('header_cell')
-        .properties({
-          type: 'TASKDATA',
-          identifier: 'status',
-          dataType: 'text',
-        })
-        .children(
-          TextItemTemplate.create('Status').plainText('Status'),
-        ),
-        ContainerTemplate
-        .create('cell')
-        .contentStyle('header_cell')
-        .properties({
-          type: 'CUSTOMFIELD',
-          identifier: 'customField',
-          dataType: 'text',
-        })
-        .children(
-          TextItemTemplate.create('CustomField').plainText('Custom field'),
-        ),
-        ContainerTemplate
-        .create('cell')
-        .contentStyle('header_cell')
-        .properties({
-          type: 'ACTION',
-          identifier: 'actionButton',
-        })
-        .children(
-          ButtonTemplate.create('button').caption('Klik op mij'),
-        ),
-        TextItemTemplate.create('NoResults').plainText('Nothing to see here'),
-      );
-
-      taskService.getAllTasks.and.returnValue(Observable.of(
-        [{
-          caseIdentifier: 'testcase', // haha
-          identifier: '123abc',
-          name: 'task',
-          displayName: 'Taak',
-          status: 'open',
-          customFields: {
-            customField: 'custom',
-          },
-        }, {
-          caseIdentifier: 'kees',
-          identifier: '456',
-          name: 'task2',
-          displayName: 'Taak 2',
-          status: 'started',
-          customFields: {},
-        }] as Task[],
-      ));
-      taskService.getTaskEvents.and.returnValue(new EmptyObservable<TaskEvent>());
-    });
-
-    it('should have a default pagingsize of 10', () => {
-      component = BlueriqSessionTemplate.create().build(taskListTemplate).get(TaskListComponent);
-      expect(component.componentInstance.taskList.pagingSize).toEqual(10);
-    });
-
-    it('should correctly read the pagingsize property', () => {
-      taskListTemplate.setProperty('pagingsize', '20');
-      component = BlueriqSessionTemplate.create().build(taskListTemplate).get(TaskListComponent);
-      expect(component.componentInstance.taskList.pagingSize).toEqual(20);
-    });
-
     it('should have a row with correct header content', () => {
-      component = BlueriqSessionTemplate.create().build(taskListTemplate).get(TaskListComponent);
+      buildComponent();
 
       const headerRows = component.nativeElement.querySelectorAll('.mat-header-row');
       expect(headerRows.length).toBe(1);
@@ -141,7 +130,7 @@ describe('Task List Component', () => {
     });
 
     it('should display content correctly', () => {
-      component = BlueriqSessionTemplate.create().build(taskListTemplate).get(TaskListComponent);
+      buildComponent();
       const matRows = component.nativeElement.querySelectorAll('.mat-row');
       expect(matRows.length).toBe(2);
 
@@ -166,8 +155,8 @@ describe('Task List Component', () => {
 
     it('should not display rows when the list is empty', () => {
       taskService.getAllTasks.and.returnValue(new EmptyObservable<Task[]>());
+      buildComponent();
 
-      component = BlueriqSessionTemplate.create().build(taskListTemplate).get(TaskListComponent);
       const matRows = component.nativeElement.querySelectorAll('.mat-row');
       expect(matRows.length).toBe(0);
     });
@@ -179,8 +168,20 @@ describe('Task List Component', () => {
       taskService.getTaskEvents.and.returnValue(new EmptyObservable<TaskEvent>());
     });
 
+    it('should have a default pagingsize of 10', () => {
+      buildComponent();
+      expect(component.componentInstance.taskList.pagingSize).toEqual(10);
+    });
+
+    it('should correctly read the pagingsize property', () => {
+      taskListTemplate.setProperty('pagingsize', '20');
+      buildComponent();
+      expect(component.componentInstance.taskList.pagingSize).toEqual(20);
+    });
+
     it('should handle CREATED events correctly', () => {
-      component = BlueriqSessionTemplate.create().build(taskListTemplate).get(TaskListComponent);
+      buildComponent();
+
       const provider = component.componentInstance.taskList;
       const subject = provider.taskSubject;
 
@@ -204,7 +205,7 @@ describe('Task List Component', () => {
     });
 
     it('should handle UPDATED events correctly', () => {
-      component = BlueriqSessionTemplate.create().build(taskListTemplate).get(TaskListComponent);
+      buildComponent();
       const provider = component.componentInstance.taskList;
       const subject = provider.taskSubject;
 
@@ -226,7 +227,7 @@ describe('Task List Component', () => {
     });
 
     it('should handle DELETED events correctly', () => {
-      component = BlueriqSessionTemplate.create().build(taskListTemplate).get(TaskListComponent);
+      buildComponent();
       const provider = component.componentInstance.taskList;
       const subject = provider.taskSubject;
 
@@ -242,4 +243,8 @@ describe('Task List Component', () => {
       expect(subject.getValue()).toEqual([]);
     });
   });
+
+  function buildComponent() {
+    component = BlueriqSessionTemplate.create().build(taskListTemplate).get(TaskListComponent);
+  }
 });
