@@ -1,3 +1,4 @@
+/* istanbul ignore file: this should only temporarily be a part of blueriq material, it should move to Redcow */
 import { Injectable } from '@angular/core';
 import { Session } from '@blueriq/angular';
 import { Backend } from '@blueriq/angular/backend/common';
@@ -7,7 +8,6 @@ import { Task, TaskEvent, TaskService } from './task_service';
 
 /** @internal */
 @Injectable()
-/* istanbul ignore next: this should only temporarily be a part of blueriq material, it should move to Redcow */
 export class V2TaskService implements TaskService {
   private pushMessageObserver: Observable<TaskEvent>;
 
