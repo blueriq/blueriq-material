@@ -3,8 +3,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
 import { Button } from '@blueriq/core';
 import { ButtonTemplate, ContainerTemplate, TextItemTemplate } from '@blueriq/core/testing';
-import { Observable } from 'rxjs';
-import 'rxjs-compat/add/observable/of';
+import { of } from 'rxjs';
 import { EmptyObservable } from 'rxjs-compat/observable/EmptyObservable';
 import { AssetModule } from '../asset/asset.module';
 import { ButtonModule } from '../button/button.module';
@@ -93,7 +92,7 @@ describe('Task List Component', () => {
       TextItemTemplate.create('NoResults').plainText('Nothing to see here'),
     );
 
-    taskService.getAllTasks.and.returnValue(Observable.of(
+    taskService.getAllTasks.and.returnValue(of(
       [{
         caseIdentifier: 'testcase', // haha
         identifier: '123abc',
@@ -177,7 +176,7 @@ describe('Task List Component', () => {
 
   describe('Task list provider', () => {
     beforeEach(() => {
-      taskService.getAllTasks.and.returnValue(Observable.of([] as Task[]));
+      taskService.getAllTasks.and.returnValue(of([] as Task[]));
       taskService.getTaskEvents.and.returnValue(new EmptyObservable<TaskEvent>());
     });
 
