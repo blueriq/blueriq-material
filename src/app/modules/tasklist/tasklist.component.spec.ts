@@ -3,8 +3,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
 import { Button } from '@blueriq/core';
 import { ButtonTemplate, ContainerTemplate, TextItemTemplate } from '@blueriq/core/testing';
-import { of } from 'rxjs';
-import { EmptyObservable } from 'rxjs-compat/observable/EmptyObservable';
+import { EMPTY, of } from 'rxjs';
 import { AssetModule } from '../asset/asset.module';
 import { ButtonModule } from '../button/button.module';
 import { ContainerModule } from '../container/container.module';
@@ -47,48 +46,48 @@ describe('Task List Component', () => {
 
     taskListTemplate.children(
       ContainerTemplate
-      .create('cell')
-      .contentStyle('header_cell')
-      .properties({
-        type: 'TASKDATA',
-        identifier: 'displayname',
-        dataType: 'text',
-      })
-      .children(
-        TextItemTemplate.create('Name').plainText('Name'),
-      ),
+        .create('cell')
+        .contentStyle('header_cell')
+        .properties({
+          type: 'TASKDATA',
+          identifier: 'displayname',
+          dataType: 'text',
+        })
+        .children(
+          TextItemTemplate.create('Name').plainText('Name'),
+        ),
       ContainerTemplate
-      .create('cell')
-      .contentStyle('header_cell')
-      .properties({
-        type: 'TASKDATA',
-        identifier: 'status',
-        dataType: 'text',
-      })
-      .children(
-        TextItemTemplate.create('Status').plainText('Status'),
-      ),
+        .create('cell')
+        .contentStyle('header_cell')
+        .properties({
+          type: 'TASKDATA',
+          identifier: 'status',
+          dataType: 'text',
+        })
+        .children(
+          TextItemTemplate.create('Status').plainText('Status'),
+        ),
       ContainerTemplate
-      .create('cell')
-      .contentStyle('header_cell')
-      .properties({
-        type: 'CUSTOMFIELD',
-        identifier: 'customField',
-        dataType: 'text',
-      })
-      .children(
-        TextItemTemplate.create('CustomField').plainText('Custom field'),
-      ),
+        .create('cell')
+        .contentStyle('header_cell')
+        .properties({
+          type: 'CUSTOMFIELD',
+          identifier: 'customField',
+          dataType: 'text',
+        })
+        .children(
+          TextItemTemplate.create('CustomField').plainText('Custom field'),
+        ),
       ContainerTemplate
-      .create('cell')
-      .contentStyle('header_cell')
-      .properties({
-        type: 'ACTION',
-        identifier: 'actionButton',
-      })
-      .children(
-        ButtonTemplate.create('button').caption('Klik op mij'),
-      ),
+        .create('cell')
+        .contentStyle('header_cell')
+        .properties({
+          type: 'ACTION',
+          identifier: 'actionButton',
+        })
+        .children(
+          ButtonTemplate.create('button').caption('Klik op mij'),
+        ),
       TextItemTemplate.create('NoResults').plainText('Nothing to see here'),
     );
 
@@ -111,7 +110,7 @@ describe('Task List Component', () => {
         customFields: {},
       }] as Task[],
     ));
-    taskService.getTaskEvents.and.returnValue(new EmptyObservable<TaskEvent>());
+    taskService.getTaskEvents.and.returnValue(EMPTY);
   });
 
   describe('Task list', () => {
@@ -158,7 +157,7 @@ describe('Task List Component', () => {
     });
 
     it('should not display rows when the list is empty', () => {
-      taskService.getAllTasks.and.returnValue(new EmptyObservable<Task[]>());
+      taskService.getAllTasks.and.returnValue(EMPTY);
       buildComponent();
 
       const matRows = component.nativeElement.querySelectorAll('.mat-row');
@@ -177,7 +176,7 @@ describe('Task List Component', () => {
   describe('Task list provider', () => {
     beforeEach(() => {
       taskService.getAllTasks.and.returnValue(of([] as Task[]));
-      taskService.getTaskEvents.and.returnValue(new EmptyObservable<TaskEvent>());
+      taskService.getTaskEvents.and.returnValue(EMPTY);
     });
 
     it('should have a default pagingsize of 10', () => {
