@@ -56,7 +56,9 @@ export class TaskList implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.taskEventSubscription.unsubscribe();
+    if (this.taskEventSubscription) {
+      this.taskEventSubscription.unsubscribe();
+    }
     this.querying.detach(this);
   }
 
