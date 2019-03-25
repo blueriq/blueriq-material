@@ -39,7 +39,7 @@ export class TaskList implements OnDestroy {
               private readonly querying: BlueriqQuerying) {
     this.querying.attach(this);
     this.columnDefinitions = [];
-    this.pagingSize = container.properties['pagingsize'] ? container.properties['pagingsize'] : this.DEFAULT_PAGING_SIZE;
+    this.pagingSize = container.properties['pagingsize'] ? parseInt(container.properties['pagingsize']) : this.DEFAULT_PAGING_SIZE;
     this.lockedStyle = container.properties['lockedstyle'];
     this.containerUuid = container.properties['containeruuid'];
 

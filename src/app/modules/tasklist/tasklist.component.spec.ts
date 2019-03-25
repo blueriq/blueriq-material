@@ -111,6 +111,17 @@ describe('Task List Component', () => {
       taskService.getTaskEvents.and.returnValue(new EmptyObservable<TaskEvent>());
     });
 
+    it('should have a default pagingsize of 10', () => {
+      component = BlueriqSessionTemplate.create().build(taskListTemplate).get(TaskListComponent);
+      expect(component.componentInstance.taskList.pagingSize).toEqual(10);
+    });
+
+    it('should correctly read the pagingsize property', () => {
+      taskListTemplate.setProperty('pagingsize', '20');
+      component = BlueriqSessionTemplate.create().build(taskListTemplate).get(TaskListComponent);
+      expect(component.componentInstance.taskList.pagingSize).toEqual(20);
+    });
+
     it('should have a row with correct header content', () => {
       component = BlueriqSessionTemplate.create().build(taskListTemplate).get(TaskListComponent);
 
