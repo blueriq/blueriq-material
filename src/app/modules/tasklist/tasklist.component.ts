@@ -29,7 +29,8 @@ export class TaskListComponent implements OnInit {
     this.displayedColumns = taskList.columnDefinitions.map(column => column.identifier);
   }
 
-  getCellData(task: Task, column: ColumnDefinition) {
+  /** extracts the data that should be shown in the cell that is being rendered */
+  getCellData(task: Task, column: ColumnDefinition): any {
     const identifier = column.identifier;
     switch (column.type) {
       case 'TASKDATA':
@@ -49,13 +50,16 @@ export class TaskListComponent implements OnInit {
         }
         return '';
     }
+    return '';
   }
 
-  buttonPressed(button: Button, taskIdentifier: string) {
+  /** sends a button pressed event to the backend */
+  buttonPressed(button: Button, taskIdentifier: string): void {
     this.taskList.buttonPressed(button, taskIdentifier);
   }
 
-  applyFilter(filterValue: string) {
+  /** passes a new filter value to the datasource */
+  applyFilter(filterValue: string): void {
     this.taskDataSource.filter = filterValue.trim().toLowerCase();
   }
 
