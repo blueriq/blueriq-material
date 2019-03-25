@@ -30,6 +30,7 @@ import { MenuModule } from './modules/menu/menu.module';
 import { PageModule } from './modules/page/page.module';
 import { ReadonlyModule } from './modules/readonly/readonly.module';
 import { TabModule } from './modules/tab/tabs.module';
+import { TaskListModule } from './modules/tasklist/tasklist.module';
 import { TextItemModule } from './modules/textitem/textitem.module';
 import { TimelineModule } from './modules/timeline/timeline.module';
 import { VisualizationModule } from './modules/visualization/visualization.module';
@@ -87,6 +88,7 @@ const routes: Routes = [
     PageModule,
     ReadonlyModule,
     TabModule,
+    TaskListModule,
     TextItemModule,
     TimelineModule,
     VisualizationModule,
