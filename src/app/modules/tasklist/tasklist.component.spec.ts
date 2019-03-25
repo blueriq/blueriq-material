@@ -161,4 +161,74 @@ describe('Task List Component', () => {
       expect(matRows.length).toBe(0);
     });
   });
+
+  describe('Task list provider', () => {
+    beforeEach(() => {
+      taskService.getAllTasks.and.returnValue(Observable.of([] as Task[]));
+      taskService.getTaskEvents.and.returnValue(new EmptyObservable<TaskEvent>());
+    });
+
+    it('should handle CREATED events correctly', () => {
+      component = BlueriqSessionTemplate.create().build(taskListTemplate).get(TaskListComponent);
+      const provider = component.componentInstance.taskList;
+      const subject = provider.taskSubject;
+
+      expect(subject.getValue()).toEqual([]);
+
+      const task: Task = {
+        caseIdentifier: '42',
+        identifier: '123',
+        name: 'createTask',
+        status: 'open',
+      } as Task;
+
+      const createEvent: TaskEvent = {
+        action: 'CREATED',
+        taskModel: task,
+      };
+
+      provider.handleTaskEvent(createEvent);
+
+      expect(subject.getValue()).toEqual([task]);
+    });
+
+    it('should handle UPDATED events correctly', () => {
+      component = BlueriqSessionTemplate.create().build(taskListTemplate).get(TaskListComponent);
+      const provider = component.componentInstance.taskList;
+      const subject = provider.taskSubject;
+
+      const task: Task = {
+        caseIdentifier: '222',
+        identifier: '111',
+        name: 'task',
+        status: 'open',
+      } as Task;
+
+      subject.next([task]);
+      provider.handleTaskEvent({ action: 'UPDATED', taskModel: task });
+      expect(subject.getValue()).toEqual([task]);
+
+      // When a task is completed, it should be deleted from the list
+      task.status = 'completed';
+      provider.handleTaskEvent({ action: 'UPDATED', taskModel: task });
+      expect(subject.getValue()).toEqual([]);
+    });
+
+    it('should handle DELETED events correctly', () => {
+      component = BlueriqSessionTemplate.create().build(taskListTemplate).get(TaskListComponent);
+      const provider = component.componentInstance.taskList;
+      const subject = provider.taskSubject;
+
+      const task: Task = {
+        caseIdentifier: '333',
+        identifier: '444',
+        name: 'taak',
+        status: 'open',
+      } as Task;
+
+      subject.next([task]);
+      provider.handleTaskEvent({ action: 'DELETED', taskModel: task });
+      expect(subject.getValue()).toEqual([]);
+    });
+  });
 });

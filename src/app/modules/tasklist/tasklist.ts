@@ -60,6 +60,37 @@ export class TaskList implements OnDestroy {
     this.querying.detach(this);
   }
 
+  public handleTaskEvent(taskEvent: TaskEvent): void {
+    const tasks = this.taskSubject.getValue();
+
+    if (taskEvent.taskModel.status === 'completed') {
+      // In our implementation, we delete tasks that are completed from the list
+      taskEvent.action = 'DELETED';
+    }
+
+    switch (taskEvent.action) {
+      case 'CREATED':
+        tasks.push(taskEvent.taskModel);
+        break;
+      case 'UPDATED':
+        tasks.forEach((item: Task, index) => {
+          if (item.identifier === taskEvent.taskModel.identifier) {
+            tasks[index] = taskEvent.taskModel;
+          }
+        });
+        break;
+      case 'DELETED':
+        tasks.forEach((item: Task, index) => {
+          if (item.identifier === taskEvent.taskModel.identifier) {
+            tasks.splice(index, 1);
+          }
+        });
+        break;
+    }
+
+    this.taskSubject.next(tasks);
+  }
+
   private subscribeToTaskEvents(): void {
     this.taskEventSubscription = this.taskService.getTaskEvents(this.containerUuid).subscribe(event => {
       this.handleTaskEvent(event);
@@ -93,32 +124,6 @@ export class TaskList implements OnDestroy {
         dataType: headerContainer.properties['datatype'],
       });
     });
-  }
-
-  private handleTaskEvent(taskEvent: TaskEvent): void {
-    const tasks = this.taskSubject.getValue();
-
-    switch (taskEvent.action) {
-      case 'CREATED':
-        tasks.push(taskEvent.taskModel);
-        break;
-      case 'UPDATED':
-        tasks.forEach((item: Task, index) => {
-          if (item.identifier === taskEvent.taskModel.identifier) {
-            tasks[index] = taskEvent.taskModel;
-          }
-        });
-        break;
-      case 'DELETED':
-        tasks.forEach((item: Task, index) => {
-          if (item.identifier === taskEvent.taskModel.identifier) {
-            tasks.splice(index, 1);
-          }
-        });
-        break;
-    }
-
-    this.taskSubject.next(tasks);
   }
 }
 

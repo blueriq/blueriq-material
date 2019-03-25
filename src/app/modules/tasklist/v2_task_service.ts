@@ -7,6 +7,7 @@ import { Task, TaskEvent, TaskService } from './task_service';
 
 /** @internal */
 @Injectable()
+/* istanbul ignore next: this should only temporarily be a part of blueriq material, it should move to Redcow */
 export class V2TaskService implements TaskService {
   private pushMessageObserver: Observable<TaskEvent>;
 
