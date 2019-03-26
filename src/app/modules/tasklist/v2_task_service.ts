@@ -10,6 +10,8 @@ import { Task, TaskEvent, TaskService } from './task_service';
 @Injectable()
 export class V2TaskService implements TaskService {
   private pushMessageObserver: Observable<TaskEvent>;
+  private lastEventId: string;
+  private reconnectCounter = 0;
 
   constructor(private readonly backend: Backend) {
     this.initPushMessageObserver();
@@ -25,18 +27,23 @@ export class V2TaskService implements TaskService {
 
   private initPushMessageObserver(): void {
     this.pushMessageObserver = new Observable<TaskEvent>(observer => {
-      const eventSource = new EventSource(this.backend.toUrl('/api/v2/push-messages'));
+      const eventSource = new EventSource(this.backend.toUrl(`/api/v2/push-messages?Last-Event-Id=${this.lastEventId}`));
 
       /* TODO: in the future, when we have more event types than just a TaskEvent, we should implement
        *  eventSource.onmessage instead of adding event listeners. We should not provide a type for the server sent event
        *  in the runtime, but instead wrap all messages in a class that has a type property
        */
-      eventSource.addEventListener('taskEvent', messageEvent => {
-        observer.next(JSON.parse((messageEvent as MessageEvent).data));
+      eventSource.addEventListener('taskEvent', event => {
+        const messageEvent = (event as MessageEvent);
+        observer.next(JSON.parse(messageEvent.data));
+        this.lastEventId = messageEvent.lastEventId;
       });
 
-      eventSource.onerror = errorEvent => {
-        observer.error(errorEvent);
+      eventSource.onerror = event => {
+        eventSource.close();
+        observer.complete();
+        this.initPushMessageObserver();
+        this.reconnectCounter++;
       };
 
       return () => {
