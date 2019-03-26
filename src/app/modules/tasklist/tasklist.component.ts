@@ -30,21 +30,34 @@ export class TaskListComponent implements OnInit, AfterViewInit {
     this.displayedColumns = taskList.columnDefinitions.map(column => column.identifier);
   }
 
+  ngOnInit(): void {
+    this.taskDataSource.sort = this.sort;
+    this.taskDataSource.paginator = this.paginator;
+    this.taskList.taskSubject.subscribe(tasks => this.taskDataSource.data = tasks);
+  }
+
   /** extracts the data that should be shown in the cell that is being rendered */
-  getCellData(task: Task, column: ColumnDefinition): any {
+  getCellData(task: Task, column: ColumnDefinition): string {
     const identifier = column.identifier;
     switch (column.type) {
       case 'TASKDATA':
+        let value = '';
         if (task[identifier]) {
-          return task[identifier];
-        }
-        // identifier might be lowercased in runtime conversion
-        for (const property in task) {
-          if (property.toLowerCase() === identifier) {
-            return task[property];
+          value = task[identifier] || '';
+        } else {
+          // identifier might be lowercased in runtime conversion
+          for (const property in task) {
+            if (property.toLowerCase() === identifier) {
+              value = task[property] || '';
+              break;
+            }
           }
         }
-        return '';
+        if (!!value && (column.dataType === 'date' || column.dataType === 'datetime')) {
+          const dateValue = new Date(value);
+          value = dateValue.toDateString();
+        }
+        return value;
       case 'CUSTOMFIELD':
         if (task.customFields && task.customFields[column.identifier]) {
           return task.customFields[column.identifier];
@@ -62,12 +75,6 @@ export class TaskListComponent implements OnInit, AfterViewInit {
   /** passes a new filter value to the datasource */
   applyFilter(filterValue: string): void {
     this.taskDataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  ngOnInit(): void {
-    this.taskDataSource.sort = this.sort;
-    this.taskDataSource.paginator = this.paginator;
-    this.taskList.taskSubject.subscribe(tasks => this.taskDataSource.data = tasks);
   }
 
   ngAfterViewInit(): void {
