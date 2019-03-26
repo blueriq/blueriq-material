@@ -19,7 +19,7 @@
           (click)="buttonPressed(column.action, task.identifier)"
           [disabled]="task.status != 'open'"
           [ngClass]="column.styles.all()"
-          color="primary"
+          [color]="getColor(column.styles)"
         >
           <mat-icon [bqIcon]="column.styles"></mat-icon>
         </button>
@@ -29,7 +29,7 @@
           (click)="buttonPressed(column.action, task.identifier)"
           [disabled]="task.status != 'open'"
           [ngClass]="column.styles.all()"
-          color="primary"
+          [color]="getColor(column.styles)"
         >
           <mat-icon [bqIcon]="column.styles"></mat-icon>
           {{ column.action.caption }}

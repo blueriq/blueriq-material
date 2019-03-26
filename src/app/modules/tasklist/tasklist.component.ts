@@ -74,6 +74,17 @@ export class TaskListComponent implements OnInit, AfterViewInit {
     return styles.hasAny(BqPresentationStyles.ONLYICON, BqPresentationStyles.DEPRECATED_ONLYICON);
   }
 
+  getColor(styles: PresentationStyles): string | null {
+    if (styles.has(BqPresentationStyles.PRIMARY)) {
+      return 'primary';
+    } else if (styles.has(BqPresentationStyles.ACCENT)) {
+      return 'accent';
+    } else if (styles.has(BqPresentationStyles.TERTIARY)) {
+      return 'tertiary';
+    }
+    return null;
+  }
+
   /** sends a button pressed event to the backend */
   buttonPressed(button: Button, taskIdentifier: string): void {
     this.taskList.buttonPressed(button, taskIdentifier);
