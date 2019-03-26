@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, Host, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-import { BlueriqComponent } from '@blueriq/angular';
+import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
 import { Button, Container } from '@blueriq/core';
 import { Task } from './task_service';
 import { ColumnDefinition, TaskList } from './tasklist';
@@ -21,11 +21,13 @@ export class TaskListComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatSort)
   sort: MatSort;
+
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
+
   taskDataSource: MatTableDataSource<Task>;
 
-  constructor(@Host() public taskList: TaskList) {
+  constructor(@Host() public taskList: TaskList, private readonly session: BlueriqSession) {
     this.taskDataSource = new MatTableDataSource([]);
     this.displayedColumns = taskList.columnDefinitions.map(column => column.identifier);
   }
@@ -54,8 +56,7 @@ export class TaskListComponent implements OnInit, AfterViewInit {
           }
         }
         if (!!value && (column.dataType === 'date' || column.dataType === 'datetime')) {
-          const dateValue = new Date(value);
-          value = dateValue.toDateString();
+          value = this.formatDateValue(value, column.dataType === 'datetime');
         }
         return value;
       case 'CUSTOMFIELD':
@@ -65,6 +66,11 @@ export class TaskListComponent implements OnInit, AfterViewInit {
         return '';
     }
     return '';
+  }
+
+  private formatDateValue(dateString: string, includeTime = false): string {
+    const date = new Date(dateString);
+    return includeTime ? this.session.localization.dateFormats.dateTime.format(date) : this.session.localization.dateFormats.date.format(date);
   }
 
   /** sends a button pressed event to the backend */
