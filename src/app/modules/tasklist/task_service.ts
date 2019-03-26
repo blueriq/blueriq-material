@@ -2,7 +2,7 @@ import { Session } from '@blueriq/angular';
 import { Observable } from 'rxjs/Observable';
 
 export interface TaskEvent {
-  action: 'CREATED' | 'UPDATED' | 'DELETED';
+  action: 'COMPLETED' | 'CREATED' | 'UPDATED' | 'DELETED';
   taskModel: Task;
 }
 

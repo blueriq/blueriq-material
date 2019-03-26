@@ -231,9 +231,7 @@ describe('Task List Component', () => {
       provider.handleTaskEvent({ action: 'UPDATED', taskModel: task });
       expect(subject.getValue()).toEqual([task]);
 
-      // When a task is completed, it should be deleted from the list
-      task.status = 'completed';
-      provider.handleTaskEvent({ action: 'UPDATED', taskModel: task });
+      provider.handleTaskEvent({ action: 'COMPLETED', taskModel: task });
       expect(subject.getValue()).toEqual([]);
     });
 
