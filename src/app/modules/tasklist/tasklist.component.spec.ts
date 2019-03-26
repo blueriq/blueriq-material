@@ -5,6 +5,7 @@ import { Button } from '@blueriq/core';
 import { ButtonTemplate, ContainerTemplate, TextItemTemplate } from '@blueriq/core/testing';
 import { EMPTY, of } from 'rxjs';
 import { AssetModule } from '../asset/asset.module';
+import { BqPresentationStyles } from '../BqPresentationStyles';
 import { ButtonModule } from '../button/button.module';
 import { ContainerModule } from '../container/container.module';
 import { TextItemModule } from '../textitem/textitem.module';
@@ -88,6 +89,17 @@ describe('Task List Component', () => {
         .children(
           ButtonTemplate.create('button').caption('Klik op mij'),
         ),
+      ContainerTemplate
+        .create('cell')
+        .contentStyle('header_cell')
+        .styles(BqPresentationStyles.ONLYICON, BqPresentationStyles.ICON_FA_PREFIX + 'play_circle')
+        .properties({
+          type: 'ACTION',
+          identifier: 'actionButton2',
+        })
+        .children(
+          ButtonTemplate.create('button').caption('Klik op mij'),
+        ),
       TextItemTemplate.create('NoResults').plainText('Nothing to see here'),
     );
 
@@ -122,7 +134,7 @@ describe('Task List Component', () => {
 
       const headerCells = headerRows[0].querySelectorAll('.mat-header-cell');
 
-      expect(headerCells.length).toBe(4);
+      expect(headerCells.length).toBe(5);
       expect(headerCells[0].innerText.trim()).toBe('Name');
       expect(headerCells[1].innerText.trim()).toBe('Status');
       expect(headerCells[2].innerText.trim()).toBe('Custom field');
@@ -138,20 +150,23 @@ describe('Task List Component', () => {
       expect(matRows.length).toBe(2);
 
       const firstRowColumns = matRows[0].querySelectorAll('.mat-cell');
-      expect(firstRowColumns.length).toBe(4);
+      expect(firstRowColumns.length).toBe(5);
       expect(firstRowColumns[0].innerText).toBe('Taak');
       expect(firstRowColumns[1].innerText).toBe('open');
       expect(firstRowColumns[2].innerText).toBe('custom');
-      const firstRowButtons = firstRowColumns[3].querySelectorAll('.mat-raised-button');
+      const firstRowButtons = firstRowColumns[3].querySelectorAll('.mat-button');
       expect(firstRowButtons.length).toBe(1);
       expect(firstRowButtons[0].innerText).toBe('Klik op mij');
+      const firstRowIconButtons = firstRowColumns[4].querySelectorAll('.mat-icon-button');
+      expect(firstRowIconButtons.length).toBe(1);
+      expect(firstRowIconButtons[0].innerText).toBeFalsy();
 
       const secondRowColumns = matRows[1].querySelectorAll('.mat-cell');
-      expect(secondRowColumns.length).toBe(4);
+      expect(secondRowColumns.length).toBe(5);
       expect(secondRowColumns[0].innerText).toBe('Taak 2');
       expect(secondRowColumns[1].innerText).toBe('started');
       expect(secondRowColumns[2].innerText).toBe('');
-      const secondRowButtons = secondRowColumns[3].querySelectorAll('.mat-raised-button');
+      const secondRowButtons = secondRowColumns[3].querySelectorAll('.mat-button');
       expect(secondRowButtons.length).toBe(1);
       expect(secondRowButtons[0].innerText).toBe('Klik op mij');
     });
