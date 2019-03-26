@@ -1,7 +1,9 @@
-import { AfterViewInit, Component, Host, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { BlueriqComponent } from '@blueriq/angular';
-import { Button, Container } from '@blueriq/core';
+import { Button, Container, PresentationStyles } from '@blueriq/core';
+import { BqContentStyles } from '../BqContentStyles';
+import { BqPresentationStyles } from '../BqPresentationStyles';
 import { Task } from './task_service';
 import { ColumnDefinition, TaskList } from './tasklist';
 
@@ -13,7 +15,7 @@ import { ColumnDefinition, TaskList } from './tasklist';
 })
 @BlueriqComponent({
   type: Container,
-  selector: 'tasklist',
+  selector: BqContentStyles.TASK_LIST,
 })
 export class TaskListComponent implements OnInit, AfterViewInit {
 
@@ -25,7 +27,7 @@ export class TaskListComponent implements OnInit, AfterViewInit {
   paginator: MatPaginator;
   taskDataSource: MatTableDataSource<Task>;
 
-  constructor(@Host() public taskList: TaskList) {
+  constructor(public taskList: TaskList) {
     this.taskDataSource = new MatTableDataSource([]);
     this.displayedColumns = taskList.columnDefinitions.map(column => column.identifier);
   }
@@ -65,6 +67,10 @@ export class TaskListComponent implements OnInit, AfterViewInit {
         return '';
     }
     return '';
+  }
+
+  isIconButton(styles: PresentationStyles): boolean {
+    return styles.hasAny(BqPresentationStyles.ONLYICON, BqPresentationStyles.DEPRECATED_ONLYICON);
   }
 
   /** sends a button pressed event to the backend */

@@ -7,11 +7,31 @@
         The actual rendered columns are set as a property on the row definition" -->
 
   <ng-container *ngFor="let column of taskList.columnDefinitions" [matColumnDef]="column.identifier">
-    <th *matHeaderCellDef [disabled]="!!column.action" mat-header-cell mat-sort-header>{{column.header}}</th>
+    <th *matHeaderCellDef [disabled]="column.action" mat-header-cell mat-sort-header>{{column.header}}</th>
     <td *matCellDef="let task" mat-cell>
-      <button (click)="buttonPressed(column.action, task.identifier)" *ngIf="!!column.action" mat-raised-button>{{ column.action.caption }}</button>
-      <ng-container *ngIf="!column.action">
+      <span *ngIf="!column.action" [ngClass]="column.styles.all()">
         {{getCellData(task, column)}}
+      </span>
+      <ng-container *ngIf="column.action">
+        <button
+          mat-icon-button
+          *ngIf="isIconButton(column.styles)"
+          (click)="buttonPressed(column.action, task.identifier)"
+          [ngClass]="column.styles.all()"
+          color="primary"
+        >
+          <mat-icon [bqIcon]="column.styles"></mat-icon>
+        </button>
+        <button
+          mat-button
+          *ngIf="!isIconButton(column.styles)"
+          (click)="buttonPressed(column.action, task.identifier)"
+          [ngClass]="column.styles.all()"
+          color="primary"
+        >
+          <mat-icon [bqIcon]="column.styles"></mat-icon>
+          {{ column.action.caption }}
+        </button>
       </ng-container>
     </td>
   </ng-container>
