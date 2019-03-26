@@ -251,6 +251,40 @@ describe('Task List Component', () => {
       provider.handleTaskEvent({ action: 'DELETED', taskModel: task });
       expect(subject.getValue()).toEqual([]);
     });
+
+    it('should handle CANCELED events correctly', () => {
+      buildComponent();
+      const provider = component.componentInstance.taskList;
+      const subject = provider.taskSubject;
+
+      const task: Task = {
+        caseIdentifier: '333',
+        identifier: '444',
+        name: 'taak',
+        status: 'open',
+      } as Task;
+
+      subject.next([task]);
+      provider.handleTaskEvent({ action: 'CANCELED', taskModel: task });
+      expect(subject.getValue()).toEqual([]);
+    });
+
+    it('should handle EXPIRED events correctly', () => {
+      buildComponent();
+      const provider = component.componentInstance.taskList;
+      const subject = provider.taskSubject;
+
+      const task: Task = {
+        caseIdentifier: '333',
+        identifier: '444',
+        name: 'taak',
+        status: 'open',
+      } as Task;
+
+      subject.next([task]);
+      provider.handleTaskEvent({ action: 'EXPIRED', taskModel: task });
+      expect(subject.getValue()).toEqual([]);
+    });
   });
 
   function buildComponent() {

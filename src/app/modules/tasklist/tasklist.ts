@@ -75,7 +75,9 @@ export class TaskList implements OnDestroy {
           }
         });
         break;
+      case 'CANCELED':
       case 'COMPLETED':
+      case 'EXPIRED':
       case 'DELETED':
         tasks.forEach((item: Task, index) => {
           if (item.identifier === taskEvent.taskModel.identifier) {
