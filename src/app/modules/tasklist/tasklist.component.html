@@ -17,6 +17,7 @@
           mat-icon-button
           *ngIf="isIconButton(column.styles)"
           (click)="buttonPressed(column.action, task.identifier)"
+          [disabled]="task.status != 'open'"
           [ngClass]="column.styles.all()"
           color="primary"
         >
@@ -26,6 +27,7 @@
           mat-button
           *ngIf="!isIconButton(column.styles)"
           (click)="buttonPressed(column.action, task.identifier)"
+          [disabled]="task.status != 'open'"
           [ngClass]="column.styles.all()"
           color="primary"
         >
