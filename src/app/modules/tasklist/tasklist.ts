@@ -1,7 +1,7 @@
 import { Host, Injectable, OnDestroy } from '@angular/core';
 import { BlueriqChild, BlueriqChildren, BlueriqQuerying, BlueriqSession } from '@blueriq/angular';
 import { Button, Container, DataType, PresentationStyles, TextItem } from '@blueriq/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { Subscription } from 'rxjs/Subscription';
 import { Task, TaskEvent, TaskService } from './task_service';
 
@@ -29,6 +29,7 @@ export class TaskList implements OnDestroy {
   @BlueriqChild(TextItem, { optional: true })
   noResults: TextItem;
   taskSubject: BehaviorSubject<Task[]>;
+  taskEventSubject: Subject<TaskEvent>;
 
   private taskEventSubscription: Subscription;
   private DEFAULT_PAGING_SIZE = 10;
@@ -44,6 +45,7 @@ export class TaskList implements OnDestroy {
     this.containerUuid = container.properties['containeruuid'];
 
     this.taskSubject = new BehaviorSubject<Task[]>([]);
+    this.taskEventSubject = new Subject<TaskEvent>();
 
     this.initColumnDefinitions();
     this.obtainInitialTasks().add(() => {
@@ -66,12 +68,17 @@ export class TaskList implements OnDestroy {
     const tasks = this.taskSubject.getValue();
     switch (taskEvent.action) {
       case 'CREATED':
-        tasks.push(taskEvent.taskModel);
+        const existingTask = tasks.find(task => task.identifier === taskEvent.taskModel.identifier);
+        if (!existingTask) {
+          tasks.push(taskEvent.taskModel);
+          this.taskEventSubject.next(taskEvent);
+        }
         break;
       case 'UPDATED':
         tasks.forEach((item: Task, index) => {
           if (item.identifier === taskEvent.taskModel.identifier) {
             tasks[index] = taskEvent.taskModel;
+            this.taskEventSubject.next(taskEvent);
           }
         });
         break;
@@ -82,6 +89,7 @@ export class TaskList implements OnDestroy {
         tasks.forEach((item: Task, index) => {
           if (item.identifier === taskEvent.taskModel.identifier) {
             tasks.splice(index, 1);
+            this.taskEventSubject.next(taskEvent);
           }
         });
         break;
