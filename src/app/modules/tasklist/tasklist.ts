@@ -1,7 +1,7 @@
 import { Host, Injectable, OnDestroy } from '@angular/core';
 import { BlueriqChild, BlueriqChildren, BlueriqQuerying, BlueriqSession } from '@blueriq/angular';
 import { Button, Container, DataType, PresentationStyles, TextItem } from '@blueriq/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { Subscription } from 'rxjs/Subscription';
 import { Task, TaskEvent, TaskService } from './task_service';
 
@@ -29,6 +29,7 @@ export class TaskList implements OnDestroy {
   @BlueriqChild(TextItem, { optional: true })
   noResults: TextItem;
   taskSubject: BehaviorSubject<Task[]>;
+  taskEventSubject: Subject<TaskEvent>;
 
   private taskEventSubscription: Subscription;
   private DEFAULT_PAGING_SIZE = 10;
@@ -44,6 +45,7 @@ export class TaskList implements OnDestroy {
     this.containerUuid = container.properties['containeruuid'];
 
     this.taskSubject = new BehaviorSubject<Task[]>([]);
+    this.taskEventSubject = new Subject<TaskEvent>();
 
     this.initColumnDefinitions();
     this.obtainInitialTasks().add(() => {
@@ -63,6 +65,7 @@ export class TaskList implements OnDestroy {
   }
 
   public handleTaskEvent(taskEvent: TaskEvent): void {
+    this.taskEventSubject.next(taskEvent);
     const tasks = this.taskSubject.getValue();
 
     if (taskEvent.taskModel.status === 'completed') {

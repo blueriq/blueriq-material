@@ -39,8 +39,8 @@
   </ng-container>
 
   <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
-  <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+  <tr *matRowDef="let row; columns: displayedColumns;" mat-row [class.highlight]="tasksToHighlight.includes(row.identifier)"></tr>
 
 </table>
 
-<mat-paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="taskList.pagingSize" showFirstLastButtons></mat-paginator>
+<mat-paginator (page)="pageChanged($event)" [pageSizeOptions]="[5, 10, 20]" [pageSize]="taskList.pagingSize" showFirstLastButtons></mat-paginator>

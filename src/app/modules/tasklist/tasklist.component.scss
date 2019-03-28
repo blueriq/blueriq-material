@@ -1,3 +1,16 @@
 .mat-table {
   width: 100%;
+
+  .mat-row.highlight {
+    animation: highlight 3s;
+  }
+}
+
+@keyframes highlight {
+  0% {
+    background: rgba(0, 119, 229, 0.4);
+  }
+  100% {
+    background: none;
+  }
 }

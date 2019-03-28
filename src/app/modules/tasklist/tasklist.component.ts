@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatSort, MatTableDataSource, PageEvent } from '@angular/material';
 import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
 import { Button, Container, PresentationStyles } from '@blueriq/core';
 import { BqContentStyles } from '../BqContentStyles';
@@ -29,15 +29,25 @@ export class TaskListComponent implements OnInit, AfterViewInit {
 
   taskDataSource: MatTableDataSource<Task>;
 
+  tasksToHighlight: string[];
+
   constructor(public taskList: TaskList, private readonly session: BlueriqSession) {
     this.taskDataSource = new MatTableDataSource([]);
     this.displayedColumns = taskList.columnDefinitions.map(column => column.identifier);
+    this.tasksToHighlight = [];
   }
 
   ngOnInit(): void {
     this.taskDataSource.sort = this.sort;
     this.taskDataSource.paginator = this.paginator;
+    this.sort.sortChange.subscribe(() => {
+      this.clearTasksToHighlight();
+    });
+
     this.taskList.taskSubject.subscribe(tasks => this.taskDataSource.data = tasks);
+    this.taskList.taskEventSubject.subscribe(taskEvent => {
+      this.tasksToHighlight.push(taskEvent.taskModel.identifier);
+    });
   }
 
   /** extracts the data that should be shown in the cell that is being rendered */
@@ -92,6 +102,7 @@ export class TaskListComponent implements OnInit, AfterViewInit {
 
   /** passes a new filter value to the datasource */
   applyFilter(filterValue: string): void {
+    this.clearTasksToHighlight();
     this.taskDataSource.filter = filterValue.trim().toLowerCase();
   }
 
@@ -114,8 +125,16 @@ export class TaskListComponent implements OnInit, AfterViewInit {
     };
   }
 
+  pageChanged(event: PageEvent): void {
+    this.clearTasksToHighlight();
+  }
+
   private formatDateValue(dateString: string, includeTime = false): string {
     const date = new Date(dateString);
     return includeTime ? this.session.localization.dateFormats.dateTime.format(date) : this.session.localization.dateFormats.date.format(date);
+  }
+
+  private clearTasksToHighlight(): void {
+    this.tasksToHighlight = [];
   }
 }
