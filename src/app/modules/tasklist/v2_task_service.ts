@@ -39,7 +39,7 @@ export class V2TaskService implements TaskService {
   }
 
   private initEventSource(observer: Subscriber<TaskEvent>) {
-    const url = '/api/v2/push-messages' + this.lastEventId ? `?Last-Event-ID=${ this.lastEventId }` : '';
+    const url = '/api/v2/push-messages' + (this.lastEventId ? `?Last-Event-ID=${ this.lastEventId }` : '');
     this.eventSource = new EventSource(this.backend.toUrl(url));
 
     /* TODO: in the future, when we have more event types than just a TaskEvent, we should implement
