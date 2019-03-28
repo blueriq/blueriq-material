@@ -69,7 +69,10 @@ export class TaskList implements OnDestroy {
     const tasks = this.taskSubject.getValue();
     switch (taskEvent.action) {
       case 'CREATED':
-        tasks.push(taskEvent.taskModel);
+        const existingTask = tasks.find(task => task.identifier === taskEvent.taskModel.identifier);
+        if (!existingTask) {
+          tasks.push(taskEvent.taskModel);
+        }
         break;
       case 'UPDATED':
         tasks.forEach((item: Task, index) => {
