@@ -65,19 +65,20 @@ export class TaskList implements OnDestroy {
   }
 
   public handleTaskEvent(taskEvent: TaskEvent): void {
-    this.taskEventSubject.next(taskEvent);
     const tasks = this.taskSubject.getValue();
     switch (taskEvent.action) {
       case 'CREATED':
         const existingTask = tasks.find(task => task.identifier === taskEvent.taskModel.identifier);
         if (!existingTask) {
           tasks.push(taskEvent.taskModel);
+          this.taskEventSubject.next(taskEvent);
         }
         break;
       case 'UPDATED':
         tasks.forEach((item: Task, index) => {
           if (item.identifier === taskEvent.taskModel.identifier) {
             tasks[index] = taskEvent.taskModel;
+            this.taskEventSubject.next(taskEvent);
           }
         });
         break;
@@ -88,6 +89,7 @@ export class TaskList implements OnDestroy {
         tasks.forEach((item: Task, index) => {
           if (item.identifier === taskEvent.taskModel.identifier) {
             tasks.splice(index, 1);
+            this.taskEventSubject.next(taskEvent);
           }
         });
         break;
