@@ -231,9 +231,7 @@ describe('Task List Component', () => {
       provider.handleTaskEvent({ action: 'UPDATED', taskModel: task });
       expect(subject.getValue()).toEqual([task]);
 
-      // When a task is completed, it should be deleted from the list
-      task.status = 'completed';
-      provider.handleTaskEvent({ action: 'UPDATED', taskModel: task });
+      provider.handleTaskEvent({ action: 'COMPLETED', taskModel: task });
       expect(subject.getValue()).toEqual([]);
     });
 
@@ -251,6 +249,40 @@ describe('Task List Component', () => {
 
       subject.next([task]);
       provider.handleTaskEvent({ action: 'DELETED', taskModel: task });
+      expect(subject.getValue()).toEqual([]);
+    });
+
+    it('should handle CANCELED events correctly', () => {
+      buildComponent();
+      const provider = component.componentInstance.taskList;
+      const subject = provider.taskSubject;
+
+      const task: Task = {
+        caseIdentifier: '333',
+        identifier: '444',
+        name: 'taak',
+        status: 'open',
+      } as Task;
+
+      subject.next([task]);
+      provider.handleTaskEvent({ action: 'CANCELED', taskModel: task });
+      expect(subject.getValue()).toEqual([]);
+    });
+
+    it('should handle EXPIRED events correctly', () => {
+      buildComponent();
+      const provider = component.componentInstance.taskList;
+      const subject = provider.taskSubject;
+
+      const task: Task = {
+        caseIdentifier: '333',
+        identifier: '444',
+        name: 'taak',
+        status: 'open',
+      } as Task;
+
+      subject.next([task]);
+      provider.handleTaskEvent({ action: 'EXPIRED', taskModel: task });
       expect(subject.getValue()).toEqual([]);
     });
   });

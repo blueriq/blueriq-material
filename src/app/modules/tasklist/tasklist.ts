@@ -64,12 +64,6 @@ export class TaskList implements OnDestroy {
 
   public handleTaskEvent(taskEvent: TaskEvent): void {
     const tasks = this.taskSubject.getValue();
-
-    if (taskEvent.taskModel.status === 'completed') {
-      // In our implementation, we delete tasks that are completed from the list
-      taskEvent.action = 'DELETED';
-    }
-
     switch (taskEvent.action) {
       case 'CREATED':
         tasks.push(taskEvent.taskModel);
@@ -81,6 +75,9 @@ export class TaskList implements OnDestroy {
           }
         });
         break;
+      case 'CANCELED':
+      case 'COMPLETED':
+      case 'EXPIRED':
       case 'DELETED':
         tasks.forEach((item: Task, index) => {
           if (item.identifier === taskEvent.taskModel.identifier) {
