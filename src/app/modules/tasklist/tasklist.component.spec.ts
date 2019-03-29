@@ -105,7 +105,7 @@ describe('Task List Component', () => {
 
     taskService.getAllTasks.and.returnValue(of(
       [{
-        caseIdentifier: 'testcase', // haha
+        containerIdentifier: 'testcontainer',
         identifier: '123abc',
         name: 'task',
         displayName: 'Taak',
@@ -114,7 +114,7 @@ describe('Task List Component', () => {
           customField: 'custom',
         },
       }, {
-        caseIdentifier: 'kees',
+        containerIdentifier: 'container',
         identifier: '456',
         name: 'task2',
         displayName: 'Taak 2',
@@ -214,7 +214,7 @@ describe('Task List Component', () => {
       expect(subject.getValue()).toEqual([]);
 
       const task: Task = {
-        caseIdentifier: '42',
+        containerIdentifier: '42',
         identifier: '123',
         name: 'createTask',
         status: 'open',
@@ -236,7 +236,7 @@ describe('Task List Component', () => {
       const subject = provider.taskSubject;
 
       const task: Task = {
-        caseIdentifier: '222',
+        containerIdentifier: '222',
         identifier: '111',
         name: 'task',
         status: 'open',
@@ -256,7 +256,7 @@ describe('Task List Component', () => {
       const subject = provider.taskSubject;
 
       const task: Task = {
-        caseIdentifier: '333',
+        containerIdentifier: '333',
         identifier: '444',
         name: 'taak',
         status: 'open',
@@ -273,7 +273,7 @@ describe('Task List Component', () => {
       const subject = provider.taskSubject;
 
       const task: Task = {
-        caseIdentifier: '333',
+        containerIdentifier: '333',
         identifier: '444',
         name: 'taak',
         status: 'open',
@@ -290,7 +290,7 @@ describe('Task List Component', () => {
       const subject = provider.taskSubject;
 
       const task: Task = {
-        caseIdentifier: '333',
+        containerIdentifier: '333',
         identifier: '444',
         name: 'taak',
         status: 'open',

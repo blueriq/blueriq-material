@@ -18,8 +18,8 @@ export class V2TaskService implements TaskService {
     this.initPushMessageObserver();
   }
 
-  getTaskEvents(containerUuid: string): Observable<TaskEvent> {
-    return this.pushMessageObserver.pipe(filter(event => event.taskModel.caseIdentifier === containerUuid));
+  getTaskEvents(containerIdentifier: string): Observable<TaskEvent> {
+    return this.pushMessageObserver.pipe(filter(event => event.taskModel.containerIdentifier === containerIdentifier));
   }
 
   getAllTasks(session: Session, containerUuid: string): Observable<Task[]> {

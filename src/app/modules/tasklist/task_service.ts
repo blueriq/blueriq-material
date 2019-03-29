@@ -7,7 +7,7 @@ export interface TaskEvent {
 }
 
 export interface Task {
-  caseIdentifier: string;
+  containerIdentifier: string;
   identifier: string;
   dueDate: Date | undefined;
   name: string;
