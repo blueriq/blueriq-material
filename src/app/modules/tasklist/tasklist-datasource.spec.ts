@@ -70,7 +70,10 @@ describe('Task List Data Source', () => {
   it('should apply the filter correctly', () => {
     const dataSource = new TaskListDataSource(displayedColumns, provideDateFormats());
 
-    let shouldDisplay = dataSource.filterPredicate(tasks[0], 'a');
+    let shouldDisplay = dataSource.filterPredicate(tasks[0], '');
+    expect(shouldDisplay).toBe(true);
+
+    shouldDisplay = dataSource.filterPredicate(tasks[0], 'a');
     expect(shouldDisplay).toBe(true);
 
     shouldDisplay = dataSource.filterPredicate(tasks[0], 'started');
