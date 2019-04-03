@@ -47,7 +47,7 @@ export class TaskListDataSource extends MatTableDataSource<Task> {
       }
     }
     return '';
-  };
+  }
 
   filterPredicate = (task: Task, filter: string): boolean => {
     // No filter: everything matches
@@ -62,7 +62,7 @@ export class TaskListDataSource extends MatTableDataSource<Task> {
       }
     }
     return false;
-  };
+  }
 
   private formatDateValue(dateString: string, includeTime = false): string {
     const date = new Date(dateString);
