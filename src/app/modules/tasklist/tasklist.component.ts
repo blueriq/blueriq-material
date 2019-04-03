@@ -1,11 +1,12 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort, MatTableDataSource, PageEvent } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator, MatSort, PageEvent } from '@angular/material';
 import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
 import { Button, Container, PresentationStyles } from '@blueriq/core';
 import { BqContentStyles } from '../BqContentStyles';
 import { BqPresentationStyles } from '../BqPresentationStyles';
 import { Task } from './task_service';
 import { ColumnDefinition, TaskList } from './tasklist';
+import { TaskListDataSource } from './tasklist-datasource';
 
 @Component({
   selector: 'bq-tasklist',
@@ -17,7 +18,7 @@ import { ColumnDefinition, TaskList } from './tasklist';
   type: Container,
   selector: BqContentStyles.TASK_LIST,
 })
-export class TaskListComponent implements OnInit, AfterViewInit {
+export class TaskListComponent implements OnInit {
 
   displayedColumns: string[];
 
@@ -27,12 +28,12 @@ export class TaskListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
 
-  taskDataSource: MatTableDataSource<Task>;
+  taskDataSource: TaskListDataSource;
 
   tasksToHighlight: string[];
 
-  constructor(public taskList: TaskList, private readonly session: BlueriqSession) {
-    this.taskDataSource = new MatTableDataSource([]);
+  constructor(public taskList: TaskList, session: BlueriqSession) {
+    this.taskDataSource = new TaskListDataSource(taskList.columnDefinitions, session.localization.dateFormats);
     this.displayedColumns = taskList.columnDefinitions.map(column => column.identifier);
     this.tasksToHighlight = [];
   }
@@ -52,32 +53,7 @@ export class TaskListComponent implements OnInit, AfterViewInit {
 
   /** extracts the data that should be shown in the cell that is being rendered */
   getCellData(task: Task, column: ColumnDefinition): string {
-    const identifier = column.identifier;
-    switch (column.type) {
-      case 'TASKDATA':
-        let value = '';
-        if (task[identifier]) {
-          value = task[identifier] || '';
-        } else {
-          // identifier might be lowercased in runtime conversion
-          for (const property in task) {
-            if (property.toLowerCase() === identifier) {
-              value = task[property] || '';
-              break;
-            }
-          }
-        }
-        if (!!value && (column.dataType === 'date' || column.dataType === 'datetime')) {
-          value = this.formatDateValue(value, column.dataType === 'datetime');
-        }
-        return value;
-      case 'CUSTOMFIELD':
-        if (task.customFields && task.customFields[column.identifier]) {
-          return task.customFields[column.identifier];
-        }
-        return '';
-    }
-    return '';
+    return this.taskDataSource.getCellData(task, column);
   }
 
   isIconButton(styles: PresentationStyles): boolean {
@@ -106,32 +82,8 @@ export class TaskListComponent implements OnInit, AfterViewInit {
     this.taskDataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  ngAfterViewInit(): void {
-    this.taskDataSource.sortingDataAccessor = (task: Task, columnIdentifier: string): string | number => {
-      if (task[columnIdentifier]) {
-        return task[columnIdentifier];
-      }
-      for (const property in task) {
-        if (property.toLowerCase() === columnIdentifier) {
-          return task[property];
-        }
-      }
-      for (const property in task.customFields) {
-        if (property === columnIdentifier) {
-          return task.customFields[property];
-        }
-      }
-      return '';
-    };
-  }
-
   pageChanged(event: PageEvent): void {
     this.clearTasksToHighlight();
-  }
-
-  private formatDateValue(dateString: string, includeTime = false): string {
-    const date = new Date(dateString);
-    return includeTime ? this.session.localization.dateFormats.dateTime.format(date) : this.session.localization.dateFormats.date.format(date);
   }
 
   private clearTasksToHighlight(): void {
