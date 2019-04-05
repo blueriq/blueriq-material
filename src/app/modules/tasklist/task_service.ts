@@ -1,6 +1,11 @@
 import { Session } from '@blueriq/angular';
 import { Observable } from 'rxjs/Observable';
 
+export interface PushMessage {
+  type: string;
+  data: any;
+}
+
 export interface TaskEvent {
   action: 'CANCELED' | 'COMPLETED' | 'CREATED' | 'EXPIRED' | 'UPDATED' | 'DELETED';
   taskModel: Task;

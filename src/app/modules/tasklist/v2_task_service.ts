@@ -4,30 +4,32 @@ import { Session } from '@blueriq/angular';
 import { Backend } from '@blueriq/angular/backend/common';
 import { Observable, Subscriber } from 'rxjs';
 import { filter, map, share } from 'rxjs/operators';
-import { Task, TaskEvent, TaskService } from './task_service';
+import { PushMessage, Task, TaskEvent, TaskService } from './task_service';
 
 /** @internal */
 @Injectable()
 export class V2TaskService implements TaskService {
-  private pushMessageObserver: Observable<TaskEvent>;
+  private pushMessages: Observable<PushMessage>;
+  private taskEvents: Observable<TaskEvent>;
   private eventSource: EventSource;
   private lastEventId: string;
   private reconnectCounter = 0;
 
   constructor(private readonly backend: Backend) {
-    this.initPushMessageObserver();
+    this.initPushMessages();
+    this.initTaskEvents();
   }
 
   getTaskEvents(containerIdentifier: string): Observable<TaskEvent> {
-    return this.pushMessageObserver.pipe(filter(event => event.taskModel.containerIdentifier === containerIdentifier));
+    return this.taskEvents.pipe(filter(event => event.taskModel.containerIdentifier === containerIdentifier));
   }
 
   getAllTasks(session: Session, containerUuid: string): Observable<Task[]> {
     return this.backend.get<Task[]>(`/api/v2/session/${ session.sessionId }/tasks/${ containerUuid }`).pipe(map(response => response.data));
   }
 
-  private initPushMessageObserver(): void {
-    this.pushMessageObserver = new Observable<TaskEvent>(observer => {
+  private initPushMessages(): void {
+    this.pushMessages = new Observable<PushMessage>(observer => {
       this.initEventSource(observer);
 
       return () => {
@@ -38,24 +40,27 @@ export class V2TaskService implements TaskService {
     }).pipe(share());
   }
 
-  private initEventSource(observer: Subscriber<TaskEvent>) {
+  private initTaskEvents() {
+    this.taskEvents = this.pushMessages.pipe(
+      filter(message => message.type === 'taskEvent'),
+      map(event => event.data as TaskEvent),
+    );
+  }
+
+  private initEventSource(observer: Subscriber<PushMessage>) {
     const url = '/api/v2/push-messages' + (this.lastEventId ? `?Last-Event-ID=${ this.lastEventId }` : '');
     this.eventSource = new EventSource(this.backend.toUrl(url));
 
-    /* TODO: in the future, when we have more event types than just a TaskEvent, we should implement
-     *  eventSource.onmessage instead of adding event listeners. We should not provide a type for the server sent event
-     *  in the runtime, but instead wrap all messages in a class that has a type property
-     */
-    this.eventSource.addEventListener('taskEvent', event => {
-      const messageEvent = (event as MessageEvent);
-      observer.next(JSON.parse(messageEvent.data));
-      this.lastEventId = messageEvent.lastEventId;
-    });
+    this.eventSource.onmessage = (event) => {
+      observer.next(JSON.parse(event.data) as PushMessage);
+      this.lastEventId = event.lastEventId;
+    };
 
     this.eventSource.onopen = () => {
       // reset reconnect counter
       this.reconnectCounter = 0;
     };
+
     this.eventSource.onerror = () => {
       this.eventSource.close();
       this.reconnectCounter++;
