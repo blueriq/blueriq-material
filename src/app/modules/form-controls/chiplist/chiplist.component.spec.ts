@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqSession } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
@@ -32,7 +31,6 @@ describe('ChiplistComponent', () => {
       session = BlueriqSessionTemplate.create().build(fieldTemplate);
       fixture = session.get(ChiplistComponent);
       component = fixture.componentInstance;
-      spyOn(BlueriqSession.prototype, 'changed');
     });
 
     it('should create', () => {
@@ -50,8 +48,9 @@ describe('ChiplistComponent', () => {
       fixture.detectChanges();
       expect(component.values.length).toBe(4);
       expect(fixture.nativeElement.querySelectorAll('mat-chip').length).toBe(4);
+      expect(Array.from(fixture.nativeElement.querySelectorAll('mat-chip'))
+        .some((chip: any) => chip.firstChild.nodeValue.trim() === 'Yellow')).toBeTruthy();
       expect(inputField.value).toBe('');
-      expect(BlueriqSession.prototype.changed).toHaveBeenCalledWith(component.field);
     });
 
     it('should add a chip for float value', () => {
@@ -69,8 +68,9 @@ describe('ChiplistComponent', () => {
       fixture.detectChanges();
       expect(component.values.length).toBe(4);
       expect(fixture.nativeElement.querySelectorAll('mat-chip').length).toBe(4);
+      expect(Array.from(fixture.nativeElement.querySelectorAll('mat-chip'))
+        .some((chip: any) => chip.firstChild.nodeValue.trim() === '678.20')).toBeTruthy();
       expect(inputField.value).toBe('');
-      expect(BlueriqSession.prototype.changed).toHaveBeenCalledWith(component.field);
     });
 
     it('should remove a chip', () => {
@@ -81,7 +81,8 @@ describe('ChiplistComponent', () => {
       fixture.detectChanges();
       expect(component.values.length).toBe(2);
       expect(fixture.nativeElement.querySelectorAll('mat-chip').length).toBe(2);
-      expect(BlueriqSession.prototype.changed).toHaveBeenCalledWith(component.field);
+      expect(Array.from(fixture.nativeElement.querySelectorAll('mat-chip'))
+        .some((chip: any) => chip.firstChild.nodeValue.trim() === 'Red')).toBeFalsy();
     });
 
     it('should not add an existing chip case insensitive', () => {
@@ -101,7 +102,6 @@ describe('ChiplistComponent', () => {
   describe('with domain', () => {
 
     beforeEach(() => {
-      spyOn(BlueriqSession.prototype, 'changed');
       fieldTemplate = FieldTemplate.text('colour')
         .value(['r', 'g'])
         .styles(BqPresentationStyles.AUTOCOMPLETE)
@@ -152,7 +152,7 @@ describe('ChiplistComponent', () => {
 
       // Verify
       // The technical value for 'Blue' is 'b'
-      expect(component.field.getValue()).toEqual(['r', 'g', 'b']);
+      expect(component.formControl.value).toEqual(['r', 'g', 'b']);
     });
 
     it('should synchronize values when the field is updated', () => {
@@ -160,7 +160,5 @@ describe('ChiplistComponent', () => {
 
       expect(component.values).toEqual([{ value: 'o', displayValue: 'Orange' }]);
     });
-
   });
-
 });
