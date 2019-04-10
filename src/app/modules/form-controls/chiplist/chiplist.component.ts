@@ -1,5 +1,5 @@
 import { COMMA, ENTER, TAB } from '@angular/cdk/keycodes';
-import { Component, ElementRef, Host, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatChipInputEvent, MatOptionSelectionChange } from '@angular/material';
 import { BlueriqComponent, BlueriqSession, bySelector, OnUpdate } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
@@ -26,7 +26,7 @@ export class ChiplistComponent implements OnInit, OnUpdate {
   @ViewChild('input')
   inputField: ElementRef;
 
-  constructor(@Host() public field: Field,
+  constructor(public field: Field,
               private session: BlueriqSession,
               private form: BlueriqFormBuilder) {
   }
@@ -42,7 +42,7 @@ export class ChiplistComponent implements OnInit, OnUpdate {
   /**
    * Populates the list of values that will be used by the chiplist.
    */
-  syncValues() {
+  syncValues(): void {
     this.values = this.field.listValue.map(lv => this.findDomainValueByValue(lv));
   }
 
@@ -54,9 +54,11 @@ export class ChiplistComponent implements OnInit, OnUpdate {
   /**
    * The possible domain options will be filtered based on the string value from the input field
    */
-  filterDomain(value: string) {
+  filterDomain(value: string): void {
     if (this.field.hasDomain) {
-      this.filteredDomainOptions = this.field.domain.options.filter(option => option.displayValue.toLowerCase().includes(value.toLowerCase()));
+      this.filteredDomainOptions = this.field.domain.options.filter(
+        option => !this.valueExistsInChipList(option.value!.toString())
+          && this.normalize(option.displayValue).includes(this.normalize(value)));
     }
   }
 
@@ -68,13 +70,13 @@ export class ChiplistComponent implements OnInit, OnUpdate {
    * Add items to the values list when no domain is present.
    * Whenever one of the `separatorKeysCodes` was used that piece of text will be added
    */
-  addByInput(event: MatChipInputEvent) {
+  addByInput(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value.trim();
 
-    if (!this.field.hasDomain && value !== '' && !this._valueExists(value)) {
+    if (!this.field.hasDomain && value !== '' && !this.valueExistsInChipList(value)) {
       this.values.push({ displayValue: value, value: value });
-      this.notifyChange();
+      this.updateFormControlValue();
       input.value = '';
       input.focus();
     }
@@ -84,14 +86,15 @@ export class ChiplistComponent implements OnInit, OnUpdate {
    * Add items to the values list when a domain is present.
    * Whenever an item is selected from the 'mat-autocomplete' the selected value will be added.
    */
-  addByAutoComplete(e: MatOptionSelectionChange) {
+  addByAutoComplete(e: MatOptionSelectionChange, input: HTMLInputElement): void {
     const { value, displayValue } = e.source.value;
-    if (!this._valueExists(value)) {
-      this.values.push({ displayValue, value });
-      this.notifyChange();
+    if (!this.valueExistsInChipList(value)) {
+      this.values.push({ displayValue: displayValue, value: value });
+      this.updateFormControlValue();
     }
 
     // Reset the filter after adding a chip
+    input.value = '';
     this.filterDomain('');
     this.inputField.nativeElement.focus();
   }
@@ -99,11 +102,11 @@ export class ChiplistComponent implements OnInit, OnUpdate {
   /**
    * Remove the item from the values list based on value
    * */
-  remove(value: any) {
+  remove(value: any): void {
     const index = this.values.indexOf(value);
     if (index >= 0) {
       this.values.splice(index, 1);
-      this.notifyChange();
+      this.updateFormControlValue();
     }
   }
 
@@ -112,30 +115,46 @@ export class ChiplistComponent implements OnInit, OnUpdate {
    * If that is not the case, reset the input value
    * @param event the event that is dispatched when the input value is changed (blur)
    */
-  checkValidOption(event): void {
-    if (event && event.target && event.target.value) {
-      if (this.field.domain.getValue(event.target.value) === undefined) {
-        event.target.value = null;
-        this.notifyChange();
-      }
-    }
-  }
+  addDomainValueOnBlur(event): void {
+    if (this.field.hasDomain && event && event.target && event.target.value) {
+      const matchingOptions = this.field.domain.options.filter(option =>
+        this.normalize(option.value!.toString()) === this.normalize(event.target.value));
 
-  notifyChange() {
-    this.field.setValue(this.values.map(v => v.value));
-    this.session.changed(this.field);
+      if (matchingOptions.length > 0) {
+        const value = matchingOptions[0].value!.toString();
+        const displayValue = matchingOptions[0].displayValue;
+
+        if (!this.valueExistsInChipList(value)) {
+          this.values.push({
+            displayValue: displayValue,
+            value: value,
+          });
+          this.updateFormControlValue();
+        }
+      }
+      event.target.value = '';
+    }
   }
 
   isDisabled(): boolean {
     return this.field.styles.has(BqPresentationStyles.DISABLED);
   }
 
-  private _valueExists(value: string): boolean {
-    const dataType = this.field.dataType;
-    const isDecimal = dataType === 'number' || dataType === 'percentage' || dataType === 'currency';
-    const normalize = isDecimal ? parseFloat : (val: string) => val.toLowerCase();
-
-    return this.values.some(v => normalize(v.value) === normalize(value));
+  private updateFormControlValue(): void {
+    this.formControl.setValue(this.values.map(v => v.value));
   }
 
+  private valueExistsInChipList(value: string): boolean {
+    return this.values.some(v => this.normalize(v.value) === this.normalize(value));
+  }
+
+  private normalize(val): string {
+    const dataType = this.field.dataType;
+
+    if (dataType === 'number' || dataType === 'percentage' || dataType === 'currency') {
+      return parseFloat(val).toString();
+    } else {
+      return val.toLowerCase();
+    }
+  }
 }

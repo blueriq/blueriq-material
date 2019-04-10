@@ -1,31 +1,32 @@
 <p bqClasses>
-  <mat-form-field bqKey fxFlex appearance="fill">
+  <mat-form-field appearance="fill" bqKey fxFlex>
     <mat-label>{{ field.questionText }}</mat-label>
-    <mat-chip-list #chipList>
+    <mat-chip-list #chipList [formControl]="formControl" [multiple]="true">
 
-      <mat-chip *ngFor="let value of values"
-        [selectable]="!isDisabled()"
+      <mat-chip (removed)="remove(value)"
+        *ngFor="let value of values"
+        [disabled]="isDisabled()"
         [removable]="true"
-        (removed)="remove(value)"
-        [disabled]="isDisabled()">
+        [selectable]="!isDisabled()">
         {{value.displayValue}}
-        <mat-icon matChipRemove *ngIf="!isDisabled()">cancel</mat-icon>
+        <mat-icon *ngIf="!isDisabled()" matChipRemove>cancel</mat-icon>
       </mat-chip>
 
       <input #input
-        [formControl]="formControl"
-        [placeholder]="field.placeholder"
+        (blur)="addDomainValueOnBlur($event)"
+        (keyup)="filterDomain(input.value)"
+        (matChipInputTokenEnd)="addByInput($event)"
+        [matAutocomplete]="matAuto"
+        [matChipInputAddOnBlur]="!field.hasDomain"
         [matChipInputFor]="chipList"
         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-        [matChipInputAddOnBlur]="!field.hasDomain"
-        (matChipInputTokenEnd)="addByInput($event)"
-        [required]="field.required"
-        [matAutocomplete]="matAuto"
-        (keyup)="filterDomain(input.value)"
-        (blur)="checkValidOption($event)">
+        [placeholder]="field.placeholder"
+        [required]="field.required">
 
-      <mat-autocomplete autoActiveFirstOption #matAuto="matAutocomplete">
-        <mat-option *ngFor="let domainOption of filteredDomainOptions" [value]="domainOption" (onSelectionChange)="addByAutoComplete($event)">
+      <mat-autocomplete #matAuto="matAutocomplete" autoActiveFirstOption>
+        <mat-option (onSelectionChange)="addByAutoComplete($event, input)"
+          *ngFor="let domainOption of filteredDomainOptions"
+          [value]="domainOption">
           {{ domainOption.displayValue }}
         </mat-option>
       </mat-autocomplete>
