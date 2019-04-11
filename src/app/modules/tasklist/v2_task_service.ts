@@ -4,20 +4,26 @@ import { Session } from '@blueriq/angular';
 import { Backend } from '@blueriq/angular/backend/common';
 import { Observable, Subscriber } from 'rxjs';
 import { filter, map, share } from 'rxjs/operators';
-import { PushMessage, Task, TaskEvent, TaskService } from './task_service';
+import { CaseEvent, PushMessage, Task, TaskEvent, TaskService } from './task_service';
 
 /** @internal */
 @Injectable()
 export class V2TaskService implements TaskService {
   private pushMessages: Observable<PushMessage>;
   private taskEvents: Observable<TaskEvent>;
+  private caseEvents: Observable<CaseEvent>;
   private eventSource: EventSource;
   private lastEventId: string;
   private reconnectCounter = 0;
 
   constructor(private readonly backend: Backend) {
     this.initPushMessages();
+    this.initCaseEvents();
     this.initTaskEvents();
+  }
+
+  getCaseEvents(containerIdentifier: string): Observable<CaseEvent> {
+    return this.caseEvents.pipe(filter(event => event.caseModel.containerIdentifier === containerIdentifier));
   }
 
   getTaskEvents(containerIdentifier: string): Observable<TaskEvent> {
@@ -38,6 +44,13 @@ export class V2TaskService implements TaskService {
         }
       };
     }).pipe(share());
+  }
+
+  private initCaseEvents() {
+    this.caseEvents = this.pushMessages.pipe(
+      filter(message => message.type === 'caseEvent'),
+      map(event => event.data as CaseEvent),
+    );
   }
 
   private initTaskEvents() {

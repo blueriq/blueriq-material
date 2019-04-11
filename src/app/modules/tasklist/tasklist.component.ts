@@ -45,8 +45,8 @@ export class TaskListComponent implements OnInit {
       this.clearTasksToHighlight();
     });
 
-    this.taskList.taskSubject.subscribe(tasks => this.taskDataSource.data = tasks);
-    this.taskList.taskEventSubject.subscribe(taskEvent => {
+    this.taskList.tasks$.subscribe(tasks => this.taskDataSource.data = tasks);
+    this.taskList.taskEvents$.subscribe(taskEvent => {
       this.tasksToHighlight.push(taskEvent.taskModel.identifier);
     });
   }

@@ -3,7 +3,7 @@ import { BlueriqChild, BlueriqChildren, BlueriqQuerying, BlueriqSession } from '
 import { Button, Container, DataType, PresentationStyles, TextItem } from '@blueriq/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { Subscription } from 'rxjs/Subscription';
-import { Task, TaskEvent, TaskService } from './task_service';
+import { CaseEvent, Task, TaskEvent, TaskService } from './task_service';
 
 export interface ColumnDefinition {
   type: 'ACTION' | 'CUSTOMFIELD' | 'TASKDATA';
@@ -28,9 +28,12 @@ export class TaskList implements OnDestroy {
   headerContainers: Container[];
   @BlueriqChild(TextItem, { optional: true })
   noResults: TextItem;
-  taskSubject: BehaviorSubject<Task[]>;
-  taskEventSubject: Subject<TaskEvent>;
+  tasks$: BehaviorSubject<Task[]>;
+  taskEvents$: Subject<TaskEvent>;
+  caseEvents$: Subject<CaseEvent>;
 
+  private isCaseLocked = false;
+  private caseEventSubscription: Subscription;
   private taskEventSubscription: Subscription;
   private DEFAULT_PAGING_SIZE = 10;
   private containerUuid: string;
@@ -44,11 +47,13 @@ export class TaskList implements OnDestroy {
     this.lockedStyle = container.properties['lockedstyle'];
     this.containerUuid = container.properties['containeruuid'];
 
-    this.taskSubject = new BehaviorSubject<Task[]>([]);
-    this.taskEventSubject = new Subject<TaskEvent>();
+    this.tasks$ = new BehaviorSubject<Task[]>([]);
+    this.caseEvents$ = new Subject<CaseEvent>();
+    this.taskEvents$ = new Subject<TaskEvent>();
 
     this.initColumnDefinitions();
     this.obtainInitialTasks().add(() => {
+      this.subscribeToCaseEvents();
       this.subscribeToTaskEvents();
     });
   }
@@ -59,26 +64,30 @@ export class TaskList implements OnDestroy {
 
   ngOnDestroy(): void {
     if (this.taskEventSubscription) {
+      this.caseEventSubscription.unsubscribe();
       this.taskEventSubscription.unsubscribe();
     }
     this.querying.detach(this);
   }
 
   public handleTaskEvent(taskEvent: TaskEvent): void {
-    const tasks = this.taskSubject.getValue();
+    taskEvent.taskModel.caseLocked = this.isCaseLocked;
+
+    const tasks = this.tasks$.getValue();
+
     switch (taskEvent.action) {
       case 'CREATED':
         const existingTask = tasks.find(task => task.identifier === taskEvent.taskModel.identifier);
         if (!existingTask) {
           tasks.push(taskEvent.taskModel);
-          this.taskEventSubject.next(taskEvent);
+          this.taskEvents$.next(taskEvent);
         }
         break;
       case 'UPDATED':
         tasks.forEach((item: Task, index) => {
           if (item.identifier === taskEvent.taskModel.identifier) {
             tasks[index] = taskEvent.taskModel;
-            this.taskEventSubject.next(taskEvent);
+            this.taskEvents$.next(taskEvent);
           }
         });
         break;
@@ -89,13 +98,33 @@ export class TaskList implements OnDestroy {
         tasks.forEach((item: Task, index) => {
           if (item.identifier === taskEvent.taskModel.identifier) {
             tasks.splice(index, 1);
-            this.taskEventSubject.next(taskEvent);
+            this.taskEvents$.next(taskEvent);
           }
         });
         break;
     }
 
-    this.taskSubject.next(tasks);
+    this.tasks$.next(tasks);
+  }
+
+  public handleCaseEvent(event: CaseEvent): void {
+    if (event.caseModel.status === 'LOCKED' && !this.isCaseLocked) {
+      this.isCaseLocked = true;
+      this.updateCaseLockedStatusForTasks();
+    } else if (event.caseModel.status !== 'LOCKED' && this.isCaseLocked) {
+      this.isCaseLocked = false;
+      this.updateCaseLockedStatusForTasks();
+    }
+  }
+
+  private updateCaseLockedStatusForTasks(): void {
+    const tasks = this.tasks$.getValue();
+    tasks.forEach(task => task.caseLocked = this.isCaseLocked);
+    this.tasks$.next(tasks);
+  }
+
+  private subscribeToCaseEvents(): void {
+    this.caseEventSubscription = this.taskService.getCaseEvents(this.containerUuid).subscribe(event => this.handleCaseEvent(event));
   }
 
   private subscribeToTaskEvents(): void {
@@ -106,7 +135,7 @@ export class TaskList implements OnDestroy {
 
   private obtainInitialTasks(): Subscription {
     return this.taskService.getAllTasks(this.session.current, this.containerUuid).subscribe(tasks => {
-      this.taskSubject.next(tasks);
+      this.tasks$.next(tasks);
     });
   }
 

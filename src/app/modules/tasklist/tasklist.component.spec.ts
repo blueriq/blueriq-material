@@ -209,7 +209,7 @@ describe('Task List Component', () => {
       buildComponent();
 
       const provider = component.componentInstance.taskList;
-      const subject = provider.taskSubject;
+      const subject = provider.tasks$;
 
       expect(subject.getValue()).toEqual([]);
 
@@ -233,7 +233,7 @@ describe('Task List Component', () => {
     it('should handle UPDATED events correctly', () => {
       buildComponent();
       const provider = component.componentInstance.taskList;
-      const subject = provider.taskSubject;
+      const subject = provider.tasks$;
 
       const task: Task = {
         containerIdentifier: '222',
@@ -253,7 +253,7 @@ describe('Task List Component', () => {
     it('should handle DELETED events correctly', () => {
       buildComponent();
       const provider = component.componentInstance.taskList;
-      const subject = provider.taskSubject;
+      const subject = provider.tasks$;
 
       const task: Task = {
         containerIdentifier: '333',
@@ -270,7 +270,7 @@ describe('Task List Component', () => {
     it('should handle CANCELED events correctly', () => {
       buildComponent();
       const provider = component.componentInstance.taskList;
-      const subject = provider.taskSubject;
+      const subject = provider.tasks$;
 
       const task: Task = {
         containerIdentifier: '333',
@@ -287,7 +287,7 @@ describe('Task List Component', () => {
     it('should handle EXPIRED events correctly', () => {
       buildComponent();
       const provider = component.componentInstance.taskList;
-      const subject = provider.taskSubject;
+      const subject = provider.tasks$;
 
       const task: Task = {
         containerIdentifier: '333',
