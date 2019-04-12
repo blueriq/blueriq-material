@@ -33,7 +33,7 @@ export interface Task {
   timeoutDate: Date | undefined;
   customFields: { [key: string]: string } | undefined;
   displayName: string | undefined;
-  caseLocked: boolean;
+  caseLocked: boolean | undefined;
 }
 
 export abstract class TaskService {

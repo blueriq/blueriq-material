@@ -20,6 +20,7 @@ describe('Task List Data Source', () => {
     startDate: new Date('2019-01-01T12:34:56'),
     status: 'started',
     timeoutDate: new Date('2019-02-02T01:23:45'),
+    caseLocked: false,
   }];
   const displayedColumns: ColumnDefinition[] = [{
     action: undefined,

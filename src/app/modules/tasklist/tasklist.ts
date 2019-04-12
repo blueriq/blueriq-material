@@ -32,7 +32,7 @@ export class TaskList implements OnDestroy {
   taskEvents$: Subject<TaskEvent>;
   caseEvents$: Subject<CaseEvent>;
 
-  private isCaseLocked = false;
+  private caseLocked = false;
   private caseEventSubscription: Subscription;
   private taskEventSubscription: Subscription;
   private DEFAULT_PAGING_SIZE = 10;
@@ -70,8 +70,12 @@ export class TaskList implements OnDestroy {
     this.querying.detach(this);
   }
 
+  public isCaseLocked(): boolean {
+    return this.caseLocked;
+  }
+
   public handleTaskEvent(taskEvent: TaskEvent): void {
-    taskEvent.taskModel.caseLocked = this.isCaseLocked;
+    taskEvent.taskModel.caseLocked = this.caseLocked;
 
     const tasks = this.tasks$.getValue();
 
@@ -108,18 +112,18 @@ export class TaskList implements OnDestroy {
   }
 
   public handleCaseEvent(event: CaseEvent): void {
-    if (event.caseModel.status === 'LOCKED' && !this.isCaseLocked) {
-      this.isCaseLocked = true;
+    if (event.caseModel.status === 'LOCKED' && !this.caseLocked) {
+      this.caseLocked = true;
       this.updateCaseLockedStatusForTasks();
-    } else if (event.caseModel.status !== 'LOCKED' && this.isCaseLocked) {
-      this.isCaseLocked = false;
+    } else if (event.caseModel.status !== 'LOCKED' && this.caseLocked) {
+      this.caseLocked = false;
       this.updateCaseLockedStatusForTasks();
     }
   }
 
   private updateCaseLockedStatusForTasks(): void {
     const tasks = this.tasks$.getValue();
-    tasks.forEach(task => task.caseLocked = this.isCaseLocked);
+    tasks.forEach(task => task.caseLocked = this.caseLocked);
     this.tasks$.next(tasks);
   }
 
