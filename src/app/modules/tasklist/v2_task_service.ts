@@ -9,10 +9,10 @@ import { CaseEvent, PushMessage, Task, TaskEvent, TaskService } from './task_ser
 /** @internal */
 @Injectable()
 export class V2TaskService implements TaskService {
-  private pushMessages: Observable<PushMessage>;
-  private taskEvents: Observable<TaskEvent>;
-  private caseEvents: Observable<CaseEvent>;
-  private eventSource: EventSource;
+  private pushMessages$: Observable<PushMessage>;
+  private taskEvents$: Observable<TaskEvent>;
+  private caseEvents$: Observable<CaseEvent>;
+  private eventSource$: EventSource;
   private lastEventId: string;
   private reconnectCounter = 0;
 
@@ -23,11 +23,11 @@ export class V2TaskService implements TaskService {
   }
 
   getCaseEvents(containerIdentifier: string): Observable<CaseEvent> {
-    return this.caseEvents.pipe(filter(event => event.caseModel.containerIdentifier === containerIdentifier));
+    return this.caseEvents$.pipe(filter(event => event.caseModel.containerIdentifier === containerIdentifier));
   }
 
   getTaskEvents(containerIdentifier: string): Observable<TaskEvent> {
-    return this.taskEvents.pipe(filter(event => event.taskModel.containerIdentifier === containerIdentifier));
+    return this.taskEvents$.pipe(filter(event => event.taskModel.containerIdentifier === containerIdentifier));
   }
 
   getAllTasks(session: Session, containerUuid: string): Observable<Task[]> {
@@ -35,26 +35,26 @@ export class V2TaskService implements TaskService {
   }
 
   private initPushMessages(): void {
-    this.pushMessages = new Observable<PushMessage>(observer => {
+    this.pushMessages$ = new Observable<PushMessage>(observer => {
       this.initEventSource(observer);
 
       return () => {
-        if (this.eventSource) {
-          this.eventSource.close();
+        if (this.eventSource$) {
+          this.eventSource$.close();
         }
       };
     }).pipe(share());
   }
 
   private initCaseEvents() {
-    this.caseEvents = this.pushMessages.pipe(
+    this.caseEvents$ = this.pushMessages$.pipe(
       filter(message => message.type === 'caseEvent'),
       map(event => event.data as CaseEvent),
     );
   }
 
   private initTaskEvents() {
-    this.taskEvents = this.pushMessages.pipe(
+    this.taskEvents$ = this.pushMessages$.pipe(
       filter(message => message.type === 'taskEvent'),
       map(event => event.data as TaskEvent),
     );
@@ -62,20 +62,20 @@ export class V2TaskService implements TaskService {
 
   private initEventSource(observer: Subscriber<PushMessage>) {
     const url = '/api/v2/push-messages' + (this.lastEventId ? `?Last-Event-ID=${ this.lastEventId }` : '');
-    this.eventSource = new EventSource(this.backend.toUrl(url));
+    this.eventSource$ = new EventSource(this.backend.toUrl(url));
 
-    this.eventSource.onmessage = (event) => {
+    this.eventSource$.onmessage = (event) => {
       observer.next(JSON.parse(event.data) as PushMessage);
       this.lastEventId = event.lastEventId;
     };
 
-    this.eventSource.onopen = () => {
+    this.eventSource$.onopen = () => {
       // reset reconnect counter
       this.reconnectCounter = 0;
     };
 
-    this.eventSource.onerror = () => {
-      this.eventSource.close();
+    this.eventSource$.onerror = () => {
+      this.eventSource$.close();
       this.reconnectCounter++;
       // increase delay before trying to reconnect on every attempt, limit to 60 seconds
       setTimeout(() => this.initEventSource(observer), Math.min(2 * this.reconnectCounter, 60) * 1000);
