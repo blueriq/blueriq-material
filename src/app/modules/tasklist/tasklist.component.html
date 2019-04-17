@@ -13,24 +13,20 @@
         {{getCellData(task, column)}}
       </span>
       <ng-container *ngIf="column.action">
-        <button
-          mat-icon-button
+        <button mat-icon-button
           *ngIf="isIconButton(column.styles)"
           (click)="buttonPressed(column.action, task.identifier)"
-          [disabled]="task.status != 'open'"
+          [disabled]="task.caseLocked || task.status != 'open'"
           [ngClass]="column.styles.all()"
-          [color]="getColor(column.styles)"
-        >
+          [color]="getColor(column.styles)">
           <mat-icon [bqIcon]="column.styles"></mat-icon>
         </button>
-        <button
-          mat-button
+        <button mat-button
           *ngIf="!isIconButton(column.styles)"
           (click)="buttonPressed(column.action, task.identifier)"
-          [disabled]="task.status != 'open'"
+          [disabled]="task.caseLocked || task.status != 'open'"
           [ngClass]="column.styles.all()"
-          [color]="getColor(column.styles)"
-        >
+          [color]="getColor(column.styles)">
           <mat-icon [bqIcon]="column.styles"></mat-icon>
           {{ column.action.caption }}
         </button>
@@ -39,8 +35,13 @@
   </ng-container>
 
   <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
-  <tr *matRowDef="let row; columns: displayedColumns;" mat-row [class.highlight]="tasksToHighlight.includes(row.identifier)"></tr>
+  <tr *matRowDef="let row; columns: displayedColumns;"
+    mat-row
+    [class.highlight]="tasksToHighlight.includes(row.identifier)"></tr>
 
 </table>
 
-<mat-paginator (page)="pageChanged($event)" [pageSizeOptions]="[5, 10, 20]" [pageSize]="taskList.pagingSize" showFirstLastButtons></mat-paginator>
+<mat-paginator (page)="pageChanged($event)"
+  [pageSizeOptions]="[5, 10, 20]"
+  [pageSize]="taskList.pagingSize"
+  showFirstLastButtons></mat-paginator>

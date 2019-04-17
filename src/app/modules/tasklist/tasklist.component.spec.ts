@@ -9,7 +9,7 @@ import { BqPresentationStyles } from '../BqPresentationStyles';
 import { ButtonModule } from '../button/button.module';
 import { ContainerModule } from '../container/container.module';
 import { TextItemModule } from '../textitem/textitem.module';
-import { Task, TaskEvent, TaskService } from './task_service';
+import { Case, Task, TaskEvent, TaskService } from './task_service';
 import { TaskList } from './tasklist';
 import { TaskListComponent } from './tasklist.component';
 import { TaskListModule } from './tasklist.module';
@@ -21,7 +21,7 @@ describe('Task List Component', () => {
   let taskList: jasmine.SpyObj<TaskList>;
 
   beforeEach(async(() => {
-    taskService = jasmine.createSpyObj('TaskService', ['getAllTasks', 'getTaskEvents']);
+    taskService = jasmine.createSpyObj('TaskService', ['getAllTasks', 'getCaseEvents', 'getTaskEvents']);
     taskList = jasmine.createSpyObj('TaskList', ['buttonPressed']);
 
     TestBed.configureTestingModule({
@@ -122,6 +122,7 @@ describe('Task List Component', () => {
         customFields: {},
       }] as Task[],
     ));
+    taskService.getCaseEvents.and.returnValue(EMPTY);
     taskService.getTaskEvents.and.returnValue(EMPTY);
   });
 
@@ -191,6 +192,7 @@ describe('Task List Component', () => {
   describe('Task list provider', () => {
     beforeEach(() => {
       taskService.getAllTasks.and.returnValue(of([] as Task[]));
+      taskService.getCaseEvents.and.returnValue(EMPTY);
       taskService.getTaskEvents.and.returnValue(EMPTY);
     });
 
@@ -205,11 +207,11 @@ describe('Task List Component', () => {
       expect(component.componentInstance.taskList.pagingSize).toEqual(20);
     });
 
-    it('should handle CREATED events correctly', () => {
+    it('should handle CREATED task events correctly', () => {
       buildComponent();
 
       const provider = component.componentInstance.taskList;
-      const subject = provider.taskSubject;
+      const subject = provider.tasks$;
 
       expect(subject.getValue()).toEqual([]);
 
@@ -230,10 +232,10 @@ describe('Task List Component', () => {
       expect(subject.getValue()).toEqual([task]);
     });
 
-    it('should handle UPDATED events correctly', () => {
+    it('should handle UPDATED task events correctly', () => {
       buildComponent();
       const provider = component.componentInstance.taskList;
-      const subject = provider.taskSubject;
+      const subject = provider.tasks$;
 
       const task: Task = {
         containerIdentifier: '222',
@@ -250,10 +252,10 @@ describe('Task List Component', () => {
       expect(subject.getValue()).toEqual([]);
     });
 
-    it('should handle DELETED events correctly', () => {
+    it('should handle DELETED task events correctly', () => {
       buildComponent();
       const provider = component.componentInstance.taskList;
-      const subject = provider.taskSubject;
+      const subject = provider.tasks$;
 
       const task: Task = {
         containerIdentifier: '333',
@@ -267,10 +269,10 @@ describe('Task List Component', () => {
       expect(subject.getValue()).toEqual([]);
     });
 
-    it('should handle CANCELED events correctly', () => {
+    it('should handle CANCELED task events correctly', () => {
       buildComponent();
       const provider = component.componentInstance.taskList;
-      const subject = provider.taskSubject;
+      const subject = provider.tasks$;
 
       const task: Task = {
         containerIdentifier: '333',
@@ -284,10 +286,10 @@ describe('Task List Component', () => {
       expect(subject.getValue()).toEqual([]);
     });
 
-    it('should handle EXPIRED events correctly', () => {
+    it('should handle EXPIRED task events correctly', () => {
       buildComponent();
       const provider = component.componentInstance.taskList;
-      const subject = provider.taskSubject;
+      const subject = provider.tasks$;
 
       const task: Task = {
         containerIdentifier: '333',
@@ -299,6 +301,70 @@ describe('Task List Component', () => {
       subject.next([task]);
       provider.handleTaskEvent({ action: 'EXPIRED', taskModel: task });
       expect(subject.getValue()).toEqual([]);
+    });
+
+    it('should handle UPDATED case events wih status LOCKED correctly', () => {
+      buildComponent();
+      const provider = component.componentInstance.taskList;
+      const subject = provider.tasks$;
+
+      expect(provider.isCaseLocked()).toBeFalsy();
+
+      const task: Task = {
+        containerIdentifier: '333',
+        identifier: '444',
+        name: 'taak',
+        status: 'open',
+      } as Task;
+
+      const aCase: Case = {
+        containerIdentifier: '333',
+        status: 'LOCKED',
+      } as Case;
+
+      subject.next([task]);
+
+      provider.handleCaseEvent({ action: 'UPDATED', caseModel: aCase });
+
+      const tasks = subject.getValue();
+      expect(provider.isCaseLocked()).toBeTruthy();
+      expect(tasks.length).toBe(1);
+      expect(tasks[0].caseLocked).toBeTruthy();
+    });
+
+    it('should handle UPDATED case events with status OPEN correctly', () => {
+      buildComponent();
+      const provider = component.componentInstance.taskList;
+      const subject = provider.tasks$;
+
+      expect(provider.isCaseLocked()).toBeFalsy();
+
+      const aCase: Case = {
+        containerIdentifier: '333',
+        status: 'LOCKED',
+      } as Case;
+
+      provider.handleCaseEvent({ action: 'UPDATED', caseModel: aCase });
+      expect(provider.isCaseLocked()).toBeTruthy();
+
+      const task: Task = {
+        containerIdentifier: '333',
+        identifier: '444',
+        name: 'taak',
+        status: 'open',
+        caseLocked: true,
+      } as Task;
+
+      aCase.status = 'OPEN';
+
+      subject.next([task]);
+
+      provider.handleCaseEvent({ action: 'UPDATED', caseModel: aCase });
+
+      const tasks = subject.getValue();
+      expect(provider.isCaseLocked()).toBeFalsy();
+      expect(tasks.length).toBe(1);
+      expect(tasks[0].caseLocked).toBeFalsy();
     });
   });
 
