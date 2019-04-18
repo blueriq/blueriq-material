@@ -17,8 +17,8 @@ import {
 import { ErrorType, Page } from '@blueriq/core';
 import { ContainerTemplate, PageModelTemplate, PageTemplate } from '@blueriq/core/testing';
 import { BqContainerDirective } from '@shared/directive/container/bq-container.directive';
-import { ExternalContainerComponent } from './external-container.component';
-import { ExternalContainerModule } from './external-container.module';
+import { ExternalFlowComponent } from './external-flow.component';
+import { ExternalFlowModule } from './external-flow.module';
 
 
 @Component({
@@ -32,9 +32,9 @@ class MockPageComponent {
   }
 }
 
-describe('ExternalContainerComponent', () => {
+describe('ExternalFlowComponent', () => {
   let container: ContainerTemplate;
-  let component: ComponentFixture<ExternalContainerComponent>;
+  let component: ComponentFixture<ExternalFlowComponent>;
   let session: BlueriqTestSession;
 
   beforeEach(async(() => {
@@ -43,7 +43,7 @@ describe('ExternalContainerComponent', () => {
       providers: [BlueriqComponents.register([MockPageComponent])],
       imports: [
         BlueriqTestingModule,
-        ExternalContainerModule,
+        ExternalFlowModule,
       ],
     });
   }));
@@ -51,19 +51,19 @@ describe('ExternalContainerComponent', () => {
   beforeEach(() => {
     container = ContainerTemplate.create('containername')
       .displayName('Container display name')
-      .contentStyle('external_container')
-      .properties({ 'info': 'ExternalContainer', 'configurationid': 'testConfigurationid' });
+      .contentStyle('external_flow')
+      .properties({ 'info': 'ExternalFlow', 'configurationid': 'testConfigurationid' });
 
-    const pageModel = PageModelTemplate.create(PageTemplate.create('pagename').displayName('ExternalContainer display name'));
+    const pageModel = PageModelTemplate.create(PageTemplate.create('pagename').displayName('ExternalFlow display name'));
     const dashboardSession = SessionTemplate.create()
-      .sessionName('session-name-ExternalContainer')
+      .sessionName('session-name-ExternalFlow')
       .pageModel(pageModel).build();
 
     const sessionRegistry: SessionRegistry = TestBed.get(SessionRegistry);
     sessionRegistry.register(dashboardSession);
 
     session = BlueriqSessionTemplate.create().build(container);
-    component = session.get(ExternalContainerComponent);
+    component = session.get(ExternalFlowComponent);
   });
 
   it('should use the bqContainer directive', () => {
@@ -77,7 +77,7 @@ describe('ExternalContainerComponent', () => {
     component.componentInstance.handleError(bqError);
     component.detectChanges();
 
-    const containerSessionSpan = component.nativeElement.querySelector('#ExternalContainer');
+    const containerSessionSpan = component.nativeElement.querySelector('#ExternalFlow');
     const errorElement = component.nativeElement.querySelector('mat-error');
 
     // Verify
@@ -91,7 +91,7 @@ describe('ExternalContainerComponent', () => {
     component.componentInstance.handleError(bqError);
     component.detectChanges();
 
-    const containerSessionSpan = component.nativeElement.querySelector('#ExternalContainer');
+    const containerSessionSpan = component.nativeElement.querySelector('#ExternalFlow');
     const errorElement = component.nativeElement.querySelector('mat-error');
 
     // Verify
@@ -104,7 +104,7 @@ describe('ExternalContainerComponent', () => {
     component.componentInstance.handleSessionExpired();
     component.detectChanges();
 
-    const containerSessionSpan = component.nativeElement.querySelector('#ExternalContainer');
+    const containerSessionSpan = component.nativeElement.querySelector('#ExternalFlow');
     const errorElement = component.nativeElement.querySelector('mat-error');
 
     // Verify
@@ -117,7 +117,7 @@ describe('ExternalContainerComponent', () => {
     component.componentInstance.handleFlowEnded();
     component.detectChanges();
 
-    const containerSessionSpan = component.nativeElement.querySelector('#ExternalContainer');
+    const containerSessionSpan = component.nativeElement.querySelector('#ExternalFlow');
     const errorElement = component.nativeElement.querySelector('mat-error');
 
     // Verify

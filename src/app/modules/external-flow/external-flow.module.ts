@@ -5,18 +5,18 @@ import { MatIconModule, MatInputModule } from '@angular/material';
 import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
 import { SharedModule } from '@shared/shared.module';
 import { HeadingModule } from '../heading/heading.module';
-import { ExternalContainerComponent } from './external-container.component';
+import { ExternalFlowComponent } from './external-flow.component';
 
-const EXTERNAL_CONTAINER_CONTROL_COMPONENTS = [
-  ExternalContainerComponent,
+const EXTERNALFLOW_CONTROL_COMPONENTS = [
+  ExternalFlowComponent,
 ];
 
 @NgModule({
   declarations: [
-    EXTERNAL_CONTAINER_CONTROL_COMPONENTS,
+    EXTERNALFLOW_CONTROL_COMPONENTS,
   ],
   providers: [
-    BlueriqComponents.register(EXTERNAL_CONTAINER_CONTROL_COMPONENTS),
+    BlueriqComponents.register(EXTERNALFLOW_CONTROL_COMPONENTS),
   ],
   imports: [
     BlueriqCommonModule, // using: bq-session
@@ -29,7 +29,7 @@ const EXTERNAL_CONTAINER_CONTROL_COMPONENTS = [
     MatIconModule,
     MatInputModule,
   ],
-  exports: [EXTERNAL_CONTAINER_CONTROL_COMPONENTS],
+  exports: [EXTERNALFLOW_CONTROL_COMPONENTS],
 })
-export class ExternalContainerModule {
+export class ExternalFlowModule {
 }

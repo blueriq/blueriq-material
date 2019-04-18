@@ -1,25 +1,25 @@
 import { Component, Host, Self } from '@angular/core';
-import { BlueriqComponent, ExternalContainer, FailedAction, isBlueriqError } from '@blueriq/angular';
+import { BlueriqComponent, ExternalFlow, FailedAction, isBlueriqError } from '@blueriq/angular';
 import { Container } from '@blueriq/core';
 import { BqContentStyles } from '../BqContentStyles';
 
 @Component({
-  selector: 'bq-external-container',
-  templateUrl: './external-container.component.html',
-  providers: [ExternalContainer],
+  selector: 'bq-external-flow',
+  templateUrl: './external-flow.component.html',
+  providers: [ExternalFlow],
 })
 @BlueriqComponent({
   type: Container,
-  selector: BqContentStyles.EXTERNAL_CONTAINER,
+  selector: BqContentStyles.EXTERNAL_FLOW,
 })
-export class ExternalContainerComponent {
+export class ExternalFlowComponent {
 
   private error: unknown;
   private expired = false;
   private flowEnded = false;
 
   constructor(@Host() public container: Container,
-    @Self() public externalContainer: ExternalContainer) {
+    @Self() public externalFlow: ExternalFlow) {
   }
 
   get errorMessage(): string {
