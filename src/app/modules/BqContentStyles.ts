@@ -15,7 +15,7 @@ export class BqContentStyles {
   static DASHBOARD_WIDGET = 'dashboard_widget';
   static DASHBOARD_FLOWWIDGET = 'dashboard_flowwidget';
   static DASHBOARD_COLUMN_PREFIX = 'dashboard_column';
-  static EXTERNAL_CONTAINER = 'external_container';
+  static EXTERNAL_FLOW = 'external_flow';
   static TASK_LIST = 'tasklist';
 
   static TAB = 'tabs';

@@ -2,7 +2,7 @@
 
   <bq-heading [title]="container.displayName" [styles]="container.styles"></bq-heading>
 
-  <bq-session *ngIf="!shouldDisplayError()" [sessionName]="externalContainer.sessionName"
+  <bq-session *ngIf="!shouldDisplayError()" [sessionName]="externalFlow.sessionName"
     (flowEnded)="handleFlowEnded()" (expired)="handleSessionExpired()" (error)="handleError($event)"></bq-session>
 
   <div *ngIf="shouldDisplayError()">

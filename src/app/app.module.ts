@@ -6,6 +6,7 @@ import { V2BackendModule } from '@blueriq/angular/backend/v2';
 import { BlueriqStoreModule } from '@blueriq/angular/store';
 import { DateFormats } from '@blueriq/core';
 import { EffectsModule } from '@ngrx/effects';
+import { ExternalFlowModule } from './modules/external-flow/external-flow.module';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { provideDateFormats } from '@shared/date/bq-date-parser';
@@ -19,7 +20,6 @@ import { ButtonModule } from './modules/button/button.module';
 import { CommentModule } from './modules/comment/comment.module';
 import { ContainerModule } from './modules/container/container.module';
 import { ContentItemModule } from './modules/contentitem/contentitem.module';
-import { ExternalContainerModule } from './modules/external-container/external-container.module';
 import { FileModule } from './modules/file/file.modules';
 import { FormControlModule } from './modules/form-controls/form-control.module';
 import { HeaderModule } from './modules/header/header.module';
@@ -93,7 +93,7 @@ const routes: Routes = [
     TimelineModule,
     VisualizationModule,
     WidgetModule,
-    ExternalContainerModule,
+    ExternalFlowModule,
 
     /* Non-Blueriq modules */
     LoadingModule,
