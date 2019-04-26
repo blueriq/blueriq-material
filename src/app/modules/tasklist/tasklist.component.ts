@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, PageEvent } from '@angular/material';
 import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
 import { Button, Container, PresentationStyles } from '@blueriq/core';
@@ -32,7 +32,7 @@ export class TaskListComponent implements OnInit {
 
   tasksToHighlight: string[];
 
-  constructor(public taskList: TaskList, session: BlueriqSession, private changeDetectorRef: ChangeDetectorRef) {
+  constructor(public taskList: TaskList, session: BlueriqSession) {
     this.taskDataSource = new TaskListDataSource(taskList.columnDefinitions, session.localization.dateFormats);
     this.displayedColumns = taskList.columnDefinitions.map(column => column.identifier);
     this.tasksToHighlight = [];
@@ -92,6 +92,5 @@ export class TaskListComponent implements OnInit {
 
   private updateDataSource(tasks: Task[]): void {
     this.taskDataSource.data = tasks;
-    this.changeDetectorRef.detectChanges();
   }
 }

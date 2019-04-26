@@ -1,5 +1,5 @@
 /* istanbul ignore file: this should only temporarily be a part of blueriq material, it should move to Redcow */
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { Session } from '@blueriq/angular';
 import { Backend } from '@blueriq/angular/backend/common';
 import { Observable, Subscriber } from 'rxjs';
@@ -16,7 +16,7 @@ export class V2TaskService implements TaskService {
   private lastEventId: string;
   private reconnectCounter = 0;
 
-  constructor(private readonly backend: Backend) {
+  constructor(private readonly backend: Backend, private readonly ngZone: NgZone) {
     this.initPushMessages();
     this.initCaseEvents();
     this.initTaskEvents();
@@ -65,7 +65,7 @@ export class V2TaskService implements TaskService {
     this.eventSource$ = new EventSource(this.backend.toUrl(url));
 
     this.eventSource$.onmessage = (event) => {
-      observer.next(JSON.parse(event.data) as PushMessage);
+      this.ngZone.runGuarded(() => observer.next(JSON.parse(event.data) as PushMessage));
       this.lastEventId = event.lastEventId;
     };
 
