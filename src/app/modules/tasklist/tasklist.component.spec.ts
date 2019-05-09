@@ -308,13 +308,12 @@ describe('Task List Component', () => {
       const provider = component.componentInstance.taskList;
       const subject = provider.tasks$;
 
-      expect(provider.isCaseLocked()).toBeFalsy();
-
       const task: Task = {
         containerIdentifier: '333',
         identifier: '444',
         name: 'taak',
         status: 'open',
+        caseLocked: false,
       } as Task;
 
       const aCase: Case = {
@@ -327,7 +326,6 @@ describe('Task List Component', () => {
       provider.handleCaseEvent({ action: 'UPDATED', caseModel: aCase });
 
       const tasks = subject.getValue();
-      expect(provider.isCaseLocked()).toBeTruthy();
       expect(tasks.length).toBe(1);
       expect(tasks[0].caseLocked).toBeTruthy();
     });
@@ -337,16 +335,6 @@ describe('Task List Component', () => {
       const provider = component.componentInstance.taskList;
       const subject = provider.tasks$;
 
-      expect(provider.isCaseLocked()).toBeFalsy();
-
-      const aCase: Case = {
-        containerIdentifier: '333',
-        status: 'LOCKED',
-      } as Case;
-
-      provider.handleCaseEvent({ action: 'UPDATED', caseModel: aCase });
-      expect(provider.isCaseLocked()).toBeTruthy();
-
       const task: Task = {
         containerIdentifier: '333',
         identifier: '444',
@@ -355,14 +343,16 @@ describe('Task List Component', () => {
         caseLocked: true,
       } as Task;
 
-      aCase.status = 'OPEN';
+      const aCase: Case = {
+        containerIdentifier: '333',
+        status: 'OPEN',
+      } as Case;
 
       subject.next([task]);
 
       provider.handleCaseEvent({ action: 'UPDATED', caseModel: aCase });
 
       const tasks = subject.getValue();
-      expect(provider.isCaseLocked()).toBeFalsy();
       expect(tasks.length).toBe(1);
       expect(tasks[0].caseLocked).toBeFalsy();
     });
