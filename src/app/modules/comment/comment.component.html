@@ -3,14 +3,15 @@
 
   <div fxLayout="row">
     <mat-form-field bqKey fxFlex appearance="fill">
-      <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" [formControl]="formControl"></textarea>
+      <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+        [formControl]="formControl"></textarea>
       <mat-error *ngFor="let msg of getFieldMessages()">{{msg.text}}</mat-error>
     </mat-form-field>
   </div>
 
   <div fxLayout="row" fxLayoutAlign="end">
-    <button bqKey bqClasses mat-raised-button (click)="onClick()" color="primary">
-      {{comment.caption}}
+    <button bqKey bqClasses mat-raised-button (click)="comment.submit()" color="primary">
+      {{comment.submitCaption}}
     </button>
   </div>
 

@@ -1,8 +1,7 @@
 import { Host, Injectable, OnDestroy } from '@angular/core';
 import { BlueriqChild, BlueriqChildren, BlueriqQuerying, BlueriqSession } from '@blueriq/angular';
 import { Button, Container, DataType, PresentationStyles, TextItem } from '@blueriq/core';
-import { BehaviorSubject, Subject } from 'rxjs';
-import { Subscription } from 'rxjs/Subscription';
+import { BehaviorSubject, Subject, Subscription } from 'rxjs';
 import { CaseEvent, Task, TaskEvent, TaskService } from './task_service';
 
 export interface ColumnDefinition {

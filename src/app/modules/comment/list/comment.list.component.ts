@@ -1,5 +1,6 @@
 import { Component, Self } from '@angular/core';
-import { BlueriqComponent, BlueriqSession, DashboardCommentList } from '@blueriq/angular';
+import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
+import { CommentList } from '@blueriq/angular/dashboard';
 import { Container } from '@blueriq/core';
 import { dateFromNowHumanReadable } from '@shared/date/bq-date-parser';
 
@@ -7,7 +8,7 @@ import { dateFromNowHumanReadable } from '@shared/date/bq-date-parser';
   selector: 'bq-comment-list',
   templateUrl: './comment.list.component.html',
   styleUrls: ['./comment.list.component.scss'],
-  providers: [DashboardCommentList],
+  providers: [CommentList],
 })
 @BlueriqComponent({
   type: Container,
@@ -15,7 +16,7 @@ import { dateFromNowHumanReadable } from '@shared/date/bq-date-parser';
 })
 export class CommentListComponent {
 
-  constructor(@Self() public readonly commentList: DashboardCommentList, private readonly session: BlueriqSession) {
+  constructor(@Self() public readonly commentList: CommentList, private readonly session: BlueriqSession) {
   }
 
   dateToHumanReadableFormat(date: Date): string {

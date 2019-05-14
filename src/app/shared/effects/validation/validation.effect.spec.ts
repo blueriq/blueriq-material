@@ -3,7 +3,7 @@ import { MatSnackBar } from '@angular/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { InvalidFormAction } from '@blueriq/angular/forms';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 import { ValidationEffect } from './validation.effect';
 
 describe('ValidationEffect', () => {

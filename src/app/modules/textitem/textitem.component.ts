@@ -1,5 +1,5 @@
 import { Component, Host } from '@angular/core';
-import { BlueriqComponent } from '@blueriq/angular';
+import { BlueriqComponent, OnUpdate } from '@blueriq/angular';
 import { TextItem } from '@blueriq/core';
 import { BqPresentationStyles } from '../BqPresentationStyles';
 
@@ -11,9 +11,18 @@ import { BqPresentationStyles } from '../BqPresentationStyles';
 @BlueriqComponent({
   type: TextItem,
 })
-export class TextItemComponent {
+export class TextItemComponent implements OnUpdate {
+  /**
+   * Whether or not the text item has content in its nodes.  If not, only the plain text is displayed instead.
+   */
+  hasStyledContent: boolean;
 
   constructor(@Host() public textItem: TextItem) {
+    this.hasStyledContent = this.determineHasStyledContent();
+  }
+
+  bqOnUpdate(): void {
+    this.hasStyledContent = this.determineHasStyledContent();
   }
 
   public shouldDisplayGutter(): boolean {
@@ -36,6 +45,10 @@ export class TextItemComponent {
       return 'check_circle';
     }
     return '';
+  }
+
+  private determineHasStyledContent() {
+    return this.textItem.rootNode.toPlainText() !== '';
   }
 
 }

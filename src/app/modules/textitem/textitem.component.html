@@ -5,14 +5,12 @@
   <div class="aligner">
 
     <p>
-      <ng-container *ngIf="textItem.rootNode.plainText; then textItemRootNode; else textItemPlainText"></ng-container>
+      <ng-container *ngIf="hasStyledContent; else onlyPlainText"
+                    [bqTextItemNode]="textItem.rootNode"></ng-container>
     </p>
 
-    <ng-template #textItemRootNode>
-      <ng-container [bqTextItemNode]="textItem.rootNode"></ng-container>
-    </ng-template>
-    <ng-template #textItemPlainText>
-      <ng-container>{{textItem.plainText}}</ng-container>
+    <ng-template #onlyPlainText>
+      {{textItem.plainText}}
     </ng-template>
 
   </div>

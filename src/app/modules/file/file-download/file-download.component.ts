@@ -3,7 +3,7 @@ import { AuthorizedDownload, BlueriqComponent } from '@blueriq/angular';
 import { FileDownload } from '@blueriq/angular/files';
 import { List } from '@blueriq/angular/lists';
 import { Container } from '@blueriq/core';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { ButtonComponent } from '../../button/button.component';
 import { FileDownloadService } from './file-download.service';
 

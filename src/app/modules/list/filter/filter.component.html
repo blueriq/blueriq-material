@@ -1,15 +1,15 @@
 <div fxLayout="row" fxLayoutAlign="end center">
   <button mat-icon-button
-          (click)="showFilter(filterDialog)"
-          [matBadge]="filter.currentFilters.all.length"
-          [matBadgeHidden]="filter.currentFilters.all.length === 0"
-          matTooltip="Filter"
-          matBadgePosition="before"
-          matBadgeColor="primary">
+    (click)="showFilter(filterDialog)"
+    [matBadge]="filter.currentFilters.length"
+    [matBadgeHidden]="filter.currentFilters.length === 0"
+    matTooltip="Filter"
+    matBadgePosition="before"
+    matBadgeColor="primary">
     <mat-icon aria-label="Filter">filter_list</mat-icon>
   </button>
-  <button (click)="clearFilters()" mat-icon-button *ngIf="filter.currentFilters.all.length > 0"
-          matTooltip="Clear filter" @clearFilters>
+  <button (click)="clearFilters()" mat-icon-button *ngIf="filter.currentFilters.length > 0"
+    matTooltip="Clear filter" @clearFilters>
     <mat-icon aria-label="Clear filter">clear</mat-icon>
   </button>
 </div>
@@ -24,9 +24,9 @@
     </div>
 
     <bq-filter-row *ngFor="let candidate of filterCandidates"
-                        [currentColumns]="filter.currentColumns"
-                        [candidate]="candidate"
-                        (removed)="removeFilter(candidate)">
+      [currentColumns]="filter.currentColumns"
+      [candidate]="candidate"
+      (removed)="removeFilter(candidate)">
     </bq-filter-row>
 
     <div *ngIf="canAddFilter()" fxLayout="row" fxLayoutGap="10px">
