@@ -1,5 +1,5 @@
 import { Component, Host, OnDestroy, Optional, Self } from '@angular/core';
-import { AuthorizedDownload, BlueriqComponent } from '@blueriq/angular';
+import { BlueriqComponent } from '@blueriq/angular';
 import { FileDownload } from '@blueriq/angular/files';
 import { List } from '@blueriq/angular/lists';
 import { Container } from '@blueriq/core';
@@ -27,10 +27,8 @@ export class FileDownloadComponent extends ButtonComponent implements OnDestroy 
     super(fileDownload.downloadButton, list);
   }
 
-  /* Overrides */
   onClick(): void {
-    this.downloadSubscription = this.fileDownload.getDownloadInfo()
-    .subscribe((downloadInfo: AuthorizedDownload) => {
+    this.downloadSubscription = this.fileDownload.getDownloadInfo().subscribe(downloadInfo => {
       this.fileDownloadService.download(downloadInfo.url);
     });
   }

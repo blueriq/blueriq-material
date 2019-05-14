@@ -6,7 +6,6 @@
   (click)="onClick()"
   [class.default-styling]="hasDefaultStyling()">
   <mat-icon [bqIcon]="button.styles"></mat-icon>
-  <ng-container *ngIf="!this.hasCaption() && !this.hasIconStyle()">{{ "["+button.name+"]" }}</ng-container>
+  <ng-container *ngIf="!hasCaption() && !hasIconStyle()">{{ "[" + button.name + "]" }}</ng-container>
   {{ button.caption }}
 </button>
-
