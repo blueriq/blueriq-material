@@ -3,10 +3,9 @@ import { BqKeyDirective } from '@shared/directive/bq-key/bq-key.directive';
 
 describe('BqKeyDirective', () => {
   let bqKeyDirective: BqKeyDirective;
-  const element = ButtonTemplate.create().build();
 
   beforeEach(() => {
-    element.functionalKey = 'very_functional';
+    const element = ButtonTemplate.create('MyButton').build();
     bqKeyDirective = new BqKeyDirective(element);
   });
 
@@ -15,6 +14,6 @@ describe('BqKeyDirective', () => {
   });
 
   it('should get correct id', () => {
-    expect(bqKeyDirective.id).toBe('very_functional');
+    expect(bqKeyDirective.id).toContain('MyButton');
   });
 });

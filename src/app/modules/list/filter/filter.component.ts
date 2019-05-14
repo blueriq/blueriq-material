@@ -1,7 +1,7 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
-import { Filter2, FilteredColumn } from '@blueriq/angular/lists';
+import { Filter, FilteredColumn } from '@blueriq/angular/lists';
 import { FilterCandidate } from './types';
 
 const MAX_FILTERS = 8;
@@ -26,7 +26,7 @@ const MAX_FILTERS = 8;
 export class FilterComponent implements OnInit {
 
   @Input()
-  filter: Filter2;
+  filter: Filter;
 
   filterCandidates: FilterCandidate[];
   showUnknownLabel: string;
@@ -36,9 +36,9 @@ export class FilterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.updateCandidates(this.filter.currentFilters.all.map(filter => new FilterCandidate(filter)));
+    this.updateCandidates(this.filter.currentFilters.map(filter => new FilterCandidate(filter)));
 
-    this.showUnknownLabel = this.filter.currentColumns.map(c => c.showUnknownLabel)[0] || '';
+    this.showUnknownLabel = this.filter.currentColumns.map(c => c.labels.showUnknown)[0] || '';
   }
 
   canAddFilter(): boolean {
@@ -62,7 +62,7 @@ export class FilterComponent implements OnInit {
   }
 
   clearFilters(): void {
-    this.filter.currentFilters.clear();
+    this.filter.clear();
     this.filterCandidates = [new FilterCandidate()];
   }
 

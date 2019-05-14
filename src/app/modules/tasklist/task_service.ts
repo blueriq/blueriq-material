@@ -1,5 +1,5 @@
 import { Session } from '@blueriq/angular';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 export interface PushMessage {
   type: string;

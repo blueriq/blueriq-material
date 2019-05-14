@@ -1,5 +1,6 @@
 import { Component, Host, Self } from '@angular/core';
-import { BlueriqComponent, DashboardComment } from '@blueriq/angular';
+import { BlueriqComponent } from '@blueriq/angular';
+import { SubmitComment } from '@blueriq/angular/dashboard';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { Container, FieldMessages } from '@blueriq/core';
 import { BqPresentationStyles } from '../BqPresentationStyles';
@@ -8,7 +9,7 @@ import { BqPresentationStyles } from '../BqPresentationStyles';
   selector: 'bq-comment',
   templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.scss'],
-  providers: [DashboardComment],
+  providers: [SubmitComment],
 })
 @BlueriqComponent({
   type: Container,
@@ -22,15 +23,11 @@ export class CommentComponent {
   });
 
   constructor(@Host() public container: Container,
-              @Self() public comment: DashboardComment,
+              @Self() public comment: SubmitComment,
               private form: BlueriqFormBuilder) {
   }
 
   getFieldMessages(): FieldMessages {
     return getFieldMessages(this.formControl);
-  }
-
-  onClick() {
-    this.comment.comment();
   }
 }

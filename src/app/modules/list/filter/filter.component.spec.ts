@@ -1,5 +1,5 @@
 import { MatDialog, MatDialogRef } from '@angular/material';
-import { CurrentFilters, Filter2 } from '@blueriq/angular/lists';
+import { Filter } from '@blueriq/angular/lists';
 import { FilterComponent } from './filter.component';
 import { FilterCandidate } from './types';
 
@@ -7,23 +7,19 @@ describe('FilterComponent', () => {
   let tableFilterComponent: FilterComponent;
   let dialogSpy: jasmine.SpyObj<MatDialog>;
   let dialogRefSpy: jasmine.SpyObj<MatDialogRef<any, any>>;
-  let currentFiltersSpy: CurrentFilters;
-  let filter: Filter2;
+  let filter: Filter;
 
   beforeEach(() => {
     dialogSpy = jasmine.createSpyObj<MatDialog>(['open']);
     dialogRefSpy = jasmine.createSpyObj<MatDialogRef<any, any>>(['close']);
-    currentFiltersSpy = {
-      all: [],
-      clear: jasmine.createSpy(),
-    } as unknown as CurrentFilters;
     dialogSpy.open.and.returnValue(dialogRefSpy);
     tableFilterComponent = new FilterComponent(dialogSpy);
     filter = {
-      currentFilters: currentFiltersSpy,
+      currentFilters: [],
       currentColumns: [],
+      clear: jasmine.createSpy(),
       apply: jasmine.createSpy(),
-    } as unknown as Filter2;
+    } as unknown as Filter;
     tableFilterComponent.filter = filter;
     tableFilterComponent.ngOnInit();
   });
@@ -56,7 +52,7 @@ describe('FilterComponent', () => {
     tableFilterComponent.clearFilters();
 
     // verify
-    expect(currentFiltersSpy.clear).toHaveBeenCalledTimes(1);
+    expect(filter.clear).toHaveBeenCalledTimes(1);
     // always leave an empty filter to quickly start filtering again
     expect(tableFilterComponent.filterCandidates.length).toEqual(1);
   });

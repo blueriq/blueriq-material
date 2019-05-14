@@ -37,7 +37,7 @@ export class AuthService {
     this.auth.logout().subscribe(response => {
       // If the response contains an ssoLogoutUrl, we need to redirect to that URL to be logged out from OIDC provider.
       if (response.ssoLogoutUrl) {
-        this.document.location!.href =
+        this.document.location.href =
           this.addReturnPath(response.ssoLogoutUrl, `/logged-out?returnPath=${encodeURIComponent(returnPath)}`);
       } else {
         this.router.navigate(['/logged-out'], { queryParams: { returnPath } });
@@ -65,7 +65,7 @@ export class AuthService {
 
   private prepareExternalUrl(path: string): string {
     const rootPath = Location.joinWithSlash(this.locationStrategy.getBaseHref(), path);
-    return Location.joinWithSlash(this.document.location!.origin, rootPath);
+    return Location.joinWithSlash(this.document.location.origin, rootPath);
   }
 
 }

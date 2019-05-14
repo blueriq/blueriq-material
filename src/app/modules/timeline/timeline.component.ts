@@ -1,5 +1,6 @@
 import { Component, Host } from '@angular/core';
-import { BlueriqComponent, BlueriqSession, DashboardTimeline } from '@blueriq/angular';
+import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
+import { Timeline } from '@blueriq/angular/dashboard';
 import { Container } from '@blueriq/core';
 import { dateFromNowHumanReadable, dateToShortTime } from '@shared/date/bq-date-parser';
 
@@ -7,7 +8,7 @@ import { dateFromNowHumanReadable, dateToShortTime } from '@shared/date/bq-date-
   selector: 'bq-timeline',
   templateUrl: './timeline.component.html',
   styleUrls: ['./timeline.component.scss'],
-  providers: [DashboardTimeline],
+  providers: [Timeline],
 })
 @BlueriqComponent({
   type: Container,
@@ -16,7 +17,7 @@ import { dateFromNowHumanReadable, dateToShortTime } from '@shared/date/bq-date-
 export class TimelineComponent {
 
   constructor(@Host() public container: Container,
-              public readonly timeline: DashboardTimeline,
+              public readonly timeline: Timeline,
               private readonly session: BlueriqSession) {
   }
 

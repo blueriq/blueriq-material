@@ -17,15 +17,11 @@ export class ContainerFailedComponent {
   failedElement: FailedElement;
 
   showTrace = false;
-  isDev = false;
-
-  constructor() {
-    this.isDev = isDevMode();
-  }
+  isDev = isDevMode();
 
   copyToClipboard() {
     const textArea = document.createElement('textarea');
-    textArea.textContent = this.failedElement.stacktrace ? this.failedElement.stacktrace : '';
+    textArea.textContent = this.failedElement.stacktrace || '';
     document.body.appendChild(textArea);
     textArea.select();
     document.execCommand('copy');

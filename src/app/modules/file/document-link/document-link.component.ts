@@ -2,7 +2,7 @@ import { Component, Host, OnDestroy, Self } from '@angular/core';
 import { AuthorizedDownload, BlueriqComponent } from '@blueriq/angular';
 import { DocumentLink } from '@blueriq/angular/files';
 import { Container } from '@blueriq/core';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
 import { FileDownloadService } from '../file-download/file-download.service';
 
@@ -26,9 +26,9 @@ export class DocumentLinkComponent implements OnDestroy {
 
   onClick(): void {
     this.downloadSubscription = this.documentLink.getDownloadInfo()
-    .subscribe((downloadInfo: AuthorizedDownload) => {
-      this.fileDownloadService.download(downloadInfo.url);
-    });
+      .subscribe((downloadInfo: AuthorizedDownload) => {
+        this.fileDownloadService.download(downloadInfo.url);
+      });
   }
 
   getDisplayText(): string {

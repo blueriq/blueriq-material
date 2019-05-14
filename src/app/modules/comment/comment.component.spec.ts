@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DashboardComment } from '@blueriq/angular';
+import { SubmitComment } from '@blueriq/angular/dashboard';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ButtonTemplate, ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
 import { BqContainerDirective } from '@shared/directive/container/bq-container.directive';
@@ -32,11 +32,11 @@ describe('CommentComponent', () => {
     commentField = FieldTemplate.text('somename').explainText('explaining');
     commentButton = ButtonTemplate.create('klik').caption('klikme');
     container = ContainerTemplate.create()
-    .contentStyle('storecomment')
-    .children(
-      commentField,
-      commentButton,
-    );
+      .contentStyle('storecomment')
+      .children(
+        commentField,
+        commentButton,
+      );
     session = BlueriqSessionTemplate.create().build(container);
     component = session.get(CommentComponent);
   });
@@ -54,9 +54,9 @@ describe('CommentComponent', () => {
     expect(button.innerHTML).toContain('klikme');
   });
 
-  it('button click should call comment()', () => {
+  it('button click should call submit()', () => {
     // Init
-    const commentSpy = spyOn(DashboardComment.prototype, 'comment');
+    const submitSpy = spyOn(SubmitComment.prototype, 'submit');
     const button = component.nativeElement.querySelector('button');
     session.update(
       commentField.value('this is my first comment'),
@@ -67,7 +67,7 @@ describe('CommentComponent', () => {
     component.detectChanges();
 
     // Verify
-    expect(commentSpy).toHaveBeenCalled();
+    expect(submitSpy).toHaveBeenCalled();
   });
 
   it('should use the bqContainer directive', () => {

@@ -12,7 +12,7 @@ import { LanguageConfiguration, SecurityViolations } from '@blueriq/core';
 import { PageModelTemplate, PageTemplate } from '@blueriq/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { MessagesEffect } from '@shared/effects/messages/messages.effect';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 
 describe('MessagesEffect', () => {
   let actions: Subject<any>;

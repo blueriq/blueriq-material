@@ -1,5 +1,5 @@
 <div [bqContainer]="container">
-  <bq-heading [title]="timeline.displayName" [styles]="container.styles"></bq-heading>
+  <bq-heading [title]="container.displayName" [styles]="container.styles"></bq-heading>
   <div class="timeline">
     <div *ngFor="let entry of timeline.entries$ | async; let first = first" fxLayout="row">
 

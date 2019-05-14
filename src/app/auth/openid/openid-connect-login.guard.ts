@@ -23,7 +23,7 @@ export class OpenIdConnectLoginGuard implements CanActivate {
     const redirectUrl = this.auth.prepareOidcReturnUrl(this.router.url);
 
     return this.openIdConnect.login({ redirectUrl }).pipe(
-      tap(result => this.document.location!.href = result.url),
+      tap(result => this.document.location.href = result.url),
       mapTo(false),
       catchError(() => of(true)),
     );
