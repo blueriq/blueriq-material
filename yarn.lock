@@ -7484,9 +7484,9 @@ webdriver-js-extender@2.1.0:
     "@types/selenium-webdriver" "^3.0.0"
     selenium-webdriver "^3.0.1"
 
-webdriver-manager@12.1.0:
-  version "12.1.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/webdriver-manager/-/webdriver-manager-12.1.0.tgz#f6601e52de5f0c97fc7024c889eeb2416f2f1d9d"
+webdriver-manager@12.1.4:
+  version "12.1.4"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/webdriver-manager/-/webdriver-manager-12.1.4.tgz#d737ab845fb131e4d66c0eaf8ac374c2bc3bfe22"
   dependencies:
     adm-zip "^0.4.9"
     chalk "^1.1.1"

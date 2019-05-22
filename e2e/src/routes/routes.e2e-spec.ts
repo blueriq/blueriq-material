@@ -45,7 +45,7 @@ describe('Blueriq ProjectComponent Routes', () => {
     await app.start(startDefaultShortcutPath);
 
     // Verify
-    expect(app.pageTitleDefaultShortcutFlow).toBe('Start');
+    expect(app.pageTitleDefaultShortcutFlow).toBe('Aanvragen kinderbijslag');
   });
 
   it('should start app for sessionId', async() => {
@@ -56,7 +56,7 @@ describe('Blueriq ProjectComponent Routes', () => {
     await app.start(`/sessionId/${sessionId}`);
 
     // Verify
-    expect(app.pageTitleDefaultShortcutFlow).toBe('Start');
+    expect(app.pageTitleDefaultShortcutFlow).toBe('Aanvragen kinderbijslag');
   });
 
 });

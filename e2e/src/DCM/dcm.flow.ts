@@ -9,7 +9,7 @@ export class DcmFlow {
 
   public PAGE_PROJECT_TAGNAME: string = 'bq-project';
 
-  private path = '/flow/studio-DCM_Foundation-Main_Dashboard/Dashboard';
+  private path = '/flow/export-Main_Dashboard/Dashboard';
   private shortcut = '/shortcut/DCM';
 
   get loginPage(): ElementFinder {
