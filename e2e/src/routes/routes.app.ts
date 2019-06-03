@@ -3,14 +3,13 @@ import { browser, by, element, promise } from 'protractor';
 
 export class RoutesApp {
   public PAGE_ID_AANVRAGEN_KINDERBIJSLAG: string = 'P960';
-  public PAGE_ID_DEFAULT_SHORTCUT_START: string = 'P866';
 
   get pageTitleAanvragenKinderbijslag(): Promise<string> {
     return this.getTitleTextFor(this.PAGE_ID_AANVRAGEN_KINDERBIJSLAG + '_AanvragenKinderbijslag_1');
   }
 
   get pageTitleDefaultShortcutFlow(): Promise<string> {
-    return this.getTitleTextFor(this.PAGE_ID_DEFAULT_SHORTCUT_START + '_Start_1');
+    return this.pageTitleAanvragenKinderbijslag;
   }
 
   private getTitleTextFor(id: string): Promise<string> {

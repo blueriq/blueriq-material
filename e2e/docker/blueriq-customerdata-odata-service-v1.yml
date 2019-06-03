@@ -1,0 +1,18 @@
+# We dont use JPA's entity-manager, so use hibernate properties instead.
+# See: http://docs.jboss.org/hibernate/orm/5.0/userguide/html_single/Hibernate_User_Guide.html#configurations
+blueriq:
+  customerdata:
+    datasource:
+      customer-data-sql-store:
+        url: 'jdbc:h2:./customerdata-sql-store;AUTO_SERVER=TRUE'
+        username: sa
+        password: 
+        driver-class-name: org.h2.Driver
+hibernate:
+  dialect: org.hibernate.dialect.H2Dialect
+  hbm2ddl:
+    auto: create
+  id:
+    new_generator_mappings: true
+  show_sql: false
+  use_nationalized_character_data: true

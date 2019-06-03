@@ -1,18 +1,64 @@
 version: '3'
 services:
+  runtime:
+    build:
+      context: .
+      dockerfile: Dockerfile.RUNTIME
+    ports:
+     - "9082:8080"
+    depends_on:
+     - rabbitmq
+  customerdata:
+    build:
+      context: .
+      dockerfile: Dockerfile.CDS
+    ports:
+     - "9083:8080"
+  mongodb:
+    image: mongo@sha256:a7c1784c83536a3c686ec6f0a1c570ad5756b94a1183af88c07df82c5b64663c
+    restart: always
+    ports:
+      - "9084:27017"
+    deploy:
+      resources: 
+        limits:
+          memory: 256M
+  case-engine:
+    build:
+      context: .
+      dockerfile: Dockerfile.CASEENGINE
+    ports:
+      - "9085:8080"
+    depends_on:
+      - mongodb
+      - rabbitmq
+    deploy:
+      resources: 
+        limits:
+          memory: 256M
+  rabbitmq:
+    build:
+      context: .
+      dockerfile: Dockerfile.RABBIT
+    restart: always
+    ports:
+      - "9086:15672"
   blueriq-material-theme:
     build:
       context: .
       dockerfile: Dockerfile.frontend
     ports:
     - "9081:80"
+    depends_on:
+    - runtime
     deploy:
       resources:
         limits:
           cpus: '0.25'
           memory: 128M
+
 networks:
   default:
     ipam:
       config:
-      - subnet: 192.168.192.0/29
+      - subnet: 192.168.192.0/28
