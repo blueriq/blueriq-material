@@ -6,7 +6,6 @@ import { V2BackendModule } from '@blueriq/angular/backend/v2';
 import { BlueriqStoreModule } from '@blueriq/angular/store';
 import { DateFormats } from '@blueriq/core';
 import { EffectsModule } from '@ngrx/effects';
-import { ExternalFlowModule } from './modules/external-flow/external-flow.module';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { provideDateFormats } from '@shared/date/bq-date-parser';
@@ -93,7 +92,6 @@ const routes: Routes = [
     TimelineModule,
     VisualizationModule,
     WidgetModule,
-    ExternalFlowModule,
 
     /* Non-Blueriq modules */
     LoadingModule,

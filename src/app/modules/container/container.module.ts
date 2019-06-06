@@ -7,9 +7,11 @@ import { SharedModule } from '@shared/shared.module';
 import { HeadingModule } from '../heading/heading.module';
 import { ContainerComponent } from './container.component';
 import { ContainerEmptyComponent } from './empty/container.empty.component';
+import { ExternalFlowModule } from './external-flow/external-flow.module';
 import { ContainerFailedComponent } from './failed/container.failed.component';
 import { FlexColumnDirective } from './flex/flex-column.directive';
 import { HorizontalFlexChildDirective } from './flex/horizontal-flex-child.directive';
+
 
 const BLUERIQ_COMPONENTS = [
   ContainerComponent,
@@ -33,6 +35,7 @@ const BLUERIQ_COMPONENTS = [
     BlueriqCommonModule,
     HeadingModule,
     FlexLayoutModule,
+    ExternalFlowModule,
 
     /* Material modules */
     MatIconModule,

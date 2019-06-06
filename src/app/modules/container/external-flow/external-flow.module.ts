@@ -4,7 +4,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule, MatInputModule } from '@angular/material';
 import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
 import { SharedModule } from '@shared/shared.module';
-import { HeadingModule } from '../heading/heading.module';
+import { HeadingModule } from '../../heading/heading.module';
 import { ExternalFlowComponent } from './external-flow.component';
 
 const EXTERNALFLOW_CONTROL_COMPONENTS = [
