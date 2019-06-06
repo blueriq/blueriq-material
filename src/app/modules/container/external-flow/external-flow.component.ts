@@ -1,7 +1,7 @@
 import { Component, Host, Self } from '@angular/core';
-import { BlueriqComponent, ExternalFlow, FailedAction, isBlueriqError } from '@blueriq/angular';
+import { BlueriqComponent, ExternalFlow, ExternalFlowActions, FailedAction, isBlueriqError, } from '@blueriq/angular';
 import { Container } from '@blueriq/core';
-import { BqContentStyles } from '../BqContentStyles';
+import { BqContentStyles } from '../../BqContentStyles';
 
 @Component({
   selector: 'bq-external-flow',
@@ -14,6 +14,7 @@ import { BqContentStyles } from '../BqContentStyles';
 })
 export class ExternalFlowComponent {
 
+  authenticationFailed = false;
   private error: unknown;
   private expired = false;
   private flowEnded = false;
@@ -39,6 +40,11 @@ export class ExternalFlowComponent {
   }
 
   handleError(action: FailedAction): void {
+    if (action.type === ExternalFlowActions.AUTHENTICATION_FAILED) {
+      this.authenticationFailed = true;
+      return;
+    }
+
     this.error = action.error;
   }
 

@@ -1,9 +1,9 @@
-<div bqKey bqClasses [bqContainer]="container">
+<div bqKey bqClasses [bqContainer]="container" *ngIf="!authenticationFailed">
 
   <bq-heading [title]="container.displayName" [styles]="container.styles"></bq-heading>
 
-  <bq-session *ngIf="!shouldDisplayError()" [sessionName]="externalFlow.sessionName"
-    (flowEnded)="handleFlowEnded()" (expired)="handleSessionExpired()" (error)="handleError($event)"></bq-session>
+  <bq-session *ngIf="!shouldDisplayError()" [sessionName]="externalFlow.sessionName" (flowEnded)="handleFlowEnded()"
+    (expired)="handleSessionExpired()" (error)="handleError($event)"></bq-session>
 
   <div *ngIf="shouldDisplayError()">
     <mat-error fxLayout="row" fxLayoutAlign="center">
