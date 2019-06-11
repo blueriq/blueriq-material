@@ -73,7 +73,7 @@
     "codelyzer": "4.5.0",
     "jasmine-core": "3.3.0",
     "jasmine-spec-reporter": "4.2.1",
-    "karma": "4.0.0",
+    "karma": "4.1.0",
     "karma-chrome-launcher": "2.2.0",
     "karma-coverage-istanbul-reporter": "2.0.4",
     "karma-jasmine": "2.0.1",
@@ -87,5 +87,12 @@
     "tslint": "5.12.1",
     "typescript": "3.2.4",
     "webdriver-manager": "12.1.4"
+  },
+  "resolutions": {
+    "fstream": "^1.0.12",
+    "handlebars": "^4.1.2",
+    "js-yaml": "^3.13.1",
+    "marked": "^0.6.2",
+    "tar": "^4.4.2"
   }
 }
