@@ -16,7 +16,7 @@ export class MockIconComponent {
   }
 }
 
-describe('Icon Directive', () => {
+describe('IconDirective', () => {
 
   let component: MockIconComponent;
   let fixture: ComponentFixture<MockIconComponent>;
@@ -38,6 +38,36 @@ describe('Icon Directive', () => {
     expect(matIcon.classList).not.toContain('some_presentationstyle', 'only icon_ prefixed presentation styles should have been used');
     expect(matIcon.classList).toContain('fa', 'for fontawesome to work, "fa" class only should have also been added');
     expect(matIcon.classList).toContain('fa-my-awesome-icon', 'should have replaced the _ with - and have stripped the icon_ prefix');
+  });
+
+});
+
+describe('IconDirectiveStylesUpdate', () => {
+
+  let component: MockIconComponent;
+  let fixture: ComponentFixture<MockIconComponent>;
+  let element: any;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [MockIconComponent, BqIconDirective],
+      imports: [MatIconModule],
+    });
+    fixture = TestBed.createComponent(MockIconComponent);
+    component = fixture.componentInstance;
+    element = fixture.nativeElement;
+    fixture.detectChanges();
+  });
+
+  it('should use the given presentationstyles to pick the correct icon and rename if necessary', () => {
+    const matIcon = element.querySelector('mat-icon');
+    expect(matIcon.classList).not.toContain('some_presentationstyle', 'only icon_ prefixed presentation styles should have been used');
+    expect(matIcon.classList).toContain('fa', 'for fontawesome to work, "fa" class only should have also been added');
+    expect(matIcon.classList).toContain('fa-my-awesome-icon', 'should have replaced the _ with - and have stripped the icon_ prefix');
+
+    component.styles = new PresentationStyles(['some_presentationstyle']);
+    fixture.detectChanges();
+    expect(matIcon.classList).not.toContain('fa-my-awesome-icon', 'class should have been removed so the icon is not visible anymore after update.');
   });
 
 });
