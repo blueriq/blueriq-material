@@ -82,7 +82,7 @@
     "merge": "1.2.1",
     "protractor": "5.4.2",
     "protractor-jasmine2-html-reporter": "0.0.7",
-    "sass-lint": "1.12.1",
+    "sass-lint": "1.13.1",
     "ts-node": "8.0.2",
     "tslint": "5.12.1",
     "typescript": "3.2.4",
@@ -93,6 +93,7 @@
     "handlebars": "^4.1.2",
     "js-yaml": "^3.13.1",
     "marked": "^0.6.2",
-    "tar": "^4.4.2"
+    "tar": "^4.4.2",
+	"eslint": "^4.18.2"
   }
 }
