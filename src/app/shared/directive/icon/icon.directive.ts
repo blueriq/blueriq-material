@@ -35,6 +35,8 @@ export class BqIconDirective {
       iconName = iconName.toLowerCase();
       this._class = 'mat-icon material-icons ' + iconName;
       this.elementRef.nativeElement.innerHTML = iconName;
+    } else {
+      this._class = '';
     }
   }
 
