@@ -1,6 +1,8 @@
+@import 'globals/variables';
+
 mat-hint,
 mat-error {
-  font-size: 75%;
+  font-size: $font-size-smaller;
 }
 
 .selection-control {

@@ -1,3 +1,4 @@
+@import 'globals/variables';
 @import '~@angular/material/theming';
 
 // Suppress the border on the bottom of the field
@@ -11,6 +12,6 @@
 
 .mat-form-field {
   padding: 0 12px;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: $font-size;
+  line-height: $line-height;
 }

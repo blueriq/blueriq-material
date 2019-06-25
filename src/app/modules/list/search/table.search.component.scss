@@ -1,6 +1,8 @@
+@import 'globals/variables';
+
 .mat-form-field {
   min-height: 57px;
-  font-size: 14px;
+  font-size: $font-size;
 
   .mat-chip {
     margin: 1px;
