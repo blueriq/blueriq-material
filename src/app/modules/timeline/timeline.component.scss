@@ -19,7 +19,7 @@ $background-card: map-get($mat-light-theme-background, card);
   .content {
     margin: ($shape-top + 6) $bq-margin 0 0;
     color: $dark-secondary-text;
-    font-size: $font-size-small - 1;
+    font-size: $font-size-small;
     text-align: right;
   }
 
