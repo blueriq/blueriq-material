@@ -1,5 +1,6 @@
 @import '~@angular/material/theming';
 @import 'globals/variables';
+@import 'globals/images';
 
 .mat-toolbar {
   top: 0;
@@ -17,6 +18,10 @@
   );
 
   color: $light-primary-text;
+
+  .img-logo-white {
+    @include image($url_img_logo_white, 110px, 45px);
+  }
 
   // sass-lint:disable-all
   h1 {

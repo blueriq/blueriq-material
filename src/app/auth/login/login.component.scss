@@ -1,4 +1,5 @@
 @import 'globals/variables';
+@import 'globals/images';
 
 @keyframes move {
   0%, 100% {
@@ -27,11 +28,15 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('/theme/blueriq/images/blueriq-icons.png') repeat 50% 50%;
+      background: url($url_img_icons) repeat 50% 50%;
       background-size: 100% auto;
       animation: move 8s ease-in-out infinite;
     }
 
+  }
+
+  .img-logo {
+    @include image($url_img_logo, 110px, 50px);
   }
 
   .failed {

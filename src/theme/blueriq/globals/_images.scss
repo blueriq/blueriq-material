@@ -1,0 +1,15 @@
+@import 'variables';
+
+@mixin image($src, $width: 40px, $height: 40px) {
+  display: inline-block;
+  width: $width;
+  height: $height;
+  margin: auto;
+
+  background: {
+    image: url($src);
+    position: center center;
+    repeat: no-repeat;
+    size: 100% 100%;
+  }
+}

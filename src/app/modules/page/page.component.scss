@@ -1,5 +1,6 @@
 @import '~@angular/material/theming';
 @import 'globals/variables';
+@import 'globals/images';
 
 $bq-footer-height: 200px;
 
@@ -32,6 +33,10 @@ footer {
   margin: 0 auto;
   color: $dark-secondary-text;
   text-align: center;
+
+  .img-logo {
+    @include image($url_img_logo, 100px, 40px);
+  }
 
   a {
     color: $dark-secondary-text;

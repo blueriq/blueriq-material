@@ -9,12 +9,14 @@
   z-index: $z-index-drawer + 10;
 
   .loading-wrapper {
-    display: flex;
     position: fixed;
-    align-items: center;
-    justify-content: center;
     width: 100%;
     height: 100vh;
+    background: {
+      position: center center;
+      image: url($url_img_spinner);
+      repeat: no-repeat;
+    }
   }
 
 }
