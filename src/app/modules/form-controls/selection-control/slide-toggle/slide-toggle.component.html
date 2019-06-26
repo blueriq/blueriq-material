@@ -1,7 +1,6 @@
-<div bqKey class="selection-control">
-  <p *ngIf="field.questionText">{{field.questionText}}</p>
+<div bqClasses bqKey class="selection-control slide-toggle">
   <div>
-    <mat-slide-toggle [required]="field.required" [formControl]="formControl" color="primary">
+    <mat-slide-toggle [formControl]="formControl" [required]="field.required" color="primary">
       <ng-container *ngIf="!list">{{field.questionText}}</ng-container>
     </mat-slide-toggle>
   </div>

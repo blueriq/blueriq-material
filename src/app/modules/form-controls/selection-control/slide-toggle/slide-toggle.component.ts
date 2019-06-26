@@ -8,7 +8,10 @@ import { BqPresentationStyles } from '../../../BqPresentationStyles';
 @Component({
   selector: 'bq-slide-toggle',
   templateUrl: './slide-toggle.component.html',
-  styleUrls: ['../selection-control.component.scss'],
+  styleUrls: [
+    'slide-toggle.component.scss',
+    '../selection-control.component.scss',
+  ],
 })
 @BlueriqComponent({
   type: Field,

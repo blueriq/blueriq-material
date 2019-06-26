@@ -22,10 +22,18 @@ describe('SlideToggleComponent', () => {
   }));
 
   beforeEach(() => {
-    field = FieldTemplate.boolean();
-    field.styles(BqPresentationStyles.SWITCH);
+    field = FieldTemplate.boolean().styles(BqPresentationStyles.SWITCH).questionText('Setting1').explainText('Explain2');
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(SlideToggleComponent);
+  });
+
+  it('should be rendered properly', () => {
+    const label = component.nativeElement.querySelector('.mat-slide-toggle-label');
+    expect(label.innerText).toBe('Setting1');
+    const hint = component.nativeElement.querySelector('mat-hint');
+    expect(hint.innerText).toBe('Explain2');
+    const inputField = component.nativeElement.querySelector('.mat-checked');
+    expect(inputField).toBeFalsy();
   });
 
   it('should be changed', () => {
