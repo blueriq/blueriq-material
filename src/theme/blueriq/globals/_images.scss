@@ -7,8 +7,8 @@
   margin: auto;
 
   background: {
-    image: url($src);
     position: center center;
+    image: url($src);
     repeat: no-repeat;
     size: 100% 100%;
   }
