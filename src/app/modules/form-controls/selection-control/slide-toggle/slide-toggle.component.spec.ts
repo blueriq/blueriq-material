@@ -29,9 +29,9 @@ describe('SlideToggleComponent', () => {
 
   it('should be rendered properly', () => {
     const label = component.nativeElement.querySelector('.mat-slide-toggle-label');
-    expect(label.innerText).toBe('Setting1');
+    expect(label.innerText.trim()).toBe('Setting1');
     const hint = component.nativeElement.querySelector('mat-hint');
-    expect(hint.innerText).toBe('Explain2');
+    expect(hint.innerText.trim()).toBe('Explain2');
     const inputField = component.nativeElement.querySelector('.mat-checked');
     expect(inputField).toBeFalsy();
   });
