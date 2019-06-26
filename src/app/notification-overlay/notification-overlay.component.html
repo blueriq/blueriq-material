@@ -5,9 +5,11 @@
 
     <div fxFlex fxLayout="column" fxLayoutAlign="space-around center">
 
-      <img src="./theme/blueriq/images/oops-icon.svg" height="175" *ngIf="notification.type === 'error'">
-      <img src="./theme/blueriq/images/session-expired.svg" height="175" *ngIf="notification.type === 'expired'">
-      <img src="./theme/blueriq/images/logged-out.svg" height="175" *ngIf="notification.type === 'logged-out'">
+      <div class="image">
+        <span class="img-oops" *ngIf="notification.type === 'error'"></span>
+        <span class="img-session-expired" *ngIf="notification.type === 'expired'"></span>
+        <span class="img-logged-out" *ngIf="notification.type === 'logged-out'"></span>
+      </div>
 
       <p class="title">{{ notification.title }}</p>
       <p class="message">{{ notification.message }}</p>
