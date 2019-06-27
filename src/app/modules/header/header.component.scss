@@ -2,6 +2,10 @@
 @import 'globals/variables';
 @import 'globals/images';
 
+.dashboard-header {
+  display: $header-display;
+}
+
 .mat-toolbar {
   top: 0;
 

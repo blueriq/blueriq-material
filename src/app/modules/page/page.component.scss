@@ -18,15 +18,15 @@ $bq-footer-height: 200px;
 /* There could be more toolbars on the page
 *  this takes care for at least 5 toolbars
 */
-@mixin margins {
-  @for $i from 1 through 5 {
-    .margin-#{$i} {
+@for $i from 0 through 5 {
+  .margin-#{$i} {
+    @if $header-display == none {
       padding-top: $bq-toolbar-height * $i;
+    } @else {
+      padding-top: $bq-toolbar-height * ($i + 1);
     }
   }
 }
-
-@include margins;
 
 footer {
   max-width: 1080px;

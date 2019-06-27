@@ -1,30 +1,34 @@
 <mat-toolbar bqKey class="dashboard-header">
-  <div bqKey fxFlex>
-    <span class="img-logo-white"></span>
-    <h1 fxFlex>{{ displayName }}</h1>
-  </div>
+  <div fxLayout="row" fxLayoutAlign=" center" fxFill>
+    <div fxFlex="1 1 0%">
+      <span class="img-logo-white"></span>
+      <h1 fxFlex>{{ displayName }}</h1>
+    </div>
 
-  <ng-container *ngIf="dashboardHeader">
-    <ng-container *ngFor="let child of dashboardHeader.children | bqIncluded" [bqElement]="child"></ng-container>
-  </ng-container>
+    <div fxFlex>
+      <ng-container *ngIf="dashboardHeader">
+        <ng-container *ngFor="let child of dashboardHeader.children | bqIncluded" [bqElement]="child"></ng-container>
+      </ng-container>
+    </div>
 
-  <div fxFlex="0 0 auto" class="application-actions" *ngIf="authenticatedUser || logoutLink">
+    <div fxFlex="0 0 auto" class="application-actions" *ngIf="authenticatedUser || logoutLink">
 
-    <button type="button" mat-button [matMenuTriggerFor]="userMenu" aria-label="Open user menu" class="active-user-menu">
-      <div fxLayout="row" fxLayoutGap="12px" class="icon">
-        <div fxLayoutAlign="center center">
-          <mat-icon>account_circle</mat-icon>
+      <button type="button" mat-button [matMenuTriggerFor]="userMenu" aria-label="Open user menu" class="active-user-menu">
+        <div fxLayout="row" fxLayoutGap="12px" class="icon">
+          <div fxLayoutAlign="center center">
+            <mat-icon>account_circle</mat-icon>
+          </div>
+          <div class="username" *ngIf="authenticatedUser">
+            <span>{{ authenticatedUser.plainText }}</span>
+          </div>
         </div>
-        <div class="username" *ngIf="authenticatedUser">
-          <span>{{ authenticatedUser.plainText }}</span>
-        </div>
-      </div>
-    </button>
-
-    <mat-menu [overlapTrigger]="false" #userMenu="matMenu">
-      <button mat-menu-item (click)="logout()" *ngIf="logoutLink">
-        {{ logoutLink.plainText }}
       </button>
-    </mat-menu>
+
+      <mat-menu [overlapTrigger]="false" #userMenu="matMenu">
+        <button mat-menu-item (click)="logout()" *ngIf="logoutLink">
+          {{ logoutLink.plainText }}
+        </button>
+      </mat-menu>
+    </div>
   </div>
 </mat-toolbar>
