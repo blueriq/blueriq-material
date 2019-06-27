@@ -20,6 +20,9 @@
     "paths": {
       "@shared/*": [
         "src/app/shared/*"
+      ],
+      "@angular/*": [
+        "node_modules/@angular/*"
       ]
     }
   }
