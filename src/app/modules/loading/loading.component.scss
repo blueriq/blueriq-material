@@ -14,7 +14,7 @@
     height: 100vh;
     background: {
       position: center center;
-      image: url($url-img-spinner);
+      image: url('../../..' + $url-img-spinner);
       repeat: no-repeat;
     }
   }

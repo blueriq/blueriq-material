@@ -23,15 +23,15 @@
     margin-top: $bq-margin-triple;
 
     .img-oops {
-      @include image($url-img-oops, 175px, 175px);
+      @include image('../..' + $url-img-oops, 175px, 175px);
     }
 
     .img-session-expired {
-      @include image($url-img-session-expired, 175px, 175px);
+      @include image('../..' + $url-img-session-expired, 175px, 175px);
     }
 
     .img-logged-out {
-      @include image($url-img-logged-out, 175px, 175px);
+      @include image('../..' + $url-img-logged-out, 175px, 175px);
     }
   }
 

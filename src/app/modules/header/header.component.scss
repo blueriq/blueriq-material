@@ -24,7 +24,7 @@
   color: $light-primary-text;
 
   .img-logo-white {
-    @include image($url-img-logo-white, 110px, 45px);
+    @include image('../../..' + $url-img-logo-white, 110px, 45px);
   }
 
   // sass-lint:disable-all
