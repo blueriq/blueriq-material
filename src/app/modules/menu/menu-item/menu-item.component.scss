@@ -9,16 +9,16 @@ bq-menu-item > * > .mat-menu-item {
 .mat-button,
 .mat-menu-item {
   color: $light-primary-text;
-  font-size: $font-size;
+  font-size: $default-font-size;
   font-weight: 400;
   text-transform: uppercase;
 
   .mat-icon {
-    width: $font-size;
-    height: $font-size;
+    width: $default-font-size;
+    height: $default-font-size;
     margin: 0;
     color: $light-primary-text;
-    font-size: $font-size;
+    font-size: $default-font-size;
   }
 }
 

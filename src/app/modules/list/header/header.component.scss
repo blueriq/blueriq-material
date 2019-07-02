@@ -21,13 +21,13 @@
   ::ng-deep {
     bq-textitem-static {
       color: mat-color($bq-mat-grey-medium, 300);
-      font-size: $font-size-small;
+      font-size: $font-size-list-header;
       font-weight: 500;
     }
   }
 }
 
 .mat-icon {
-  font-size: $font-size-large;
+  font-size: $font-size-list-header-icon;
   font-weight: 800;
 }

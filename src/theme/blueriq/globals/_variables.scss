@@ -41,13 +41,23 @@ $h4-size: 1.12em;
 $h5-size: .83em;
 $h6-size: .75em;
 
+// Preset font-sizes
 $font-size-smaller: 9px;
 $font-size-small: 12px;
-$font-size: 14px;
+$default-font-size: 14px;
 $font-size-large: 15px;
-$font-size-larger: 22px;
 
-$line-height: 20px;
+// Font sizes per component using the preset font-sizes
+$font-size-mat-error: $font-size-smaller;
+$font-size-filter-row-icon: $font-size-smaller;
+$font-size-timeline-content: $font-size-small;
+$font-size-comment-list-date: $font-size-small;
+$font-size-footer-address: $font-size-small;
+$font-size-list-header: $font-size-small;
+$font-size-list-limit: $font-size-small;
+$font-size-list-header-icon: $font-size-large;
+
+$default-line-height: 20px;
 
 // URLs
 $url-prefix: '/theme/blueriq/images/';

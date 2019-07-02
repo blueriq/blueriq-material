@@ -19,7 +19,7 @@ $background-card: map-get($mat-light-theme-background, card);
   .content {
     margin: ($shape-top + 6) $bq-margin 0 0;
     color: $dark-secondary-text;
-    font-size: $font-size-small;
+    font-size: $font-size-timeline-content;
     text-align: right;
   }
 
@@ -50,7 +50,7 @@ $background-card: map-get($mat-light-theme-background, card);
     margin: $card-left-margin $bq-margin-double;
     padding: $bq-margin;
     background: $background-card;
-    font-size: $font-size;
+    font-size: $default-font-size;
 
     .time {
       color: $dark-secondary-text;
