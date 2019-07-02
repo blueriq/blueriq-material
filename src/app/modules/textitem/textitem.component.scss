@@ -16,7 +16,8 @@
     display: flex;
     margin-right: 15px;
     padding: 4px 6px;
-    font-size: $font-size-larger;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .text {
