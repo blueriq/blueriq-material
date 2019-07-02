@@ -32,7 +32,7 @@ body {
 .introduction {
   background: {
     position: left top;
-    image: url('../../theme/blueriq/images/blueriq-technology.svg');
+    image: url('../..' + $url-img-introduction);
     repeat: no-repeat;
     size: 39px;
   }

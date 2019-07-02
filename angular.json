@@ -28,8 +28,7 @@
               "src/theme/blueriq/images"
             ],
             "styles": [
-              "src/theme/blueriq/index.scss",
-              "src/theme/splashscreen.scss"
+              "src/theme/blueriq/index.scss"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [

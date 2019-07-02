@@ -44,7 +44,7 @@ describe('PageComponent', () => {
 
     expect(header.querySelector('bq-header')).toBeTruthy('No header is set, so the default header should be rendered');
     expect(header.querySelectorAll('bq-menu').length).toBe(2);
-    expect(page.classList).toContain('margin-3', 'Having a bq-header and bq-menus adds up to having 3 components, ' +
+    expect(page.classList).toContain('margin-2', 'Having a bq-header and bq-menus adds up to having 2 components, ' +
       'so this margin selector is expected');
   });
 

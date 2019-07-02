@@ -34,12 +34,7 @@ export class PageComponent implements OnInit, OnUpdate {
    */
   ngOnInit(): void {
     window.scroll(0, 0);
-
     this.toolbarsCounter = this.dashboardMenus.length;
-    // We always render a default toolbar when root
-    if (this.blueriqSession.isRoot) {
-      this.toolbarsCounter += 1;
-    }
   }
 
   bqOnUpdate(): void {

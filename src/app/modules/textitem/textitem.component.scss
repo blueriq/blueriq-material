@@ -5,8 +5,8 @@
 .text-item {
   display: flex;
   color: $dark-primary-text;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: $default-font-size;
+  line-height: $default-line-height;
 
   p {
     margin: 0 0 10px;
@@ -14,9 +14,10 @@
 
   .gutter {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     margin-right: 15px;
     padding: 4px 6px;
-    font-size: 22px;
   }
 
   .text {

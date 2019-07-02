@@ -1,5 +1,6 @@
 @import '~@angular/material/theming';
 @import 'globals/variables';
+@import 'globals/images';
 
 $bq-footer-height: 200px;
 
@@ -17,21 +18,25 @@ $bq-footer-height: 200px;
 /* There could be more toolbars on the page
 *  this takes care for at least 5 toolbars
 */
-@mixin margins {
-  @for $i from 1 through 5 {
-    .margin-#{$i} {
+@for $i from 0 through 5 {
+  .margin-#{$i} {
+    @if $header-display == none {
       padding-top: $bq-toolbar-height * $i;
+    } @else {
+      padding-top: $bq-toolbar-height * ($i + 1);
     }
   }
 }
-
-@include margins;
 
 footer {
   max-width: 1080px;
   margin: 0 auto;
   color: $dark-secondary-text;
   text-align: center;
+
+  .img-logo {
+    @include image('../../..' + $url-img-logo, 100px, 40px);
+  }
 
   a {
     color: $dark-secondary-text;
@@ -45,8 +50,8 @@ footer {
   }
 
   address {
-    font-size: 12px;
-    line-height: 20px;
+    font-size: $font-size-footer-address;
+    line-height: $default-line-height;
   }
 
   .mat-divider {

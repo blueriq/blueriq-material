@@ -1,5 +1,10 @@
 @import '~@angular/material/theming';
 @import 'globals/variables';
+@import 'globals/images';
+
+.dashboard-header {
+  display: $header-display;
+}
 
 .mat-toolbar {
   top: 0;
@@ -17,6 +22,10 @@
   );
 
   color: $light-primary-text;
+
+  .img-logo-white {
+    @include image('../../..' + $url-img-logo-white, 110px, 45px);
+  }
 
   // sass-lint:disable-all
   h1 {
@@ -40,7 +49,7 @@
 
       .username {
         padding-top: 30px;
-        line-height: 20px;
+        line-height: $default-line-height;
       }
     }
   }
