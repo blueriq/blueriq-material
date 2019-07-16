@@ -89,11 +89,13 @@
     "webdriver-manager": "12.1.4"
   },
   "resolutions": {
+    "eslint": "^4.18.2",
     "fstream": "^1.0.12",
     "handlebars": "^4.1.2",
     "js-yaml": "^3.13.1",
+    "lodash": "^4.17.13",
+    "lodash.mergewith": "^4.6.2",
     "marked": "^0.6.2",
-    "tar": "^4.4.2",
-	"eslint": "^4.18.2"
+    "tar": "^4.4.2"
   }
 }
