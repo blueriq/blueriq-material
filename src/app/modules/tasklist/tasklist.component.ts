@@ -1,4 +1,4 @@
-import { AfterContentChecked, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort } from '@angular/material';
 import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
 import { Button, Container, PresentationStyles } from '@blueriq/core';
@@ -19,7 +19,7 @@ import { TaskListDataSource } from './tasklist-datasource';
   type: Container,
   selector: BqContentStyles.TASK_LIST,
 })
-export class TaskListComponent implements OnInit, AfterContentChecked, OnDestroy {
+export class TaskListComponent implements OnInit, OnDestroy {
 
   displayedColumns: string[];
 
@@ -36,7 +36,6 @@ export class TaskListComponent implements OnInit, AfterContentChecked, OnDestroy
   private sortChangeSubscription: Subscription;
   private tasksSubscription: Subscription;
   private taskEventsSubscription: Subscription;
-  private data: Task[] = [];
 
   constructor(public taskList: TaskList, session: BlueriqSession) {
     this.taskDataSource = new TaskListDataSource(taskList.columnDefinitions, session.localization.dateFormats);
@@ -52,27 +51,16 @@ export class TaskListComponent implements OnInit, AfterContentChecked, OnDestroy
   }
 
   ngOnInit(): void {
+    this.taskDataSource.sort = this.sort;
+    this.taskDataSource.paginator = this.paginator;
+
     this.tasksSubscription = this.taskList.tasks$.subscribe(tasks => this.updateDataSource(tasks));
     this.taskEventsSubscription = this.taskList.taskEvents$.subscribe(taskEvent => {
       this.tasksToHighlight.push(taskEvent.taskModel.identifier);
     });
-  }
-
-  ngAfterContentChecked(): void {
-    if (this.taskDataSource.sort == null || this.taskDataSource.sort !== this.sort) {
-      this.taskDataSource.sort = this.sort;
-    }
-    if (this.taskDataSource.paginator == null || this.taskDataSource.paginator !== this.paginator) {
-      this.taskDataSource.paginator = this.paginator;
-    }
-    if (this.sort != null) {
-      if (this.sortChangeSubscription != null) {
-        this.sortChangeSubscription.unsubscribe();
-      }
-      this.sortChangeSubscription = this.sort.sortChange.subscribe(() => {
-        this.clearTasksToHighlight();
-      });
-    }
+    this.sortChangeSubscription = this.sort.sortChange.subscribe(() => {
+      this.clearTasksToHighlight();
+    });
   }
 
   ngOnDestroy(): void {
@@ -129,4 +117,5 @@ export class TaskListComponent implements OnInit, AfterContentChecked, OnDestroy
   private updateDataSource(tasks: Task[]): void {
     this.taskDataSource.data = tasks;
   }
+
 }

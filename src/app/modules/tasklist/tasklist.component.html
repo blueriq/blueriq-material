@@ -1,57 +1,54 @@
 <div bqClasses bqKey>
-  <div *ngIf="taskDataSource.data.length > 0">
+  <mat-form-field>
+    <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filter">
+  </mat-form-field>
 
-    <mat-form-field>
-      <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filter">
-    </mat-form-field>
+  <table [dataSource]="taskDataSource" mat-table matSort>
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
 
-    <table [dataSource]="taskDataSource" mat-table matSort>
-      <!--- Note that these columns can be defined in any order.
-            The actual rendered columns are set as a property on the row definition" -->
-
-      <ng-container *ngFor="let column of taskList.columnDefinitions" [matColumnDef]="column.identifier">
-        <th *matHeaderCellDef [disabled]="!!column.action" mat-header-cell mat-sort-header>{{column.header}}</th>
-        <td *matCellDef="let task" mat-cell>
+    <ng-container *ngFor="let column of taskList.columnDefinitions" [matColumnDef]="column.identifier">
+      <th *matHeaderCellDef [disabled]="!!column.action" mat-header-cell mat-sort-header>{{column.header}}</th>
+      <td *matCellDef="let task" mat-cell>
       <span *ngIf="!column.action" [ngClass]="column.styles.all()">
         {{getCellData(task, column)}}
       </span>
-          <ng-container *ngIf="column.action">
-            <button (click)="buttonPressed(column.action, task.identifier)"
-              *ngIf="isIconButton(column.styles)"
-              [color]="getColor(column.styles)"
-              [disabled]="task.caseLocked || task.status != 'open'"
-              [ngClass]="column.styles.all()"
-              mat-icon-button>
-              <mat-icon [bqIcon]="column.styles"></mat-icon>
-            </button>
-            <button (click)="buttonPressed(column.action, task.identifier)"
-              *ngIf="!isIconButton(column.styles)"
-              [color]="getColor(column.styles)"
-              [disabled]="task.caseLocked || task.status != 'open'"
-              [ngClass]="column.styles.all()"
-              mat-button>
-              <mat-icon [bqIcon]="column.styles"></mat-icon>
-              {{ column.action.caption }}
-            </button>
-          </ng-container>
-        </td>
-      </ng-container>
+        <ng-container *ngIf="column.action">
+          <button (click)="buttonPressed(column.action, task.identifier)"
+            *ngIf="isIconButton(column.styles)"
+            [color]="getColor(column.styles)"
+            [disabled]="task.caseLocked || task.status != 'open'"
+            [ngClass]="column.styles.all()"
+            mat-icon-button>
+            <mat-icon [bqIcon]="column.styles"></mat-icon>
+          </button>
+          <button (click)="buttonPressed(column.action, task.identifier)"
+            *ngIf="!isIconButton(column.styles)"
+            [color]="getColor(column.styles)"
+            [disabled]="task.caseLocked || task.status != 'open'"
+            [ngClass]="column.styles.all()"
+            mat-button>
+            <mat-icon [bqIcon]="column.styles"></mat-icon>
+            {{ column.action.caption }}
+          </button>
+        </ng-container>
+      </td>
+    </ng-container>
 
-      <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
-      <tr *matRowDef="let row; columns: displayedColumns;"
-        [class.highlight]="tasksToHighlight.includes(row.identifier)"
-        mat-row></tr>
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;"
+      [class.highlight]="tasksToHighlight.includes(row.identifier)"
+      mat-row></tr>
 
-    </table>
+  </table>
 
-    <mat-paginator (page)="pageChanged()"
-      [pageSizeOptions]="[5, 10, 20]"
-      [pageSize]="taskList.pagingSize"
-      showFirstLastButtons></mat-paginator>
-
-  </div>
-
-  <div *ngIf="taskDataSource.data.length == 0">
+  <div *ngIf="taskDataSource.data.length == 0" class="no-results-text">
     {{noResultsText}}
   </div>
+
+  <mat-paginator (page)="pageChanged()"
+    [pageSizeOptions]="[5, 10, 20]"
+    [pageSize]="taskList.pagingSize"
+    showFirstLastButtons></mat-paginator>
+
 </div>
