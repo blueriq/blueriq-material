@@ -112,16 +112,6 @@ export class TaskListComponent implements OnInit, AfterContentChecked, OnDestroy
     this.taskList.buttonPressed(button, taskIdentifier);
   }
 
-  toggleData(): void {
-    if (this.taskDataSource.data.length > 0) {
-      this.data = Object.assign([], this.taskDataSource.data);
-      this.taskDataSource.data = [];
-    } else {
-      this.taskDataSource.data = Object.assign([], this.data);
-      this.data = [];
-    }
-  }
-
   /** passes a new filter value to the datasource */
   applyFilter(filterValue: string): void {
     this.clearTasksToHighlight();
