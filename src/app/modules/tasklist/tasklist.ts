@@ -22,11 +22,13 @@ export class TaskList implements OnDestroy {
 
   columnDefinitions: ColumnDefinition[];
   pagingSize: number;
-  lockedStyle: string | undefined;
+
   @BlueriqChildren(Container, 'header_cell', { required: true })
   headerContainers: Container[];
-  @BlueriqChild(TextItem, { optional: true })
+
+  @BlueriqChild(TextItem, 'no_results > [type=textitem]', { optional: true })
   noResults: TextItem;
+
   tasks$: BehaviorSubject<Task[]>;
   taskEvents$: Subject<TaskEvent>;
   caseEvents$: Subject<CaseEvent>;
@@ -42,7 +44,6 @@ export class TaskList implements OnDestroy {
     this.querying.attach(this);
     this.columnDefinitions = [];
     this.pagingSize = container.properties['pagingsize'] ? parseInt(container.properties['pagingsize'], 10) : this.DEFAULT_PAGING_SIZE;
-    this.lockedStyle = container.properties['lockedstyle'];
     this.containerUuid = container.properties['containeruuid'];
 
     this.tasks$ = new BehaviorSubject<Task[]>([]);

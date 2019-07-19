@@ -10,6 +10,13 @@
   }
 }
 
+.no-results-text {
+  padding: $bq-margin $bq-margin-double;
+  color: $dark-primary-text;
+  font-size: $default-font-size;
+  line-height: $default-line-height;
+}
+
 @keyframes highlight {
   0% {
     background: mat-color($bq-mat-primary-blue, A400);

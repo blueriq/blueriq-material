@@ -100,7 +100,9 @@ describe('Task List Component', () => {
         .children(
           ButtonTemplate.create('button').caption('Klik op mij'),
         ),
-      TextItemTemplate.create('NoResults').plainText('Nothing to see here'),
+      ContainerTemplate.create().contentStyle('no_results').children(
+        TextItemTemplate.create('NoResults').plainText('Nothing to see here'),
+      ),
     );
 
     taskService.getAllTasks.and.returnValue(of(
@@ -170,14 +172,21 @@ describe('Task List Component', () => {
       const secondRowButtons = secondRowColumns[3].querySelectorAll('.mat-button');
       expect(secondRowButtons.length).toBe(1);
       expect(secondRowButtons[0].innerText).toBe('Klik op mij');
+
+      const emptyText = component.nativeElement.querySelectorAll('.no-results-text');
+      expect(emptyText.length).toBe(0);
     });
 
-    it('should not display rows when the list is empty', () => {
+    it('should not display rows but empty text when the list is empty', () => {
       taskService.getAllTasks.and.returnValue(EMPTY);
       buildComponent();
 
       const matRows = component.nativeElement.querySelectorAll('.mat-row');
       expect(matRows.length).toBe(0);
+
+      const emptyText = component.nativeElement.querySelectorAll('.no-results-text');
+      expect(emptyText.length).toBe(1);
+      expect(emptyText.item(0).textContent.trim()).toBe('Nothing to see here');
     });
 
     it('should pass buttonPressed calls to the taskList service', () => {
