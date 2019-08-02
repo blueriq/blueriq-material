@@ -4,7 +4,7 @@
 	<groupId>com.blueriq</groupId>
 	<artifactId>blueriq-material-theme</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0.13-SNAPSHOT</version>
+	<version>1.0.13</version>
 
 	<name>Blueriq Material theme</name>
 	<description>Blueriq Material theme</description>
@@ -94,7 +94,7 @@
 		<connection>${scm.connection}</connection>
 		<developerConnection>${scm.developerConnection}</developerConnection>
 		<url>${scm.url}</url>
-		<tag>HEAD</tag>
+		<tag>blueriq-material-theme-1.0.13</tag>
 	</scm>
 
 </project>
