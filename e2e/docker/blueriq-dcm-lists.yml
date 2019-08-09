@@ -13,7 +13,8 @@ spring:
     ssl:
       enabled: false
 blueriq:
-  case-engine:
-    event:
-      consumer:
-        queueNames: caseEngineEventsQueue
+  dcm:
+    lists:
+      event:
+        consumer:
+          queueNames: dcmListsServiceEventsQueue

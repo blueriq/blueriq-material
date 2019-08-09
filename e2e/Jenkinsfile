@@ -2,14 +2,14 @@
 
 properties([
   [
-    $class: 'BuildDiscarderProperty',
+    $class  : 'BuildDiscarderProperty',
     strategy: [$class: 'LogRotator', numToKeepStr: '5']
   ],
   parameters([
     gitParameter(name: 'BRANCH_NAME', defaultValue: 'master', selectedValue: 'DEFAULT', type: 'PT_BRANCH'),
     string(name: 'RUNTIME_BRANCH', defaultValue: 'master', description: "The runtime branch to test against"),
     string(name: 'cdsVersion', defaultValue: '3.0.0', description: "The CDS version to test against"),
-    string(name: 'caseEngineVersion', defaultValue: '1.0.0-SNAPSHOT', description: "The case engine version to test against"),
+    string(name: 'dcmListsVersion', defaultValue: '1.0.0-SNAPSHOT', description: "The dcm lists version to test against"),
   ])
 ])
 node {
@@ -49,7 +49,7 @@ node {
         prepareFrontendFiles();
         prepareRuntimeFiles();
         prepareCdsFiles();
-        prepareCaseEngineFiles();
+        prepareDcmListsFiles();
 
         bat "docker-compose --file .\\\\e2e\\\\docker\\\\docker-compose.yml build --build-arg BLUERIQ_LICENSE=${env.BLUERIQ_LICENSE}";
         bat "docker-compose --file .\\e2e\\docker\\docker-compose.yml up -d";
@@ -58,12 +58,12 @@ node {
         timeout(time: 180, unit: 'SECONDS') {
           waitUntil {
             try {
-              String output = bat (
+              String output = bat(
                 script: "curl --connect-timeout 10 -i http://bq-docker-lin.blueriq.local:9082/Runtime/server/start/kinderbijslag",
                 returnStdout: true
               ).trim();
               return output.contains("HTTP/1.1 302");
-            } catch(exception) {
+            } catch (exception) {
               return false;
             }
           }
@@ -102,8 +102,8 @@ def prepareCdsFiles() {
   bat "mvn dependency:copy -Dartifact=com.blueriq:blueriq-customerdata-sql-store-standalone:${params.cdsVersion}:jar -DoutputDirectory=e2e/docker"
 }
 
-def prepareCaseEngineFiles() {
-  bat "mvn dependency:copy -Dartifact=com.blueriq:blueriq-case-engine-tasklist-standalone:${params.caseEngineVersion}:jar -DoutputDirectory=e2e/docker"
+def prepareDcmListsFiles() {
+  bat "mvn dependency:copy -Dartifact=com.blueriq:blueriq-dcm-lists-standalone:${params.dcmListsVersion}:jar -DoutputDirectory=e2e/docker"
 }
 
 def notifyBuildStatus() {
