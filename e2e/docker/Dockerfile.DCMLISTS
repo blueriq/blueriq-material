@@ -1,0 +1,12 @@
+FROM openjdk:11-jre-slim
+
+LABEL maintainer="support@blueriq.com"
+
+EXPOSE 8080
+
+COPY blueriq-dcm-lists-standalone-*.jar ~/dcm-lists.jar
+COPY blueriq-dcm-lists.yml /config/blueriq-dcm-lists/
+
+WORKDIR ~
+
+ENTRYPOINT ["java", "-Dspring.config.additional-location=file:///config/blueriq-dcm-lists/", "-jar", "dcm-lists.jar", "-Xmx384m" ]
