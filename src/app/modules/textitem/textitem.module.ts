@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatIconModule } from '@angular/material';
-import { BlueriqComponents, BlueriqModule, BlueriqStyles } from '@blueriq/angular';
+import { BlueriqCommonModule, BlueriqComponents, BlueriqStyles } from '@blueriq/angular';
 import { TextItemModule as BlueriqTextItemModule } from '@blueriq/angular/textitems';
 import { TextItem } from '@blueriq/core';
 import { SharedModule } from '@shared/shared.module';
@@ -41,7 +41,7 @@ const BLUERIQ_COMPONENTS = [
     BlueriqTextItemModule,
     SharedModule,
 
-    BlueriqModule.forRoot(), // using bqClasses (which triggers to use the css to use colors)
+    BlueriqCommonModule,
 
     /* Material modules */
     MatIconModule,

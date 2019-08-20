@@ -10,7 +10,7 @@ import {
   MatSortModule,
   MatTableModule,
 } from '@angular/material';
-import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
+import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
 import { SharedModule } from '@shared/shared.module';
 import { TaskService } from './task_service';
 import { TaskListComponent } from './tasklist.component';
@@ -32,7 +32,7 @@ const BLUERIQ_COMPONENTS = [
     CommonModule,
     SharedModule,
 
-    BlueriqModule.forRoot(), // using bqClasses (which triggers to use the css to use colors)
+    BlueriqCommonModule,
 
     MatButtonModule,
     MatFormFieldModule,
@@ -46,5 +46,6 @@ const BLUERIQ_COMPONENTS = [
   ],
   exports: [BLUERIQ_COMPONENTS],
 })
+
 export class TaskListModule {
 }

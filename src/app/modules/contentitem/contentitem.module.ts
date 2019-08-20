@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
+import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
 import { SharedModule } from '@shared/shared.module';
 import { ContentItemComponent } from './contentitem.component';
 
@@ -19,7 +19,7 @@ const BLUERIQ_COMPONENTS = [
     CommonModule,
     SharedModule,
 
-    BlueriqModule.forRoot(), // using bqClasses (which triggers to use the css to use colors)
+    BlueriqCommonModule,
   ],
   exports: [BLUERIQ_COMPONENTS],
 })

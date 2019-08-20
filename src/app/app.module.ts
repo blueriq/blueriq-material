@@ -65,7 +65,9 @@ const routes: Routes = [
     }),
 
     // Blueriq
-    BlueriqModule.forRoot(),
+    BlueriqModule.forRoot({
+      isBundled: environment.isBundled,
+    }),
     BlueriqStoreModule.forRoot(),
     V2BackendModule.forRoot({
       baseUrl: environment.baseUrl,
