@@ -1,4 +1,4 @@
-<div bqKey bqClasses [bqContainer]="container" *ngIf="!authenticationFailed">
+<div bqKey bqClasses [ngClass]="'external-flow-container'" [bqContainer]="container" *ngIf="!authenticationFailed">
 
   <bq-heading [title]="container.displayName" [styles]="container.styles"></bq-heading>
 
