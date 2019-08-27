@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule, MatIconModule, MatMenuModule, MatToolbarModule } from '@angular/material';
-import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
+import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
 import { SharedModule } from '@shared/shared.module';
 import { HeaderComponent } from './header.component';
 
@@ -19,7 +19,7 @@ const BLUERIQ_COMPONENTS = [
   ],
   imports: [
     CommonModule,
-    BlueriqModule.forRoot(),  // using bqIncluded
+    BlueriqCommonModule,
     FlexLayoutModule,
     SharedModule, // using bqKey
 

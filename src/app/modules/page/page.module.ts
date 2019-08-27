@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatDividerModule } from '@angular/material';
-import { BlueriqComponents, BlueriqModule } from '@blueriq/angular';
+import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
 import { HeaderModule } from '../header/header.module';
 import { PageComponent } from './page.component';
 
@@ -18,7 +18,7 @@ const BLUERIQ_COMPONENTS = [
   ],
   imports: [
     CommonModule,
-    BlueriqModule.forRoot(), // for pipe bqIncluded
+    BlueriqCommonModule,
 
     /* Blueriq modules */
     HeaderModule,
