@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { Case, Task, TaskEvent, TaskService } from '@blueriq/angular';
+import { TaskList } from '@blueriq/angular/lists';
 import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
 import { Button } from '@blueriq/core';
 import { ButtonTemplate, ContainerTemplate, TextItemTemplate } from '@blueriq/core/testing';
@@ -9,8 +11,6 @@ import { BqPresentationStyles } from '../BqPresentationStyles';
 import { ButtonModule } from '../button/button.module';
 import { ContainerModule } from '../container/container.module';
 import { TextItemModule } from '../textitem/textitem.module';
-import { Case, Task, TaskEvent, TaskService } from './task_service';
-import { TaskList } from './tasklist';
 import { TaskListComponent } from './tasklist.component';
 import { TaskListModule } from './tasklist.module';
 
