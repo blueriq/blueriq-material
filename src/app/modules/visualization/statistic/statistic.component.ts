@@ -58,9 +58,9 @@ export class StatisticComponent implements AfterViewInit {
 
   chart: Chart = [];
 
-  @ViewChild('canvas')
+  @ViewChild('canvas', { static: true })
   private canvas: ElementRef;
-  @ViewChild('chart')
+  @ViewChild('chart', { static: true })
   private chartDiv: ElementRef;
   private hasData = false;
   // These colors are based on the color palette from our theme, but transparent

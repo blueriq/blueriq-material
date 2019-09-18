@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatIconModule } from '@angular/material';
+import { MatIconModule } from '@angular/material/icon';
 import { BlueriqCommonModule, BlueriqComponents, BlueriqStyles } from '@blueriq/angular';
 import { TextItemModule as BlueriqTextItemModule } from '@blueriq/angular/textitems';
 import { TextItem } from '@blueriq/core';

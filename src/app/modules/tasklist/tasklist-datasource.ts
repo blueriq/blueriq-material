@@ -1,4 +1,4 @@
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
 import { Task } from '@blueriq/angular';
 import { ColumnDefinition } from '@blueriq/angular/lists';
 import { DateFormats } from '@blueriq/core';

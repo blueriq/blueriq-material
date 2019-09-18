@@ -1,5 +1,5 @@
 import { async, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import {
   ChangedPageAction,
   PageUpdatedAction,

@@ -1,7 +1,7 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatChipInputEvent } from '@angular/material';
+import { MatChipInputEvent } from '@angular/material/chips';
 import { Search } from '@blueriq/angular/lists';
 import { Subscription } from 'rxjs';
 
@@ -24,7 +24,7 @@ import { Subscription } from 'rxjs';
 })
 export class TableSearchComponent implements OnInit, OnDestroy {
 
-  @ViewChild('inputField')
+  @ViewChild('inputField', { static: false })
   inputField: ElementRef;
 
   @Input()

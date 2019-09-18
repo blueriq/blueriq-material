@@ -54,7 +54,8 @@ node {
   try {
     env.JAVA_HOME = tool 'jdk1.8.0_121'
     def mvnHome = tool "apache-maven-3.5.4"
-    env.PATH = "${env.JAVA_HOME}\\bin;${env.PATH};${mvnHome}\\bin;${env.NODEJS_PATH}\""
+    def nodeHome = tool 'node-10.15.3'
+    env.PATH = "${env.JAVA_HOME}\\bin;${mvnHome}\\bin;${nodeHome};${env.PATH}"
     env.SASS_BINARY_PATH = env.SASS_BINDING_PATH
     env.CHROME_BIN = env.CHROME_67_0_3396_99;
 

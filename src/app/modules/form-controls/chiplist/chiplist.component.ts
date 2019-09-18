@@ -1,6 +1,7 @@
 import { COMMA, ENTER, TAB } from '@angular/cdk/keycodes';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { MatChipInputEvent, MatOptionSelectionChange } from '@angular/material';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { MatOptionSelectionChange } from '@angular/material/core';
 import { BlueriqComponent, BlueriqSession, bySelector, OnUpdate } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { DomainValue, Field, FieldMessages } from '@blueriq/core';
@@ -23,7 +24,7 @@ export class ChiplistComponent implements OnInit, OnUpdate {
   formControl = this.form.control(this.field, { syncOn: 'blur', disableWhen: BqPresentationStyles.DISABLED });
   filteredDomainOptions: DomainValue[] = [];
 
-  @ViewChild('input')
+  @ViewChild('input', { static: true })
   inputField: ElementRef;
 
   constructor(public field: Field,

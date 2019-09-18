@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatSnackBarModule } from '@angular/material';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { EffectsModule } from '@ngrx/effects';
 import { MessagesEffect } from '@shared/effects/messages/messages.effect';
 import { ValidationEffect } from '@shared/effects/validation/validation.effect';

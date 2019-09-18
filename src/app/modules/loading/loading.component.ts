@@ -27,7 +27,7 @@ export class LoadingComponent implements OnInit {
     const interaction$ = this.loadingActivity.isActiveWithDelay(ActivityType.Interaction, 400);
     const fieldRefresh$ = this.loadingActivity.isActiveWithDelay(ActivityType.FieldRefresh, 400);
 
-    this.state$ = combineLatest(startingSession$, interaction$, fieldRefresh$).pipe(
+    this.state$ = combineLatest([startingSession$, interaction$, fieldRefresh$]).pipe(
       map(([isStarting, interaction, fieldRefresh]) => {
         return isStarting ? 'starting' : interaction || fieldRefresh ? 'loading' : 'idle';
       }),

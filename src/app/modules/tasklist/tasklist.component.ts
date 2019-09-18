@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { BlueriqComponent, BlueriqSession, Task } from '@blueriq/angular';
 import { ColumnDefinition, TaskList } from '@blueriq/angular/lists';
 import { Button, Container, PresentationStyles } from '@blueriq/core';
@@ -22,10 +23,10 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
   displayedColumns: string[];
 
-  @ViewChild(MatSort)
+  @ViewChild(MatSort, { static: true })
   sort: MatSort;
 
-  @ViewChild(MatPaginator)
+  @ViewChild(MatPaginator, { static: true })
   paginator: MatPaginator;
 
   taskDataSource: TaskListDataSource;

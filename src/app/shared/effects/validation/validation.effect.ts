@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ButtonPressHandledAction } from '@blueriq/angular';
 import { FormActions, InvalidFormAction } from '@blueriq/angular/forms';
 import { Actions, Effect, ofType } from '@ngrx/effects';
