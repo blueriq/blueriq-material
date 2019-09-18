@@ -2,15 +2,13 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {
-  MatAutocompleteModule,
-  MatDatepickerModule,
-  MatFormFieldModule,
-  MatIconModule,
-  MatInputModule,
-  MatSelectModule,
-  MatTooltipModule,
-} from '@angular/material';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqCommonModule } from '@blueriq/angular';
 import { FormattingModule } from '@blueriq/angular/formatting';

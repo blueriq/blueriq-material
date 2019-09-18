@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatInput } from '@angular/material';
+import { MatInput } from '@angular/material/input';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TextPredicate } from '@blueriq/angular/lists';

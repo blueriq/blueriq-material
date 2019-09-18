@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatButtonModule, MatIconModule, MatTooltipModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
 import { SharedModule } from '@shared/shared.module';
 import { HeadingModule } from '../heading/heading.module';

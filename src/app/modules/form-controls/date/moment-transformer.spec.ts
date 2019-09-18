@@ -1,4 +1,4 @@
-import moment = require('moment');
+import * as moment from 'moment';
 import { MomentTransformer } from './moment-transformer';
 
 describe('MomentTransfer', () => {
