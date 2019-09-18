@@ -1,7 +1,7 @@
+import { Task } from '@blueriq/angular';
+import { ColumnDefinition } from '@blueriq/angular/lists';
 import { PresentationStyles } from '@blueriq/core';
 import { provideDateFormats } from '@shared/date/bq-date-parser';
-import { Task } from './task_service';
-import { ColumnDefinition } from './tasklist';
 import { TaskListDataSource } from './tasklist-datasource';
 
 describe('Task List Data Source', () => {

@@ -1,12 +1,11 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort } from '@angular/material';
-import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
+import { BlueriqComponent, BlueriqSession, Task } from '@blueriq/angular';
+import { ColumnDefinition, TaskList } from '@blueriq/angular/lists';
 import { Button, Container, PresentationStyles } from '@blueriq/core';
 import { Subscription } from 'rxjs';
 import { BqContentStyles } from '../BqContentStyles';
 import { BqPresentationStyles } from '../BqPresentationStyles';
-import { Task } from './task_service';
-import { ColumnDefinition, TaskList } from './tasklist';
 import { TaskListDataSource } from './tasklist-datasource';
 
 @Component({

@@ -1,7 +1,7 @@
 import { MatTableDataSource } from '@angular/material';
+import { Task } from '@blueriq/angular';
+import { ColumnDefinition } from '@blueriq/angular/lists';
 import { DateFormats } from '@blueriq/core';
-import { Task } from './task_service';
-import { ColumnDefinition } from './tasklist';
 
 export class TaskListDataSource extends MatTableDataSource<Task> {
 
