@@ -8,8 +8,8 @@ properties([
   parameters([
     gitParameter(name: 'BRANCH_NAME', defaultValue: 'master', selectedValue: 'DEFAULT', type: 'PT_BRANCH'),
     string(name: 'RUNTIME_BRANCH', defaultValue: 'master', description: "The runtime branch to test against"),
-    string(name: 'cdsVersion', defaultValue: '3.0.7', description: "The CDS version to test against"),
-    string(name: 'dcmListsVersion', defaultValue: '1.0.0', description: "The dcm lists version to test against"),
+    string(name: 'cdsVersion', defaultValue: '3.0.8', description: "The CDS version to test against"),
+    string(name: 'dcmListsVersion', defaultValue: '1.0.1.M1', description: "The dcm lists version to test against"),
   ])
 ])
 node {
