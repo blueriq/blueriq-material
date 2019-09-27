@@ -103,7 +103,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
   /** passes a new filter value to the datasource */
   applyFilter(filterValue: string): void {
     this.clearTasksToHighlight();
-    this.taskDataSource.filter = filterValue.trim().toLowerCase();
+    this.taskDataSource.filter = filterValue.trim();
   }
 
   pageChanged(): void {
