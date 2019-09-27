@@ -8,8 +8,6 @@ properties([
   parameters([
     gitParameter(name: 'BRANCH_NAME', defaultValue: 'master', selectedValue: 'DEFAULT', type: 'PT_BRANCH'),
     string(name: 'RUNTIME_BRANCH', defaultValue: 'master', description: "The runtime branch to test against"),
-    string(name: 'cdsVersion', defaultValue: '3.0.8', description: "The CDS version to test against"),
-    string(name: 'dcmListsVersion', defaultValue: '1.0.1.M1', description: "The dcm lists version to test against"),
   ])
 ])
 node {
@@ -22,6 +20,9 @@ node {
     env.PATH = "${env.JAVA_HOME}\\bin;${mvnHome}\\bin;${firefoxExe};${chromeExe};${nodeHome};${env.PATH}";
     env.SASS_BINARY_PATH = env.SASS_BINDING_PATH;
 
+    def cdsVersion;
+    def dcmListsVersion;
+
     stage('checkout') {
       checkout scm;
       bat "git checkout ${params.BRANCH_NAME}";
@@ -32,6 +33,10 @@ node {
         git branch: "${params.RUNTIME_BRANCH}", url: "${env.RUNTIME_GIT_URL}";
         dir('Runtime') {
           bat "mvn clean verify -DskipTests -P!quality -am -pl runtime/blueriq-runtime-application";
+          cdsVersion = bat(script: "@mvn help:evaluate -Dexpression=com.blueriq.customerdata.api.version -q -DforceStdout", returnStdout: true).trim();
+          echo "Using Customerdata version ${cdsVersion}";
+          dcmListsVersion = bat(script: "@mvn help:evaluate -Dexpression=com.blueriq.dcm.lists.api.version -q -DforceStdout", returnStdout: true).trim();
+          echo "Using DCM lists version ${dcmListsVersion}";
         }
       }
     }
@@ -51,8 +56,8 @@ node {
       try {
         prepareFrontendFiles();
         prepareRuntimeFiles();
-        prepareCdsFiles();
-        prepareDcmListsFiles();
+        prepareCdsFiles(cdsVersion);
+        prepareDcmListsFiles(dcmListsVersion);
 
         bat "docker-compose --file .\\\\e2e\\\\docker\\\\docker-compose.yml build --build-arg BLUERIQ_LICENSE=${env.BLUERIQ_LICENSE}";
         bat "docker-compose --file .\\e2e\\docker\\docker-compose.yml up -d";
@@ -101,12 +106,12 @@ def prepareRuntimeFiles() {
   bat "xcopy /I runtime\\Runtime\\runtime\\blueriq-runtime-application\\target\\*.war  e2e\\docker"
 }
 
-def prepareCdsFiles() {
-  bat "mvn dependency:copy -Dartifact=com.blueriq:blueriq-customerdata-sql-store-standalone:${params.cdsVersion}:jar -DoutputDirectory=e2e/docker"
+def prepareCdsFiles(cdsVersion) {
+  bat "mvn dependency:copy -Dartifact=com.blueriq:blueriq-customerdata-sql-store-standalone:${cdsVersion}:jar -DoutputDirectory=e2e/docker"
 }
 
-def prepareDcmListsFiles() {
-  bat "mvn dependency:copy -Dartifact=com.blueriq:blueriq-dcm-lists-standalone:${params.dcmListsVersion}:jar -DoutputDirectory=e2e/docker"
+def prepareDcmListsFiles(dcmListsVersion) {
+  bat "mvn dependency:copy -Dartifact=com.blueriq:blueriq-dcm-lists-standalone:${dcmListsVersion}:jar -DoutputDirectory=e2e/docker"
 }
 
 def notifyBuildStatus() {
