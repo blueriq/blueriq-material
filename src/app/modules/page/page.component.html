@@ -1,4 +1,4 @@
-<div class="header" *ngIf="blueriqSession.isRoot">
+<div class="header">
   <bq-header *ngIf="!dashboardHeader" [page]="page"></bq-header>
   <ng-container *ngIf="dashboardHeader" [bqElement]="dashboardHeader"></ng-container>
   <ng-container *ngFor="let dashboardMenu of dashboardMenus" [bqElement]="dashboardMenu"></ng-container>
@@ -8,7 +8,7 @@
   <div *ngFor="let child of page.children | bqIncluded" [bqElement]="child"></div>
 </div>
 
-<footer *ngIf="!blueriqSession.isWidget">
+<footer>
   <mat-divider></mat-divider>
   <span align="center" class="img-logo"></span>
   <address>

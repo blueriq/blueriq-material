@@ -1,35 +1,17 @@
-import { Component, Host } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import {
-  BlueriqComponent,
-  BlueriqComponents,
-  BlueriqResponseError,
-  FailedAction,
-  SessionRegistry,
-} from '@blueriq/angular';
+import { BlueriqResponseError, FailedAction, SessionRegistry } from '@blueriq/angular';
 import {
   BlueriqSessionTemplate,
   BlueriqTestingModule,
   BlueriqTestSession,
   SessionTemplate,
 } from '@blueriq/angular/testing';
-import { ErrorType, Page } from '@blueriq/core';
+import { ErrorType } from '@blueriq/core';
 import { ContainerTemplate, PageModelTemplate, PageTemplate } from '@blueriq/core/testing';
 import { BqContainerDirective } from '@shared/directive/container/bq-container.directive';
 import { WidgetModule } from '../widget.module';
 import { FlowWidgetComponent } from './flow-widget.component';
-
-@Component({
-  template: '<span id="widgetSessionDisplayName">{{page.displayName}}</span>',
-})
-@BlueriqComponent({
-  type: Page,
-})
-class MockPageComponent {
-  constructor(@Host() public readonly page: Page) {
-  }
-}
 
 describe('FlowWidgetComponent', () => {
   let container: ContainerTemplate;
@@ -38,8 +20,6 @@ describe('FlowWidgetComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MockPageComponent],
-      providers: [BlueriqComponents.register([MockPageComponent])],
       imports: [
         BlueriqTestingModule,
         WidgetModule,
@@ -129,13 +109,4 @@ describe('FlowWidgetComponent', () => {
     // Verify
     expect(component.debugElement.query(By.directive(BqContainerDirective))).toBeTruthy();
   });
-
-  it('should use the bq-heading to display header', () => {
-    const widgetSessionSpan = component.nativeElement.querySelector('#widgetSessionDisplayName');
-
-    // Verify
-    expect(component.nativeElement.querySelector('bq-heading')).toBeTruthy();
-    expect(widgetSessionSpan.innerHTML).toEqual('Widget display name');
-  });
-
 });

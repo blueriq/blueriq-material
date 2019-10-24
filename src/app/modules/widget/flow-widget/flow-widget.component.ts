@@ -1,12 +1,16 @@
 import { Component, Host, Self } from '@angular/core';
-import { BlueriqComponent, FailedAction, FlowWidget, isBlueriqError } from '@blueriq/angular';
+import { BlueriqComponent, BlueriqComponents, FailedAction, FlowWidget, isBlueriqError } from '@blueriq/angular';
 import { Container } from '@blueriq/core';
 import { BqContentStyles } from '../../BqContentStyles';
+import { WidgetPageComponent } from '../widget-page/widget-page.component';
 
 @Component({
   selector: 'bq-flow-widget',
   templateUrl: './flow-widget.component.html',
-  providers: [FlowWidget],
+  providers: [
+    FlowWidget,
+    BlueriqComponents.scoped([WidgetPageComponent]),
+  ],
 })
 @BlueriqComponent({
   type: Container,
