@@ -1,13 +1,13 @@
-import {Component, Host, OnInit} from '@angular/core';
-import {Page} from "@blueriq/core";
-import {BlueriqComponent} from "@blueriq/angular";
+import { Component, Host, OnInit } from '@angular/core';
+import { BlueriqComponent } from '@blueriq/angular';
+import { Page } from '@blueriq/core';
 
 @Component({
   selector: 'bq-widget-page',
-  templateUrl: './widget-page.component.html'
+  templateUrl: './widget-page.component.html',
 })
 @BlueriqComponent({
-  type: Page
+  type: Page,
 })
 export class WidgetPageComponent implements OnInit {
 

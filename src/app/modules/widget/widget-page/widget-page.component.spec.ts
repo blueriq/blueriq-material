@@ -1,19 +1,19 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-
-import {WidgetPageComponent} from './widget-page.component';
-import {ContainerTemplate, PageModelTemplate, PageTemplate} from "@blueriq/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { SessionRegistry } from '@blueriq/angular';
 import {
   BlueriqSessionTemplate,
   BlueriqTestingModule,
   BlueriqTestSession,
-  SessionTemplate
-} from "@blueriq/angular/testing";
-import {WidgetModule} from "../widget.module";
-import {SessionRegistry} from "@blueriq/angular";
-import {FlowWidgetComponent} from "../flow-widget/flow-widget.component";
-import {By} from "@angular/platform-browser";
-import {BqContainerDirective} from "@shared/directive/container/bq-container.directive";
-import {ContainerModule} from "../../container/container.module";
+  SessionTemplate,
+} from '@blueriq/angular/testing';
+import { ContainerTemplate, PageModelTemplate, PageTemplate } from '@blueriq/core/testing';
+import { BqContainerDirective } from '@shared/directive/container/bq-container.directive';
+import { ContainerModule } from '../../container/container.module';
+import { FlowWidgetComponent } from '../flow-widget/flow-widget.component';
+import { WidgetModule } from '../widget.module';
+
+import { WidgetPageComponent } from './widget-page.component';
 
 describe('WidgetPageComponent', () => {
   let component: ComponentFixture<FlowWidgetComponent>;
@@ -24,30 +24,30 @@ describe('WidgetPageComponent', () => {
       imports: [
         BlueriqTestingModule,
         WidgetModule,
-        ContainerModule
+        ContainerModule,
       ],
     });
   }));
 
   beforeEach(() => {
     const container = ContainerTemplate.create('containername')
-      .displayName('Container display name')
-      .contentStyle('dashboard_flowwidget')
-      .properties({'info': 'WidgetInfo_DashboardFlowWidget'});
+    .displayName('Container display name')
+    .contentStyle('dashboard_flowwidget')
+    .properties({ 'info': 'WidgetInfo_DashboardFlowWidget' });
 
     const pageModel = PageModelTemplate.create(
       PageTemplate.create('pagename')
-        .displayName('Widget display name')
-        .children(
-          ContainerTemplate.create('containername1')
-            .displayName('Container display name1'),
-          ContainerTemplate.create('containername2')
-            .displayName('Container display name2')
-        )
+      .displayName('Widget display name')
+      .children(
+        ContainerTemplate.create('containername1')
+        .displayName('Container display name1'),
+        ContainerTemplate.create('containername2')
+        .displayName('Container display name2'),
+      ),
     );
     const dashboardSession = SessionTemplate.create()
-      .sessionName('session-name-DashboardFlowWidget')
-      .pageModel(pageModel).build();
+    .sessionName('session-name-DashboardFlowWidget')
+    .pageModel(pageModel).build();
 
     const sessionRegistry: SessionRegistry = TestBed.get(SessionRegistry);
     sessionRegistry.register(dashboardSession);
