@@ -1,14 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 import { SessionRegistry } from '@blueriq/angular';
-import {
-  BlueriqSessionTemplate,
-  BlueriqTestingModule,
-  BlueriqTestSession,
-  SessionTemplate,
-} from '@blueriq/angular/testing';
+import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession, SessionTemplate } from '@blueriq/angular/testing';
 import { ContainerTemplate, PageModelTemplate, PageTemplate } from '@blueriq/core/testing';
-import { BqContainerDirective } from '@shared/directive/container/bq-container.directive';
 import { ContainerModule } from '../../container/container.module';
 import { FlowWidgetComponent } from '../flow-widget/flow-widget.component';
 import { WidgetModule } from '../widget.module';
@@ -30,45 +23,40 @@ describe('WidgetPageComponent', () => {
   }));
 
   beforeEach(() => {
-    const container = ContainerTemplate.create('containername')
-    .displayName('Container display name')
-    .contentStyle('dashboard_flowwidget')
-    .properties({ 'info': 'WidgetInfo_DashboardFlowWidget' });
+    const flowWidgetContainer = ContainerTemplate.create('container')
+      .contentStyle('dashboard_flowwidget')
+      .properties({ 'info': 'WidgetInfo_DashboardFlowWidget' });
 
-    const pageModel = PageModelTemplate.create(
+    const widgetPageModel = PageModelTemplate.create(
       PageTemplate.create('pagename')
-      .displayName('Widget display name')
-      .children(
-        ContainerTemplate.create('containername1')
-        .displayName('Container display name1'),
-        ContainerTemplate.create('containername2')
-        .displayName('Container display name2'),
-      ),
+        .children(
+          ContainerTemplate.create('container1'),
+          ContainerTemplate.create('container2'),
+        ),
     );
     const dashboardSession = SessionTemplate.create()
-    .sessionName('session-name-DashboardFlowWidget')
-    .pageModel(pageModel).build();
+      .sessionName('session-name-DashboardFlowWidget')
+      .pageModel(widgetPageModel).build();
 
     const sessionRegistry: SessionRegistry = TestBed.get(SessionRegistry);
     sessionRegistry.register(dashboardSession);
 
-    session = BlueriqSessionTemplate.create().build(container);
+    session = BlueriqSessionTemplate.create().build(flowWidgetContainer);
 
     component = session.get(FlowWidgetComponent);
     component.detectChanges();
   });
 
-  it('should use the bqContainer directive', () => {
-    // Verify
-    expect(component.debugElement.query(By.directive(BqContainerDirective))).toBeTruthy();
+  it('should render a key as id', () => {
+    const el = component.nativeElement.querySelector('bq-widget-page > div');
+    expect(el).toBeTruthy();
+    expect(el.getAttribute('id')).toBe('pagename_1');
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('Should contain 2 children', () => {
-    expect(component.nativeElement.querySelectorAll('.widget-page-child').length).toBe(2);
-    expect(component.nativeElement.querySelectorAll('bq-container').length).toBe(2);
+  it('should contain 2 containers as children', () => {
+    const childContainers = component.nativeElement.querySelectorAll('bq-widget-page bq-container');
+    expect(childContainers.length).toBe(2);
+    expect(childContainers.item(0).querySelector('div').getAttribute('id')).toBe('container1_1');
+    expect(childContainers.item(1).querySelector('div').getAttribute('id')).toBe('container2_1');
   });
 });
