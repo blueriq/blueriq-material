@@ -1,1 +1,3 @@
-<div *ngFor="let child of page.children | bqIncluded" [bqElement]="child" class="widget-page-child"></div>
+<div bqClasses bqKey>
+  <ng-container *ngFor="let child of page.children | bqIncluded" [bqElement]="child"></ng-container>
+</div>
