@@ -23,8 +23,7 @@ export class PageComponent implements OnInit, OnUpdate {
 
   toolbarsCounter = 1;
 
-  constructor(@Host() public page: Page,
-              public blueriqSession: BlueriqSession) {
+  constructor(@Host() public page: Page) {
     this.pageSize = this.determinePageSize();
   }
 
@@ -42,9 +41,6 @@ export class PageComponent implements OnInit, OnUpdate {
   }
 
   determinePageSize(): string {
-    if (this.blueriqSession.isWidget) {
-      return 'full';
-    }
     if (this.page.contentStyle === BqContentStyles.WIDTH_LARGE) {
       return 'large';
     } else if (this.page.contentStyle === BqContentStyles.WIDTH_MEDIUM) {

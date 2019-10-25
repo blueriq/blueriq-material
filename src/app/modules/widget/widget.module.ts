@@ -7,6 +7,7 @@ import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
 import { SharedModule } from '@shared/shared.module';
 import { HeadingModule } from '../heading/heading.module';
 import { FlowWidgetComponent } from './flow-widget/flow-widget.component';
+import { WidgetPageComponent } from './widget-page/widget-page.component';
 
 const WIDGET_CONTROL_COMPONENTS = [
   FlowWidgetComponent,
@@ -15,6 +16,7 @@ const WIDGET_CONTROL_COMPONENTS = [
 @NgModule({
   declarations: [
     WIDGET_CONTROL_COMPONENTS,
+    WidgetPageComponent,
   ],
   providers: [
     BlueriqComponents.register(WIDGET_CONTROL_COMPONENTS),
