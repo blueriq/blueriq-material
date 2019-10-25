@@ -1,4 +1,4 @@
-import { Component, Host, OnInit } from '@angular/core';
+import { Component, Host } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { Page } from '@blueriq/core';
 
@@ -9,12 +9,9 @@ import { Page } from '@blueriq/core';
 @BlueriqComponent({
   type: Page,
 })
-export class WidgetPageComponent implements OnInit {
+export class WidgetPageComponent {
 
   constructor(@Host() public page: Page) {
-  }
-
-  ngOnInit() {
   }
 
 }
