@@ -4,17 +4,18 @@ spring:
       host: 'mongodb'
       port:  27017
       database: tasks
-  rabbitmq:
-    host: rabbitmq
-    port: 5672
-    virtualHost: /
-    username: guest
-    password: guest
-    ssl:
-      enabled: false
+
 blueriq:
   dcm:
     lists:
       event:
         consumer:
-          queueNames: dcmListsServiceEventsQueue
+          rabbitmq:
+            host: rabbitmq
+            port: 5672
+            virtualHost: /
+            username: guest
+            password: guest
+            ssl:
+              enabled: false
+            queueNames: dcmListsServiceEventsQueue
