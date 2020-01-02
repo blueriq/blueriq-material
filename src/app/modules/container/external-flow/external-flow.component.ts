@@ -1,12 +1,16 @@
 import { Component, Host, Self } from '@angular/core';
-import { BlueriqComponent, ExternalFlow, ExternalFlowActions, FailedAction, isBlueriqError, } from '@blueriq/angular';
+import { BlueriqComponent, BlueriqComponents, ExternalFlow, ExternalFlowActions, FailedAction, isBlueriqError } from '@blueriq/angular';
 import { Container } from '@blueriq/core';
 import { BqContentStyles } from '../../BqContentStyles';
+import { ExternalFlowPageComponent } from './external-flow-page/external-flow-page.component';
 
 @Component({
   selector: 'bq-external-flow',
   templateUrl: './external-flow.component.html',
-  providers: [ExternalFlow],
+  providers: [
+    ExternalFlow,
+    BlueriqComponents.scoped([ExternalFlowPageComponent]),
+  ],
 })
 @BlueriqComponent({
   type: Container,
@@ -20,7 +24,7 @@ export class ExternalFlowComponent {
   private flowEnded = false;
 
   constructor(@Host() public container: Container,
-    @Self() public externalFlow: ExternalFlow) {
+              @Self() public externalFlow: ExternalFlow) {
   }
 
   get errorMessage(): string {
