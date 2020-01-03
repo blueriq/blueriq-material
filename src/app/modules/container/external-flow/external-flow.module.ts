@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
 import { SharedModule } from '@shared/shared.module';
 import { HeadingModule } from '../../heading/heading.module';
+import { ExternalFlowPageComponent } from './external-flow-page/external-flow-page.component';
 import { ExternalFlowComponent } from './external-flow.component';
 
 const EXTERNALFLOW_CONTROL_COMPONENTS = [
@@ -15,6 +16,7 @@ const EXTERNALFLOW_CONTROL_COMPONENTS = [
 @NgModule({
   declarations: [
     EXTERNALFLOW_CONTROL_COMPONENTS,
+    ExternalFlowPageComponent,
   ],
   providers: [
     BlueriqComponents.register(EXTERNALFLOW_CONTROL_COMPONENTS),
