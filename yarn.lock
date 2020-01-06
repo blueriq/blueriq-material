@@ -809,16 +809,16 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@blueriq/angular@0.7.6":
-  version "0.7.6"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn-local/@blueriq/angular/-/@blueriq/angular-0.7.6.tgz#068d363ae02b0d482d37298dcec6a4c4071a1bb4"
+"@blueriq/angular@0.7.7":
+  version "0.7.7"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn-local/@blueriq/angular/-/@blueriq/angular-0.7.7.tgz#f7bc8df3efb01bbadd309ef9e8e8a3155000efae"
   dependencies:
     stable "0.1.8"
     tslib "^1.9.0"
 
-"@blueriq/core@0.7.6":
-  version "0.7.6"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn-local/@blueriq/core/-/@blueriq/core-0.7.6.tgz#bfc4b6479f178ae0d4f7a2f543b75a58fa2c60c9"
+"@blueriq/core@0.7.7":
+  version "0.7.7"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn-local/@blueriq/core/-/@blueriq/core-0.7.7.tgz#a4aa89830d941489947bdd2b25af494340b45fc7"
   dependencies:
     css-selector-parser "1.3.0"
     tslib "^1.9.0"
