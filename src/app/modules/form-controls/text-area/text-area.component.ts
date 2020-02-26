@@ -6,6 +6,7 @@ import { BqPresentationStyles } from '../../BqPresentationStyles';
 
 @Component({
   selector: 'bq-text-area',
+  styleUrls: ['./text-area.component.scss'],
   templateUrl: './text-area.component.html',
 })
 @BlueriqComponent({

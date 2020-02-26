@@ -7,6 +7,7 @@ import { BqPresentationStyles } from '../../BqPresentationStyles';
 @Component({
   selector: 'bq-select',
   templateUrl: './select.component.html',
+  styleUrls: ['./select.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 @BlueriqComponent({
