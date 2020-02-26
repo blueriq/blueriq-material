@@ -1,17 +1,14 @@
 @import 'globals/variables';
 @import '~@angular/material/theming';
 
-// Suppress the border on the bottom of the field
+// Suppress the border on the bottom of the field & background color
 :host {
   ::ng-deep {
     .mat-form-field-underline {
       display: none;
     }
+    .mat-form-field-flex {
+      background-color: transparent;
+    }
   }
-}
-
-.mat-form-field {
-  padding: 0 12px;
-  font-size: $default-font-size;
-  line-height: $default-line-height;
 }

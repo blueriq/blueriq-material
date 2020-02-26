@@ -1,13 +1,14 @@
-<div bqKey [class.selection-control]="!list">
-  <div>
-    <mat-checkbox [required]="field.required" [formControl]="formControl" color="primary">
-      {{ list ? '' : field.questionText}}
-    </mat-checkbox>
-  </div>
-  <ng-container *ngIf="!list">
-    <mat-hint *ngIf="!getMessages().hasMessages">{{field.explainText}}</mat-hint>
-    <div *ngIf="getMessages().hasMessages">
-      <mat-error *ngFor="let msg of getMessages()">{{ msg.text }}</mat-error>
+<p></p>
+  <div bqKey [class.selection-control]="!list">
+    <div>
+      <mat-checkbox [required]="field.required" [formControl]="formControl" color="primary">
+        {{ list ? '' : field.questionText}}
+      </mat-checkbox>
     </div>
-  </ng-container>
-</div>
+    <ng-container *ngIf="!list">
+      <mat-hint *ngIf="!getMessages().hasMessages">{{field.explainText}}</mat-hint>
+      <div *ngIf="getMessages().hasMessages">
+        <mat-error *ngFor="let msg of getMessages()">{{ msg.text }}</mat-error>
+      </div>
+    </ng-container>
+  </div>
