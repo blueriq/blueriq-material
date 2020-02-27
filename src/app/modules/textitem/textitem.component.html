@@ -4,10 +4,8 @@
   </div>
   <div class="aligner">
 
-    <p>
-      <ng-container *ngIf="hasStyledContent; else onlyPlainText"
+    <ng-container *ngIf="hasStyledContent; else onlyPlainText"
                     [bqTextItemNode]="textItem.rootNode"></ng-container>
-    </p>
 
     <ng-template #onlyPlainText>
       {{textItem.plainText}}
