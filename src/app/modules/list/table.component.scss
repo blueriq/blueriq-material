@@ -11,6 +11,10 @@
   }
 }
 
+table {
+  width: 100%;
+}
+
 :host ::ng-deep {
   .mat-row {
     &:hover {
@@ -18,15 +22,15 @@
     }
   }
 
-  /* Header cell has both margins
-  *  where the cells itself have the base margin and half margin based on what element.
+  /* Header cell has base margins
+  *  where the cells itself have the half margin padding and half margin margin.
   */
   .mat-header-cell {
-    padding-left: $bq-base-margin + $bq-margin-half;
+    padding-left: $bq-base-margin;
   }
 
   .mat-cell {
-    padding-left: $bq-base-margin;
+    padding-left: $bq-margin-half;
 
     bq-asset,
     bq-table-readonly {
