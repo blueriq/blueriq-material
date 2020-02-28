@@ -10,6 +10,7 @@ import { dateTimeFormatProvider } from './datetimepicker.owl';
 @Component({
   selector: 'bq-datetimepicker',
   templateUrl: './datetimepicker.component.html',
+  styleUrls: ['./datetimepicker.component.scss'],
   providers: [dateTimeFormatProvider],
 })
 @BlueriqComponent({
