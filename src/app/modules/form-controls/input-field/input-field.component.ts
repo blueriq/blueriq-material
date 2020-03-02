@@ -1,9 +1,10 @@
-import { Host } from '@angular/core';
+import { Directive } from '@angular/core';
 import { OnUpdate } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { Field, FieldMessages } from '@blueriq/core';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
 
+@Directive()
 export class InputFieldComponent implements OnUpdate {
 
   formControl = this.form.control(this.field, { updateOn: 'blur', disableWhen: BqPresentationStyles.DISABLED });
@@ -12,7 +13,7 @@ export class InputFieldComponent implements OnUpdate {
   fieldSuffix: string;
   placeholder: string;
 
-  constructor(@Host() public field: Field, private form: BlueriqFormBuilder) {
+  constructor(public field: Field, private form: BlueriqFormBuilder) {
     this.determinePlaceholder();
   }
 

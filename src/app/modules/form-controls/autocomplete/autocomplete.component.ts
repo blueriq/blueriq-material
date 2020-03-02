@@ -1,4 +1,4 @@
-import { Component, Host, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { DomainValue, Field, FieldMessages } from '@blueriq/core';
@@ -23,7 +23,7 @@ export class AutocompleteComponent implements OnInit {
   });
   filteredDomainOptions$: Observable<DomainValue[]>;
 
-  constructor(@Host() public field: Field, private form: BlueriqFormBuilder) {
+  constructor(public field: Field, private form: BlueriqFormBuilder) {
   }
 
   ngOnInit() {

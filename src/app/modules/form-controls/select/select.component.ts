@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Host } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { Field, FieldMessages } from '@blueriq/core';
@@ -17,7 +17,7 @@ import { BqPresentationStyles } from '../../BqPresentationStyles';
 export class SelectComponent {
   formControl = this.form.control(this.field, { updateOn: 'blur', disableWhen: BqPresentationStyles.DISABLED });
 
-  constructor(@Host() public field: Field, private form: BlueriqFormBuilder) {
+  constructor(public field: Field, private form: BlueriqFormBuilder) {
   }
 
   getMessages(): FieldMessages {

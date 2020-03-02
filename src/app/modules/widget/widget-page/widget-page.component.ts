@@ -1,4 +1,4 @@
-import { Component, Host } from '@angular/core';
+import { Component } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { Page } from '@blueriq/core';
 
@@ -11,7 +11,7 @@ import { Page } from '@blueriq/core';
 })
 export class WidgetPageComponent {
 
-  constructor(@Host() public page: Page) {
+  constructor(public page: Page) {
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, Host } from '@angular/core';
+import { Component } from '@angular/core';
 import { BlueriqComponent, bySelector } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { Field, FieldMessages } from '@blueriq/core';
@@ -18,7 +18,7 @@ export class TextAreaComponent {
 
   formControl = this.form.control(this.field, { updateOn: 'blur', disableWhen: BqPresentationStyles.DISABLED });
 
-  constructor(@Host() public field: Field, private form: BlueriqFormBuilder) {
+  constructor(public field: Field, private form: BlueriqFormBuilder) {
   }
 
   getErrors(): FieldMessages {

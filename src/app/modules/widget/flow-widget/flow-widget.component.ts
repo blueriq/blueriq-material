@@ -1,4 +1,4 @@
-import { Component, Host, Self } from '@angular/core';
+import { Component, Self } from '@angular/core';
 import { BlueriqComponent, BlueriqComponents, FailedAction, FlowWidget, isBlueriqError } from '@blueriq/angular';
 import { Container } from '@blueriq/core';
 import { BqContentStyles } from '../../BqContentStyles';
@@ -22,7 +22,7 @@ export class FlowWidgetComponent {
   private expired = false;
   private flowEnded = false;
 
-  constructor(@Host() public widgetContainer: Container,
+  constructor(public widgetContainer: Container,
               @Self() public flowWidget: FlowWidget) {
   }
 

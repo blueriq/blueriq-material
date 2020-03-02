@@ -1,4 +1,4 @@
-import { Component, Host } from '@angular/core';
+import { Component } from '@angular/core';
 import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { Field, FieldMessages } from '@blueriq/core';
@@ -27,7 +27,7 @@ export class DateTimepickerComponent {
 
   firstDayOfWeek: number;
 
-  constructor(@Host() public field: Field,
+  constructor(public field: Field,
               private form: BlueriqFormBuilder,
               session: BlueriqSession) {
     this.firstDayOfWeek = computeFirstDayOfWeek(session.localization);

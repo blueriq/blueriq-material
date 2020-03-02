@@ -1,4 +1,4 @@
-import { Component, Host } from '@angular/core';
+import { Component } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { Field, FieldMessages } from '@blueriq/core';
@@ -24,7 +24,7 @@ export class DatepickerComponent {
     disableWhen: BqPresentationStyles.DISABLED,
   });
 
-  constructor(@Host() public field: Field,
+  constructor(public field: Field,
               private form: BlueriqFormBuilder) {
   }
 

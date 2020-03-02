@@ -1,6 +1,8 @@
+import { Injectable } from '@angular/core';
 import { ValueTransformer, ValueTransformerContext } from '@blueriq/angular/forms';
 import { DisplayValue, DomainValue, TechnicalValue } from '@blueriq/core';
 
+@Injectable()
 export class DomainValueTransformer implements ValueTransformer<TechnicalValue, DomainValue | DisplayValue> {
   toControl(value: TechnicalValue | null, context: ValueTransformerContext): DomainValue | DisplayValue | null {
     if (value === null) {

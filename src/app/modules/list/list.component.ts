@@ -1,4 +1,4 @@
-import { Component, Host } from '@angular/core';
+import { Component } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { List } from '@blueriq/angular/lists';
 import { Container } from '@blueriq/core';
@@ -14,7 +14,7 @@ import { Container } from '@blueriq/core';
 })
 export class ListComponent {
 
-  constructor(@Host() public container: Container,
-              @Host() public readonly list: List) {
+  constructor(public container: Container,
+              public readonly list: List) {
   }
 }

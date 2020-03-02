@@ -1,4 +1,4 @@
-import { Component, Host, OnDestroy, Self } from '@angular/core';
+import { Component, OnDestroy, Self } from '@angular/core';
 import { AuthorizedDownload, BlueriqComponent } from '@blueriq/angular';
 import { DocumentLink } from '@blueriq/angular/files';
 import { Container } from '@blueriq/core';
@@ -20,7 +20,7 @@ export class DocumentLinkComponent implements OnDestroy {
   downloadSubscription: Subscription | undefined;
 
   constructor(@Self() public documentLink: DocumentLink,
-              @Host() public container: Container,
+              public container: Container,
               private fileDownloadService: FileDownloadService) {
   }
 
