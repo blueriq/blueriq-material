@@ -44,7 +44,7 @@ node {
     stage('install') {
       bat 'node -v';
       bat 'yarn -v';
-      bat 'yarn install';
+      bat 'yarn install --ignore-engines';
       bat 'yarn ng:version';
     }
 

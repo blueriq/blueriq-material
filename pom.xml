@@ -31,7 +31,7 @@
 						<configuration>
 							<executable>yarn.cmd</executable>
 							<arguments>
-								<argument>install</argument>
+								<argument>install --ignore-engines</argument>
 							</arguments>
 						</configuration>
 					</execution>
