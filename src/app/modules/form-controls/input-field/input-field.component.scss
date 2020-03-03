@@ -3,3 +3,10 @@
 .mat-form-field {
   margin-bottom: $bq-base-margin;
 }
+
+// disable prefix icon & suffix when input is disabled
+.mat-form-field-disabled {
+  mat-icon, [matsuffix] {
+    opacity: .35;
+  }
+}
