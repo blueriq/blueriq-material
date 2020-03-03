@@ -67,7 +67,7 @@ node {
           waitUntil {
             try {
               String output = bat(
-                script: "curl --connect-timeout 10 -i http://bq-docker-lin.blueriq.local:9082/Runtime/server/start/kinderbijslag",
+                script: "curl --connect-timeout 10 -i http://bq-docker-lin.blueriq.local:9082/runtime/server/start/kinderbijslag",
                 returnStdout: true
               ).trim();
               return output.contains("HTTP/1.1 302");
