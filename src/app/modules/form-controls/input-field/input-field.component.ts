@@ -5,6 +5,7 @@ import { Field, FieldMessages } from '@blueriq/core';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
 
 @Directive()
+// tslint:disable-next-line:directive-class-suffix
 export class InputFieldComponent implements OnUpdate {
 
   formControl = this.form.control(this.field, { updateOn: 'blur', disableWhen: BqPresentationStyles.DISABLED });
