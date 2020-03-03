@@ -40,7 +40,7 @@ describe('OpenIdConnectVerifyGuard', () => {
       ],
     });
 
-    router = TestBed.get(Router);
+    router = TestBed.inject(Router);
   });
 
   it('redirects back to the provided location when verification succeeds', fakeAsync(() => {

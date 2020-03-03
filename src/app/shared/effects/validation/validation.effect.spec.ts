@@ -26,7 +26,7 @@ describe('ValidationEffect', () => {
       ],
     });
 
-    effects = TestBed.get(ValidationEffect);
+    effects = TestBed.inject(ValidationEffect);
   }));
 
   describe('errors', () => {

@@ -59,7 +59,7 @@ describe('ExternalFlowComponent', () => {
       .sessionName('session-name-ExternalFlow')
       .pageModel(pageModel).build();
 
-    const sessionRegistry: SessionRegistry = TestBed.get(SessionRegistry);
+    const sessionRegistry: SessionRegistry = TestBed.inject(SessionRegistry);
     sessionRegistry.register(dashboardSession);
 
     session = BlueriqSessionTemplate.create().build(container);
