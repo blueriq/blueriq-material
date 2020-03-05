@@ -1,5 +1,5 @@
-import { Component, Host, OnInit } from '@angular/core';
-import { BlueriqChild, BlueriqChildren, BlueriqComponent, BlueriqSession, OnUpdate } from '@blueriq/angular';
+import { Component, OnInit } from '@angular/core';
+import { BlueriqChild, BlueriqChildren, BlueriqComponent, OnUpdate } from '@blueriq/angular';
 import { Container, Page } from '@blueriq/core';
 import { BqContentStyles } from '../BqContentStyles';
 
@@ -23,7 +23,7 @@ export class PageComponent implements OnInit, OnUpdate {
 
   toolbarsCounter = 1;
 
-  constructor(@Host() public page: Page) {
+  constructor(public page: Page) {
     this.pageSize = this.determinePageSize();
   }
 

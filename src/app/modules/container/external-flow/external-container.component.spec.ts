@@ -1,4 +1,4 @@
-import { Component, Host } from '@angular/core';
+import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
@@ -28,7 +28,7 @@ import { ExternalFlowModule } from './external-flow.module';
   type: Page,
 })
 class MockPageComponent {
-  constructor(@Host() public readonly page: Page) {
+  constructor(public readonly page: Page) {
   }
 }
 
@@ -59,7 +59,7 @@ describe('ExternalFlowComponent', () => {
       .sessionName('session-name-ExternalFlow')
       .pageModel(pageModel).build();
 
-    const sessionRegistry: SessionRegistry = TestBed.get(SessionRegistry);
+    const sessionRegistry: SessionRegistry = TestBed.inject(SessionRegistry);
     sessionRegistry.register(dashboardSession);
 
     session = BlueriqSessionTemplate.create().build(container);

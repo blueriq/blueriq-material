@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { getFieldMessages } from '@blueriq/angular/forms';
@@ -8,6 +9,7 @@ import { getFieldMessages } from '@blueriq/angular/forms';
  * * the field is invalid and the form in which the field is included is submitted, or
  * * the field contains Blueriq validation messages
  */
+@Injectable()
 export class BqErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     return !!(control && (

@@ -1,5 +1,5 @@
-import { Directive, Input, OnDestroy, Renderer2 } from '@angular/core';
-import { BlueriqListeners, getAngularComponent } from '@blueriq/angular';
+import { Directive, Input, OnChanges, OnDestroy, Renderer2, Self, SimpleChanges } from '@angular/core';
+import { BlueriqListeners, BqElementDirective, getAngularComponent } from '@blueriq/angular';
 import { Element } from '@blueriq/core';
 import { Subscription } from 'rxjs';
 import { BqContentStyles } from '../../BqContentStyles';
@@ -12,25 +12,31 @@ import { BqPresentationStyles } from '../../BqPresentationStyles';
 @Directive({
   selector: '[bqFlexColumn]',
 })
-export class FlexColumnDirective implements OnDestroy {
+export class FlexColumnDirective implements OnChanges, OnDestroy {
 
   private _subscription: Subscription | undefined;
 
+  @Input()
+  bqElement: Element;
+
   constructor(private renderer: Renderer2,
-              private listeners: BlueriqListeners) {
+              private listeners: BlueriqListeners,
+
+              // Inject BqElementDirective to force its ordering to be
+              // before this directive, to ensure the component has been rendered
+              @Self() bqElementDirective: BqElementDirective) {
   }
 
-  @Input()
-  set bqElement(element: Element) {
+  ngOnChanges(changes: SimpleChanges): void {
     if (this._subscription) {
       this._subscription.unsubscribe();
     }
 
-    this._subscription = this.listeners.listen(element).subscribe(() => {
-      this.addFlexStyles(element);
+    this._subscription = this.listeners.listen(this.bqElement).subscribe(() => {
+      this.addFlexStyles(this.bqElement);
     });
 
-    this.addFlexStyles(element);
+    this.addFlexStyles(this.bqElement);
   }
 
   ngOnDestroy() {

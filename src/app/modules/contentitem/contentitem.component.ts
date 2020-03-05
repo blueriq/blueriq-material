@@ -1,4 +1,4 @@
-import { Component, Host } from '@angular/core';
+import { Component } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { ContentItem } from '@blueriq/core';
 
@@ -11,6 +11,6 @@ import { ContentItem } from '@blueriq/core';
 })
 export class ContentItemComponent {
 
-  constructor(@Host() public contentItem: ContentItem) {
+  constructor(public contentItem: ContentItem) {
   }
 }

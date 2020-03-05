@@ -49,7 +49,7 @@ describe('ChiplistComponent', () => {
       expect(component.values.length).toBe(4);
       expect(fixture.nativeElement.querySelectorAll('mat-chip').length).toBe(4);
       expect(Array.from(fixture.nativeElement.querySelectorAll('mat-chip'))
-        .some((chip: any) => chip.firstChild.nodeValue.trim() === 'Yellow')).toBeTruthy();
+        .some((chip: any) => chip.childNodes[1].nodeValue.trim() === 'Yellow')).toBeTruthy();
       expect(inputField.value).toBe('');
     });
 
@@ -69,7 +69,7 @@ describe('ChiplistComponent', () => {
       expect(component.values.length).toBe(4);
       expect(fixture.nativeElement.querySelectorAll('mat-chip').length).toBe(4);
       expect(Array.from(fixture.nativeElement.querySelectorAll('mat-chip'))
-        .some((chip: any) => chip.firstChild.nodeValue.trim() === '678.20')).toBeTruthy();
+        .some((chip: any) => chip.childNodes[1].nodeValue.trim() === '678.20')).toBeTruthy();
       expect(inputField.value).toBe('');
     });
 
@@ -82,7 +82,7 @@ describe('ChiplistComponent', () => {
       expect(component.values.length).toBe(2);
       expect(fixture.nativeElement.querySelectorAll('mat-chip').length).toBe(2);
       expect(Array.from(fixture.nativeElement.querySelectorAll('mat-chip'))
-        .some((chip: any) => chip.firstChild.nodeValue.trim() === 'Red')).toBeFalsy();
+        .some((chip: any) => chip.childNodes[1].nodeValue.trim() === 'Red')).toBeFalsy();
     });
 
     it('should not add an existing chip case insensitive', () => {

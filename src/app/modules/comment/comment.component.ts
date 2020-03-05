@@ -1,4 +1,4 @@
-import { Component, Host, Self } from '@angular/core';
+import { Component, Self } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { SubmitComment } from '@blueriq/angular/dashboard';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
@@ -22,7 +22,7 @@ export class CommentComponent {
     disableWhen: BqPresentationStyles.DISABLED,
   });
 
-  constructor(@Host() public container: Container,
+  constructor(public container: Container,
               @Self() public comment: SubmitComment,
               private form: BlueriqFormBuilder) {
   }

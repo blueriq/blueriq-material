@@ -49,8 +49,8 @@ describe('OpenIdConnectLoginGuard', () => {
       ],
     });
 
-    router = TestBed.get(Router);
-    doc = TestBed.get(DOCUMENT);
+    router = TestBed.inject(Router);
+    doc = TestBed.inject(DOCUMENT);
   });
 
   it('redirects to the OpenId Connect login endpoint if provided', fakeAsync(() => {

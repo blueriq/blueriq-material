@@ -24,7 +24,7 @@ import { Subscription } from 'rxjs';
 })
 export class TableSearchComponent implements OnInit, OnDestroy {
 
-  @ViewChild('inputField', { static: false })
+  @ViewChild('inputField')
   inputField: ElementRef;
 
   @Input()

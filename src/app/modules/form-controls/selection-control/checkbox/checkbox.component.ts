@@ -1,4 +1,4 @@
-import { Component, Host, Optional } from '@angular/core';
+import { Component, Optional } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { List } from '@blueriq/angular/lists';
@@ -22,9 +22,9 @@ export class CheckboxComponent {
     disableWhen: BqPresentationStyles.DISABLED,
   });
 
-  constructor(@Host() public field: Field,
+  constructor(public field: Field,
               private form: BlueriqFormBuilder,
-              @Optional() @Host() public readonly list: List) {
+              @Optional() public readonly list: List) {
   }
 
   getMessages(): FieldMessages {

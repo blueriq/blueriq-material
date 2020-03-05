@@ -1,4 +1,4 @@
-import { Component, Host } from '@angular/core';
+import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BlueriqComponent, BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
@@ -14,7 +14,7 @@ import { FlexColumnDirective } from './flex-column.directive';
   selector: 'parent',
 })
 class MockFlexParentComponent {
-  constructor(@Host() public container: Container) {
+  constructor(public container: Container) {
   }
 }
 

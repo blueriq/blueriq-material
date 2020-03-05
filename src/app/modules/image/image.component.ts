@@ -1,4 +1,4 @@
-import { Component, Host } from '@angular/core';
+import { Component } from '@angular/core';
 import { BlueriqComponent, ImageInfo } from '@blueriq/angular';
 import { ImageResource } from '@blueriq/angular/files';
 import { Image } from '@blueriq/core';
@@ -17,7 +17,7 @@ export class ImageComponent {
   imageInfo: ImageInfo;
   private imageInfoSubscription: Subscription;
 
-  constructor(@Host() public image: Image,
+  constructor(public image: Image,
               private imageResource: ImageResource) {
 
     this.imageInfoSubscription = this.imageResource.getImageInfo().subscribe((info: ImageInfo) => {

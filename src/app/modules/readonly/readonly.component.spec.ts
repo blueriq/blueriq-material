@@ -27,8 +27,8 @@ describe('ReadonlyComponent', () => {
     component = session.get(ReadonlyComponent);
   });
 
-  it('should have a floating label, always', () => {
-    const floatLabel = component.nativeElement.querySelector('mat-form-field').getAttribute('floatlabel');
-    expect(floatLabel).toContain('always');
+  it('should have appearance fill', () => {
+    const floatLabel = component.nativeElement.querySelector('mat-form-field').getAttribute('appearance');
+    expect(floatLabel).toContain('fill');
   });
 });
