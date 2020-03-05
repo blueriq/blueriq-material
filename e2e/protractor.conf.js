@@ -14,7 +14,7 @@ exports.config = {
       browserName: 'chrome',
       chromeOptions: {
         args: ['--headless', '--disable-gpu', '--window-size=1366x786'],
-        binary: 'D:\\tools\\ChromePortable-67.0.3396.99\\chrome.exe'
+        binary: process.env.CHROME_BIN
       }
     },
     {
@@ -22,14 +22,13 @@ exports.config = {
       marionette: true,
       'moz:firefoxOptions': {
         args: ['--headless'],
-        binary: 'D:\\tools\\Firefox-61.0.1-32bit\\firefox.exe'
+        binary: process.env.FIREFOX_BIN
       }
     }
   ],
   maxSessions: 1,
-  seleniumServerJar: '../../../../../../../tools/protractor/selenium-server-standalone-3.13.0.jar',
-  chromeDriver: '../../../../../../../tools/protractor/chromedriver_2.40.exe',
-  geckoDriver: '‪../../../../../../../tools/protractor/geckodriver-v0.21.0.exe',
+  chromeDriver: process.env.CHROME_DRIVER,
+  geckoDriver: process.env.GECKO_DRIVER,
   directConnect: true,
   baseUrl: 'http://somehost.somedomain:1234/',
   framework: 'jasmine',
