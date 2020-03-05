@@ -61,7 +61,7 @@ export class TaskListFlow {
     this.projectPage.all(by.tagName('bq-menu-item')).first().element(by.tagName('button')).click();
     browser.waitForAngular();
     // open the record in the top row (sorted by id desc by default, so this is the last one added)
-    this.projectPage.all(by.tagName('mat-row')).first().element(by.tagName('button')).click();
+    this.projectPage.all(by.css('.mat-row')).first().element(by.tagName('button')).click();
     browser.waitForAngular();
     // firefox needs some time for the new tab to load
     browser.sleep(500);
@@ -153,7 +153,7 @@ export class TaskListFlow {
   }
 
   private get taskListRows(): ElementArrayFinder {
-    return this.taskList.all(by.css('tr.mat-row'));
+    return this.taskList.all(by.css('.mat-row'));
   }
 
   private switchTab(tabId: number) {

@@ -30,7 +30,7 @@ exports.config = {
   chromeDriver: process.env.CHROME_DRIVER,
   geckoDriver: process.env.GECKO_DRIVER,
   directConnect: true,
-  baseUrl: 'http://somehost.somedomain:1234/',
+  baseUrl: 'http://localhost:9081/',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,
