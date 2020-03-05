@@ -1,4 +1,4 @@
-import { Component, Host } from '@angular/core';
+import { Component } from '@angular/core';
 import { BlueriqComponent, bySelector } from '@blueriq/angular';
 import { Field } from '@blueriq/core';
 
@@ -14,6 +14,6 @@ import { Field } from '@blueriq/core';
 })
 export class ReadonlyComponent {
 
-  constructor(@Host() public readonly field: Field) {
+  constructor(public readonly field: Field) {
   }
 }

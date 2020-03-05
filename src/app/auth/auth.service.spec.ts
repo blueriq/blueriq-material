@@ -53,9 +53,9 @@ describe('AuthService', () => {
       ],
     });
 
-    auth = TestBed.get(AuthService);
-    doc = TestBed.get(DOCUMENT);
-    router = TestBed.get(Router);
+    auth = TestBed.inject(AuthService);
+    doc = TestBed.inject(DOCUMENT);
+    router = TestBed.inject(Router);
   });
 
   describe('basic usage', () => {
@@ -131,7 +131,7 @@ describe('AuthService', () => {
       });
 
       it('includes an application base path if present', () => {
-        const locationStrategy: MockLocationStrategy = TestBed.get(LocationStrategy);
+        const locationStrategy = TestBed.inject(LocationStrategy) as MockLocationStrategy;
         locationStrategy.internalBaseHref = 'Runtime';
         configureLogout('http://openidconnect.com/logout');
         auth.logoutAndNavigate('/return');

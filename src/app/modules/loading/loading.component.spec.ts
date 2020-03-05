@@ -25,7 +25,7 @@ describe('LoadingComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
 
-    loadingActivity = TestBed.get(GlobalLoadingActivity);
+    loadingActivity = TestBed.inject(GlobalLoadingActivity);
   }));
 
   it('is idle when no loading activity', () => {

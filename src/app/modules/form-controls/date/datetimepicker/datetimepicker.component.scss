@@ -1,0 +1,11 @@
+@import 'globals/variables';
+
+.mat-form-field {
+  margin-bottom: $bq-base-margin;
+
+  button {
+    &[matprefix] {
+      width: 24px;
+    }
+  }
+}

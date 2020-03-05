@@ -1,4 +1,4 @@
-import { Component, Host } from '@angular/core';
+import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponent, BlueriqComponents, BlueriqSession } from '@blueriq/angular';
@@ -15,7 +15,7 @@ import { HeadingModule } from './heading.module';
   template: '<div><bq-heading [title]="container.displayName" [styles]="container.styles"></bq-heading></div>',
 })
 class MockContainerComponent {
-  constructor(@Host() public container: Container) {
+  constructor(public container: Container) {
   }
 }
 

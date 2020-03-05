@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Host, Renderer2, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, Renderer2, ViewChild } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { Statistic, Statistics } from '@blueriq/angular/statistics';
 import { Container, PresentationStyles } from '@blueriq/core';
@@ -54,9 +54,9 @@ interface ChartOptions {
   type: Container,
   selector: 'visualization',
 })
-export class StatisticComponent implements AfterViewInit {
+export class StatisticComponent implements AfterViewInit, OnDestroy {
 
-  chart: Chart = [];
+  chart: Chart | null = null;
 
   @ViewChild('canvas', { static: true })
   private canvas: ElementRef;
@@ -76,7 +76,7 @@ export class StatisticComponent implements AfterViewInit {
   private fontColor = '#666';
   private padding = 5;
 
-  constructor(@Host() public container: Container,
+  constructor(public container: Container,
               public statistics: Statistics,
               private renderer: Renderer2) {
   }
@@ -205,6 +205,12 @@ export class StatisticComponent implements AfterViewInit {
         return chartType;
       default:
         return 'doughnut';
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.chart !== null) {
+      this.chart.destroy();
     }
   }
 
