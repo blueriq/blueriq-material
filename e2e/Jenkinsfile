@@ -18,10 +18,10 @@ node {
     env.PATH = "${env.JAVA_HOME}\\bin;${mvnHome}\\bin;${nodeHome};${env.PATH}";
     env.SASS_BINARY_PATH = env.SASS_BINDING_PATH;
 
-    env.CHROME_BIN = ${env.CHROME_80_0_3987_132};
-    env.CHROME_DRIVER = ${env.CHROME_DRIVER_80};
-    env.FIREFOX_BIN = ${env.FIREFOX_73_0_1};
-    env.GECKO_DRIVER = ${env.GECKO_DRIVER_0_26};
+    env.CHROME_BIN = env.CHROME_80_0_3987_132;
+    env.CHROME_DRIVER = env.CHROME_DRIVER_80;
+    env.FIREFOX_BIN = env.FIREFOX_73_0_1;
+    env.GECKO_DRIVER = env.GECKO_DRIVER_0_26;
 
     def cdsVersion;
     def dcmListsVersion;
