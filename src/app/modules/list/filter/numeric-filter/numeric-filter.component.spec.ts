@@ -52,7 +52,7 @@ describe('NumericFilterComponent', () => {
   });
 
   function getMatOptionsFromOverlay(): HTMLElement[] {
-    const _containerElement = TestBed.get(OverlayContainer).getContainerElement();
+    const _containerElement = TestBed.inject(OverlayContainer).getContainerElement();
     return Array.from(_containerElement.querySelectorAll('mat-option'));
   }
 });

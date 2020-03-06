@@ -1,4 +1,4 @@
-import { Component, Host } from '@angular/core';
+import { Component } from '@angular/core';
 import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
 import { Timeline } from '@blueriq/angular/dashboard';
 import { Container } from '@blueriq/core';
@@ -16,7 +16,7 @@ import { dateFromNowHumanReadable, dateToShortTime } from '@shared/date/bq-date-
 })
 export class TimelineComponent {
 
-  constructor(@Host() public container: Container,
+  constructor(public container: Container,
               public readonly timeline: Timeline,
               private readonly session: BlueriqSession) {
   }

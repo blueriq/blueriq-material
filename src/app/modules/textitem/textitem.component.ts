@@ -1,4 +1,4 @@
-import { Component, Host } from '@angular/core';
+import { Component } from '@angular/core';
 import { BlueriqComponent, OnUpdate } from '@blueriq/angular';
 import { TextItem } from '@blueriq/core';
 import { BqPresentationStyles } from '../BqPresentationStyles';
@@ -17,7 +17,7 @@ export class TextItemComponent implements OnUpdate {
    */
   hasStyledContent: boolean;
 
-  constructor(@Host() public textItem: TextItem) {
+  constructor(public textItem: TextItem) {
     this.hasStyledContent = this.determineHasStyledContent();
   }
 

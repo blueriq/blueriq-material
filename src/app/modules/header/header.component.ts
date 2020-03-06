@@ -1,4 +1,4 @@
-import { Component, Host, Input, OnInit, Optional } from '@angular/core';
+import { Component, Input, OnInit, Optional } from '@angular/core';
 import { BlueriqChild, BlueriqComponent } from '@blueriq/angular';
 import { Container, Page, TextItem } from '@blueriq/core';
 import { AuthService } from '../../auth/auth.service';
@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
   @Input()
   page: Page;
 
-  constructor(@Host() @Optional() public dashboardHeader: Container,
+  constructor(@Optional() public dashboardHeader: Container,
               private readonly authService: AuthService) {
   }
 

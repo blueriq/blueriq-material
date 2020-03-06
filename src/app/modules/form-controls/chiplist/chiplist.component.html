@@ -1,38 +1,36 @@
-<p bqClasses>
-  <mat-form-field appearance="fill" bqKey fxFlex>
-    <mat-label>{{ field.questionText }}</mat-label>
-    <mat-chip-list #chipList [formControl]="formControl" [multiple]="true">
+<mat-form-field appearance="fill" bqKey bqClasses fxFlex>
+  <mat-label>{{ field.questionText }}</mat-label>
+  <mat-chip-list #chipList [formControl]="formControl" [multiple]="true">
 
-      <mat-chip (removed)="remove(value)"
-        *ngFor="let value of values"
-        [disabled]="isDisabled()"
-        [removable]="true"
-        [selectable]="!isDisabled()">
-        {{value.displayValue}}
-        <mat-icon *ngIf="!isDisabled()" matChipRemove>cancel</mat-icon>
-      </mat-chip>
+    <mat-chip (removed)="remove(value)"
+      *ngFor="let value of values"
+      [disabled]="isDisabled()"
+      [removable]="true"
+      [selectable]="!isDisabled()">
+      {{value.displayValue}}
+      <mat-icon *ngIf="!isDisabled()" matChipRemove>cancel</mat-icon>
+    </mat-chip>
 
-      <input #input
-        (blur)="addDomainValueOnBlur($event)"
-        (keyup)="filterDomain(input.value)"
-        (matChipInputTokenEnd)="addByInput($event)"
-        [matAutocomplete]="matAuto"
-        [matChipInputAddOnBlur]="!field.hasDomain"
-        [matChipInputFor]="chipList"
-        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-        [placeholder]="field.placeholder"
-        [required]="field.required">
+    <input #input
+      (blur)="addDomainValueOnBlur($event)"
+      (keyup)="filterDomain(input.value)"
+      (matChipInputTokenEnd)="addByInput($event)"
+      [matAutocomplete]="matAuto"
+      [matChipInputAddOnBlur]="!field.hasDomain"
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [placeholder]="field.placeholder"
+      [required]="field.required">
 
-      <mat-autocomplete #matAuto="matAutocomplete" autoActiveFirstOption>
-        <mat-option (onSelectionChange)="addByAutoComplete($event, input)"
-          *ngFor="let domainOption of filteredDomainOptions"
-          [value]="domainOption">
-          {{ domainOption.displayValue }}
-        </mat-option>
-      </mat-autocomplete>
+    <mat-autocomplete #matAuto="matAutocomplete" autoActiveFirstOption>
+      <mat-option (onSelectionChange)="addByAutoComplete($event, input)"
+        *ngFor="let domainOption of filteredDomainOptions"
+        [value]="domainOption">
+        {{ domainOption.displayValue }}
+      </mat-option>
+    </mat-autocomplete>
 
-    </mat-chip-list>
-    <mat-hint>{{field.explainText}}</mat-hint>
-    <mat-error *ngFor="let msg of getMessages()">{{msg.text}}</mat-error>
-  </mat-form-field>
-</p>
+  </mat-chip-list>
+  <mat-hint>{{field.explainText}}</mat-hint>
+  <mat-error *ngFor="let msg of getMessages()">{{msg.text}}</mat-error>
+</mat-form-field>

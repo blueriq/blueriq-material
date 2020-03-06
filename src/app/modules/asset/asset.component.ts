@@ -1,4 +1,4 @@
-import { Component, Host } from '@angular/core';
+import { Component } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { Asset } from '@blueriq/core';
 
@@ -12,7 +12,7 @@ import { Asset } from '@blueriq/core';
 })
 export class AssetComponent {
 
-  constructor(@Host() public asset: Asset) {
+  constructor(public asset: Asset) {
   }
 
 }

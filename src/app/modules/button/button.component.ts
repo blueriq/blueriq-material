@@ -1,4 +1,4 @@
-import { Component, Host, Optional } from '@angular/core';
+import { Component, Optional } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { List } from '@blueriq/angular/lists';
 import { Button } from '@blueriq/core';
@@ -15,8 +15,8 @@ import { BqPresentationStyles } from '../BqPresentationStyles';
 })
 export class ButtonComponent {
 
-  constructor(@Host() public button: Button,
-              @Optional() @Host() public readonly list: List) {
+  constructor(public button: Button,
+              @Optional() public readonly list: List) {
   }
 
   isRaisedButton(): boolean {

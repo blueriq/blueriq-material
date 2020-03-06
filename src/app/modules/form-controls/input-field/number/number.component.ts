@@ -6,6 +6,7 @@ import { InputFieldComponent } from '../input-field.component';
 @Component({
   selector: 'bq-integer-field',
   templateUrl: '../input-field.component.html',
+  styleUrls: ['../input-field.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 @BlueriqComponent({

@@ -42,8 +42,8 @@ describe('MessagesEffect', () => {
         { provide: MatSnackBar, useValue: snackBarSpy },
       ],
     });
-    sessionRegistry = TestBed.get(SessionRegistry);
-    effects = TestBed.get(MessagesEffect);
+    sessionRegistry = TestBed.inject(SessionRegistry);
+    effects = TestBed.inject(MessagesEffect);
   }));
 
   it('does animate snackbar again even if already displayed the message', fakeAsync(() => {

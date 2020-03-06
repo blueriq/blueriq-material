@@ -1,4 +1,4 @@
-import { Component, Host, Self } from '@angular/core';
+import { Component, Self } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { FileUpload } from '@blueriq/angular/files';
 import { Container } from '@blueriq/core';
@@ -20,7 +20,7 @@ export class FileUploadComponent {
   errorMessage: string;
   isBusy = false;
 
-  constructor(@Self() public fileUpload: FileUpload, @Host() public container: Container) {
+  constructor(@Self() public fileUpload: FileUpload, public container: Container) {
     this.uploader = new CustomFileUploader({ autoUpload: true });
 
     /**

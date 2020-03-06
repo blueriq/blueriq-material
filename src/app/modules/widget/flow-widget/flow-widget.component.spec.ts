@@ -38,7 +38,7 @@ describe('FlowWidgetComponent', () => {
       .sessionName('session-name-DashboardFlowWidget')
       .pageModel(pageModel).build();
 
-    const sessionRegistry: SessionRegistry = TestBed.get(SessionRegistry);
+    const sessionRegistry: SessionRegistry = TestBed.inject(SessionRegistry);
     sessionRegistry.register(dashboardSession);
 
     session = BlueriqSessionTemplate.create().build(container);

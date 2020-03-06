@@ -15,10 +15,13 @@ node {
     env.JAVA_HOME = tool 'jdk-11.0.1';
     def mvnHome = tool "apache-maven-3.6.0";
     def nodeHome = tool 'node-10.15.3'
-    def firefoxExe = 'D:\\tools\\Firefox-61.0.1-32bit\\firefox.exe';
-    def chromeExe = 'D:\\tools\\ChromePortable-67.0.3396.99\\chrome.exe';
-    env.PATH = "${env.JAVA_HOME}\\bin;${mvnHome}\\bin;${firefoxExe};${chromeExe};${nodeHome};${env.PATH}";
+    env.PATH = "${env.JAVA_HOME}\\bin;${mvnHome}\\bin;${nodeHome};${env.PATH}";
     env.SASS_BINARY_PATH = env.SASS_BINDING_PATH;
+
+    env.CHROME_BIN = env.CHROME_80_0_3987_132;
+    env.CHROME_DRIVER = env.CHROME_DRIVER_80;
+    env.FIREFOX_BIN = env.FIREFOX_73_0_1;
+    env.GECKO_DRIVER = env.GECKO_DRIVER_0_26;
 
     def cdsVersion;
     def dcmListsVersion;
@@ -44,7 +47,7 @@ node {
     stage('install') {
       bat 'node -v';
       bat 'yarn -v';
-      bat 'yarn install';
+      bat 'yarn install --ignore-engines';
       bat 'yarn ng:version';
     }
 
@@ -67,7 +70,7 @@ node {
           waitUntil {
             try {
               String output = bat(
-                script: "curl --connect-timeout 10 -i http://bq-docker-lin.blueriq.local:9082/Runtime/server/start/kinderbijslag",
+                script: "curl --connect-timeout 10 -i http://bq-docker-lin.blueriq.local:9082/runtime/server/start/kinderbijslag",
                 returnStdout: true
               ).trim();
               return output.contains("HTTP/1.1 302");
