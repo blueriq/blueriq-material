@@ -24,6 +24,7 @@ export class BqPresentationStyles {
   static STATISTICLINE = 'StatisticLine';
   static STATISTICPOLAR = 'StatisticPolar';
   static SWITCH = 'Switch';
+  static DO_NOT_SHOW_SEARCH = 'DoNotShowSearch';
 
   // Presentation styles reused from AquimaLibrary, these can be refactored in the future
   static DANGER = 'Danger';
