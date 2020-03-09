@@ -6,14 +6,14 @@
 
   .sort-toggle {
     &.none {
-      display: none;
+      visibility: hidden;
     }
   }
 
   &:hover {
     .sort-toggle {
       &.none {
-        display: block;
+        visibility: visible;
       }
     }
   }

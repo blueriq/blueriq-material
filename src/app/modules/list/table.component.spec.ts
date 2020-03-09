@@ -121,8 +121,10 @@ describe('TableComponent', () => {
     it('should have a header displayed with the correct content', () => {
       const matRows = component.nativeElement.querySelectorAll('.mat-row');
       expect(matRows.length).toBe(2);
-      expect(matRows[0].innerText.trim()).toBe('Mike\nCLICKME');
-      expect(matRows[1].innerText.trim()).toBe('Tilly\nCLICKME');
+      expect(matRows[0].cells[0].innerText.trim()).toBe('Mike');
+      expect(matRows[0].cells[1].innerText.trim()).toBe('CLICKME');
+      expect(matRows[1].cells[0].innerText.trim()).toBe('Tilly');
+      expect(matRows[1].cells[1].innerText.trim()).toBe('CLICKME');
     });
 
     it('should have a row with correct header content', () => {
