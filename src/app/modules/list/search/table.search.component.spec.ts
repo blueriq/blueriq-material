@@ -59,7 +59,7 @@ describe('TableSearchComponent', () => {
     component.nativeElement.querySelector('button').click();
     component.detectChanges();
 
-    expect(component.nativeElement.querySelector('mat-label').innerHTML).toBe('Zoeken');
+    expect(component.nativeElement.querySelector('input')['placeholder']).toBe('Zoeken');
     expect(component.nativeElement.querySelector('mat-chip-list')).toBeTruthy();
     expect(component.nativeElement.querySelector('mat-chip')).toBeFalsy();
   });
