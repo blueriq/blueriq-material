@@ -1,12 +1,11 @@
 <div *ngIf="search.enabled" bqKey bqClasses fxLayoutAlign="end center">
   <mat-form-field
     *ngIf="fieldIsVisible()"
-    appearance="legacy"
-    floatLabel="never"
+    appearance="standard"
+    floatLabel="auto"
     fxFlex="70"
     [@slideIn]="'*'"
     (@slideIn.done)="focusField()">
-    <mat-label>{{ search.caption }}</mat-label>
     <mat-chip-list #chipList>
       <mat-chip
         *ngFor="let searchTerm of searchTerms"
@@ -18,6 +17,7 @@
       </mat-chip>
       <input
         type="text"
+        placeholder="{{search.caption}}"
         [matChipInputFor]="chipList"
         [matChipInputSeparatorKeyCodes]="separatorKeyCodes"
         [matChipInputAddOnBlur]="true"

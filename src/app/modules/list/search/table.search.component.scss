@@ -1,7 +1,6 @@
 @import 'globals/variables';
 
 .mat-form-field {
-  min-height: 57px;
   font-size: $default-font-size;
 
   .mat-chip {
@@ -10,6 +9,23 @@
   }
 }
 
-.button-wrapper {
-  min-height: 57px;
+:host ::ng-deep {
+  .mat-form-field-appearance-standard {
+
+    .mat-form-field-wrapper {
+      padding-bottom: 0;
+    }
+
+    .mat-form-field-flex {
+      padding-top: 0;
+    }
+
+    .mat-form-field-infix {
+      border-top: 0;
+    }
+
+    .mat-form-field-underline {
+      bottom: 0;
+    }
+  }
 }
