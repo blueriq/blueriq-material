@@ -8877,10 +8877,6 @@ typescript@2.9.1:
   version "2.9.1"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/typescript/-/typescript-2.9.1.tgz#fdb19d2c67a15d11995fd15640e373e09ab09961"
 
-typescript@3.7.5:
-  version "3.7.5"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/typescript/-/typescript-3.7.5.tgz#0692e21f65fd4108b9330238aac11dd2e177a1ae"
-
 typescript@3.8.3:
   version "3.8.3"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/typescript/-/typescript-3.8.3.tgz#409eb8544ea0335711205869ec458ab109ee1061"
