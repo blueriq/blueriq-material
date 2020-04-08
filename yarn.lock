@@ -122,9 +122,10 @@
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/animations/-/animations-9.1.1.tgz#983e54d96e7a854cee801dbac214f31c03c1cfa8"
   integrity sha512-IvKv8sV0ymbzDEX2ZLW+F6nOTQqDYallHexuzRVT9txvNE8TNHyySvLcyC5dTmX9fj9LA72NZ6nFyhxq0LFvtQ==
 
-"@angular/cdk@9.1.0":
-  version "9.1.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/cdk/-/cdk-9.1.0.tgz#da88568aed9efc39b160a0ac18cfca25f4961441"
+"@angular/cdk@9.2.0":
+  version "9.2.0"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/cdk/-/cdk-9.2.0.tgz#587e4a9d5046fa89a68d8eddaee6b185e2915842"
+  integrity sha512-jeeznvNDpR9POuxzz8Y0zFvMynG9HCJo3ZPTqOjlOq8Lj8876+rLsHDvKEMeLdwlkdi1EweYJW1CLQzI+TwqDA==
   optionalDependencies:
     parse5 "^5.0.0"
 
@@ -201,13 +202,15 @@
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/language-service/-/language-service-9.1.1.tgz#c3aa6afdc4b5c14423086527e6f0783c3c00d600"
   integrity sha512-T+/0X2VnmgW/vzynqYTVv29qtebNvrCB/yJqtNIlqXvBjcB8XRRwZPDZvRyl5BiwEPSsJnjdRFNH9krQHxYp+g==
 
-"@angular/material-moment-adapter@9.1.0":
-  version "9.1.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/material-moment-adapter/-/material-moment-adapter-9.1.0.tgz#0e43ca9f7daa0dc7e0f601658da6518c1c83c297"
+"@angular/material-moment-adapter@9.2.0":
+  version "9.2.0"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/material-moment-adapter/-/material-moment-adapter-9.2.0.tgz#ee6311770e0897f63902ec1c2c099bdc3a61dd85"
+  integrity sha512-DruanWMcAzOy8mFZ6Xr9sRqJ+KjF0hvFshxqrv0SD/rVpf9oi8ADnuACmHYXN5dYr/YtgmHDywq0Z7USY7SIoA==
 
-"@angular/material@9.1.0":
-  version "9.1.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/material/-/material-9.1.0.tgz#550cbf7f6a9ce679b77435278faebfc4f2a3b2ed"
+"@angular/material@9.2.0":
+  version "9.2.0"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/material/-/material-9.2.0.tgz#1b6f0a2e115f93885d7fc2dc4b258d8c9cf6821f"
+  integrity sha512-KKzEIVh6/m56m+Ao8p4PK0SyEr0574l3VP2swj1qPag3u+FYgemmXCGTaChrKdDsez+zeTCPXImBGXzE6NQ80Q==
 
 "@angular/platform-browser-dynamic@9.1.1":
   version "9.1.1"
