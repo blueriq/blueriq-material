@@ -1,3 +1,4 @@
+import { TemplateRef } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Filter } from '@blueriq/angular/lists';
 import { FilterComponent } from './filter.component';
@@ -26,10 +27,10 @@ describe('FilterComponent', () => {
 
   it('open dialog for filtering', () => {
     // setup
-    const template = 'show';
+    const template = null! as TemplateRef<any>;
 
     // SUT
-    tableFilterComponent.showFilter(template as any);
+    tableFilterComponent.showFilter(template);
 
     // verify
     expect(dialogSpy.open).toHaveBeenCalledTimes(1);

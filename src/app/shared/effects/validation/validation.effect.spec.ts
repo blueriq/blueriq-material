@@ -87,7 +87,7 @@ describe('ValidationEffect', () => {
     effects.invalidForm$.subscribe();
     actions.next(action);
 
-    expect(snackBarSpy.open).not.toHaveBeenCalledWith();
+    expect(snackBarSpy.open).not.toHaveBeenCalled();
   });
 
 });
