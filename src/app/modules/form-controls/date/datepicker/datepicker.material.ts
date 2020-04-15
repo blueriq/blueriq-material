@@ -1,5 +1,5 @@
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatDateFormats } from '@angular/material/core';
+import { DateAdapter, MatDateFormats, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { BlueriqSession } from '@blueriq/angular';
 import { parseBqLocale } from '@shared/date/bq-date-parser';
 
