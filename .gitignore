@@ -37,6 +37,8 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
+release.properties
+tslint_results_checkstyle.xml
 
 # e2e
 /e2e/*.js
