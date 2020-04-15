@@ -98,6 +98,8 @@
     "webdriver-manager": "12.1.7"
   },
   "resolutions": {
-    "eslint": "^4.18.2"
+    "eslint": "^4.18.2",
+    "marked": "^0.7.0",
+    "minimist": "^1.2.3"
   }
 }
