@@ -1,4 +1,4 @@
-import { Directive, Input, OnChanges, OnDestroy, Renderer2, Self, SimpleChanges } from '@angular/core';
+import { Directive, Input, NgZone, OnChanges, OnDestroy, Renderer2, Self, SimpleChanges } from '@angular/core';
 import { BlueriqListeners, BqElementDirective, getAngularComponent } from '@blueriq/angular';
 import { Element } from '@blueriq/core';
 import { Subscription } from 'rxjs';
@@ -21,7 +21,7 @@ export class HorizontalFlexChildDirective implements OnChanges, OnDestroy {
 
   constructor(private renderer: Renderer2,
               private listeners: BlueriqListeners,
-
+              private zone: NgZone,
               // Inject BqElementDirective to force its ordering to be
               // before this directive, to ensure the component has been rendered
               @Self() bqElementDirective: BqElementDirective) {
@@ -73,11 +73,15 @@ export class HorizontalFlexChildDirective implements OnChanges, OnDestroy {
   }
 
   private applyStyles(element: Element, flexGrow: number) {
-    // retrieve the host element from the angular component
-    const component = getAngularComponent(element);
-    if (component) {
-      this.renderer.addClass(component.location.nativeElement, 'bq-column');
-      this.renderer.setStyle(component.location.nativeElement, 'flex-grow', flexGrow);
-    }
+    this.zone.runOutsideAngular(() => {
+      setTimeout(() => {
+        // retrieve the host element from the angular component
+        const component = getAngularComponent(element);
+        if (component) {
+          this.renderer.addClass(component.location.nativeElement, 'bq-column');
+          this.renderer.setStyle(component.location.nativeElement, 'flex-grow', flexGrow);
+        }
+      }, 0);
+    });
   }
 }
