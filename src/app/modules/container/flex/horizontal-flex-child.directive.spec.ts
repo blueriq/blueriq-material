@@ -27,6 +27,8 @@ class MockFlexParentComponent {
 class MockFlexChildComponent {
 }
 
+const sleep = m => new Promise(r => setTimeout(r, m));
+
 describe('HorizontalFlexChildDirective', () => {
   let parentTemplate: ContainerTemplate;
   let childTemplate: ContainerTemplate;
@@ -58,54 +60,60 @@ describe('HorizontalFlexChildDirective', () => {
     component = fixture.componentInstance;
   });
 
-  it('should render child component', () => {
+  it('should render child component', async() => {
+    await sleep(10);
     expect(fixture.nativeElement.querySelector('.child')).toBeTruthy();
     expect(fixture.nativeElement.querySelector('.bq-column')).toBeTruthy();
     expect(fixture.nativeElement.querySelector('.bq-column').style.flexGrow).toBe('1');
   });
 
-  it('should render child component with irrelevant content style', () => {
+  it('should render child component with irrelevant content style', async() => {
     session.update(
       childTemplate.contentStyle('unknown'),
     );
+    await sleep(10);
     expect(fixture.nativeElement.querySelector('.child')).toBeTruthy();
     expect(fixture.nativeElement.querySelector('.bq-column')).toBeTruthy();
     expect(fixture.nativeElement.querySelector('.bq-column').style.flexGrow).toBe('1');
   });
 
-  it('should render child component with Weight presentation style', () => {
+  it('should render child component with Weight presentation style', async() => {
     session.update(
       childTemplate.styles('Weight6'),
     );
+    await sleep(10);
     expect(fixture.nativeElement.querySelector('.child')).toBeTruthy();
     expect(fixture.nativeElement.querySelector('.bq-column')).toBeTruthy();
     expect(fixture.nativeElement.querySelector('.bq-column').style.flexGrow).toBe('6');
   });
 
-  it('should render child component with dashboard_column content style', () => {
+  it('should render child component with dashboard_column content style', async() => {
     session.update(
       childTemplate.contentStyle('dashboard_column8'),
     );
+    await sleep(10);
     expect(fixture.nativeElement.querySelector('.child')).toBeTruthy();
     expect(fixture.nativeElement.querySelector('.bq-column')).toBeTruthy();
     expect(fixture.nativeElement.querySelector('.bq-column').style.flexGrow).toBe('8');
   });
 
-  it('should render child component with Weight presentation style and dashboard_column content style', () => {
+  it('should render child component with Weight presentation style and dashboard_column content style', async() => {
     session.update(
       childTemplate.styles('Weight4'),
       childTemplate.contentStyle('dashboard_column7'),
     );
+    await sleep(10);
     expect(fixture.nativeElement.querySelector('.child')).toBeTruthy();
     expect(fixture.nativeElement.querySelector('.bq-column')).toBeTruthy();
     expect(fixture.nativeElement.querySelector('.bq-column').style.flexGrow).toBe('4');
   });
 
-  it('should render child component with invalid Weight presentation style and dashboard_column content style', () => {
+  it('should render child component with invalid Weight presentation style and dashboard_column content style', async() => {
     session.update(
       childTemplate.styles('WeightSmall'),
       childTemplate.contentStyle('dashboard_column7'),
     );
+    await sleep(10);
     expect(fixture.nativeElement.querySelector('.child')).toBeTruthy();
     expect(fixture.nativeElement.querySelector('.bq-column')).toBeTruthy();
     expect(fixture.nativeElement.querySelector('.bq-column').style.flexGrow).toBe('7');
