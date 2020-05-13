@@ -56,9 +56,3 @@ services:
         limits:
           cpus: '0.25'
           memory: 128M
-
-networks:
-  default:
-    ipam:
-      config:
-        - subnet: 192.168.192.0/28
