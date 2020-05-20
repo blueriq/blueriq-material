@@ -57,7 +57,7 @@ export class TaskListDataSource extends MatTableDataSource<Task> {
     for (const column of this.displayedColumns) {
       const value = this.getCellData(task, column);
       // Empty cell or matching cell matches filter
-      if (value.indexOf(filter) >= 0) {
+      if (value.toLowerCase().indexOf(filter.toLowerCase()) >= 0) {
         return true;
       }
     }
