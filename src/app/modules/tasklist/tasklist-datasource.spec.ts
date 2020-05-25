@@ -90,4 +90,15 @@ describe('Task List Data Source', () => {
     expect(shouldDisplay).toBe(false);
 
   });
+
+  it('should apply the filter case insensitive', () => {
+    const dataSource = new TaskListDataSource(displayedColumns, provideDateFormats());
+
+    let shouldDisplay = dataSource.filterPredicate(tasks[0], 'solar');
+    expect(shouldDisplay).toBe(true);
+
+    shouldDisplay = dataSource.filterPredicate(tasks[0], 'TASK');
+    expect(shouldDisplay).toBe(true);
+  });
+
 });
