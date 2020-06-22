@@ -71,6 +71,7 @@ describe('TableComponent', () => {
         ContainerTemplate
           .create('row')
           .contentStyle('tablerow')
+          .styles('somePresentationStyle')
           .children(
             FieldTemplate.text('Person.Name').value('Tilly').readonly(true),
             ButtonTemplate.create('mybutton').caption('clickme'),
@@ -162,6 +163,11 @@ describe('TableComponent', () => {
     it('should use the bq-heading to display header', () => {
       // Verify
       expect(component.nativeElement.querySelector('bq-heading')).toBeTruthy();
+    });
+
+    it('should apply presentation styles to rows', () => {
+      // Verify
+      expect(component.nativeElement.querySelectorAll('.mat-row.somePresentationStyle').length).toBe(1);
     });
   });
 
