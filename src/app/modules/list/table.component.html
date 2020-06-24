@@ -11,6 +11,6 @@
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="table.columnNames$ | async"></tr>
-  <tr mat-row *matRowDef="let row; columns: table.columnNames$ | async" [ngClass]="row.styles.all()"></tr>
+  <tr mat-row *matRowDef="let row; columns: table.columnNames$ | async" bqClasses [bqClassesStyles]="row.styles"></tr>
 
 </table>
