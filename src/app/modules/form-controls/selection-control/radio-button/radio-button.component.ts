@@ -21,7 +21,7 @@ export class RadioButtonComponent implements OnInit, OnUpdate {
 
   direction: 'vertical' | 'horizontal';
 
-  formControl = this.form.control(this.field, { updateOn: 'blur', disableWhen: BqPresentationStyles.DISABLED });
+  formControl = this.form.control(this.field, { syncOn: 'update', disableWhen: BqPresentationStyles.DISABLED });
 
   constructor(public field: Field,
               private form: BlueriqFormBuilder,
