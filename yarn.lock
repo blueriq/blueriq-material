@@ -5933,8 +5933,8 @@ npm-pick-manifest@^3.0.0:
     semver "^5.4.1"
 
 npm-registry-fetch@^4.0.0:
-  version "4.0.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/npm-registry-fetch/-/npm-registry-fetch-4.0.3.tgz#3c2179e39e04f9348b1c2979545951d36bee8766"
+  version "4.0.5"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/npm-registry-fetch/-/npm-registry-fetch-4.0.5.tgz#cb87cf7f25bfb048d6c3ee19d115bebf93ea5bfa"
   dependencies:
     JSONStream "^1.3.4"
     bluebird "^3.5.1"
