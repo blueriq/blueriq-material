@@ -1,4 +1,7 @@
+import { HarnessLoader } from '@angular/cdk/testing';
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatRadioGroupHarness } from '@angular/material/radio/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
@@ -11,6 +14,7 @@ describe('RadioButtonComponent', () => {
   let field: FieldTemplate;
   let session: BlueriqTestSession;
   let component: ComponentFixture<RadioButtonComponent>;
+  let loader: HarnessLoader;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -35,6 +39,8 @@ describe('RadioButtonComponent', () => {
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(RadioButtonComponent);
     component.autoDetectChanges();
+
+    loader = TestbedHarnessEnvironment.loader(component);
   });
 
   it('should be checked', () => {
@@ -46,6 +52,17 @@ describe('RadioButtonComponent', () => {
     );
     inputField = component.nativeElement.querySelector('.mat-radio-checked');
     expect(inputField).toBeTruthy();
+  });
+
+  it('should update immediately when checked, without needing to get out of focus', async() => {
+    const radioGroup = await loader.getHarness(MatRadioGroupHarness);
+
+    let event = false;
+    component.componentInstance.field.onUpdate(() => event = true);
+
+    await radioGroup.checkRadioButton({ label: 'Beaker' });
+
+    expect(event).toBe(true);
   });
 
   it('should show a disabled option if the current value is not within the domain', () => {

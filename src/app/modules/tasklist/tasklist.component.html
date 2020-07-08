@@ -10,7 +10,7 @@
     <ng-container *ngFor="let column of taskList.columnDefinitions" [matColumnDef]="column.identifier">
       <th *matHeaderCellDef [disabled]="!!column.action" mat-header-cell mat-sort-header>{{column.header}}</th>
       <td *matCellDef="let task" mat-cell>
-      <span *ngIf="!column.action" [ngClass]="column.styles.all()">
+      <span *ngIf="!column.action" bqClasses [bqClassesStyles]="column.styles">
         {{getCellData(task, column)}}
       </span>
         <ng-container *ngIf="column.action">
@@ -18,7 +18,7 @@
             *ngIf="isIconButton(column.styles)"
             [color]="getColor(column.styles)"
             [disabled]="task.caseLocked || task.status != 'open'"
-            [ngClass]="column.styles.all()"
+            bqClasses [bqClassesStyles]="column.styles"
             mat-icon-button>
             <mat-icon [bqIcon]="column.styles"></mat-icon>
           </button>
@@ -26,7 +26,7 @@
             *ngIf="!isIconButton(column.styles)"
             [color]="getColor(column.styles)"
             [disabled]="task.caseLocked || task.status != 'open'"
-            [ngClass]="column.styles.all()"
+            bqClasses [bqClassesStyles]="column.styles"
             mat-button>
             <mat-icon [bqIcon]="column.styles"></mat-icon>
             {{ column.action.caption }}
