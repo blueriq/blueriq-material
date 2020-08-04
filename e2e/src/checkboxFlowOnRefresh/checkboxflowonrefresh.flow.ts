@@ -4,7 +4,7 @@ import { browser, by, element, ElementFinder, promise } from 'protractor';
 export class CheckboxflowonrefreshFlow {
   public PAGE_ID_CHECKBOX_FLOW_REFRESH: string = 'P588';
 
-  private path = '/flow/export-CheckboxUpdateRefreshContainer/ActiveInstance';
+  private path = '/flow/export-CheckboxFlowOnRefresh/ActiveInstance';
 
   get pageTitlePersonsActive(): Promise<string> {
     return this.getTitleTextFor(this.PAGE_ID_CHECKBOX_FLOW_REFRESH + '_PersonsActive_1');
