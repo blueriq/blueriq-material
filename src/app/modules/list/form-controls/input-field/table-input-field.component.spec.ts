@@ -53,7 +53,7 @@ describe('TableInputFieldComponent', () => {
       fieldIntegerTemplate.placeholder('myPlaceholder'),
       fieldIntegerTemplate.required(true),
     );
-    expect(component.nativeElement.querySelector('input[placeholder]')).toBeTruthy();
-    expect(component.nativeElement.querySelector('input').getAttribute('placeholder')).toBe('myPlaceholder *');
+    expect(component.nativeElement.querySelector('input[data-placeholder]')).toBeTruthy();
+    expect(component.nativeElement.querySelector('input').getAttribute('data-placeholder')).toBe('myPlaceholder *');
   });
 });

@@ -67,7 +67,7 @@ node {
       bat 'node -v'
       bat 'yarn -v'
       bat 'yarn install --ignore-engines'
-      bat 'yarn ngcc --properties browser module main --first-only --create-ivy-entry-points --no-async'
+      bat 'yarn ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points --no-async'
       bat 'yarn ng:version'
     }
 

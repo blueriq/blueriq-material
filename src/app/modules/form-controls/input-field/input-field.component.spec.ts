@@ -40,8 +40,8 @@ describe('InputFieldComponent', () => {
     session.update(
       field.placeholder('myPlaceholder'),
     );
-    expect(component.nativeElement.querySelector('input[placeholder]')).toBeTruthy();
-    expect(component.nativeElement.querySelector('input').getAttribute('placeholder')).toBe('myPlaceholder');
+    expect(component.nativeElement.querySelector('input[data-placeholder]')).toBeTruthy();
+    expect(component.nativeElement.querySelector('input').getAttribute('data-placeholder')).toBe('myPlaceholder');
   });
 
   it('should NOT have required marker in placeholder text', () => {
@@ -49,8 +49,8 @@ describe('InputFieldComponent', () => {
       field.placeholder('myPlaceholder'),
       field.required(true),
     );
-    expect(component.nativeElement.querySelector('input[placeholder]')).toBeTruthy();
-    expect(component.nativeElement.querySelector('input').getAttribute('placeholder')).toBe('myPlaceholder');
+    expect(component.nativeElement.querySelector('input[data-placeholder]')).toBeTruthy();
+    expect(component.nativeElement.querySelector('input').getAttribute('data-placeholder')).toBe('myPlaceholder');
   });
 
   it('should have a error', () => {
