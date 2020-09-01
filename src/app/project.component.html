@@ -1,5 +1,3 @@
-<bq-loading></bq-loading>
-
 <bq-project
   [sessionName]="sessionName | async"
   [sessionId]="sessionId | async"
@@ -14,5 +12,7 @@
   (unauthorized)="onUnauthorized($event)"
   (forbidden)="onForbidden($event)">
 </bq-project>
+
+<bq-loading></bq-loading>
 
 <bq-notification-overlay *ngIf="notification" [notification]="notification"></bq-notification-overlay>
