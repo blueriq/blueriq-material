@@ -1,4 +1,4 @@
-import { async, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {
   ChangedPageAction,
@@ -30,7 +30,7 @@ describe('MessagesEffect', () => {
     messages: {},
   };
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     snackBarSpy = jasmine.createSpyObj<MatSnackBar>('MatSnackBar', ['open']);
     actions = new Subject();
 

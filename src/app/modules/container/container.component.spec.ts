@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
@@ -14,7 +14,7 @@ describe('ContainerComponent', () => {
   let containerComponent: ComponentFixture<ContainerComponent>;
   let session: BlueriqTestSession;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
@@ -27,11 +27,11 @@ describe('ContainerComponent', () => {
 
   beforeEach(() => {
     containerTemplate = ContainerTemplate.create()
-    .children(
-      ContainerTemplate.create(),
-      ContainerTemplate.create(),
-      ContainerTemplate.create(),
-    );
+      .children(
+        ContainerTemplate.create(),
+        ContainerTemplate.create(),
+        ContainerTemplate.create(),
+      );
     session = BlueriqSessionTemplate.create().build(containerTemplate);
     containerComponent = session.get(ContainerComponent);
   });

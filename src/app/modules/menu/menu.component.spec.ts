@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,7 +16,7 @@ describe('MenuComponent', () => {
     let component: ComponentFixture<MenuComponent>;
     let session: BlueriqTestSession;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [
           NoopAnimationsModule,
@@ -48,15 +48,14 @@ describe('MenuComponent', () => {
       component = session.get(MenuComponent);
     });
 
-    it(' buttons that are not a submenu should trigger the blueriq session pressed', (done) => {
+    it('buttons that are not a submenu should trigger the blueriq session pressed', (done) => {
       // retrieve the trigger
       const selectTrigger = component.debugElement.query(By.directive(MatMenuTrigger));
 
       // click on the menu button (via the trigger) to display the submenu
       selectTrigger.nativeElement.click();
 
-      component.whenStable()
-      .then(() => {
+      component.whenStable().then(() => {
         spyOn(BlueriqSession.prototype, 'pressed').and.callThrough();
         component.detectChanges();
         const setSubMenu1 = component.debugElement.query(By.css('.mat-menu-content')).nativeElement;
@@ -67,7 +66,6 @@ describe('MenuComponent', () => {
         expect(BlueriqSession.prototype.pressed).toHaveBeenCalledTimes(1);
         done();
       });
-
     });
 
     it('should display submenus when the menu button is clicked', () => {
@@ -82,8 +80,7 @@ describe('MenuComponent', () => {
       // click on the menu button (via the trigger) to display the submenu
       selectTrigger.nativeElement.click();
 
-      component.whenStable()
-      .then(() => {
+      component.whenStable().then(() => {
         component.detectChanges();
         const setSubMenu1 = component.debugElement.query(By.css('.mat-menu-content')).nativeElement;
         const menuOptions = setSubMenu1.querySelectorAll('bq-menu-item') as NodeListOf<HTMLElement>;
@@ -96,8 +93,7 @@ describe('MenuComponent', () => {
 
         // expand the following submenu by clicking the 'Public' button
         menuOptions[2].getElementsByTagName('button')[0].click();
-        component.whenStable()
-        .then(() => {
+        component.whenStable().then(() => {
           component.detectChanges();
           // now 2 mat-menu-content sections exist, we want to verify the last one with the sub-submenu
           const setSubMenu2 = component.debugElement.queryAll(By.css('.mat-menu-content'))[1].nativeElement;

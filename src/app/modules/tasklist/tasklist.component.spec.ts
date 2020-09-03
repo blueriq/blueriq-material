@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Case, Task, TaskEvent, TaskService } from '@blueriq/angular';
 import { TaskList } from '@blueriq/angular/lists';
@@ -20,7 +20,7 @@ describe('Task List Component', () => {
   let taskService: jasmine.SpyObj<TaskService>;
   let taskList: jasmine.SpyObj<TaskList>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     taskService = jasmine.createSpyObj('TaskService', ['getAllTasks', 'getCaseEvents', 'getTaskEvents']);
     taskList = jasmine.createSpyObj('TaskList', ['buttonPressed']);
 

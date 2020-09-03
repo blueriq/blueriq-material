@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BlueriqResponseError, FailedAction, SessionRegistry } from '@blueriq/angular';
 import {
@@ -18,7 +18,7 @@ describe('FlowWidgetComponent', () => {
   let component: ComponentFixture<FlowWidgetComponent>;
   let session: BlueriqTestSession;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         BlueriqTestingModule,

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
@@ -12,7 +12,7 @@ describe('DatepickerComponent', () => {
   let component: ComponentFixture<DatepickerComponent>;
   let session: BlueriqTestSession;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
@@ -70,8 +70,7 @@ describe('DatepickerComponent', () => {
 
     component.componentInstance.formControl.markAsTouched();
     component.detectChanges();
-    component.whenStable()
-    .then(() => {
+    component.whenStable().then(() => {
       const errorElement = component.nativeElement.querySelector('mat-error');
       expect(errorElement).toBeTruthy();
       expect(errorElement.innerText).toBe('invalid input');

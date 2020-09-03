@@ -1,5 +1,5 @@
 import { DebugElement } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { UploadDetails } from '@blueriq/angular';
 import { FileUpload } from '@blueriq/angular/files';
@@ -21,7 +21,7 @@ describe('FileUploadComponent', () => {
   let directiveElement: DebugElement;
   let fileSelectDirective: FileSelectDirective;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         BlueriqTestingModule,

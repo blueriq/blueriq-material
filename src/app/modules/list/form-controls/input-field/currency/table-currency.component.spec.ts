@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
@@ -14,7 +14,7 @@ describe('TableCurrencyFieldComponent', () => {
   let session: BlueriqTestSession;
   let component: ComponentFixture<ListComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
@@ -26,20 +26,20 @@ describe('TableCurrencyFieldComponent', () => {
 
   beforeEach(() => {
     const fieldCurrency = FieldTemplate.currency()
-    .error('Invalid value').warning('Incorrect value');
+      .error('Invalid value').warning('Incorrect value');
 
     tableTemplate = ContainerTemplate.create()
-    .contentStyle(BqContentStyles.TABLE)
-    .children(
-      // ---------- Row #1 ----------
-      ContainerTemplate
-      .create('row')
-      .contentStyle('tablerow')
+      .contentStyle(BqContentStyles.TABLE)
       .children(
-        fieldCurrency,
-      ),
-      // ---------- End ----------
-    );
+        // ---------- Row #1 ----------
+        ContainerTemplate
+          .create('row')
+          .contentStyle('tablerow')
+          .children(
+            fieldCurrency,
+          ),
+        // ---------- End ----------
+      );
     const list = ContainerTemplate.create().children(tableTemplate);
     session = BlueriqSessionTemplate.create().build(list);
     component = session.get(ListComponent);

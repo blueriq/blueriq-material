@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate } from '@blueriq/core/testing';
@@ -16,7 +16,7 @@ describe('CommentListComponent', () => {
   const fiveDecember2017 = moment('2017-12-05', 'YYYY-MM-DD');
   const fiveDecember2016 = moment('2016-12-05', 'YYYY-MM-DD');
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
