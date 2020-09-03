@@ -44,7 +44,6 @@ describe('ContainerComponent', () => {
   });
 
   it('should have introduction class when presentation style is set', () => {
-    const container = containerComponent.componentInstance;
     session.update(
       containerTemplate.styles(BqPresentationStyles.INTRODUCTION),
     );
@@ -53,7 +52,6 @@ describe('ContainerComponent', () => {
   });
 
   it('should have transparent class when presentationstyle is set', () => {
-    const container = containerComponent.componentInstance;
     session.update(
       containerTemplate.styles(BqPresentationStyles.TRANSPARENT),
     );
@@ -73,7 +71,6 @@ describe('ContainerComponent', () => {
   });
 
   it('should have alignright class when presentationstyle is set', () => {
-    const container = containerComponent.componentInstance;
     session.update(
       containerTemplate.styles(BqPresentationStyles.ALIGNRIGHT),
     );
