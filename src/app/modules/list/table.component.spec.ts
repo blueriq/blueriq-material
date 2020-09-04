@@ -1,9 +1,16 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
 import { BlueriqTestSession } from '@blueriq/angular/testing/src/test_session';
-import { AssetTemplate, ButtonTemplate, ContainerTemplate, FieldTemplate, StaticNodeTemplate, TextItemTemplate } from '@blueriq/core/testing';
+import {
+  AssetTemplate,
+  ButtonTemplate,
+  ContainerTemplate,
+  FieldTemplate,
+  StaticNodeTemplate,
+  TextItemTemplate,
+} from '@blueriq/core/testing';
 import { BqContainerDirective } from '@shared/directive/container/bq-container.directive';
 import { AssetModule } from '../asset/asset.module';
 import { BqContentStyles } from '../BqContentStyles';
@@ -21,7 +28,7 @@ describe('TableComponent', () => {
   let session: BlueriqTestSession;
   let component: ComponentFixture<ListComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,

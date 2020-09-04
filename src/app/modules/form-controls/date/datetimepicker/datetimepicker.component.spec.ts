@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
@@ -12,7 +12,7 @@ describe('DateTimepickerComponent', () => {
   let component: ComponentFixture<DateTimepickerComponent>;
   let session: BlueriqTestSession;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
@@ -22,7 +22,7 @@ describe('DateTimepickerComponent', () => {
     });
   }));
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     field = FieldTemplate.datetime();
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(DateTimepickerComponent);
@@ -51,8 +51,8 @@ describe('DateTimepickerComponent', () => {
     session.update(
       field.placeholder('myPlaceholder'),
     );
-    expect(component.nativeElement.querySelector('input[placeholder]')).toBeTruthy();
-    expect(component.nativeElement.querySelector('input').getAttribute('placeholder')).toBe('myPlaceholder');
+    expect(component.nativeElement.querySelector('input[data-placeholder]')).toBeTruthy();
+    expect(component.nativeElement.querySelector('input').getAttribute('data-placeholder')).toBe('myPlaceholder');
   });
 
   it('should have an error', () => {

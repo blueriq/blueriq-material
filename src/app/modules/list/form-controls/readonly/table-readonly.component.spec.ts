@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
@@ -14,7 +14,7 @@ describe('TableReadonlyComponent', () => {
   let session: BlueriqTestSession;
   let component: ComponentFixture<ListComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
@@ -28,17 +28,17 @@ describe('TableReadonlyComponent', () => {
     const tableSelect = FieldTemplate.text('color').value('You can only read this').readonly(true);
 
     readonlyTemplate = ContainerTemplate.create()
-    .contentStyle(BqContentStyles.TABLE)
-    .children(
-      // ---------- Row #1 ----------
-      ContainerTemplate
-      .create('row')
-      .contentStyle('tablerow')
+      .contentStyle(BqContentStyles.TABLE)
       .children(
-        tableSelect,
-      ),
-      // ---------- End ----------
-    );
+        // ---------- Row #1 ----------
+        ContainerTemplate
+          .create('row')
+          .contentStyle('tablerow')
+          .children(
+            tableSelect,
+          ),
+        // ---------- End ----------
+      );
     const list = ContainerTemplate.create().children(readonlyTemplate);
     session = BlueriqSessionTemplate.create().build(list);
     component = session.get(ListComponent);

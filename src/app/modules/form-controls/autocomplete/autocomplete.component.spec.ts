@@ -70,7 +70,7 @@ describe('AutocompleteComponent', () => {
       field.placeholder('myPlaceholder'),
     );
     const autocompleteInput = component.debugElement.query(By.css('.mat-input-element'));
-    expect(autocompleteInput.attributes['placeholder']).toBe('myPlaceholder');
+    expect(autocompleteInput.attributes['data-placeholder']).toBe('myPlaceholder');
   });
 
   it('should have an error', () => {

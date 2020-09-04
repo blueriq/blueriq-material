@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
@@ -12,7 +12,7 @@ describe('InputFieldComponent', () => {
   let component: ComponentFixture<CurrencyFieldComponent>;
   let session: BlueriqTestSession;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
@@ -40,8 +40,8 @@ describe('InputFieldComponent', () => {
     session.update(
       field.placeholder('myPlaceholder'),
     );
-    expect(component.nativeElement.querySelector('input[placeholder]')).toBeTruthy();
-    expect(component.nativeElement.querySelector('input').getAttribute('placeholder')).toBe('myPlaceholder');
+    expect(component.nativeElement.querySelector('input[data-placeholder]')).toBeTruthy();
+    expect(component.nativeElement.querySelector('input').getAttribute('data-placeholder')).toBe('myPlaceholder');
   });
 
   it('should NOT have required marker in placeholder text', () => {
@@ -49,8 +49,8 @@ describe('InputFieldComponent', () => {
       field.placeholder('myPlaceholder'),
       field.required(true),
     );
-    expect(component.nativeElement.querySelector('input[placeholder]')).toBeTruthy();
-    expect(component.nativeElement.querySelector('input').getAttribute('placeholder')).toBe('myPlaceholder');
+    expect(component.nativeElement.querySelector('input[data-placeholder]')).toBeTruthy();
+    expect(component.nativeElement.querySelector('input').getAttribute('data-placeholder')).toBe('myPlaceholder');
   });
 
   it('should have a error', () => {

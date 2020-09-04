@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
@@ -13,7 +13,7 @@ describe('TextItemComponent', () => {
   let component: ComponentFixture<TextItemComponent>;
   let session: BlueriqTestSession;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
@@ -50,9 +50,9 @@ describe('TextItemComponent', () => {
     const iconGutter = component.debugElement.query(By.css('div[class=gutter]'));
     const iconWarningClass = component.debugElement.query(By.css('div[class=icon-warning]'));
     const textItemText: string = component.debugElement.query(By.css('span[class=warning]'))
-    .nativeElement
-    .textContent
-    .trim();
+      .nativeElement
+      .textContent
+      .trim();
     expect(textItemText).toBe('Lorem ipsum');
     expect(iconGutter).toBeFalsy();
     expect(iconWarningClass).toBeFalsy();

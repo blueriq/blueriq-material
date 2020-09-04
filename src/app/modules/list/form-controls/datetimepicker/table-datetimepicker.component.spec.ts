@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSession } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
@@ -16,7 +16,7 @@ describe('TableDatetimePickerComponent', () => {
   let session: BlueriqTestSession;
   let component: ComponentFixture<ListComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       providers: [MomentTransformer, BlueriqSession],
       imports: [
@@ -29,20 +29,20 @@ describe('TableDatetimePickerComponent', () => {
 
   beforeEach(() => {
     const datetimeField = FieldTemplate.datetime()
-    .error('Invalid date').warning('Incorrect date');
+      .error('Invalid date').warning('Incorrect date');
 
     tableTemplate = ContainerTemplate.create()
-    .contentStyle(BqContentStyles.TABLE)
-    .children(
-      // ---------- Row #1 ----------
-      ContainerTemplate
-      .create('row')
-      .contentStyle('tablerow')
+      .contentStyle(BqContentStyles.TABLE)
       .children(
-        datetimeField,
-      ),
-      // ---------- End ----------
-    );
+        // ---------- Row #1 ----------
+        ContainerTemplate
+          .create('row')
+          .contentStyle('tablerow')
+          .children(
+            datetimeField,
+          ),
+        // ---------- End ----------
+      );
     const list = ContainerTemplate.create().children(tableTemplate);
     session = BlueriqSessionTemplate.create().build(list);
     component = session.get(ListComponent);

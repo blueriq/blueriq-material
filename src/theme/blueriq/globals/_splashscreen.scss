@@ -9,7 +9,7 @@
   transition: opacity 350ms ease-out;
   background: {
     position: center center;
-    image: url('../..' + $url-img-logo);
+    image: url('../../..' + $url-img-logo);
     repeat: no-repeat;
     size: 250px;
   }

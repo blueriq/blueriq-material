@@ -36,6 +36,10 @@
                 "./src/theme/blueriq"
               ]
             },
+            "allowedCommonJsDependencies": [
+              "chart.js",
+              "css-selector-parser"
+            ],
             "scripts": []
           },
           "configurations": {

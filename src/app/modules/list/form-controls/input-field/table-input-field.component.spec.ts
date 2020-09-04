@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
@@ -14,7 +14,7 @@ describe('TableInputFieldComponent', () => {
   let component: ComponentFixture<ListComponent>;
   let session: BlueriqTestSession;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
@@ -28,17 +28,17 @@ describe('TableInputFieldComponent', () => {
     fieldIntegerTemplate = FieldTemplate.integer().error('Invalid value').warning('Incorrect value');
 
     tableTemplate = ContainerTemplate.create()
-    .contentStyle(BqContentStyles.TABLE)
-    .children(
-      // ---------- Row #1 ----------
-      ContainerTemplate
-      .create('row')
-      .contentStyle('tablerow')
+      .contentStyle(BqContentStyles.TABLE)
       .children(
-        fieldIntegerTemplate,
-      ),
-      // ---------- End ----------
-    );
+        // ---------- Row #1 ----------
+        ContainerTemplate
+          .create('row')
+          .contentStyle('tablerow')
+          .children(
+            fieldIntegerTemplate,
+          ),
+        // ---------- End ----------
+      );
     const list = ContainerTemplate.create().children(tableTemplate);
     session = BlueriqSessionTemplate.create().build(list);
     component = session.get(ListComponent);
@@ -53,7 +53,7 @@ describe('TableInputFieldComponent', () => {
       fieldIntegerTemplate.placeholder('myPlaceholder'),
       fieldIntegerTemplate.required(true),
     );
-    expect(component.nativeElement.querySelector('input[placeholder]')).toBeTruthy();
-    expect(component.nativeElement.querySelector('input').getAttribute('placeholder')).toBe('myPlaceholder *');
+    expect(component.nativeElement.querySelector('input[data-placeholder]')).toBeTruthy();
+    expect(component.nativeElement.querySelector('input').getAttribute('data-placeholder')).toBe('myPlaceholder *');
   });
 });

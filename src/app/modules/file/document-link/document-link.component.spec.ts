@@ -1,6 +1,5 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DocumentLink } from '@blueriq/angular/files';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate, LinkTemplate } from '@blueriq/core/testing';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
@@ -18,7 +17,7 @@ describe('DocumentLinkComponent DocumentLink', () => {
   let session: BlueriqTestSession;
   let mockFileDownloadService: FileDownloadService;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     mockFileDownloadService = jasmine.createSpyObj(['download']);
     TestBed.configureTestingModule({
       providers: [

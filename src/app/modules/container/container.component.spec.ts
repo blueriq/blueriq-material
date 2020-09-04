@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
@@ -14,7 +14,7 @@ describe('ContainerComponent', () => {
   let containerComponent: ComponentFixture<ContainerComponent>;
   let session: BlueriqTestSession;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
@@ -27,11 +27,11 @@ describe('ContainerComponent', () => {
 
   beforeEach(() => {
     containerTemplate = ContainerTemplate.create()
-    .children(
-      ContainerTemplate.create(),
-      ContainerTemplate.create(),
-      ContainerTemplate.create(),
-    );
+      .children(
+        ContainerTemplate.create(),
+        ContainerTemplate.create(),
+        ContainerTemplate.create(),
+      );
     session = BlueriqSessionTemplate.create().build(containerTemplate);
     containerComponent = session.get(ContainerComponent);
   });
@@ -44,7 +44,6 @@ describe('ContainerComponent', () => {
   });
 
   it('should have introduction class when presentation style is set', () => {
-    const container = containerComponent.componentInstance;
     session.update(
       containerTemplate.styles(BqPresentationStyles.INTRODUCTION),
     );
@@ -53,7 +52,6 @@ describe('ContainerComponent', () => {
   });
 
   it('should have transparent class when presentationstyle is set', () => {
-    const container = containerComponent.componentInstance;
     session.update(
       containerTemplate.styles(BqPresentationStyles.TRANSPARENT),
     );
@@ -73,7 +71,6 @@ describe('ContainerComponent', () => {
   });
 
   it('should have alignright class when presentationstyle is set', () => {
-    const container = containerComponent.componentInstance;
     session.update(
       containerTemplate.styles(BqPresentationStyles.ALIGNRIGHT),
     );
