@@ -33,6 +33,7 @@ import { NumberFieldComponent } from './input-field/number/number.component';
 import { PercentageFieldComponent } from './input-field/percentage/percentage.component';
 import { StringFieldComponent } from './input-field/string/string.component';
 import { SelectComponent } from './select/select.component';
+import { CheckboxListComponent } from './selection-control/checkbox-list/checkbox-list.component';
 import { CheckboxComponent } from './selection-control/checkbox/checkbox.component';
 import { RadioButtonComponent } from './selection-control/radio-button/radio-button.component';
 import { SlideToggleComponent } from './selection-control/slide-toggle/slide-toggle.component';
@@ -41,6 +42,7 @@ import { TextAreaComponent } from './text-area/text-area.component';
 const FORM_CONTROL_COMPONENTS = [
   AutocompleteComponent,
   CheckboxComponent,
+  CheckboxListComponent,
   ChiplistComponent,
   CurrencyFieldComponent,
   DateTimepickerComponent,

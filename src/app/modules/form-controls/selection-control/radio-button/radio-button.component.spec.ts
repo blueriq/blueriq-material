@@ -28,14 +28,14 @@ describe('RadioButtonComponent', () => {
 
   beforeEach(() => {
     field = FieldTemplate.text('muppets')
-      .domain({
-        'kermit': 'Kermit',
-        'miss_piggy': 'Miss Piggy',
-        'beaker': 'Beaker',
-      })
-      .styles(BqPresentationStyles.RADIO)
-      .readonly(false)
-      .value('');
+    .domain({
+      'kermit': 'Kermit',
+      'miss_piggy': 'Miss Piggy',
+      'beaker': 'Beaker',
+    })
+    .styles(BqPresentationStyles.ALLOPTIONSVISIBLE)
+    .readonly(false)
+    .value('');
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(RadioButtonComponent);
     component.autoDetectChanges();
@@ -79,7 +79,7 @@ describe('RadioButtonComponent', () => {
     let isDisabled = component.nativeElement.querySelector('input[type=radio]').hasAttribute('disabled');
     expect(isDisabled).toBeFalsy('by default nothing is disabled');
 
-    field.styles(BqPresentationStyles.RADIO, BqPresentationStyles.DISABLED);
+    field.styles(BqPresentationStyles.DEPRECATED_RADIO, BqPresentationStyles.DISABLED);
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(RadioButtonComponent);
 
@@ -87,11 +87,18 @@ describe('RadioButtonComponent', () => {
     expect(isDisabled).toBeTruthy();
   });
 
-  it('style `radio` is required', () => {
+  it('style `AllOptionsVisible` is required', () => {
     // remove styles
     field.styles();
     session = BlueriqSessionTemplate.create().build(field);
     expect(() => session.get(RadioButtonComponent)).toThrow();
+  });
+
+  it('deprecated style `radio` should also render component', () => {
+    // update styles
+    field.styles(BqPresentationStyles.DEPRECATED_RADIO);
+    session = BlueriqSessionTemplate.create().build(field);
+    expect(session.get(RadioButtonComponent)).toBeTruthy();
   });
 
   it('default direction is `vertical`', () => {
@@ -102,7 +109,7 @@ describe('RadioButtonComponent', () => {
 
     // override default with presentation style
     session.update(
-      field.styles(BqPresentationStyles.RADIO, BqPresentationStyles.DEPRECATED_HORIZONTAL),
+      field.styles(BqPresentationStyles.DEPRECATED_RADIO, BqPresentationStyles.DEPRECATED_HORIZONTAL),
     );
     styledDiv = component.nativeElement.querySelector('mat-radio-group').querySelector('div');
     expect(styledDiv.style.flexFlow).toBe('row wrap');
@@ -126,26 +133,4 @@ describe('RadioButtonComponent', () => {
     expect(styledDiv.style.display).toBe('flex');
   });
 
-  it('default direction is `horizontal` when there are exactly 2 radio buttons', () => {
-    session.update(
-      field.name('two_options').domain({
-        1: 'One',
-        2: 'Two',
-      }).styles(BqPresentationStyles.RADIO),
-    );
-
-    let styledDiv = component.nativeElement.querySelector('mat-radio-group').querySelector('div');
-    expect(styledDiv.style.flexFlow).toBe('row wrap');
-    expect(styledDiv.style.boxSizing).toBe('border-box');
-    expect(styledDiv.style.display).toBe('flex');
-
-    // override default with presentation style
-    session.update(
-      field.styles(BqPresentationStyles.RADIO, BqPresentationStyles.DEPRECATED_VERTICAL),
-    );
-    styledDiv = component.nativeElement.querySelector('mat-radio-group').querySelector('div');
-    expect(styledDiv.style.flexFlow).toBe('row wrap');
-    expect(styledDiv.style.boxSizing).toBe('border-box');
-    expect(styledDiv.style.display).toBe('flex');
-  });
 });

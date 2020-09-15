@@ -51,5 +51,4 @@ describe('CheckboxComponent', () => {
     const inputField = component.nativeElement.querySelector('.mat-checkbox-disabled');
     expect(inputField).toBeTruthy();
   });
-
 });
