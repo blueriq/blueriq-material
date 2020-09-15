@@ -8,11 +8,11 @@ import { BqPresentationStyles } from '../../../BqPresentationStyles';
 @Component({
   selector: 'bq-checkbox',
   templateUrl: './checkbox.component.html',
-  styleUrls: ['../selection-control.component.scss'],
+  styleUrls: ['./checkbox.component.scss', '../selection-control.component.scss'],
 })
 @BlueriqComponent({
   type: Field,
-  selector: '[dataType=boolean]:not([hasDomain])',
+  selector: `[dataType=boolean]:not([hasDomain])`,
 })
 export class CheckboxComponent {
 

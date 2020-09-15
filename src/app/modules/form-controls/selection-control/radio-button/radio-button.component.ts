@@ -12,10 +12,8 @@ import { BqPresentationStyles } from '../../../BqPresentationStyles';
 })
 @BlueriqComponent({
   type: Field,
-  selector: `.${BqPresentationStyles.RADIO}[hasDomain], ` +
-    `.${BqPresentationStyles.DEPRECATED_HORIZONTAL}[hasDomain], ` +
-    `.${BqPresentationStyles.DEPRECATED_VERTICAL}[hasDomain], ` +
-    `.${BqPresentationStyles.HORIZONTAL}[hasDomain]`,
+  selector: `.${ BqPresentationStyles.DEPRECATED_RADIO }[multiValued=false][hasDomain], ` +
+    `.${ BqPresentationStyles.ALLOPTIONSVISIBLE }[multiValued=false][hasDomain]`,
 })
 export class RadioButtonComponent implements OnInit, OnUpdate {
 
@@ -42,12 +40,11 @@ export class RadioButtonComponent implements OnInit, OnUpdate {
 
   /**
    * Sets the direction in which the radio buttons are presented.
-   * Options are {@link BqPresentationStyles.VERTICAL}
-   * and {@link BqPresentationStyles.HORIZONTAL}
+   * By default, the list of radio buttons will be rendered vertically,
+   * {@link BqPresentationStyles.HORIZONTAL} will render a horizontal list
    */
   private updateDirection() {
-    if (this.field.styles.hasAny(BqPresentationStyles.HORIZONTAL, BqPresentationStyles.DEPRECATED_HORIZONTAL)
-      || this.field.domain.size === 2) {
+    if (this.field.styles.hasAny(BqPresentationStyles.HORIZONTAL, BqPresentationStyles.DEPRECATED_HORIZONTAL)) {
       this.direction = 'horizontal';
     } else {
       this.direction = 'vertical';

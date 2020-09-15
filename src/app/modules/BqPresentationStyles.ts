@@ -6,9 +6,9 @@ export class BqPresentationStyles {
   static BUTTON = 'Button';
   static FLAT_BUTTON = 'FlatButton';
   static HORIZONTAL = 'Horizontal';
+  static ALLOPTIONSVISIBLE = 'AllOptionsVisible';
   static INTRODUCTION = 'Introduction';
   static DATEPICKERMATERIAL = 'DatepickerMaterial';
-  static RADIO = 'Radio';
   static ACCENT = 'Accent';
   static TERTIARY = 'Tertiary';
   static TRANSPARENT = 'Transparent';
@@ -46,7 +46,6 @@ export class BqPresentationStyles {
   static DEPRECATED_ALIGNRIGHT = 'align_right'; // New style is 'AlignRight'
   static DEPRECATED_ANIMATE = 'animate'; // New style is 'Animation'
   static DEPRECATED_HORIZONTAL = 'options_horizontal'; // New style is 'Horizontal'
-  static DEPRECATED_VERTICAL = 'options_vertical'; // New style is 'Radio'
   static DEPRECATED_TOGGLE = 'toggle'; // New style is 'Switch'
   static DEPRECATED_MEMO = 'memo'; // New style is 'LargeText'
   static DEPRECATED_ONLYICON = 'only_icon'; // New style is 'OnlyIcon'
@@ -56,5 +55,8 @@ export class BqPresentationStyles {
   static DEPRECATED_STATISTIC_RADAR = 'radar';
   static DEPRECATED_STATISTIC_LINE = 'line';
   static DEPRECATED_STATISTIC_POLAR = 'polar';
+
+  // Presentation styles which are deprecated in Blueriq 13.x
+  static DEPRECATED_RADIO = 'Radio'; // Since 13.5
 
 }
