@@ -2,21 +2,21 @@
 # yarn lockfile v1
 
 
-"@angular-devkit/architect@0.1001.0":
-  version "0.1001.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular-devkit/architect/-/architect-0.1001.0.tgz#39250758d749b88a3867f5ef529d52ad16b6c5fd"
+"@angular-devkit/architect@0.1001.4":
+  version "0.1001.4"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular-devkit/architect/-/architect-0.1001.4.tgz#a10f11ab34cd76ecb469cbc5b06a95e82c9171da"
   dependencies:
-    "@angular-devkit/core" "10.1.0"
+    "@angular-devkit/core" "10.1.4"
     rxjs "6.6.2"
 
-"@angular-devkit/build-angular@0.1001.0":
-  version "0.1001.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular-devkit/build-angular/-/build-angular-0.1001.0.tgz#8257c1ce9ed4f2e31ea59cbd6939efa127e9d35c"
+"@angular-devkit/build-angular@0.1001.4":
+  version "0.1001.4"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular-devkit/build-angular/-/build-angular-0.1001.4.tgz#b942d0299121783502da962015c010e27ffbd971"
   dependencies:
-    "@angular-devkit/architect" "0.1001.0"
-    "@angular-devkit/build-optimizer" "0.1001.0"
-    "@angular-devkit/build-webpack" "0.1001.0"
-    "@angular-devkit/core" "10.1.0"
+    "@angular-devkit/architect" "0.1001.4"
+    "@angular-devkit/build-optimizer" "0.1001.4"
+    "@angular-devkit/build-webpack" "0.1001.4"
+    "@angular-devkit/core" "10.1.4"
     "@babel/core" "7.11.1"
     "@babel/generator" "7.11.0"
     "@babel/plugin-transform-runtime" "7.11.0"
@@ -24,7 +24,7 @@
     "@babel/runtime" "7.11.2"
     "@babel/template" "7.10.4"
     "@jsdevtools/coverage-istanbul-loader" "3.0.5"
-    "@ngtools/webpack" "10.1.0"
+    "@ngtools/webpack" "10.1.4"
     autoprefixer "9.8.6"
     babel-loader "8.1.0"
     browserslist "^4.9.1"
@@ -68,7 +68,7 @@
     style-loader "1.2.1"
     stylus "0.54.8"
     stylus-loader "3.0.2"
-    terser "5.2.1"
+    terser "5.3.0"
     terser-webpack-plugin "4.1.0"
     tree-kill "1.2.2"
     webpack "4.44.1"
@@ -79,9 +79,9 @@
     webpack-subresource-integrity "1.4.1"
     worker-plugin "5.0.0"
 
-"@angular-devkit/build-optimizer@0.1001.0":
-  version "0.1001.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular-devkit/build-optimizer/-/build-optimizer-0.1001.0.tgz#0e018138ec33e47b9cfbceb67ae0a5fbd5a26f08"
+"@angular-devkit/build-optimizer@0.1001.4":
+  version "0.1001.4"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular-devkit/build-optimizer/-/build-optimizer-0.1001.4.tgz#566dea3bfd15d851ac70ecc7ecf3e98fee40e98c"
   dependencies:
     loader-utils "2.0.0"
     source-map "0.7.3"
@@ -89,17 +89,17 @@
     typescript "4.0.2"
     webpack-sources "1.4.3"
 
-"@angular-devkit/build-webpack@0.1001.0":
-  version "0.1001.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular-devkit/build-webpack/-/build-webpack-0.1001.0.tgz#8ef6604ea384ffc53193e8b74b60b13c845dadd3"
+"@angular-devkit/build-webpack@0.1001.4":
+  version "0.1001.4"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular-devkit/build-webpack/-/build-webpack-0.1001.4.tgz#cbdf5a97a2bbe099abeb294d20546b2c475a3d9c"
   dependencies:
-    "@angular-devkit/architect" "0.1001.0"
-    "@angular-devkit/core" "10.1.0"
+    "@angular-devkit/architect" "0.1001.4"
+    "@angular-devkit/core" "10.1.4"
     rxjs "6.6.2"
 
-"@angular-devkit/core@10.1.0":
-  version "10.1.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular-devkit/core/-/core-10.1.0.tgz#3e4d6abc0b949f4e2fba94077d17c132eb0a673f"
+"@angular-devkit/core@10.1.4":
+  version "10.1.4"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular-devkit/core/-/core-10.1.4.tgz#5db3fa603f2cff3303e687b9e7cc5346db538644"
   dependencies:
     ajv "6.12.4"
     fast-json-stable-stringify "2.1.0"
@@ -107,37 +107,37 @@
     rxjs "6.6.2"
     source-map "0.7.3"
 
-"@angular-devkit/schematics@10.1.0":
-  version "10.1.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular-devkit/schematics/-/schematics-10.1.0.tgz#11f12174585966984f823e1740331115f4f2958c"
+"@angular-devkit/schematics@10.1.4":
+  version "10.1.4"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular-devkit/schematics/-/schematics-10.1.4.tgz#0966e0cbbdaccc294718db9b84b46ab54c03631b"
   dependencies:
-    "@angular-devkit/core" "10.1.0"
+    "@angular-devkit/core" "10.1.4"
     ora "5.0.0"
     rxjs "6.6.2"
 
-"@angular/animations@10.1.0":
-  version "10.1.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/animations/-/animations-10.1.0.tgz#6c56ff473c3163667ff98e9e3ee333097af803c9"
+"@angular/animations@10.1.4":
+  version "10.1.4"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/animations/-/animations-10.1.4.tgz#32cff0e0c73898e69c51cbdc1974d136a8ba6061"
   dependencies:
     tslib "^2.0.0"
 
-"@angular/cdk@10.2.0":
-  version "10.2.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/cdk/-/cdk-10.2.0.tgz#0d8579367bb36cdea57564079414b5e4fccff61d"
+"@angular/cdk@10.2.3":
+  version "10.2.3"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/cdk/-/cdk-10.2.3.tgz#49eb09ae68f91f1ecec388592091a0f8f1dd5dce"
   dependencies:
     tslib "^2.0.0"
   optionalDependencies:
     parse5 "^5.0.0"
 
-"@angular/cli@10.1.0":
-  version "10.1.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/cli/-/cli-10.1.0.tgz#f99df22ad832f58456089c98c7684fb5757be951"
+"@angular/cli@10.1.4":
+  version "10.1.4"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/cli/-/cli-10.1.4.tgz#8aa6b677da3d7ef9661e341893d5b53a5256645d"
   dependencies:
-    "@angular-devkit/architect" "0.1001.0"
-    "@angular-devkit/core" "10.1.0"
-    "@angular-devkit/schematics" "10.1.0"
-    "@schematics/angular" "10.1.0"
-    "@schematics/update" "0.1001.0"
+    "@angular-devkit/architect" "0.1001.4"
+    "@angular-devkit/core" "10.1.4"
+    "@angular-devkit/schematics" "10.1.4"
+    "@schematics/angular" "10.1.4"
+    "@schematics/update" "0.1001.4"
     "@yarnpkg/lockfile" "1.1.0"
     ansi-colors "4.1.1"
     debug "4.1.1"
@@ -154,15 +154,15 @@
     universal-analytics "0.4.23"
     uuid "8.3.0"
 
-"@angular/common@10.1.0":
-  version "10.1.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/common/-/common-10.1.0.tgz#5d2428d9e6a25b50600186d1a87ee04f9ba25924"
+"@angular/common@10.1.4":
+  version "10.1.4"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/common/-/common-10.1.4.tgz#ca52c5ea3aca1533898c3363adc1089f18c94518"
   dependencies:
     tslib "^2.0.0"
 
-"@angular/compiler-cli@10.1.0":
-  version "10.1.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/compiler-cli/-/compiler-cli-10.1.0.tgz#da79982e5b3085eb5f8fd626f5f54aae33b89122"
+"@angular/compiler-cli@10.1.4":
+  version "10.1.4"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/compiler-cli/-/compiler-cli-10.1.4.tgz#b5aaa7de6173b83ce3ba066232b8c088f2428642"
   dependencies:
     canonical-path "1.0.0"
     chokidar "^3.0.0"
@@ -178,9 +178,9 @@
     tslib "^2.0.0"
     yargs "15.3.0"
 
-"@angular/compiler@10.1.0":
-  version "10.1.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/compiler/-/compiler-10.1.0.tgz#e485b7ea30c827f9ff14cb77d3a7299db6963e02"
+"@angular/compiler@10.1.4":
+  version "10.1.4"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/compiler/-/compiler-10.1.4.tgz#76268332edb289b282296560e41478a2e323a39c"
   dependencies:
     tslib "^2.0.0"
 
@@ -188,9 +188,9 @@
   version "9.0.0"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/compiler/-/compiler-9.0.0.tgz#87e0bef4c369b6cadae07e3a4295778fc93799d5"
 
-"@angular/core@10.1.0":
-  version "10.1.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/core/-/core-10.1.0.tgz#000b78432be63247199d0f385c116b7f4db803bc"
+"@angular/core@10.1.4":
+  version "10.1.4"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/core/-/core-10.1.4.tgz#1180370e335371a0c36f05c2e8142c926a362836"
   dependencies:
     tslib "^2.0.0"
 
@@ -204,43 +204,43 @@
   dependencies:
     tslib "^2.0.0"
 
-"@angular/forms@10.1.0":
-  version "10.1.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/forms/-/forms-10.1.0.tgz#1f55bb48b5a360cbee07c40d21840da5dec45d60"
+"@angular/forms@10.1.4":
+  version "10.1.4"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/forms/-/forms-10.1.4.tgz#db81ecd854ebcfd53ee8b4ebc94ae1b4d6e5a3e6"
   dependencies:
     tslib "^2.0.0"
 
-"@angular/language-service@10.1.0":
-  version "10.1.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/language-service/-/language-service-10.1.0.tgz#2936d8d40305afd9511f74ab1f7b8a33c3847bd0"
+"@angular/language-service@10.1.4":
+  version "10.1.4"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/language-service/-/language-service-10.1.4.tgz#3d428a6bbf0a8ced58c7d3de226fd74123a05389"
 
-"@angular/material-moment-adapter@10.2.0":
-  version "10.2.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/material-moment-adapter/-/material-moment-adapter-10.2.0.tgz#1e704dbeb4241804a71cf2a48bcd4fa7f8f30586"
+"@angular/material-moment-adapter@10.2.3":
+  version "10.2.3"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/material-moment-adapter/-/material-moment-adapter-10.2.3.tgz#fb4830ce67bf5b481191e80706e60ff7f0a9b175"
   dependencies:
     tslib "^2.0.0"
 
-"@angular/material@10.2.0":
-  version "10.2.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/material/-/material-10.2.0.tgz#620bbb7b761559513a9fe5ae0fbbf289800febd8"
+"@angular/material@10.2.3":
+  version "10.2.3"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/material/-/material-10.2.3.tgz#d0f249d839a46522538ce98d542a8f210128890c"
   dependencies:
     tslib "^2.0.0"
 
-"@angular/platform-browser-dynamic@10.1.0":
-  version "10.1.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/platform-browser-dynamic/-/platform-browser-dynamic-10.1.0.tgz#9f23e6867cdf4930789587dbb8d2be8d8a5ecc64"
+"@angular/platform-browser-dynamic@10.1.4":
+  version "10.1.4"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/platform-browser-dynamic/-/platform-browser-dynamic-10.1.4.tgz#9e25c3c8fdc11d9efb610bd051f701581e1af512"
   dependencies:
     tslib "^2.0.0"
 
-"@angular/platform-browser@10.1.0":
-  version "10.1.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/platform-browser/-/platform-browser-10.1.0.tgz#edc5640adb77151f3f40176cb92b4e252ab58e1a"
+"@angular/platform-browser@10.1.4":
+  version "10.1.4"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/platform-browser/-/platform-browser-10.1.4.tgz#e65e120905d9f468b39551573d15ef6832063598"
   dependencies:
     tslib "^2.0.0"
 
-"@angular/router@10.1.0":
-  version "10.1.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/router/-/router-10.1.0.tgz#02bbbcf0b20aad8a6679bfab82efe6a19f738805"
+"@angular/router@10.1.4":
+  version "10.1.4"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@angular/router/-/router-10.1.4.tgz#66fd12c01353155c4f66be4972907bd2d0bd4829"
   dependencies:
     tslib "^2.0.0"
 
@@ -1307,11 +1307,11 @@
   dependencies:
     tslib "^2.0.0"
 
-"@ngtools/webpack@10.1.0":
-  version "10.1.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@ngtools/webpack/-/webpack-10.1.0.tgz#70059658d4ec1966026b48ba8bc91634c0ef1381"
+"@ngtools/webpack@10.1.4":
+  version "10.1.4"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@ngtools/webpack/-/webpack-10.1.4.tgz#84ed4bb7fabbe36d6e0f2b5c82bf04a8ab328a4a"
   dependencies:
-    "@angular-devkit/core" "10.1.0"
+    "@angular-devkit/core" "10.1.4"
     enhanced-resolve "4.3.0"
     webpack-sources "1.4.3"
 
@@ -1343,20 +1343,20 @@
   dependencies:
     mkdirp "^1.0.4"
 
-"@schematics/angular@10.1.0":
-  version "10.1.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@schematics/angular/-/angular-10.1.0.tgz#ca1282853c16c318cdee2f2b0ca63222ef84f220"
+"@schematics/angular@10.1.4":
+  version "10.1.4"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@schematics/angular/-/angular-10.1.4.tgz#6143425e365afe95cbc94290d95ee852ba2d2dd0"
   dependencies:
-    "@angular-devkit/core" "10.1.0"
-    "@angular-devkit/schematics" "10.1.0"
+    "@angular-devkit/core" "10.1.4"
+    "@angular-devkit/schematics" "10.1.4"
     jsonc-parser "2.3.0"
 
-"@schematics/update@0.1001.0":
-  version "0.1001.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@schematics/update/-/update-0.1001.0.tgz#9b3fcc8001d1ade4cec8294ce526be3411ea39dc"
+"@schematics/update@0.1001.4":
+  version "0.1001.4"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@schematics/update/-/update-0.1001.4.tgz#5c33c1a8579c72add1fe44ed3f4d6921c4dd9ac0"
   dependencies:
-    "@angular-devkit/core" "10.1.0"
-    "@angular-devkit/schematics" "10.1.0"
+    "@angular-devkit/core" "10.1.4"
+    "@angular-devkit/schematics" "10.1.4"
     "@yarnpkg/lockfile" "1.1.0"
     ini "1.3.5"
     npm-package-arg "^8.0.0"
@@ -8824,9 +8824,9 @@ terser-webpack-plugin@^1.4.3:
     webpack-sources "^1.4.0"
     worker-farm "^1.7.0"
 
-terser@5.2.1, terser@^5.0.0:
-  version "5.2.1"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/terser/-/terser-5.2.1.tgz#40b971b8d28b4fe98c9e8c0d073ab48e7bb96cd8"
+terser@5.3.0:
+  version "5.3.0"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/terser/-/terser-5.3.0.tgz#c481f4afecdcc182d5e2bdd2ff2dc61555161e81"
   dependencies:
     commander "^2.20.0"
     source-map "~0.6.1"
@@ -8835,6 +8835,14 @@ terser@5.2.1, terser@^5.0.0:
 terser@^4.1.2:
   version "4.6.11"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/terser/-/terser-4.6.11.tgz#12ff99fdd62a26de2a82f508515407eb6ccd8a9f"
+  dependencies:
+    commander "^2.20.0"
+    source-map "~0.6.1"
+    source-map-support "~0.5.12"
+
+terser@^5.0.0:
+  version "5.2.1"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/terser/-/terser-5.2.1.tgz#40b971b8d28b4fe98c9e8c0d073ab48e7bb96cd8"
   dependencies:
     commander "^2.20.0"
     source-map "~0.6.1"
