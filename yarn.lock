@@ -2703,9 +2703,9 @@ code-block-writer@^7.2.0:
   version "7.3.1"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/code-block-writer/-/code-block-writer-7.3.1.tgz#b3b921b885fe7fb869866c0648491eae6c08cfa9"
 
-codelyzer@6.0.0:
-  version "6.0.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/codelyzer/-/codelyzer-6.0.0.tgz#50c98581cc2890e0e9a9f93878dc317115d836ed"
+codelyzer@6.0.1:
+  version "6.0.1"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/codelyzer/-/codelyzer-6.0.1.tgz#c0e9668e847255b37c759e68fb2700b11e277d0f"
   dependencies:
     "@angular/compiler" "9.0.0"
     "@angular/core" "9.0.0"
@@ -5584,9 +5584,9 @@ karma-source-map-support@1.4.0:
   dependencies:
     source-map-support "^0.5.5"
 
-karma@5.2.1:
-  version "5.2.1"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/karma/-/karma-5.2.1.tgz#c9f50c2e04fc249b598a422deb666e6673406d64"
+karma@5.2.3:
+  version "5.2.3"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/karma/-/karma-5.2.3.tgz#3264024219bad2728e92542e0058a2492d7a46e4"
   dependencies:
     body-parser "^1.19.0"
     braces "^3.0.2"
@@ -5607,9 +5607,9 @@ karma@5.2.1:
     range-parser "^1.2.1"
     rimraf "^3.0.2"
     socket.io "^2.3.0"
-    source-map "^0.7.3"
+    source-map "^0.6.1"
     tmp "0.2.1"
-    ua-parser-js "0.7.21"
+    ua-parser-js "0.7.22"
     yargs "^15.3.1"
 
 killable@^1.0.1:
@@ -7913,6 +7913,12 @@ rxjs@6.6.2, rxjs@^6.5.3, rxjs@^6.6.0:
   dependencies:
     tslib "^1.9.0"
 
+rxjs@6.6.3:
+  version "6.6.3"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/rxjs/-/rxjs-6.6.3.tgz#8ca84635c4daa900c0d3967a6ee7ac60271ee552"
+  dependencies:
+    tslib "^1.9.0"
+
 safe-buffer@5.1.2, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.2"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/safe-buffer/-/safe-buffer-5.1.2.tgz#991ec69d296e0313747d59bdfd2b745c35f8828d"
@@ -9084,13 +9090,17 @@ typescript@4.0.2:
   version "4.0.2"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/typescript/-/typescript-4.0.2.tgz#7ea7c88777c723c681e33bf7988be5d008d05ac2"
 
+typescript@4.0.3:
+  version "4.0.3"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/typescript/-/typescript-4.0.3.tgz#153bbd468ef07725c1df9c77e8b453f8d36abba5"
+
 typescript@^2.4.2:
   version "2.9.2"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/typescript/-/typescript-2.9.2.tgz#1cbf61d05d6b96269244eb6a3bce4bd914e0f00c"
 
-ua-parser-js@0.7.21:
-  version "0.7.21"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/ua-parser-js/-/ua-parser-js-0.7.21.tgz#853cf9ce93f642f67174273cc34565ae6f308777"
+ua-parser-js@0.7.22:
+  version "0.7.22"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/ua-parser-js/-/ua-parser-js-0.7.22.tgz#960df60a5f911ea8f1c818f3747b99c6e177eae3"
 
 uglify-js@^3.1.4:
   version "3.8.1"
