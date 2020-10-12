@@ -52,12 +52,11 @@ properties([
 
 node {
   try {
-    env.JAVA_HOME = tool 'jdk1.8.0_121'
+    env.JAVA_HOME = tool 'jdk-11.0.1'
     def mvnHome = tool "apache-maven-3.5.4"
-    def nodeHome = tool 'node-10.15.3'
+    def nodeHome = tool 'node-12.18.1'
     env.PATH = "${env.JAVA_HOME}\\bin;${mvnHome}\\bin;${nodeHome};${env.PATH}"
-    env.SASS_BINARY_PATH = env.SASS_BINDING_PATH
-    env.CHROME_BIN = env.CHROME_67_0_3396_99;
+    env.CHROME_BIN = env.CHROME_80_0_3987_132
 
     stage('checkout') {
       checkout scm
