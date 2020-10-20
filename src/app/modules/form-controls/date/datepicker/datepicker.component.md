@@ -13,5 +13,5 @@ When the attribute has a read only flag, only the value of the attribute is pres
 If you want to use the datepicker of `material` you can put the presentation style `material` on the field. Why we chose this, you can read it in the next paragraph.
 
 ### Ng pick datetime
-For the datetime we have chosen to use the ng-pick-datetime component. This component looks like the standard material datepicker component, is regularly released and is compatible with Angular 6. 
-Because the datepicker and the ng-pick-datetime are a little bit different in how they look, we decided to use the latter component for both the date and the datetimepicker so it looks consistent throughout applications. 
+For the datetime we have chosen to use the @danielmoncada/angular-datetime-picker component. This component looks like the standard material datepicker component, is regularly released and is compatible with Angular 10. 
+Because the datepicker and the @danielmoncada/angular-datetime-picker are a little bit different in how they look, we decided to use the latter component for both the date and the datetimepicker so it looks consistent throughout applications. 

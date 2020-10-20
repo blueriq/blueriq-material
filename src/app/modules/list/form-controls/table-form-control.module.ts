@@ -13,9 +13,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqCommonModule } from '@blueriq/angular';
 import { FormattingModule } from '@blueriq/angular/formatting';
 import { BlueriqFormsModule } from '@blueriq/angular/forms';
+import { OwlDateTimeModule } from '@danielmoncada/angular-datetime-picker';
 import { SharedModule } from '@shared/shared.module';
-import { OwlDateTimeModule } from 'ng-pick-datetime';
-import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
 import { TableDatetimepickerComponent } from './datetimepicker/table-datetimepicker.component';
 import { TableCurrencyFieldComponent } from './input-field/currency/table-currency.component';
 import { TableIntegerFieldComponent } from './input-field/integer/table-integer.component';
@@ -47,7 +46,6 @@ export const TABLE_FORM_CONTROL_COMPONENTS = [
     SharedModule,
     FlexLayoutModule,
     OwlDateTimeModule,
-    OwlMomentDateTimeModule,
     BlueriqCommonModule,
     FormsModule,
     ReactiveFormsModule,

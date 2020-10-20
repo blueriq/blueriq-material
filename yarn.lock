@@ -1261,6 +1261,12 @@
     fs-extra "^4.0.1"
     viz.js "^1.8.0"
 
+"@danielmoncada/angular-datetime-picker@10.0.0":
+  version "10.0.0"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@danielmoncada/angular-datetime-picker/-/angular-datetime-picker-10.0.0.tgz#e04723ff6a0320aeea36823219f75abd3ffc59fc"
+  dependencies:
+    tslib "^2.0.0"
+
 "@dsherret/to-absolute-glob@^2.0.2":
   version "2.0.2"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@dsherret/to-absolute-glob/-/to-absolute-glob-2.0.2.tgz#1f6475dc8bd974cea07a2daf3864b317b1dd332c"
@@ -6280,14 +6286,6 @@ neo-async@^2.6.2:
 next-tick@~1.0.0:
   version "1.0.0"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
-
-ng-pick-datetime-moment@1.0.7:
-  version "1.0.7"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/ng-pick-datetime-moment/-/ng-pick-datetime-moment-1.0.7.tgz#c95c7d1a028bc39b3a35a4c280306e55ed77276e"
-
-ng-pick-datetime@7.0.0:
-  version "7.0.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/ng-pick-datetime/-/ng-pick-datetime-7.0.0.tgz#c78d1cfaee183691a4a44cd4f39c98f9c1d1595f"
 
 ng2-file-upload@1.4.0:
   version "1.4.0"
