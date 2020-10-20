@@ -97,6 +97,8 @@
     "webdriver-manager": "12.1.7"
   },
   "resolutions": {
-    "eslint": "^4.18.2"
+    "eslint": "^4.18.2",
+    "object-path": "0.11.5",
+    "webpack-subresource-integrity": "1.5.1"
   }
 }
