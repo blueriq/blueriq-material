@@ -14,9 +14,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BlueriqCommonModule } from '@blueriq/angular';
 import { FormattingModule } from '@blueriq/angular/formatting';
+import { OwlDateTimeModule } from '@danielmoncada/angular-datetime-picker';
 import { SharedModule } from '@shared/shared.module';
-import { OwlDateTimeModule } from 'ng-pick-datetime';
-import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
 import { BooleanFilterComponent } from './boolean-filter/boolean-filter.component';
 import { DateFilterComponent } from './date-filter/date-filter.component';
 import { DomainFilterComponent } from './domain-filter/domain-filter.component';
@@ -46,7 +45,6 @@ export const TABLE_FILTER_COMPONENTS = [
     SharedModule,
     FlexLayoutModule,
     OwlDateTimeModule,
-    OwlMomentDateTimeModule,
     BlueriqCommonModule,
     FormsModule,
     ReactiveFormsModule,

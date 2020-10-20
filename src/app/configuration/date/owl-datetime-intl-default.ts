@@ -1,4 +1,4 @@
-import { OwlDateTimeIntl } from 'ng-pick-datetime';
+import { OwlDateTimeIntl } from '@danielmoncada/angular-datetime-picker';
 
 export class OwlDatetimeIntlDefault extends OwlDateTimeIntl {
   upSecondLabel = 'Add a second';

@@ -1,4 +1,4 @@
-import { OwlDateTimeIntl } from 'ng-pick-datetime';
+import { OwlDateTimeIntl } from '@danielmoncada/angular-datetime-picker';
 
 export class OwlDatetimeIntlNL extends OwlDateTimeIntl {
   /** A label for the up second button (used by screen readers).  */

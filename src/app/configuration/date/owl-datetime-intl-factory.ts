@@ -1,4 +1,4 @@
-import { OwlDateTimeIntl } from 'ng-pick-datetime';
+import { OwlDateTimeIntl } from '@danielmoncada/angular-datetime-picker';
 import { OwlDatetimeIntlDefault } from './owl-datetime-intl-default';
 import { OwlDatetimeIntlNL } from './owl-datetime-intl-NL';
 
