@@ -1,19 +1,22 @@
 <div [bqContainer]="container">
-  <bq-heading [title]="container.displayName" [styles]="container.styles"></bq-heading>
-  
-  <button style="display: block;" mat-raised-button color="primary" (click)="fileInput.click()" [disabled]="fileUpload.readonly">{{fileUpload.uploadLabel}}</button>
-  <input hidden ng2FileSelect type="file" [uploader]="uploader" [multiple]="fileUpload.multiple" #fileInput>
+  <bq-heading [styles]="container.styles" [title]="container.displayName"></bq-heading>
+
+  <button (click)="fileInput.click()" [disabled]="bqFileUpload.readonly" color="primary" mat-raised-button style="display: block;">{{bqFileUpload.uploadLabel}}</button>
+  <input #fileInput [multiple]="bqFileUpload.multiple" [uploader]="ngFileUploader" hidden ng2FileSelect type="file">
   <div>
-    <mat-hint *ngIf="fileUpload.allowedExtensions">{{fileUpload.allowedExtensionsDescription}}</mat-hint>
-    <mat-hint *ngIf="fileUpload.maxFileSize">{{fileUpload.maxFileSizeDescription}}</mat-hint>
-    <mat-error *ngIf="errorMessage">{{errorMessage}}</mat-error>
+    <mat-hint *ngIf="bqFileUpload.allowedExtensions">{{bqFileUpload.allowedExtensionsDescription}}</mat-hint>
+    <mat-hint *ngIf="bqFileUpload.maxFileSize">{{bqFileUpload.maxFileSizeDescription}}</mat-hint>
+    <mat-error *ngIf="ngFileUploadErrorMessage">{{ngFileUploadErrorMessage}}</mat-error>
+    <ng-container *ngIf="bqFileUploadErrorMessages && !ngFileUploadErrorMessage">
+      <mat-error *ngFor="let errorMessage of bqFileUploadErrorMessages.children">{{asTextItem(errorMessage).plainText}}</mat-error>
+    </ng-container>
   </div>
-  
+
   <div *ngIf="isBusy">
     <div>
-      <mat-progress-bar mode="determinate" value="{{uploader.progress}}"></mat-progress-bar>
+      <mat-progress-bar mode="determinate" value="{{ngFileUploader.progress}}"></mat-progress-bar>
     </div>
-    <button mat-icon-button (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+    <button (click)="ngFileUploader.cancelAll()" [disabled]="!ngFileUploader.isUploading" mat-icon-button>
       <mat-icon>cancel</mat-icon>
     </button>
     Cancel all

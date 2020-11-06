@@ -86,7 +86,10 @@ export class CustomFileUploader extends FileUploader {
         this._onCompleteItem(this.queue[0], response, xhr.status, headers);
       }
     };
-    xhr.send(sendable);
+    // Only send the request if there are any items in the queue
+    if (this.queue[0]) {
+      xhr.send(sendable);
+    }
   }
 
   _fileTypeFilter(item: FileLikeObject): boolean {
