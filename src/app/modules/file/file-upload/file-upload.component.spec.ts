@@ -43,12 +43,12 @@ describe('FileUploadComponent', () => {
       'multiuploadlabel': 'Add files...',
     };
     container = ContainerTemplate.create()
-      .contentStyle('fileupload')
-      .properties(properties)
-      .children(
-        ButtonTemplate.create('FileUploaded'),
-        ButtonTemplate.create('Unauthorized'),
-      );
+    .contentStyle('fileupload')
+    .properties(properties)
+    .children(
+      ButtonTemplate.create('FileUploaded'),
+      ButtonTemplate.create('Unauthorized'),
+    );
     session = BlueriqSessionTemplate.create().build(container);
     component = session.get(FileUploadComponent);
 
@@ -85,8 +85,8 @@ describe('FileUploadComponent', () => {
 
     // Verify
     expect(hints.length).toBe(2);
-    expect(hints[0].innerHTML).toBe(component.componentInstance.fileUpload.allowedExtensionsDescription);
-    expect(hints[1].innerHTML).toBe(component.componentInstance.fileUpload.maxFileSizeDescription);
+    expect(hints[0].innerHTML).toBe(component.componentInstance.bqFileUpload.allowedExtensionsDescription);
+    expect(hints[1].innerHTML).toBe(component.componentInstance.bqFileUpload.maxFileSizeDescription);
   });
 
   it('should not display an extension hint when all extensions are allowed', () => {
@@ -98,18 +98,18 @@ describe('FileUploadComponent', () => {
 
     // Verify
     expect(hints.length).toBe(1);
-    expect(hints[0].innerHTML).toBe(component.componentInstance.fileUpload.maxFileSizeDescription);
+    expect(hints[0].innerHTML).toBe(component.componentInstance.bqFileUpload.maxFileSizeDescription);
   });
 
   it('should display an error message when file type is incorrect', () => {
     // Sut
-    component.componentInstance.uploader.onWhenAddingFileFailed(new FileLikeObject({}), { name: 'fileType' }, {});
+    component.componentInstance.ngFileUploader.onWhenAddingFileFailed(new FileLikeObject({}), { name: 'fileType' }, {});
     component.detectChanges();
     const errors = component.nativeElement.querySelectorAll('mat-error');
 
     // Verify
     expect(errors.length).toBe(1);
-    expect(errors[0].innerHTML).toBe(component.componentInstance.fileUpload.extensionInvalidValidationMessage);
+    expect(errors[0].innerHTML).toBe(component.componentInstance.bqFileUpload.extensionInvalidValidationMessage);
   });
 
   it('should display an error message when file size is incorrect', () => {
@@ -120,7 +120,7 @@ describe('FileUploadComponent', () => {
 
     // Verify
     expect(errors.length).toBe(1);
-    expect(errors[0].innerHTML).toBe(component.componentInstance.fileUpload.fileTooLargeValidationMessage);
+    expect(errors[0].innerHTML).toBe(component.componentInstance.bqFileUpload.fileTooLargeValidationMessage);
   });
 
   it('should display an error message even with a unknown error', () => {
@@ -180,13 +180,13 @@ describe('FileUploadComponent', () => {
     component.detectChanges();
 
     // Verify
-    expect(component.componentInstance.fileUpload.handleFileUploadCompleted).toHaveBeenCalledWith({
+    expect(component.componentInstance.bqFileUpload.handleFileUploadCompleted).toHaveBeenCalledWith({
       body: 'some_response',
       status: 200,
       headers: [{ name: 'content-type', value: 'application/json' }],
     });
     expect(fileSelectDirective.uploader.clearQueue).toHaveBeenCalled();
-    expect(component.componentInstance.errorMessage).toBe('', 'Clear the error message when a file passes');
+    expect(component.componentInstance.ngFileUploadErrorMessage).toBe('', 'Clear the client error message when a file passes');
     expect(component.componentInstance.isBusy).toBe(false, 'Upload is complete, no need to show the progress bar');
   });
 
@@ -198,7 +198,7 @@ describe('FileUploadComponent', () => {
     );
 
     // Sut
-    component.componentInstance.uploader.uploadAll();
+    component.componentInstance.ngFileUploader.uploadAll();
 
     // Verify
     expect(CustomFileUploader.prototype.uploadAll).toHaveBeenCalled();

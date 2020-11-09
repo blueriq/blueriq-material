@@ -1,7 +1,7 @@
 import { Component, Self } from '@angular/core';
-import { BlueriqComponent } from '@blueriq/angular';
+import { BlueriqChild, BlueriqComponent } from '@blueriq/angular';
 import { FileUpload } from '@blueriq/angular/files';
-import { Container } from '@blueriq/core';
+import { Container, Element, TextItem } from '@blueriq/core';
 import { CustomFileUploader } from './custom-file-uploader';
 
 @Component({
@@ -16,69 +16,85 @@ import { CustomFileUploader } from './custom-file-uploader';
 })
 export class FileUploadComponent {
 
-  uploader: CustomFileUploader;
-  errorMessage: string;
+  // Error messages due to validation on the server side
+  @BlueriqChild(Container, '[name=errorMessages]', { optional: true })
+  bqFileUploadErrorMessages: Container;
+
+  ngFileUploader: CustomFileUploader;
+  // Error message due to validation on the client side
+  ngFileUploadErrorMessage: string;
   isBusy = false;
 
-  constructor(@Self() public fileUpload: FileUpload, public container: Container) {
-    this.uploader = new CustomFileUploader({ autoUpload: true });
+  constructor(@Self() public bqFileUpload: FileUpload, public container: Container) {
+    this.ngFileUploader = new CustomFileUploader({ autoUpload: true });
+    // Also configure ngFileUploader on construction because file validation is done BEFORE onBuildItemForm()
+    this.setNgFileUploaderOptions();
 
     /**
-     * When the upload starts, reconfigure the uploader to send along the most up-to-date upload details.
+     * When the upload starts, reconfigure the ngFileUploader to send along the most up-to-date upload details.
      */
-    this.uploader.onBuildItemForm = () => {
-      const details = this.fileUpload.getUploadDetails();
-
-      this.uploader.setOptions({
-        filters: [],
-        url: details.url,
-        headers: details.headers,
-        additionalParameter: details.parts.reduce((params, part) => {
-          params[part.name] = part.body;
-          return params;
-        }, {}),
-        maxFileSize: this.fileUpload.maxFileSize,
-        allowedFileType: this.fileUpload.allowedExtensions,
-      });
+    this.ngFileUploader.onBuildItemForm = () => {
+      this.setNgFileUploaderOptions();
     };
 
     /**
      * When adding a file is done hide the progress bar
      * */
-    this.uploader.onAfterAddingFile = (file) => {
+    this.ngFileUploader.onAfterAddingFile = (file) => {
       this.isBusy = true;
     };
 
     /**
      * When the upload is completed, the events returned by the runtime need to be handled.
      */
-    this.uploader.onCompleteItem = (item, body, status, headers) => {
-      this.errorMessage = '';
+    this.ngFileUploader.onCompleteItem = (item, body, status, headers) => {
+      // Uploading succeeded from the client side perspective so clear its error message
+      this.ngFileUploadErrorMessage = '';
       this.isBusy = false;
-      this.fileUpload.handleFileUploadCompleted({
+      this.bqFileUpload.handleFileUploadCompleted({
         body,
         status,
         headers: Object.entries(headers).map(([name, value]) => ({ name, value })),
       });
-      this.uploader.clearQueue();
+      this.ngFileUploader.clearQueue();
     };
 
     /**
-     * Set a error message when adding a item did not match the filter
+     * Set a error message when adding a item did not match the (client-side) filter
      */
-    this.uploader.onWhenAddingFileFailed = (item, filter, options) => {
+    this.ngFileUploader.onWhenAddingFileFailed = (item, filter, options) => {
       switch (filter.name) {
         case 'fileType':
-          this.errorMessage = this.fileUpload.extensionInvalidValidationMessage;
+          this.ngFileUploadErrorMessage = this.bqFileUpload.extensionInvalidValidationMessage;
           break;
         case 'fileSize':
-          this.errorMessage = this.fileUpload.fileTooLargeValidationMessage;
+          this.ngFileUploadErrorMessage = this.bqFileUpload.fileTooLargeValidationMessage;
           break;
         default:
-          this.errorMessage = 'File could not be uploaded';
+          this.ngFileUploadErrorMessage = 'File could not be uploaded';
           break;
       }
     };
 
+  }
+
+  asTextItem(element: Element): TextItem {
+    return element as TextItem;
+  }
+
+  private setNgFileUploaderOptions() {
+    const details = this.bqFileUpload.getUploadDetails();
+
+    this.ngFileUploader.setOptions({
+      filters: [],
+      url: details.url,
+      headers: details.headers,
+      additionalParameter: details.parts.reduce((params, part) => {
+        params[part.name] = part.body;
+        return params;
+      }, {}),
+      maxFileSize: this.bqFileUpload.maxFileSize,
+      allowedFileType: this.bqFileUpload.allowedExtensions,
+    });
   }
 }
