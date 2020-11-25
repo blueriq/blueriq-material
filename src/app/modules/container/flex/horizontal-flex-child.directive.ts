@@ -1,7 +1,8 @@
-import { Directive, Input, NgZone, OnChanges, OnDestroy, Renderer2, Self, SimpleChanges } from '@angular/core';
-import { BlueriqListeners, BqElementDirective, getAngularComponent } from '@blueriq/angular';
+import { ComponentRef, Directive, Input, OnChanges, OnDestroy, Renderer2, Self, SimpleChanges } from '@angular/core';
+import { BlueriqListeners, BqElementDirective } from '@blueriq/angular';
 import { Element } from '@blueriq/core';
-import { Subscription } from 'rxjs';
+import { combineLatest, Subscription } from 'rxjs';
+import { startWith } from 'rxjs/operators';
 import { BqContentStyles } from '../../BqContentStyles';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
 
@@ -21,10 +22,7 @@ export class HorizontalFlexChildDirective implements OnChanges, OnDestroy {
 
   constructor(private renderer: Renderer2,
               private listeners: BlueriqListeners,
-              private zone: NgZone,
-              // Inject BqElementDirective to force its ordering to be
-              // before this directive, to ensure the component has been rendered
-              @Self() bqElementDirective: BqElementDirective) {
+              @Self() private bqElementDirective: BqElementDirective) {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -32,11 +30,12 @@ export class HorizontalFlexChildDirective implements OnChanges, OnDestroy {
       this._subscription.unsubscribe();
     }
 
-    this._subscription = this.listeners.listen(this.bqElement).subscribe(() => {
-      this.applyStylesIfRequired(this.bqElement);
+    this._subscription = combineLatest([
+      this.bqElementDirective.component$,
+      this.listeners.listen(this.bqElement).pipe(startWith(this.bqElement)),
+    ]).subscribe(([componentRef, element]) => {
+      this.applyStylesIfRequired(componentRef, element);
     });
-
-    this.applyStylesIfRequired(this.bqElement);
   }
 
   ngOnDestroy() {
@@ -45,43 +44,22 @@ export class HorizontalFlexChildDirective implements OnChanges, OnDestroy {
     }
   }
 
-  private applyStylesIfRequired(element: Element): void {
-    const weightPresentationStyle = element.styles.get(style => style.startsWith(BqPresentationStyles.WEIGHT_PREFIX));
-    if (weightPresentationStyle) {
-      if (this.decorateHostElement(element, weightPresentationStyle, BqPresentationStyles.WEIGHT_REGEXP)) {
-        return;
-      }
-    }
-
-    // (legacy) content style
-    if (element.contentStyle) {
-      if (this.decorateHostElement(element, element.contentStyle, BqContentStyles.WEIGHT_REGEXP)) {
-        return;
-      }
-    }
-
-    this.applyStyles(element, 1);
+  private applyStylesIfRequired(componentRef: ComponentRef<unknown>, element: Element): void {
+    const flexGrow = determineWeight(element);
+    const domElement = componentRef.location.nativeElement;
+    this.renderer.addClass(domElement, 'bq-column');
+    this.renderer.setStyle(domElement, 'flex-grow', flexGrow);
   }
+}
 
-  private decorateHostElement(element: Element, style: string, regex: RegExp): boolean {
-    const matches = style.match(regex);
-    if (matches) {
-      this.applyStyles(element, +matches[1]);
-      return true;
-    }
-    return false;
-  }
+function determineWeight(element: Element): number {
+  const weightPresentationStyle = element.styles.get(style => style.startsWith(BqPresentationStyles.WEIGHT_PREFIX));
+  return extractWeight(weightPresentationStyle, BqPresentationStyles.WEIGHT_REGEXP)
+    ?? extractWeight(element.contentStyle, BqContentStyles.WEIGHT_REGEXP)
+    ?? 1;
+}
 
-  private applyStyles(element: Element, flexGrow: number) {
-    this.zone.runOutsideAngular(() => {
-      setTimeout(() => {
-        // retrieve the host element from the angular component
-        const component = getAngularComponent(element);
-        if (component) {
-          this.renderer.addClass(component.location.nativeElement, 'bq-column');
-          this.renderer.setStyle(component.location.nativeElement, 'flex-grow', flexGrow);
-        }
-      }, 0);
-    });
-  }
+function extractWeight(style: string | undefined, regex: RegExp): number | null {
+  const matches = style && style.match(regex);
+  return matches ? +matches[1] : null;
 }
