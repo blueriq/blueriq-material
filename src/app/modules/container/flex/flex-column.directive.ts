@@ -1,7 +1,8 @@
-import { Directive, Input, OnChanges, OnDestroy, Renderer2, Self, SimpleChanges } from '@angular/core';
-import { BlueriqListeners, BqElementDirective, getAngularComponent } from '@blueriq/angular';
+import { ComponentRef, Directive, Input, OnChanges, OnDestroy, Renderer2, Self, SimpleChanges } from '@angular/core';
+import { BlueriqListeners, BqElementDirective } from '@blueriq/angular';
 import { Element } from '@blueriq/core';
-import { Subscription } from 'rxjs';
+import { combineLatest, Subscription } from 'rxjs';
+import { startWith } from 'rxjs/operators';
 import { BqContentStyles } from '../../BqContentStyles';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
 
@@ -21,10 +22,7 @@ export class FlexColumnDirective implements OnChanges, OnDestroy {
 
   constructor(private renderer: Renderer2,
               private listeners: BlueriqListeners,
-
-              // Inject BqElementDirective to force its ordering to be
-              // before this directive, to ensure the component has been rendered
-              @Self() bqElementDirective: BqElementDirective) {
+              @Self() private bqElementDirective: BqElementDirective) {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -32,11 +30,12 @@ export class FlexColumnDirective implements OnChanges, OnDestroy {
       this._subscription.unsubscribe();
     }
 
-    this._subscription = this.listeners.listen(this.bqElement).subscribe(() => {
-      this.addFlexStyles(this.bqElement);
+    this._subscription = combineLatest([
+      this.bqElementDirective.component$,
+      this.listeners.listen(this.bqElement).pipe(startWith(this.bqElement)),
+    ]).subscribe(([componentRef, element]) => {
+      this.addFlexStyles(componentRef, element);
     });
-
-    this.addFlexStyles(this.bqElement);
   }
 
   ngOnDestroy() {
@@ -45,18 +44,13 @@ export class FlexColumnDirective implements OnChanges, OnDestroy {
     }
   }
 
-  private addFlexStyles(element: Element): void {
-    if (element.contentStyle && element.contentStyle.indexOf(BqContentStyles.DASHBOARD_COLUMN_PREFIX) === 0) {
-
-      const columnComponent = getAngularComponent(element);
-      if (columnComponent) {
-        const domColumn = columnComponent.location.nativeElement;
-        this.renderer.setStyle(domColumn, 'flex-grow', this.determineWeight(element));
-        this.renderer.addClass(domColumn, 'bq-column');
-        this.renderer.addClass(domColumn.parentNode, 'bq-row');
-      }
+  private addFlexStyles(componentRef: ComponentRef<unknown>, element: Element): void {
+    if (element.contentStyle && element.contentStyle.startsWith(BqContentStyles.DASHBOARD_COLUMN_PREFIX)) {
+      const domColumn = componentRef.location.nativeElement;
+      this.renderer.setStyle(domColumn, 'flex-grow', this.determineWeight(element));
+      this.renderer.addClass(domColumn, 'bq-column');
+      this.renderer.addClass(domColumn.parentNode, 'bq-row');
     }
-
   }
 
   private determineWeight(element: Element): number {
