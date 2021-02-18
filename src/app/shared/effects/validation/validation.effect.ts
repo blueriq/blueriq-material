@@ -1,19 +1,16 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ButtonPressHandledAction } from '@blueriq/angular';
 import { FormActions, InvalidFormAction } from '@blueriq/angular/forms';
-import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Observable } from 'rxjs';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class ValidationEffect {
 
-  @Effect({ dispatch: false })
-  invalidForm$: Observable<any> = this.actions$.pipe(
-    ofType<ButtonPressHandledAction>(FormActions.INVALID_FORM),
+  invalidForm$ = createEffect(() => this.actions$.pipe(
+    ofType<InvalidFormAction>(FormActions.INVALID_FORM),
     tap(action => this.showSnackBar(action)),
-  );
+  ), { dispatch: false });
 
   constructor(private actions$: Actions, private snackBar: MatSnackBar) {
   }
