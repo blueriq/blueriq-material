@@ -8,24 +8,21 @@ import {
   SessionRegistry,
   StartupActions,
 } from '@blueriq/angular';
-import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Observable } from 'rxjs';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class MessagesEffect {
 
-  @Effect({ dispatch: false })
-  sessionActions$: Observable<any> = this.actions$.pipe(
+  sessionActions$ = createEffect(() => this.actions$.pipe(
     ofType<SessionAction>(StartupActions.SESSION_LOADED, SessionEventActions.CHANGED_PAGE, SessionEventActions.PAGE_UPDATED),
     tap(action => this.showSnackBar(action)),
-  );
+  ), { dispatch: false });
 
-  @Effect({ dispatch: false })
-  securityViolations$: Observable<any> = this.actions$.pipe(
+  securityViolations$ = createEffect(() => this.actions$.pipe(
     ofType<SecurityViolationAction>(SecurityActions.SECURITY_VIOLATION),
     tap(action => this.showSecurityMessages(action.violations.messages)),
-  );
+  ), { dispatch: false });
 
   constructor(private actions$: Actions,
               private snackBar: MatSnackBar,
