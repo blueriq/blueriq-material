@@ -1,11 +1,16 @@
+import { registerLocaleData } from '@angular/common';
+import dutch from '@angular/common/locales/nl';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
-import { FieldTemplate } from '@blueriq/core/testing';
+import { FieldTemplate, LocalizationTemplate } from '@blueriq/core/testing';
+import { OwlDateTimeComponent } from '@danielmoncada/angular-datetime-picker';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
 import { FormControlModule } from '../../form-control.module';
 import { DateTimepickerComponent } from './datetimepicker.component';
+
+registerLocaleData(dutch);
 
 describe('DateTimepickerComponent', () => {
   let field: FieldTemplate;
@@ -37,6 +42,34 @@ describe('DateTimepickerComponent', () => {
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(DateTimepickerComponent);
     expect(component.componentInstance.getPickerType()).toEqual('calendar');
+  });
+
+  it('should be localized according to the session locale', () => {
+    session = BlueriqSessionTemplate.create().configure(s => {
+      s.language(LocalizationTemplate.create().languageCode('nl-NL'));
+    }).build(field);
+    component = session.get(DateTimepickerComponent);
+
+    const dateTime = component.debugElement.query(By.directive(OwlDateTimeComponent));
+    dateTime.componentInstance.opened = true;
+    component.detectChanges();
+
+    const buttons = Array.from(document.querySelectorAll('.owl-dt-container .owl-dt-control-button-content'));
+    expect(buttons.map(button => button.innerHTML.trim())).toContain('Annuleer');
+  });
+
+  it('should fallback to en-US when the requested locale is not available', () => {
+    session = BlueriqSessionTemplate.create().configure(s => {
+      s.language(LocalizationTemplate.create().languageCode('de-DE'));
+    }).build(field);
+    component = session.get(DateTimepickerComponent);
+
+    const dateTime = component.debugElement.query(By.directive(OwlDateTimeComponent));
+    dateTime.componentInstance.opened = true;
+    component.detectChanges();
+
+    const buttons = Array.from(document.querySelectorAll('.owl-dt-container .owl-dt-control-button-content'));
+    expect(buttons.map(button => button.innerHTML.trim())).toContain('Cancel');
   });
 
   it('should have a hint', () => {
