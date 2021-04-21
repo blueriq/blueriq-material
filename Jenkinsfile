@@ -97,7 +97,7 @@ node {
         },
         'build': {
           if (!params.isRelease) { // maven release executes the yarn build also
-            bat "ant -f scripts/docker/build.xml build -DisRelease=false"
+            bat "ant -f scripts/docker/build.xml build -DisRelease=false -Ddocker.host=bq-build-lin.blueriq.local"
           }
         }
       );
