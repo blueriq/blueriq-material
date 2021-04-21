@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="bdsm-build" default="build" xmlns:if="ant:if" xmlns:unless="ant:unless">
+
+  <property name="isRelease" value="false"/>
+
+  <property name="toolsFolder" location="../../tools"/>
+
+  <!-- task def for ant contrib -->
+  <taskdef resource="net/sf/antcontrib/antcontrib.properties">
+    <classpath location="../../tools/ant-contrib-0.6/ant-contrib-0.6.jar"/>
+  </taskdef>
+
+  <!-- src locations -->
+  <property name="sources.dir" value="../.."/>
+  <dirname property="build-scripts.dir" file="${sources.dir}/scripts/docker/build.xml"/>
+
+  <!-- docker config -->
+  <import file="docker-utils.xml"/>
+  <property name="docker.image" value="docker-build-material:test"/>
+  <property name="container.src.dir" value="/usr/src"/>
+
+  <!-- targets -->
+  <target name="build" depends="create-build-image">
+    <create-container image.name="${docker.image}"
+                      containerId.property="container.id"
+                      run.command="node scripts/build/build.js build isRelease=${isRelease}"
+                      unless:set="${build.error}"/>
+    <property name="container.id" value="[not-set]"/>  <!-- reference property setter -->
+
+    <trycatch>
+      <try>
+        <run-in-container container.id="${container.id}" image.name="${docker.image}" unless:set="${build.error}"/>
+      </try>
+      <catch>
+      </catch>
+      <finally>
+        <copy-from-container container.id="${container.id}" copy.from.dir="${container.src.dir}/dist"
+                             copy.to.dir="${sources.dir}"/>
+      </finally>
+    </trycatch>
+
+    <cleanup-container container.id="${container.id}"/>
+    <cleanup-image image.name="${docker.image}"/>
+
+    <fail if:true="${build.error}" message="Error occurred during run"/>
+  </target>
+
+  <target name="create-build-image">
+    <create-image execution.dir="${sources.dir}"
+                  docker.file="${build-scripts.dir}/Dockerfile"
+                  image.name="${docker.image}">
+      <buildTargetArgs>
+        <arg value="--target"/>
+        <arg value="workspace"/>
+      </buildTargetArgs>
+    </create-image>
+  </target>
+
+</project>

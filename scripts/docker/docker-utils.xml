@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="docker-utils">
+  <property name="docker.host" value="localhost"/>
+
+  <macrodef name="create-image">
+    <attribute name="execution.dir"/>
+    <attribute name="docker.file"/>
+    <attribute name="image.name"/>
+    <element name="buildTargetArgs" optional="true"/>
+    <element name="dockerFileArgs" optional="true"/>
+    <sequential>
+      <local name="error.property"/>
+      <exec executable="cmd" dir="@{execution.dir}" resultproperty="image.error.property" failonerror="false">
+        <env key="DOCKER_BUILDKIT" value="1"/>
+        <arg value="/c"/>
+        <arg value="docker"/>
+        <arg value="-H"/>
+        <arg value="${docker.host}"/>
+        <arg value="build"/>
+        <arg value="--file"/>
+        <arg value="@{docker.file}"/>
+        <buildTargetArgs/>
+        <arg value="-t"/>
+        <arg value="@{image.name}"/>
+        <arg value="."/>
+      </exec>
+      <echo message="Created image with name '@{image.name}'" level="info"/>
+      <condition property="build.error" value="true">
+        <not>
+          <equals arg1="${image.error.property}" arg2="0"/>
+        </not>
+      </condition>
+    </sequential>
+  </macrodef>
+
+  <macrodef name="create-container">
+    <attribute name="image.name"/>
+    <attribute name="containerId.property"/>
+    <attribute name="run.command"/>
+    <element name="volumeArgs" optional="true"/>
+    <sequential>
+      <exec executable="cmd" resultproperty="container.error.property" failonerror="false">
+        <redirector outputproperty="@{containerId.property}" alwayslog="true"/>
+        <arg value="/c"/>
+        <arg value="docker"/>
+        <arg value="-H"/>
+        <arg value="${docker.host}"/>
+        <arg value="create"/>
+        <volumeArgs/>
+        <arg value="-it"/>
+        <arg value="@{image.name}"/>
+        <arg line="@{run.command}"/>
+      </exec>
+      <property name="@{containerId.property}" value="[not-set]"/>
+      <echo message="Created container with id '${@{containerId.property}}'" level="info"/>
+      <condition property="build.error" value="true">
+        <not>
+          <equals arg1="${container.error.property}" arg2="0"/>
+        </not>
+      </condition>
+    </sequential>
+  </macrodef>
+
+  <macrodef name="copy-src-to-container">
+    <attribute name="copy.from.dir"/>
+    <attribute name="copy.to.dir"/>
+    <attribute name="container.id"/>
+    <sequential>
+      <echo message="Copying from '@{copy.from.dir}' to @{copy.to.dir} to container '@{container.id}'" level="info"/>
+      <exec executable="cmd" resultproperty="copy.to.error.property" failonerror="false">
+        <arg value="/c"/>
+        <arg value="docker"/>
+        <arg value="-H"/>
+        <arg value="${docker.host}"/>
+        <arg value="cp"/>
+        <arg value="@{copy.from.dir}"/>
+        <arg value="@{container.id}:@{copy.to.dir}"/>
+      </exec>
+      <condition property="build.error" value="true">
+        <not>
+          <equals arg1="${copy.to.error.property}" arg2="0"/>
+        </not>
+      </condition>
+    </sequential>
+  </macrodef>
+
+  <macrodef name="run-in-container">
+    <attribute name="image.name"/>
+    <attribute name="container.id"/>
+    <sequential>
+      <exec executable="cmd" resultproperty="run.error.property" failonerror="false">
+        <arg value="/c"/>
+        <arg value="docker"/>
+        <arg value="-H"/>
+        <arg value="${docker.host}"/>
+        <arg value="start"/>
+        <arg value="-a"/>
+        <arg value="@{container.id}"/>
+      </exec>
+      <condition property="build.error" value="true">
+        <not>
+          <equals arg1="${run.error.property}" arg2="0"/>
+        </not>
+      </condition>
+    </sequential>
+  </macrodef>
+
+  <macrodef name="copy-from-container">
+    <attribute name="container.id"/>
+    <attribute name="copy.from.dir"/>
+    <attribute name="copy.to.dir"/>
+    <sequential>
+      <echo message="Copying folder from container '@{container.id}'" level="info"/>
+      <exec executable="cmd" resultproperty="copy.from.error.property" failonerror="false">
+        <arg value="/c"/>
+        <arg value="docker"/>
+        <arg value="-H"/>
+        <arg value="${docker.host}"/>
+        <arg value="cp"/>
+        <arg value="@{container.id}:@{copy.from.dir}"/>
+        <arg value="@{copy.to.dir}"/>
+      </exec>
+      <condition property="build.error" value="true">
+        <not>
+          <equals arg1="${copy.from.error.property}" arg2="0"/>
+        </not>
+      </condition>
+    </sequential>
+  </macrodef>
+
+  <macrodef name="cleanup-container">
+    <attribute name="container.id"/>
+    <sequential>
+      <echo message="Deleting container '@{container.id}'" level="info"/>
+      <exec executable="cmd">
+        <arg value="/c"/>
+        <arg value="docker"/>
+        <arg value="-H"/>
+        <arg value="${docker.host}"/>
+        <arg value="rm"/>
+        <arg value="@{container.id}"/>
+      </exec>
+    </sequential>
+  </macrodef>
+
+  <macrodef name="cleanup-image">
+    <attribute name="image.name"/>
+    <sequential>
+      <echo message="Deleting image '@{image.name}'" level="info"/>
+      <exec executable="cmd">
+        <arg value="/c"/>
+        <arg value="docker"/>
+        <arg value="-H"/>
+        <arg value="${docker.host}"/>
+        <arg value="image"/>
+        <arg value="rm"/>
+        <arg value="@{image.name}"/>
+      </exec>
+    </sequential>
+  </macrodef>
+</project>
