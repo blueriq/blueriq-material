@@ -62,6 +62,10 @@ node {
       checkout scm
     }
 
+    stage('install tools') {
+      bat 'tools/_install-tools.bat'
+    }
+
     stage('install') {
       bat 'node -v'
       bat 'yarn -v'
@@ -93,7 +97,7 @@ node {
         },
         'build': {
           if (!params.isRelease) { // maven release executes the yarn build also
-            bat "yarn build --progress=false"
+            bat "ant -f scripts/docker/build.xml build -DisRelease=false"
           }
         }
       );
