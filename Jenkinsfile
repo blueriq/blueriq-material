@@ -64,6 +64,8 @@ node {
 
     stage('install tools') {
       bat 'tools/_install-tools.bat'
+      env.PATH = "${pwd()}\\tools\\apache-ant-1.10.3\\bin;${env.PATH}"
+      env.ANT_HOME = "${pwd()}\\tools\\apache-ant-1.10.3"
     }
 
     stage('install') {

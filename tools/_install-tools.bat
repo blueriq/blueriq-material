@@ -1,5 +1,4 @@
-set ROOT=%cd%
-set SOFTWARE=%cd%\tools
+set SOFTWARE=%~dp0
 set ANT=%SOFTWARE%\apache-ant-1.10.3
 set ANT_HOME=%SOFTWARE%\apache-ant-1.10.3
 set PATH=%ANT%\bin;%PATH%;
