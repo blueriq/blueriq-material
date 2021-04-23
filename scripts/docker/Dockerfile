@@ -20,7 +20,8 @@ WORKDIR /usr/src
 COPY --from=packages /usr/src/ .
 RUN --mount=type=cache,id=yarn,target=/yarn/cache \
     yarn config set cache-folder /yarn/cache && \
-    cp package.json package.json.bkp
+    cp package.json package.json.bkp && \
+    yarn install --frozen-lockfile --ignore-scripts
 
 ########################################################################################################################
 
