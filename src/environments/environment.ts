@@ -6,6 +6,7 @@
 export const environment = {
   production: false,
   baseUrl: '/runtime',
+  devtoolsUrl: '/devtools/index.html',
   envName: 'development',
   isBundled: false,
 };
