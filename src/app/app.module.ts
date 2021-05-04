@@ -1,5 +1,3 @@
-import { registerLocaleData } from '@angular/common';
-import dutch from '@angular/common/locales/nl';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
@@ -48,8 +46,6 @@ const routes: Routes = [
   ...AUTH_ROUTES,
   { path: '**', redirectTo: 'shortcut/default', pathMatch: 'full' },
 ];
-
-registerLocaleData(dutch);
 
 @NgModule({
   declarations: [

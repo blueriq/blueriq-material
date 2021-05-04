@@ -1,4 +1,3 @@
-import { getLocaleId } from '@angular/common';
 import { BlueriqSession } from '@blueriq/angular';
 import {
   DateTimeAdapter,
@@ -12,16 +11,7 @@ import { parseBqLocale } from '@shared/date/bq-date-parser';
 import { OwlDateTimeIntlFactory } from '../../../../configuration/date/owl-datetime-intl-factory';
 
 export function localeFactory(session: BlueriqSession): string {
-  const locale = parseBqLocale(session.localization);
-  // BQ-12086: missing Angular locale causes an exception when rendering the datepicker.
-  // A fix is pending in https://github.com/danielmoncada/date-time-picker/pull/115. This can, and should be removed
-  // once that has been incorporated into a release of `@danielmoncada/angular-datetime-picker`.
-  try {
-    getLocaleId(locale);
-  } catch {
-    return 'en-US';
-  }
-  return locale;
+  return parseBqLocale(session.localization);
 }
 
 export function dateTimeFormatFactory(session: BlueriqSession): OwlDateTimeFormats {

@@ -1,5 +1,3 @@
-import { registerLocaleData } from '@angular/common';
-import dutch from '@angular/common/locales/nl';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -9,8 +7,6 @@ import { OwlDateTimeComponent } from '@danielmoncada/angular-datetime-picker';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
 import { FormControlModule } from '../../form-control.module';
 import { DateTimepickerComponent } from './datetimepicker.component';
-
-registerLocaleData(dutch);
 
 describe('DateTimepickerComponent', () => {
   let field: FieldTemplate;
