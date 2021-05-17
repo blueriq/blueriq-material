@@ -16,7 +16,8 @@
 
   <!-- docker config -->
   <import file="docker-utils.xml"/>
-  <property name="docker.image" value="docker-build-material:test"/>
+  <property name="commit" value="local"/>
+  <property name="docker.image" value="docker-build-material:${commit}"/>
   <property name="container.src.dir" value="/usr/src"/>
 
   <!-- targets -->

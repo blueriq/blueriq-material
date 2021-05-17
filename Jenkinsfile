@@ -59,7 +59,8 @@ node {
     env.CHROME_BIN = env.CHROME_80_0_3987_132
 
     stage('checkout') {
-      checkout scm
+      def scmVars = checkout scm
+      env.GIT_COMMIT = scmVars.GIT_COMMIT
     }
 
     stage('install tools') {
@@ -99,7 +100,7 @@ node {
         },
         'build': {
           if (!params.isRelease) { // maven release executes the yarn build also
-            bat "ant -f scripts/docker/build.xml build -DisRelease=false -Ddocker.host=bq-build-lin.blueriq.local"
+            bat "ant -f scripts/docker/build.xml build -DisRelease=false -Ddocker.host=bq-build-lin.blueriq.local -Dcommit=${env.GIT_COMMIT}"
           }
         }
       );
