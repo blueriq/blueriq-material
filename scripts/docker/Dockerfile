@@ -18,7 +18,7 @@ FROM docker-internal.blueriq.com/build-nodejs-12 AS node
 
 WORKDIR /usr/src
 COPY --from=packages /usr/src/ .
-RUN --mount=type=cache,id=yarn,target=/yarn/cache \
+RUN --mount=type=cache,id=yarn,target=/yarn/cache,sharing=locked \
     yarn config set cache-folder /yarn/cache && \
     cp package.json package.json.bkp && \
     yarn install --frozen-lockfile --ignore-scripts
