@@ -39,3 +39,5 @@ FROM node AS workspace
 
 RUN --mount=type=bind,target=/docker-context \
     cp -R --no-clobber /docker-context/. /usr/src/
+
+RUN sed -i -e 's/\r//g' ./scripts/build/*.sh

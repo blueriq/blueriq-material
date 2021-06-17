@@ -99,11 +99,13 @@ node {
           bat 'node_modules\\.bin\\sass-lint -f checkstyle --verbose --config sass-lint.yml src/**/*.scss -o sasslint_results_checkstyle.xml'
         },
         'build': {
-          bat "ant -f scripts/docker/build.xml build " +
-            "-Ddocker.host=bq-build-lin.blueriq.local " +
-            "-Dcommit=${env.GIT_COMMIT} " +
-            "-DisRelease=${params.isRelease} " +
-            "-DnpmrcFileLocation=${npmrc_file}"
+          withCredentials([file(credentialsId: 'npmrc_file', variable: 'npmrc_file')]) {
+            bat "ant -f scripts/docker/build.xml build " +
+              "-Ddocker.host=bq-build-lin.blueriq.local " +
+              "-Dcommit=${env.GIT_COMMIT} " +
+              "-DisRelease=${params.isRelease} " +
+              "-DnpmrcFileLocation=${npmrc_file}"
+          }
         }
       );
     }
