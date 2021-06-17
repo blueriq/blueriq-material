@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project name="bdsm-build" default="build" xmlns:if="ant:if" xmlns:unless="ant:unless">
 
+  <!-- input properties -->
   <property name="isRelease" value="false"/>
+  <property name="npmrcFileLocation" value="unset"/>
 
   <property name="toolsFolder" location="../../tools"/>
 
@@ -20,11 +22,21 @@
   <property name="docker.image" value="docker-build-material:${commit}"/>
   <property name="container.src.dir" value="/usr/src"/>
 
+  <if>
+    <equals arg1="${isRelease}" arg2="true"/>
+    <then>
+      <property name="build-command" value="scripts/build/build-release.sh"/>
+    </then>
+    <else>
+      <property name="build-command" value="scripts/build/build-ci.sh"/>
+    </else>
+  </if>
+
   <!-- targets -->
   <target name="build" depends="create-build-image">
     <create-container image.name="${docker.image}"
                       containerId.property="container.id"
-                      run.command="node scripts/build/build.js build isRelease=${isRelease}"
+                      run.command="${build-command}"
                       unless:set="${build.error}"/>
     <property name="container.id" value="[not-set]"/>  <!-- reference property setter -->
 
@@ -47,6 +59,8 @@
   </target>
 
   <target name="create-build-image">
+    <copy file="${npmrcFileLocation}" tofile="${sources.dir}/.npmrc" failonerror="false"/>
+
     <create-image execution.dir="${sources.dir}"
                   docker.file="${build-scripts.dir}/Dockerfile"
                   image.name="${docker.image}">
