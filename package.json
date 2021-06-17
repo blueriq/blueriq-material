@@ -38,18 +38,18 @@
     "yarn": "^1.22.0"
   },
   "dependencies": {
-    "@angular/animations": "11.2.12",
-    "@angular/cdk": "11.2.11",
-    "@angular/common": "11.2.12",
-    "@angular/compiler": "11.2.12",
-    "@angular/core": "11.2.12",
+    "@angular/animations": "11.2.14",
+    "@angular/cdk": "11.2.13",
+    "@angular/common": "11.2.14",
+    "@angular/compiler": "11.2.14",
+    "@angular/core": "11.2.14",
     "@angular/flex-layout": "11.0.0-beta.33",
-    "@angular/forms": "11.2.12",
-    "@angular/material": "11.2.11",
-    "@angular/material-moment-adapter": "11.2.11",
-    "@angular/platform-browser": "11.2.12",
-    "@angular/platform-browser-dynamic": "11.2.12",
-    "@angular/router": "11.2.12",
+    "@angular/forms": "11.2.14",
+    "@angular/material": "11.2.13",
+    "@angular/material-moment-adapter": "11.2.13",
+    "@angular/platform-browser": "11.2.14",
+    "@angular/platform-browser-dynamic": "11.2.14",
+    "@angular/router": "11.2.14",
     "@blueriq/angular": "0.10.1",
     "@blueriq/core": "0.10.1",
     "@blueriq/devtools": "0.10.1",
@@ -71,10 +71,10 @@
     "zone.js": "0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "0.1102.11",
-    "@angular/cli": "11.2.11",
-    "@angular/compiler-cli": "11.2.12",
-    "@angular/language-service": "11.2.12",
+    "@angular-devkit/build-angular": "0.1102.14",
+    "@angular/cli": "11.2.14",
+    "@angular/compiler-cli": "11.2.14",
+    "@angular/language-service": "11.2.14",
     "@compodoc/compodoc": "1.1.11",
     "@types/jasmine": "3.6.6",
     "@types/jasminewd2": "2.0.8",
@@ -97,6 +97,9 @@
     "webdriver-manager": "12.1.8"
   },
   "resolutions": {
-    "eslint": "^4.18.2"
+    "eslint": "^4.18.2",
+    "merge": "^2.1.1",
+    "glob-parent": "^5.1.2",
+    "postcss": "8.2.15"
   }
 }
