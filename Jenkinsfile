@@ -65,8 +65,8 @@ node {
 
     stage('install tools') {
       bat 'tools/_install-tools.bat'
-      env.PATH = "${pwd()}\\tools\\apache-ant-1.10.3\\bin;${env.PATH}"
       env.ANT_HOME = "${pwd()}\\tools\\apache-ant-1.10.3"
+      env.PATH = "${env.ANT_HOME}\\bin;${env.PATH}"
     }
 
     stage('install') {
@@ -99,9 +99,11 @@ node {
           bat 'node_modules\\.bin\\sass-lint -f checkstyle --verbose --config sass-lint.yml src/**/*.scss -o sasslint_results_checkstyle.xml'
         },
         'build': {
-          if (!params.isRelease) { // maven release executes the yarn build also
-            bat "ant -f scripts/docker/build.xml build -DisRelease=false -Ddocker.host=bq-build-lin.blueriq.local -Dcommit=${env.GIT_COMMIT}"
-          }
+          bat "ant -f scripts/docker/build.xml build " +
+            "-Ddocker.host=bq-build-lin.blueriq.local " +
+            "-Dcommit=${env.GIT_COMMIT} " +
+            "-DisRelease=${params.isRelease} " +
+            "-DnpmrcFileLocation=${npmrc_file}"
         }
       );
     }
