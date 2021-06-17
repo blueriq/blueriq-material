@@ -118,13 +118,14 @@ node {
       // bat "yarn version:increment ${params.releaseVersion}"
       // }
       stage('release') {
-        bat "mvn -B -DdevelopmentVersion=${params.developmentVersion} -DreleaseVersion=${params.releaseVersion} -Dresume=false release:prepare release:perform"
+        bat "mvn -B -DdevelopmentVersion=${params.developmentVersion} -DreleaseVersion=${params.releaseVersion} -Dresume=false release:prepare package"
+        bat "dir target"
       }
 
-      stage('publish docs') {
-        bat "yarn docs --silent --name \"@blueriq/material - ${params.releaseVersion}\""
-        bat "build-publish-docs.bat ${params.releaseVersion} ${params.communityHost} ${params.communityUser} ${params.communityPass}"
-      }
+//      stage('publish docs') {
+//        bat "yarn docs --silent --name \"@blueriq/material - ${params.releaseVersion}\""
+//        bat "build-publish-docs.bat ${params.releaseVersion} ${params.communityHost} ${params.communityUser} ${params.communityPass}"
+//      }
     } // end if
 
   } catch (anyException) {
