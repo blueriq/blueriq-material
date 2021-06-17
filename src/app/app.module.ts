@@ -1,10 +1,9 @@
-import { registerLocaleData } from '@angular/common';
-import dutch from '@angular/common/locales/nl';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { BlueriqModule } from '@blueriq/angular';
 import { V2BackendModule } from '@blueriq/angular/backend/v2';
+import { DevtoolsModule } from '@blueriq/angular/devtools';
 import { BlueriqStoreModule } from '@blueriq/angular/store';
 import { DateFormats } from '@blueriq/core';
 import { EffectsModule } from '@ngrx/effects';
@@ -49,8 +48,6 @@ const routes: Routes = [
   { path: '**', redirectTo: 'shortcut/default', pathMatch: 'full' },
 ];
 
-registerLocaleData(dutch);
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,6 +72,11 @@ registerLocaleData(dutch);
     BlueriqStoreModule.forRoot(),
     V2BackendModule.forRoot({
       baseUrl: environment.baseUrl,
+    }),
+    DevtoolsModule.forRoot({
+      devtoolsUrl: environment.devtoolsUrl,
+      runtimeUrl: environment.baseUrl,
+      targetOrigin: '*',
     }),
 
     /* Blueriq Modules */
