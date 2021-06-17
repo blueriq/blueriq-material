@@ -97,6 +97,9 @@
     "webdriver-manager": "12.1.8"
   },
   "resolutions": {
-    "eslint": "^4.18.2"
+    "eslint": "^4.18.2",
+    "merge": "^2.1.1",
+    "glob-parent": "^5.1.2",
+    "postcss": "8.2.15"
   }
 }
