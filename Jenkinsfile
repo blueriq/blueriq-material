@@ -118,7 +118,7 @@ node {
       // bat "yarn version:increment ${params.releaseVersion}"
       // }
       stage('release') {
-        bat "mvn -B -DdevelopmentVersion=${params.developmentVersion} -DreleaseVersion=${params.releaseVersion} -Dresume=false release:prepare package"
+        bat "mvn -B -DdevelopmentVersion=${params.developmentVersion} -DreleaseVersion=${params.releaseVersion} -Dresume=false release:prepare deploy"
         bat "dir target"
       }
 
