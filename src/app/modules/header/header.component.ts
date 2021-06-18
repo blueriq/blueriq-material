@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, Optional } from '@angular/core';
-import { BlueriqChild, BlueriqComponent } from '@blueriq/angular';
+import { BlueriqChild, BlueriqComponent, BqProjectComponent } from '@blueriq/angular';
 import { Container, Page, TextItem } from '@blueriq/core';
 import { AuthService } from '../../auth/auth.service';
 
@@ -24,7 +24,8 @@ export class HeaderComponent implements OnInit {
   page: Page;
 
   constructor(@Optional() public dashboardHeader: Container,
-              private readonly authService: AuthService) {
+              private readonly authService: AuthService,
+              private readonly containingProject: BqProjectComponent) {
   }
 
   get displayName() {
@@ -45,7 +46,13 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logoutAndNavigate();
+    if (this.containingProject.sessionId) {
+      // If the project was started using an explicit session id we can't resume that particular session after
+      // logout. Instead, navigate to the logged-out page without a return path.
+      this.authService.logoutAndNavigate(null);
+    } else {
+      this.authService.logoutAndNavigate();
+    }
   }
 
 }

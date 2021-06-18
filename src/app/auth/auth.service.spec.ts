@@ -74,6 +74,20 @@ describe('AuthService', () => {
         expect(loggedOut).toBe(true);
         expect(router.url).toEqual('/logged-out?returnPath=%2Freturn');
       }));
+
+      it('should allow omitting a return path', fakeAsync(() => {
+        let loggedOut = false;
+        blueriqAuth.logout.and.returnValue(new Observable(subscriber => {
+          loggedOut = true;
+          subscriber.next({});
+        }));
+
+        auth.logoutAndNavigate(null);
+        tick();
+
+        expect(loggedOut).toBe(true);
+        expect(router.url).toEqual('/logged-out');
+      }));
     });
 
   });
@@ -98,6 +112,14 @@ describe('AuthService', () => {
 
         expect(doc.location!.href).toEqual(
           `http://openidconnect.com/logout?post_logout_redirect_uri=http%3A%2F%2Fexample.com%2Flogged-out%3FreturnPath%3D%252Freturn`);
+      });
+
+      it('should allow omitting a return path', () => {
+        configureLogout('http://openidconnect.com/logout');
+        auth.logoutAndNavigate(null);
+
+        expect(doc.location!.href).toEqual(
+          `http://openidconnect.com/logout?post_logout_redirect_uri=http%3A%2F%2Fexample.com%2Flogged-out`);
       });
 
       it('should not redirect to OpenId logout endpoint if logout endpoint is not available', fakeAsync(() => {

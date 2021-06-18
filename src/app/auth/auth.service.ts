@@ -33,19 +33,22 @@ export class AuthService {
     return this.openIdConnect ? this.openIdConnect.canLogout() : true;
   }
 
-  logoutAndNavigate(returnPath: string = this.router.url): void {
+  logoutAndNavigate(returnPath: string | null = this.router.url): void {
     this.auth.logout().subscribe(response => {
       // If the response contains an ssoLogoutUrl, we need to redirect to that URL to be logged out from OIDC provider.
       if (response.ssoLogoutUrl) {
-        this.document.location.href =
-          this.addReturnPath(response.ssoLogoutUrl, `/logged-out?returnPath=${encodeURIComponent(returnPath)}`);
+        let returnUrl = '/logged-out';
+        if (returnPath !== null) {
+          returnUrl += `?returnPath=${encodeURIComponent(returnPath)}`;
+        }
+        this.document.location.href = this.addReturnPath(response.ssoLogoutUrl, returnUrl);
       } else {
         this.router.navigate(['/logged-out'], { queryParams: { returnPath } });
       }
     });
   }
 
-  navigateToLogin(returnPath: string = this.router.url): void {
+  navigateToLogin(returnPath: string | null = this.router.url): void {
     this.router.navigate(['/login'], { queryParams: { returnPath } });
   }
 
