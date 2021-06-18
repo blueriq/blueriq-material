@@ -16,7 +16,8 @@ export class LoggedOutComponent {
     this.notification.dismiss = {
       label: 'Go to Login',
       action: () => {
-        auth.navigateToLogin(route.snapshot.queryParams['returnPath']);
+        const returnPath = route.snapshot.queryParams['returnPath'] ?? null;
+        auth.navigateToLogin(returnPath);
       },
     };
   }
