@@ -135,7 +135,7 @@ node {
         bat "git commit -m \"prepare for next development iteration ${params.developmentVersion}\""
 
         // push commits and tag
-        bat "git push origin"
+        bat "git push origin HEAD"
         bat "git push origin ${tag}"
       }
 
