@@ -134,10 +134,10 @@ node {
         bat "git push origin HEAD"
       }
 
-      stage('publish docs') {
-        bat "yarn docs --silent --name \"@blueriq/material - ${params.releaseVersion}\""
-        bat "build-publish-docs.bat ${params.releaseVersion} ${params.communityHost} ${params.communityUser} ${params.communityPass}"
-      }
+//      stage('publish docs') {
+//        bat "yarn docs --silent --name \"@blueriq/material - ${params.releaseVersion}\""
+//        bat "build-publish-docs.bat ${params.releaseVersion} ${params.communityHost} ${params.communityUser} ${params.communityPass}"
+//      }
     } // end if
 
   } catch (anyException) {
