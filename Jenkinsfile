@@ -125,15 +125,13 @@ node {
 
         // release
         bat "mvn -B deploy"
+        bat "git push origin ${tag}"
 
         // update to next development version
         bat "mvn versions:set -DnewVersion=${params.developmentVersion} -DgenerateBackupPoms=false"
         bat "git add ."
         bat "git commit -m \"prepare for next development iteration ${params.developmentVersion}\""
-
-        // push commits and tag
         bat "git push origin HEAD"
-        bat "git push origin ${tag}"
       }
 
       stage('publish docs') {
