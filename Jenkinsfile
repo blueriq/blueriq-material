@@ -141,8 +141,8 @@ node {
         bat "git commit -m \"prepare for next development iteration ${params.developmentVersion}\""
 
         // push commits and tag
-        bat "git push"
-        bat "git push ${tag}"
+        bat "git push origin"
+        bat "git push origin ${tag}"
       }
 
 //      stage('publish docs') {
