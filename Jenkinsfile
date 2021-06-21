@@ -114,11 +114,26 @@ node {
         bat "mvn clean deploy"
       }
     } else if (params.isRelease) {
-      // stage('increment version for release') {
-      // bat "yarn version:increment ${params.releaseVersion}"
-      // }
       stage('release') {
-        bat "mvn -B -DdevelopmentVersion=${params.developmentVersion} -DreleaseVersion=${params.releaseVersion} -Dresume=false release:prepare release:perform"
+        // update versions and tag
+        def tag = "blueriq-material-theme-${params.releaseVersion}"
+
+        bat "mvn versions:set -DnewVersion=${params.releaseVersion} -DgenerateBackupPoms=false"
+        bat "git add ."
+        bat "git commit -m \"prepare release ${tag}\""
+        bat "git tag ${tag}"
+
+        // release
+        bat "mvn -B deploy"
+
+        // update to next development version
+        bat "mvn versions:set -DnewVersion=${params.developmentVersion} -DgenerateBackupPoms=false"
+        bat "git add ."
+        bat "git commit -m \"prepare for next development iteration ${params.developmentVersion}\""
+
+        // push commits and tag
+        bat "git push origin HEAD"
+        bat "git push origin ${tag}"
       }
 
       stage('publish docs') {
