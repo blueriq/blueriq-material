@@ -1,10 +1,12 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { BqProjectComponent } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { Element } from '@blueriq/core';
 import { ContainerTemplate, PageTemplate, TextItemTemplate } from '@blueriq/core/testing';
+import { AuthService } from '../../auth/auth.service';
 import { PageComponent } from '../page/page.component';
 import { PageModule } from '../page/page.module';
 import { HeaderComponent } from './header.component';
@@ -13,8 +15,10 @@ import { HeaderModule } from './header.module';
 describe('HeaderComponent', () => {
   let session: BlueriqTestSession;
   let headerTemplate: ContainerTemplate;
+  let authServiceSpy: jasmine.SpyObj<AuthService>;
 
   beforeEach(waitForAsync(() => {
+    authServiceSpy = jasmine.createSpyObj<AuthService>(['logoutAndNavigate']);
     TestBed.configureTestingModule({
       providers: [
         {
@@ -22,11 +26,21 @@ describe('HeaderComponent', () => {
           useValue: '/',
         },
         Element,
+        {
+          provide: BqProjectComponent,
+          useValue: {
+            sessionId: undefined,
+          },
+        },
+        {
+          provide: AuthService,
+          useValue: authServiceSpy,
+        },
       ],
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        RouterModule.forRoot([]),
+        RouterTestingModule.withRoutes([]),
         HeaderModule,
         PageModule,
       ],
@@ -47,6 +61,12 @@ describe('HeaderComponent', () => {
       expect(fixture.nativeElement.querySelector('.img-logo-white')).toBeTruthy();
       expect(fixture.nativeElement.querySelector('h1').innerText).toBe('');
       expect(fixture.nativeElement.querySelector('.username')).toBeFalsy();
+    });
+
+    it('should logout with a return path', () => {
+      component.logout();
+
+      expect(authServiceSpy.logoutAndNavigate).toHaveBeenCalledOnceWith();
     });
   });
 
@@ -125,6 +145,31 @@ describe('HeaderComponent', () => {
       expect(fixture.nativeElement.querySelector('.img-logo-white')).toBeTruthy();
       expect(fixture.nativeElement.querySelector('h1').innerText).toBe('Page Title');
       expect(fixture.nativeElement.querySelector('.username').innerText.toLowerCase()).toBe('requester');
+    });
+  });
+
+  describe('logging out when a session id is used', () => {
+    beforeEach(waitForAsync(() => {
+      TestBed.configureTestingModule({
+        providers: [
+          {
+            provide: BqProjectComponent,
+            useValue: {
+              sessionId: '1337',
+            },
+          },
+        ],
+      });
+    }));
+
+    it('should logout without a return path', () => {
+      const fixture = TestBed.createComponent(HeaderComponent);
+
+      fixture.componentInstance.logout();
+
+      // The redirect should be explicitly set to `null` such that no return URL is used, as the return URL would
+      // correspond with the session id that will no longer be available.
+      expect(authServiceSpy.logoutAndNavigate).toHaveBeenCalledOnceWith(null);
     });
   });
 });

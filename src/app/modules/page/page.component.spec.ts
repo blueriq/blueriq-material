@@ -2,6 +2,7 @@ import { APP_BASE_HREF } from '@angular/common';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { BqProjectComponent } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate, PageTemplate } from '@blueriq/core/testing';
 import { BqContentStyles } from '../BqContentStyles';
@@ -16,7 +17,15 @@ describe('PageComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
+      providers: [
+        { provide: APP_BASE_HREF, useValue: '/' },
+        {
+          provide: BqProjectComponent,
+          useValue: {
+            sessionId: undefined,
+          },
+        },
+      ],
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
