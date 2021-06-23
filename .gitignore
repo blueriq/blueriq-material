@@ -53,3 +53,5 @@ target/
 # Sensitive files
 license.aql
 
+/tools/**/
+/tools/7z.*

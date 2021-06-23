@@ -59,7 +59,14 @@ node {
     env.CHROME_BIN = env.CHROME_80_0_3987_132
 
     stage('checkout') {
-      checkout scm
+      def scmVars = checkout scm
+      env.GIT_COMMIT = scmVars.GIT_COMMIT
+    }
+
+    stage('install tools') {
+      bat 'tools/_install-tools.bat'
+      env.ANT_HOME = "${pwd()}\\tools\\apache-ant-1.10.3"
+      env.PATH = "${env.ANT_HOME}\\bin;${env.PATH}"
     }
 
     stage('install') {
@@ -92,8 +99,12 @@ node {
           bat 'node_modules\\.bin\\sass-lint -f checkstyle --verbose --config sass-lint.yml src/**/*.scss -o sasslint_results_checkstyle.xml'
         },
         'build': {
-          if (!params.isRelease) { // maven release executes the yarn build also
-            bat "yarn build --progress=false"
+          withCredentials([file(credentialsId: 'npmrc_file', variable: 'npmrc_file')]) {
+            bat "ant -f scripts/docker/build.xml build " +
+              "-Ddocker.host=bq-build-lin.blueriq.local " +
+              "-Dcommit=${env.GIT_COMMIT} " +
+              "-DisRelease=${params.isRelease} " +
+              "-DnpmrcFileLocation=${npmrc_file}"
           }
         }
       );
@@ -103,11 +114,24 @@ node {
         bat "mvn clean deploy"
       }
     } else if (params.isRelease) {
-      // stage('increment version for release') {
-      // bat "yarn version:increment ${params.releaseVersion}"
-      // }
       stage('release') {
-        bat "mvn -B -DdevelopmentVersion=${params.developmentVersion} -DreleaseVersion=${params.releaseVersion} -Dresume=false release:prepare release:perform"
+        // update versions and tag
+        def tag = "blueriq-material-theme-${params.releaseVersion}"
+
+        bat "mvn versions:set -DnewVersion=${params.releaseVersion} -DgenerateBackupPoms=false"
+        bat "git add ."
+        bat "git commit -m \"chore: prepare release ${tag}\""
+        bat "git tag ${tag}"
+
+        // release
+        bat "mvn -B deploy"
+        bat "git push origin ${tag}"
+
+        // update to next development version
+        bat "mvn versions:set -DnewVersion=${params.developmentVersion} -DgenerateBackupPoms=false"
+        bat "git add ."
+        bat "git commit -m \"chore: prepare for next development iteration ${params.developmentVersion}\""
+        bat "git push origin HEAD"
       }
 
       stage('publish docs') {
