@@ -39,6 +39,7 @@ testem.log
 /typings
 release.properties
 tslint_results_checkstyle.xml
+3rd-party-licenses.txt
 
 # e2e
 /e2e/*.js

@@ -1,1 +1,2 @@
-yarn license-checker --production --relativeLicensePath --csv --customPath customLicenseCheckerFormat.json > 3rd-party-licenses.txt
+call yarn install --cwd %~dp0/scripts/license --no-lockfile
+call node %~dp0/scripts/license/extract.js
