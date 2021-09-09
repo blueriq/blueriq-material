@@ -6042,10 +6042,10 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
-jszip@^3.1.3:
-  version "3.6.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/jszip/-/jszip-3.6.0.tgz#839b72812e3f97819cc13ac4134ffced95dd6af9"
-  integrity sha1-g5tygS4/l4GcwTrEE0/87ZXdavk=
+jszip@^3.1.3, jszip@^3.7.0:
+  version "3.7.1"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/jszip/-/jszip-3.7.1.tgz#bd63401221c15625a1228c556ca8a68da6fda3d9"
+  integrity sha1-vWNAEiHBViWhIoxVbKimjab9o9k=
   dependencies:
     lie "~3.3.0"
     pako "~1.0.2"
@@ -9440,10 +9440,10 @@ tapable@^2.2.0:
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/tapable/-/tapable-2.2.0.tgz#5c373d281d9c672848213d0e037d1c4165ab426b"
   integrity sha1-XDc9KB2cZyhIIT0OA30cQWWrQms=
 
-tar@^6.0.2, tar@^6.1.0:
-  version "6.1.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/tar/-/tar-6.1.0.tgz#d1724e9bcc04b977b18d5c573b333a2207229a83"
-  integrity sha1-0XJOm8wEuXexjVxXOzM6IgcimoM=
+tar@^6.0.2, tar@^6.1.0, tar@^6.1.2:
+  version "6.1.11"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/tar/-/tar-6.1.11.tgz#6760a38f003afa1b2ffd0ffe9e9abbd0eab3d621"
+  integrity sha1-Z2CjjwA6+hsv/Q/+npq70Oqz1iE=
   dependencies:
     chownr "^2.0.0"
     fs-minipass "^2.0.0"
@@ -9939,10 +9939,10 @@ urix@^0.1.0:
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/urix/-/urix-0.1.0.tgz#da937f7a62e21fec1fd18d49b35c2935067a6c72"
   integrity sha1-2pN/emLiH+wf0Y1Js1wpNQZ6bHI=
 
-url-parse@^1.4.3, url-parse@^1.5.1:
-  version "1.5.1"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/url-parse/-/url-parse-1.5.1.tgz#d5fa9890af8a5e1f274a2c98376510f6425f6e3b"
-  integrity sha1-1fqYkK+KXh8nSiyYN2UQ9kJfbjs=
+url-parse@^1.4.3, url-parse@^1.5.1, url-parse@^1.5.2:
+  version "1.5.3"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/url-parse/-/url-parse-1.5.3.tgz#71c1303d38fb6639ade183c2992c8cc0686df862"
+  integrity sha1-ccEwPTj7Zjmt4YPCmSyMwGht+GI=
   dependencies:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
