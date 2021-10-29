@@ -97,7 +97,7 @@ export class CustomFileUploader extends FileUploader {
     if (!fileExtension) {
       return false;
     } else if (this.options.allowedFileType) {
-      return this.options.allowedFileType.indexOf(fileExtension) > -1;
+      return this.options.allowedFileType.indexOf(fileExtension.toLowerCase()) > -1;
     } else {
       return true;
     }
