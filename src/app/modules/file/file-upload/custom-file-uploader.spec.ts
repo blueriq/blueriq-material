@@ -89,6 +89,22 @@ describe('CustomFileUploader', () => {
       // Verify
       expect(filterResults).toBeTruthy();
     });
+
+    it('should succeed when extension case is different', () => {
+      // Init
+      const uploadOptions: FileUploaderOptions = {
+        url: 'www.some-url.com',
+        maxFileSize: 256,
+        autoUpload: true,
+        allowedFileType: ['txt'],
+      };
+      customFileUploader = new CustomFileUploader(uploadOptions);
+      // SUT
+      const filterResults = customFileUploader._fileTypeFilter(createFile('hello.TXT').file);
+
+      // Verify
+      expect(filterResults).toBeTruthy();
+    });
   });
 
   function createFile(fileName): FileItem {
