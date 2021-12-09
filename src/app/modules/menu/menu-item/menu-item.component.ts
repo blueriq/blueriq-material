@@ -59,7 +59,7 @@ export class MenuItemComponent {
       if (possibleSubMenuEnterKeys.includes(event.key)) {
         setTimeout(() => {
           const firstItemOfSubMenu = document.getElementsByName(this.asContainer(child).children[0].functionalKey)[0];
-          if (firstItemOfSubMenu != undefined) {
+          if (firstItemOfSubMenu !== undefined) {
             firstItemOfSubMenu.focus();
           }
         });
