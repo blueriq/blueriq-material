@@ -108,7 +108,7 @@ describe('MenuComponent', () => {
       });
     });
 
-    fit('should navigate submenus with arrowkeys', fakeAsync(() => {
+    it('should navigate submenus with arrowkeys', fakeAsync(() => {
       const subMenu = component.debugElement.query(By.css('.mat-menu-content'));
       expect(subMenu).toBeFalsy();
 
