@@ -24,32 +24,46 @@ export class MenuItemComponent {
     if (element.parent instanceof Container) {
       return element.parent.contentStyle === 'menubar';
     }
-    console.log(false);
     return false;
   }
 
   public onMenuKeyDown(event: KeyboardEvent, index: number) {
-    let menuItem = this.asContainer(this.child).children;
-    let lastIndex = this.inputs.length - 1;
-    let previousIndex = index - 1;
-    let nextIndex = index + 1;
+    const menuItem = this.asContainer(this.child).children;
+    const lastIndex = this.inputs.length - 1;
+    const previousIndex = index - 1;
+    const nextIndex = index + 1;
 
     switch (event.key) {
       case 'ArrowUp':
-        index == 0 ? this.focusElement(menuItem, lastIndex) : this.focusElement(menuItem, previousIndex);
+        index === 0 ? this.focusElement(menuItem, lastIndex) : this.focusElement(menuItem, previousIndex);
         break;
       case 'ArrowDown':
-        index == lastIndex ? this.focusElement(menuItem, 0) : this.focusElement(menuItem, nextIndex);
+        index === lastIndex ? this.focusElement(menuItem, 0) : this.focusElement(menuItem, nextIndex);
         break;
     }
   }
 
   public focusElement(elementArray: Element[], index: number) {
-    let eName = elementArray[index].name || '';
-    if (eName.length > 0) {
+    const elementName = elementArray[index].functionalKey || '';
+    if (elementName.length > 0) {
       setTimeout(() => {
-        document.getElementsByName(eName)[0].focus();
+        document.getElementsByName(elementName)[0].focus();
       });
+    }
+
+  }
+
+  handleEnterSubmenu(event: KeyboardEvent, child: Element) {
+    if (child.type == 'container') {
+      const possibleSubMenuEnterKeys: string[] = ['ArrowRight', 'ArrowDown'];
+      if (possibleSubMenuEnterKeys.includes(event.key)) {
+        setTimeout(() => {
+          const firstItemOfSubMenu = document.getElementsByName(this.asContainer(child).children[0].functionalKey)[0];
+          if (firstItemOfSubMenu != undefined) {
+            firstItemOfSubMenu.focus();
+          }
+        });
+      }
     }
 
   }

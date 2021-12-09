@@ -1,18 +1,18 @@
 <div [ngSwitch]="child.type">
   <!-- button -->
-  <button name="{{child.name}}" *ngSwitchCase="'button'" mat-button class="mat-menu-item" [bqButton]="child">
+  <button name="{{child.functionalKey}}" *ngSwitchCase="'button'" mat-button class="mat-menu-item" [bqButton]="child">
     <mat-icon [bqIcon]="child.styles"></mat-icon>
     {{ asButton(child).caption || "[" + asButton(child).name + "]" }}
   </button>
 
   <!-- container with button(s) -->
   <ng-container *ngSwitchCase="'container'">
-    <button mat-menu-item [matMenuTriggerFor]="menu" class="menu-list">
+    <button (keydown)="handleEnterSubmenu($event,child)" name="{{child.functionalKey}}" mat-menu-item [matMenuTriggerFor]="menu" class="menu-list">
       {{ asContainer(child).displayName }}
       <mat-icon *ngIf="isRootOfMenubar(child)">arrow_drop_down</mat-icon>
     </button>
     <mat-menu #menu="matMenu" [overlapTrigger]="false">
-      <bq-menu-item *ngFor="let grandchild of asContainer(child).children | bqIncluded; let i = index" [child]="grandchild" #items (keydown)="onMenuKeyDown($event,i)"></bq-menu-item>
+      <bq-menu-item id="item{{i}}" *ngFor="let grandchild of asContainer(child).children | bqIncluded; let i = index" [child]="grandchild" (keydown)="onMenuKeyDown($event,i)" #items></bq-menu-item>
     </mat-menu>
   </ng-container>
 
