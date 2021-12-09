@@ -135,7 +135,7 @@ describe('MenuComponent', () => {
           return el.nativeElement.innerText.includes('PUBLIC');
         });
 
-        if (unitBtn != undefined && publicBtn != undefined) {
+        if (unitBtn && publicBtn) {
           const unitChildBtns = unitBtn.queryAll(By.css('button'));
           const unitChildContainers = unitBtn.queryAll(By.css('.menu-list'));
 

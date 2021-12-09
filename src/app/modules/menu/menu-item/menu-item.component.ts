@@ -54,7 +54,7 @@ export class MenuItemComponent {
   }
 
   handleEnterSubmenu(event: KeyboardEvent, child: Element) {
-    if (child.type == 'container') {
+    if (child.type === 'container') {
       const possibleSubMenuEnterKeys: string[] = ['ArrowRight', 'ArrowDown'];
       if (possibleSubMenuEnterKeys.includes(event.key)) {
         setTimeout(() => {
