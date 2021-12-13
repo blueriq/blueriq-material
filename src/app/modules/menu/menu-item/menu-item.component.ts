@@ -28,17 +28,17 @@ export class MenuItemComponent {
   }
 
   public onMenuKeyDown(event: KeyboardEvent, index: number) {
-    const menuItem = this.asContainer(this.child).children;
+    const menuItems = this.asContainer(this.child).children;
     const lastIndex = this.inputs.length - 1;
     const previousIndex = index - 1;
     const nextIndex = index + 1;
 
     switch (event.key) {
       case 'ArrowUp':
-        index === 0 ? this.focusElement(menuItem, lastIndex) : this.focusElement(menuItem, previousIndex);
+        index === 0 ? this.focusElement(menuItems, lastIndex) : this.focusElement(menuItems, previousIndex);
         break;
       case 'ArrowDown':
-        index === lastIndex ? this.focusElement(menuItem, 0) : this.focusElement(menuItem, nextIndex);
+        index === lastIndex ? this.focusElement(menuItems, 0) : this.focusElement(menuItems, nextIndex);
         break;
     }
   }
