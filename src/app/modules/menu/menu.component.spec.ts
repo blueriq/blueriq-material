@@ -108,77 +108,77 @@ describe('MenuComponent', () => {
       });
     });
 
-  it('should navigate submenus with arrowkeys', fakeAsync(() => {
-    const subMenu = component.debugElement.query(By.css('.mat-menu-content'));
-    expect(subMenu).toBeFalsy();
+    it('should navigate submenus with arrowkeys', fakeAsync(() => {
+      const subMenu = component.debugElement.query(By.css('.mat-menu-content'));
+      expect(subMenu).toBeFalsy();
 
-    // retrieve the trigger
-    const selectTrigger = component.debugElement.query(By.directive(MatMenuTrigger));
-    expect(selectTrigger).toBeTruthy();
+      // retrieve the trigger
+      const selectTrigger = component.debugElement.query(By.directive(MatMenuTrigger));
+      expect(selectTrigger).toBeTruthy();
 
-    // click on the menu button (via the trigger) to display the submenu
-    selectTrigger.nativeElement.click();
-    component.detectChanges();
-
-    component.whenStable().then(() => {
+      // click on the menu button (via the trigger) to display the submenu
+      selectTrigger.nativeElement.click();
       component.detectChanges();
-      const menuItems: DebugElement[] = component.debugElement.queryAll(By.directive(MenuItemComponent));
-      const arrowDownEvent = new KeyboardEvent('keydown', { key: 'ArrowDown' });
-      const arrowUpEvent = new KeyboardEvent('keydown', { key: 'ArrowUp' });
-      const arrowRightEvent = new KeyboardEvent('keydown', { key: 'ArrowRight' });
 
-      const unitBtn = menuItems.find(el => {
-        return el.nativeElement.innerText.includes('UNIT');
-      });
+      component.whenStable().then(() => {
+        component.detectChanges();
+        const menuItems: DebugElement[] = component.debugElement.queryAll(By.directive(MenuItemComponent));
+        const arrowDownEvent = new KeyboardEvent('keydown', { key: 'ArrowDown' });
+        const arrowUpEvent = new KeyboardEvent('keydown', { key: 'ArrowUp' });
+        const arrowRightEvent = new KeyboardEvent('keydown', { key: 'ArrowRight' });
 
-      const publicBtn = menuItems.find(el => {
-        return el.nativeElement.innerText.includes('PUBLIC');
-      });
+        const unitBtn = menuItems.find(el => {
+          return el.nativeElement.innerText.includes('UNIT');
+        });
 
-      expect(unitBtn).toBeTruthy();
-      expect(publicBtn).toBeTruthy();
+        const publicBtn = menuItems.find(el => {
+          return el.nativeElement.innerText.includes('PUBLIC');
+        });
 
-      if (unitBtn && publicBtn) {
-        const unitChildBtns = unitBtn.queryAll(By.css('button'));
-        const unitChildContainers = unitBtn.queryAll(By.css('.menu-list'));
+        expect(unitBtn).toBeTruthy();
+        expect(publicBtn).toBeTruthy();
 
-        const unitBtnOnMenuKeyDown = spyOn(unitBtn.componentInstance, 'onMenuKeyDown').and.callThrough();
-        const unitBtnFocusElement = spyOn(unitBtn.componentInstance, 'focusElement').and.callThrough();
-        const publicBtnOnHandleEnterSubmenu = spyOn(publicBtn.componentInstance, 'handleEnterSubmenu')
-        .and.callThrough();
+        if (unitBtn && publicBtn) {
+          const unitChildBtns = unitBtn.queryAll(By.css('button'));
+          const unitChildContainers = unitBtn.queryAll(By.css('.menu-list'));
 
-        // elements that change focus
-        const financeBtnItem = document.getElementsByName(unitChildBtns[2].nativeElement.name)[0];
-        const coreBtnItem = document.getElementsByName(unitChildBtns[1].nativeElement.name)[0];
-        const publicBtnItem = document.getElementsByName(unitChildContainers[1].nativeElement.name)[0];
+          const unitBtnOnMenuKeyDown = spyOn(unitBtn.componentInstance, 'onMenuKeyDown').and.callThrough();
+          const unitBtnFocusElement = spyOn(unitBtn.componentInstance, 'focusElement').and.callThrough();
+          const publicBtnOnHandleEnterSubmenu = spyOn(publicBtn.componentInstance, 'handleEnterSubmenu')
+          .and.callThrough();
 
-        const financeBtnFocusSpy = spyOn(financeBtnItem, 'focus');
-        const coreBtnFocusSpy = spyOn(coreBtnItem, 'focus');
-        const publicBtnFocusSpy = spyOn(publicBtnItem, 'focus');
+          // elements that change focus
+          const financeBtnItem = document.getElementsByName(unitChildBtns[2].nativeElement.name)[0];
+          const coreBtnItem = document.getElementsByName(unitChildBtns[1].nativeElement.name)[0];
+          const publicBtnItem = document.getElementsByName(unitChildContainers[1].nativeElement.name)[0];
 
-        // actual submenu buttons that trigger onMenuKeyDown
-        const coreHtmlElement = document.getElementById('item0');
-        const financeHtmlElement = document.getElementById('item1');
-        const publicHtmlElement = document.getElementById('item2');
+          const financeBtnFocusSpy = spyOn(financeBtnItem, 'focus');
+          const coreBtnFocusSpy = spyOn(coreBtnItem, 'focus');
+          const publicBtnFocusSpy = spyOn(publicBtnItem, 'focus');
 
-        expect(coreHtmlElement).toBeTruthy();
-        expect(financeHtmlElement).toBeTruthy();
-        expect(publicHtmlElement).toBeTruthy();
+          // actual submenu buttons that trigger onMenuKeyDown
+          const coreHtmlElement = document.getElementById('item0');
+          const financeHtmlElement = document.getElementById('item1');
+          const publicHtmlElement = document.getElementById('item2');
 
-        if (coreHtmlElement && financeHtmlElement && publicHtmlElement) {
-          // navigate submenu down and up
-          coreHtmlElement.dispatchEvent(arrowDownEvent);
-          flush();
-          component.detectChanges();
-          financeHtmlElement.dispatchEvent(arrowDownEvent);
-          flush();
-          component.detectChanges();
-          publicHtmlElement.dispatchEvent(arrowUpEvent);
-          flush();
-          component.detectChanges();
+          expect(coreHtmlElement).toBeTruthy();
+          expect(financeHtmlElement).toBeTruthy();
+          expect(publicHtmlElement).toBeTruthy();
 
-          financeHtmlElement.dispatchEvent(arrowUpEvent);
-          flush();
+          if (coreHtmlElement && financeHtmlElement && publicHtmlElement) {
+            // navigate submenu down and up
+            coreHtmlElement.dispatchEvent(arrowDownEvent);
+            flush();
+            component.detectChanges();
+            financeHtmlElement.dispatchEvent(arrowDownEvent);
+            flush();
+            component.detectChanges();
+            publicHtmlElement.dispatchEvent(arrowUpEvent);
+            flush();
+            component.detectChanges();
+
+            financeHtmlElement.dispatchEvent(arrowUpEvent);
+            flush();
             component.detectChanges();
 
             // navigate again down to enter sub-sub menu
