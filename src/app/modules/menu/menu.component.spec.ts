@@ -108,7 +108,7 @@ describe('MenuComponent', () => {
       });
     });
 
-  fit('should navigate submenus with arrowkeys', fakeAsync(() => {
+  it('should navigate submenus with arrowkeys', fakeAsync(() => {
     const subMenu = component.debugElement.query(By.css('.mat-menu-content'));
     expect(subMenu).toBeFalsy();
 
@@ -144,7 +144,8 @@ describe('MenuComponent', () => {
 
         const unitBtnOnMenuKeyDown = spyOn(unitBtn.componentInstance, 'onMenuKeyDown').and.callThrough();
         const unitBtnFocusElement = spyOn(unitBtn.componentInstance, 'focusElement').and.callThrough();
-        const publicBtnOnHandleEnterSubmenu = spyOn(publicBtn.componentInstance, 'handleEnterSubmenu').and.callThrough();
+        const publicBtnOnHandleEnterSubmenu = spyOn(publicBtn.componentInstance, 'handleEnterSubmenu')
+        .and.callThrough();
 
         // elements that change focus
         const financeBtnItem = document.getElementsByName(unitChildBtns[2].nativeElement.name)[0];
@@ -160,20 +161,24 @@ describe('MenuComponent', () => {
         const financeHtmlElement = document.getElementById('item1');
         const publicHtmlElement = document.getElementById('item2');
 
+        expect(coreHtmlElement).toBeTruthy();
+        expect(financeHtmlElement).toBeTruthy();
+        expect(publicHtmlElement).toBeTruthy();
+
         if (coreHtmlElement && financeHtmlElement && publicHtmlElement) {
           // navigate submenu down and up
           coreHtmlElement.dispatchEvent(arrowDownEvent);
           flush();
-            component.detectChanges();
-            financeHtmlElement.dispatchEvent(arrowDownEvent);
-            flush();
-            component.detectChanges();
-            publicHtmlElement.dispatchEvent(arrowUpEvent);
-            flush();
-            component.detectChanges();
+          component.detectChanges();
+          financeHtmlElement.dispatchEvent(arrowDownEvent);
+          flush();
+          component.detectChanges();
+          publicHtmlElement.dispatchEvent(arrowUpEvent);
+          flush();
+          component.detectChanges();
 
-            financeHtmlElement.dispatchEvent(arrowUpEvent);
-            flush();
+          financeHtmlElement.dispatchEvent(arrowUpEvent);
+          flush();
             component.detectChanges();
 
             // navigate again down to enter sub-sub menu
