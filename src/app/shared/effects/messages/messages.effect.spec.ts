@@ -1,4 +1,4 @@
-import { fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
+import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {
   ChangedPageAction,
@@ -30,21 +30,21 @@ describe('MessagesEffect', () => {
     messages: {},
   };
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async() => {
     snackBarSpy = jasmine.createSpyObj<MatSnackBar>('MatSnackBar', ['open']);
     actions = new Subject();
 
-    TestBed.configureTestingModule({
+    await TestBed.configureTestingModule({
       providers: [
         SessionRegistry,
         MessagesEffect,
         provideMockActions(() => actions),
         { provide: MatSnackBar, useValue: snackBarSpy },
       ],
-    });
+    }).compileComponents();
     sessionRegistry = TestBed.inject(SessionRegistry);
     effects = TestBed.inject(MessagesEffect);
-  }));
+  });
 
   it('does animate snackbar again even if already displayed the message', fakeAsync(() => {
     const session = SessionTemplate.create()

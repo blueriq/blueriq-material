@@ -1,4 +1,4 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { InvalidFormAction } from '@blueriq/angular/forms';
@@ -11,11 +11,11 @@ describe('ValidationEffect', () => {
   let snackBarSpy: jasmine.SpyObj<MatSnackBar>;
   let effects: ValidationEffect;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async() => {
     snackBarSpy = jasmine.createSpyObj<MatSnackBar>('MatSnackBar', ['open']);
     actions = new Subject();
 
-    TestBed.configureTestingModule({
+    await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
       ],
@@ -24,10 +24,10 @@ describe('ValidationEffect', () => {
         provideMockActions(() => actions),
         { provide: MatSnackBar, useValue: snackBarSpy },
       ],
-    });
+    }).compileComponents();
 
     effects = TestBed.inject(ValidationEffect);
-  }));
+  });
 
   describe('errors', () => {
     it('opens snackbar with an error message', () => {

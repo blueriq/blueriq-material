@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
@@ -28,8 +28,8 @@ describe('TableComponent', () => {
   let session: BlueriqTestSession;
   let component: ComponentFixture<ListComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async() => {
+    await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
@@ -41,8 +41,8 @@ describe('TableComponent', () => {
         AssetModule,
         ListModule,
       ],
-    });
-  }));
+    }).compileComponents();
+  });
 
   describe('Default Table Component', () => {
 

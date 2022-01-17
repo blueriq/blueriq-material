@@ -1,9 +1,11 @@
+@use '~@angular/material' as mat;
+@use 'sass:math';
 @import 'globals/variables';
 
 $shape-size: 14px;
 $shape-top: 20px;
-$background: map-get($mat-gray, 200);
-$background-card: map-get($mat-light-theme-background, card);
+$background: map-get(mat.$gray-palette, 200);
+$background-card: map-get(mat.$light-theme-background-palette, card);
 
 .timeline {
   max-height: $bq-max-height-scrollbar;
@@ -27,8 +29,8 @@ $background-card: map-get($mat-light-theme-background, card);
     display: inline-block;
     position: absolute;
     top: $shape-top;
-    right: -$shape-size / 2;
-    padding: ($shape-size / 2) 0;
+    right: math.div(-$shape-size, 2);
+    padding: math.div($shape-size, 2) 0;
     background: $background;
 
     .dot {
@@ -46,7 +48,7 @@ $background-card: map-get($mat-light-theme-background, card);
   position: relative;
 
   .content {
-    @include mat-elevation(1);
+    @include mat.elevation(1);
     margin: $card-left-margin $bq-margin-double;
     padding: $bq-margin;
     background: $background-card;

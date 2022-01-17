@@ -1,3 +1,4 @@
+@use '~@angular/material' as mat;
 @import '~@angular/material/theming';
 @import 'globals/variables';
 @import 'globals/images';
@@ -5,7 +6,7 @@
 $bq-footer-height: 200px;
 
 .header {
-  @include mat-elevation(1);
+  @include mat.elevation(1);
   position: fixed;
   width: 100%;
   z-index: $z-index-drawer + 10;

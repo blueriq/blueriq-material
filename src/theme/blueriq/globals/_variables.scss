@@ -1,23 +1,25 @@
+@use '~@angular/material' as mat;
+@use 'sass:math';
 @import '~@angular/material/theming';
 @import './color-palettes';
 
 // The mat-palette() function adds keys to the palette object for easy color retrieval using mat-color()
-$bq-primary-palette: mat-palette($bq-mat-primary-blue);
-$bq-accent-palette: mat-palette($bq-mat-primary-purple);
-$bq-error-palette: mat-palette($bq-mat-accent-red);
-$bq-theme: mat-light-theme($bq-primary-palette, $bq-accent-palette, $bq-error-palette);
+$bq-primary-palette: mat.define-palette($bq-mat-primary-blue);
+$bq-accent-palette: mat.define-palette($bq-mat-primary-purple);
+$bq-error-palette: mat.define-palette($bq-mat-accent-red);
+$bq-theme: mat.define-light-theme($bq-primary-palette, $bq-accent-palette, $bq-error-palette);
 
 //Specific none material colour palettes
-$bq-tertiary-palette: mat-palette($bq-mat-accent-green);
-$bq-warn-palette: mat-palette($bq-mat-accent-orange);
-$bq-info-palette: mat-palette($bq-mat-primary-blue);
-$bq-success-palette: mat-palette($bq-mat-accent-green);
+$bq-tertiary-palette: mat.define-palette($bq-mat-accent-green);
+$bq-warn-palette: mat.define-palette($bq-mat-accent-orange);
+$bq-info-palette: mat.define-palette($bq-mat-primary-blue);
+$bq-success-palette: mat.define-palette($bq-mat-accent-green);
 
 // Margin system, for consistency all margins are derivatives from a single base margin
 // Use the $bq-margin-* variables in all SCSS for padding, margin, etc to achieve a form of consistency
 $bq-base-margin: 12px;
 $bq-margin: $bq-base-margin;
-$bq-margin-half: $bq-base-margin / 2;
+$bq-margin-half: math.div($bq-base-margin, 2);
 $bq-margin-double: $bq-base-margin * 2;
 $bq-margin-triple: $bq-base-margin * 3;
 $bq-margin-quadruple: $bq-base-margin * 4;
@@ -26,7 +28,7 @@ $bq-max-height-scrollbar: 700px;
 
 // Specific colour variables which could not not have been achieved using the default material theme variables
 $bq-card-button-background: #f5f5f5;
-$bq-header-color: mat-color($bq-mat-accent-navy, 500);
+$bq-header-color: mat.get-color-from-palette($bq-mat-accent-navy, 500);
 $bq-white-37-opacity: rgba(255, 255, 255, .37);
 
 // Other variables
@@ -95,6 +97,6 @@ $gutter-width-large: $bq-margin-quadruple;
 // Enable/disable the header; choose between: `flex` or `none`
 $header-display: flex;
 
-$bq-mat-typography: mat-typography-config(
+$bq-mat-typography: mat.define-typography-config(
   $font-family: ($bq-font-family)
 );

@@ -14,14 +14,14 @@ describe('SelectComponent', () => {
   let component: ComponentFixture<SelectComponent>;
   let _containerElement;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async() => {
+    await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
         FormControlModule,
       ],
-    });
+    }).compileComponents();
     inject([OverlayContainer], (oc: OverlayContainer) => {
       _containerElement = oc.getContainerElement();
     })();

@@ -25,8 +25,8 @@ describe('HeadingComponent', () => {
   let fixture: ComponentFixture<MockContainerComponent>;
   let session: BlueriqTestSession;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async() => {
+    await TestBed.configureTestingModule({
       declarations: [MockContainerComponent],
       providers: [BlueriqComponents.register([MockContainerComponent])],
       imports: [
@@ -34,7 +34,7 @@ describe('HeadingComponent', () => {
         BlueriqTestingModule,
         HeadingModule,
       ],
-    });
+    }).compileComponents();
   });
 
   beforeEach(() => {

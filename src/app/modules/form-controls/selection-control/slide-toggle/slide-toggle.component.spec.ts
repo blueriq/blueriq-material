@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
@@ -11,15 +11,15 @@ describe('SlideToggleComponent', () => {
   let component: ComponentFixture<SlideToggleComponent>;
   let session: BlueriqTestSession;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async() => {
+    await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
         FormControlModule,
       ],
-    });
-  }));
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     field = FieldTemplate.boolean().styles(BqPresentationStyles.SWITCH).questionText('Setting1').explainText('Explain2');

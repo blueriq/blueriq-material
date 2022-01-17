@@ -1,3 +1,4 @@
+@use '~@angular/material' as mat;
 @import 'variables';
 
 // This file contains styles that have to be global due to use of elements that
@@ -9,28 +10,28 @@
     &.Warning { // sass-lint:disable-line class-name-format
       padding-top: 1px;
       padding-bottom: 1px;
-      background-color: mat-color($bq-warn-palette, 100);
+      background-color: mat.get-color-from-palette($bq-warn-palette, 100);
     }
 
     &.danger,
     &.Danger { // sass-lint:disable-line class-name-format
       padding-top: 1px;
       padding-bottom: 1px;
-      background-color: mat-color($bq-error-palette, 100);
+      background-color: mat.get-color-from-palette($bq-error-palette, 100);
     }
 
     &.info,
     &.Info { // sass-lint:disable-line class-name-format
       padding-top: 1px;
       padding-bottom: 1px;
-      background-color: mat-color($bq-info-palette, 100);
+      background-color: mat.get-color-from-palette($bq-info-palette, 100);
     }
 
     &.success,
     &.Success { // sass-lint:disable-line class-name-format
       padding-top: 1px;
       padding-bottom: 1px;
-      background-color: mat-color($bq-success-palette, 100);
+      background-color: mat.get-color-from-palette($bq-success-palette, 100);
     }
   }
 }

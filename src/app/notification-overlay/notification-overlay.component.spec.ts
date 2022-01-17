@@ -9,10 +9,10 @@ describe('NotificationOverlayComponent', () => {
   let component: NotificationOverlayComponent;
   let fixture: ComponentFixture<NotificationOverlayComponent>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [NotificationOverlayModule],
-    });
+    }).compileComponents();
 
     fixture = TestBed.createComponent(NotificationOverlayComponent);
     component = fixture.componentInstance;

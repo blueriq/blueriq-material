@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
@@ -13,21 +13,21 @@ describe('DateTimepickerComponent', () => {
   let component: ComponentFixture<DateTimepickerComponent>;
   let session: BlueriqTestSession;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async() => {
+    await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
         FormControlModule,
       ],
-    });
-  }));
+    }).compileComponents();
+  });
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async() => {
     field = FieldTemplate.datetime();
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(DateTimepickerComponent);
-  }));
+  });
 
   it('should render date and time picker for datetime fields', () => {
     expect(component.componentInstance.getPickerType()).toEqual('both');

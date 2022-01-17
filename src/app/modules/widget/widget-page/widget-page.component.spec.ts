@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SessionRegistry } from '@blueriq/angular';
 import {
   BlueriqSessionTemplate,
@@ -17,15 +17,15 @@ describe('WidgetPageComponent', () => {
   let component: ComponentFixture<FlowWidgetComponent>;
   let session: BlueriqTestSession;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async() => {
+    await TestBed.configureTestingModule({
       imports: [
         BlueriqTestingModule,
         WidgetModule,
         ContainerModule,
       ],
-    });
-  }));
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     const flowWidgetContainer = ContainerTemplate.create('container')

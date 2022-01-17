@@ -22,11 +22,11 @@ describe('IconDirective', () => {
   let fixture: ComponentFixture<MockIconComponent>;
   let element: any;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async() => {
+    await TestBed.configureTestingModule({
       declarations: [MockIconComponent, BqIconDirective],
       imports: [MatIconModule],
-    });
+    }).compileComponents();
     fixture = TestBed.createComponent(MockIconComponent);
     component = fixture.componentInstance;
     element = fixture.nativeElement;
@@ -48,11 +48,11 @@ describe('IconDirectiveStylesUpdate', () => {
   let fixture: ComponentFixture<MockIconComponent>;
   let element: any;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async() => {
+    await TestBed.configureTestingModule({
       declarations: [MockIconComponent, BqIconDirective],
       imports: [MatIconModule],
-    });
+    }).compileComponents();
     fixture = TestBed.createComponent(MockIconComponent);
     component = fixture.componentInstance;
     element = fixture.nativeElement;

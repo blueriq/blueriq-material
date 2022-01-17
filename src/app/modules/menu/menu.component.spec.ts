@@ -1,5 +1,5 @@
 import { DebugElement } from '@angular/core';
-import { ComponentFixture, fakeAsync, flush, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,15 +18,15 @@ describe('MenuComponent', () => {
     let component: ComponentFixture<MenuComponent>;
     let session: BlueriqTestSession;
 
-    beforeEach(waitForAsync(() => {
-      TestBed.configureTestingModule({
+    beforeEach(async() => {
+      await TestBed.configureTestingModule({
         imports: [
           NoopAnimationsModule,
           BlueriqTestingModule,
           MenuModule,
         ],
-      });
-    }));
+      }).compileComponents();
+    });
 
     beforeEach(() => {
       menu = ContainerTemplate.create().contentStyle(BqContentStyles.DASHBOARD_MENU);

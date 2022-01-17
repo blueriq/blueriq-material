@@ -1,6 +1,7 @@
+@use '~@angular/material' as mat;
 @import 'globals/variables';
 
-$bq-transparent-error-color: mat-color($bq-error-palette, 500, .8);
+$bq-transparent-error-color: mat.get-color-from-palette($bq-error-palette, 500, .8);
 
 ::ng-deep {
   .tooltip-error {
@@ -30,7 +31,7 @@ $bq-transparent-error-color: mat-color($bq-error-palette, 500, .8);
     display: flex;
     align-items: center;
     border-top: 0;
-    background-color: mat-color($bq-mat-grey-light, A100);
+    background-color: mat.get-color-from-palette($bq-mat-grey-light, A100);
 
     .mat-form-field-prefix {
       margin: 0 2px 0 $bq-margin-half;

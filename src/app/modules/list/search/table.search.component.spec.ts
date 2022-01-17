@@ -14,14 +14,14 @@ describe('TableSearchComponent', () => {
   let component: ComponentFixture<ListComponent>;
   let tableSearchComponent: TableSearchComponent;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async() => {
+    await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
         ListModule,
       ],
-    });
+    }).compileComponents();
   });
 
   beforeEach(() => {

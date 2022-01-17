@@ -1,5 +1,5 @@
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DomainPredicate } from '@blueriq/angular/lists';
@@ -13,8 +13,8 @@ describe('DomainFilterComponent', () => {
   let component: DomainFilterComponent;
   let fixture: ComponentFixture<DomainFilterComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async() => {
+    await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
         FilterModule,
@@ -25,7 +25,7 @@ describe('DomainFilterComponent', () => {
     // there is no DomainTemplate yet so we create a Domain via a FieldTemplate
     component.domain = FieldTemplate.text().domain({ one: 'een', two: 'twee', three: 'drie' }).build().domain;
     fixture.detectChanges();
-  }));
+  });
 
   it('domain filter with options', () => {
     const candidate = component.candidate = new FilterCandidate();

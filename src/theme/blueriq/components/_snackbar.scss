@@ -1,16 +1,17 @@
+@use '~@angular/material' as mat;
 @import '../globals/variables';
 
 .mat-snack-bar-container {
   &.snackbar-error {
-    background-color: mat-color($bq-error-palette);
+    background-color: mat.get-color-from-palette($bq-error-palette);
   }
 
   &.snackbar-warning {
-    background-color: mat-color($bq-warn-palette);
+    background-color: mat.get-color-from-palette($bq-warn-palette);
   }
 
   button {
-    background: mat-color($bq-error-palette, 400);
+    background: mat.get-color-from-palette($bq-error-palette, 400);
     color: $light-primary-text;
   }
 }

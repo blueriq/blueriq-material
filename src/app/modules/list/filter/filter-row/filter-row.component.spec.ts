@@ -1,5 +1,5 @@
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSession } from '@blueriq/angular';
@@ -20,9 +20,9 @@ describe('FilterRowComponent', () => {
   let component: FilterRowComponent;
   let fixture: ComponentFixture<FilterRowComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async() => {
     const session = { localization: LocalizationTemplate.create().build() } as BlueriqSession;
-    TestBed.configureTestingModule({
+    await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
         FilterModule,
@@ -46,7 +46,7 @@ describe('FilterRowComponent', () => {
     component.candidate = new FilterCandidate();
 
     fixture.detectChanges();
-  }));
+  });
 
   it('should create', () => {
     const trigger = fixture.debugElement.query(By.css('.mat-select-trigger')).nativeElement;

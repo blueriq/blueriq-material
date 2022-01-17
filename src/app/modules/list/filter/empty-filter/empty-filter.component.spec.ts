@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FilterModule } from '../filter.module';
 
@@ -8,8 +8,8 @@ describe('EmptyFilterComponent', () => {
   let component: EmptyFilterComponent;
   let fixture: ComponentFixture<EmptyFilterComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async() => {
+    await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
         FilterModule,
@@ -18,7 +18,7 @@ describe('EmptyFilterComponent', () => {
     fixture = TestBed.createComponent(EmptyFilterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  }));
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();

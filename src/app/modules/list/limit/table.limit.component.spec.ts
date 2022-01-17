@@ -12,15 +12,15 @@ describe('TableLimitComponent', () => {
   let component: ComponentFixture<ListComponent>;
   let tableLimitComponent: TableLimitComponent;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async() => {
+    await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
         ButtonModule,
         ListModule,
       ],
-    });
+    }).compileComponents();
   });
 
   beforeEach(() => {

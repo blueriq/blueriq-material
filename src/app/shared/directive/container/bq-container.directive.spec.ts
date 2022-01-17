@@ -15,14 +15,14 @@ describe('BqContainerDirective', () => {
   let fixture: ComponentFixture<ContainerComponent>;
   let session: BlueriqTestSession;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async() => {
+    await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
         ContainerModule,
       ],
-    });
+    }).compileComponents();
   });
 
   beforeEach(() => {

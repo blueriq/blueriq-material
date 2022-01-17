@@ -1,19 +1,20 @@
+@use '~@angular/material' as mat;
 @import 'globals/variables';
 
 .message {
-  @include mat-elevation(1);
+  @include mat.elevation(1);
   margin: $bq-margin;
   padding: $bq-margin;
-  background: mat-color($bq-error-palette, 400);
-  color: mat-color($bq-error-palette, default-contrast);
+  background: mat.get-color-from-palette($bq-error-palette, 400);
+  color: mat.get-color-from-palette($bq-error-palette, default-contrast);
 }
 
 .trace {
-  @include mat-elevation(1);
+  @include mat.elevation(1);
   max-height: $bq-max-height-scrollbar;
   margin: $bq-margin;
   padding: $bq-margin;
-  background: mat-color($bq-mat-grey-light, 50);
+  background: mat.get-color-from-palette($bq-mat-grey-light, 50);
   font-size: $font-size-small;
   overflow-y: auto;
 }

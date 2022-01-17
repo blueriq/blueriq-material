@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqCommonModule } from '@blueriq/angular';
@@ -13,8 +13,8 @@ describe('ButtonComponent', () => {
   let component: ComponentFixture<ButtonComponent>;
   let session: BlueriqTestSession;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async() => {
+    await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
@@ -22,8 +22,8 @@ describe('ButtonComponent', () => {
         FormsModule,
         ButtonModule,
       ],
-    });
-  }));
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     button = ButtonTemplate.create();

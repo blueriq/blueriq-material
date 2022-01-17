@@ -19,8 +19,8 @@ describe('TabComponent', () => {
   let extraTab: ContainerTemplate;
   let tabField: FieldTemplate;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async() => {
+    await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
@@ -28,7 +28,7 @@ describe('TabComponent', () => {
         TabModule,
         ContainerModule,
       ],
-    });
+    }).compileComponents();
     tabField = FieldTemplate.text('field');
     extraTab = ContainerTemplate.create().name('tab4').children(tabField);
     tabTemplate = ContainerTemplate.create('someTab')
@@ -43,7 +43,6 @@ describe('TabComponent', () => {
     session = BlueriqSessionTemplate.create().build(tabTemplate);
     tabFixture = session.get(TabComponent);
     tabComponent = tabFixture.componentInstance;
-
   });
 
   it('should display the correct tab headers', () => {

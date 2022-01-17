@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BlueriqComponent, BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { Container } from '@blueriq/core';
@@ -34,8 +34,8 @@ describe('HorizontalFlexChildDirective', () => {
   let fixture: ComponentFixture<MockFlexChildComponent>;
   let session: BlueriqTestSession;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async() => {
+    await TestBed.configureTestingModule({
       declarations: [
         HorizontalFlexChildDirective,
         MockFlexChildComponent,
@@ -46,8 +46,8 @@ describe('HorizontalFlexChildDirective', () => {
         MockFlexParentComponent,
       ])],
       imports: [BlueriqTestingModule],
-    });
-  }));
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     parentTemplate = ContainerTemplate.create().contentStyle('parent').children(
