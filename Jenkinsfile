@@ -119,8 +119,7 @@ node {
         def tag = "blueriq-material-theme-${params.releaseVersion}"
 
         bat "mvn versions:set -DnewVersion=${params.releaseVersion} -DgenerateBackupPoms=false"
-        bat "git add ."
-        bat "git commit -m \"chore: prepare release ${tag}\""
+        bat "git commit -am \"chore: prepare release ${tag}\""
         bat "git tag ${tag}"
 
         // release
@@ -129,8 +128,7 @@ node {
 
         // update to next development version
         bat "mvn versions:set -DnewVersion=${params.developmentVersion} -DgenerateBackupPoms=false"
-        bat "git add ."
-        bat "git commit -m \"chore: prepare for next development iteration ${params.developmentVersion}\""
+        bat "git commit -am \"chore: prepare for next development iteration ${params.developmentVersion}\""
         bat "git push origin HEAD"
       }
 
