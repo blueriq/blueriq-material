@@ -1,11 +1,6 @@
 @import '~@angular/material/theming';
 @import 'globals/variables';
 
-bq-menu-item > * > .mat-menu-item {
-  color: $dark-primary-text;
-  text-transform: uppercase;
-}
-
 .mat-button,
 .mat-menu-item {
   color: $light-primary-text;
@@ -22,4 +17,7 @@ bq-menu-item > * > .mat-menu-item {
   }
 }
 
-
+bq-menu-item > * > .mat-menu-item {
+  color: $dark-primary-text;
+  text-transform: uppercase;
+}

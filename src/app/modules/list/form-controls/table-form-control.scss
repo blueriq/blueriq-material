@@ -1,7 +1,7 @@
 @use '~@angular/material' as mat;
 @import 'globals/variables';
 
-$bq-transparent-error-color: mat.get-color-from-palette($bq-error-palette, 500, .8);
+$bq-transparent-error-color: mat.get-color-from-palette($bq-error-palette, 500, 0.8);
 
 ::ng-deep {
   .tooltip-error {
@@ -11,19 +11,6 @@ $bq-transparent-error-color: mat.get-color-from-palette($bq-error-palette, 500, 
 }
 
 :host ::ng-deep {
-
-  .mat-form-field {
-    width: 100%;
-
-    /* When a field has messages this class will be set */
-    &.validations {
-      .mat-form-field-flex { // sass-lint:disable-line nesting-depth
-        border: 1px solid $bq-transparent-error-color;
-        color: $bq-transparent-error-color;
-      }
-    }
-  }
-
   /* Adjust the form-fields to fit in a table */
   .mat-form-field-appearance-fill,
   .mat-form-field-flex,
@@ -31,7 +18,7 @@ $bq-transparent-error-color: mat.get-color-from-palette($bq-error-palette, 500, 
     display: flex;
     align-items: center;
     border-top: 0;
-    background-color: mat.get-color-from-palette($bq-mat-grey-light, A100);
+    background-color: mat.get-color-from-palette($bq-mat-grey-light, a100);
 
     .mat-form-field-prefix {
       margin: 0 2px 0 $bq-margin-half;
@@ -39,6 +26,18 @@ $bq-transparent-error-color: mat.get-color-from-palette($bq-error-palette, 500, 
 
     .mat-form-field-suffix {
       margin: 0 $bq-margin-half 0 2px;
+    }
+  }
+
+  .mat-form-field {
+    width: 100%;
+
+    /* When a field has messages this class will be set */
+    &.validations {
+      .mat-form-field-flex {
+        border: 1px solid $bq-transparent-error-color;
+        color: $bq-transparent-error-color;
+      }
     }
   }
 
@@ -57,5 +56,4 @@ $bq-transparent-error-color: mat.get-color-from-palette($bq-error-palette, 500, 
       }
     }
   }
-
 }

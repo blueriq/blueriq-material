@@ -1,0 +1,14 @@
+{
+  "extends": "stylelint-config-standard-scss",
+  "rules": {
+    "string-quotes": "single",
+    "at-rule-empty-line-before": null,
+    "no-empty-source": null,
+    "selector-pseudo-element-no-unknown": [
+      true,
+      {
+        "ignorePseudoElements": ["ng-deep"]
+      }
+    ]
+  }
+}

@@ -1,9 +1,9 @@
 @use '~@angular/material' as mat;
 @import '~@danielmoncada/angular-datetime-picker/assets/style/picker.min.css';
 
-//override specific styling to match to match it with the global theme
+// override specific styling to match it with the global theme
 
-$datepicker-bq-color: rgba(mat.get-color-from-palette($bq-primary-palette), .2);
+$datepicker-bq-color: rgba(mat.get-color-from-palette($bq-primary-palette), 0.2);
 
 .owl-dialog-container,
 .owl-dt-timer,
@@ -24,7 +24,16 @@ $datepicker-bq-color: rgba(mat.get-color-from-palette($bq-primary-palette), .2);
   }
 }
 
-// sass-lint:disable nesting-depth
+.owl-dt-container-buttons {
+  height: 3em; // more spacing for the buttons
+  color: mat.get-color-from-palette($bq-primary-palette);
+
+  .owl-dt-control-button-content {
+    font-weight: 400;
+    text-transform: uppercase; // material style button
+  }
+}
+
 .owl-dt-timer-hour12 {
   color: mat.get-color-from-palette($bq-primary-palette);
 
@@ -47,16 +56,6 @@ $datepicker-bq-color: rgba(mat.get-color-from-palette($bq-primary-palette), .2);
     &:focus {
       border-bottom-color: mat.get-color-from-palette($bq-primary-palette);
     }
-  }
-}
-
-.owl-dt-container-buttons {
-  height: 3em; // more spacing for the buttons
-  color: mat.get-color-from-palette($bq-primary-palette);
-
-  .owl-dt-control-button-content {
-    font-weight: 400;
-    text-transform: uppercase; // material style button
   }
 }
 

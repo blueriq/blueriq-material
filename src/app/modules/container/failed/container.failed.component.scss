@@ -3,6 +3,7 @@
 
 .message {
   @include mat.elevation(1);
+
   margin: $bq-margin;
   padding: $bq-margin;
   background: mat.get-color-from-palette($bq-error-palette, 400);
@@ -11,6 +12,7 @@
 
 .trace {
   @include mat.elevation(1);
+
   max-height: $bq-max-height-scrollbar;
   margin: $bq-margin;
   padding: $bq-margin;

@@ -7,6 +7,7 @@ $bq-footer-height: 200px;
 
 .header {
   @include mat.elevation(1);
+
   position: fixed;
   width: 100%;
   z-index: $z-index-drawer + 10;

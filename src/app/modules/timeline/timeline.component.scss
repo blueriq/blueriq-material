@@ -1,11 +1,12 @@
-@use '~@angular/material' as mat;
 @use 'sass:math';
+@use 'sass:map';
+@use '~@angular/material' as mat;
 @import 'globals/variables';
 
 $shape-size: 14px;
 $shape-top: 20px;
-$background: map-get(mat.$gray-palette, 200);
-$background-card: map-get(mat.$light-theme-background-palette, card);
+$background: map.get(mat.$gray-palette, 200);
+$background-card: map.get(mat.$light-theme-background-palette, card);
 
 .timeline {
   max-height: $bq-max-height-scrollbar;
@@ -16,7 +17,7 @@ $background-card: map-get(mat.$light-theme-background-palette, card);
 // ---- left side of the timeline ---
 .line {
   position: relative;
-  border-right: 1px solid map-get($bq-mat-grey-light, 500);
+  border-right: 1px solid map.get($bq-mat-grey-light, 500);
 
   .content {
     margin: ($shape-top + 6) $bq-margin 0 0;
@@ -37,7 +38,7 @@ $background-card: map-get(mat.$light-theme-background-palette, card);
       width: $shape-size;
       height: $shape-size;
       border-radius: 50%;
-      background: map-get($bq-mat-accent-mint, 500);
+      background: map.get($bq-mat-accent-mint, 500);
     }
   }
 }
@@ -45,10 +46,12 @@ $background-card: map-get(mat.$light-theme-background-palette, card);
 // ---- Right side of the timeline ---
 .time-card {
   $card-left-margin: $bq-margin;
+
   position: relative;
 
   .content {
     @include mat.elevation(1);
+
     margin: $card-left-margin $bq-margin-double;
     padding: $bq-margin;
     background: $background-card;
@@ -59,7 +62,7 @@ $background-card: map-get(mat.$light-theme-background-palette, card);
     }
 
     .user {
-      color: map-get($bq-mat-accent-mint, 500);
+      color: map.get($bq-mat-accent-mint, 500);
       font-weight: 500;
     }
 
@@ -88,7 +91,6 @@ $background-card: map-get(mat.$light-theme-background-palette, card);
       background: transparent;
     }
   }
-
 }
 
 mat-divider {

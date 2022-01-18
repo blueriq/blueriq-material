@@ -94,9 +94,9 @@ node {
           // tslint
           bat 'node_modules\\.bin\\tslint -c src/tslint.json -t checkstyle -p src/tsconfig.app.json -p src/tsconfig.spec.json -o tslint_results_checkstyle.xml'
         },
-        'sass-lint': {
-          // sass-lint
-          bat 'node_modules\\.bin\\sass-lint -f checkstyle --verbose --config sass-lint.yml src/**/*.scss -o sasslint_results_checkstyle.xml'
+        'stylelint': {
+          // stylelint
+          bat 'node_modules\\.bin\\stylelint --custom-formatter node_modules/stylelint-checkstyle-reporter/index.js src/**/*.scss -o stylelint_results_checkstyle.xml'
         },
         'build': {
           withCredentials([file(credentialsId: 'npmrc_file', variable: 'npmrc_file')]) {

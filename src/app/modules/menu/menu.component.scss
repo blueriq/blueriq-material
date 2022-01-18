@@ -4,7 +4,7 @@
 .mat-toolbar {
   min-height: $bq-toolbar-height;
 
-  // sass-lint:disable-all
+  // stylelint-disable
   background: linear-gradient(
       to right,
       map_get($bq-mat-primary-blue, 900),

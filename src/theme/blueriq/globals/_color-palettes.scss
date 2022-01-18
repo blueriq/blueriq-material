@@ -15,12 +15,11 @@ $basic-contrast: (
   700: $light-primary-text,
   800: $light-primary-text,
   900: $light-primary-text,
-  A100: $dark-primary-text,
-  A200: $light-primary-text,
-  A400: $light-primary-text,
-  A700: $light-primary-text,
+  a100: $dark-primary-text,
+  a200: $light-primary-text,
+  a400: $light-primary-text,
+  a700: $light-primary-text,
 );
-
 $bq-mat-primary-blue: (
   50: #e0effc,
   100: #b3d6f7,
@@ -38,7 +37,6 @@ $bq-mat-primary-blue: (
   A700: #7b9fff,
   contrast: $basic-contrast
 );
-
 $bq-mat-primary-purple: (
   50: #efe7fa,
   100: #d7c3f3,
@@ -56,7 +54,6 @@ $bq-mat-primary-purple: (
   A700: #9670ff,
   contrast: $basic-contrast
 );
-
 $bq-mat-primary-violet: (
   50: #efe7f2,
   100: #d7c4df,
@@ -74,7 +71,6 @@ $bq-mat-primary-violet: (
   A700: #a222ff,
   contrast: $basic-contrast
 );
-
 $bq-mat-accent-teal: (
   50: #e0eff0,
   100: #b3d7da,
@@ -92,7 +88,6 @@ $bq-mat-accent-teal: (
   A700: #05d9ff,
   contrast: $basic-contrast
 );
-
 $bq-mat-accent-green: (
   50: #e0f4f0,
   100: #b3e4da,
@@ -110,7 +105,6 @@ $bq-mat-accent-green: (
   A700: #26ffae,
   contrast: $basic-contrast
 );
-
 $bq-mat-accent-mint: (
   50: #e5f7f5,
   100: #bfece6,
@@ -128,7 +122,6 @@ $bq-mat-accent-mint: (
   A700: #4cffdd,
   contrast: $basic-contrast
 );
-
 $bq-mat-accent-navy: (
   50: #e2e6f7,
   100: #b6c1eb,
@@ -146,7 +139,6 @@ $bq-mat-accent-navy: (
   A700: #4450ff,
   contrast: $basic-contrast
 );
-
 $bq-mat-accent-red: (
   50: #fbe8ea,
   100: #f5c6cb,
@@ -164,7 +156,6 @@ $bq-mat-accent-red: (
   A700: #ff7c82,
   contrast: $basic-contrast
 );
-
 $bq-mat-accent-orange: (
   50: #feefe0,
   100: #fdd7b3,
@@ -182,7 +173,6 @@ $bq-mat-accent-orange: (
   A700: #ffb29a,
   contrast: $basic-contrast
 );
-
 $bq-mat-accent-yellow: (
   50: #fef8e9,
   100: #fdecc9,
@@ -200,7 +190,6 @@ $bq-mat-accent-yellow: (
   A700: #ffdbad,
   contrast: $basic-contrast
 );
-
 $bq-mat-grey-dark: (
   50: #e0e5ea,
   100: #b3becc,
@@ -218,7 +207,6 @@ $bq-mat-grey-dark: (
   A700: #002ae3,
   contrast: $basic-contrast
 );
-
 $bq-mat-grey-medium: (
   50: #e6e9eb,
   100: #c2c7ce,
@@ -236,7 +224,6 @@ $bq-mat-grey-medium: (
   A700: #0061ee,
   contrast: $basic-contrast
 );
-
 $bq-mat-grey-light: (
   50: #f8f8f9,
   100: #edeff0,
