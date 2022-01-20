@@ -8,26 +8,23 @@
 
 .mat-toolbar {
   top: 0;
-
   min-height: $bq-toolbar-height;
   padding: 0 0 0 16px;
 
   // Specific colors alert, since this is a particular part of the Blueriq branding specific color variables are allowed
-  // sass-lint:disable-all
-  background: linear-gradient(
+  background:
+    linear-gradient(
       to right,
       map_get($bq-mat-primary-blue, 500),
       map_get($bq-mat-primary-purple, 500),
       map_get($bq-mat-primary-violet, 500)
-  );
-
+    );
   color: $light-primary-text;
 
   .img-logo-white {
     @include image('../../..' + $url-img-logo-white, 110px, 45px);
   }
 
-  // sass-lint:disable-all
   h1 {
     margin: 0 0 0 24px;
     color: $light-primary-text;
@@ -39,7 +36,7 @@
   .application-actions {
     text-align: right;
 
-    .active-user-menu {;
+    .active-user-menu {
       height: $bq-toolbar-height;
       text-align: left;
 

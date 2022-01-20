@@ -1,3 +1,4 @@
+@use '~@angular/material' as mat;
 @import 'globals/variables';
 
 // This style uses double flex layout due to vertical alignment of icon and content
@@ -25,34 +26,34 @@
   }
 
   &.warning,
-  &.Warning { // sass-lint:disable-line class-name-format
+  &.Warning { // stylelint-disable-line selector-class-pattern
     .gutter {
-      background-color: mat-color($bq-warn-palette, 100);
-      color: mat-color($bq-warn-palette, 800);
+      background-color: mat.get-color-from-palette($bq-warn-palette, 100);
+      color: mat.get-color-from-palette($bq-warn-palette, 800);
     }
   }
 
   &.danger,
-  &.Danger { // sass-lint:disable-line class-name-format
+  &.Danger { // stylelint-disable-line selector-class-pattern
     .gutter {
-      background-color: mat-color($bq-error-palette, 100);
-      color: mat-color($bq-error-palette, 800);
+      background-color: mat.get-color-from-palette($bq-error-palette, 100);
+      color: mat.get-color-from-palette($bq-error-palette, 800);
     }
   }
 
   &.info,
-  &.Info { // sass-lint:disable-line class-name-format
+  &.Info { // stylelint-disable-line selector-class-pattern
     .gutter {
-      background-color: mat-color($bq-info-palette, 100);
-      color: mat-color($bq-info-palette, 800);
+      background-color: mat.get-color-from-palette($bq-info-palette, 100);
+      color: mat.get-color-from-palette($bq-info-palette, 800);
     }
   }
 
   &.success,
-  &.Success { // sass-lint:disable-line class-name-format
+  &.Success { // stylelint-disable-line selector-class-pattern
     .gutter {
-      background-color: mat-color($bq-success-palette, 100);
-      color: mat-color($bq-success-palette, 800);
+      background-color: mat.get-color-from-palette($bq-success-palette, 100);
+      color: mat.get-color-from-palette($bq-success-palette, 800);
     }
   }
 

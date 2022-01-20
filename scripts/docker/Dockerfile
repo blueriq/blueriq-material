@@ -1,4 +1,4 @@
-FROM node:12.18.1-buster@sha256:ef6c9589ae91a895d3b1ad66e7d765a8c576065937b05745cb3594efc6d6fe54 as node-base
+FROM node:14.17.0-buster@sha256:d1d71f63a8b92fa73d8df65fc512f64f2bac8a46b08cbd8caf4d36203d6e210b as node-base
 
 # syntax = docker/dockerfile:1.2
 FROM node-base AS packages
@@ -11,7 +11,7 @@ RUN --mount=type=bind,target=/docker-context \
     cd /docker-context/; \
     find . -name "package.json" -mindepth 0 -maxdepth 4 -exec cp --parents "{}" /usr/src/ \;
 
-# Copy nprmc and yarn.lock files if they exists into the layer. This uses a bind mount and check if the files exists
+# Copy nprmc and yarn.lock files if they exist into the layer. This uses a bind mount and checks if the files exists
 # instead of Docker's COPY instruction. Docker fails if a file does not exist, which should be a valid option.
 RUN --mount=type=bind,target=/docker-context \
     cd /docker-context/; \

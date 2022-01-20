@@ -1,3 +1,5 @@
+@use '~@angular/material' as mat;
+@use '~@angular/cdk' as cdk;
 @import 'globals/variables';
 @import '~@angular/material/theming';
 @import 'globals/images';
@@ -11,12 +13,12 @@
   z-index: $z-index-drawer + 200;
 
   .notification-error {
-    background-color: mat-color($bq-error-palette);
+    background-color: mat.get-color-from-palette($bq-error-palette);
   }
 
   .notification-expired,
   .notification-logged-out {
-    background-color: mat-color($bq-mat-primary-blue, 500);
+    background-color: mat.get-color-from-palette($bq-mat-primary-blue, 500);
   }
 
   .image {
@@ -36,7 +38,7 @@
   }
 
   .notification {
-    @include mat-elevation(2);
+    @include mat.elevation(2);
 
     width: 350px;
     padding: $bq-margin;
@@ -81,6 +83,6 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: $cdk-overlay-dark-backdrop-background;
+  background-color: cdk.$overlay-backdrop-color;
   z-index: $z-index-drawer + 100;
 }

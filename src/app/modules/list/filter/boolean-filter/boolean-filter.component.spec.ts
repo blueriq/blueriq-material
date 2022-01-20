@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BooleanPredicate, ColumnFilter } from '@blueriq/angular/lists';
 import { FilterModule } from '../filter.module';
@@ -11,8 +11,8 @@ describe('BooleanFilterComponent', () => {
   let fixture: ComponentFixture<BooleanFilterComponent>;
   const columnFilter: ColumnFilter = {} as ColumnFilter;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async() => {
+    await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
         FilterModule,
@@ -21,7 +21,7 @@ describe('BooleanFilterComponent', () => {
     fixture = TestBed.createComponent(BooleanFilterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  }));
+  });
 
   it('new boolean filter default shows true and unknown', () => {
     component.candidate = new FilterCandidate();

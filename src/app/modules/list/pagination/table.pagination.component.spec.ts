@@ -26,14 +26,14 @@ describe('TablePaginationComponent', () => {
   let prefixAsset: AssetTemplate;
   let suffixAsset: AssetTemplate;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async() => {
+    await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
         ListModule,
       ],
-    });
+    }).compileComponents();
   });
 
   describe('by InstanceList', () => {

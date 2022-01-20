@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FileDownload } from '@blueriq/angular/files';
 import { AuthorizedDownload } from '@blueriq/angular/src/api/file_handling';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
@@ -15,20 +15,20 @@ describe('FileDownloadComponent', () => {
   let component: ComponentFixture<FileDownloadComponent>;
   let session: BlueriqTestSession;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async() => {
+    await TestBed.configureTestingModule({
       imports: [BlueriqTestingModule, FileModule],
-    });
-  }));
+    }).compileComponents();
+  });
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async() => {
     container = ContainerTemplate.create().contentStyle('filedownload').children(
       ButtonTemplate.create('downloadButton'),
       ButtonTemplate.create('Unauthorized'),
     );
     session = BlueriqSessionTemplate.create().build(container);
     component = session.get(FileDownloadComponent);
-  }));
+  });
 
   it('should extend from button component', () => {
     expect((FileDownloadComponent.prototype instanceof ButtonComponent)).toBeTruthy();

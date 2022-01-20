@@ -9,8 +9,8 @@ button {
 // buttons in transparent containers.
 ::ng-deep {
   .card,
-  .flow-widget.elevate { // sass-lint:disable-line force-element-nesting
-    .default-styling { // sass-lint:disable-line force-element-nesting
+  .flow-widget.elevate {
+    .default-styling {
       background: $bq-card-button-background;
     }
   }

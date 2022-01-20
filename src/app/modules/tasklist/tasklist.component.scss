@@ -1,3 +1,4 @@
+@use '~@angular/material' as mat;
 @import 'globals/variables';
 
 .mat-table {
@@ -19,7 +20,7 @@
 
 @keyframes highlight {
   0% {
-    background: mat-color($bq-mat-primary-blue, A400);
+    background: mat.get-color-from-palette($bq-mat-primary-blue, a400);
   }
 
   100% {

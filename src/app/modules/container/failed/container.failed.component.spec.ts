@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate, FailedElementTemplate } from '@blueriq/core/testing';
@@ -16,16 +16,16 @@ describe('FailedContainerComponent', () => {
   const CLASS_MESSAGE = '.message';
   const CLASS_TRACE = '.trace';
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async() => {
+    await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
         SharedModule,
         ContainerModule,
       ],
-    });
-  }));
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     const containerTemplate = ContainerTemplate.create().children(

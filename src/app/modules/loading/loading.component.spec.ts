@@ -1,4 +1,4 @@
-import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivityType, GlobalLoadingActivity } from '@blueriq/angular';
 
@@ -10,23 +10,23 @@ describe('LoadingComponent', () => {
   let fixture: ComponentFixture<LoadingComponent>;
   let loadingActivity: GlobalLoadingActivity;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async() => {
+    await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
         LoadingModule,
       ],
       providers: [GlobalLoadingActivity],
-    });
-  }));
+    }).compileComponents();
+  });
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async() => {
     fixture = TestBed.createComponent(LoadingComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
 
     loadingActivity = TestBed.inject(GlobalLoadingActivity);
-  }));
+  });
 
   it('is idle when no loading activity', () => {
     let state!: string;

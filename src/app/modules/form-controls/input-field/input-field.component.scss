@@ -6,7 +6,8 @@
 
 // disable prefix icon & suffix when input is disabled
 .mat-form-field-disabled {
-  mat-icon, [matsuffix] {
-    opacity: .35;
+  mat-icon,
+  [matsuffix] {
+    opacity: 0.35;
   }
 }

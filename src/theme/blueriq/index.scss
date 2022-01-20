@@ -1,3 +1,4 @@
+@use '~@angular/material' as mat;
 @import '~@angular/material/theming';
 @import '~material-icons/iconfont/material-icons.css';
 @import '~font-awesome/css/font-awesome.css';
@@ -5,7 +6,6 @@
 @import 'globals/index';
 @import 'components/index';
 
-@include mat-core($bq-mat-typography);
+@include mat.core($bq-mat-typography);
 
-@include angular-material-theme($bq-theme);
-
+@include mat.all-component-themes($bq-theme);

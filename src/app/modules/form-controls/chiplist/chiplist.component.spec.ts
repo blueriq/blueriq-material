@@ -14,14 +14,14 @@ describe('ChiplistComponent', () => {
   let fixture: ComponentFixture<ChiplistComponent>;
   let session: BlueriqTestSession;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
         FormControlModule,
       ],
-    });
+    }).compileComponents();
   });
 
   describe('without domain', () => {

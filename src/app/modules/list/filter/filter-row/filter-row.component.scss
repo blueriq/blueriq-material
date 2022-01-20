@@ -1,6 +1,6 @@
 @import 'globals/variables';
 
-:host ::ng-deep { // sass-lint:disable-line  force-element-nesting
+:host ::ng-deep {
   .mat-form-field {
     width: 100%;
   }
@@ -10,8 +10,8 @@
     border-top: 0;
   }
 
-  .mat-form-field-appearance-fill .mat-select-arrow-wrapper, // sass-lint:disable-line  force-element-nesting
-  .mat-form-field-appearance-standard .mat-select-arrow-wrapper { // sass-lint:disable-line  force-element-nesting
+  .mat-form-field-appearance-fill .mat-select-arrow-wrapper,
+  .mat-form-field-appearance-standard .mat-select-arrow-wrapper {
     transform: none;
   }
 

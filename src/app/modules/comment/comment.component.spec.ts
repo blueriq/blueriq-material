@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SubmitComment } from '@blueriq/angular/dashboard';
@@ -17,16 +17,16 @@ describe('CommentComponent', () => {
   let commentField: FieldTemplate;
   let commentButton: ButtonTemplate;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async() => {
+    await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
         CommentModule,
         FormControlModule,
       ],
-    });
-  }));
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     commentField = FieldTemplate.text('somename').explainText('explaining');

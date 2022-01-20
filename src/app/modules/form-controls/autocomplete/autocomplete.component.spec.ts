@@ -12,14 +12,14 @@ describe('AutocompleteComponent', () => {
   let session: BlueriqTestSession;
   let component: ComponentFixture<AutocompleteComponent>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
         FormControlModule,
       ],
-    });
+    }).compileComponents();
   });
 
   beforeEach(() => {

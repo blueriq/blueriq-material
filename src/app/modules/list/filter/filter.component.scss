@@ -1,3 +1,4 @@
+@use '~@angular/material' as mat;
 @import 'globals/variables';
 
 .margin {
@@ -11,7 +12,7 @@
 
 button {
   &.plain-link {
-    color: mat-color($bq-primary-palette);
+    color: mat.get-color-from-palette($bq-primary-palette);
 
     &:hover {
       text-decoration: underline;

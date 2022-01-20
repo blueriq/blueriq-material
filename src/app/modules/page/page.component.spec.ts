@@ -1,5 +1,5 @@
 import { APP_BASE_HREF } from '@angular/common';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { BqProjectComponent } from '@blueriq/angular';
@@ -15,8 +15,8 @@ describe('PageComponent', () => {
   let pageComponent: ComponentFixture<PageComponent>;
   let session: BlueriqTestSession;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async() => {
+    await TestBed.configureTestingModule({
       providers: [
         { provide: APP_BASE_HREF, useValue: '/' },
         {
@@ -33,8 +33,8 @@ describe('PageComponent', () => {
         PageModule,
         MenuModule,
       ],
-    });
-  }));
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     pageTemplate = PageTemplate.create().children(

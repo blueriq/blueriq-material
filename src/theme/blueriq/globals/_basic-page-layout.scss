@@ -1,3 +1,5 @@
+@use 'sass:map';
+@use '~@angular/material' as mat;
 @import 'variables';
 
 html,
@@ -8,7 +10,7 @@ body {
 body {
   margin: 0;
   padding: 0;
-  background: map-get($mat-gray, 200);
+  background: map.get(mat.$gray-palette, 200);
   font-family: $bq-font-family;
 }
 
@@ -24,8 +26,9 @@ body {
 
 /* Display containers as card */
 .card {
-  @include mat-elevation(1);
-  background: map-get($mat-light-theme-background, card);
+  @include mat.elevation(1);
+
+  background: map.get(mat.$light-theme-background-palette, card);
 }
 
 /* Display containers as transparent with a small image in the corner */

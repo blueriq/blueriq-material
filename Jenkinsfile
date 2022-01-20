@@ -54,7 +54,7 @@ node {
   try {
     env.JAVA_HOME = tool 'jdk-11.0.1'
     def mvnHome = tool "apache-maven-3.5.4"
-    def nodeHome = tool 'node-12.18.1'
+    def nodeHome = tool 'node-14.17.0'
     env.PATH = "${env.JAVA_HOME}\\bin;${mvnHome}\\bin;${nodeHome};${env.PATH}"
     env.CHROME_BIN = env.CHROME_80_0_3987_132
 
@@ -94,9 +94,9 @@ node {
           // tslint
           bat 'node_modules\\.bin\\tslint -c src/tslint.json -t checkstyle -p src/tsconfig.app.json -p src/tsconfig.spec.json -o tslint_results_checkstyle.xml'
         },
-        'sass-lint': {
-          // sass-lint
-          bat 'node_modules\\.bin\\sass-lint -f checkstyle --verbose --config sass-lint.yml src/**/*.scss -o sasslint_results_checkstyle.xml'
+        'stylelint': {
+          // stylelint
+          bat 'node_modules\\.bin\\stylelint --custom-formatter node_modules/stylelint-checkstyle-reporter/index.js src/**/*.scss -o stylelint_results_checkstyle.xml'
         },
         'build': {
           withCredentials([file(credentialsId: 'npmrc_file', variable: 'npmrc_file')]) {

@@ -37,6 +37,7 @@ module.exports = function (config) {
     autoWatch: true,
     // autoWatchBatchDelay: 3000,
     singleRun: false,
+    captureTimeout: 120_000,
 
     // ---------- coverage below ----------
     // https://github.com/karma-runner/karma-coverage

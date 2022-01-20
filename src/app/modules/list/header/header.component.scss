@@ -1,3 +1,4 @@
+@use '~@angular/material' as mat;
 @import 'globals/variables';
 
 :host {
@@ -10,19 +11,19 @@
     }
   }
 
+  ::ng-deep {
+    bq-textitem-static {
+      color: mat.get-color-from-palette($bq-mat-grey-medium, 300);
+      font-size: $font-size-list-header;
+      font-weight: 500;
+    }
+  }
+
   &:hover {
     .sort-toggle {
       &.none {
         visibility: visible;
       }
-    }
-  }
-
-  ::ng-deep {
-    bq-textitem-static {
-      color: mat-color($bq-mat-grey-medium, 300);
-      font-size: $font-size-list-header;
-      font-weight: 500;
     }
   }
 }

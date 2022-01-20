@@ -1,3 +1,4 @@
+@use '~@angular/material' as mat;
 @import 'globals/variables';
 
 button {
@@ -5,30 +6,29 @@ button {
   text-transform: uppercase;
 }
 
-.Tertiary { // sass-lint:disable-line class-name-format
+.Tertiary { // stylelint-disable-line selector-class-pattern
   background-color: transparent;
-  color: mat-color($bq-tertiary-palette);
+  color: mat.get-color-from-palette($bq-tertiary-palette);
 
   &.mat-raised-button {
-    background-color: mat-color($bq-tertiary-palette);
-    color: mat-color($bq-tertiary-palette, default-contrast);
+    background-color: mat.get-color-from-palette($bq-tertiary-palette);
+    color: mat.get-color-from-palette($bq-tertiary-palette, default-contrast);
   }
 }
 
 ::ng-deep {
-  .Tertiary { // sass-lint:disable-line class-name-format
+  .Tertiary { // stylelint-disable-line selector-class-pattern
     .mat-button-focus-overlay {
-      background-color: mat-color($bq-tertiary-palette, .12);
+      background-color: mat.get-color-from-palette($bq-tertiary-palette, 0.12);
     }
   }
 
   // Default buttons in cards or elevated widgets get a slightly darker background compared to default
   // buttons in transparent containers.
   .card,
-  .flow-widget.elevate { // sass-lint:disable-line force-element-nesting
-    .default-styling { // sass-lint:disable-line force-element-nesting
+  .flow-widget.elevate {
+    .default-styling {
       background: $bq-card-button-background;
     }
   }
 }
-

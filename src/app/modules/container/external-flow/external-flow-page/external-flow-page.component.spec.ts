@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
@@ -13,8 +13,8 @@ describe('ExternalFlowPage', () => {
   let containerComponent: ComponentFixture<ExternalFlowPageComponent>;
   let session: BlueriqTestSession;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async() => {
+    await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
@@ -27,8 +27,8 @@ describe('ExternalFlowPage', () => {
         // manually here.
         BlueriqComponents.register([ExternalFlowPageComponent]),
       ],
-    });
-  }));
+    }).compileComponents();
+  });
 
   beforeEach(() => {
     pageTemplate = PageTemplate.create().styles('CustomStyle')

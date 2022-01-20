@@ -1,5 +1,5 @@
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSession } from '@blueriq/angular';
@@ -14,9 +14,9 @@ describe('DateFilterComponent', () => {
   let component: DateFilterComponent;
   let fixture: ComponentFixture<DateFilterComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async() => {
     const session = { localization: LocalizationTemplate.create().build() } as BlueriqSession;
-    TestBed.configureTestingModule({
+    await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
         FilterModule,
@@ -31,7 +31,7 @@ describe('DateFilterComponent', () => {
     component = fixture.componentInstance;
     component.candidate = new FilterCandidate();
     fixture.detectChanges();
-  }));
+  });
 
   it('new date filter default shows on and unknown', () => {
     const operation = fixture.nativeElement.querySelector('.mat-select-value-text').innerText;
