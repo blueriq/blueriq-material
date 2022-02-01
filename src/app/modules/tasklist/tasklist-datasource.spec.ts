@@ -29,6 +29,7 @@ describe('Task List Data Source', () => {
     identifier: 'displayName',
     styles: PresentationStyles.of('style'),
     type: 'TASKDATA',
+    sorting: 'asc',
   }, {
     action: undefined,
     dataType: 'text',
@@ -36,6 +37,7 @@ describe('Task List Data Source', () => {
     identifier: 'status',
     styles: PresentationStyles.of('style'),
     type: 'TASKDATA',
+    sorting: 'desc',
   }, {
     action: undefined,
     dataType: 'datetime',
@@ -43,6 +45,7 @@ describe('Task List Data Source', () => {
     identifier: 'timeoutDate',
     styles: PresentationStyles.of('style'),
     type: 'TASKDATA',
+    sorting: undefined,
   }, {
     action: undefined,
     dataType: 'datetime',
@@ -50,6 +53,7 @@ describe('Task List Data Source', () => {
     identifier: 'project',
     styles: PresentationStyles.of('style'),
     type: 'CUSTOMFIELD',
+    sorting: undefined,
   }];
 
   it('should return the correct task property value', () => {
