@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { MatSort, Sort } from '@angular/material/sort';
 import { BlueriqComponent, BlueriqSession, Task } from '@blueriq/angular';
 import { ColumnDefinition, TaskList } from '@blueriq/angular/lists';
 import { Button, Container, PresentationStyles } from '@blueriq/core';
@@ -33,6 +33,8 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
   tasksToHighlight: string[];
 
+  defaultSort: Sort;
+
   private sortChangeSubscription: Subscription;
   private tasksSubscription: Subscription;
   private taskEventsSubscription: Subscription;
@@ -51,6 +53,8 @@ export class TaskListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.initDefaultSorting();
+
     this.taskDataSource.sort = this.sort;
     this.taskDataSource.paginator = this.paginator;
 
@@ -116,6 +120,16 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
   private updateDataSource(tasks: Task[]): void {
     this.taskDataSource.data = tasks;
+  }
+
+  private initDefaultSorting(): void {
+    for (const columnDef of this.taskList.columnDefinitions) {
+      if (columnDef.sorting !== undefined) {
+        this.defaultSort = {active: columnDef.identifier, direction: columnDef.sorting };
+        break;
+      }
+    }
+    this.defaultSort = { active: '', direction: '' };
   }
 
 }
