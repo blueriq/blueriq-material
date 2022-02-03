@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialogModule } from "@angular/material/dialog";
 import { BlueriqCommonModule } from '@blueriq/angular';
 import { FormattingModule } from '@blueriq/angular/formatting';
 import { OwlDateTimeModule } from '@danielmoncada/angular-datetime-picker';
@@ -61,6 +62,7 @@ export const TABLE_FILTER_COMPONENTS = [
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
+    MatDialogModule,
   ],
   exports: [TABLE_FILTER_COMPONENTS],
 })
