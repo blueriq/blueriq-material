@@ -123,13 +123,16 @@ export class TaskListComponent implements OnInit, OnDestroy {
   }
 
   private initDefaultSorting(): void {
+    this.defaultSort = {
+      active: '',
+      direction: '',
+    };
     for (const columnDef of this.taskList.columnDefinitions) {
       if (columnDef.sorting !== undefined) {
-        this.defaultSort = {active: columnDef.identifier, direction: columnDef.sorting };
+        this.defaultSort.active = columnDef.identifier;
+        this.defaultSort.direction =  columnDef.sorting;
         break;
       }
     }
-    this.defaultSort = { active: '', direction: '' };
   }
-
 }
