@@ -12,7 +12,7 @@
   "disableProtected": false,
   "disableInternal": true,
   "disableLifeCycleHooks": true,
-  "disableRoutesGraph": false,
+  "disableRoutesGraph": true,
   "includes": "docs",
   "includesName": "Guide"
 }
