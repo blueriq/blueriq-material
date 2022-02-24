@@ -38,18 +38,18 @@
     "yarn": "^1.22.0"
   },
   "dependencies": {
-    "@angular/animations": "12.2.15",
+    "@angular/animations": "12.2.16",
     "@angular/cdk": "12.2.13",
-    "@angular/common": "12.2.15",
-    "@angular/compiler": "12.2.15",
-    "@angular/core": "12.2.15",
+    "@angular/common": "12.2.16",
+    "@angular/compiler": "12.2.16",
+    "@angular/core": "12.2.16",
     "@angular/flex-layout": "12.0.0-beta.35",
-    "@angular/forms": "12.2.15",
+    "@angular/forms": "12.2.16",
     "@angular/material": "12.2.13",
     "@angular/material-moment-adapter": "12.2.13",
-    "@angular/platform-browser": "12.2.15",
-    "@angular/platform-browser-dynamic": "12.2.15",
-    "@angular/router": "12.2.15",
+    "@angular/platform-browser": "12.2.16",
+    "@angular/platform-browser-dynamic": "12.2.16",
+    "@angular/router": "12.2.16",
     "@blueriq/angular": "0.11.2",
     "@blueriq/core": "0.11.2",
     "@blueriq/devtools": "0.11.2",
@@ -71,10 +71,10 @@
     "zone.js": "0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "12.2.15",
-    "@angular/cli": "12.2.15",
-    "@angular/compiler-cli": "12.2.15",
-    "@angular/language-service": "12.2.15",
+    "@angular-devkit/build-angular": "12.2.16",
+    "@angular/cli": "12.2.16",
+    "@angular/compiler-cli": "12.2.16",
+    "@angular/language-service": "12.2.16",
     "@compodoc/compodoc": "1.1.18",
     "@types/jasmine": "3.10.3",
     "@types/jasminewd2": "2.0.9",
@@ -82,7 +82,7 @@
     "codelyzer": "6.0.2",
     "jasmine-core": "3.7.1",
     "jasmine-spec-reporter": "7.0.0",
-    "karma": "6.3.11",
+    "karma": "6.3.16",
     "karma-chrome-launcher": "3.1.0",
     "karma-coverage-istanbul-reporter": "3.0.3",
     "karma-jasmine": "4.0.1",
@@ -104,6 +104,8 @@
     "glob-parent": "^6.0.2",
     "minimist": "^1.2.5",
     "node-forge": "^1.0.0",
-    "ansi-regex": "^5.0.1"
+    "ansi-regex": "^5.0.1",
+    "url-parse": "^1.5.6",
+    "follow-redirects": "^1.14.8"
   }
 }
