@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Case, Task, TaskEvent, TaskService } from '@blueriq/angular';
+import { Task, TaskService } from '@blueriq/angular';
 import { TaskList } from '@blueriq/angular/lists';
 import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
 import { Button } from '@blueriq/core';
@@ -21,7 +21,7 @@ describe('Task List Component', () => {
   let taskList: jasmine.SpyObj<TaskList>;
 
   beforeEach(async() => {
-    taskService = jasmine.createSpyObj('TaskService', ['getAllTasks', 'getCaseEvents', 'getTaskEvents']);
+    taskService = jasmine.createSpyObj('TaskService', ['getTasks']);
     taskList = jasmine.createSpyObj('TaskList', ['buttonPressed']);
 
     TestBed.configureTestingModule({
@@ -105,7 +105,7 @@ describe('Task List Component', () => {
       ),
     );
 
-    taskService.getAllTasks.and.returnValue(of(
+    taskService.getTasks.and.returnValue(of(
       [{
         containerIdentifier: 'testcontainer',
         identifier: '123abc',
@@ -123,9 +123,7 @@ describe('Task List Component', () => {
         status: 'started',
         customFields: {},
       }] as Task[],
-    ));
-    taskService.getCaseEvents.and.returnValue(EMPTY);
-    taskService.getTaskEvents.and.returnValue(EMPTY);
+    ))
   });
 
   describe('Task list', () => {
@@ -178,7 +176,7 @@ describe('Task List Component', () => {
     });
 
     it('should not display rows but empty text when the list is empty', () => {
-      taskService.getAllTasks.and.returnValue(EMPTY);
+      taskService.getTasks.and.returnValue(EMPTY);
       buildComponent();
 
       const matRows = component.nativeElement.querySelectorAll('.mat-row');
@@ -200,9 +198,7 @@ describe('Task List Component', () => {
 
   describe('Task list provider', () => {
     beforeEach(() => {
-      taskService.getAllTasks.and.returnValue(of([] as Task[]));
-      taskService.getCaseEvents.and.returnValue(EMPTY);
-      taskService.getTaskEvents.and.returnValue(EMPTY);
+      taskService.getTasks.and.returnValue(of([] as Task[]));
     });
 
     it('should have a default pagingsize of 10', () => {
@@ -224,21 +220,15 @@ describe('Task List Component', () => {
 
       expect(subject.getValue()).toEqual([]);
 
-      const task: Task = {
+      const tasks: Task[] = [{
         containerIdentifier: '42',
         identifier: '123',
         name: 'createTask',
-        status: 'open',
-      } as Task;
+        status: 'created',
+      } as Task];
 
-      const createEvent: TaskEvent = {
-        action: 'CREATED',
-        taskModel: task,
-      };
-
-      provider.handleTaskEvent(createEvent);
-
-      expect(subject.getValue()).toEqual([task]);
+      provider.handleTaskUpdates(tasks);
+      expect(subject.getValue()).toEqual(tasks);
     });
 
     it('should handle UPDATED task events correctly', () => {
@@ -246,19 +236,21 @@ describe('Task List Component', () => {
       const provider = component.componentInstance.taskList;
       const subject = provider.tasks$;
 
-      const task: Task = {
+      const tasks: Task[] = [{
         containerIdentifier: '222',
         identifier: '111',
         name: 'task',
-        status: 'open',
-      } as Task;
+        status: 'updated',
+      } as Task];
 
-      subject.next([task]);
-      provider.handleTaskEvent({ action: 'UPDATED', taskModel: task });
-      expect(subject.getValue()).toEqual([task]);
+      subject.next(tasks);
+      provider.handleTaskUpdates(tasks);
+      expect(subject.getValue()).toEqual(tasks);
 
-      provider.handleTaskEvent({ action: 'COMPLETED', taskModel: task });
-      expect(subject.getValue()).toEqual([]);
+      tasks[0].status = 'completed'
+      subject.next(tasks);
+      provider.handleTaskUpdates(tasks);
+      expect(component.componentInstance.taskDataSource.data.length).toEqual(0);
     });
 
     it('should handle DELETED task events correctly', () => {
@@ -266,16 +258,16 @@ describe('Task List Component', () => {
       const provider = component.componentInstance.taskList;
       const subject = provider.tasks$;
 
-      const task: Task = {
+      const tasks: Task[] = [{
         containerIdentifier: '333',
         identifier: '444',
         name: 'taak',
-        status: 'open',
-      } as Task;
+        status: 'deleted',
+      } as Task];
 
-      subject.next([task]);
-      provider.handleTaskEvent({ action: 'DELETED', taskModel: task });
-      expect(subject.getValue()).toEqual([]);
+      subject.next(tasks);
+      provider.handleTaskUpdates(tasks);
+      expect(component.componentInstance.taskDataSource.data.length).toEqual(0);
     });
 
     it('should handle CANCELED task events correctly', () => {
@@ -283,16 +275,16 @@ describe('Task List Component', () => {
       const provider = component.componentInstance.taskList;
       const subject = provider.tasks$;
 
-      const task: Task = {
+      const tasks: Task[] = [{
         containerIdentifier: '333',
         identifier: '444',
         name: 'taak',
-        status: 'open',
-      } as Task;
+        status: 'canceled',
+      } as Task];
 
-      subject.next([task]);
-      provider.handleTaskEvent({ action: 'CANCELED', taskModel: task });
-      expect(subject.getValue()).toEqual([]);
+      subject.next(tasks);
+      provider.handleTaskUpdates(tasks);
+      expect(component.componentInstance.taskDataSource.data.length).toEqual(0);
     });
 
     it('should handle EXPIRED task events correctly', () => {
@@ -300,70 +292,16 @@ describe('Task List Component', () => {
       const provider = component.componentInstance.taskList;
       const subject = provider.tasks$;
 
-      const task: Task = {
+      const tasks: Task[] = [{
         containerIdentifier: '333',
         identifier: '444',
         name: 'taak',
-        status: 'open',
-      } as Task;
+        status: 'expired',
+      } as Task];
 
-      subject.next([task]);
-      provider.handleTaskEvent({ action: 'EXPIRED', taskModel: task });
-      expect(subject.getValue()).toEqual([]);
-    });
-
-    it('should handle UPDATED case events wih status LOCKED correctly', () => {
-      buildComponent();
-      const provider = component.componentInstance.taskList;
-      const subject = provider.tasks$;
-
-      const task: Task = {
-        containerIdentifier: '333',
-        identifier: '444',
-        name: 'taak',
-        status: 'open',
-        caseLocked: false,
-      } as Task;
-
-      const aCase: Case = {
-        containerIdentifier: '333',
-        status: 'LOCKED',
-      } as Case;
-
-      subject.next([task]);
-
-      provider.handleCaseEvent({ action: 'UPDATED', caseModel: aCase });
-
-      const tasks = subject.getValue();
-      expect(tasks.length).toBe(1);
-      expect(tasks[0].caseLocked).toBeTruthy();
-    });
-
-    it('should handle UPDATED case events with status OPEN correctly', () => {
-      buildComponent();
-      const provider = component.componentInstance.taskList;
-      const subject = provider.tasks$;
-
-      const task: Task = {
-        containerIdentifier: '333',
-        identifier: '444',
-        name: 'taak',
-        status: 'open',
-        caseLocked: true,
-      } as Task;
-
-      const aCase: Case = {
-        containerIdentifier: '333',
-        status: 'OPEN',
-      } as Case;
-
-      subject.next([task]);
-
-      provider.handleCaseEvent({ action: 'UPDATED', caseModel: aCase });
-
-      const tasks = subject.getValue();
-      expect(tasks.length).toBe(1);
-      expect(tasks[0].caseLocked).toBeFalsy();
+      subject.next(tasks);
+      provider.handleTaskUpdates(tasks);
+      expect(component.componentInstance.taskDataSource.data.length).toEqual(0);
     });
   });
 
