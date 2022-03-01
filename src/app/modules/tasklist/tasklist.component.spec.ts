@@ -123,7 +123,7 @@ describe('Task List Component', () => {
         status: 'started',
         customFields: {},
       }] as Task[],
-    ))
+    ));
   });
 
   describe('Task list', () => {
@@ -247,7 +247,7 @@ describe('Task List Component', () => {
       provider.handleTaskUpdates(tasks);
       expect(subject.getValue()).toEqual(tasks);
 
-      tasks[0].status = 'completed'
+      tasks[0].status = 'completed';
       subject.next(tasks);
       provider.handleTaskUpdates(tasks);
       expect(component.componentInstance.taskDataSource.data.length).toEqual(0);

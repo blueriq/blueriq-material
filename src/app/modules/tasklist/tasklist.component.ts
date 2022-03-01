@@ -58,14 +58,14 @@ export class TaskListComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('window:beforeunload')
-  ngOnDestroy(){
+  ngOnDestroy() {
     if (this.sortChangeSubscription != null) {
       this.sortChangeSubscription.unsubscribe();
     }
     if (this.tasksSubscription != null) {
       this.tasksSubscription.unsubscribe();
     }
-    if(this.taskList) {
+    if (this.taskList) {
       this.taskList.unsubscribeFromTaskStream();
     }
   }
@@ -101,7 +101,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
   }
 
   private updateDataSource(tasks: Task[]): void {
-    const statusToFilterOut = ["completed", "canceled", "expired", "deleted"];
+    const statusToFilterOut = ['completed', 'canceled', 'expired', 'deleted'];
     this.taskDataSource.data = tasks.filter(t => !statusToFilterOut.includes(t.status || ''));
   }
 
