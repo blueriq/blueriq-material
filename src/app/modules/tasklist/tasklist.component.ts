@@ -66,7 +66,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
       this.tasksSubscription.unsubscribe();
     }
     if(this.taskList) {
-      this.taskList.unsubscribeFromStream();
+      this.taskList.unsubscribeFromTaskStream();
     }
   }
 
