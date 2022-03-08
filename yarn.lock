@@ -1374,26 +1374,26 @@
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
 
-"@blueriq/angular@0.11.2":
-  version "0.11.2"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/angular/-/@blueriq/angular-0.11.2.tgz#3efafbe424c1345157b7ad706de50d54dca1430b"
-  integrity sha1-Pvr75CTBNFFXt61wbeUNVNyhQws=
+"@blueriq/angular@0.12.0":
+  version "0.12.0"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn-local/@blueriq/angular/-/@blueriq/angular-0.12.0.tgz#bebd2560abeafe22bb1b9d9e625cbd3b2ea917c0"
+  integrity sha1-vr0lYKvq/iK7G52eYly9Oy6pF8A=
   dependencies:
     stable "0.1.8"
     tslib "^2.0.0"
 
-"@blueriq/core@0.11.2":
-  version "0.11.2"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/core/-/@blueriq/core-0.11.2.tgz#026351db92eaaf59b4ea0804a45a190f69110d49"
-  integrity sha1-AmNR25Lqr1m06ggEpFoZD2kRDUk=
+"@blueriq/core@0.12.0":
+  version "0.12.0"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn-local/@blueriq/core/-/@blueriq/core-0.12.0.tgz#cafd079b8f9c67a8d487dc3a741207721480d3f7"
+  integrity sha1-yv0Hm4+cZ6jUh9w6dBIHchSA0/c=
   dependencies:
     css-selector-parser "1.3.0"
     tslib "^2.0.0"
 
-"@blueriq/devtools@0.11.2":
-  version "0.11.2"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/devtools/-/@blueriq/devtools-0.11.2.tgz#2e4ab7358cce6717d84472a1209e31b37cea8dc4"
-  integrity sha1-Lkq3NYzOZxfYRHKhIJ4xs3zqjcQ=
+"@blueriq/devtools@0.12.0":
+  version "0.12.0"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn-local/@blueriq/devtools/-/@blueriq/devtools-0.12.0.tgz#dc446c2be1a52ce44bc6cff74ef38285a270bf56"
+  integrity sha1-3ERsK+GlLORLxs/3TvOChaJwv1Y=
   dependencies:
     tslib "^2.0.0"
 
