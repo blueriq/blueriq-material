@@ -58,12 +58,8 @@ export class TaskListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.sortChangeSubscription != null) {
-      this.sortChangeSubscription.unsubscribe();
-    }
-    if (this.tasksSubscription != null) {
-      this.tasksSubscription.unsubscribe();
-    }
+    this.sortChangeSubscription?.unsubscribe();
+    this.tasksSubscription?.unsubscribe();
   }
 
   /** extracts the data that should be shown in the cell that is being rendered */
