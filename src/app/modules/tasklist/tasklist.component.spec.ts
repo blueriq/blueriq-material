@@ -21,7 +21,7 @@ describe('Task List Component', () => {
   let taskList: jasmine.SpyObj<TaskList>;
 
   beforeEach(async() => {
-    taskService = jasmine.createSpyObj('TaskService', ['getTasks']);
+    taskService = jasmine.createSpyObj('TaskService', ['getTasks', 'subscribe', 'unsubscribe']);
     taskList = jasmine.createSpyObj('TaskList', ['buttonPressed']);
 
     TestBed.configureTestingModule({
@@ -210,98 +210,6 @@ describe('Task List Component', () => {
       taskListTemplate.setProperty('pagingsize', '20');
       buildComponent();
       expect(component.componentInstance.taskList.pagingSize).toEqual(20);
-    });
-
-    it('should handle CREATED task events correctly', () => {
-      buildComponent();
-
-      const provider = component.componentInstance.taskList;
-      const subject = provider.tasks$;
-
-      expect(subject.getValue()).toEqual([]);
-
-      const tasks: Task[] = [{
-        containerIdentifier: '42',
-        identifier: '123',
-        name: 'createTask',
-        status: 'created',
-      } as Task];
-
-      provider.handleTaskUpdates(tasks);
-      expect(subject.getValue()).toEqual(tasks);
-    });
-
-    it('should handle UPDATED task events correctly', () => {
-      buildComponent();
-      const provider = component.componentInstance.taskList;
-      const subject = provider.tasks$;
-
-      const tasks: Task[] = [{
-        containerIdentifier: '222',
-        identifier: '111',
-        name: 'task',
-        status: 'updated',
-      } as Task];
-
-      subject.next(tasks);
-      provider.handleTaskUpdates(tasks);
-      expect(subject.getValue()).toEqual(tasks);
-
-      tasks[0].status = 'completed';
-      subject.next(tasks);
-      provider.handleTaskUpdates(tasks);
-      expect(component.componentInstance.taskDataSource.data.length).toEqual(0);
-    });
-
-    it('should handle DELETED task events correctly', () => {
-      buildComponent();
-      const provider = component.componentInstance.taskList;
-      const subject = provider.tasks$;
-
-      const tasks: Task[] = [{
-        containerIdentifier: '333',
-        identifier: '444',
-        name: 'taak',
-        status: 'deleted',
-      } as Task];
-
-      subject.next(tasks);
-      provider.handleTaskUpdates(tasks);
-      expect(component.componentInstance.taskDataSource.data.length).toEqual(0);
-    });
-
-    it('should handle CANCELED task events correctly', () => {
-      buildComponent();
-      const provider = component.componentInstance.taskList;
-      const subject = provider.tasks$;
-
-      const tasks: Task[] = [{
-        containerIdentifier: '333',
-        identifier: '444',
-        name: 'taak',
-        status: 'canceled',
-      } as Task];
-
-      subject.next(tasks);
-      provider.handleTaskUpdates(tasks);
-      expect(component.componentInstance.taskDataSource.data.length).toEqual(0);
-    });
-
-    it('should handle EXPIRED task events correctly', () => {
-      buildComponent();
-      const provider = component.componentInstance.taskList;
-      const subject = provider.tasks$;
-
-      const tasks: Task[] = [{
-        containerIdentifier: '333',
-        identifier: '444',
-        name: 'taak',
-        status: 'expired',
-      } as Task];
-
-      subject.next(tasks);
-      provider.handleTaskUpdates(tasks);
-      expect(component.componentInstance.taskDataSource.data.length).toEqual(0);
     });
   });
 
