@@ -39,7 +39,6 @@
 
     <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
     <tr *matRowDef="let row; columns: displayedColumns;"
-      [class.highlight]="tasksToHighlight.includes(row.identifier)"
       mat-row></tr>
 
   </table>
@@ -48,7 +47,7 @@
     {{noResultsText}}
   </div>
 
-  <mat-paginator (page)="pageChanged()"
+  <mat-paginator
     [pageSizeOptions]="[5, 10, 20]"
     [pageSize]="taskList.pagingSize"
     showFirstLastButtons></mat-paginator>
