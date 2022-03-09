@@ -42,6 +42,7 @@ node {
           dcmListsVersion = bat(script: "@mvn help:evaluate -Dexpression=com.blueriq.dcm.lists.api.version -q -DforceStdout", returnStdout: true).trim();
           echo "Using DCM lists version ${dcmListsVersion}";
         }
+		bat "copy Tools\\license.aql ..\\e2e\\docker\\config\\"
       }
     }
 
@@ -63,7 +64,7 @@ node {
         prepareCdsFiles(cdsVersion);
         prepareDcmListsFiles(dcmListsVersion);
 
-        bat "docker-compose --file .\\\\e2e\\\\docker\\\\docker-compose.yml build --build-arg BLUERIQ_LICENSE=${env.BLUERIQ_LICENSE}";
+        bat "docker-compose --file .\\\\e2e\\\\docker\\\\docker-compose.yml build";
         bat "docker-compose --file .\\e2e\\docker\\docker-compose.yml up -d";
 
         // Warmup
