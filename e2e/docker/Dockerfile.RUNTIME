@@ -1,4 +1,4 @@
-FROM docker-internal.blueriq.com/tomcat9-jdk11:1.0
+FROM docker-internal.blueriq.com/tomcat9-jdk17:1.0
 LABEL maintainer="support@blueriq.com"
 
 ARG BLUERIQ_LICENSE
