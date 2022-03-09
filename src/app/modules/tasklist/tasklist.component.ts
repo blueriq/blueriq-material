@@ -55,6 +55,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
     this.taskDataSource.paginator = this.paginator;
 
     this.tasksSubscription = this.taskList.tasks$.subscribe(tasks => this.updateDataSource(tasks));
+    this.sortChangeSubscription = this.sort.sortChange.subscribe();
   }
 
   ngOnDestroy() {
