@@ -42,7 +42,7 @@ properties([
 	  defaultValue: '',
 	  description: 'In case of a release-build please provide the username for the server where to publish the community documentation to.'
 	),
-	string(
+	password(
 	  name: 'communityPass',
 	  defaultValue: '',
 	  description: 'In case of a release-build please provide the password for the server where to publish the community documentation to.'
