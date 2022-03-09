@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { BlueriqComponent, BlueriqSession, Task } from '@blueriq/angular';
@@ -31,18 +31,14 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
   taskDataSource: TaskListDataSource;
 
-  tasksToHighlight: string[];
-
   defaultSort: Sort;
 
   private sortChangeSubscription: Subscription;
   private tasksSubscription: Subscription;
-  private taskEventsSubscription: Subscription;
 
   constructor(public taskList: TaskList, session: BlueriqSession) {
     this.taskDataSource = new TaskListDataSource(taskList.columnDefinitions, session.localization.dateFormats);
     this.displayedColumns = taskList.columnDefinitions.map(column => column.identifier);
-    this.tasksToHighlight = [];
   }
 
   get noResultsText(): string {
@@ -59,24 +55,12 @@ export class TaskListComponent implements OnInit, OnDestroy {
     this.taskDataSource.paginator = this.paginator;
 
     this.tasksSubscription = this.taskList.tasks$.subscribe(tasks => this.updateDataSource(tasks));
-    this.taskEventsSubscription = this.taskList.taskEvents$.subscribe(taskEvent => {
-      this.tasksToHighlight.push(taskEvent.taskModel.identifier);
-    });
-    this.sortChangeSubscription = this.sort.sortChange.subscribe(() => {
-      this.clearTasksToHighlight();
-    });
+    this.sortChangeSubscription = this.sort.sortChange.subscribe();
   }
 
-  ngOnDestroy(): void {
-    if (this.sortChangeSubscription != null) {
-      this.sortChangeSubscription.unsubscribe();
-    }
-    if (this.tasksSubscription != null) {
-      this.tasksSubscription.unsubscribe();
-    }
-    if (this.taskEventsSubscription != null) {
-      this.taskEventsSubscription.unsubscribe();
-    }
+  ngOnDestroy() {
+    this.sortChangeSubscription?.unsubscribe();
+    this.tasksSubscription?.unsubscribe();
   }
 
   /** extracts the data that should be shown in the cell that is being rendered */
@@ -106,20 +90,12 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
   /** passes a new filter value to the datasource */
   applyFilter(filterValue: string): void {
-    this.clearTasksToHighlight();
     this.taskDataSource.filter = filterValue.trim();
   }
 
-  pageChanged(): void {
-    this.clearTasksToHighlight();
-  }
-
-  private clearTasksToHighlight(): void {
-    this.tasksToHighlight = [];
-  }
-
   private updateDataSource(tasks: Task[]): void {
-    this.taskDataSource.data = tasks;
+    const statusToFilterOut = ['completed', 'canceled', 'expired', 'deleted'];
+    this.taskDataSource.data = tasks.filter(t => !statusToFilterOut.includes(t.status || ''));
   }
 
   private initDefaultSorting(): void {
