@@ -23,26 +23,6 @@ services:
       resources:
         limits:
           memory: 256M
-  dcm-lists:
-    build:
-      context: .
-      dockerfile: Dockerfile.DCMLISTS
-    ports:
-      - "9085:8080"
-    depends_on:
-      - mongodb
-      - rabbitmq
-    deploy:
-      resources:
-        limits:
-          memory: 256M
-  rabbitmq:
-    build:
-      context: .
-      dockerfile: Dockerfile.RABBIT
-    restart: always
-    ports:
-      - "9086:15672"
   blueriq-material-theme:
     build:
       context: .
