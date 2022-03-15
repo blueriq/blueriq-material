@@ -12,7 +12,7 @@ properties([
 ])
 node {
   try {
-    env.JAVA_HOME = tool 'jdk-11.0.1';
+    env.JAVA_HOME = tool 'jdk-17.0.1';
     def mvnHome = tool "apache-maven-3.6.0";
     def nodeHome = tool 'node-14.17.0'
     env.PATH = "${env.JAVA_HOME}\\bin;${mvnHome}\\bin;${nodeHome};${env.PATH}";
@@ -41,6 +41,7 @@ node {
           dcmListsVersion = bat(script: "@mvn help:evaluate -Dexpression=com.blueriq.dcm.lists.api.version -q -DforceStdout", returnStdout: true).trim();
           echo "Using DCM lists version ${dcmListsVersion}";
         }
+		bat "copy Tools\\license.aql ..\\e2e\\docker\\config\\"
       }
     }
 
@@ -62,7 +63,7 @@ node {
         prepareCdsFiles(cdsVersion);
         prepareDcmListsFiles(dcmListsVersion);
 
-        bat "docker-compose --file .\\\\e2e\\\\docker\\\\docker-compose.yml build --build-arg BLUERIQ_LICENSE=${env.BLUERIQ_LICENSE}";
+        bat "docker-compose --file .\\\\e2e\\\\docker\\\\docker-compose.yml build";
         bat "docker-compose --file .\\e2e\\docker\\docker-compose.yml up -d";
 
         // Warmup
