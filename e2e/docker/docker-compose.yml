@@ -6,8 +6,6 @@ services:
       dockerfile: Dockerfile.RUNTIME
     ports:
       - "9082:8080"
-    depends_on:
-      - rabbitmq
   customerdata:
     build:
       context: .
