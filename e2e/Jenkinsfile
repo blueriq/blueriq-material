@@ -1,6 +1,5 @@
 #!groovy
 
-// TEST
 properties([
   [
     $class  : 'BuildDiscarderProperty',
