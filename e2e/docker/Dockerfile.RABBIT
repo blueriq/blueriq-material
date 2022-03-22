@@ -1,5 +1,0 @@
-FROM rabbitmq:3.8.27-management-alpine@sha256:062e1d3f67b073a6dc3f91b7d5df34d471527ddbdf593c79ff0d7a47b0ece96d
-ADD rabbitmq.conf /etc/rabbitmq/
-ADD definitions.json /etc/rabbitmq/
-RUN chown rabbitmq:rabbitmq /etc/rabbitmq/rabbitmq.conf /etc/rabbitmq/definitions.json
-CMD ["rabbitmq-server"]
