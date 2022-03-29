@@ -59,10 +59,13 @@ export class TaskListComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('window:beforeunload')
+  closeSseStreamOnWindowClose() {
+    this.taskList?.unsubscribeFromTaskStream();
+  }
+
   ngOnDestroy() {
     this.sortChangeSubscription?.unsubscribe();
     this.tasksSubscription?.unsubscribe();
-    this.taskList?.unsubscribeFromTaskStream();
   }
 
   /** extracts the data that should be shown in the cell that is being rendered */
