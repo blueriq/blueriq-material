@@ -1374,10 +1374,10 @@
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
 
-"@blueriq/angular@0.12.0":
-  version "0.12.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn-local/@blueriq/angular/-/@blueriq/angular-0.12.0.tgz#bebd2560abeafe22bb1b9d9e625cbd3b2ea917c0"
-  integrity sha1-vr0lYKvq/iK7G52eYly9Oy6pF8A=
+"@blueriq/angular@0.12.1":
+  version "0.12.1"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn-local/@blueriq/angular/-/@blueriq/angular-0.12.1.tgz#121407e4f394b5cc6669636175b22d683cebf54f"
+  integrity sha1-EhQH5POUtcxmaWNhdbItaDzr9U8=
   dependencies:
     stable "0.1.8"
     tslib "^2.0.0"
