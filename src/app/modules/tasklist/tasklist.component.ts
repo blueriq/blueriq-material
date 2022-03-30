@@ -58,6 +58,11 @@ export class TaskListComponent implements OnInit, OnDestroy {
     this.sortChangeSubscription = this.sort.sortChange.subscribe();
   }
 
+  @HostListener('window:beforeunload')
+  closeSseStreamOnWindowClose() {
+    this.taskList?.unsubscribeFromTaskStream();
+  }
+
   ngOnDestroy() {
     this.sortChangeSubscription?.unsubscribe();
     this.tasksSubscription?.unsubscribe();
