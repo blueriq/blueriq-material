@@ -50,7 +50,7 @@
     "@angular/platform-browser": "12.2.16",
     "@angular/platform-browser-dynamic": "12.2.16",
     "@angular/router": "12.2.16",
-    "@blueriq/angular": "0.12.0",
+    "@blueriq/angular": "0.12.1",
     "@blueriq/core": "0.12.0",
     "@blueriq/devtools": "0.12.0",
     "@danielmoncada/angular-datetime-picker": "12.3.0",
