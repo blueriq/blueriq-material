@@ -1,6 +1,12 @@
 import { Component, isDevMode, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FailedAction, ForbiddenProjectAction, isBlueriqError, UnauthorizedProjectAction } from '@blueriq/angular';
+import {
+  FailedAction,
+  ForbiddenProjectAction,
+  isBlueriqError,
+  QueryParameters,
+  UnauthorizedProjectAction,
+} from '@blueriq/angular';
 import { SessionId } from '@blueriq/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -19,6 +25,7 @@ export class ProjectComponent implements OnInit {
   project: Observable<string | null>;
   flow: Observable<string | null>;
   languageCode: Observable<string | null>;
+  parameters: QueryParameters | null;
 
   notification: NotificationModel | undefined;
 
@@ -27,10 +34,14 @@ export class ProjectComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.parameters = params;
+    });
+
     this.sessionName = this.route.queryParamMap.pipe(map(params => {
       const tab = params.get('tab');
 
-      return tab ? `Main-${tab}` : 'Main';
+      return tab ? `Main-${ tab }` : 'Main';
     }));
     this.sessionId = this.route.paramMap.pipe(map(params => params.get('sessionId')));
     this.shortcut = this.route.paramMap.pipe(map(params => params.get('shortcut')));
