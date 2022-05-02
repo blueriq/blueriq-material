@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Task, TaskService } from '@blueriq/angular';
+import { Task, TaskCollection, TaskService } from '@blueriq/angular';
 import { TaskList } from '@blueriq/angular/lists';
 import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
 import { Button } from '@blueriq/core';
@@ -21,7 +21,7 @@ describe('Task List Component', () => {
   let taskList: jasmine.SpyObj<TaskList>;
 
   beforeEach(async() => {
-    taskService = jasmine.createSpyObj('TaskService', ['getTasks', 'subscribe', 'unsubscribe']);
+    taskService = jasmine.createSpyObj('TaskService', ['getTaskCollection', 'subscribe', 'unsubscribe']);
     taskList = jasmine.createSpyObj('TaskList', ['buttonPressed']);
 
     TestBed.configureTestingModule({
@@ -70,61 +70,67 @@ describe('Task List Component', () => {
         ),
       ContainerTemplate
         .create('cell')
-        .contentStyle('header_cell')
-        .properties({
-          type: 'CUSTOMFIELD',
-          identifier: 'customField',
-          dataType: 'text',
-        })
-        .children(
-          TextItemTemplate.create('CustomField').plainText('Custom field'),
-        ),
+      .contentStyle('header_cell')
+      .properties({
+        type: 'CUSTOMFIELD',
+        identifier: 'customField',
+        dataType: 'text',
+      })
+      .children(
+        TextItemTemplate.create('CustomField').plainText('Custom field'),
+      ),
       ContainerTemplate
-        .create('cell')
-        .contentStyle('header_cell')
-        .properties({
-          type: 'ACTION',
-          identifier: 'actionButton',
-        })
-        .children(
-          ButtonTemplate.create('button').caption('Klik op mij'),
-        ),
+      .create('cell')
+      .contentStyle('header_cell')
+      .properties({
+        type: 'ACTION',
+        identifier: 'actionButton',
+      })
+      .children(
+        ButtonTemplate.create('button').caption('Klik op mij'),
+      ),
       ContainerTemplate
-        .create('cell')
-        .contentStyle('header_cell')
-        .styles(BqPresentationStyles.ONLYICON, BqPresentationStyles.ICON_FA_PREFIX + 'play_circle')
-        .properties({
-          type: 'ACTION',
-          identifier: 'actionButton2',
-        })
-        .children(
-          ButtonTemplate.create('button').caption('Klik op mij'),
-        ),
+      .create('cell')
+      .contentStyle('header_cell')
+      .styles(BqPresentationStyles.ONLYICON, BqPresentationStyles.ICON_FA_PREFIX + 'play_circle')
+      .properties({
+        type: 'ACTION',
+        identifier: 'actionButton2',
+      })
+      .children(
+        ButtonTemplate.create('button').caption('Klik op mij'),
+      ),
       ContainerTemplate.create().contentStyle('no_results').children(
         TextItemTemplate.create('NoResults').plainText('Nothing to see here'),
       ),
     );
 
-    taskService.getTasks.and.returnValue(of(
-      [{
-        containerIdentifier: 'testcontainer',
-        identifier: '123abc',
-        name: 'task',
-        displayName: 'Taak',
-        status: 'open',
-        customFields: {
-          customField: 'custom',
+    const taskCollection: TaskCollection = {
+      containerIdentifier: 'testcontainer',
+      taskModels: [
+        {
+          identifier: '123abc',
+          name: 'task',
+          displayName: 'Taak',
+          status: 'open',
+          customFields: {
+            customField: 'custom',
+          },
         },
-      }, {
-        containerIdentifier: 'container',
-        identifier: '456',
-        name: 'task2',
-        displayName: 'Taak 2',
-        status: 'started',
-        customFields: {},
-      }] as Task[],
-    ));
+        {
+          identifier: '456',
+          name: 'task2',
+          displayName: 'Taak 2',
+          status: 'started',
+          customFields: {},
+        },
+      ] as Task[],
+    };
+
+    taskService.getTaskCollection.and.returnValue(of(
+      taskCollection));
   });
+
 
   describe('Task list', () => {
     it('should have a row with correct header content', () => {
@@ -176,7 +182,7 @@ describe('Task List Component', () => {
     });
 
     it('should not display rows but empty text when the list is empty', () => {
-      taskService.getTasks.and.returnValue(EMPTY);
+      taskService.getTaskCollection.and.returnValue(EMPTY);
       buildComponent();
 
       const matRows = component.nativeElement.querySelectorAll('.mat-row');
@@ -198,7 +204,7 @@ describe('Task List Component', () => {
 
   describe('Task list provider', () => {
     beforeEach(() => {
-      taskService.getTasks.and.returnValue(of([] as Task[]));
+      taskService.getTaskCollection.and.returnValue(of({} as TaskCollection));
     });
 
     it('should have a default pagingsize of 10', () => {

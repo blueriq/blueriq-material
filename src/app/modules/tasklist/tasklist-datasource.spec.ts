@@ -6,7 +6,6 @@ import { TaskListDataSource } from './tasklist-datasource';
 
 describe('Task List Data Source', () => {
   const tasks: Task[] = [{
-    containerIdentifier: '123',
     customFields: {
       'project': 'Solar Panels',
       'assignedTo': 'Team 69',

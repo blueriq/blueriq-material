@@ -1,7 +1,7 @@
 import { Component, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
-import { BlueriqComponent, BlueriqSession, Task } from '@blueriq/angular';
+import { BlueriqComponent, BlueriqSession, Task, TaskCollection } from '@blueriq/angular';
 import { ColumnDefinition, TaskList } from '@blueriq/angular/lists';
 import { Button, Container, PresentationStyles } from '@blueriq/core';
 import { Subscription } from 'rxjs';
@@ -98,9 +98,11 @@ export class TaskListComponent implements OnInit, OnDestroy {
     this.taskDataSource.filter = filterValue.trim();
   }
 
-  private updateDataSource(tasks: Task[]): void {
-    const statusToFilterOut = ['completed', 'canceled', 'expired', 'deleted'];
-    this.taskDataSource.data = tasks.filter(t => !statusToFilterOut.includes(t.status || ''));
+  private updateDataSource(tasks: TaskCollection): void {
+    if (tasks.taskModels) {
+      const statusToFilterOut = ['completed', 'canceled', 'expired', 'deleted'];
+      this.taskDataSource.data = tasks.taskModels.filter(t => !statusToFilterOut.includes(t.status || ''));
+    }
   }
 
   private initDefaultSorting(): void {
