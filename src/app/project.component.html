@@ -6,7 +6,7 @@
   [flow]="flow | async"
   [version]="version | async"
   [languageCode]="languageCode | async"
-  [parameters]="parameters"
+  [parameters]="parameters | async"
   (flowEnded)="onFlowEnded()"
   (expired)="onSessionExpired()"
   (error)="onError($event)"

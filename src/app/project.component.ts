@@ -25,7 +25,7 @@ export class ProjectComponent implements OnInit {
   project: Observable<string | null>;
   flow: Observable<string | null>;
   languageCode: Observable<string | null>;
-  parameters: QueryParameters | null;
+  parameters: Observable<QueryParameters | null>;
 
   notification: NotificationModel | undefined;
 
@@ -34,10 +34,6 @@ export class ProjectComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.parameters = params;
-    });
-
     this.sessionName = this.route.queryParamMap.pipe(map(params => {
       const tab = params.get('tab');
 
@@ -49,6 +45,7 @@ export class ProjectComponent implements OnInit {
     this.project = this.route.paramMap.pipe(map(params => params.get('project')));
     this.flow = this.route.paramMap.pipe(map(params => params.get('flow')));
     this.languageCode = this.route.paramMap.pipe(map(params => params.get('languageCode')));
+    this.parameters = this.route.queryParams;
   }
 
   /** Handler for Session Expired events */
