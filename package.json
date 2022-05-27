@@ -59,10 +59,10 @@
     "@ngrx/store-devtools": "12.5.1",
     "chart.js": "2.9.4",
     "core-js": "3.20.3",
-    "eventsource": "1.1.0",
+    "eventsource": "2.0.2",
     "font-awesome": "4.7.0",
     "material-icons": "0.3.1",
-    "moment": "2.24.0",
+    "moment": "2.29.3",
     "ng2-file-upload": "1.4.0",
     "roboto-fontface": "0.10.0",
     "rxjs": "6.6.7",
@@ -106,6 +106,7 @@
     "node-forge": "^1.0.0",
     "ansi-regex": "^5.0.1",
     "url-parse": "^1.5.6",
-    "follow-redirects": "^1.14.8"
+    "follow-redirects": "^1.14.8",
+    "moment": "2.29.3"
   }
 }
