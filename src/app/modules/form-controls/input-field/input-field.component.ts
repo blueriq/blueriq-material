@@ -13,6 +13,7 @@ export class InputFieldComponent implements OnUpdate {
   iconPrefix: string;
   fieldSuffix: string;
   placeholder: string;
+  inputType = 'text';
 
   constructor(public field: Field, private form: BlueriqFormBuilder) {
     this.determinePlaceholder();
