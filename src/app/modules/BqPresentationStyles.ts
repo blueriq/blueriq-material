@@ -25,6 +25,7 @@ export class BqPresentationStyles {
   static STATISTICPOLAR = 'StatisticPolar';
   static SWITCH = 'Switch';
   static DO_NOT_SHOW_SEARCH = 'DoNotShowSearch';
+  static PASSWORD = 'Password';
 
   // Presentation styles reused from AquimaLibrary, these can be refactored in the future
   static DANGER = 'Danger';
@@ -58,5 +59,6 @@ export class BqPresentationStyles {
 
   // Presentation styles which are deprecated in Blueriq 13.x
   static DEPRECATED_RADIO = 'Radio'; // Since 13.5
+  static DEPRECATED_PASSWORD = 'password'; // New style is 'Password'
 
 }
