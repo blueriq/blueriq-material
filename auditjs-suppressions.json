@@ -1,3 +1,9 @@
 {
-	"ignore": []
+  "ignore": [
+    {
+      "id": "CVE-2022-25869",
+      "reason": "The vulnerability only occurs in Internet Explorer which is a browser we do not support"
+    }
+  ]
 }
+
