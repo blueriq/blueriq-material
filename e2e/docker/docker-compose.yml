@@ -17,10 +17,6 @@ services:
     restart: always
     ports:
       - "9084:27017"
-    deploy:
-      resources:
-        limits:
-          memory: 256M
   blueriq-material-theme:
     build:
       context: .
@@ -29,8 +25,3 @@ services:
       - "9081:80"
     depends_on:
       - runtime
-    deploy:
-      resources:
-        limits:
-          cpus: '0.25'
-          memory: 128M
