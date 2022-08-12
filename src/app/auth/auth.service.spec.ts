@@ -101,29 +101,30 @@ describe('AuthService', () => {
     });
 
     describe('logging out', () => {
-      const configureLogout = (ssoLogoutUrl: string | undefined) => {
-        const logoutResult: LogoutResult = { ssoLogoutUrl };
+      // mock to create own logout result which can have a ssoLogoutUrl and a id_token_hint
+      const configureLogout = (ssoLogoutUrl: string | undefined, id_token_hint: string | undefined) => {
+        const logoutResult: LogoutResult = { ssoLogoutUrl, id_token_hint };
         blueriqAuth.logout.and.returnValue(of(logoutResult));
       };
 
       it('should redirect to OpenId logout endpoint if logout endpoint is available', () => {
-        configureLogout('http://openidconnect.com/logout');
+        configureLogout('http://openidconnect.com/logout', 'aToken');
         auth.logoutAndNavigate('/return');
 
         expect(doc.location!.href).toEqual(
-          `http://openidconnect.com/logout?post_logout_redirect_uri=http%3A%2F%2Fexample.com%2Flogged-out%3FreturnPath%3D%252Freturn`);
+          `http://openidconnect.com/logout?post_logout_redirect_uri=http%3A%2F%2Fexample.com%2Flogged-out%3FreturnPath%3D%252Freturn&id_token_hint=aToken`);
       });
 
       it('should allow omitting a return path', () => {
-        configureLogout('http://openidconnect.com/logout');
+        configureLogout('http://openidconnect.com/logout', 'aToken');
         auth.logoutAndNavigate(null);
 
         expect(doc.location!.href).toEqual(
-          `http://openidconnect.com/logout?post_logout_redirect_uri=http%3A%2F%2Fexample.com%2Flogged-out`);
+          `http://openidconnect.com/logout?post_logout_redirect_uri=http%3A%2F%2Fexample.com%2Flogged-out&id_token_hint=aToken`);
       });
 
       it('should not redirect to OpenId logout endpoint if logout endpoint is not available', fakeAsync(() => {
-        configureLogout(undefined);
+        configureLogout(undefined, 'aToken');
         auth.logoutAndNavigate('/return');
         tick();
 
@@ -131,35 +132,35 @@ describe('AuthService', () => {
       }));
 
       it('handles preconfigured ?post_logout_redirect_uri query parameter', () => {
-        configureLogout('http://openidconnect.com/logout?post_logout_redirect_uri=preconfigured');
+        configureLogout('http://openidconnect.com/logout?post_logout_redirect_uri=preconfigured', 'aToken');
         auth.logoutAndNavigate('/return');
 
-        expect(doc.location!.href).toEqual('http://openidconnect.com/logout?post_logout_redirect_uri=preconfigured');
+        expect(doc.location!.href).toEqual('http://openidconnect.com/logout?post_logout_redirect_uri=preconfigured&id_token_hint=aToken');
       });
 
       it('handles preconfigured &post_logout_redirect_uri query parameter', () => {
-        configureLogout('http://openidconnect.com/logout?test&post_logout_redirect_uri=preconfigured');
+        configureLogout('http://openidconnect.com/logout?test&post_logout_redirect_uri=preconfigured', 'aToken');
         auth.logoutAndNavigate('/return');
 
-        expect(doc.location!.href).toEqual('http://openidconnect.com/logout?test&post_logout_redirect_uri=preconfigured');
+        expect(doc.location!.href).toEqual('http://openidconnect.com/logout?test&post_logout_redirect_uri=preconfigured&id_token_hint=aToken');
       });
 
       it('handles existing query parameters in the logout endpoint', () => {
-        configureLogout('http://openidconnect.com/logout?test');
+        configureLogout('http://openidconnect.com/logout?test', 'aToken');
         auth.logoutAndNavigate('/return');
 
         expect(doc.location!.href).toEqual(
-          `http://openidconnect.com/logout?test&post_logout_redirect_uri=http%3A%2F%2Fexample.com%2Flogged-out%3FreturnPath%3D%252Freturn`);
+          `http://openidconnect.com/logout?test&post_logout_redirect_uri=http%3A%2F%2Fexample.com%2Flogged-out%3FreturnPath%3D%252Freturn&id_token_hint=aToken`);
       });
 
       it('includes an application base path if present', () => {
         const locationStrategy = TestBed.inject(LocationStrategy) as MockLocationStrategy;
         locationStrategy.internalBaseHref = 'Runtime';
-        configureLogout('http://openidconnect.com/logout');
+        configureLogout('http://openidconnect.com/logout', 'aToken');
         auth.logoutAndNavigate('/return');
 
         expect(doc.location!.href).toEqual(
-          `http://openidconnect.com/logout?post_logout_redirect_uri=http%3A%2F%2Fexample.com%2FRuntime%2Flogged-out%3FreturnPath%3D%252Freturn`);
+          `http://openidconnect.com/logout?post_logout_redirect_uri=http%3A%2F%2Fexample.com%2FRuntime%2Flogged-out%3FreturnPath%3D%252Freturn&id_token_hint=aToken`);
       });
     });
   });
