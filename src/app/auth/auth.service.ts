@@ -46,7 +46,7 @@ export class AuthService {
           token = response.id_token_hint;
         }
         let ssoLogoutString = this.addReturnPath(response.ssoLogoutUrl, returnUrl);
-        ssoLogoutString = AuthService.addIdToken(token, ssoLogoutString);
+        ssoLogoutString = this.addIdToken(token, ssoLogoutString);
         this.document.location.href = ssoLogoutString;
       } else {
         this.router.navigate(['/logged-out'], { queryParams: { returnPath } });
