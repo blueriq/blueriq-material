@@ -1,7 +1,7 @@
 import { browser, protractor } from 'protractor';
 import { KinderbijslagFlow } from './kinderbijslag.flow';
 
-fdescribe('Kinderbijslag App', () => {
+describe('Kinderbijslag App', () => {
 
   let app: KinderbijslagFlow = new KinderbijslagFlow();
 
