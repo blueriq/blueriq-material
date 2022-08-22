@@ -2,10 +2,10 @@ import Promise = promise.Promise;
 import { browser, by, element, promise } from 'protractor';
 
 export class RoutesApp {
-  public PAGE_ID_AANVRAGEN_KINDERBIJSLAG: string = 'P960';
+  public PAGE_ID_AANVRAGEN_KINDERBIJSLAG: string = 'P163';
 
   get pageTitleAanvragenKinderbijslag(): Promise<string> {
-    return this.getTitleTextFor(this.PAGE_ID_AANVRAGEN_KINDERBIJSLAG + '_AanvragenKinderbijslag_1');
+    return this.getTitleTextFor(this.PAGE_ID_AANVRAGEN_KINDERBIJSLAG + '_OuderGegevens_1');
   }
 
   get pageTitleDefaultShortcutFlow(): Promise<string> {
