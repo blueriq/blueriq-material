@@ -9,46 +9,46 @@ describe('Blueriq ProjectComponent Routes', () => {
 
   const app: RoutesApp = new RoutesApp();
 
-  beforeEach(async() => {
+  beforeEach(async () => {
     await app.reset(); // in beforeEach because taking screenshot for failing tests fails when placed in the afterEach
   });
 
-  it('should start flow Kinderbijslag.Start', async() => {
+  it('should start flow Kinderbijslag.Start', async () => {
     await app.start(startFlowPath);
 
     // Verify
-    expect(app.pageTitleAanvragenKinderbijslag).toBe('Aanvragen kinderbijslag');
+    expect(app.pageTitleAanvragenKinderbijslag).toBe('Kinderbijslag Aanvragen');
   });
 
-  it('should start flow Kinderbijslag.Start with version', async() => {
+  it('should start flow Kinderbijslag.Start with version', async () => {
     await app.start(startFlowVersionPath);
 
     // Verify
-    expect(app.pageTitleAanvragenKinderbijslag).toBe('Aanvragen kinderbijslag');
+    expect(app.pageTitleAanvragenKinderbijslag).toBe('Kinderbijslag Aanvragen');
   });
 
-  it('should start flow Kinderbijslag.Start with version and language', async() => {
+  it('should start flow Kinderbijslag.Start with version and language', async () => {
     await app.start(startFlowVersionLanguagePath);
 
     // Verify
     expect(app.pageTitleAanvragenKinderbijslag).toBe(''); // because there is no title defined in this language
   });
 
-  it('should start Kinderbijslag shortcut', async() => {
+  it('should start Kinderbijslag shortcut', async () => {
     await app.start(startShortcutPath);
 
     // Verify
-    expect(app.pageTitleAanvragenKinderbijslag).toBe('Aanvragen kinderbijslag');
+    expect(app.pageTitleAanvragenKinderbijslag).toBe('Kinderbijslag Aanvragen');
   });
 
-  it('should start default shortcut', async() => {
+  it('should start default shortcut', async () => {
     await app.start(startDefaultShortcutPath);
 
     // Verify
-    expect(app.pageTitleDefaultShortcutFlow).toBe('Aanvragen kinderbijslag');
+    expect(app.pageTitleDefaultShortcutFlow).toBe('Kinderbijslag Aanvragen');
   });
 
-  it('should start app for sessionId', async() => {
+  it('should start app for sessionId', async () => {
     await app.start(startDefaultShortcutPath);
 
     // Route to the just create BlueriqSession
@@ -56,7 +56,7 @@ describe('Blueriq ProjectComponent Routes', () => {
     await app.start(`/sessionId/${sessionId}`);
 
     // Verify
-    expect(app.pageTitleDefaultShortcutFlow).toBe('Aanvragen kinderbijslag');
+    expect(app.pageTitleDefaultShortcutFlow).toBe('Kinderbijslag Aanvragen');
   });
 
 });
