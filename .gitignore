@@ -38,7 +38,7 @@ yarn-error.log
 testem.log
 /typings
 release.properties
-tslint_results_checkstyle.xml
+eslint_results_checkstyle.xml
 3rd-party-licenses.txt
 .npmrc
 

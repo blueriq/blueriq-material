@@ -1,12 +1,12 @@
 // This file is required by karma.conf.js and loads recursively all the .spec and framework files
 
-// tslint:disable:ordered-imports Specific order is important
+/* eslint-disable import/order */
 import 'zone.js/testing';
 import { getTestBed } from '@angular/core/testing';
 import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 import { TestContext } from '@blueriq/core/testing';
 import { MomentDateFormatting } from '@shared/date/date-formatting-library';
-// tslint:enable:ordered-imports
+/* eslint-enable import/order */
 
 declare const require: any;
 
