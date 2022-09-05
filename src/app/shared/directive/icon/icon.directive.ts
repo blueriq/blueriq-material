@@ -13,7 +13,19 @@ export class BqIconDirective {
 
   private _class: string;
 
-  constructor(private elementRef: ElementRef) {
+  static hasIcon(presentationStyles: PresentationStyles): boolean {
+    return !!(BqIconDirective.getFirstFontAwesomeIcon(presentationStyles) || BqIconDirective.getFirstMaterialIcon(presentationStyles));
+  }
+
+  static getFirstFontAwesomeIcon(presentationStyles: PresentationStyles): string | undefined {
+    return presentationStyles.get(style => style.startsWith(BqPresentationStyles.ICON_FA_PREFIX));
+  }
+
+  static getFirstMaterialIcon(presentationStyles: PresentationStyles): string | undefined {
+    return presentationStyles.get(style => style.startsWith(BqPresentationStyles.ICON_MAT_PREFIX));
+  }
+
+  constructor(private readonly elementRef: ElementRef) {
   }
 
   @HostBinding('attr.class')
@@ -38,18 +50,6 @@ export class BqIconDirective {
     } else {
       this._class = '';
     }
-  }
-
-  static hasIcon(presentationStyles: PresentationStyles): boolean {
-    return BqIconDirective.getFirstFontAwesomeIcon(presentationStyles) || BqIconDirective.getFirstMaterialIcon(presentationStyles) ? true : false;
-  }
-
-  static getFirstFontAwesomeIcon(presentationStyles: PresentationStyles): string | undefined {
-    return presentationStyles.get(style => style.startsWith(BqPresentationStyles.ICON_FA_PREFIX));
-  }
-
-  static getFirstMaterialIcon(presentationStyles: PresentationStyles): string | undefined {
-    return presentationStyles.get(style => style.startsWith(BqPresentationStyles.ICON_MAT_PREFIX));
   }
 
   /**

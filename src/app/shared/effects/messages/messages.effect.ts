@@ -24,9 +24,9 @@ export class MessagesEffect {
     tap(action => this.showSecurityMessages(action.violations.messages)),
   ), { dispatch: false });
 
-  constructor(private actions$: Actions,
-              private snackBar: MatSnackBar,
-              private sessionRegistry: SessionRegistry) {
+  constructor(private readonly actions$: Actions,
+              private readonly snackBar: MatSnackBar,
+              private readonly sessionRegistry: SessionRegistry) {
   }
 
   private showSnackBar(action: SessionAction): void {

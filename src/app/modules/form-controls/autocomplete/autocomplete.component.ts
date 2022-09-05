@@ -23,7 +23,7 @@ export class AutocompleteComponent implements OnInit {
   });
   filteredDomainOptions$: Observable<DomainValue[]>;
 
-  constructor(public field: Field, private form: BlueriqFormBuilder) {
+  constructor(public field: Field, private readonly form: BlueriqFormBuilder) {
   }
 
   ngOnInit() {

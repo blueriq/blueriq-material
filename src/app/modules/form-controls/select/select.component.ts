@@ -17,7 +17,7 @@ import { BqPresentationStyles } from '../../BqPresentationStyles';
 export class SelectComponent {
   formControl = this.form.control(this.field, { updateOn: 'blur', disableWhen: BqPresentationStyles.DISABLED });
 
-  constructor(public field: Field, private form: BlueriqFormBuilder) {
+  constructor(public field: Field, private readonly form: BlueriqFormBuilder) {
   }
 
   getMessages(): FieldMessages {

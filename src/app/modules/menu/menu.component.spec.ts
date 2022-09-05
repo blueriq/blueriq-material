@@ -127,13 +127,9 @@ describe('MenuComponent', () => {
         const arrowUpEvent = new KeyboardEvent('keydown', { key: 'ArrowUp' });
         const arrowRightEvent = new KeyboardEvent('keydown', { key: 'ArrowRight' });
 
-        const unitBtn = menuItems.find(el => {
-          return el.nativeElement.innerText.includes('UNIT');
-        });
+        const unitBtn = menuItems.find(el => el.nativeElement.innerText.includes('UNIT'));
 
-        const publicBtn = menuItems.find(el => {
-          return el.nativeElement.innerText.includes('PUBLIC');
-        });
+        const publicBtn = menuItems.find(el => el.nativeElement.innerText.includes('PUBLIC'));
 
         expect(unitBtn).toBeTruthy();
         expect(publicBtn).toBeTruthy();

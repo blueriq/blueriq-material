@@ -5,7 +5,7 @@ import { withErrorRedirect } from '@blueriq/angular';
 @Injectable()
 export class FileDownloadService {
 
-  constructor(@Inject(DOCUMENT) private document: Document) {
+  constructor(@Inject(DOCUMENT) private readonly document: Document) {
   }
 
   download(url: string): void {

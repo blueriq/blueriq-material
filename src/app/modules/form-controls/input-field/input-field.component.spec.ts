@@ -5,7 +5,6 @@ import { FieldTemplate } from '@blueriq/core/testing';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
 import { FormControlModule } from '../form-control.module';
 import { CurrencyFieldComponent } from './currency/currency.component';
-import { InputFieldComponent } from './input-field.component';
 
 describe('InputFieldComponent', () => {
   let field: FieldTemplate;

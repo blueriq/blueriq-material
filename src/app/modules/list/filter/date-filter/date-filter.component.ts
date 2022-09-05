@@ -50,7 +50,7 @@ export class DateFilterComponent {
     this.firstDayOfWeek = computeFirstDayOfWeek(session.localization);
   }
 
-  onDateChanged(event: { value: moment.Moment | undefined, source: any }) {
+  onDateChanged(event: { value: moment.Moment | undefined; source: { value: unknown } }) {
     event.source.value = event.value; // triggers date formatting in input field
     this.updateCandidate();
   }

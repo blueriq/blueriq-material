@@ -11,8 +11,6 @@ import { ContainerModule } from '../../container/container.module';
 import { FlowWidgetComponent } from '../flow-widget/flow-widget.component';
 import { WidgetModule } from '../widget.module';
 
-import { WidgetPageComponent } from './widget-page.component';
-
 describe('WidgetPageComponent', () => {
   let component: ComponentFixture<FlowWidgetComponent>;
   let session: BlueriqTestSession;

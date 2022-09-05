@@ -24,7 +24,7 @@ export class CommentComponent {
 
   constructor(public container: Container,
               @Self() public comment: SubmitComment,
-              private form: BlueriqFormBuilder) {
+              private readonly form: BlueriqFormBuilder) {
   }
 
   getFieldMessages(): FieldMessages {

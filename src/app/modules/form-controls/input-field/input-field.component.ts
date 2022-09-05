@@ -15,7 +15,7 @@ export class InputFieldComponent implements OnUpdate {
   placeholder: string;
   inputType = 'text';
 
-  constructor(public field: Field, private form: BlueriqFormBuilder) {
+  constructor(public field: Field, private readonly form: BlueriqFormBuilder) {
     this.determinePlaceholder();
   }
 

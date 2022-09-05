@@ -5,7 +5,6 @@ import { BlueriqTestSession } from '@blueriq/angular/testing/src/test_session';
 import { AssetTemplate, ButtonTemplate, ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
 import { ListComponent } from '../list.component';
 import { ListModule } from '../list.module';
-import { TablePaginationComponent } from './table.pagination.component';
 
 describe('TablePaginationComponent', () => {
   const LABEL = '.mat-paginator-range-label';

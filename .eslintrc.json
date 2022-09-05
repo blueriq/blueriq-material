@@ -5,7 +5,7 @@
       "files": "*.ts",
       "parserOptions": {
         "project": [
-          "tsconfig.base.json"
+          "tsconfig.json"
         ],
         "createDefaultProgram": true
       },
@@ -38,7 +38,7 @@
               "attribute"
             ],
             "prefix": "bq",
-            "style": "kebab-case"
+            "style": "camelCase"
           }
         ],
         "@angular-eslint/no-host-metadata-property": "error",
@@ -216,24 +216,7 @@
         "*.tsx",
         "*.js",
         "*.jsx"
-      ],
-      "rules": {
-        "@nrwl/nx/enforce-module-boundaries": [
-          "error",
-          {
-            "enforceBuildableLibDependency": true,
-            "allow": [],
-            "depConstraints": [
-              {
-                "sourceTag": "*",
-                "onlyDependOnLibsWithTags": [
-                  "*"
-                ]
-              }
-            ]
-          }
-        ]
-      }
+      ]
     }
   ]
 }

@@ -3,6 +3,7 @@ import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { Field, FieldMessages } from '@blueriq/core';
 import { computeFirstDayOfWeek } from '@shared/date/bq-date-parser';
+import * as moment from 'moment';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
 import { MomentTransformer } from '../moment-transformer';
 import { dateTimeFormatProvider } from './datetimepicker.owl';
@@ -28,7 +29,7 @@ export class DateTimepickerComponent {
   firstDayOfWeek: number;
 
   constructor(public field: Field,
-              private form: BlueriqFormBuilder,
+              private readonly form: BlueriqFormBuilder,
               session: BlueriqSession) {
     this.firstDayOfWeek = computeFirstDayOfWeek(session.localization);
   }
@@ -42,7 +43,7 @@ export class DateTimepickerComponent {
    * @param event the change event that contains the user input date and (if valid) the transformed date
    * object (a Moment instance)
    */
-  formatOnChange(event: any): void {
+  formatOnChange(event: { value: moment.Moment | undefined; source: { value: unknown } }): void {
     if (event.value) {
       event.source.value = event.value;
     }
