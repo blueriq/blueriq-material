@@ -92,7 +92,7 @@ node {
         },
         'eslint': {
           // eslint
-          bat 'node_modules\\.bin\\eslint -c src/eslint.json -t checkstyle -p src/tsconfig.app.json -p src/tsconfig.spec.json -o eslint_results_checkstyle.xml'
+          bar 'yarn eslint --output-file eslint_results_checkstyle.xml'
         },
         'stylelint': {
           // stylelint
