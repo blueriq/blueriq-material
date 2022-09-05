@@ -44,7 +44,7 @@
         "@angular-eslint/no-host-metadata-property": "error",
         "@angular-eslint/no-input-rename": "off",
         "@angular-eslint/no-inputs-metadata-property": "off",
-        "@angular-eslint/no-output-rename": "off",
+        "@angular-eslint/no-output-rename": "error",
         "@angular-eslint/no-outputs-metadata-property": "error",
         "@angular-eslint/use-lifecycle-interface": "error",
         "@angular-eslint/use-pipe-transform-interface": "error",
@@ -200,14 +200,7 @@
         "*.spec.ts"
       ],
       "rules": {
-        "@angular-eslint/component-selector": "off",
-        "@angular-eslint/component-class-suffix": "off",
-        "@typescript-eslint/no-shadow": "off",
-        "no-restricted-imports": "off",
-        "@typescript-eslint/no-non-null-assertion": "off",
-        "@typescript-eslint/member-ordering": "off",
-        "@typescript-eslint/no-explicit-any": "off",
-        "@typescript-eslint/prefer-readonly": "off"
+        "@typescript-eslint/no-explicit-any": "off"
       }
     },
     {

@@ -1,4 +1,5 @@
 import { Component, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ThemePalette } from '@angular/material/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { BlueriqComponent, BlueriqSession, Task, TaskCollection } from '@blueriq/angular';
@@ -77,13 +78,13 @@ export class TaskListComponent implements OnInit, OnDestroy {
     return styles.hasAny(BqPresentationStyles.ONLYICON, BqPresentationStyles.DEPRECATED_ONLYICON);
   }
 
-  getColor(styles: PresentationStyles): string | null {
+  getColor(styles: PresentationStyles): ThemePalette | null {
     if (styles.has(BqPresentationStyles.PRIMARY)) {
       return 'primary';
     } else if (styles.has(BqPresentationStyles.ACCENT)) {
       return 'accent';
     } else if (styles.has(BqPresentationStyles.TERTIARY)) {
-      return 'tertiary';
+      return 'tertiary' as ThemePalette;
     }
     return null;
   }
