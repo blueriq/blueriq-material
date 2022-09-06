@@ -16,6 +16,8 @@ import { BqPresentationStyles } from '../BqPresentationStyles';
 })
 export class ButtonComponent {
 
+  anyMagNiet: any = '';
+
   constructor(public button: Button,
               @Optional() public readonly list: List) {
   }
