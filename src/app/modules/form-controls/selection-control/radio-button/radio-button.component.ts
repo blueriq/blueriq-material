@@ -22,7 +22,7 @@ export class RadioButtonComponent implements OnInit, OnUpdate {
   formControl = this.form.control(this.field, { syncOn: 'update', disableWhen: BqPresentationStyles.DISABLED });
 
   constructor(public field: Field,
-              private form: BlueriqFormBuilder,
+              private readonly form: BlueriqFormBuilder,
               @Optional() public readonly list: List) {
   }
 

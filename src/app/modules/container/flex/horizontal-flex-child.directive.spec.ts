@@ -30,7 +30,6 @@ class MockFlexChildComponent {
 describe('HorizontalFlexChildDirective', () => {
   let parentTemplate: ContainerTemplate;
   let childTemplate: ContainerTemplate;
-  let component: MockFlexChildComponent;
   let fixture: ComponentFixture<MockFlexChildComponent>;
   let session: BlueriqTestSession;
 
@@ -55,7 +54,6 @@ describe('HorizontalFlexChildDirective', () => {
     );
     session = BlueriqSessionTemplate.create().build(parentTemplate);
     fixture = session.get(MockFlexParentComponent);
-    component = fixture.componentInstance;
   });
 
   it('should render child component', () => {

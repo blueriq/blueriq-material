@@ -90,9 +90,9 @@ node {
             currentBuild.result = 'UNSTABLE';
           }
         },
-        'tslint': {
-          // tslint
-          bat 'node_modules\\.bin\\tslint -c src/tslint.json -t checkstyle -p src/tsconfig.app.json -p src/tsconfig.spec.json -o tslint_results_checkstyle.xml'
+        'eslint': {
+          // eslint
+          bat 'yarn eslint --format checkstyle --output-file eslint_results_checkstyle.xml'
         },
         'stylelint': {
           // stylelint

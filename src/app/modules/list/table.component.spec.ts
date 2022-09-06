@@ -21,7 +21,6 @@ import { ReadonlyModule } from '../readonly/readonly.module';
 import { TextItemModule } from '../textitem/textitem.module';
 import { ListComponent } from './list.component';
 import { ListModule } from './list.module';
-import { TableComponent } from './table.component';
 
 describe('TableComponent', () => {
   let tableTemplate: ContainerTemplate;

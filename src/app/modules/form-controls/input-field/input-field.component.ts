@@ -5,7 +5,7 @@ import { Field, FieldMessages } from '@blueriq/core';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
 
 @Directive()
-// tslint:disable-next-line:directive-class-suffix
+// eslint-disable-next-line @angular-eslint/directive-class-suffix
 export class InputFieldComponent implements OnUpdate {
 
   formControl = this.form.control(this.field, { updateOn: 'blur', disableWhen: BqPresentationStyles.DISABLED });
@@ -15,7 +15,7 @@ export class InputFieldComponent implements OnUpdate {
   placeholder: string;
   inputType = 'text';
 
-  constructor(public field: Field, private form: BlueriqFormBuilder) {
+  constructor(public field: Field, private readonly form: BlueriqFormBuilder) {
     this.determinePlaceholder();
   }
 

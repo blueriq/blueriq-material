@@ -27,7 +27,7 @@ export class SlideToggleComponent {
   });
 
   constructor(public field: Field,
-              private form: BlueriqFormBuilder,
+              private readonly form: BlueriqFormBuilder,
               @Optional() public readonly list: List) {
   }
 

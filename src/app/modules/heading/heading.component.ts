@@ -15,7 +15,7 @@ export class HeadingComponent {
   @Input()
   styles: PresentationStyles;
 
-  constructor(private blueriqSession: BlueriqSession) {
+  constructor(private readonly blueriqSession: BlueriqSession) {
   }
 
   get isWidget(): boolean {

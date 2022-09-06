@@ -21,7 +21,7 @@ export class DocumentLinkComponent implements OnDestroy {
 
   constructor(@Self() public documentLink: DocumentLink,
               public container: Container,
-              private fileDownloadService: FileDownloadService) {
+              private readonly fileDownloadService: FileDownloadService) {
   }
 
   onClick(): void {

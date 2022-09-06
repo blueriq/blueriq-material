@@ -19,7 +19,7 @@ export class LoadingComponent implements OnInit {
 
   state$: Observable<'starting' | 'loading' | 'idle'>;
 
-  constructor(private loadingActivity: GlobalLoadingActivity) {
+  constructor(private readonly loadingActivity: GlobalLoadingActivity) {
   }
 
   ngOnInit(): void {
@@ -28,9 +28,7 @@ export class LoadingComponent implements OnInit {
     const fieldRefresh$ = this.loadingActivity.isActiveWithDelay(ActivityType.FieldRefresh, 400);
 
     this.state$ = combineLatest([startingSession$, interaction$, fieldRefresh$]).pipe(
-      map(([isStarting, interaction, fieldRefresh]) => {
-        return isStarting ? 'starting' : interaction || fieldRefresh ? 'loading' : 'idle';
-      }),
+      map(([isStarting, interaction, fieldRefresh]) => isStarting ? 'starting' : interaction || fieldRefresh ? 'loading' : 'idle'),
     );
   }
 }

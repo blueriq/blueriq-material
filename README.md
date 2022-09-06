@@ -14,7 +14,7 @@ Run `yarn build` to build the project. The build artifacts will be stored in the
 Run `yarn test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
 ## Running lints
-Run `yarn lint` to execute the lints via [tslint](https://palantir.github.io/tslint/rules/).
+Run `yarn lint` to execute the lints via eslint
 
 ## All together
 Run `yarn verify:all` to run all linting and tests with code-coverage

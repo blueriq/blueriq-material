@@ -20,9 +20,9 @@ export class FlexColumnDirective implements OnChanges, OnDestroy {
   @Input()
   bqElement: Element;
 
-  constructor(private renderer: Renderer2,
-              private listeners: BlueriqListeners,
-              @Self() private bqElementDirective: BqElementDirective) {
+  constructor(private readonly renderer: Renderer2,
+              private readonly listeners: BlueriqListeners,
+              @Self() private readonly bqElementDirective: BqElementDirective) {
   }
 
   ngOnChanges(changes: SimpleChanges): void {

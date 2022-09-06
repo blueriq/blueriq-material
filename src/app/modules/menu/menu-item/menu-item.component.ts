@@ -32,15 +32,17 @@ export class MenuItemComponent {
     const lastIndex = this.inputs.length - 1;
     const previousIndex = index - 1;
     const nextIndex = index + 1;
+    let newIndex = nextIndex;
 
     switch (event.key) {
       case 'ArrowUp':
-        index === 0 ? this.focusElement(menuItems, lastIndex) : this.focusElement(menuItems, previousIndex);
+        newIndex = index === 0 ? lastIndex : previousIndex;
         break;
       case 'ArrowDown':
-        index === lastIndex ? this.focusElement(menuItems, 0) : this.focusElement(menuItems, nextIndex);
+        newIndex = index === lastIndex ? 0 : nextIndex;
         break;
     }
+    this.focusElement(menuItems, newIndex);
   }
 
   public focusElement(elementArray: Element[], index: number) {

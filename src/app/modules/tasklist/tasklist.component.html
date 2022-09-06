@@ -19,7 +19,7 @@
           <button (click)="buttonPressed(column.action, task.identifier)"
             *ngIf="isIconButton(column.styles)"
             [color]="getColor(column.styles)"
-            [disabled]="task.caseLocked || task.status != 'open'"
+            [disabled]="task.caseLocked || task.status !== 'open'"
             bqClasses [bqClassesStyles]="column.styles"
             mat-icon-button>
             <mat-icon [bqIcon]="column.styles"></mat-icon>
@@ -27,7 +27,7 @@
           <button (click)="buttonPressed(column.action, task.identifier)"
             *ngIf="!isIconButton(column.styles)"
             [color]="getColor(column.styles)"
-            [disabled]="task.caseLocked || task.status != 'open'"
+            [disabled]="task.caseLocked || task.status !== 'open'"
             bqClasses [bqClassesStyles]="column.styles"
             mat-button>
             <mat-icon [bqIcon]="column.styles"></mat-icon>
@@ -43,7 +43,7 @@
 
   </table>
 
-  <div *ngIf="taskDataSource.data.length == 0" class="no-results-text">
+  <div *ngIf="taskDataSource.data.length === 0" class="no-results-text">
     {{noResultsText}}
   </div>
 

@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate } from '@blueriq/core/testing';
-import { BqContainerDirective } from '@shared/directive/container/bq-container.directive';
 import { BqContentStyles } from '../../../modules/BqContentStyles';
 import { BqPresentationStyles } from '../../../modules/BqPresentationStyles';
 import { ContainerComponent } from '../../../modules/container/container.component';
@@ -11,7 +10,6 @@ import { ContainerModule } from '../../../modules/container/container.module';
 describe('BqContainerDirective', () => {
 
   let template: ContainerTemplate;
-  let component: ContainerComponent;
   let fixture: ComponentFixture<ContainerComponent>;
   let session: BlueriqTestSession;
 
@@ -29,7 +27,6 @@ describe('BqContainerDirective', () => {
     template = ContainerTemplate.create().displayName('UserData');
     session = BlueriqSessionTemplate.create().build(template);
     fixture = session.get(ContainerComponent);
-    component = fixture.componentInstance;
     fixture.autoDetectChanges();
   });
 

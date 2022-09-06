@@ -7,6 +7,11 @@ import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { DomainValue, Field, FieldMessages } from '@blueriq/core';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
 
+interface ChiplistValue {
+  value: string;
+  displayValue: string;
+}
+
 @Component({
   selector: 'bq-chiplist',
   templateUrl: './chiplist.component.html',
@@ -20,7 +25,7 @@ import { BqPresentationStyles } from '../../BqPresentationStyles';
 export class ChiplistComponent implements OnInit, OnUpdate {
 
   separatorKeysCodes = [ENTER, TAB, COMMA];
-  values: { value: string, displayValue: string }[];
+  values: ChiplistValue[];
   formControl = this.form.control(this.field, { syncOn: 'blur', disableWhen: BqPresentationStyles.DISABLED });
   filteredDomainOptions: DomainValue[] = [];
 
@@ -28,8 +33,8 @@ export class ChiplistComponent implements OnInit, OnUpdate {
   inputField: ElementRef;
 
   constructor(public field: Field,
-              private session: BlueriqSession,
-              private form: BlueriqFormBuilder) {
+              private readonly session: BlueriqSession,
+              private readonly form: BlueriqFormBuilder) {
   }
 
   ngOnInit() {
@@ -47,7 +52,7 @@ export class ChiplistComponent implements OnInit, OnUpdate {
     this.values = this.field.listValue.map(lv => this.findDomainValueByValue(lv));
   }
 
-  findDomainValueByValue(value: string): { value: string, displayValue: string } {
+  findDomainValueByValue(value: string): { value: string; displayValue: string } {
     const displayValue = this.field.domain.getDisplayValue(value);
     return { value, displayValue: displayValue || value };
   }
@@ -103,7 +108,7 @@ export class ChiplistComponent implements OnInit, OnUpdate {
   /**
    * Remove the item from the values list based on value
    * */
-  remove(value: any): void {
+  remove(value: ChiplistValue): void {
     const index = this.values.indexOf(value);
     if (index >= 0) {
       this.values.splice(index, 1);
