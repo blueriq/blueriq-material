@@ -92,7 +92,7 @@ node {
         },
         'eslint': {
           // eslint
-          bar 'yarn eslint --format checkstyle --output-file eslint_results_checkstyle.xml'
+          bat 'yarn eslint --format checkstyle --output-file eslint_results_checkstyle.xml'
         },
         'stylelint': {
           // stylelint
