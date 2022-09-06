@@ -83,10 +83,9 @@ export class TaskListComponent implements OnInit, OnDestroy {
       return 'primary';
     } else if (styles.has(BqPresentationStyles.ACCENT)) {
       return 'accent';
-    } else if (styles.has(BqPresentationStyles.TERTIARY)) {
-      return 'tertiary' as ThemePalette;
+    } else {
+      return null;
     }
-    return null;
   }
 
   /** sends a button pressed event to the backend */
