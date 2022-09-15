@@ -3,33 +3,21 @@
     <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filter">
   </mat-form-field>
 
-  <table [dataSource]="taskDataSource" mat-table matSort [matSortActive]="defaultSort.active"
-    [matSortDirection]="defaultSort.direction" matSortDisableClear="true">
+  <table [dataSource]="taskDataSource" mat-table matSort [matSortActive]="defaultSort.active" [matSortDirection]="defaultSort.direction" matSortDisableClear="true">
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
 
     <ng-container *ngFor="let column of taskList.columnDefinitions" [matColumnDef]="column.identifier">
-      <th *matHeaderCellDef [disabled]="!!column.action" mat-header-cell
-        [mat-sort-header]="column.identifier">{{column.header}}</th>
+      <th *matHeaderCellDef [disabled]="!!column.action" mat-header-cell [mat-sort-header]="column.identifier">{{column.header}}</th>
       <td *matCellDef="let task" mat-cell>
       <span *ngIf="!column.action" bqClasses [bqClassesStyles]="column.styles">
         {{getCellData(task, column)}}
       </span>
         <ng-container *ngIf="column.action">
-          <button (click)="buttonPressed(column.action, task.identifier)"
-            *ngIf="isIconButton(column.styles)"
-            [color]="getColor(column.styles)"
-            [disabled]="task.caseLocked || task.status != 'open'"
-            bqClasses [bqClassesStyles]="column.styles"
-            mat-icon-button>
+          <button (click)="buttonPressed(column.action, task.identifier)" *ngIf="isIconButton(column.styles)" [color]="getColor(column.styles)" [disabled]="btnIsDisabled(column.action, task.identifier)" bqClasses [bqClassesStyles]="column.styles" mat-icon-button>
             <mat-icon [bqIcon]="column.styles"></mat-icon>
           </button>
-          <button (click)="buttonPressed(column.action, task.identifier)"
-            *ngIf="!isIconButton(column.styles)"
-            [color]="getColor(column.styles)"
-            [disabled]="task.caseLocked || task.status != 'open'"
-            bqClasses [bqClassesStyles]="column.styles"
-            mat-button>
+          <button (click)="buttonPressed(column.action, task.identifier)" *ngIf="!isIconButton(column.styles)" [color]="getColor(column.styles)" [disabled]="btnIsDisabled(column.action, task.identifier)" bqClasses [bqClassesStyles]="column.styles" mat-button>
             <mat-icon [bqIcon]="column.styles"></mat-icon>
             {{ column.action.caption }}
           </button>
@@ -38,8 +26,7 @@
     </ng-container>
 
     <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
-    <tr *matRowDef="let row; columns: displayedColumns;"
-      mat-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
 
   </table>
 
@@ -47,9 +34,6 @@
     {{noResultsText}}
   </div>
 
-  <mat-paginator
-    [pageSizeOptions]="[5, 10, 20]"
-    [pageSize]="taskList.pagingSize"
-    showFirstLastButtons></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="taskList.pagingSize" showFirstLastButtons></mat-paginator>
 
 </div>

@@ -16,6 +16,7 @@ import { TaskListModule } from './tasklist.module';
 
 describe('Task List Component', () => {
   let taskListTemplate: ContainerTemplate;
+  let taskListReadOnly: ContainerTemplate;
   let component: ComponentFixture<TaskListComponent>;
   let taskService: jasmine.SpyObj<TaskService>;
   let taskList: jasmine.SpyObj<TaskList>;
@@ -47,29 +48,29 @@ describe('Task List Component', () => {
 
     taskListTemplate.children(
       ContainerTemplate
-        .create('cell')
-        .contentStyle('header_cell')
-        .properties({
-          type: 'TASKDATA',
-          identifier: 'displayname',
-          dataType: 'text',
-        })
-        .children(
-          TextItemTemplate.create('Name').plainText('Name'),
-        ),
+      .create('cell')
+      .contentStyle('header_cell')
+      .properties({
+        type: 'TASKDATA',
+        identifier: 'displayname',
+        dataType: 'text',
+      })
+      .children(
+        TextItemTemplate.create('Name').plainText('Name'),
+      ),
       ContainerTemplate
-        .create('cell')
-        .contentStyle('header_cell')
-        .properties({
-          type: 'TASKDATA',
-          identifier: 'status',
-          dataType: 'text',
-        })
-        .children(
-          TextItemTemplate.create('Status').plainText('Status'),
-        ),
+      .create('cell')
+      .contentStyle('header_cell')
+      .properties({
+        type: 'TASKDATA',
+        identifier: 'status',
+        dataType: 'text',
+      })
+      .children(
+        TextItemTemplate.create('Status').plainText('Status'),
+      ),
       ContainerTemplate
-        .create('cell')
+      .create('cell')
       .contentStyle('header_cell')
       .properties({
         type: 'CUSTOMFIELD',
@@ -105,6 +106,43 @@ describe('Task List Component', () => {
       ),
     );
 
+    taskListReadOnly = ContainerTemplate.create();
+    taskListReadOnly.contentStyle('tasklist');
+    taskListReadOnly.children(
+      ContainerTemplate
+      .create('cell')
+      .contentStyle('header_cell')
+      .properties({
+        type: 'TASKDATA',
+        identifier: 'displayname',
+        dataType: 'text',
+
+      })
+      .children(
+        TextItemTemplate.create('Name').plainText('Name'),
+      ),
+      ContainerTemplate
+      .create('cell')
+      .contentStyle('header_cell')
+      .properties({
+        type: 'TASKDATA',
+        identifier: 'status',
+        dataType: 'text',
+      })
+      .children(
+        TextItemTemplate.create('Status').plainText('Status'),
+      ),
+      ContainerTemplate
+      .create('cell')
+      .contentStyle('header_cell')
+      .properties({
+        type: 'ACTION',
+        identifier: 'actionButton',
+      })
+      .children(
+        ButtonTemplate.create('button').caption('Klik op mij Disabled').disabled(),
+      ),
+    );
     const taskCollection: TaskCollection = {
       containerIdentifier: 'testcontainer',
       taskModels: [
@@ -124,13 +162,20 @@ describe('Task List Component', () => {
           status: 'started',
           customFields: {},
         },
+        {
+          identifier: '456',
+          name: 'task3',
+          displayName: 'Taak 3',
+          status: 'open',
+          customFields: {},
+          caseLocked: true,
+        },
       ] as Task[],
     };
 
     taskService.getTaskCollection.and.returnValue(of(
       taskCollection));
   });
-
 
   describe('Task list', () => {
     it('should have a row with correct header content', () => {
@@ -154,7 +199,7 @@ describe('Task List Component', () => {
     it('should display content correctly', () => {
       buildComponent();
       const matRows = component.nativeElement.querySelectorAll('.mat-row');
-      expect(matRows.length).toBe(2);
+      expect(matRows.length).toBe(3);
 
       const firstRowColumns = matRows[0].querySelectorAll('.mat-cell');
       expect(firstRowColumns.length).toBe(5);
@@ -216,6 +261,61 @@ describe('Task List Component', () => {
       taskListTemplate.setProperty('pagingsize', '20');
       buildComponent();
       expect(component.componentInstance.taskList.pagingSize).toEqual(20);
+    });
+  });
+
+  describe('TaskList buttons disabled', () => {
+
+    it('should render all buttons disabled', () => {
+      const componentRO = BlueriqSessionTemplate.create().build(taskListReadOnly).get(TaskListComponent);
+      const matRowsReadOnly = componentRO.nativeElement.querySelectorAll('.mat-row');
+      const firstRowColumnsRO = matRowsReadOnly[0].querySelectorAll('.mat-cell');
+      const secondRowColumnsRO = matRowsReadOnly[1].querySelectorAll('.mat-cell');
+      const thirdRowColumnsRO = matRowsReadOnly[2].querySelectorAll('.mat-cell');
+
+      expect(firstRowColumnsRO.length).toBe(3);
+      expect(firstRowColumnsRO[0].innerText).toBe('Taak');
+      expect(firstRowColumnsRO[1].innerText).toBe('open');
+      expect(firstRowColumnsRO[2].innerText).toBe('Klik op mij Disabled');
+      expect(firstRowColumnsRO[2].children[0].disabled).toBeTruthy();
+
+      expect(secondRowColumnsRO.length).toBe(3);
+      expect(secondRowColumnsRO[0].innerText).toBe('Taak 2');
+      expect(secondRowColumnsRO[1].innerText).toBe('started');
+      expect(secondRowColumnsRO[2].innerText).toBe('Klik op mij Disabled');
+      expect(secondRowColumnsRO[2].children[0].disabled).toBeTruthy();
+
+      expect(thirdRowColumnsRO.length).toBe(3);
+      expect(thirdRowColumnsRO[0].innerText).toBe('Taak 3');
+      expect(thirdRowColumnsRO[1].innerText).toBe('open');
+      expect(thirdRowColumnsRO[2].innerText).toBe('Klik op mij Disabled');
+      expect(thirdRowColumnsRO[2].children[0].disabled).toBeTruthy();
+    });
+
+    it('should render some buttons disabled', () => {
+      component = BlueriqSessionTemplate.create().build(taskListTemplate).get(TaskListComponent);
+      const matRows = component.nativeElement.querySelectorAll('.mat-row');
+      const firstRowColumns = matRows[0].querySelectorAll('.mat-cell');
+      const secondRowColumns = matRows[1].querySelectorAll('.mat-cell');
+      const thirdRowColumns = matRows[2].querySelectorAll('.mat-cell');
+
+      expect(firstRowColumns.length).toBe(5);
+      expect(firstRowColumns[0].innerText).toBe('Taak');
+      expect(firstRowColumns[1].innerText).toBe('open');
+      expect(firstRowColumns[3].innerText).toBe('Klik op mij');
+      expect(firstRowColumns[3].children[0].disabled).toBeFalsy();
+
+      expect(secondRowColumns.length).toBe(5);
+      expect(secondRowColumns[0].innerText).toBe('Taak 2');
+      expect(secondRowColumns[1].innerText).toBe('started');
+      expect(secondRowColumns[3].innerText).toBe('Klik op mij');
+      expect(secondRowColumns[3].children[0].disabled).toBeTruthy();
+
+      expect(thirdRowColumns.length).toBe(5);
+      expect(thirdRowColumns[0].innerText).toBe('Taak 3');
+      expect(thirdRowColumns[1].innerText).toBe('open');
+      expect(thirdRowColumns[3].innerText).toBe('Klik op mij');
+      expect(thirdRowColumns[3].children[0].disabled).toBeTruthy();
     });
   });
 
