@@ -15,7 +15,6 @@ describe('TabComponent', () => {
   let tabTemplate: ContainerTemplate;
   let session: BlueriqTestSession;
   let tabFixture: ComponentFixture<TabComponent>;
-  let tabComponent: TabComponent;
   let extraTab: ContainerTemplate;
   let tabField: FieldTemplate;
 
@@ -42,7 +41,6 @@ describe('TabComponent', () => {
     );
     session = BlueriqSessionTemplate.create().build(tabTemplate);
     tabFixture = session.get(TabComponent);
-    tabComponent = tabFixture.componentInstance;
   });
 
   it('should display the correct tab headers', () => {

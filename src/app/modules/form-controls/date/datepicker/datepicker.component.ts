@@ -25,7 +25,7 @@ export class DatepickerComponent {
   });
 
   constructor(public field: Field,
-              private form: BlueriqFormBuilder) {
+              private readonly form: BlueriqFormBuilder) {
   }
 
   getMessages(): FieldMessages {

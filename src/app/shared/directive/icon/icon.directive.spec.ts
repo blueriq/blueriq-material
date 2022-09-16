@@ -18,7 +18,6 @@ export class MockIconComponent {
 
 describe('IconDirective', () => {
 
-  let component: MockIconComponent;
   let fixture: ComponentFixture<MockIconComponent>;
   let element: any;
 
@@ -28,7 +27,6 @@ describe('IconDirective', () => {
       imports: [MatIconModule],
     }).compileComponents();
     fixture = TestBed.createComponent(MockIconComponent);
-    component = fixture.componentInstance;
     element = fixture.nativeElement;
     fixture.detectChanges();
   });

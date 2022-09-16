@@ -30,7 +30,6 @@ class MockFlexChildComponent {
 describe('FlexColumnDirective', () => {
   let parentTemplate: ContainerTemplate;
   let childTemplate: ContainerTemplate;
-  let component: MockFlexChildComponent;
   let fixture: ComponentFixture<MockFlexChildComponent>;
   let session: BlueriqTestSession;
 
@@ -55,7 +54,6 @@ describe('FlexColumnDirective', () => {
     );
     session = BlueriqSessionTemplate.create().build(parentTemplate);
     fixture = session.get(MockFlexParentComponent);
-    component = fixture.componentInstance;
   });
 
   it('should have no effect when the child is not a dashboard_column', () => {

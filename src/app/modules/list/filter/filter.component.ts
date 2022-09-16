@@ -30,7 +30,7 @@ export class FilterComponent implements OnInit {
 
   filterCandidates: FilterCandidate[];
   showUnknownLabel: string;
-  private filterDialog: MatDialogRef<any, any>;
+  private filterDialog: MatDialogRef<unknown, unknown>;
 
   constructor(public dialog: MatDialog) {
   }
@@ -70,7 +70,7 @@ export class FilterComponent implements OnInit {
     this.updateCandidates(this.filterCandidates.filter(candidate => candidate !== candidateToRemove));
   }
 
-  showFilter(dialog: TemplateRef<any>): void {
+  showFilter(dialog: TemplateRef<unknown>): void {
     this.filterDialog = this.dialog.open(dialog);
   }
 

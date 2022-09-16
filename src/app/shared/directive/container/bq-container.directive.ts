@@ -13,10 +13,10 @@ export class BqContainerDirective implements OnInit, OnDestroy {
   private _container: Container;
   private _subscription: Subscription | undefined;
 
-  constructor(private hostElement: ElementRef,
-              private blueriqSession: BlueriqSession,
-              private renderer: Renderer2,
-              private listeners: BlueriqListeners) {
+  constructor(private readonly hostElement: ElementRef,
+              private readonly blueriqSession: BlueriqSession,
+              private readonly renderer: Renderer2,
+              private readonly listeners: BlueriqListeners) {
   }
 
   /**

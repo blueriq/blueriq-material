@@ -12,7 +12,7 @@ export class ValidationEffect {
     tap(action => this.showSnackBar(action)),
   ), { dispatch: false });
 
-  constructor(private actions$: Actions, private snackBar: MatSnackBar) {
+  constructor(private readonly actions$: Actions, private readonly snackBar: MatSnackBar) {
   }
 
   private showSnackBar(action: InvalidFormAction): void {

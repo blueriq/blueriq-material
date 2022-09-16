@@ -5,12 +5,10 @@ import { AssetTemplate, ButtonTemplate, ContainerTemplate } from '@blueriq/core/
 import { ButtonModule } from '../../button/button.module';
 import { ListComponent } from '../list.component';
 import { ListModule } from '../list.module';
-import { TableLimitComponent } from './table.limit.component';
 
 describe('TableLimitComponent', () => {
   let session: BlueriqTestSession;
   let component: ComponentFixture<ListComponent>;
-  let tableLimitComponent: TableLimitComponent;
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
@@ -36,9 +34,6 @@ describe('TableLimitComponent', () => {
     const list = ContainerTemplate.create().children(table, header);
     session = BlueriqSessionTemplate.create().build(list);
     component = session.get(ListComponent);
-
-    tableLimitComponent = new TableLimitComponent();
-
   });
 
   it('should render', () => {

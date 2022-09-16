@@ -13,7 +13,7 @@ export class FilterCandidate {
     }
   }
 
-  update(value: { predicate: FilterPredicate, valid: boolean }): void {
+  update(value: { predicate: FilterPredicate; valid: boolean }): void {
     this.predicate = value.predicate;
     this.valid = value.valid;
   }

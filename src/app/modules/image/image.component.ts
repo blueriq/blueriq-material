@@ -15,10 +15,10 @@ import { Subscription } from 'rxjs';
 export class ImageComponent {
 
   imageInfo: ImageInfo;
-  private imageInfoSubscription: Subscription;
+  private readonly imageInfoSubscription: Subscription;
 
   constructor(public image: Image,
-              private imageResource: ImageResource) {
+              private readonly imageResource: ImageResource) {
 
     this.imageInfoSubscription = this.imageResource.getImageInfo().subscribe((info: ImageInfo) => {
       this.imageInfo = info;

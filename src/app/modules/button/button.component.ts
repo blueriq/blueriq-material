@@ -1,4 +1,5 @@
 import { Component, Optional } from '@angular/core';
+import { ThemePalette } from '@angular/material/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { List } from '@blueriq/angular/lists';
 import { Button } from '@blueriq/core';
@@ -40,7 +41,7 @@ export class ButtonComponent {
     return BqIconDirective.hasIcon(this.button.styles);
   }
 
-  getColor(): string | null {
+  getColor(): ThemePalette | null {
     if (this.button.styles.has(BqPresentationStyles.PRIMARY)) {
       return 'primary';
     } else if (this.button.styles.has(BqPresentationStyles.ACCENT)) {

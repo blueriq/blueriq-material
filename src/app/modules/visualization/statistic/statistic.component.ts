@@ -9,10 +9,10 @@ type ChartType = 'pie' | 'doughnut' | 'bar' | 'line' | 'radar' | 'polarArea';
 
 interface ChartData {
   datasets: {
-    data: string[],
-    backgroundColor: string | string[],
-    borderColor?: string,
-    fill?: boolean
+    data: string[];
+    backgroundColor: string | string[];
+    borderColor?: string;
+    fill?: boolean;
   }[];
   labels: string[];
 }
@@ -20,29 +20,29 @@ interface ChartData {
 interface ChartOptions {
   responsive: boolean;
   legend: {
-    position: string,
-    display: boolean,
+    position: string;
+    display: boolean;
     labels: {
-      boxWidth: number,
-      fontSize: number,
-      fontColor: string,
-      padding: number
-    }
+      boxWidth: number;
+      fontSize: number;
+      fontColor: string;
+      padding: number;
+    };
   };
   animation: {
-    duration: number
+    duration: number;
   };
   scale?: {
     ticks: {
-      beginAtZero: boolean
-    }
+      beginAtZero: boolean;
+    };
   };
   scales?: {
     yAxes: {
       ticks: {
-        beginAtZero: boolean
-      }
-    }[]
+        beginAtZero: boolean;
+      };
+    }[];
   };
 }
 
@@ -59,26 +59,27 @@ export class StatisticComponent implements AfterViewInit, OnDestroy {
   chart: Chart | null = null;
 
   @ViewChild('canvas', { static: true })
-  private canvas: ElementRef;
+  private readonly canvas: ElementRef;
+
   @ViewChild('chart', { static: true })
-  private chartDiv: ElementRef;
+  private readonly chartDiv: ElementRef;
   private hasData = false;
   // These colors are based on the color palette from our theme, but transparent
-  private colors: string[] = [
+  private readonly colors: string[] = [
     'rgba(0, 119, 229, 0.65)', 'rgba(120,59,149, 0.65)', 'rgba(120,55,215, 0.65)',
     'rgba(0,120,130, 0.65)', 'rgba(0,164,130, 0.65)', 'rgba(42,191,173, 0.65)',
     'rgba(220,66,80, 0.65)', 'rgba(248,121, 0.65)', 'rgba(248,193,75, 0.65)',
   ];
 
-  private animationLength = 800;
-  private boxWidth = 10;
-  private fontSize = 10;
-  private fontColor = '#666';
-  private padding = 5;
+  private readonly animationLength = 800;
+  private readonly boxWidth = 10;
+  private readonly fontSize = 10;
+  private readonly fontColor = '#666';
+  private readonly padding = 5;
 
   constructor(public container: Container,
               public statistics: Statistics,
-              private renderer: Renderer2) {
+              private readonly renderer: Renderer2) {
   }
 
   ngAfterViewInit(): void {
@@ -104,7 +105,7 @@ export class StatisticComponent implements AfterViewInit, OnDestroy {
   }
 
   getOptions(): ChartOptions {
-    const options: any = {
+    const options: ChartOptions = {
       responsive: true,
       legend: {
         position: 'bottom',
