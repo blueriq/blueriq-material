@@ -119,9 +119,9 @@ export class TaskListComponent implements OnInit, OnDestroy {
     }
   }
 
-  btnIsDisabled(button: Button, taskIdentifier: string): boolean {
-    const tasks: TaskCollection = this.taskList.tasks$.getValue();
-    const task: Task | undefined = tasks.taskModels.find(t => t.identifier === taskIdentifier);
+  isDisabled(button: Button, taskIdentifier: string): boolean {
+    const tasks = this.taskList.tasks$.getValue();
+    const task = tasks.taskModels.find(t => t.identifier === taskIdentifier);
     return button.disabled || task?.status !== 'open' || this.taskIsLocked(task);
   }
 

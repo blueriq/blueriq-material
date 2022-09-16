@@ -266,7 +266,7 @@ describe('Task List Component', () => {
 
   describe('TaskList buttons disabled', () => {
 
-    it('should render all buttons disabled', () => {
+    it('should render all buttons disabled when tasklist isreadonly', () => {
       const componentRO = BlueriqSessionTemplate.create().build(taskListReadOnly).get(TaskListComponent);
       const matRowsReadOnly = componentRO.nativeElement.querySelectorAll('.mat-row');
       const firstRowColumnsRO = matRowsReadOnly[0].querySelectorAll('.mat-cell');
@@ -292,7 +292,7 @@ describe('Task List Component', () => {
       expect(thirdRowColumnsRO[2].children[0].disabled).toBeTruthy();
     });
 
-    it('should render some buttons disabled', () => {
+    it('should render some buttons disabled when tasklist is NOT readonly', () => {
       component = BlueriqSessionTemplate.create().build(taskListTemplate).get(TaskListComponent);
       const matRows = component.nativeElement.querySelectorAll('.mat-row');
       const firstRowColumns = matRows[0].querySelectorAll('.mat-cell');
