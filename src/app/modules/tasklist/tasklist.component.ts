@@ -113,9 +113,22 @@ export class TaskListComponent implements OnInit, OnDestroy {
     for (const columnDef of this.taskList.columnDefinitions) {
       if (columnDef.sorting !== undefined) {
         this.defaultSort.active = columnDef.identifier;
-        this.defaultSort.direction =  columnDef.sorting;
+        this.defaultSort.direction = columnDef.sorting;
         break;
       }
     }
+  }
+
+  isDisabled(button: Button, taskIdentifier: string): boolean {
+    const tasks = this.taskList.tasks$.getValue();
+    const task = tasks.taskModels.find(t => t.identifier === taskIdentifier);
+    return button.disabled || task?.status !== 'open' || this.taskIsLocked(task);
+  }
+
+  private taskIsLocked(task: Task | undefined): boolean {
+    if (task?.caseLocked !== undefined) {
+      return task?.caseLocked;
+    }
+    return false;
   }
 }
