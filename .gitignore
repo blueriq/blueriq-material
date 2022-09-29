@@ -5,6 +5,9 @@
 /dist-server
 /tmp
 /out-tsc
+cypress/videos
+cypress/screenshots
+cypress/snapshots/**/*.diff.png
 
 # dependencies
 /node_modules
@@ -41,11 +44,6 @@ release.properties
 eslint_results_checkstyle.xml
 3rd-party-licenses.txt
 .npmrc
-
-# e2e
-/e2e/*.js
-!/e2e/protractor.conf.js
-/e2e/*.map
 
 # System Files
 .DS_Store

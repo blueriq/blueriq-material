@@ -1,0 +1,93 @@
+#!groovy
+
+properties([
+  [
+    $class  : 'BuildDiscarderProperty',
+    strategy: [$class: 'LogRotator', numToKeepStr: '5']
+  ],
+  parameters([
+    gitParameter(name: 'BRANCH_NAME', defaultValue: 'master', selectedValue: 'DEFAULT', type: 'PT_BRANCH'),
+  ])
+])
+node {
+  try {
+    env.JAVA_HOME = tool 'jdk-17.0.1';
+    def mvnHome = tool "apache-maven-3.6.0";
+    def nodeHome = tool 'node-14.17.0'
+    env.PATH = "${env.JAVA_HOME}\\bin;${mvnHome}\\bin;${nodeHome};${env.PATH}";
+    env.COMPOSE_PROJECT_NAME = "material-e2e-cypress";
+
+    stage('checkout') {
+      checkout scm;
+      bat "git checkout ${params.BRANCH_NAME}";
+    }
+
+    stage('install tools') {
+      bat 'tools/_install-tools.bat'
+      env.ANT_HOME = "${pwd()}\\tools\\apache-ant-1.10.3"
+      env.PATH = "${env.ANT_HOME}\\bin;${env.PATH}"
+    }
+
+    stage('build') {
+      withCredentials([file(credentialsId: 'npmrc_file', variable: 'npmrc_file')]) {
+        bat "ant -f scripts/docker/build.xml build " +
+          "-Ddocker.host=bq-build-lin.blueriq.local " +
+          "-Dcommit=${env.GIT_COMMIT} " +
+          "-DisRelease=false " +
+          "-DnpmrcFileLocation=${npmrc_file}"
+      }
+    }
+
+    stage('docker prepare') {
+      withCredentials([file(credentialsId: 'BLUERIQ_LICENSE_15', variable: 'license_file')]) {
+        writeFile file: './cypress/docker/config/license.aql', text: readFile(license_file)
+      }
+      bat "yarn e2e:docker-prepare";
+    }
+
+    try {
+      stage('e2e tests') {
+        withCredentials([file(credentialsId: 'npmrc_file', variable: 'npmrc_file')]) {
+          bat "ant -f scripts/docker/e2e.xml run " +
+            "-Ddocker.host=bq-docker-lin.blueriq.local " +
+            "-Dcommit=${env.GIT_COMMIT} " +
+            "-DnpmrcFileLocation=${npmrc_file}"
+        }
+      }
+    }
+    finally {
+      stage('docker down') {
+        bat "yarn e2e:docker-down";
+      }
+    }
+  } catch (anyException) {
+    echo "An error occured (${anyException}) marking build as failed.";
+    currentBuild.result = 'FAILURE';
+  } finally {
+    stage("Publish results") {
+      // Test results
+      step([$class: 'JUnitResultArchiver', testResults: 'results/cypress-report.xml', allowEmptyResults: true])
+
+      // archive integration outputs
+      archiveArtifacts artifacts: 'videos/*, screenshots/**/*, snapshots/**/*.diff.png, tmp/e2e-logs.txt'
+    }
+    notifyBuildStatus();
+    deleteDir();
+  }
+}// node
+
+def notifyBuildStatus() {
+  // notify the person who started the build and the persons who's commits broke the build
+  step([$class                  : 'Mailer',
+        notifyEveryUnstableBuild: true,
+        recipients              : emailextrecipients([
+          [$class: 'CulpritsRecipientProvider'],
+          [$class: 'RequesterRecipientProvider']
+        ])
+  ]);
+
+  step([$class                  : 'Mailer',
+        notifyEveryUnstableBuild: true,
+        sendToIndividuals       : true
+  ]);
+}
