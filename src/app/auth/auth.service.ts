@@ -41,12 +41,10 @@ export class AuthService {
         if (returnPath !== null) {
           returnUrl += `?returnPath=${ encodeURIComponent(returnPath) }`;
         }
-        let token;
-        if (response.id_token_hint) {
-          token = response.id_token_hint;
-        }
         let ssoLogoutString = this.addReturnPath(response.ssoLogoutUrl, returnUrl);
-        ssoLogoutString = this.addIdToken(token, ssoLogoutString);
+        if (response.id_token_hint) {
+          ssoLogoutString = this.addIdToken(response.id_token_hint, ssoLogoutString);
+        }
         this.document.location.href = ssoLogoutString;
       } else {
         this.router.navigate(['/logged-out'], { queryParams: { returnPath } });
@@ -73,7 +71,8 @@ export class AuthService {
   }
 
   private addIdToken(token: string, logoutUrl: string): string {
-    return `${ logoutUrl }&id_token_hint=${ token }`;
+    const joiner = logoutUrl.includes('?') ? '&' : '?';
+    return `${ logoutUrl }${ joiner }id_token_hint=${ token }`;
   }
 
   private prepareExternalUrl(path: string): string {
