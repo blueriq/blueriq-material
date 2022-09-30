@@ -20,8 +20,7 @@ Run `yarn lint` to execute the lints via eslint
 Run `yarn verify:all` to run all linting and tests with code-coverage
 
 ## Running end-to-end tests
-Run `yarn e2e:dev` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-If your dev server is not at `http://localhost:4200/`, pass `--baseUrl MY_DEV_URL` to Yarn. Replace `MY_DEV_URL` with the correct URL.
+Run `yarn e2e:dev` to execute the end-to-end tests via Cypress.
 
 ## Further help
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli).

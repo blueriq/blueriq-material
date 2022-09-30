@@ -22,8 +22,10 @@
     "stylelint": "stylelint src/**/*.scss",
     "verify": "ng test --watch false --code-coverage true",
     "verify:all": "yarn verify && yarn eslint && yarn stylelint",
-    "e2e": "yarn --ignore-engines protractor e2e/protractor.conf.js ",
-    "e2e:dev": "yarn webdriver-manager update && yarn protractor e2e/protractor-dev.conf.js",
+    "e2e:dev": "yarn e2e:docker-prepare && yarn start-server-and-test e2e:app:start 1337 \"cypress open --config baseUrl=http://localhost:1337\"",
+    "e2e:app:start": "ng serve --port 1337 --proxy-config proxy-e2e.conf.js",
+    "e2e:docker-prepare": "cypress/docker/prepare.cmd",
+    "e2e:docker-down": "cypress/docker/destruct.cmd",
     "docs": "compodoc --config compodoc.json",
     "version:increment": "npm version --allow-same-version"
   },
@@ -88,6 +90,7 @@
     "codelyzer": "6.0.2",
     "eslint": "8.19.0",
     "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-no-only-tests": "3.0.0",
     "eslint-plugin-prefer-arrow": "1.2.3",
     "jasmine-core": "3.7.1",
     "jasmine-spec-reporter": "7.0.0",
@@ -97,14 +100,15 @@
     "karma-jasmine": "4.0.1",
     "karma-jasmine-html-reporter": "1.7.0",
     "karma-junit-reporter": "2.0.1",
-    "protractor": "7.0.0",
-    "protractor-jasmine2-html-reporter": "0.0.7",
+    "start-server-and-test": "1.14.0",
     "stylelint": "14.2.0",
     "stylelint-checkstyle-reporter": "0.2.0",
     "stylelint-config-standard-scss": "3.0.0",
     "ts-node": "9.1.1",
-    "typescript": "4.3.5",
-    "webdriver-manager": "12.1.8"
+    "typescript": "4.3.5"
+  },
+  "optionalDependencies": {
+    "cypress": "10.3.1"
   },
   "resolutions": {
     "eslint": "^4.18.2",

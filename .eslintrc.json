@@ -197,10 +197,15 @@
     },
     {
       "files": [
-        "*.spec.ts"
+        "*.spec.ts",
+        "*.cy.ts"
+      ],
+      "plugins": [
+        "no-only-tests"
       ],
       "rules": {
-        "@typescript-eslint/no-explicit-any": "off"
+        "@typescript-eslint/no-explicit-any": "off",
+        "no-only-tests/no-only-tests": "error"
       }
     },
     {
