@@ -31,6 +31,7 @@ import 'core-js/es/set';
 import 'core-js/es/string';
 import 'core-js/es/symbol';
 import 'core-js/es/weak-map';
+import 'core-js/es/weak-set';
 /**
  * Required to support EventSource in Edge
  * The built version only resides in the example folder, so this is intended
