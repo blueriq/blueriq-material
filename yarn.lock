@@ -1435,26 +1435,25 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
-"@blueriq/angular@0.13.3":
-  version "0.13.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/angular/-/@blueriq/angular-0.13.3.tgz#304ea61164384ce1093cb8f4adfad7f7f78982aa"
-  integrity sha1-ME6mEWQ4TOEJPLj0rfrX9/eJgqo=
+"@blueriq/angular@0.14.7":
+  version "0.14.7"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/angular/-/@blueriq/angular-0.14.7.tgz#e4426104b709ce8a19e33a4c014bb0112cdf3fa8"
+  integrity sha1-5EJhBLcJzooZ4zpMAUuwESzfP6g=
   dependencies:
-    stable "0.1.8"
     tslib "^2.2.0"
 
-"@blueriq/core@0.13.3":
-  version "0.13.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/core/-/@blueriq/core-0.13.3.tgz#c4b90fb3404b38c17dd4ff9966da144d0c5ef86a"
-  integrity sha1-xLkPs0BLOMF91P+ZZtoUTQxe+Go=
+"@blueriq/core@0.14.7":
+  version "0.14.7"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/core/-/@blueriq/core-0.14.7.tgz#394c376e449eaeeaac95032fc72b101beaedef20"
+  integrity sha1-OUw3bkSeruqslQMvxysQG+rt7yA=
   dependencies:
     css-selector-parser "1.3.0"
     tslib "^2.2.0"
 
-"@blueriq/devtools@0.13.3":
-  version "0.13.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/devtools/-/@blueriq/devtools-0.13.3.tgz#fe5e6b981c9e2489839fdff8bf435421d2310a40"
-  integrity sha1-/l5rmByeJImDn9/4v0NUIdIxCkA=
+"@blueriq/devtools@0.14.7":
+  version "0.14.7"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/devtools/-/@blueriq/devtools-0.14.7.tgz#edd6789a11b62e4f70d74b8235cfc8e2c6000280"
+  integrity sha1-7dZ4mhG2Lk9w10uCNc/I4sYAAoA=
   dependencies:
     tslib "^2.2.0"
 
@@ -10568,7 +10567,7 @@ ssri@^8.0.0, ssri@^8.0.1:
   dependencies:
     minipass "^3.1.1"
 
-stable@0.1.8, stable@^0.1.8:
+stable@^0.1.8:
   version "0.1.8"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/stable/-/stable-0.1.8.tgz#836eb3c8382fe2936feaf544631017ce7d47a3cf"
   integrity sha512-ji9qxRnOVfcuLDySj9qzhGSEFVobyt1kIOSkj1qZzYLzq7Tos/oUUWvotUPQLlrsidqsK6tBH89Bc9kL5zHA6w==

@@ -52,7 +52,7 @@ describe('MessagesEffect', () => {
       .pageModel(PageModelTemplate.create(PageTemplate.create().error(errorMsg))).build();
     sessionRegistry.register(session);
 
-    const action = new SessionLoadedAction('Main', '1', '2', 3, '', '', languageConf, [pageWithError.toJson()]);
+    const action = new SessionLoadedAction('Main', undefined, undefined, '1', '2', 3, '', '', languageConf, [pageWithError.toJson()], undefined);
     effects.sessionActions$.subscribe();
     actions.next(action);
 
@@ -69,7 +69,7 @@ describe('MessagesEffect', () => {
       .pageModel(PageModelTemplate.create(PageTemplate.create().error(errorMsg))).build();
     sessionRegistry.register(session);
 
-    const action = new SessionLoadedAction('Main', '1', '2', 3, '', '', languageConf, [pageWithError.toJson()]);
+    const action = new SessionLoadedAction('Main', undefined, undefined, '1', '2', 3, '', '', languageConf, [pageWithError.toJson()], undefined);
     effects.sessionActions$.subscribe();
     actions.next(action);
 
@@ -172,7 +172,7 @@ describe('MessagesEffect', () => {
   }));
 
   it('does not do anything when page has no errors or warnings', fakeAsync(() => {
-    const action = new SessionLoadedAction('Main', '1', '2', 60, '', '', languageConf, PageModelTemplate.create(PageTemplate.create()).toJson());
+    const action = new SessionLoadedAction('Main', undefined, undefined, '1', '2', 60, '', '', languageConf, PageModelTemplate.create(PageTemplate.create()).toJson(), undefined);
 
     effects.sessionActions$.subscribe();
     actions.next(action);
