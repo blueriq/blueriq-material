@@ -29,7 +29,7 @@
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>${project.build.outputDirectory}/webresources/angular/dist/</outputDirectory>
+							<outputDirectory>${project.build.outputDirectory}/webresources/angular/material/</outputDirectory>
 							<resources>
 								<resource>
 									<filtering>false</filtering>
