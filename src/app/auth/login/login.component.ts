@@ -28,7 +28,7 @@ export class LoginComponent {
       next: result => {
         if (result.success) {
           const returnPath = this.route.snapshot.queryParams['returnPath'];
-          this.router.navigate([returnPath || '/']);
+          this.router.navigateByUrl(returnPath || '/');
         } else {
           this.failed = true;
         }
