@@ -74,16 +74,16 @@ describe('TableSearchComponent', () => {
 
   it('should add a search term', () => {
     const searchInput = component.nativeElement.querySelector('input');
-    tableSearchComponent.add({ 'input': searchInput, 'value': 'term1' });
+    tableSearchComponent.add({ input: searchInput, chipInput: searchInput, value: 'term1' });
     expect(tableSearchComponent.searchTerms.length).toBe(1);
   });
 
   it('should not add a search term if a term with different casing is already present', () => {
     const searchInput = component.nativeElement.querySelector('input');
 
-    tableSearchComponent.add({ 'input': searchInput, 'value': 'term1' });
+    tableSearchComponent.add({ input: searchInput, chipInput: searchInput, value: 'term1' });
     expect(tableSearchComponent.searchTerms.length).toBe(1);
-    tableSearchComponent.add({ 'input': searchInput, 'value': 'TERM1' });
+    tableSearchComponent.add({ input: searchInput, chipInput: searchInput, value: 'TERM1' });
     expect(tableSearchComponent.searchTerms.length).toBe(1);
   });
 
@@ -108,9 +108,8 @@ describe('TableSearchComponent', () => {
     tableSearchComponent.searchTerms = ['term1', 'term2', 'term3'];
     const searchInput = component.nativeElement.querySelector('input');
 
-    tableSearchComponent.add({ 'input': searchInput, 'value': '' });
+    tableSearchComponent.add({ input: searchInput, chipInput: searchInput, value: '' });
     expect(tableSearchComponent.searchTerms.length).toBe(3);
-
   });
 
   function TableTemplate() {

@@ -24,7 +24,7 @@ export class DateFilterComponent {
 
   pickerType: 'calendar' | 'both';
   operator: DateOperator;
-  dateControl = new FormControl();
+  dateControl = new FormControl<moment.Moment | null>(null);
   showUnknown: boolean;
 
   @Input()
@@ -67,7 +67,7 @@ export class DateFilterComponent {
 
   private updateCandidate(): void {
     const { operator, dateControl, showUnknown } = this;
-    const date = dateControl.value as moment.Moment | null;
+    const date = dateControl.value;
     this._candidate.update({
       valid: showUnknown || !!date,
       predicate: {
