@@ -36,19 +36,11 @@ import 'core-js/es/weak-set';
  * Required to support EventSource in Edge
  * The built version only resides in the example folder, so this is intended
  */
-import 'eventsource/example/eventsource-polyfill';
-/**
- * Required to support Web Animations `@angular/platform-browser/animations`.
- * Needed for: All but Chrome, Firefox and Opera. http://caniuse.com/#feat=web-animation
- **/
-import 'web-animations-js'; // Run `npm install --save web-animations-js`.
+import 'eventsource/example/eventsource-polyfill'; // Run `npm install --save web-animations-js`.
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.
  */
 import 'zone.js'; // Included with Angular CLI.
-
-/** IE10 and IE11 requires the following for NgClass support on SVG elements */
-// import 'classlist.js';  // Run `npm install --save classlist.js`.
 
 /** IE10 and IE11 requires the following for the Reflect API. */
 // import 'core-js/es/reflect';

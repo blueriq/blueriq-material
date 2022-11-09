@@ -1,7 +1,7 @@
-@use '~@angular/material' as mat;
-@use '~@angular/cdk' as cdk;
+@use '@angular/material' as mat;
+@use '@angular/cdk' as cdk;
 @import 'globals/variables';
-@import '~@angular/material/theming';
+@import '@angular/material/theming';
 @import 'globals/images';
 
 .error-container {
