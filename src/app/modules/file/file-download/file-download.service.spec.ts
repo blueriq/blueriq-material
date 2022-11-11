@@ -5,7 +5,10 @@ import { FileDownloadService } from './file-download.service';
 describe('FileDownloadService', () => {
 
   beforeEach(() => {
-    const mockDocument = { location: { href: 'http://blueriq.com/current' } };
+    const mockDocument = {
+      location: { href: 'http://blueriq.com/current' },
+      querySelectorAll: document.querySelectorAll.bind(document),
+    };
     TestBed.configureTestingModule({
       providers: [
         FileDownloadService,

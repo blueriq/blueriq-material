@@ -24,11 +24,12 @@ describe('OpenIdConnectLoginGuard', () => {
     const auth = {
       prepareOidcReturnUrl: (returnPath: string) => `return-to-${returnPath}`,
     } as unknown as AuthService;
-    const document = {
+    const mockDocument = {
       location: {
         href: 'http://example.com',
         origin: 'http://example.com',
       },
+      querySelectorAll: document.querySelectorAll.bind(document),
     };
     openIdConnect = jasmine.createSpyObj<OpenIdConnectAuth>(['login']);
 
@@ -42,7 +43,7 @@ describe('OpenIdConnectLoginGuard', () => {
       providers: [
         { provide: AuthService, useFactory: () => auth },
         { provide: OpenIdConnectAuth, useFactory: () => openIdConnect },
-        { provide: DOCUMENT, useValue: document },
+        { provide: DOCUMENT, useValue: mockDocument },
       ],
       declarations: [
         TestComponent,

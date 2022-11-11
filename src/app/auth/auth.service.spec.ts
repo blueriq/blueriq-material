@@ -29,11 +29,12 @@ describe('AuthService', () => {
       login: jasmine.createSpy(),
       configuration: { enabled: false, logoutUrl: undefined },
     } as unknown as OpenIdConnectAuth;
-    const document = {
+    const mockDocument = {
       location: {
         href: 'http://example.com',
         origin: 'http://example.com',
       },
+      querySelectorAll: document.querySelectorAll.bind(document),
     };
 
     TestBed.configureTestingModule({
@@ -46,7 +47,7 @@ describe('AuthService', () => {
       providers: [
         { provide: BqAuthService, useFactory: () => blueriqAuth },
         { provide: OpenIdConnectAuth, useFactory: () => openIdConnect },
-        { provide: DOCUMENT, useValue: document },
+        { provide: DOCUMENT, useValue: mockDocument },
       ],
       declarations: [
         TestComponent,
