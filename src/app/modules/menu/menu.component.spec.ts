@@ -1,5 +1,5 @@
 import { DebugElement } from '@angular/core';
-import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,195 +12,178 @@ import { MenuComponent } from './menu.component';
 import { MenuModule } from './menu.module';
 
 describe('MenuComponent', () => {
-    let menu: ContainerTemplate;
-    let btnPublicA: ButtonTemplate;
-    let btnPublicB: ButtonTemplate;
-    let component: ComponentFixture<MenuComponent>;
-    let session: BlueriqTestSession;
+  let menu: ContainerTemplate;
+  let btnPublicA: ButtonTemplate;
+  let btnPublicB: ButtonTemplate;
+  let component: ComponentFixture<MenuComponent>;
+  let session: BlueriqTestSession;
 
-    beforeEach(async() => {
-      await TestBed.configureTestingModule({
-        imports: [
-          NoopAnimationsModule,
-          BlueriqTestingModule,
-          MenuModule,
-        ],
-      }).compileComponents();
-    });
+  beforeEach(async() => {
+    await TestBed.configureTestingModule({
+      imports: [
+        NoopAnimationsModule,
+        BlueriqTestingModule,
+        MenuModule,
+      ],
+    }).compileComponents();
+  });
 
-    beforeEach(() => {
-      menu = ContainerTemplate.create().contentStyle(BqContentStyles.DASHBOARD_MENU);
-      btnPublicA = ButtonTemplate.create('Public').caption('Public-A');
-      btnPublicB = ButtonTemplate.create('Public').caption('Public-B');
-      menu.children(
-        ContainerTemplate.create().contentStyle('menubar').children(
-          ButtonTemplate.create('Home').caption('Home'),
-          ContainerTemplate.create().displayName('Unit').children(
-            ButtonTemplate.create('Core').caption('Core'),
-            ButtonTemplate.create('Finance').caption('Finance').disabled(true),
-            ContainerTemplate.create().displayName('Public').children(
-              btnPublicA,
-              btnPublicB,
-            ),
+  beforeEach(() => {
+    menu = ContainerTemplate.create().contentStyle(BqContentStyles.DASHBOARD_MENU);
+    btnPublicA = ButtonTemplate.create('Public').caption('Public-A');
+    btnPublicB = ButtonTemplate.create('Public').caption('Public-B');
+    menu.children(
+      ContainerTemplate.create().contentStyle('menubar').children(
+        ButtonTemplate.create('Home').caption('Home'),
+        ContainerTemplate.create().displayName('Unit').children(
+          ButtonTemplate.create('Core').caption('Core'),
+          ButtonTemplate.create('Finance').caption('Finance').disabled(true),
+          ContainerTemplate.create().displayName('Public').children(
+            btnPublicA,
+            btnPublicB,
           ),
         ),
-      );
-      // reset field to default
-      session = BlueriqSessionTemplate.create().build(menu);
-      component = session.get(MenuComponent);
-    });
+      ),
+    );
+    // reset field to default
+    session = BlueriqSessionTemplate.create().build(menu);
+    component = session.get(MenuComponent);
+  });
 
-    it('buttons that are not a submenu should trigger the blueriq session pressed', (done) => {
-      // retrieve the trigger
-      const selectTrigger = component.debugElement.query(By.directive(MatMenuTrigger));
+  it('buttons that are not a submenu should trigger the blueriq session pressed', async() => {
+    // retrieve the trigger
+    const selectTrigger = component.debugElement.query(By.directive(MatMenuTrigger));
 
-      // click on the menu button (via the trigger) to display the submenu
-      selectTrigger.nativeElement.click();
+    // click on the menu button (via the trigger) to display the submenu
+    selectTrigger.nativeElement.click();
 
-      component.whenStable().then(() => {
-        spyOn(BlueriqSession.prototype, 'pressed').and.callThrough();
-        component.detectChanges();
-        const setSubMenu1 = component.debugElement.query(By.css('.mat-menu-content')).nativeElement;
-        const menuButtons = setSubMenu1.querySelectorAll('button:not(.mat-menu-item-submenu-trigger)');
-        expect(menuButtons.length).toBe(2);
-        menuButtons[0].click();
-        menuButtons[1].click(); // is disabled
-        expect(BlueriqSession.prototype.pressed).toHaveBeenCalledTimes(1);
-        done();
-      });
-    });
+    await component.whenStable();
+    spyOn(BlueriqSession.prototype, 'pressed').and.callThrough();
 
-    it('should display submenus when the menu button is clicked', () => {
-      // by default, no submenus are shown
-      const subMenu = component.debugElement.query(By.css('.mat-menu-content'));
-      expect(subMenu).toBeFalsy();
+    const setSubMenu1 = component.debugElement.query(By.css('.mat-menu-content')).nativeElement;
+    const menuButtons = setSubMenu1.querySelectorAll('button:not(.mat-menu-item-submenu-trigger)');
+    expect(menuButtons.length).toBe(2);
+    menuButtons[0].click();
+    menuButtons[1].click(); // is disabled
+    expect(BlueriqSession.prototype.pressed).toHaveBeenCalledTimes(1);
+  });
 
-      // retrieve the trigger
-      const selectTrigger = component.debugElement.query(By.directive(MatMenuTrigger));
-      expect(selectTrigger).toBeTruthy();
+  it('should display submenus when the menu button is clicked', async() => {
+    // by default, no submenus are shown
+    const subMenu = component.debugElement.query(By.css('.mat-menu-content'));
+    expect(subMenu).toBeFalsy();
 
-      // click on the menu button (via the trigger) to display the submenu
-      selectTrigger.nativeElement.click();
+    // retrieve the trigger
+    const selectTrigger = component.debugElement.query(By.directive(MatMenuTrigger));
+    expect(selectTrigger).toBeTruthy();
 
-      component.whenStable().then(() => {
-        component.detectChanges();
-        const setSubMenu1 = component.debugElement.query(By.css('.mat-menu-content')).nativeElement;
-        const menuOptions = setSubMenu1.querySelectorAll('bq-menu-item') as NodeListOf<HTMLElement>;
+    // click on the menu button (via the trigger) to display the submenu
+    selectTrigger.nativeElement.click();
 
-        // verify
-        expect(menuOptions.length).toBe(3);
-        expect(menuOptions[0].innerText.trim()).toBe('CORE');
-        expect(menuOptions[1].innerText.trim()).toBe('FINANCE');
-        expect(menuOptions[2].innerText.trim()).toBe('PUBLIC');
+    await component.whenStable();
 
-        // expand the following submenu by clicking the 'Public' button
-        menuOptions[2].getElementsByTagName('button')[0].click();
-        component.whenStable().then(() => {
-          component.detectChanges();
-          // now 2 mat-menu-content sections exist, we want to verify the last one with the sub-submenu
-          const setSubMenu2 = component.debugElement.queryAll(By.css('.mat-menu-content'))[1].nativeElement;
-          const setMenuOptions = setSubMenu2.querySelectorAll('bq-menu-item') as NodeListOf<HTMLElement>;
-          // verify
-          expect(setMenuOptions.length).toBe(2);
-          expect(setMenuOptions[0].innerText.trim()).toBe('PUBLIC-A');
-          expect(setMenuOptions[1].innerText.trim()).toBe('PUBLIC-B');
-        });
-      });
-    });
+    const setSubMenu1 = component.debugElement.query(By.css('.mat-menu-content')).nativeElement;
+    const menuOptions = setSubMenu1.querySelectorAll('bq-menu-item') as NodeListOf<HTMLElement>;
 
-    it('should navigate submenus with arrowkeys', fakeAsync(() => {
-      const subMenu = component.debugElement.query(By.css('.mat-menu-content'));
-      expect(subMenu).toBeFalsy();
+    // verify
+    expect(menuOptions.length).toBe(3);
+    expect(menuOptions[0].innerText.trim()).toBe('CORE');
+    expect(menuOptions[1].innerText.trim()).toBe('FINANCE');
+    expect(menuOptions[2].innerText.trim()).toBe('PUBLIC');
 
-      // retrieve the trigger
-      const selectTrigger = component.debugElement.query(By.directive(MatMenuTrigger));
-      expect(selectTrigger).toBeTruthy();
+    // expand the following submenu by clicking the 'Public' button
+    menuOptions[2].getElementsByTagName('button')[0].click();
 
-      // click on the menu button (via the trigger) to display the submenu
-      selectTrigger.nativeElement.click();
-      component.detectChanges();
+    await component.whenStable();
 
-      component.whenStable().then(() => {
-        component.detectChanges();
-        const menuItems: DebugElement[] = component.debugElement.queryAll(By.directive(MenuItemComponent));
-        const arrowDownEvent = new KeyboardEvent('keydown', { key: 'ArrowDown' });
-        const arrowUpEvent = new KeyboardEvent('keydown', { key: 'ArrowUp' });
-        const arrowRightEvent = new KeyboardEvent('keydown', { key: 'ArrowRight' });
+    // now 2 mat-menu-content sections exist, we want to verify the last one with the sub-submenu
+    const setSubMenu2 = component.debugElement.queryAll(By.css('.mat-menu-content'))[1].nativeElement;
+    const setMenuOptions = setSubMenu2.querySelectorAll('bq-menu-item') as NodeListOf<HTMLElement>;
+    // verify
+    expect(setMenuOptions.length).toBe(2);
+    expect(setMenuOptions[0].innerText.trim()).toBe('PUBLIC-A');
+    expect(setMenuOptions[1].innerText.trim()).toBe('PUBLIC-B');
+  });
 
-        const unitBtn = menuItems.find(el => el.nativeElement.innerText.includes('UNIT'));
+  it('should navigate submenus with arrowkeys', async() => {
+    const subMenu = component.debugElement.query(By.css('.mat-menu-content'));
+    expect(subMenu).toBeFalsy();
 
-        const publicBtn = menuItems.find(el => el.nativeElement.innerText.includes('PUBLIC'));
+    // retrieve the trigger
+    const selectTrigger = component.debugElement.query(By.directive(MatMenuTrigger));
+    expect(selectTrigger).toBeTruthy();
 
-        expect(unitBtn).toBeTruthy();
-        expect(publicBtn).toBeTruthy();
+    // click on the menu button (via the trigger) to display the submenu
+    selectTrigger.nativeElement.click();
 
-        if (unitBtn && publicBtn) {
-          const unitChildBtns = unitBtn.queryAll(By.css('button'));
-          const unitChildContainers = unitBtn.queryAll(By.css('.menu-list'));
+    await component.whenStable();
 
-          const unitBtnOnMenuKeyDown = spyOn(unitBtn.componentInstance, 'onMenuKeyDown').and.callThrough();
-          const unitBtnFocusElement = spyOn(unitBtn.componentInstance, 'focusElement').and.callThrough();
-          const publicBtnOnHandleEnterSubmenu = spyOn(publicBtn.componentInstance, 'handleEnterSubmenu')
-          .and.callThrough();
+    const menuItems: DebugElement[] = component.debugElement.queryAll(By.directive(MenuItemComponent));
+    const arrowDownEvent = new KeyboardEvent('keydown', { key: 'ArrowDown' });
+    const arrowUpEvent = new KeyboardEvent('keydown', { key: 'ArrowUp' });
+    const arrowRightEvent = new KeyboardEvent('keydown', { key: 'ArrowRight' });
 
-          // elements that change focus
-          const financeBtnItem = document.getElementsByName(unitChildBtns[2].nativeElement.name)[0];
-          const coreBtnItem = document.getElementsByName(unitChildBtns[1].nativeElement.name)[0];
-          const publicBtnItem = document.getElementsByName(unitChildContainers[1].nativeElement.name)[0];
+    const unitBtn = menuItems.find(el => el.nativeElement.innerText.includes('UNIT'))!;
+    const publicBtn = menuItems.find(el => el.nativeElement.innerText.includes('PUBLIC'))!;
 
-          const financeBtnFocusSpy = spyOn(financeBtnItem, 'focus');
-          const coreBtnFocusSpy = spyOn(coreBtnItem, 'focus');
-          const publicBtnFocusSpy = spyOn(publicBtnItem, 'focus');
+    expect(unitBtn).toBeTruthy();
+    expect(publicBtn).toBeTruthy();
 
-          // actual submenu buttons that trigger onMenuKeyDown
-          const coreHtmlElement = document.getElementById('item0');
-          const financeHtmlElement = document.getElementById('item1');
-          const publicHtmlElement = document.getElementById('item2');
+    const unitChildBtns = unitBtn.queryAll(By.css('button'));
+    const unitChildContainers = unitBtn.queryAll(By.css('.menu-list'));
 
-          expect(coreHtmlElement).toBeTruthy();
-          expect(financeHtmlElement).toBeTruthy();
-          expect(publicHtmlElement).toBeTruthy();
+    const unitBtnOnMenuKeyDown = spyOn(unitBtn.componentInstance, 'onMenuKeyDown').and.callThrough();
+    const unitBtnFocusElement = spyOn(unitBtn.componentInstance, 'focusElement').and.callThrough();
+    const publicBtnOnHandleEnterSubmenu = spyOn(publicBtn.componentInstance, 'handleEnterSubmenu')
+      .and.callThrough();
 
-          if (coreHtmlElement && financeHtmlElement && publicHtmlElement) {
-            // navigate submenu down and up
-            coreHtmlElement.dispatchEvent(arrowDownEvent);
-            flush();
-            component.detectChanges();
-            financeHtmlElement.dispatchEvent(arrowDownEvent);
-            flush();
-            component.detectChanges();
-            publicHtmlElement.dispatchEvent(arrowUpEvent);
-            flush();
-            component.detectChanges();
+    // elements that change focus
+    const financeBtnItem = document.getElementsByName(unitChildBtns[2].nativeElement.name)[0];
+    const coreBtnItem = document.getElementsByName(unitChildBtns[1].nativeElement.name)[0];
+    const publicBtnItem = document.getElementsByName(unitChildContainers[1].nativeElement.name)[0];
 
-            financeHtmlElement.dispatchEvent(arrowUpEvent);
-            flush();
-            component.detectChanges();
+    const financeBtnFocusSpy = spyOn(financeBtnItem, 'focus');
+    const coreBtnFocusSpy = spyOn(coreBtnItem, 'focus');
+    const publicBtnFocusSpy = spyOn(publicBtnItem, 'focus');
 
-            // navigate again down to enter sub-sub menu
-            coreHtmlElement.dispatchEvent(arrowDownEvent);
-            flush();
-            component.detectChanges();
-            financeHtmlElement.dispatchEvent(arrowDownEvent);
-            flush();
-            component.detectChanges();
+    // actual submenu buttons that trigger onMenuKeyDown
+    const coreHtmlElement = document.getElementById('item0')!;
+    const financeHtmlElement = document.getElementById('item1')!;
+    const publicHtmlElement = document.getElementById('item2')!;
 
-            publicBtnItem.dispatchEvent(arrowRightEvent);
-            flush();
-            component.detectChanges();
+    expect(coreHtmlElement).toBeTruthy();
+    expect(financeHtmlElement).toBeTruthy();
+    expect(publicHtmlElement).toBeTruthy();
 
-            expect(unitBtnOnMenuKeyDown).toHaveBeenCalledTimes(6);
-            expect(unitBtnFocusElement).toHaveBeenCalledTimes(6);
-            expect(financeBtnFocusSpy).toHaveBeenCalled();
-            expect(coreBtnFocusSpy).toHaveBeenCalled();
-            expect(publicBtnFocusSpy).toHaveBeenCalled();
-            expect(publicBtnOnHandleEnterSubmenu).toHaveBeenCalled();
-          }
-        }
-      });
-    }));
+    // navigate submenu down and up
+    coreHtmlElement.dispatchEvent(arrowDownEvent);
+    await component.whenStable();
 
-    //
+    financeHtmlElement.dispatchEvent(arrowDownEvent);
+    await component.whenStable();
 
-  },
-);
+    publicHtmlElement.dispatchEvent(arrowUpEvent);
+    await component.whenStable();
+
+    financeHtmlElement.dispatchEvent(arrowUpEvent);
+    await component.whenStable();
+
+    // navigate again down to enter sub-sub menu
+    coreHtmlElement.dispatchEvent(arrowDownEvent);
+    await component.whenStable();
+
+    financeHtmlElement.dispatchEvent(arrowDownEvent);
+    await component.whenStable();
+
+    publicBtnItem.dispatchEvent(arrowRightEvent);
+    await component.whenStable();
+
+    expect(unitBtnOnMenuKeyDown).toHaveBeenCalledTimes(6);
+    expect(unitBtnFocusElement).toHaveBeenCalledTimes(6);
+    expect(financeBtnFocusSpy).toHaveBeenCalled();
+    expect(coreBtnFocusSpy).toHaveBeenCalled();
+    expect(publicBtnFocusSpy).toHaveBeenCalled();
+    expect(publicBtnOnHandleEnterSubmenu).toHaveBeenCalled();
+  });
+
+});

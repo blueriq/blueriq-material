@@ -57,9 +57,9 @@ describe('TabComponent', () => {
     const tabBodies = tabFixture.nativeElement.querySelectorAll('mat-tab-body');
 
     expect(tabBodies.length).toBe(4);
-    expect(tabBodies[0].querySelector('bq-container')).toBeTruthy('The first container should be displayed');
+    expect(tabBodies[0].querySelector('bq-container')).withContext('The first container should be displayed').toBeTruthy();
     const activeLabel = tabFixture.nativeElement.querySelector('.mat-tab-label-active');
-    expect(activeLabel.innerText).toEqual('News', 'First tab should be selected');
+    expect(activeLabel.innerText).withContext('First tab should be selected').toEqual('News', );
   });
 
   it('should use the bqContainer directive', () => {

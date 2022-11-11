@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqSessionTemplate, BlueriqTestingModule } from '@blueriq/angular/testing';
-import { BlueriqTestSession } from '@blueriq/angular/testing/src/test_session';
+import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { AssetTemplate, ButtonTemplate, ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
 import { ListComponent } from '../list.component';
 import { ListModule } from '../list.module';
@@ -38,40 +37,40 @@ describe('TablePaginationComponent', () => {
   describe('by InstanceList', () => {
     beforeEach(() => {
       btnFirst = ButtonTemplate.create('first')
-      .caption('<<')
-      .disabled(true)
-      .styles('pagination');
+        .caption('<<')
+        .disabled(true)
+        .styles('pagination');
 
       btnPrevious = ButtonTemplate.create('previous')
-      .caption('<')
-      .disabled(true)
-      .styles('pagination');
+        .caption('<')
+        .disabled(true)
+        .styles('pagination');
 
       currentPageNumber = FieldTemplate.integer('InstanceListContainer_currentPageNumber')
-      .domain({ 1: '1', 2: '2', 3: '3' })
-      .styles('paginationNumber')
-      .value('1');
+        .domain({ 1: '1', 2: '2', 3: '3' })
+        .styles('paginationNumber')
+        .value('1');
 
       btnNext = ButtonTemplate.create('next')
-      .caption('>')
-      .styles('pagination');
+        .caption('>')
+        .styles('pagination');
 
       btnLast = ButtonTemplate.create('last')
-      .caption('>>')
-      .styles('pagination');
+        .caption('>>')
+        .styles('pagination');
 
       const pagination = ContainerTemplate.create()
-      .name('navigationContainer')
-      .displayName('DisplayName')
-      .styles('navigationContainer')
-      .contentStyle('tablenavigation')
-      .children(
-        btnFirst,
-        btnPrevious,
-        currentPageNumber,
-        btnNext,
-        btnLast,
-      );
+        .name('navigationContainer')
+        .displayName('DisplayName')
+        .styles('navigationContainer')
+        .contentStyle('tablenavigation')
+        .children(
+          btnFirst,
+          btnPrevious,
+          currentPageNumber,
+          btnNext,
+          btnLast,
+        );
       const table = ContainerTemplate.create().contentStyle('table');
       const list = ContainerTemplate.create().children(table, pagination);
       session = BlueriqSessionTemplate.create().build(list);
@@ -83,14 +82,14 @@ describe('TablePaginationComponent', () => {
   describe('by Aggregatelist', () => {
     beforeEach(() => {
       btnFirst = ButtonTemplate.create('first')
-      .caption('<<')
-      .disabled(true)
-      .styles('pagination');
+        .caption('<<')
+        .disabled(true)
+        .styles('pagination');
 
       btnPrevious = ButtonTemplate.create('prev')
-      .caption('<')
-      .disabled(true)
-      .styles('pagination');
+        .caption('<')
+        .disabled(true)
+        .styles('pagination');
 
       prefixAsset = AssetTemplate.create().text('Page ');
       currentPageNumber = FieldTemplate.integer('pageSelector').value('1');
@@ -103,24 +102,24 @@ describe('TablePaginationComponent', () => {
       );
 
       btnNext = ButtonTemplate.create('next')
-      .caption('>')
-      .styles('pagination');
+        .caption('>')
+        .styles('pagination');
 
       btnLast = ButtonTemplate.create('last')
-      .caption('>>')
-      .styles('pagination');
+        .caption('>>')
+        .styles('pagination');
 
       const pagination = ContainerTemplate.create()
-      .name('list_footer')
-      .displayName('DisplayName')
-      .contentStyle('listplus_footer')
-      .children(
-        btnFirst,
-        btnPrevious,
-        pagingSelector,
-        btnNext,
-        btnLast,
-      );
+        .name('list_footer')
+        .displayName('DisplayName')
+        .contentStyle('listplus_footer')
+        .children(
+          btnFirst,
+          btnPrevious,
+          pagingSelector,
+          btnNext,
+          btnLast,
+        );
       const table = ContainerTemplate.create().contentStyle('table');
       const list = ContainerTemplate.create().children(table, pagination);
       session = BlueriqSessionTemplate.create().build(list);
@@ -132,14 +131,14 @@ describe('TablePaginationComponent', () => {
   describe('by case and worklist', () => {
     beforeEach(() => {
       btnFirst = ButtonTemplate.create('first')
-      .caption('<<')
-      .disabled(true)
-      .styles('pagination');
+        .caption('<<')
+        .disabled(true)
+        .styles('pagination');
 
       btnPrevious = ButtonTemplate.create('previous')
-      .caption('<')
-      .disabled(true)
-      .styles('pagination');
+        .caption('<')
+        .disabled(true)
+        .styles('pagination');
 
       prefixAsset = AssetTemplate.create().text('Page ');
       currentPageNumber = FieldTemplate.integer('pageSelector').value('1');
@@ -152,25 +151,25 @@ describe('TablePaginationComponent', () => {
       );
 
       btnNext = ButtonTemplate.create('next')
-      .caption('>')
-      .styles('pagination');
+        .caption('>')
+        .styles('pagination');
 
       btnLast = ButtonTemplate.create('last')
-      .caption('>>')
-      .styles('pagination');
+        .caption('>>')
+        .styles('pagination');
 
       const pagination = ContainerTemplate.create()
-      .name('navigationContainer')
-      .displayName('DisplayName')
-      .styles('navigationContainer')
-      .contentStyle('listplus_footer')
-      .children(
-        btnFirst,
-        btnPrevious,
-        pagingSelector,
-        btnNext,
-        btnLast,
-      );
+        .name('navigationContainer')
+        .displayName('DisplayName')
+        .styles('navigationContainer')
+        .contentStyle('listplus_footer')
+        .children(
+          btnFirst,
+          btnPrevious,
+          pagingSelector,
+          btnNext,
+          btnLast,
+        );
       const table = ContainerTemplate.create().contentStyle('table');
       const list = ContainerTemplate.create().children(table, pagination);
       session = BlueriqSessionTemplate.create().build(list);

@@ -42,7 +42,7 @@ export class TableSearchComponent implements OnInit, OnDestroy {
   }
 
   add(event: MatChipInputEvent): void {
-    const input = event.input;
+    const input = event.chipInput;
     const value = event.value;
 
     const sanitizedValue = (value || '').trim();
@@ -53,7 +53,7 @@ export class TableSearchComponent implements OnInit, OnDestroy {
 
     // Reset the input field value
     if (input) {
-      input.value = '';
+      input.clear();
     }
 
     this.doSearch();

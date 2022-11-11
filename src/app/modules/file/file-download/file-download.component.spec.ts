@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AuthorizedDownload } from '@blueriq/angular';
 import { FileDownload } from '@blueriq/angular/files';
-import { AuthorizedDownload } from '@blueriq/angular/src/api/file_handling';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ButtonTemplate, ContainerTemplate } from '@blueriq/core/testing';
 import { of } from 'rxjs/internal/observable/of';

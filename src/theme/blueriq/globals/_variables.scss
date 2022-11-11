@@ -1,6 +1,6 @@
-@use '~@angular/material' as mat;
+@use '@angular/material' as mat;
 @use 'sass:math';
-@import '~@angular/material/theming';
+@import '@angular/material/theming';
 @import './color-palettes';
 
 // The mat-palette() function adds keys to the palette object for easy color retrieval using mat-color()
