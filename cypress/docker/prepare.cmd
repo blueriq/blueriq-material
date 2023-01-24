@@ -1,6 +1,6 @@
 :: Init
 set $LOCATION="./cypress/docker/preparations"
-set $BQ_VERSION="15.5.0.484"
+set $BQ_VERSION="15.9.2.800"
 set $CDS_VERSION="4.1.1"
 set $DCM_LIST="2.2.1"
 

@@ -69,7 +69,7 @@ node {
       step([$class: 'JUnitResultArchiver', testResults: 'results/cypress-report.xml', allowEmptyResults: true])
 
       // archive integration outputs
-      archiveArtifacts artifacts: 'videos/*, screenshots/**/*, snapshots/**/*.diff.png, tmp/e2e-logs.txt'
+      archiveArtifacts artifacts: 'videos/*, screenshots/**/*, snapshots/**/*.diff.png, tmp/e2e-logs.txt, diff/*, comparison/*'
     }
     notifyBuildStatus();
     deleteDir();
