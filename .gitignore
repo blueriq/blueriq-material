@@ -8,6 +8,8 @@
 cypress/videos
 cypress/screenshots
 cypress/snapshots/**/*.diff.png
+cypress-visual-screenshots/comparison
+cypress-visual-screenshots/diff
 
 # dependencies
 /node_modules

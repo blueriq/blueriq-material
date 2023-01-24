@@ -29,6 +29,8 @@
 // Cypress.Commands.add('login', (email, password) => { ... })
 
 import Chainable = Cypress.Chainable;
+const compareSnapshotCommand = require('cypress-image-diff-js/dist/command');
+compareSnapshotCommand();
 
 export {};
 

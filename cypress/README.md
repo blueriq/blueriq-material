@@ -10,3 +10,16 @@
 
 Run `yarn e2e:dev` to execute the end-to-end tests via Cypress.
 This will first start docker with a runtime, customerdata and dcm list and after completion it will start the Cypress UI
+
+## Visual regression testing
+
+The chosen library for visual regression testing is `cypress-image-diff-js`. 
+This library creates slightly different screenshots based on the machine. 
+The baseline screenshots from the CI are used to avoid these differences on CI. 
+
+### Updating the baseline
+
+In order to update the baseline, the following steps need to be taken:
+* Run the `blueriq-material-e2e-cypress` job on CI (with the desired branch selected).
+* Navigate to the `comparison` directory on the CI job build artifacts and download the created screenshots.
+* Copy the contents of the downloaded `comparison` directory to the `../cypress-visual-screenshots/baseline` directory.

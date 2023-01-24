@@ -38,6 +38,8 @@
       <finally>
         <copy-from-container container.id="${container.id}" copy.from.dir="${container.src.dir}/cypress/."
                              copy.to.dir="${sources.dir}"/>
+        <copy-from-container container.id="${container.id}" copy.from.dir="${container.src.dir}/cypress-visual-screenshots/."
+                             copy.to.dir="${sources.dir}"/>
       </finally>
     </trycatch>
 
