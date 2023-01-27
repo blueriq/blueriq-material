@@ -1,0 +1,10 @@
+FROM oscarfonts/h2@sha256:68f8347a24b90cebf18b01172f81e8d2c32aa1e0a06af2bb53b6d375b3681d1f
+
+COPY dashboards/data /opt/h2-data/
+
+WORKDIR /opt/h2-data
+
+CMD java -cp /opt/h2/bin/h2*.jar org.h2.tools.Server \
+ 	-web -webAllowOthers -webPort 81 \
+ 	-tcp -tcpAllowOthers -tcpPort 1521 \
+ 	-baseDir ${DATA_DIR} ${H2_OPTIONS}

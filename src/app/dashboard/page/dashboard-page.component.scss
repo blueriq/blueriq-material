@@ -1,0 +1,42 @@
+@use '@angular/material' as mat;
+@import '@angular/material/theming';
+@import 'globals/variables';
+
+.header {
+  @include mat.elevation(1);
+
+  position: fixed;
+  width: 100%;
+  z-index: $z-index-drawer + 10;
+}
+
+.bq-dashboard-column {
+  flex: 1;
+}
+
+.page {
+  margin-bottom: $bq-margin-double;
+  padding-top: $bq-toolbar-height * 2;
+  display: flex;
+  flex-flow: row wrap;
+
+  &.left-sidebar {
+    .bq-dashboard-column:first-child {
+      flex: 1 calc(100% / 3);
+    }
+
+    .bq-dashboard-column:last-child {
+      flex: 2 calc(100% / 3) * 2;
+    }
+  }
+
+  &.right-sidebar {
+    .bq-dashboard-column:first-child {
+      flex: 2 calc(100% / 3) * 2;
+    }
+
+    .bq-dashboard-column:last-child {
+      flex: 1 calc(100% / 3);
+    }
+  }
+}

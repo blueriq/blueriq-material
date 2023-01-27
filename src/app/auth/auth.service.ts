@@ -33,13 +33,17 @@ export class AuthService {
     return this.openIdConnect ? this.openIdConnect.canLogout() : true;
   }
 
+  /**
+   * Call logout endpoint and navigate to a logged out page when successful.
+   * @param returnPath The path the logout page should navigate to.
+   */
   logoutAndNavigate(returnPath: string | null = this.router.url): void {
     this.auth.logout().subscribe(response => {
       // If the response contains an ssoLogoutUrl, we need to redirect to that URL to be logged out from OIDC provider.
       if (response.ssoLogoutUrl) {
         let returnUrl = '/logged-out';
         if (returnPath !== null) {
-          returnUrl += `?returnPath=${ encodeURIComponent(returnPath) }`;
+          returnUrl += `?returnPath=${encodeURIComponent(returnPath)}`;
         }
         let ssoLogoutString = this.addReturnPath(response.ssoLogoutUrl, returnUrl);
         if (response.id_token_hint) {
@@ -67,12 +71,12 @@ export class AuthService {
 
     const redirectUrl = this.prepareExternalUrl(returnPath);
     const joiner = logoutUrl.includes('?') ? '&' : '?';
-    return `${ logoutUrl }${ joiner }post_logout_redirect_uri=${ encodeURIComponent(redirectUrl) }`;
+    return `${logoutUrl}${joiner}post_logout_redirect_uri=${encodeURIComponent(redirectUrl)}`;
   }
 
   private addIdToken(token: string, logoutUrl: string): string {
     const joiner = logoutUrl.includes('?') ? '&' : '?';
-    return `${ logoutUrl }${ joiner }id_token_hint=${ token }`;
+    return `${logoutUrl}${joiner}id_token_hint=${token}`;
   }
 
   private prepareExternalUrl(path: string): string {

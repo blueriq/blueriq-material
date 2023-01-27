@@ -10,6 +10,7 @@ export const enum NotificationType {
   Error = 'error',
   SessionExpired = 'expired',
   LoggedOut = 'logged-out',
+  Info = 'info'
 }
 
 /**

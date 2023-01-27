@@ -1,0 +1,13 @@
+FROM docker-internal.blueriq.com/tomcat9-jdk17:1.0
+LABEL maintainer="support@blueriq.com"
+
+ARG BLUERIQ_LICENSE
+ENV JAVA_OPTS="-Dspring.config.additional-location=file:///config/blueriq-case-engine/ -Djava.security.egd=file:/dev/./urandom -Dlogging.file.name=runtime.log -Duser.timezone=Europe/Amsterdam -Xmx768m"
+ENV JAVA_TOOL_OPTIONS -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000
+ENV JPDA_ADDRESS="8000"
+ENV JPDA_TRANSPORT="dt_socket"
+EXPOSE 8080 8000
+
+COPY preparations/blueriq-runtime-application-*.war /usr/local/tomcat/webapps/runtime.war
+COPY dashboards/config/case-engine /config/blueriq-case-engine/
+COPY dashboards/config/exports /config/blueriq-case-engine/exports/

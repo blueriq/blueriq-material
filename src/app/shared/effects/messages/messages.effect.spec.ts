@@ -30,7 +30,7 @@ describe('MessagesEffect', () => {
     messages: {},
   };
 
-  beforeEach(async() => {
+  beforeEach(async () => {
     snackBarSpy = jasmine.createSpyObj<MatSnackBar>('MatSnackBar', ['open']);
     actions = new Subject();
 

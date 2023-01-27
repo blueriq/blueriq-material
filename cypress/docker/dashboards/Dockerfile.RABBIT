@@ -1,0 +1,5 @@
+FROM rabbitmq:3.10.7-management-alpine@sha256:6ffb4ddb517ba2ae95c604ba1156a0802206b8fa81a71f3787fc633f0c432e83
+ADD dashboards/config/rabbitmq/rabbitmq.conf /etc/rabbitmq/
+ADD dashboards/config/rabbitmq/definitions.json /etc/rabbitmq/
+RUN chown rabbitmq:rabbitmq /etc/rabbitmq/rabbitmq.conf /etc/rabbitmq/definitions.json
+CMD ["rabbitmq-server"]

@@ -1,0 +1,92 @@
+{
+  "id": "Blueriq",
+  "realm": "Blueriq",
+  "enabled": true,
+  "roles": {
+    "realm": [
+      {
+        "name": "Aanvrager"
+      },
+      {
+        "name": "Behandelaar"
+      }
+    ]
+  },
+  "users": [
+    {
+      "username": "johndoe",
+      "firstName": "John",
+      "lastName": "Doe",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "johndoe"
+        }
+      ],
+      "realmRoles": [
+        "Aanvrager",
+        "default-roles-blueriq"
+      ]
+    },
+    {
+      "username": "Aanvrager",
+      "firstName": "Aanvrager",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "Aanvrager"
+        }
+      ],
+      "realmRoles": [
+        "Aanvrager",
+        "default-roles-blueriq"
+      ]
+    },
+    {
+      "username": "Behandelaar",
+      "firstName": "Behandelaar",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "Behandelaar"
+        }
+      ],
+      "realmRoles": [
+        "Behandelaar",
+        "default-roles-blueriq"
+      ]
+    }
+  ],
+  "clients": [
+    {
+      "clientId": "blueriq-gateway-client",
+      "enabled": true,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "0Hv2WMsjIsBdHsAq3bNycIEKgCWaluEf",
+      "protocol": "openid-connect",
+      "redirectUris": [
+        "/login/oauth2/code/keycloak/*",
+        "/gateway/logout"
+      ],
+      "protocolMappers": [
+        {
+          "name": "realm roles",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-realm-role-mapper",
+          "config": {
+            "access.token.claim": "true",
+            "claim.name": "realm_access.roles",
+            "jsonType.label": "String",
+            "multivalued": "true"
+          }
+        }
+      ],
+      "defaultClientScopes": [
+        "profile"
+      ]
+    }
+  ]
+}

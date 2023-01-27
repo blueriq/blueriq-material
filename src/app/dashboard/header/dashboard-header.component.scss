@@ -1,0 +1,9 @@
+@import 'globals/variables';
+
+:host {
+  flex-direction: column;
+}
+
+.logout {
+  margin-right: $bq-margin-double;
+}

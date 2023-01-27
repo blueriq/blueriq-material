@@ -1,0 +1,27 @@
+<div [ngSwitch]="widgetStartType">
+  <bq-project *ngSwitchCase="'regular'"
+              [sessionName]=sessionName
+              [project]="flowWidget.projectName"
+              [version]="flowWidget.versionName"
+              [flow]="flowWidget.flowName"
+              [baseUrl]="baseUrl"
+              [parameters]="parameters$ | async"
+              (flowEnded)="onFlowEnded()"
+              (expired)="onSessionExpired()"
+              (error)="onError($event)">
+  </bq-project>
+  <bq-project *ngSwitchCase="'shortcut'"
+              [sessionName]=sessionName
+              [shortcut]="flowWidget.shortcutName"
+              [baseUrl]="baseUrl"
+              [parameters]="parameters$ | async"
+              (flowEnded)="onFlowEnded()"
+              (expired)="onSessionExpired()"
+              (error)="onError($event)">
+  </bq-project>
+  <p *ngSwitchDefault>The widget definition is invalid.</p>
+</div>
+
+<bq-loading></bq-loading>
+
+<bq-notification-overlay *ngIf="notification" [notification]="notification"></bq-notification-overlay>

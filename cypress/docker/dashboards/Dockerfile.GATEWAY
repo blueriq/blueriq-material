@@ -1,0 +1,10 @@
+FROM openjdk:17-jdk-slim
+
+LABEL maintainer="support@blueriq.com"
+
+COPY preparations/blueriq-gateway-standalone-*.jar ~/gateway-service.jar
+COPY dashboards/config/gateway/blueriq-gateway-service.yaml /config/gateway-service/
+
+WORKDIR ~
+
+ENTRYPOINT ["java", "-Dspring.config.additional-location=file:///config/gateway-service/", "-jar", "gateway-service.jar", "-Xmx384m" ]

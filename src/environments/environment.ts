@@ -6,6 +6,8 @@
 export const environment = {
   production: false,
   baseUrl: '/runtime',
+  dashboardUrl: '/dashboards',
+  dashboardAuthUrl: '/auth',
   devtoolsUrl: '/devtools/index.html',
   envName: 'development',
   isBundled: false,

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationModel, NotificationType } from '../../notification-overlay/notification.model';
-import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'bq-logged-out',
@@ -12,12 +11,12 @@ export class LoggedOutComponent {
 
   notification = new NotificationModel(NotificationType.LoggedOut, 'Logged out', 'Successfully logged out');
 
-  constructor(auth: AuthService, route: ActivatedRoute) {
+  constructor(router: Router, route: ActivatedRoute) {
     this.notification.dismiss = {
-      label: 'Go to Login',
-      action: () => {
-        const returnPath = route.snapshot.queryParams['returnPath'] ?? null;
-        auth.navigateToLogin(returnPath);
+      label: 'Return to resource',
+      action: async () => {
+        const returnPath = route.snapshot.queryParams['returnPath'] ?? '/';
+        return await router.navigateByUrl(returnPath);
       },
     };
   }

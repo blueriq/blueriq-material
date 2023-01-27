@@ -1,36 +1,17 @@
-// ***********************************************
-// This example commands.ts shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-// @ts-ignore
-// @ts-ignore
-
-// Cypress.Commands.add('login', (email, password) => { ... })
-
 import Chainable = Cypress.Chainable;
 const compareSnapshotCommand = require('cypress-image-diff-js/dist/command');
 compareSnapshotCommand();
+import {
+  DASHBOARD_HEADER,
+  DASHBOARD_MENU,
+  DASHBOARD_PAGE,
+  DASHBOARD_WIDGET,
+  DASHBOARD_WIDGET_PROJECT,
+  PAGE_LOGIN_FIELDNAME_PASSWORD,
+  PAGE_LOGIN_FIELDNAME_USERNAME,
+  PAGE_LOGIN_TAGNAME,
+  PAGE_PROJECT_TAGNAME,
+} from '../shared';
 
 export {};
 
@@ -51,6 +32,10 @@ Cypress.Commands.add('getById',
 
 Cypress.Commands.add('getInputFor',
   (page: string, field: string) => cy.getById(page, field).find('input'),
+);
+
+Cypress.Commands.add('getMultiInputFor',
+  (page: string, field: string) => cy.getById(page, field).find('mat-chip-list'),
 );
 
 Cypress.Commands.add('getTextareaFor',
@@ -96,6 +81,28 @@ Cypress.Commands.add('getContainerTitleTextFor',
 
 Cypress.Commands.add('visitRuntime', visitRuntime);
 
+Cypress.Commands.add('startDashboard', startDashboard);
+
+Cypress.Commands.add('clickForDashboardChange', clickForDashboardChange);
+
+Cypress.Commands.add('doLogin', doLogin);
+
+Cypress.Commands.add('doGatewayLogin', doGatewayLogin);
+
+Cypress.Commands.add('doGatewayLogout', doGatewayLogout);
+
+Cypress.Commands.add('doLogout', doLogout);
+
+Cypress.Commands.add('startCaseTypeA', startCaseTypeA);
+
+Cypress.Commands.add('openCase', openCase);
+
+Cypress.Commands.add('involveCase', involveCase);
+
+Cypress.Commands.add('verifyOpenCasePage', verifyOpenCasePage);
+
+Cypress.Commands.add('waitForListEntry', waitForListEntry);
+
 function getById(page: string, field: string, nr = '1'): Chainable<unknown> {
   return getByTagName('', page, field, nr);
 }
@@ -105,19 +112,224 @@ function getByTagName(tagName: string, page: string, field: string, nr = '1'): C
 }
 
 function visitRuntime(url: string, visitOptions: VisitOptions = { loginRequired: false }): Chainable<unknown> {
-  cy.intercept({ method: 'POST', url: '/runtime/api/v2/start/**' }).as('dataGetFirst');
+  cy.intercept({ method: 'POST', url: '/runtime/api/v2/start/**' }).as('visitRuntime');
   cy.visit(url);
 
   // A login page could be expected (401 = unauthorized)
-  return cy.wait('@dataGetFirst').its('response.statusCode').should('equal', visitOptions.loginRequired ? 401 : 200);
+  return cy.wait('@visitRuntime').its('response.statusCode').should('equal', visitOptions.loginRequired ? 401 : 200);
 }
 
+function startDashboard(url: string, visitOptions: VisitOptions = { loginRequired: false }): Chainable<unknown> {
+  if (visitOptions.loginRequired) {
+    interceptGatewayAuthCssLoading();
+  }
+
+  cy.intercept({ method: 'get', url: '/dashboards/**' }).as('getDashboard');
+  cy.visit(url, {
+    onBeforeLoad: (win) => {
+      win.sessionStorage.clear();
+    },
+  });
+
+  // A login page could be expected (401 = unauthorized)
+  return cy.wait('@getDashboard').its('response.statusCode').should('equal', visitOptions.loginRequired ? 401 : 200);
+}
+
+function clickForDashboardChange(button: Chainable): Chainable<unknown> {
+  cy.intercept({ method: 'get', url: '/runtime/*/api/v2/start/**' }).as('dashboardChanges');
+  button.click();
+
+  return cy.wait('@dashboardChanges').its('response.statusCode').should('equal', 200);
+}
+
+function doLogin(username: string, password: string): Chainable<unknown> {
+  cy.get(PAGE_LOGIN_FIELDNAME_USERNAME).type(username);
+  cy.get(PAGE_LOGIN_FIELDNAME_PASSWORD).type(password);
+
+
+  const login = cy.get(PAGE_LOGIN_TAGNAME).find('button').click();
+
+  // The loginpage is not expected anymore after entering the correct credentials
+  cy.get(PAGE_LOGIN_TAGNAME).should('not.exist');
+  cy.get(PAGE_PROJECT_TAGNAME).should('exist');
+
+  return login;
+}
+
+function doGatewayLogin(username: string, password: string): Chainable<unknown> {
+  cy.get('a[href*="oauth2/authorization/keycloak"]').click();
+
+  cy.get('#username').type(username);
+  cy.get('#password').type(password);
+  cy.get('#kc-login').click();
+
+  return cy.get('bq-dashboard').should('exist');
+}
+
+function doLogout(): Chainable<unknown> {
+  cy.get(DASHBOARD_HEADER).within(() => {
+    cy.get('.logout').should('exist').click();
+  });
+
+  return cy.get('button').should('exist').click();
+}
+
+function doGatewayLogout(): Chainable<unknown> {
+  interceptGatewayAuthCssLoading();
+
+  cy.get(DASHBOARD_HEADER).within(() => {
+    cy.get('button.active-user-menu').should('exist').click();
+  });
+  cy.get('.logout').should('exist').click();
+
+  cy.url().should('contain', '/auth/logout');
+
+  return cy.get('button').should('exist').click();
+}
+
+function startCaseTypeA(reference: string): Chainable<unknown> {
+  cy.get(DASHBOARD_HEADER).within(() => {
+    cy.get(DASHBOARD_MENU).contains('button', 'Start Case').click();
+  });
+
+  cy.get(DASHBOARD_PAGE).within(() => {
+    cy.get(DASHBOARD_WIDGET + '[id="start-cases"]').should('exist').within(_ => {
+      cy.intercept('POST', '/runtime/*/api/v2/session/*/load').as('startCase');
+      cy.getButtonFor('P764', 'Aanvragen').click();
+      cy.wait('@startCase').its('response.statusCode').should('equal', 200);
+    });
+  });
+
+  cy.get(DASHBOARD_PAGE).within(() => {
+    cy.get(DASHBOARD_WIDGET + '[id="start-case-intake"]').should('exist').within(_ => {
+      cy.getInputFor('P572', 'Zaak_Metadata-Aanvraaggegevens').type(reference);
+      cy.getButtonFor('P572', 'Ok').click();
+    });
+  });
+
+  cy.get(DASHBOARD_PAGE).within(() => {
+    cy.get(DASHBOARD_WIDGET + '[id="start-case-intake"]').should('exist').within(_ => {
+      cy.get('div[id="P525_AanvraagGeregistreerd_1"]').contains('De aanvraag is bekend met het kenmerk');
+    });
+  });
+
+  cy.get(DASHBOARD_HEADER).within(() => {
+    cy.get(DASHBOARD_MENU).contains('button', 'Main').click();
+  });
+
+  return cy.get(DASHBOARD_PAGE).within(() => {
+    cy.get(DASHBOARD_WIDGET + '[id="niet-toegekende-zaken"]').should('exist');
+  });
+}
+
+function openCase(reference: string): Chainable<unknown> {
+  return handleCase(reference, 'open');
+}
+
+function involveCase(reference: string): Chainable<unknown> {
+  return handleCase(reference, 'involve');
+}
+
+function handleCase(reference: string, type: 'involve' | 'open'): Chainable<unknown> {
+  cy.get(DASHBOARD_PAGE).within(() => {
+    cy.get(DASHBOARD_WIDGET + '[id="niet-toegekende-zaken"]').should('exist').within(() => {
+      cy.intercept('POST', '/runtime/*/api/v2/session/*/load').as('handleCase');
+
+      waitForListEntry(reference);
+      // get the row that has our passed reference
+      cy.get('.asset').contains(reference).parents('tr').within(() => {
+
+        if (type === 'open') {
+          cy.get('button[id^="P423_Open_"]').click();
+        } else {
+          cy.get('button[id^="P423_NeemInBehandeling_"]').click();
+        }
+
+        cy.wait('@handleCase').its('response.statusCode').should('equal', 200);
+
+        // sometimes the browser is not done after previous wait. :(
+        cy.wait(1000);
+      });
+    });
+  });
+
+  return verifyOpenCasePage(type);
+}
+
+function verifyOpenCasePage(type: 'involve' | 'open' = 'open'): Chainable<unknown> {
+  return cy.get(DASHBOARD_PAGE).within(() => {
+    cy.get(DASHBOARD_WIDGET).should('have.length', 6);
+
+    cy.get(DASHBOARD_WIDGET + '[id="open-case-details"]').should('exist').within(() => {
+      if(type === 'involve'){
+        cy.getInputFor('P849', 'Params-Single').should('have.value', 'Single');
+        cy.getMultiInputFor('P849', 'Params-Multi').should('have.text', ' Multi_1 cancel Multi_2 cancel');
+      }
+
+      cy.get(DASHBOARD_WIDGET_PROJECT).should('exist');
+    });
+    cy.get(DASHBOARD_WIDGET + '[id="open-case-tasks"]').should('exist').within(() => {
+      cy.get(DASHBOARD_WIDGET_PROJECT).should('exist');
+    });
+    cy.get(DASHBOARD_WIDGET + '[id="open-case-documents"]').should('exist').within(() => {
+      cy.get(DASHBOARD_WIDGET_PROJECT).should('exist');
+    });
+    cy.get(DASHBOARD_WIDGET + '[id="open-case-applicants"]').should('exist').within(() => {
+      cy.get(DASHBOARD_WIDGET_PROJECT).should('exist');
+    });
+    cy.get(DASHBOARD_WIDGET + '[id="open-case-notes"]').should('exist').within(() => {
+      cy.get(DASHBOARD_WIDGET_PROJECT).should('exist');
+    });
+    cy.get(DASHBOARD_WIDGET + '[id="open-case-history"]').should('exist').within(() => {
+      cy.get(DASHBOARD_WIDGET_PROJECT).should('exist');
+    });
+
+    cy.get(DASHBOARD_HEADER).within(() => {
+      cy.get(DASHBOARD_MENU).contains('button', 'Main');
+    });
+  });
+}
+
+function waitForListEntry(reference: string, attempts: number = 0): Chainable<unknown> {
+  if (attempts > 5) {
+    throw new Error(`entry with reference '${reference}' was not found in time`);
+  }
+
+  return cy.get('bq-table').then($table => {
+    if ($table.find('.asset').get().some(asset => asset.innerHTML.indexOf(reference) > 0)) {
+      return;
+    }
+    cy.wait(1000);
+    cy.get(`bq-filter button`).click();
+    cy.intercept('POST', '/runtime/*/api/v2/session/*/event').as('events');
+    cy.root().parentsUntil('html').last().within(() => {
+      cy.get('mat-dialog-container button.mat-primary').click();
+    });
+    cy.wait('@events').its('response.statusCode').should('equal', 200);
+
+    waitForListEntry(reference, attempts + 1);
+  });
+
+}
+
+function interceptGatewayAuthCssLoading() {
+  cy.intercept({ method: 'get', url: '*signin.css' }, req => req.reply('success'));
+  cy.intercept({ method: 'get', url: '*bootstrap.min.css' }, req => req.reply('success'));
+}
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace Cypress {
     interface Chainable<Subject> {
       visitRuntime: typeof visitRuntime;
+
+      /**
+       * Start the requested dashboard. This function should not be called in the beforeEach stage as it contains
+       * stubbed routes. Stubbed routes are cleared before each test but not in the beforeEach stage, which can cause
+       * flake tests.
+       */
+      startDashboard: typeof startDashboard;
+      clickForDashboardChange: typeof clickForDashboardChange;
 
       equalIgnoreWhiteSpace(text: string): Chainable<Subject>;
 
@@ -128,6 +340,8 @@ declare global {
       getContainerTitleTextFor(page: string, field: string, nr?: string): Chainable<Subject>;
 
       getInputFor(page: string, field: string): Chainable<Subject>;
+
+      getMultiInputFor(page: string, field: string): Chainable<Subject>;
 
       getTextareaFor(page: string, field: string, nr?: string): Chainable<Subject>;
 
@@ -142,6 +356,47 @@ declare global {
       getButtonFor(page: string, field: string): Chainable<Subject>;
 
       nrOfValidations(length: number): Chainable<Subject>;
+
+      doLogin(username: string, password: string): Chainable<Subject>;
+
+      doGatewayLogin(username: string, password: string): Chainable<Subject>;
+
+      doLogout(): Chainable<Subject>;
+
+      doGatewayLogout(): Chainable<Subject>;
+
+      /**
+       * Starts a case of type A.
+       *
+       * @param reference can be used to refer to the case at a later time
+       */
+      startCaseTypeA(reference: string): Chainable<Subject>;
+
+      /**
+       * Open a case by reference.
+       *
+       * @param reference the reference of the existing case
+       */
+      openCase(reference: string): Chainable<Subject>;
+
+      /**
+       * Involves a case by reference.
+       *
+       * @param reference the reference of the existing case
+       */
+      involveCase(reference: string): Chainable<Subject>;
+
+      /**
+       * Verify if the current page is the case view page.
+       */
+      verifyOpenCasePage(): Chainable<Subject>;
+
+      /**
+       * Wait for a list entry to appear.
+       *
+       * @param reference the reference to search for.
+       */
+      waitForListEntry(reference: string): Chainable<Subject>;
     }
   }
 }
