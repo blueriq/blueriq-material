@@ -1,0 +1,27 @@
+<mat-toolbar>
+  <div fxLayout="row" fxLayoutAlign=" center" fxFill>
+    <div fxFlex="1 1 0%">
+      <span class="img-logo-white"></span>
+    </div>
+
+    <div fxFlex="0 0 auto" class="application-actions">
+      <button type="button" mat-button [matMenuTriggerFor]="userMenu" aria-label="Open user menu" class="active-user-menu">
+        <div fxLayout="row" fxLayoutGap="12px" class="icon">
+          <div fxLayoutAlign="center center">
+            <mat-icon>account_circle</mat-icon>
+          </div>
+          <div class="username" *ngIf="userInfo$ | async as userInfo">
+            <span>{{ userInfo.name }}</span>
+          </div>
+        </div>
+      </button>
+
+      <mat-menu [overlapTrigger]="false" #userMenu="matMenu">
+        <button class="logout" mat-menu-item (click)="logout()">
+          Uitloggen
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+</mat-toolbar>
+<bq-dashboard-menu fxFlex [menuItems]="menuItems"></bq-dashboard-menu>

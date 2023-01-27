@@ -1,0 +1,12 @@
+FROM openjdk:17-slim@sha256:aaa3b3cb27e3e520b8f116863d0580c438ed55ecfa0bc126b41f68c3f62f9774
+
+LABEL maintainer="support@blueriq.com"
+
+EXPOSE 8080
+
+COPY preparations/blueriq-dcm-dashboard-service-standalone-*.jar ~/dashboard.jar
+COPY dashboards/config/dashboard /config/blueriq-dashboard/
+
+WORKDIR ~
+
+ENTRYPOINT ["java", "-Dspring.config.additional-location=file:///config/blueriq-dashboard/", "-jar", "dashboard.jar", "-Xmx256m" ]

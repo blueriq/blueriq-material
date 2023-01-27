@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project name="material-e2e" default="build" xmlns:if="ant:if" xmlns:unless="ant:unless">
+<project name="material-e2e" xmlns:if="ant:if" xmlns:unless="ant:unless">
 
   <!-- input properties -->
-  <property name="npmrcFileLocation" value="unset"/>
+  <property name="npmrcFileLocation" value="${user.home}/.npmrc"/>
+
+  <condition property="run.host" value="host.docker.internal" else="${docker.host}">
+    <equals arg1="localhost" arg2="${docker.host}"/>
+  </condition>
 
   <property name="toolsFolder" location="../../tools"/>
 
@@ -22,11 +26,20 @@
   <property name="container.src.dir" value="/usr/src"/>
 
   <!-- targets -->
+  <target name="run-e2e-dashboards">
+    <antcall target="run">
+      <param name="cypress.spec" value="cypress/e2e-dashboards/*.cy.ts"/>
+    </antcall>
+  </target>
+
   <target name="run" depends="create-build-image">
+    <property name="cypress.spec" value="cypress/e2e/*.cy.ts"/>
+    <echo message="cypress.spec=${cypress.spec}" />
     <create-container image.name="${docker.image}"
                       containerId.property="container.id"
-                      run.command="cypress run --config baseUrl=http://bq-docker-lin.blueriq.local:9081"
-                      unless:set="${build.error}"/>
+                      run.command="node cypress/scripts/run.js run ${run.host} ${cypress.spec}"
+                      unless:set="${build.error}">
+    </create-container>
     <property name="container.id" value="[not-set]"/>  <!-- reference property setter -->
 
     <trycatch>
@@ -37,9 +50,9 @@
       </catch>
       <finally>
         <copy-from-container container.id="${container.id}" copy.from.dir="${container.src.dir}/cypress/."
-                             copy.to.dir="${sources.dir}"/>
+                             copy.to.dir="${sources.dir}/cypress/"/>
         <copy-from-container container.id="${container.id}" copy.from.dir="${container.src.dir}/cypress-visual-screenshots/."
-                             copy.to.dir="${sources.dir}"/>
+                             copy.to.dir="${sources.dir}/cypress-visual-screenshots/"/>
       </finally>
     </trycatch>
 

@@ -7,9 +7,10 @@
     actually copies this war to its container
 
 # How to test
-
-Run `yarn e2e:dev` to execute the end-to-end tests via Cypress.
+Run `yarn e2e:dev` to execute the end-to-end tests via Cypress when you everything running from docker
 This will first start docker with a runtime, customerdata and dcm list and after completion it will start the Cypress UI
+
+Run `yarn e2e:local` to execute the end-to-end tests via Cypress when you everything running from your local environment (make sure to check your ports!)
 
 ## Visual regression testing
 
@@ -23,3 +24,5 @@ In order to update the baseline, the following steps need to be taken:
 * Run the `blueriq-material-e2e-cypress` job on CI (with the desired branch selected).
 * Navigate to the `comparison` directory on the CI job build artifacts and download the created screenshots.
 * Copy the contents of the downloaded `comparison` directory to the `../cypress-visual-screenshots/baseline` directory.
+
+

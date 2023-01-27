@@ -1,0 +1,40 @@
+@import '~@angular/material/theming';
+@import 'globals/variables';
+@import 'globals/images';
+
+footer {
+  max-width: 1080px;
+  margin: 0 auto;
+  color: $dark-secondary-text;
+  text-align: center;
+
+  .img-logo {
+    @include image('../../..' + $url-img-logo, 100px, 40px);
+  }
+
+  a {
+    color: $dark-secondary-text;
+    font-style: normal;
+    text-decoration: none;
+
+    &:hover,
+    &:visited {
+      color: $dark-primary-text;
+    }
+  }
+
+  address {
+    font-size: $font-size-footer-address;
+    line-height: $default-line-height;
+  }
+
+  .mat-divider {
+    margin-bottom: 48px;
+  }
+
+  &::after {
+    display: block;
+    height: 50px;
+    content: '';
+  }
+}

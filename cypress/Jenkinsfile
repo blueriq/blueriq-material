@@ -7,6 +7,7 @@ properties([
   ],
   parameters([
     gitParameter(name: 'BRANCH_NAME', defaultValue: 'master', selectedValue: 'DEFAULT', type: 'PT_BRANCH'),
+    string(name: 'RUNTIME_BRANCH', defaultValue: 'master', description: "The runtime branch to test against"),
   ])
 ])
 node {
@@ -16,6 +17,10 @@ node {
     def nodeHome = tool 'node-14.17.0'
     env.PATH = "${env.JAVA_HOME}\\bin;${mvnHome}\\bin;${nodeHome};${env.PATH}";
     env.COMPOSE_PROJECT_NAME = "material-e2e-cypress";
+
+    def cdsVersion;
+    def dashboardVersion = '0.0.1-M16'
+    def dcmListsVersion;
 
     stage('checkout') {
       checkout scm;
@@ -38,14 +43,13 @@ node {
       }
     }
 
-    stage('docker prepare') {
-      withCredentials([file(credentialsId: 'BLUERIQ_LICENSE_15', variable: 'license_file')]) {
-        writeFile file: './cypress/docker/config/license.aql', text: readFile(license_file)
-      }
-      bat "yarn e2e:docker-prepare";
-    }
-
     try {
+      stage('docker prepare') {
+        withCredentials([file(credentialsId: 'BLUERIQ_LICENSE_15', variable: 'license_file')]) {
+          writeFile file: './cypress/docker/config/license.aql', text: readFile(license_file)
+        }
+        bat "yarn e2e:docker-prepare";
+      }
       stage('e2e tests') {
         withCredentials([file(credentialsId: 'npmrc_file', variable: 'npmrc_file')]) {
           bat "ant -f scripts/docker/e2e.xml run " +
@@ -54,10 +58,34 @@ node {
             "-DnpmrcFileLocation=${npmrc_file}"
         }
       }
+     }
+     finally {
+       stage('docker down') {
+         bat "yarn e2e:docker-down";
+       }
+     }
+
+     try {
+      stage('docker prepare dashboards') {
+       withCredentials([file(credentialsId: 'BLUERIQ_LICENSE_15', variable: 'license_file')]) {
+          writeFile file: './cypress/docker/dashboards/config/runtime/license.aql', text: readFile(license_file)
+          writeFile file: './cypress/docker/dashboards/config/case-engine/license.aql', text: readFile(license_file)
+        }
+        bat "yarn e2e:docker-prepare-dashboards -overrideVersion=true -runtimeBranch=${params.RUNTIME_BRANCH} -runtimeUrl=${env.RUNTIME_GIT_URL}";
+      }
+
+      stage('e2e tests-dashboards') {
+        withCredentials([file(credentialsId: 'npmrc_file', variable: 'npmrc_file')]) {
+          bat "ant -f scripts/docker/e2e.xml run-e2e-dashboards " +
+            "-Ddocker.host=bq-docker-lin.blueriq.local " +
+            "-Dcommit=${env.GIT_COMMIT} " +
+            "-DnpmrcFileLocation=${npmrc_file}"
+        }
+      }
     }
     finally {
       stage('docker down') {
-        bat "yarn e2e:docker-down";
+        bat "yarn e2e:docker-down-dashboards";
       }
     }
   } catch (anyException) {
@@ -66,10 +94,18 @@ node {
   } finally {
     stage("Publish results") {
       // Test results
-      step([$class: 'JUnitResultArchiver', testResults: 'results/cypress-report.xml', allowEmptyResults: true])
+      dir('cypress/report'){
+            publishHTML([       allowMissing         : false,
+                                alwaysLinkToLastBuild: false,
+                                keepAll              : true,
+                                reportDir            : 'mochareports',
+                                reportFiles          : 'report.html',
+                                reportName           : 'Cypress e2e report',
+                                reportTitles         : 'Cypress e2e report'])
+      }
 
       // archive integration outputs
-      archiveArtifacts artifacts: 'videos/*, screenshots/**/*, snapshots/**/*.diff.png, tmp/e2e-logs.txt, diff/*, comparison/*'
+      archiveArtifacts artifacts: 'cypress/videos/*, cypress/screenshots/**/*, cypress/snapshots/**/*.diff.png, tmp/e2e-logs.txt, cypress-visual-screenshots/diff/*, cypress-visual-screenshots/comparison/*'
     }
     notifyBuildStatus();
     deleteDir();

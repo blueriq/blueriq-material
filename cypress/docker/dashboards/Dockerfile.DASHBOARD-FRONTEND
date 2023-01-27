@@ -1,0 +1,7 @@
+FROM nginx:1.13.12-alpine@sha256:9d46fd628d54ebe1633ee3cf0fe2acfcc419cfae541c63056530e39cd5620366
+
+ARG HOST_PORT=unset
+
+COPY preparations/dist /usr/share/nginx/html
+COPY dashboards/config/frontend/nginx.conf.template /nginx.conf.template
+RUN envsubst '$$HOST_PORT' < /nginx.conf.template > /etc/nginx/conf.d/default.conf

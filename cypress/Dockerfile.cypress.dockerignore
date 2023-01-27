@@ -1,4 +1,13 @@
 .git/
-**/docker/
+./angular/
+./idea/
+docker/
 node_modules/
 dist/
+runtime-clone/
+videos/
+report/
+screenshots/
+local-dev/
+tools/
+src/

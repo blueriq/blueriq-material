@@ -1,0 +1,12 @@
+blueriq:
+  dcm:
+    dashboard:
+      definitions:
+        location: ${spring.config.additional-location}dashboard-definitions/
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://e2e-gateway:8080/realms/Blueriq/protocol/openid-connect/certs

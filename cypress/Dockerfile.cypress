@@ -43,7 +43,7 @@ RUN --mount=type=bind,target=/docker-context \
 # 1: `docker pull cypress/included:X.Y.Z` (like: cypress/included:9.7.0)
 # 2: run `docker images --digests`
 # 3: copy the sha and replace it with the sha below
-FROM cypress/included:10.3.0@sha256:942468cdb722c408607093f60eeb1b4ff098a384f9123bf2ded36f55d4c96352 as cypress
+FROM cypress/included:10.11.0@sha256:058d1834239bf09b381325b8369d05e9e0516a46b65b32e6dc0c991801dc517a as cypress
 
 COPY --from=workspace /usr/src/ /usr/src/
 

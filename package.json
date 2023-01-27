@@ -12,6 +12,7 @@
     "ng:version": "ng version",
     "browserslist": "npx browserslist",
     "start": "ng serve --open --host 0.0.0.0 --proxy-config proxy.conf.js",
+    "start:dashboard": "ng serve --open --host 0.0.0.0 --proxy-config proxy-dashboard.conf.js",
     "start:nolive": "yarn start --live-reload false --watch false",
     "build": "ng build --configuration production",
     "build:runtime": "ng build --configuration production -c runtime",
@@ -22,9 +23,16 @@
     "verify": "ng test --watch false --code-coverage true",
     "verify:all": "yarn verify && yarn eslint && yarn stylelint",
     "e2e:dev": "yarn e2e:docker-prepare && yarn start-server-and-test e2e:app:start 1337 \"cypress open --config baseUrl=http://localhost:1337\"",
+    "e2e:dev-dashboard": "yarn build && yarn e2e:docker-prepare-dashboards -overrideVersion=true && cypress open --config baseUrl=http://localhost:9081",
+    "e2e:local": "cypress open --config baseUrl=http://localhost:4200",
     "e2e:app:start": "ng serve --port 1337 --proxy-config proxy-e2e.conf.js",
     "e2e:docker-prepare": "cypress/docker/prepare.cmd",
+    "e2e:docker-prepare-dashboards": "cypress/docker/prepare-dashboards.cmd",
     "e2e:docker-down": "cypress/docker/destruct.cmd",
+    "e2e:docker-down-dashboards": "cypress/docker/destruct-dashboards.cmd",
+    "e2e:reporting": "yarn e2e:merge-report && yarn e2e:generate-report",
+    "e2e:generate-report": "marge cypress/report/mochareports/report.json -f report -o cypress/report/mochareports",
+    "e2e:merge-report":"mochawesome-merge cypress/report/mocha/*.json > cypress/report/mochareports/report.json",
     "docs": "compodoc --config compodoc.json",
     "version:increment": "npm version --allow-same-version"
   },
@@ -50,9 +58,10 @@
     "@angular/platform-browser": "14.2.9",
     "@angular/platform-browser-dynamic": "14.2.9",
     "@angular/router": "14.2.9",
-    "@blueriq/angular": "0.15.0",
-    "@blueriq/core": "0.15.0",
-    "@blueriq/devtools": "0.15.0",
+    "@blueriq/angular": "0.15.12",
+    "@blueriq/core": "0.15.12",
+    "@blueriq/dashboard": "0.15.12",
+    "@blueriq/devtools": "0.15.12",
     "@danielmoncada/angular-datetime-picker": "12.3.0",
     "@ngrx/effects": "14.3.2",
     "@ngrx/store": "14.3.2",
@@ -76,6 +85,7 @@
     "@angular/cli": "14.2.9",
     "@angular/compiler-cli": "14.2.9",
     "@angular/language-service": "14.2.9",
+    "@blueriq-tools/build-utils": "0.0.2",
     "@compodoc/compodoc": "1.1.19",
     "@types/jasmine": "4.0.3",
     "@types/node": "14.14.31",
@@ -101,7 +111,12 @@
     "typescript": "4.8.4"
   },
   "optionalDependencies": {
-    "cypress": "10.3.1"
+    "cypress": "10.11.0",
+    "cypress-multi-reporters": "^1.4.0",
+    "mocha": "^8.2.1",
+    "mochawesome": "^6.2.1",
+    "mochawesome-merge": "^4.2.0",
+    "mochawesome-report-generator": "^5.1.0"
   },
   "resolutions": {
     "glob-parent": "^6.0.2"

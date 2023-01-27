@@ -1,0 +1,113 @@
+version: '3'
+services:
+  e2e-keycloak:
+    build:
+      context: ../
+      dockerfile: dashboards/Dockerfile.KEYCLOAK
+    command:
+      - start-dev
+      - --import-realm
+    ports:
+      - "9079:8080"
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+      - KEYCLOAK_LOGLEVEL=DEBUG
+      - KC_PROXY=passthrough
+      - KC_HOSTNAME_STRICT=false
+      - PROXY_ADDRESS_FORWARDING=true
+  e2e-gateway:
+    build:
+      context: ../
+      dockerfile: dashboards/Dockerfile.GATEWAY
+    depends_on:
+      - e2e-keycloak
+      - e2e-redis
+    ports:
+      - "9080:8080"
+      - "20121:8000"
+    environment:
+      JPDA_ADDRESS: 8000
+      JPDA_TRANSPORT: dt_socket
+      JAVA_TOOL_OPTIONS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000
+  e2e-runtime:
+    build:
+      context: ../
+      dockerfile: dashboards/Dockerfile.RUNTIME
+    ports:
+      - "9082:8080"
+    depends_on:
+      - e2e-case-engine
+      - e2e-h2
+      - e2e-gateway
+  e2e-case-engine:
+    build:
+      context: ../
+      dockerfile: dashboards/Dockerfile.CASEENGINE
+    ports:
+      - "9085:8080"
+    depends_on:
+      - e2e-dcm-lists
+      - e2e-h2
+      - e2e-customerdata
+  e2e-customerdata:
+    build:
+      context: ../
+      dockerfile: dashboards/Dockerfile.CDS
+    ports:
+      - "9083:8080"
+    depends_on:
+      - e2e-h2
+  e2e-dcm-lists:
+    build:
+      context: ../
+      dockerfile: dashboards/Dockerfile.DCMLISTS
+    ports:
+      - "9086:8000"
+    depends_on:
+      - e2e-rabbitmq
+      - e2e-mongodb
+  e2e-rabbitmq:
+    build:
+      context: ../
+      dockerfile: dashboards/Dockerfile.RABBIT
+    ports:
+      - "9087:5672"
+      - "9088:15672"
+    restart: always
+  e2e-mongodb:
+    image: mongo:5.0.6-focal@sha256:2fea7c24de9fff67cf15cd36c369a5d3f8d8bc52a69b5b0b1778bd3d2f079e1b
+    restart: always
+    ports:
+      - "9084:27017"
+  e2e-h2:
+    build:
+      context: ../
+      dockerfile: dashboards/Dockerfile.H2
+    ports:
+      - "9089:81"
+    environment:
+      - H2_OPTIONS=-ifNotExists
+  e2e-blueriq-material-theme:
+    build:
+      context: ../
+      dockerfile: dashboards/Dockerfile.DASHBOARD-FRONTEND
+      args:
+        HOST_PORT: 9081
+    ports:
+      - "9081:80"
+    depends_on:
+      - e2e-dashboard
+      - e2e-runtime
+  e2e-dashboard:
+    build:
+      context: ../
+      dockerfile: dashboards/Dockerfile.DASHBOARD
+    ports:
+      - "9090:8080"
+  e2e-redis:
+    image: docker-internal.blueriq.com/redis6.2:1.0
+    environment:
+      CONNECTION_PASSWORD: blueriq
+    ports:
+      - "9091:6379"

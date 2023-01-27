@@ -1,0 +1,13 @@
+<mat-toolbar>
+  <ng-container *ngFor="let menuItem of menuItems">
+    <button name="{{menuItem.displayText}}" mat-button class="mat-menu-item" (click)="onClick(menuItem.path)">
+    {{ menuItem.displayText }}
+  </button>
+  </ng-container>
+  <div fxFlex="0 0 auto" class="application-actions">
+    <button type="button" id="dashboard-refresh" mat-button matTooltip="Alle niet opgeslagen data in open widgets gaan verloren." (click)="refresh()">
+        <span>Refresh</span>
+    </button>
+  </div>
+</mat-toolbar>
+

@@ -1,0 +1,65 @@
+upstream gateway {
+    server e2e-gateway:8080;
+}
+
+server {
+    listen 80;
+
+    # using variables in a proxy_pass requires a resolver, a non-variable proxy_pass uses the 'gethostbyaddr' system call
+    # on startup as it is static. Variable passes are not able to do so.
+    resolver 127.0.0.11 valid=10s;
+
+    proxy_buffering off;
+
+    proxy_set_header Forwarded "for=$host;host=$host:$HOST_PORT;proto=$scheme";
+    proxy_set_header Host $host:$HOST_PORT;
+    proxy_set_header X-Forwarded-Host $host;
+    proxy_set_header X-Forwarded-Server $host;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header X-Forwarded-Port $HOST_PORT;
+
+    location / {
+        root /usr/share/nginx/html;
+        index index.html index.htm;
+        try_files $uri $uri/ /index.html =404;
+    }
+
+    location /runtime/ {
+        rewrite ^/runtime/([^/]*)/(.*)$ /runtime/$1/server/$2 break;
+        proxy_pass http://gateway/;
+    }
+
+    location /dashboards/ {
+        proxy_pass http://gateway/;
+    }
+
+    location /auth/ {
+        rewrite ^/auth/(.*)$ /$1 break;
+        proxy_pass http://gateway/;
+    }
+
+    location /oauth2/ {
+        proxy_pass http://gateway;
+    }
+
+    location /login {
+        proxy_pass http://gateway;
+    }
+
+    location /logout {
+        proxy_pass http://gateway;
+    }
+
+    location /realms/ {
+        proxy_pass http://gateway;
+    }
+
+    location /gateway/ {
+        proxy_pass http://gateway;
+    }
+
+    location /resources/ {
+        proxy_pass http://gateway;
+    }
+}

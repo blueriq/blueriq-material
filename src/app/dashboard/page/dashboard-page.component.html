@@ -1,0 +1,17 @@
+<ng-container *ngIf="page$ | async as page">
+  <div class="header">
+    <bq-dashboard-header [menuItems]="page.menuItems"></bq-dashboard-header>
+  </div>
+
+  <div class="page" [ngClass]="page.layout">
+    <div class="bq-dashboard-column" *ngFor="let column of page.columns">
+      <ng-container *ngFor="let widget of column.widgets" [ngSwitch]="widget.type">
+        <ng-container *ngSwitchCase="'blueriq-flow'">
+          <bq-flow-widget *ngIf="!refreshWidget" [widget]="widget" [id]="widget.id"></bq-flow-widget>
+        </ng-container>
+
+        <bq-task-execution-widget *ngSwitchCase="'blueriq-task'" [widget]="widget" [id]="widget.id"></bq-task-execution-widget>
+      </ng-container>
+    </div>
+  </div>
+</ng-container>

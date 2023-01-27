@@ -17,7 +17,8 @@
   }
 
   .notification-expired,
-  .notification-logged-out {
+  .notification-logged-out,
+  .notification-info {
     background-color: mat.get-color-from-palette($bq-mat-primary-blue, 500);
   }
 

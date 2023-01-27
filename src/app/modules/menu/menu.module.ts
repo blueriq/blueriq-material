@@ -33,7 +33,7 @@ const BQ_MENU_COMPONENTS = [
     MatButtonModule,
     MatIconModule,
   ],
-  exports: [BQ_MENU_COMPONENTS],
+    exports: [BQ_MENU_COMPONENTS, MenuItemComponent],
 })
 export class MenuModule {
 }

@@ -11,6 +11,6 @@ var PROXY_CONFIG = [
       "^/runtime": "/runtime/server"
     },
     "secure": false
-  },
+  }
 ];
 module.exports = PROXY_CONFIG;

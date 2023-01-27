@@ -1,0 +1,19 @@
+<bq-task *ngIf="parameters$ | async as parameters"
+         [sessionName]=sessionName
+         [applicationId]="parameters.applicationId"
+         [languageCode]="parameters.languageCode"
+         [caseId]="parameters.caseId"
+         [caseType]="parameters.caseType"
+         [processCaseId]="parameters.processCaseId"
+         [taskId]="parameters.taskId"
+         [baseUrl]="baseUrl"
+         (expired)="onSessionExpired(parameters.caseType, parameters.caseId)"
+         (error)="onError($event, parameters.caseType, parameters.caseId)"
+         (flowEnded)="onFlowEnded(parameters.caseType, parameters.caseId)"
+         (forbidden)="onForbidden(parameters.caseType, parameters.caseId)"
+         (unauthorized)="onUnauthorized()">
+</bq-task>
+
+<bq-loading></bq-loading>
+
+<bq-notification-overlay *ngIf="notification" [notification]="notification"></bq-notification-overlay>
