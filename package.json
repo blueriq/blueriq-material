@@ -113,12 +113,14 @@
   "optionalDependencies": {
     "cypress": "10.11.0",
     "cypress-multi-reporters": "^1.4.0",
-    "mocha": "^8.2.1",
+    "mocha": "^10.2.0",
     "mochawesome": "^6.2.1",
     "mochawesome-merge": "^4.2.0",
-    "mochawesome-report-generator": "^5.1.0"
+    "mochawesome-report-generator": "^6.2.0"
   },
   "resolutions": {
-    "glob-parent": "^6.0.2"
+    "glob-parent": "^6.0.2",
+    "minimatch": "^3.0.5",
+    "validator": "13.7.0"
   }
 }
