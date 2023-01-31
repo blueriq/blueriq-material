@@ -10,7 +10,7 @@ set runtimeVersion="15.10.0.767"
 set cdsVersion="4.1.1"
 set dcmVersion="2.2.1"
 set dashboardVersion="0.0.1-M17"
-set gatewayVersion="0.0.1-M3"
+set gatewayVersion="0.0.1-M4"
 
 
 @echo off
@@ -77,7 +77,7 @@ exit /B
 call mvn -B  dependency:copy "-Dartifact=com.blueriq:blueriq-customerdata-sql-store-standalone:%cdsVersion%:jar" "-DoutputDirectory=%location%" || exit /b
 call mvn -B  dependency:copy "-Dartifact=com.blueriq:blueriq-dcm-lists-standalone:%dcmVersion%:jar" "-DoutputDirectory=%location%" || exit /b
 call mvn -B  dependency:copy "-Dartifact=com.blueriq:blueriq-dcm-dashboard-service-standalone:%dashboardVersion%:jar" "-DoutputDirectory=%location%" || exit /b
-call mvn -B  dependency:copy "-Dartifact=com.blueriq:blueriq-gateway-standalone:%gatewayVersion%:jar" "-DoutputDirectory=%location%" || exit /b
+call mvn -B  dependency:copy "-Dartifact=com.blueriq:blueriq-gateway-service:%gatewayVersion%:jar" "-DoutputDirectory=%location%" || exit /b
 exit /B
 
 
