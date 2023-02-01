@@ -9,8 +9,8 @@ set runtimeUrl="git@bq-gitlab.everest.nl:blueriq/blueriq.git"
 set runtimeVersion="15.10.0.767"
 set cdsVersion="4.1.1"
 set dcmVersion="2.2.1"
-set dashboardVersion="0.0.1-M17"
-set gatewayVersion="0.0.1-M4"
+set dashboardVersion="0.1.0"
+set gatewayVersion="0.1.0"
 
 
 @echo off
