@@ -11,5 +11,5 @@ call mvn dependency:copy "-Dartifact=com.blueriq:blueriq-customerdata-sql-store-
 xcopy /I dist cypress\docker\preparations\dist /Y
 
 :: Docker build and start
-docker-compose --file ./cypress/docker/docker-compose.yml build
-docker-compose --file ./cypress/docker/docker-compose.yml up -d
+docker-compose --compatibility --file ./cypress/docker/docker-compose.yml build
+docker-compose --compatibility --file ./cypress/docker/docker-compose.yml up -d
