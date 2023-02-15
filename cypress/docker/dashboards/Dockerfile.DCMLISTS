@@ -10,4 +10,4 @@ COPY dashboards/config/dcm-lists/blueriq-dcm-lists.yml /config/blueriq-dcm-lists
 
 WORKDIR ~
 
-ENTRYPOINT ["java", "-Dspring.config.additional-location=file:///config/blueriq-dcm-lists/", "-jar", "dcm-lists.jar", "-Xmx384m" ]
+ENTRYPOINT ["java", "-Dspring.config.additional-location=file:///config/blueriq-dcm-lists/", "-jar", "dcm-lists.jar", "-Xmx256m" ]

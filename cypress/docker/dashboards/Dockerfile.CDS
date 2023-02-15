@@ -10,4 +10,4 @@ COPY dashboards/config/customerdata/blueriq-customerdata-odata-service-v1.yml /c
 
 WORKDIR ~
 
-ENTRYPOINT ["java", "-Dspring.config.additional-location=file:///config/blueriq-customerdata/", "-jar", "customerdata.jar", "-Xmx384m" ]
+ENTRYPOINT ["java", "-Dspring.config.additional-location=file:///config/blueriq-customerdata/", "-jar", "customerdata.jar", "-Xmx256m" ]

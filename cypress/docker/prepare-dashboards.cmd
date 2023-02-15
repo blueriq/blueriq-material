@@ -34,7 +34,7 @@ if %composeOnly% == false (
 
 
 :: Docker build and start
-call docker-compose --file ./cypress/docker/dashboards/docker-compose.yml up -d --build
+call docker-compose --compatibility --file ./cypress/docker/dashboards/docker-compose.yml up -d --build
 exit %ERROR_LEVEL%
 
 :read_params

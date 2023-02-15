@@ -7,4 +7,4 @@ COPY dashboards/config/gateway/blueriq-gateway-service.yaml /config/gateway-serv
 
 WORKDIR ~
 
-ENTRYPOINT ["java", "-Dspring.config.additional-location=file:///config/gateway-service/", "-jar", "gateway-service.jar", "-Xmx384m" ]
+ENTRYPOINT ["java", "-Dspring.config.additional-location=file:///config/gateway-service/", "-jar", "gateway-service.jar", "-Xmx256m" ]

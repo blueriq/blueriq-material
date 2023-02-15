@@ -4,6 +4,7 @@ services:
     build:
       context: ../
       dockerfile: dashboards/Dockerfile.KEYCLOAK
+    mem_limit: 512m
     command:
       - start-dev
       - --import-realm
@@ -20,6 +21,7 @@ services:
     build:
       context: ../
       dockerfile: dashboards/Dockerfile.GATEWAY
+    mem_limit: 384m
     depends_on:
       - e2e-keycloak
       - e2e-redis
@@ -34,6 +36,7 @@ services:
     build:
       context: ../
       dockerfile: dashboards/Dockerfile.RUNTIME
+    mem_limit: 768m
     ports:
       - "9082:8080"
     depends_on:
@@ -44,6 +47,7 @@ services:
     build:
       context: ../
       dockerfile: dashboards/Dockerfile.CASEENGINE
+    mem_limit: 768m
     ports:
       - "9085:8080"
     depends_on:
@@ -54,6 +58,7 @@ services:
     build:
       context: ../
       dockerfile: dashboards/Dockerfile.CDS
+    mem_limit: 384m
     ports:
       - "9083:8080"
     depends_on:
@@ -62,6 +67,7 @@ services:
     build:
       context: ../
       dockerfile: dashboards/Dockerfile.DCMLISTS
+    mem_limit: 384m
     ports:
       - "9086:8000"
     depends_on:
@@ -71,12 +77,14 @@ services:
     build:
       context: ../
       dockerfile: dashboards/Dockerfile.RABBIT
+    mem_limit: 256m
     ports:
       - "9087:5672"
       - "9088:15672"
     restart: always
   e2e-mongodb:
     image: mongo:5.0.6-focal@sha256:2fea7c24de9fff67cf15cd36c369a5d3f8d8bc52a69b5b0b1778bd3d2f079e1b
+    mem_limit: 256m
     restart: always
     ports:
       - "9084:27017"
@@ -84,6 +92,7 @@ services:
     build:
       context: ../
       dockerfile: dashboards/Dockerfile.H2
+    mem_limit: 256m
     ports:
       - "9089:81"
     environment:
@@ -94,6 +103,7 @@ services:
       dockerfile: dashboards/Dockerfile.DASHBOARD-FRONTEND
       args:
         HOST_PORT: 9081
+    mem_limit: 128m
     ports:
       - "9081:80"
     depends_on:
@@ -103,10 +113,12 @@ services:
     build:
       context: ../
       dockerfile: dashboards/Dockerfile.DASHBOARD
+    mem_limit: 128m
     ports:
       - "9090:8080"
   e2e-redis:
     image: docker-internal.blueriq.com/redis6.2:1.0
+    mem_limit: 256m
     environment:
       CONNECTION_PASSWORD: blueriq
     ports:
