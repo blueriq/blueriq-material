@@ -6,9 +6,9 @@ set skipBuild=false
 set composeOnly=false
 set runtimeBranch="master"
 set runtimeUrl="git@bq-gitlab.everest.nl:blueriq/blueriq.git"
-set runtimeVersion="15.10.0.767"
-set cdsVersion="4.1.1"
-set dcmVersion="2.2.1"
+set runtimeVersion="15.10.0.839"
+set cdsVersion="4.1.5"
+set dcmVersion="2.2.7"
 set dashboardVersion="0.1.0"
 set gatewayVersion="0.1.0"
 
