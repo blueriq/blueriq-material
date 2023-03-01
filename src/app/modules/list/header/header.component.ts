@@ -16,10 +16,10 @@ export class TableHeaderColumnComponent {
       case 'unavailable':
         return '';
       case 'descending':
-        return 'arrow_upward';
+        return 'arrow_downward';
       case 'ascending':
       case 'none':
-        return 'arrow_downward';
+        return 'arrow_upward';
     }
   }
 }
