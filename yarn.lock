@@ -1376,32 +1376,32 @@
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq-tools/build-utils/-/@blueriq-tools/build-utils-0.0.2.tgz#e104af809ea35e76a7e987678dd903b3967c2605"
   integrity sha1-4QSvgJ6jXnan6YdnjdkDs5Z8JgU=
 
-"@blueriq/angular@0.15.12":
-  version "0.15.12"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/angular/-/@blueriq/angular-0.15.12.tgz#c3ca1a1c9d8d23696e2883c5ecc6ab9e2fbec924"
-  integrity sha1-w8oaHJ2NI2luKIPF7Marni++ySQ=
+"@blueriq/angular@0.15.13":
+  version "0.15.13"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/angular/-/@blueriq/angular-0.15.13.tgz#f98b7aebbb79c35f9740fe528e539b602aaffd73"
+  integrity sha1-+Yt667t5w1+XQP5SjlObYCqv/XM=
   dependencies:
     tslib "^2.3.0"
 
-"@blueriq/core@0.15.12":
-  version "0.15.12"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/core/-/@blueriq/core-0.15.12.tgz#942292e2b368af0528168fcb525d412aaaded896"
-  integrity sha1-lCKS4rNorwUoFo/LUl1BKqre2JY=
+"@blueriq/core@0.15.13":
+  version "0.15.13"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/core/-/@blueriq/core-0.15.13.tgz#777915584f150607b3b25e0bfd97d51bdcb5610e"
+  integrity sha1-d3kVWE8VBgezsl4L/ZfVG9y1YQ4=
   dependencies:
     css-selector-parser "1.3.0"
     tslib "^2.3.0"
 
-"@blueriq/dashboard@0.15.12":
-  version "0.15.12"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/dashboard/-/@blueriq/dashboard-0.15.12.tgz#8823e462868459efd9e2926c49b30c2a2616565f"
-  integrity sha1-iCPkYoaEWe/Z4pJsSbMMKiYWVl8=
+"@blueriq/dashboard@0.15.13":
+  version "0.15.13"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/dashboard/-/@blueriq/dashboard-0.15.13.tgz#855f1770287d45857987373cdc61b45dea6773ae"
+  integrity sha1-hV8XcCh9RYV5hzc83GG0Xepnc64=
   dependencies:
     tslib "^2.3.0"
 
-"@blueriq/devtools@0.15.12":
-  version "0.15.12"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/devtools/-/@blueriq/devtools-0.15.12.tgz#b652af3db43e7868c6b3e9c9fe6507450b98c29c"
-  integrity sha1-tlKvPbQ+eGjGs+nJ/mUHRQuYwpw=
+"@blueriq/devtools@0.15.13":
+  version "0.15.13"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/devtools/-/@blueriq/devtools-0.15.13.tgz#be687420f3fb2d4b34f67ac69a9c1b6d3715b17b"
+  integrity sha1-vmh0IPP7LUs09nrGmpwbbTcVsXs=
   dependencies:
     tslib "^2.3.0"
 
