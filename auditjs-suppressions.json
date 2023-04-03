@@ -3,6 +3,18 @@
     {
       "id": "CVE-2022-25869",
       "reason": "The vulnerability only occurs in Internet Explorer which is a browser we do not support"
+    },
+    {
+      "id": "CVE-2023-26116",
+      "reason": "The vulnerability is reported for angular.js, not Angular"
+    },
+    {
+      "id": "CVE-2023-26117",
+      "reason": "The vulnerability is reported for angular.js, not Angular"
+    },
+    {
+      "id": "CVE-2023-26118",
+      "reason": "The vulnerability is reported for angular.js, not Angular"
     }
   ]
 }
