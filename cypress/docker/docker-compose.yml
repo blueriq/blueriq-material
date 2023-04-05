@@ -13,7 +13,7 @@ services:
     ports:
       - "9083:8080"
   mongodb:
-    image: mongo:5.0.6-focal@sha256:2fea7c24de9fff67cf15cd36c369a5d3f8d8bc52a69b5b0b1778bd3d2f079e1b
+    image: mongo:6.0.5@sha256:83801634df07132cff11fab970dd54182ebcd39428b1a6bdef02d35ca8328a71
     restart: always
     ports:
       - "9084:27017"
