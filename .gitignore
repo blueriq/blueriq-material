@@ -62,3 +62,4 @@ license.aql
 /cypress/report/mocha
 /runtime-clone
 tempVersion.txt
+/cypress/docker/runtime-clone/

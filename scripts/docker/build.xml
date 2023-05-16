@@ -3,7 +3,7 @@
 
   <!-- input properties -->
   <property name="isRelease" value="false"/>
-  <property name="npmrcFileLocation" value="unset"/>
+  <property name="npmrcFileLocation" value="${user.home}/.npmrc"/>
 
   <property name="toolsFolder" location="../../tools"/>
 
