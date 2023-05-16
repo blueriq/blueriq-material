@@ -112,7 +112,7 @@ function getByTagName(tagName: string, page: string, field: string, nr = '1'): C
 }
 
 function visitRuntime(url: string, visitOptions: VisitOptions = { loginRequired: false }): Chainable<unknown> {
-  cy.intercept({ method: 'POST', url: '/runtime/api/v2/start/**' }).as('visitRuntime');
+  cy.intercept({ method: 'POST', url: /\/runtime\/api\/v2\/start(\/?).*$/ }).as('visitRuntime');
   cy.visit(url);
 
   // A login page could be expected (401 = unauthorized)
@@ -136,7 +136,7 @@ function startDashboard(url: string, visitOptions: VisitOptions = { loginRequire
 }
 
 function clickForDashboardChange(button: Chainable): Chainable<unknown> {
-  cy.intercept({ method: 'get', url: '/runtime/*/api/v2/start/**' }).as('dashboardChanges');
+  cy.intercept({ method: 'get', url: /\/runtime\/(.*)\/api\/v2\/start(\/?).*$/ }).as('dashboardChanges');
   button.click();
 
   return cy.wait('@dashboardChanges').its('response.statusCode').should('equal', 200);

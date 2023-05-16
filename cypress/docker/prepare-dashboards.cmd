@@ -7,11 +7,10 @@ set composeOnly=false
 set runtimeBranch="master"
 set runtimeUrl="git@bq-gitlab.everest.nl:blueriq/blueriq.git"
 set runtimeVersion="15.12.0.1026"
-set cdsVersion="4.1.6"
-set dcmVersion="2.2.8"
-set dashboardVersion="0.1.1"
-set gatewayVersion="0.1.4"
-
+set cdsVersion="4.2.0"
+set dcmVersion="2.3.1"
+set dashboardVersion="0.2.1"
+set gatewayVersion="0.1.5"
 
 @echo off
 call :read_params %*
@@ -60,17 +59,17 @@ if %skipBuild% == false (
 )
 cd %checkoutDir%\Runtime
 if %skipBuild% == false (
-  call mvn -B clean package -DskipTests -P!quality -am -pl runtime/blueriq-runtime-application || exit /b
+  call mvn -B clean package -DskipTests -P!quality -am -pl runtime/blueriq-runtime-standalone || exit /b
 )
 
 call :get_version com.blueriq.customerdata.api.version cdsVersion
 call :get_version com.blueriq.dcm.lists.api.version dcmVersion
-call xcopy /I runtime\blueriq-runtime-application\target\*.war  ..\..\cypress\docker\preparations
+call xcopy /I runtime\blueriq-runtime-standalone\target\*.jar  ..\..\cypress\docker\preparations
 cd ..\..\
 exit /B
 
 :download_runtime
-call mvn -B  dependency:copy "-Dartifact=com.blueriq:blueriq-runtime-application:%runtimeVersion%:war" "-DoutputDirectory=%location%" "-Dproject.basedir=%location%"
+call mvn -B  dependency:copy "-Dartifact=com.blueriq:blueriq-runtime-standalone:%runtimeVersion%:jar" "-DoutputDirectory=%location%" "-Dproject.basedir=%location%"
 exit /B
 
 :download_services

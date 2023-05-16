@@ -48,7 +48,7 @@ node {
         withCredentials([file(credentialsId: 'BLUERIQ_LICENSE_15', variable: 'license_file')]) {
           writeFile file: './cypress/docker/config/license.aql', text: readFile(license_file)
         }
-        bat "yarn e2e:docker-prepare";
+        bat "yarn e2e:docker-prepare -overrideVersion=true -runtimeBranch=${params.RUNTIME_BRANCH} -runtimeUrl=${env.RUNTIME_GIT_URL}";
       }
       stage('e2e tests') {
         withCredentials([file(credentialsId: 'npmrc_file', variable: 'npmrc_file')]) {
@@ -71,7 +71,7 @@ node {
           writeFile file: './cypress/docker/dashboards/config/runtime/license.aql', text: readFile(license_file)
           writeFile file: './cypress/docker/dashboards/config/case-engine/license.aql', text: readFile(license_file)
         }
-        bat "yarn e2e:docker-prepare-dashboards -overrideVersion=true -runtimeBranch=${params.RUNTIME_BRANCH} -runtimeUrl=${env.RUNTIME_GIT_URL}";
+        bat "yarn e2e:docker-prepare-dashboards -overrideVersion=true  -skipBuild=true -runtimeBranch=${params.RUNTIME_BRANCH} -runtimeUrl=${env.RUNTIME_GIT_URL}";
       }
 
       stage('e2e tests-dashboards') {

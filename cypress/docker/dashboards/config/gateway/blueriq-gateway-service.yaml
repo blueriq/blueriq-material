@@ -5,10 +5,11 @@ blueriq:
         keycloak:
           end-session-endpoint: http://localhost:8080/realms/Blueriq/protocol/openid-connect/logout
 spring:
-  redis:
-    host: e2e-redis
-    port: 6379
-    password: blueriq
+  data:
+    redis:
+      host: e2e-redis
+      port: 6379
+      password: blueriq
   cloud:
     gateway:
       x-forwarded:
