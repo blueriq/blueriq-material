@@ -1,5 +1,6 @@
 import Chainable = Cypress.Chainable;
 const compareSnapshotCommand = require('cypress-image-diff-js/dist/command');
+import 'cypress-file-upload';
 compareSnapshotCommand();
 import {
   DASHBOARD_HEADER,
