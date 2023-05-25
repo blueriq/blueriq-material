@@ -39,14 +39,14 @@ describe('File Upload', () => {
     cy.get('#P866_File_1').click();
 
     // Upload a too large file
-    uploadFile('#P724-C0-C0 bq-file-upload', 'filetobig.txt')
+    uploadFile('#P724-C0-C0 bq-file-upload', 'filetobig.txt');
 
     // Verify file not uploaded because file is too large.
     cy.get('#P724_File-Name_1').should('not.exist');
     cy.get('#P724-C0-C0 bq-file-upload mat-error').should('have.text', 'File is too large');
 
     // Upload a file with the wrong extension
-    uploadFile('#P724-C0-C0 bq-file-upload', 'wrongextension.rtf')
+    uploadFile('#P724-C0-C0 bq-file-upload', 'wrongextension.rtf');
 
     // Verify file not uploaded because file has the wrong extensions.
     cy.get('#P724_File-Name_1').should('not.exist');
@@ -56,7 +56,7 @@ describe('File Upload', () => {
 
 function uploadFile(containerId: string, ...files: string[]): void {
   cy.get(containerId)
-    .within(() => {
-      cy.get('input[type="file"]').attachFile(files);
-    });
+  .within(() => {
+    cy.get('input[type="file"]').attachFile(files);
+  });
 }
