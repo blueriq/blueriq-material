@@ -214,6 +214,12 @@ describe('FileUploadComponent', () => {
     expect(component.debugElement.query(By.directive(BqContainerDirective))).toBeTruthy();
   });
 
+  it('should use apply the accepts attribute on the file input', () =>{
+    const inputElement = component.debugElement.query(By.css('input')).nativeElement as HTMLInputElement;
+    // Verify
+    expect(inputElement.accept).toEqual('.txt,.doc');
+  });
+
   function createFile(): FileItem {
     const file = new File([], 'file.txt', { type: 'text/plain', lastModified: new Date().getTime() });
     return new FileItem(fileSelectDirective.uploader, file, {});
