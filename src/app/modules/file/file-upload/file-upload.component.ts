@@ -82,6 +82,13 @@ export class FileUploadComponent {
     return element as TextItem;
   }
 
+  allowedExtensions(extensions: string[] | undefined): string[] | undefined {
+    if (extensions === undefined) {
+      return undefined;
+    }
+    return extensions.map(param => `.${ param }`);
+  }
+
   private setNgFileUploaderOptions() {
     const details = this.bqFileUpload.getUploadDetails();
 
@@ -97,4 +104,5 @@ export class FileUploadComponent {
       allowedFileType: this.bqFileUpload.allowedExtensions,
     });
   }
+
 }
