@@ -4,7 +4,7 @@
 	<groupId>com.blueriq</groupId>
 	<artifactId>blueriq-material-theme</artifactId>
 	<packaging>jar</packaging>
-	<version>1.1.7-SNAPSHOT</version>
+	<version>1.1.7</version>
 
 	<name>Blueriq Material theme</name>
 	<description>Blueriq Material theme</description>
