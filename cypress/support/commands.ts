@@ -190,36 +190,40 @@ function doGatewayLogout(): Chainable<unknown> {
 
 function startCaseTypeA(reference: string): Chainable<unknown> {
   cy.get(DASHBOARD_HEADER).within(() => {
-    cy.get(DASHBOARD_MENU).contains('button', 'Start Case').click();
+    cy.get(DASHBOARD_MENU).contains('button', 'Zaakcatalogus').click();
   });
 
   cy.get(DASHBOARD_PAGE).within(() => {
     cy.get(DASHBOARD_WIDGET + '[id="start-cases"]').should('exist').within(_ => {
       cy.intercept('POST', '/runtime/*/api/v2/session/*/load').as('startCase');
-      cy.getButtonFor('P764', 'Aanvragen').click();
+      cy.getButtonFor('P169', 'Aanvragen').click();
       cy.wait('@startCase').its('response.statusCode').should('equal', 200);
     });
   });
 
   cy.get(DASHBOARD_PAGE).within(() => {
-    cy.get(DASHBOARD_WIDGET + '[id="start-case-intake"]').should('exist').within(_ => {
-      cy.getInputFor('P572', 'Zaak_Metadata-Aanvraaggegevens').type(reference);
+    cy.get(DASHBOARD_WIDGET + '[id="StartZaak"]').should('exist').within(_ => {
+      cy.getInputFor('P572', 'Domeingegevens-Aanvraaggegevens').type(reference);
       cy.getButtonFor('P572', 'Ok').click();
     });
   });
 
   cy.get(DASHBOARD_PAGE).within(() => {
-    cy.get(DASHBOARD_WIDGET + '[id="start-case-intake"]').should('exist').within(_ => {
+    cy.get(DASHBOARD_WIDGET + '[id="StartZaak"]').should('exist').within(_ => {
       cy.get('div[id="P525_AanvraagGeregistreerd_1"]').contains('De aanvraag is bekend met het kenmerk');
+      cy.get('div[id="P525_AanvraagGeregistreerd_1"] bq-textitem-dynamic').then($element => {
+          cy.wrap($element.text()).as(reference);
+      })
     });
-  });
+  })
 
   cy.get(DASHBOARD_HEADER).within(() => {
-    cy.get(DASHBOARD_MENU).contains('button', 'Main').click();
+    cy.get(DASHBOARD_MENU).contains('button', 'Home').click();
   });
 
   return cy.get(DASHBOARD_PAGE).within(() => {
-    cy.get(DASHBOARD_WIDGET + '[id="niet-toegekende-zaken"]').should('exist');
+    cy.get(DASHBOARD_WIDGET + '[id="StartZaak"]').should('not.exist');
+    cy.get(DASHBOARD_WIDGET + '[id="toegewezen-zaken"]').should('exist');
   });
 }
 
@@ -233,7 +237,10 @@ function involveCase(reference: string): Chainable<unknown> {
 
 function handleCase(reference: string, type: 'involve' | 'open'): Chainable<unknown> {
   cy.get(DASHBOARD_PAGE).within(() => {
-    cy.get(DASHBOARD_WIDGET + '[id="niet-toegekende-zaken"]').should('exist').within(() => {
+    const widgetId = type === 'open' ? "toegewezen-zaken" : "niet-toegewezen-zaken";
+
+
+    cy.get(DASHBOARD_WIDGET + `[id="${widgetId}"]`).should('exist').within(() => {
       cy.intercept('POST', '/runtime/*/api/v2/session/*/load').as('handleCase');
 
       waitForListEntry(reference);
@@ -241,9 +248,9 @@ function handleCase(reference: string, type: 'involve' | 'open'): Chainable<unkn
       cy.get('.asset').contains(reference).parents('tr').within(() => {
 
         if (type === 'open') {
-          cy.get('button[id^="P423_Open_"]').click();
+          cy.get('button[id^="P682_Open_"]').click();
         } else {
-          cy.get('button[id^="P423_NeemInBehandeling_"]').click();
+          cy.get('button[id^="P76_NeemInBehandeling_"]').click();
         }
 
         cy.wait('@handleCase').its('response.statusCode').should('equal', 200);
@@ -263,8 +270,7 @@ function verifyOpenCasePage(type: 'involve' | 'open' = 'open'): Chainable<unknow
 
     cy.get(DASHBOARD_WIDGET + '[id="open-case-details"]').should('exist').within(() => {
       if(type === 'involve'){
-        cy.getInputFor('P849', 'Params-Single').should('have.value', 'Single');
-        cy.getMultiInputFor('P849', 'Params-Multi').should('have.text', ' Multi_1 cancel Multi_2 cancel');
+        cy.url().should('include','Event=NeemInBehandeling');
       }
 
       cy.get(DASHBOARD_WIDGET_PROJECT).should('exist');
@@ -286,7 +292,7 @@ function verifyOpenCasePage(type: 'involve' | 'open' = 'open'): Chainable<unknow
     });
 
     cy.get(DASHBOARD_HEADER).within(() => {
-      cy.get(DASHBOARD_MENU).contains('button', 'Main');
+      cy.get(DASHBOARD_MENU).contains('button', 'Home');
     });
   });
 }
@@ -304,6 +310,11 @@ function waitForListEntry(reference: string, attempts: number = 0): Chainable<un
     cy.get(`bq-filter button`).click();
     cy.intercept('POST', '/runtime/*/api/v2/session/*/event').as('events');
     cy.root().parentsUntil('html').last().within(() => {
+      // Filter Kenmerk
+      cy.get('mat-dialog-container mat-form-field mat-select').selectOption('Kenmerk');
+      // Filter reference
+      cy.get('mat-dialog-container bq-text-filter input').first().type(reference);
+
       cy.get('mat-dialog-container button.mat-primary').click();
     });
     cy.wait('@events').its('response.statusCode').should('equal', 200);
@@ -370,8 +381,9 @@ declare global {
        * Starts a case of type A.
        *
        * @param reference can be used to refer to the case at a later time
+       * @returns the reference id used to find a case. 
        */
-      startCaseTypeA(reference: string): Chainable<Subject>;
+      startCaseTypeA(reference: string): Chainable<unknown>;
 
       /**
        * Open a case by reference.
