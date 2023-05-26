@@ -3,7 +3,7 @@ const getCompareSnapshotsPlugin = require('cypress-image-diff-js/dist/plugin');
 
 export default defineConfig({
   viewportWidth: 1920,
-  viewportHeight: 4000,
+  viewportHeight: 1080,
   reporter: './node_modules/cypress-multi-reporters',
   reporterOptions: {
     reporterEnabled: 'mochawesome',

@@ -1,4 +1,8 @@
 describe('Visual testing', () => {
+  beforeEach(() => {
+    cy.viewport(1920,4000);
+  });
+
   describe('Input fields', () => {
     beforeEach(() => {
       cy.visitRuntime('flow/export-Suitcase/Demo/0.0-Trunk/en-GB');
