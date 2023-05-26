@@ -1,29 +1,42 @@
 {
   "id": "e2e",
-  "entryPage": "main",
+  "entryPage": "MainDashboard",
   "pages": [
     {
-      "id": "main",
+      "id": "MainDashboard",
       "layout": "two-equal-columns",
       "columns": [
         {
           "widgets": [
             {
-              "id": "niet-toegekende-zaken",
+              "id": "toegewezen-zaken",
               "type": "blueriq-flow",
-              "shortcutName": "ZakenNietToegewezen",
-              "baseUrl": "/runtime"
+              "projectName": "export-Main_Dashboard",
+              "flowName": "ZakenToegewezen",
+              "versionName": "0.0-V7_2_0",
+              "baseUrl": "/runtime",
+              "roles": [
+                "Aanvrager",
+                "Behandelaar"
+              ]
+            },
+            {
+              "id": "zaken-beheerder",
+              "type": "blueriq-flow",
+              "shortcutName": "ZakenBeheerder",
+              "baseUrl": "/runtime",
+              "roles": [
+                "Beheerder"
+              ]
             }
           ]
         },
         {
           "widgets": [
             {
-              "id": "zaken-per-behandelaar",
+              "id": "niet-toegewezen-zaken",
               "type": "blueriq-flow",
-              "projectName": "export-Main_Dashboard",
-              "flowName": "Portal_ZakenPerAanvrager",
-              "versionName": "0.0-Failover",
+              "shortcutName": "ZakenNietToegewezen",
               "baseUrl": "/runtime",
               "roles": [
                 "Behandelaar"
@@ -34,54 +47,101 @@
       ],
       "menuItems": [
         {
-          "path": "start-cases",
-          "displayText": "Start Case"
+          "path": "MainDashboard",
+          "displayText": "Home"
         },
         {
-          "path": "behandelaar-only",
-          "displayText": "Behandelaar only",
+          "path": "ZaakCatalogus",
+          "displayText": "Zaakcatalogus"
+        },
+        {
+          "path": "BusinessActivityMonitor",
+          "displayText": "Business Activity Monitor",
           "roles": [
-            "Behandelaar"
-          ]
-        }
+                "Behandelaar",
+                "Beheerder"
+              ]          
+        }        
       ]
     },
     {
-      "id": "start-cases",
+      "id": "BusinessActivityMonitor",
       "layout": "single-column",
       "columns": [
         {
           "widgets": [
-            {
-              "id": "start-cases",
-              "type": "blueriq-flow",
-              "shortcutName": "ProductInformatie",
-              "baseUrl": "/runtime"
-            }
-          ]
-        }
-      ],
+          {
+            "id": "start-cases",
+            "type": "blueriq-flow",
+            "shortcutName": "Bam",
+            "baseUrl": "/runtime",
+            "roles": [
+                "Behandelaar",
+                "Beheerder"
+              ]
+          }
+        ]
+      }],
       "menuItems": [
         {
-          "path": "main",
-          "displayText": "Main"
+          "path": "MainDashboard",
+          "displayText": "Home"
         },
         {
-          "path": "behandelaar-only",
-          "displayText": "Behandelaar only",
+          "path": "ZaakCatalogus",
+          "displayText": "Zaakcatalogus"
+        },
+        {
+          "path": "BusinessActivityMonitor",
+          "displayText": "Business Activity Monitor",
           "roles": [
-            "Behandelaar"
-          ]
-        }
+                "Behandelaar",
+                "Beheerder"
+              ]          
+        }       
+      ]
+    },    
+    {
+      "id": "ZaakCatalogus",
+      "layout": "single-column",
+      "columns": [
+        {
+          "widgets": [
+          {
+            "id": "start-cases",
+            "type": "blueriq-flow",
+            "shortcutName": "ProductInformatie",
+            "baseUrl": "/runtime",
+            "roles": [
+                "Aanvrager",
+                "Behandelaar",
+                "Beheerder"
+              ]
+          }
+        ]
+      }],
+      "menuItems": [
+        {
+          "path": "MainDashboard",
+          "displayText": "Home"
+        },
+        {
+          "path": "ZaakCatalogus",
+          "displayText": "Zaakcatalogus"
+        },
+        {
+          "path": "BusinessActivityMonitor",
+          "displayText": "Business Activity Monitor",
+          "roles": [
+                "Behandelaar",
+                "Beheerder"
+              ]          
+        }      
       ]
     },
     {
-      "id": "start-case",
+      "id": "StartZaak",
       "events": [
-        {
-          "type": "start-case",
-          "context": "ZaakType_B"
-        },
         {
           "type": "start-case",
           "context": "ZaakType_A"
@@ -91,42 +151,38 @@
       "columns": [
         {
           "widgets": [
-            {
-              "id": "start-case-intake",
-              "type": "blueriq-flow",
-              "shortcutName": "Intake",
-              "baseUrl": "/runtime"
-            }
-          ]
-        }
-      ],
+          {
+            "id": "StartZaak",
+            "type": "blueriq-flow",
+            "shortcutName": "ZaakIntake",
+            "baseUrl": "/runtime",
+            "roles": [
+                "Aanvrager",
+                "Behandelaar"
+              ]
+          }
+        ]
+      }],
       "menuItems": [
         {
-          "path": "main",
-          "displayText": "Main"
+          "path": "MainDashboard",
+          "displayText": "Home"
         },
         {
-          "path": "behandelaar-only",
-          "displayText": "Behandelaar only",
-          "roles": [
-            "Behandelaar"
-          ]
+          "path": "ZaakCatalogus",
+          "displayText": "Zaakcatalogus"
         }
       ]
     },
     {
-      "id": "open-case",
+      "id": "ZaakDashboard",
       "events": [
-        {
-          "type": "open-case",
-          "context": "ZaakType_B"
-        },
         {
           "type": "open-case",
           "context": "ZaakType_A"
         }
       ],
-      "layout": "two-equal-columns",
+      "layout": "right-sidebar",
       "columns": [
         {
           "widgets": [
@@ -143,7 +199,7 @@
             {
               "id": "open-case-tasks",
               "type": "blueriq-flow",
-              "shortcutName": "WidgetTaken",
+              "shortcutName": "WidgetTakenlijst",
               "baseUrl": "/runtime"
             },
             {
@@ -161,13 +217,13 @@
             {
               "id": "open-case-notes",
               "type": "blueriq-flow",
-              "shortcutName": "WidgetNotes",
+              "shortcutName": "WidgetNotities",
               "baseUrl": "/runtime"
             },
             {
               "id": "open-case-history",
               "type": "blueriq-flow",
-              "shortcutName": "WidgetZaakhistorie",
+              "shortcutName": "WidgetZaaktijdlijn",
               "baseUrl": "/runtime"
             }
           ]
@@ -175,43 +231,21 @@
       ],
       "menuItems": [
         {
-          "path": "main",
-          "displayText": "Main"
+          "path": "MainDashboard",
+          "displayText": "Home"
         },
         {
-          "path": "behandelaar-only",
-          "displayText": "Behandelaar only",
+          "path": "ZaakCatalogus",
+          "displayText": "Zaakcatalogus"
+        },
+        {
+          "path": "BusinessActivityMonitor",
+          "displayText": "Business Activity Monitor",
           "roles": [
-            "Behandelaar"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "behandelaar-only",
-      "layout": "single-column",
-      "columns": [
-        {
-          "widgets": [
-            {
-              "id": "zaken-per-behandelaar",
-              "type": "blueriq-flow",
-              "projectName": "export-Main_Dashboard",
-              "flowName": "Portal_ZakenPerAanvrager",
-              "versionName": "0.0-Failover",
-              "baseUrl": "/runtime",
-              "roles": [
-                "Behandelaar"
-              ]
-            }
-          ]
-        }
-      ],
-      "menuItems": [
-        {
-          "path": "main",
-          "displayText": "Main"
-        }
+                "Behandelaar",
+                "Beheerder"
+              ]          
+        } 
       ]
     },
     {
@@ -220,27 +254,43 @@
         {
           "type": "start-task",
           "context": "ZaakType_A"
-        },
-        {
-          "type": "start-task",
-          "context": "ZaakType_B"
         }
       ],
       "layout": "single-column",
-      "columns": [{
-        "widgets": [
-          {
-            "id": "task-execution",
-            "type": "blueriq-task",
-            "baseUrl": "/runtime",
-            "roles": [
-              "Behandelaar",
-              "Aanvrager"
-            ]
-          }
-        ]
-      }],
-      "menuItems": []
+      "columns": [
+        {
+          "widgets": [
+            {
+              "id": "task-execution",
+              "type": "blueriq-task",
+              "baseUrl": "/runtime",
+              "roles": [
+                "Behandelaar",
+                "Aanvrager",
+                "Beheerder"
+              ]
+            }
+          ]
+        }
+      ],
+      "menuItems": [
+        {
+          "path": "MainDashboard",
+          "displayText": "Home"
+        },
+        {
+          "path": "ZaakCatalogus",
+          "displayText": "Zaakcatalogus"
+        },
+        {
+          "path": "BusinessActivityMonitor",
+          "displayText": "Business Activity Monitor",
+          "roles": [
+                "Behandelaar",
+                "Beheerder"
+              ]          
+        } 
+      ]
     }
   ]
 }

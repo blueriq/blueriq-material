@@ -62,17 +62,17 @@ describe('Dashboards App', () => {
       cy.doGatewayLogin('Behandelaar', 'Behandelaar');
 
       cy.get(DASHBOARD_HEADER).within(() => {
-        cy.get(DASHBOARD_MENU).contains('button', 'Behandelaar only');
+        cy.get(DASHBOARD_MENU).contains('button', 'Business Activity Monitor');
       });
 
       cy.get(DASHBOARD_PAGE).within(() => {
         cy.get(DASHBOARD_WIDGET).should('have.length', 2);
 
-        cy.get(DASHBOARD_WIDGET + '[id="niet-toegekende-zaken"]').should('exist').within(() => {
+        cy.get(DASHBOARD_WIDGET + '[id="toegewezen-zaken"]').should('exist').within(() => {
           cy.get(DASHBOARD_WIDGET_PROJECT).should('exist');
         });
 
-        cy.get(DASHBOARD_WIDGET + '[id="zaken-per-behandelaar"]').should('exist').within(() => {
+        cy.get(DASHBOARD_WIDGET + '[id="niet-toegewezen-zaken"]').should('exist').within(() => {
           cy.get(DASHBOARD_WIDGET_PROJECT).should('exist');
         });
       });
@@ -84,18 +84,18 @@ describe('Dashboards App', () => {
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
       cy.get(DASHBOARD_HEADER).within(() => {
-        cy.get(DASHBOARD_MENU).contains('button', 'Behandelaar only').should('not.exist');
+        cy.get(DASHBOARD_MENU).contains('button', 'Business Activity Monitor').should('not.exist');
       });
 
       cy.get(DASHBOARD_PAGE).within(() => {
         cy.get(DASHBOARD_WIDGET).should('have.length', 1);
 
-        cy.get(DASHBOARD_WIDGET + '[id="niet-toegekende-zaken"]').should('exist').within(() => {
+        cy.get(DASHBOARD_WIDGET + '[id="toegewezen-zaken"]').should('exist').within(() => {
           cy.get(DASHBOARD_WIDGET_PROJECT).should('exist');
         });
       });
 
-      cy.get(DASHBOARD_WIDGET + '[id="zaken-per-behandelaar"]').should('not.exist');
+      cy.get(DASHBOARD_WIDGET + '[id="niet-toegewezen-zaken"]').should('not.exist');
     });
 
     it('should display login page after logout while on restricted route', () => {
@@ -114,7 +114,7 @@ describe('Dashboards App', () => {
     it('should start a case', () => {
       cy.startDashboard('/dashboard/e2e', { loginRequired: true });
 
-      cy.doGatewayLogin('Behandelaar', 'Behandelaar');
+      cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
       cy.startCaseTypeA('start-case');
     });
@@ -122,21 +122,27 @@ describe('Dashboards App', () => {
     it('should display open case', () => {
       cy.startDashboard('/dashboard/e2e', { loginRequired: true });
 
-      cy.doGatewayLogin('Behandelaar', 'Behandelaar');
+      cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
-      cy.startCaseTypeA('open-case');
+      const reference = 'open-case';
+      cy.startCaseTypeA(reference);
 
-      cy.openCase('open-case');
+      cy.get(`@${reference}`).then(referenceId => cy.openCase(referenceId as unknown as string));
     });
 
     it('should display an involved case with additional parameters', () => {
       cy.startDashboard('/dashboard/e2e', { loginRequired: true });
 
-      cy.doGatewayLogin('Behandelaar', 'Behandelaar');
+      cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
-      cy.startCaseTypeA('open-case-parameters');
+      const reference = 'open-case';
+      cy.startCaseTypeA(reference);
 
-      cy.involveCase('open-case-parameters');
+      cy.doGatewayLogout();
+
+      cy.doGatewayLogin('Behandelaar','Behandelaar');
+
+      cy.get(`@${reference}`).then(referenceId => cy.involveCase(referenceId as unknown as string));
     });
 
     it('should refresh the dashboard widgets', () => {
@@ -144,26 +150,26 @@ describe('Dashboards App', () => {
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
-      const reference = 'refreshable-case-filtering';
-      cy.startCaseTypeA(reference);
+      cy.startCaseTypeA('refreshable-case-filtering');
 
       // set filter to have no values in table
       cy.intercept('POST', '/runtime/*/api/v2/session/*/event').as('events');
-      cy.get(DASHBOARD_WIDGET + '[id="niet-toegekende-zaken"]').within(() => {
+      cy.get(DASHBOARD_WIDGET + '[id="toegewezen-zaken"]').within(() => {
         cy.get(`bq-filter button`).click();
         cy.root().parentsUntil('html').last().within(() => {
-          cy.get('mat-dialog-container mat-form-field mat-select').selectOption('Aanvraaggegevens');
+          cy.get('mat-dialog-container mat-form-field mat-select').selectOption('Kenmerk');
+          cy.get('mat-dialog-container bq-text-filter input').first().type('abba');
           cy.get('mat-dialog-container button.mat-primary').click();
         });
       });
       cy.wait('@events').its('response.statusCode').should('equal', 200);
-      cy.get(DASHBOARD_WIDGET + '[id="niet-toegekende-zaken"] bq-table tbody').children().should('have.length', 0);
+      cy.get(DASHBOARD_WIDGET + '[id="toegewezen-zaken"] bq-table tbody').children().should('have.length', 0);
 
       // reload page
       cy.get('button[id="dashboard-refresh"]').click();
 
       // verify that filter is reset
-      cy.get(DASHBOARD_WIDGET + '[id="niet-toegekende-zaken"] bq-table tbody').children().should('have.length.above', 0);
+      cy.get(DASHBOARD_WIDGET + '[id="toegewezen-zaken"] bq-table tbody').children().should('have.length.above', 0);
     });
 
   });
@@ -172,19 +178,20 @@ describe('Dashboards App', () => {
     it('should be able to successfully complete a task', () => {
       cy.startDashboard('/dashboard/e2e', { loginRequired: true });
 
-      cy.doGatewayLogin('Behandelaar', 'Behandelaar');
+      cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
       const reference = 'start-task-completed';
+
       cy.startCaseTypeA(reference);
 
-      cy.openCase(reference);
+      cy.get(`@${reference}`).then(referenceId => cy.openCase(referenceId as unknown as string));
 
       cy.get(DASHBOARD_WIDGET + '[id="open-case-tasks"]').within(() => {
         cy.waitForListEntry('Toevoegen bewijsstukken');
       });
 
       // Start Task
-      cy.getButtonFor('P374', 'Start').click();
+      cy.getButtonFor('P893', 'Start').click();
       // Finish Task
       cy.getButtonFor('P463', 'Ok').click();
 
@@ -200,22 +207,23 @@ describe('Dashboards App', () => {
     it('should be able to successfully cancel a task', () => {
       cy.startDashboard('/dashboard/e2e', { loginRequired: true });
 
-      cy.doGatewayLogin('Behandelaar', 'Behandelaar');
+      cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
       const reference = 'start-task-canceled';
+
       cy.startCaseTypeA(reference);
 
-      cy.openCase(reference);
+      cy.get(`@${reference}`).then(referenceId => cy.openCase(referenceId as unknown as string));
 
       cy.get(DASHBOARD_WIDGET + '[id="open-case-tasks"]').within(() => {
         cy.waitForListEntry('Toevoegen bewijsstukken');
       });
 
       // Start Task
-      cy.getButtonFor('P374', 'Start').click();
+      cy.getButtonFor('P893', 'Start').click();
 
       // Cancel Task
-      cy.getButtonFor('P463', 'Cancel').click();
+      cy.getButtonFor('P463', 'Annuleren').click();
 
       // Verify we are back in the case
       cy.verifyOpenCasePage();
