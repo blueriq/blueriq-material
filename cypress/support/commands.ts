@@ -1,6 +1,8 @@
 import Chainable = Cypress.Chainable;
+
 const compareSnapshotCommand = require('cypress-image-diff-js/dist/command');
 import 'cypress-file-upload';
+
 compareSnapshotCommand();
 import {
   DASHBOARD_HEADER,
@@ -109,7 +111,7 @@ function getById(page: string, field: string, nr = '1'): Chainable<unknown> {
 }
 
 function getByTagName(tagName: string, page: string, field: string, nr = '1'): Chainable<unknown> {
-  return cy.get(`${tagName}[id^=${page + '_' + field + '_' + nr}]`);
+  return cy.get(`${ tagName }[id^=${ page + '_' + field + '_' + nr }]`);
 }
 
 function visitRuntime(url: string, visitOptions: VisitOptions = { loginRequired: false }): Chainable<unknown> {
@@ -146,7 +148,6 @@ function clickForDashboardChange(button: Chainable): Chainable<unknown> {
 function doLogin(username: string, password: string): Chainable<unknown> {
   cy.get(PAGE_LOGIN_FIELDNAME_USERNAME).type(username);
   cy.get(PAGE_LOGIN_FIELDNAME_PASSWORD).type(password);
-
 
   const login = cy.get(PAGE_LOGIN_TAGNAME).find('button').click();
 
@@ -212,10 +213,10 @@ function startCaseTypeA(reference: string): Chainable<unknown> {
     cy.get(DASHBOARD_WIDGET + '[id="StartZaak"]').should('exist').within(_ => {
       cy.get('div[id="P525_AanvraagGeregistreerd_1"]').contains('De aanvraag is bekend met het kenmerk');
       cy.get('div[id="P525_AanvraagGeregistreerd_1"] bq-textitem-dynamic').then($element => {
-          cy.wrap($element.text()).as(reference);
-      })
+        cy.wrap($element.text()).as(reference);
+      });
     });
-  })
+  });
 
   cy.get(DASHBOARD_HEADER).within(() => {
     cy.get(DASHBOARD_MENU).contains('button', 'Home').click();
@@ -237,10 +238,9 @@ function involveCase(reference: string): Chainable<unknown> {
 
 function handleCase(reference: string, type: 'involve' | 'open'): Chainable<unknown> {
   cy.get(DASHBOARD_PAGE).within(() => {
-    const widgetId = type === 'open' ? "toegewezen-zaken" : "niet-toegewezen-zaken";
+    const widgetId = type === 'open' ? 'toegewezen-zaken' : 'niet-toegewezen-zaken';
 
-
-    cy.get(DASHBOARD_WIDGET + `[id="${widgetId}"]`).should('exist').within(() => {
+    cy.get(DASHBOARD_WIDGET + `[id="${ widgetId }"]`).should('exist').within(() => {
       cy.intercept('POST', '/runtime/*/api/v2/session/*/load').as('handleCase');
 
       waitForListEntry(reference);
@@ -269,8 +269,8 @@ function verifyOpenCasePage(type: 'involve' | 'open' = 'open'): Chainable<unknow
     cy.get(DASHBOARD_WIDGET).should('have.length', 6);
 
     cy.get(DASHBOARD_WIDGET + '[id="open-case-details"]').should('exist').within(() => {
-      if(type === 'involve'){
-        cy.url().should('include','Event=NeemInBehandeling');
+      if (type === 'involve') {
+        cy.url().should('include', 'Event=NeemInBehandeling');
       }
 
       cy.get(DASHBOARD_WIDGET_PROJECT).should('exist');
@@ -299,7 +299,7 @@ function verifyOpenCasePage(type: 'involve' | 'open' = 'open'): Chainable<unknow
 
 function waitForListEntry(reference: string, attempts: number = 0): Chainable<unknown> {
   if (attempts > 5) {
-    throw new Error(`entry with reference '${reference}' was not found in time`);
+    throw new Error(`entry with reference '${ reference }' was not found in time`);
   }
 
   return cy.get('bq-table').then($table => {
@@ -381,7 +381,7 @@ declare global {
        * Starts a case of type A.
        *
        * @param reference can be used to refer to the case at a later time
-       * @returns the reference id used to find a case. 
+       * @returns the reference id used to find a case.
        */
       startCaseTypeA(reference: string): Chainable<unknown>;
 
