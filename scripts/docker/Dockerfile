@@ -1,4 +1,4 @@
-FROM node:14.17.0-buster@sha256:d1d71f63a8b92fa73d8df65fc512f64f2bac8a46b08cbd8caf4d36203d6e210b as node-base
+FROM docker-internal.blueriq.com/nodejs-build:18.16.0-ubi-8.7-1112@sha256:8062f807514634e752aa7750ccd45ab23a7c9d8a3563b3bcae8d70895d337dba as node-base
 
 # syntax = docker/dockerfile:1.2
 FROM node-base AS packages

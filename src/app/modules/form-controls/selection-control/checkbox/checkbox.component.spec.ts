@@ -32,15 +32,15 @@ describe('CheckboxComponent', () => {
     session.update(
       field.value('true'),
     );
-    let inputField = component.nativeElement.querySelector('.mat-checkbox-input').getAttribute('aria-checked');
-    expect(inputField).toBe('true');
+    let inputField = component.nativeElement.querySelector('.mat-checkbox-input');
+    expect(inputField.checked).toBe(true);
 
     // Change again
     session.update(
       field.value('false'),
     );
-    inputField = component.nativeElement.querySelector('.mat-checkbox-input').getAttribute('aria-checked');
-    expect(inputField).toBe('false');
+    inputField = component.nativeElement.querySelector('.mat-checkbox-input');
+    expect(inputField.checked).toBe(false);
   });
 
   it('should be disabled', () => {

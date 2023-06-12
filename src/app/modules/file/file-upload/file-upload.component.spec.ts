@@ -57,9 +57,9 @@ describe('FileUploadComponent', () => {
   });
 
   it('handles change event', () => {
-    spyOn(fileSelectDirective.uploader, 'addToQueue');
+    spyOn(fileSelectDirective.uploader!, 'addToQueue');
     fileSelectDirective.onChange();
-    expect(fileSelectDirective.uploader.addToQueue).toHaveBeenCalled();
+    expect(fileSelectDirective.uploader!.addToQueue).toHaveBeenCalled();
   });
 
   it('should show progress bar when needed', () => {
@@ -68,8 +68,8 @@ describe('FileUploadComponent', () => {
     expect(progressBar).toBeFalsy();
 
     // Sut
-    fileSelectDirective.uploader.onAfterAddingFile(createFile());
-    fileSelectDirective.uploader.progress = 33;
+    fileSelectDirective.uploader!.onAfterAddingFile(createFile());
+    fileSelectDirective.uploader!.progress = 33;
     component.detectChanges();
 
     // Verify
@@ -103,7 +103,7 @@ describe('FileUploadComponent', () => {
 
   it('should display an error message when file type is incorrect', () => {
     // Sut
-    component.componentInstance.ngFileUploader.onWhenAddingFileFailed(new FileLikeObject({}), { name: 'fileType' }, {});
+    component.componentInstance.ngFileUploader.onWhenAddingFileFailed(new FileLikeObject({} as File), { name: 'fileType' }, {});
     component.detectChanges();
     const errors = component.nativeElement.querySelectorAll('mat-error');
 
@@ -114,7 +114,7 @@ describe('FileUploadComponent', () => {
 
   it('should display an error message when file size is incorrect', () => {
     // Sut
-    fileSelectDirective.uploader.onWhenAddingFileFailed(new FileLikeObject({}), { name: 'fileSize' }, {});
+    fileSelectDirective.uploader!.onWhenAddingFileFailed(new FileLikeObject({} as File), { name: 'fileSize' }, {});
     component.detectChanges();
     const errors = component.nativeElement.querySelectorAll('mat-error');
 
@@ -125,7 +125,7 @@ describe('FileUploadComponent', () => {
 
   it('should display an error message even with a unknown error', () => {
     // Sut
-    fileSelectDirective.uploader.onWhenAddingFileFailed(new FileLikeObject({}), { name: 'unknown_error' }, {});
+    fileSelectDirective.uploader!.onWhenAddingFileFailed(new FileLikeObject({} as File), { name: 'unknown_error' }, {});
     component.detectChanges();
     const errors = component.nativeElement.querySelectorAll('mat-error');
 
@@ -148,20 +148,20 @@ describe('FileUploadComponent', () => {
     spyOn(FileUpload.prototype, 'getUploadDetails').and.returnValues(details1, details2);
 
     // Apply options for the first time
-    fileSelectDirective.uploader.onBuildItemForm(createFile(), null);
+    fileSelectDirective.uploader!.onBuildItemForm(createFile(), null);
 
     // Verify the initial options
-    const options = fileSelectDirective.uploader.options;
+    const options = fileSelectDirective.uploader!.options;
     expect(options.filters!.length).toBe(3);
     expect(options.url).toEqual('/blueriq/upload/1');
     expect(options.additionalParameter).toEqual({ 'pageEvent': '1' });
     expect(options.headers).toEqual([{ name: 'accept', value: '1' }]);
 
     // Reconfigure options
-    fileSelectDirective.uploader.onBuildItemForm(createFile(), null);
+    fileSelectDirective.uploader!.onBuildItemForm(createFile(), null);
 
     // Verify the updated options
-    const newOptions = fileSelectDirective.uploader.options;
+    const newOptions = fileSelectDirective.uploader!.options;
     expect(newOptions.filters!.length).toBe(3, 'Reapplying options should not extend the number of filters');
     expect(newOptions.url).toEqual('/blueriq/upload/2');
     expect(newOptions.additionalParameter).toEqual({ 'pageEvent': '2' });
@@ -174,7 +174,7 @@ describe('FileUploadComponent', () => {
     spyOn(FileUploader.prototype, 'clearQueue');
 
     // Sut
-    fileSelectDirective.uploader.onCompleteItem(createFile(), 'some_response', 200, {
+    fileSelectDirective.uploader!.onCompleteItem(createFile(), 'some_response', 200, {
       'content-type': 'application/json',
     });
     component.detectChanges();
@@ -185,7 +185,7 @@ describe('FileUploadComponent', () => {
       status: 200,
       headers: [{ name: 'content-type', value: 'application/json' }],
     });
-    expect(fileSelectDirective.uploader.clearQueue).toHaveBeenCalled();
+    expect(fileSelectDirective.uploader!.clearQueue).toHaveBeenCalled();
     expect(component.componentInstance.ngFileUploadErrorMessage).toBe('', 'Clear the client error message when a file passes');
     expect(component.componentInstance.isBusy).toBe(false, 'Upload is complete, no need to show the progress bar');
   });
@@ -222,7 +222,7 @@ describe('FileUploadComponent', () => {
 
   function createFile(): FileItem {
     const file = new File([], 'file.txt', { type: 'text/plain', lastModified: new Date().getTime() });
-    return new FileItem(fileSelectDirective.uploader, file, {});
+    return new FileItem(fileSelectDirective.uploader!, file, { url: 'http://example.com' });
   }
 
 });

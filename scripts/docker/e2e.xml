@@ -37,7 +37,7 @@
     <echo message="cypress.spec=${cypress.spec}" />
     <create-container image.name="${docker.image}"
                       containerId.property="container.id"
-                      run.command="node cypress/scripts/run.js run ${run.host} ${cypress.spec}"
+                      run.command="node cypress/scripts/run.mjs ${run.host} ${cypress.spec}"
                       unless:set="${build.error}">
     </create-container>
     <property name="container.id" value="[not-set]"/>  <!-- reference property setter -->

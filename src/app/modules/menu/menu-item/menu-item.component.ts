@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, QueryList, ViewChildren } from '@angular/core';
-import { MatMenuItem } from '@angular/material/menu';
+import { MatLegacyMenuItem as MatMenuItem } from '@angular/material/legacy-menu';
 import { Button, Container, Element } from '@blueriq/core';
 
 @Component({

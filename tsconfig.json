@@ -9,8 +9,9 @@
     "declaration": false,
     "moduleResolution": "node",
     "experimentalDecorators": true,
+    "useDefineForClassFields": false,
     "strictNullChecks": true,
-    "target": "es2020",
+    "target": "es2022",
     "typeRoots": [
       "node_modules/@types"
     ],

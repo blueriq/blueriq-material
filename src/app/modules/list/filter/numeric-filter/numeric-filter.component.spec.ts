@@ -30,8 +30,8 @@ describe('NumericFilterComponent', () => {
 
     const operation = fixture.nativeElement.querySelector('.mat-select-value-text').innerText;
     expect(operation).toBe('Equal to');
-    const showUnknown = fixture.nativeElement.querySelector('.mat-checkbox-input').getAttribute('aria-checked');
-    expect(showUnknown).toBe('true');
+    const showUnknown = fixture.nativeElement.querySelector('.mat-checkbox-input');
+    expect(showUnknown.checked).toBe(true);
   });
 
   it('select greater than or equals operator', () => {

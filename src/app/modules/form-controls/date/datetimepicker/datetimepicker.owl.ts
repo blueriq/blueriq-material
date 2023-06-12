@@ -1,12 +1,12 @@
 import { BlueriqSession } from '@blueriq/angular';
 import {
   DateTimeAdapter,
-  MomentDateTimeAdapter,
   OwlDateTimeFormats,
   OwlDateTimeIntl,
   OWL_DATE_TIME_FORMATS,
   OWL_DATE_TIME_LOCALE,
 } from '@danielmoncada/angular-datetime-picker';
+import { MomentDateTimeAdapter } from '@danielmoncada/angular-datetime-picker-moment-adapter';
 import { parseBqLocale } from '@shared/date/bq-date-parser';
 import { OwlDateTimeIntlFactory } from '../../../../configuration/date/owl-datetime-intl-factory';
 
