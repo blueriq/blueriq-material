@@ -36,8 +36,8 @@ describe('DateFilterComponent', () => {
   it('new date filter default shows on and unknown', () => {
     const operation = fixture.nativeElement.querySelector('.mat-select-value-text').innerText;
     expect(operation).toBe('On');
-    const checkbox = fixture.nativeElement.querySelector('.mat-checkbox-input').getAttribute('aria-checked');
-    expect(checkbox).toBe('true');
+    const checkbox = fixture.nativeElement.querySelector('.mat-checkbox-input');
+    expect(checkbox.checked).toBe(true);
   });
 
   it('select date filter after', () => {

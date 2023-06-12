@@ -29,8 +29,8 @@ describe('BooleanFilterComponent', () => {
 
     const operation = fixture.nativeElement.querySelector('.mat-select-value-text').innerText;
     expect(operation).toBe('Only Yes');
-    const checkbox = fixture.nativeElement.querySelector('.mat-checkbox-input').getAttribute('aria-checked');
-    expect(checkbox).toBe('true');
+    const checkbox = fixture.nativeElement.querySelector('.mat-checkbox-input');
+    expect(checkbox.checked).toBe(true);
   });
 
   it('boolean filter with show true and false and unknown', () => {
@@ -43,8 +43,8 @@ describe('BooleanFilterComponent', () => {
 
     const operation = fixture.nativeElement.querySelector('.mat-select-value-text').innerText;
     expect(operation).toBe('Show Both');
-    const checkbox = fixture.nativeElement.querySelector('.mat-checkbox-input').getAttribute('aria-checked');
-    expect(checkbox).toBe('true');
+    const checkbox = fixture.nativeElement.querySelector('.mat-checkbox-input');
+    expect(checkbox.checked).toBe(true);
   });
 
   it('boolean filter with show false and not show unknown', () => {
@@ -57,8 +57,8 @@ describe('BooleanFilterComponent', () => {
 
     const operation = fixture.nativeElement.querySelector('.mat-select-value-text').innerText;
     expect(operation).toBe('Only No');
-    const checkbox = fixture.nativeElement.querySelector('.mat-checkbox-input').getAttribute('aria-checked');
-    expect(checkbox).toBe('false');
+    const checkbox = fixture.nativeElement.querySelector('.mat-checkbox-input');
+    expect(checkbox.checked).toBe(false);
   });
 
   it('boolean filter with show ony unknown', () => {
@@ -71,7 +71,7 @@ describe('BooleanFilterComponent', () => {
 
     const operation = fixture.nativeElement.querySelector('.mat-select-value-text').innerText;
     expect(operation).toBe('Show Neither');
-    const checkbox = fixture.nativeElement.querySelector('.mat-checkbox-input').getAttribute('aria-checked');
-    expect(checkbox).toBe('true');
+    const checkbox = fixture.nativeElement.querySelector('.mat-checkbox-input');
+    expect(checkbox.checked).toBe(true);
   });
 });

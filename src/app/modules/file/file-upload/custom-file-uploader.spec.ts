@@ -109,8 +109,8 @@ describe('CustomFileUploader', () => {
 
   function createFile(fileName): FileItem {
     const file = new File([], fileName, { type: 'text/plain', lastModified: new Date().getTime() });
-    const fileUploader: FileUploader = new FileUploader({});
-    return new FileItem(fileUploader, file, {});
+    const fileUploader: FileUploader = new FileUploader({ url: 'http://example.com' });
+    return new FileItem(fileUploader, file, { url: 'http://example.com' });
   }
 
 });

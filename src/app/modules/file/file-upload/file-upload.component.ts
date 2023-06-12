@@ -2,6 +2,7 @@ import { Component, Self } from '@angular/core';
 import { BlueriqChild, BlueriqComponent } from '@blueriq/angular';
 import { FileUpload } from '@blueriq/angular/files';
 import { Container, Element, TextItem } from '@blueriq/core';
+import { FileUploaderOptions } from 'ng2-file-upload';
 import { CustomFileUploader } from './custom-file-uploader';
 
 @Component({
@@ -26,15 +27,13 @@ export class FileUploadComponent {
   isBusy = false;
 
   constructor(@Self() public bqFileUpload: FileUpload, public container: Container) {
-    this.ngFileUploader = new CustomFileUploader({ autoUpload: true });
-    // Also configure ngFileUploader on construction because file validation is done BEFORE onBuildItemForm()
-    this.setNgFileUploaderOptions();
+    this.ngFileUploader = new CustomFileUploader({ autoUpload: true, ...this.getCurrentOptions() });
 
     /**
      * When the upload starts, reconfigure the ngFileUploader to send along the most up-to-date upload details.
      */
     this.ngFileUploader.onBuildItemForm = () => {
-      this.setNgFileUploaderOptions();
+      this.ngFileUploader.setOptions(this.getCurrentOptions());
     };
 
     /**
@@ -89,10 +88,10 @@ export class FileUploadComponent {
     return extensions.map(param => `.${ param }`);
   }
 
-  private setNgFileUploaderOptions() {
+  private getCurrentOptions(): FileUploaderOptions {
     const details = this.bqFileUpload.getUploadDetails();
 
-    this.ngFileUploader.setOptions({
+    return {
       filters: [],
       url: details.url,
       headers: details.headers,
@@ -102,7 +101,7 @@ export class FileUploadComponent {
       }, {}),
       maxFileSize: this.bqFileUpload.maxFileSize,
       allowedFileType: this.bqFileUpload.allowedExtensions,
-    });
+    };
   }
 
 }

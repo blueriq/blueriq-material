@@ -54,7 +54,7 @@ node {
   try {
     env.JAVA_HOME = tool 'jdk-11.0.1'
     def mvnHome = tool "apache-maven-3.5.4"
-    def nodeHome = tool 'node-14.17.0'
+    def nodeHome = tool 'node-18.16.0'
     env.PATH = "${env.JAVA_HOME}\\bin;${mvnHome}\\bin;${nodeHome};${env.PATH}"
     env.CHROME_BIN = env.CHROME_80_0_3987_132
 
@@ -73,7 +73,6 @@ node {
       bat 'node -v'
       bat 'yarn -v'
       bat 'yarn install --ignore-engines'
-      bat 'yarn ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points --no-async'
       bat 'yarn ng:version'
     }
 

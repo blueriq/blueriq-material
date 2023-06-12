@@ -6,7 +6,7 @@ set skipBuild=false
 set composeOnly=false
 set runtimeBranch="master"
 set runtimeUrl="git@bq-gitlab.everest.nl:blueriq/blueriq.git"
-set runtimeVersion="15.12.0.1026"
+set runtimeVersion="15.13.0.1287"
 set cdsVersion="4.2.0"
 
 @echo off
@@ -65,7 +65,7 @@ cd ..\..\
 exit /B
 
 :download_runtime
-call mvn -B  dependency:copy "-Dartifact=com.blueriq:blueriq-runtime-standalone:%runtimeVersion%:standalone" "-DoutputDirectory=%location%" "-Dproject.basedir=%location%"
+call mvn -B  dependency:copy "-Dartifact=com.blueriq:blueriq-runtime-standalone:%runtimeVersion%:jar" "-DoutputDirectory=%location%" "-Dproject.basedir=%location%"
 exit /B
 
 :download_services

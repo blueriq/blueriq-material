@@ -2,18 +2,19 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatLegacyAutocompleteModule as MatAutocompleteModule } from '@angular/material/legacy-autocomplete';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
+import { MatLegacySelectModule as MatSelectModule } from '@angular/material/legacy-select';
+import { MatLegacyTooltipModule as MatTooltipModule } from '@angular/material/legacy-tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqCommonModule } from '@blueriq/angular';
 import { FormattingModule } from '@blueriq/angular/formatting';
 import { BlueriqFormsModule } from '@blueriq/angular/forms';
 import { OwlDateTimeModule } from '@danielmoncada/angular-datetime-picker';
+import { OwlMomentDateTimeModule } from '@danielmoncada/angular-datetime-picker-moment-adapter';
 import { SharedModule } from '@shared/shared.module';
 import { TableDatetimepickerComponent } from './datetimepicker/table-datetimepicker.component';
 import { TableCurrencyFieldComponent } from './input-field/currency/table-currency.component';
@@ -46,6 +47,7 @@ export const TABLE_FORM_CONTROL_COMPONENTS = [
     SharedModule,
     FlexLayoutModule,
     OwlDateTimeModule,
+    OwlMomentDateTimeModule,
     BlueriqCommonModule,
     FormsModule,
     ReactiveFormsModule,

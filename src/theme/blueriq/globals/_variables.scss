@@ -7,7 +7,6 @@
 $bq-primary-palette: mat.define-palette($bq-mat-primary-blue);
 $bq-accent-palette: mat.define-palette($bq-mat-primary-purple);
 $bq-error-palette: mat.define-palette($bq-mat-accent-red);
-$bq-theme: mat.define-light-theme($bq-primary-palette, $bq-accent-palette, $bq-error-palette);
 
 // Specific none material colour palettes
 $bq-tertiary-palette: mat.define-palette($bq-mat-accent-green);
@@ -92,6 +91,16 @@ $gutter-width-large: $bq-margin-quadruple;
 
 // Enable/disable the header; choose between: `flex` or `none`
 $header-display: flex;
-$bq-mat-typography: mat.define-typography-config(
+$bq-mat-typography: mat.define-legacy-typography-config(
   $font-family: ($bq-font-family)
+);
+$bq-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $bq-primary-palette,
+      accent: $bq-accent-palette,
+      warn: $bq-error-palette,
+    ),
+    typography: $bq-mat-typography,
+  )
 );

@@ -70,7 +70,7 @@ export class CustomFileUploader extends FileUploader {
         xhr.setRequestHeader(header.name, header.value);
       }
     }
-    if (this.authToken) {
+    if (this.authToken && this.authTokenHeader) {
       xhr.setRequestHeader(this.authTokenHeader, this.authToken);
     }
 
@@ -93,7 +93,7 @@ export class CustomFileUploader extends FileUploader {
   }
 
   _fileTypeFilter(item: FileLikeObject): boolean {
-    const fileExtension = item.name.split('.').pop();
+    const fileExtension = item.name?.split('.').pop();
     if (!fileExtension) {
       return false;
     } else if (this.options.allowedFileType) {

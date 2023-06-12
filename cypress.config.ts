@@ -40,5 +40,8 @@ export default defineConfig({
     },
     specPattern: 'cypress/**/*.cy.{js,jsx,ts,tsx}'
   },
-  retries: 3,
+  retries: {
+    runMode: 3,
+    openMode: 0,
+  },
 });

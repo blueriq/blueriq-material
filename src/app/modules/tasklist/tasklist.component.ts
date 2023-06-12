@@ -1,6 +1,6 @@
 import { Component, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { BlueriqComponent, BlueriqSession, Task, TaskCollection } from '@blueriq/angular';
 import { ColumnDefinition, TaskList } from '@blueriq/angular/lists';

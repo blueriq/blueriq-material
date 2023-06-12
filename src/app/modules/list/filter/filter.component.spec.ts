@@ -1,5 +1,5 @@
 import { TemplateRef } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog, MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
 import { Filter } from '@blueriq/angular/lists';
 import { FilterComponent } from './filter.component';
 import { FilterCandidate } from './types';

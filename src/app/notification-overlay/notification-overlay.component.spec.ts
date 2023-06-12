@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatButton } from '@angular/material/button';
+import { MatLegacyButton as MatButton } from '@angular/material/legacy-button';
 import { By } from '@angular/platform-browser';
 import { NotificationOverlayComponent } from './notification-overlay.component';
 import { NotificationOverlayModule } from './notification-overlay.module';

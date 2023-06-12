@@ -5,9 +5,6 @@ import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@ang
 import { TestContext } from '@blueriq/core/testing';
 import { MomentDateFormatting } from '@shared/date/date-formatting-library';
 
-// eslint-disable-next-line
-declare const require: any;
-
 TestContext.DEFAULT.dateLibrary = new MomentDateFormatting();
 
 // First, initialize the Angular testing environment.
@@ -15,7 +12,3 @@ getTestBed().initTestEnvironment(
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting(),
 );
-// Then we find all the tests.
-const context = require.context('./', true, /\.spec\.ts$/);
-// And load the modules.
-context.keys().map(context);
