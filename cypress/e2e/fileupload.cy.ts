@@ -72,6 +72,13 @@ describe('File Upload', () => {
     cy.get('#P791_RepeatFile-Name_1 textarea').should('have.value', 'single.txt');
     cy.get('#P791_RepeatFile-Name_2 textarea').should('have.value', 'single-again.txt');
   });
+
+  it('should enforce the maxupload size of the configured runtime', () => {
+    cy.visitRuntime('flow/export-Fileupload_e2e/Start/0.0-Trunk/en-US');
+
+    // Verify max upload hint is set 10MB and not the configured 20MB
+    cy.get('#P791-C4 bq-file-upload mat-hint').should('have.text', 'Maximum file size is: 10 MB');
+  });
 });
 
 function uploadFile(containerId: string, ...files: string[]): void {
