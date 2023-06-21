@@ -1,5 +1,5 @@
 # DCM Dashboard
-Besides regular Blueriq UI components this repository now also includes specific components to use in a Blueriq application that servers as a dashboard.
+Besides regular Blueriq UI components, this repository now also includes specific components to use in a Blueriq application that serves as a dashboard.
 
 MyBlueriq documentation on DCM dashboard UI: https://my.blueriq.com/pages/viewpage.action?pageId=166822999
 

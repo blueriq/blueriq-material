@@ -1,0 +1,47 @@
+version: '3.7'
+services:
+  runtime:
+    build:
+      context: ./runtime
+    container_name: runtime
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "8081:8080"
+      - "8000:8000"
+    depends_on:
+      customerdata:
+        condition: service_started
+      keycloak:
+        condition: service_healthy
+  keycloak:
+    build:
+      context: ./keycloak
+    container_name: keycloak
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    command:
+      - start-dev
+      - --import-realm
+    ports:
+      - "8083:8080"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/health/ready" ]
+      timeout: 10s
+      interval: 15s
+      retries: 30
+      start_period: 10s
+  customerdata:
+    build:
+      context: ./cds
+    container_name: customerdata
+    ports:
+      - "8082:8080"
+  frontend:
+    build:
+      context: ./frontend
+    container_name: frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - runtime

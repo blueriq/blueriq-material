@@ -1,0 +1,15 @@
+FROM docker-internal.blueriq.com/tomcat10.1-jdk17:1.0
+
+RUN rm -rf /usr/local/tomcat/webapps/*
+
+ENV JAVA_OPTS="-Dspring.config.additional-location=file:/runtime-config/ -Djava.security.egd=file:/dev/./urandom -Duser.timezone=Europe/Amsterdam -Xmx512m"
+ENV JAVA_TOOL_OPTIONS -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000
+ENV JPDA_ADDRESS="8000"
+ENV JPDA_TRANSPORT="dt_socket"
+
+COPY Runtime/ /usr/local/tomcat/webapps/Runtime/
+COPY config/ /runtime-config/
+
+CMD ["catalina.sh", "run"]
+
+EXPOSE 8080 8000

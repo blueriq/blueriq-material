@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="docker-containers" basedir="..">
+
+  <property file="scripts/build.properties"/>
+
+  <!-- input properties -->
+  <property name="containerUrl" value="unset"/>
+
+  <target name="startup" depends="build">
+    <exec executable="cmd">
+      <arg value="/c"/>
+      <arg value="docker"/>
+      <arg value="compose"/>
+      <arg value="--file"/>
+      <arg value="${composeFile}"/>
+      <arg value="up"/>
+      <arg value="-d"/>
+    </exec>
+  </target>
+
+  <target name="stopAndRemoveContainers">
+    <exec executable="cmd">
+      <arg value="/c"/>
+      <arg value="docker"/>
+      <arg value="compose"/>
+      <arg value="--file"/>
+      <arg value="${composeFile}"/>
+      <arg value="down"/>
+      <arg value="--rmi"/>
+      <arg value="all"/>
+    </exec>
+  </target>
+
+  <target name="build">
+    <exec executable="cmd">
+      <arg value="/c"/>
+      <arg value="docker"/>
+      <arg value="compose"/>
+      <arg value="--file"/>
+      <arg value="${composeFile}"/>
+      <arg value="build"/>
+    </exec>
+  </target>
+
+  <!--just for local builds-->
+  <macrodef name="warm-up">
+    <attribute name="containerUrl" default="unset"/>
+    <sequential>
+      <echo>Warming up Runtime</echo>
+      <waitfor maxwait="4" maxwaitunit="minute" checkevery="500" checkeveryunit="millisecond"
+               timeoutproperty="timedOut">
+        <http url="@{containerUrl}"/>
+      </waitfor>
+      <fail message="Runtime was not up before timeout was reached">
+        <condition>
+          <or>
+            <isset property="${timedOut}"/>
+            <istrue value="${timedOut}"/>
+          </or>
+        </condition>
+      </fail>
+    </sequential>
+  </macrodef>
+
+  <target name="warm-up">
+    <waitfor maxwait="4" maxwaitunit="minute" checkevery="500" checkeveryunit="millisecond" timeoutproperty="timedOut">
+      <http url="${containerUrl}" readTimeout="500"/>
+    </waitfor>
+    <fail message="Runtime was not up before timeout was reached">
+      <condition>
+        <or>
+          <isset property="${timedOut}"/>
+          <istrue value="${timedOut}"/>
+        </or>
+      </condition>
+    </fail>
+  </target>
+
+  <target name="shutdown">
+    <exec executable="cmd">
+      <arg value="/c"/>
+      <arg value="docker"/>
+      <arg value="compose"/>
+      <arg value="--file"/>
+      <arg value="${composeFile}"/>
+      <arg value="down"/>
+      <arg value="--rmi"/>
+      <arg value="all"/>
+      <arg value="-v"/>
+    </exec>
+  </target>
+</project>

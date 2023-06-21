@@ -1,0 +1,17 @@
+FROM docker-internal.blueriq.com/redhat-ubi9-artifactory-yum-repo:9.1.0-1817 AS ubi-micro-build
+RUN mkdir -p /mnt/rootfs
+RUN dnf install --installroot /mnt/rootfs curl \
+    --releasever 9 --setopt install_weak_deps=false --nodocs -y; \
+    dnf --installroot /mnt/rootfs clean all
+
+FROM keycloak/keycloak:21.0.2
+COPY --from=ubi-micro-build /mnt/rootfs /
+
+COPY config/*.json /opt/keycloak/data/import/
+
+ENV KEYCLOAK_ADMIN=admin
+ENV KEYCLOAK_ADMIN_PASSWORD=welcome
+ENV KC_HEALTH_ENABLED=true
+ENV KC_HOSTNAME_STRICT=false
+
+ENTRYPOINT ["/opt/keycloak/bin/kc.sh"]
