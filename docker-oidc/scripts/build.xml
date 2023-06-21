@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="oidc-docker-stack" basedir=".." default="prepare-and-start">
+  <import file="docker-containers.xml"/>
+
+  <!-- Input properties -->
+  <property name="runtimeBranch" value="master"/>
+  <property name="cdsVersion" value="4.2.0"/>
+
+  <!-- Build properties -->
+  <property file="scripts/build.properties"/>
+
+  <target name="prepare-and-start" depends="prepare, start"/>
+
+  <target name="prepare" depends="clean, install-tools, create-folders, prepare-apps, copy-config"/>
+
+  <target name="start">
+    <antcall target="startup"/>
+  </target>
+
+  <!-- Alias -->
+  <target name="stop">
+    <antcall target="stopAndRemoveContainers"/>
+  </target>
+
+  <target name="clean">
+    <!-- Stop containers -->
+    <if>
+      <available file="${composeFile}" type="file"/>
+      <then>
+        <antcall target="stopAndRemoveContainers"/>
+      </then>
+    </if>
+
+    <!-- Remove temp folder if exists -->
+    <if>
+      <available file="${tempDir}" type="dir"/>
+      <then>
+        <delete dir="${tempDir}" failonerror="true"/>
+      </then>
+    </if>
+  </target>
+
+  <target name="copy-config">
+    <!-- Copy docker-compose config -->
+    <copy file="${dockerDir}/docker-compose.yml" todir="${tempDir}" overwrite="true"/>
+    <copy file="${dockerDir}/.env" todir="${tempDir}" overwrite="true"/>
+
+    <!-- Copy Runtime config -->
+    <copy todir="${runtimeDir}/config" overwrite="true">
+      <fileset dir="${configDir}/runtime"/>
+      <file name="${tempDir}/blueriq/Tools/license.aql"/>
+    </copy>
+    <copy file="${dockerDir}/Dockerfile.RUNTIME" tofile="${runtimeDir}/Dockerfile" overwrite="true"/>
+
+    <!-- Copy CDS config -->
+    <copy todir="${cdsDir}" overwrite="true">
+      <fileset dir="${configDir}/cds"/>
+    </copy>
+    <copy file="${dockerDir}/Dockerfile.CDS" tofile="${cdsDir}/Dockerfile" overwrite="true"/>
+
+    <!-- Copy nginx config -->
+    <copy file="${configDir}/frontend/nginx.conf" todir="${frontendDir}" overwrite="true"/>
+    <copy file="${dockerDir}/Dockerfile.FRONTEND" tofile="${frontendDir}/Dockerfile" overwrite="true"/>
+
+    <!-- Copy Keycloak config -->
+    <copy file="${dockerDir}/Dockerfile.KEYCLOAK" tofile="${keycloakDir}/Dockerfile" overwrite="true"/>
+    <copy file="${configDir}/keycloak/blueriq-realm.json" todir="${keycloakDir}/config" overwrite="true"/>
+  </target>
+
+  <target name="prepare-apps" depends="build-runtime, copy-runtime, build-frontend, copy-frontend, download-cds"/>
+
+  <target name="download-cds">
+    <dependency-copy dependency="com.blueriq:blueriq-customerdata-sql-store-application:${cdsVersion}:war"
+                     output.dir="${cdsDir}"/>
+    <dependency-copy dependency="com.h2database:h2:2.1.210:jar" output.dir="${cdsDir}"/>
+  </target>
+
+  <target name="build-frontend">
+    <exec executable="cmd" dir="${rootDir}">
+      <arg value="/c"/>
+      <arg value="yarn"/>
+      <arg value="build"/>
+      <arg value="--progress=false"/>
+    </exec>
+  </target>
+
+  <target name="copy-frontend">
+    <copy todir="${frontendDir}/dist" overwrite="true">
+      <fileset dir="${rootDir}/dist"/>
+    </copy>
+  </target>
+
+  <target name="copy-runtime">
+    <unzip dest="${tempDir}/runtime/Runtime" overwrite="true">
+      <fileset dir="${tempDir}/blueriq/Runtime/runtime/blueriq-runtime-application/target">
+        <include name="*.war"/>
+      </fileset>
+    </unzip>
+  </target>
+
+  <target name="build-runtime">
+    <!-- Checkout Blueriq -->
+    <exec executable="cmd" dir="${tempDir}">
+      <arg value="/c"/>
+      <arg value="git"/>
+      <arg value="clone"/>
+      <arg value="git@bq-gitlab.everest.nl:blueriq/blueriq.git"/>
+      <arg value="--depth"/>
+      <arg value="1"/>
+      <arg value="--branch"/>
+      <arg value="${runtimeBranch}"/>
+    </exec>
+
+    <!-- Build runtime -->
+    <exec executable="cmd" dir="${tempDir}/blueriq/Runtime">
+      <arg value="/c"/>
+      <arg value="mvn"/>
+      <arg value="-B"/>
+      <arg value="clean"/>
+      <arg value="package"/>
+      <arg value="-P!quality"/>
+      <arg value="-DskipTests"/>
+      <arg value="-pl"/>
+      <arg value="runtime/blueriq-runtime-application"/>
+      <arg value="-am"/>
+      <arg value="-T4"/>
+    </exec>
+  </target>
+
+  <target name="create-folders">
+    <mkdir dir="${runtimeDir}/Runtime"/>
+    <mkdir dir="${runtimeDir}/config"/>
+    <mkdir dir="${cdsDir}"/>
+    <mkdir dir="${frontendDir}/dist"/>
+    <mkdir dir="${keycloakDir}/config"/>
+  </target>
+
+  <target name="install-tools">
+    <exec executable="cmd" dir="${rootDir}/tools">
+      <arg value="/c"/>
+      <arg value="install-ant.bat"/>
+    </exec>
+  </target>
+
+  <taskdef resource="net/sf/antcontrib/antcontrib.properties">
+    <classpath>
+      <pathelement location="${rootDir}/tools/ant-contrib-0.6/ant-contrib-0.6.jar"/>
+    </classpath>
+  </taskdef>
+
+  <macrodef name="dependency-copy">
+    <attribute name="dependency"/>
+    <attribute name="output.dir"/>
+    <sequential>
+      <echo level="info" message="copying dependency @{dependency} into @{output.dir}"/>
+      <exec executable="cmd">
+        <arg value="/c"/>
+        <arg value="mvn"/>
+        <arg value="dependency:copy"/>
+        <arg value="-q"/>
+        <arg value="-Dartifact=@{dependency}"/>
+        <arg value="-DoutputDirectory=@{output.dir}"/>
+        <arg value="--non-recursive"/>
+      </exec>
+    </sequential>
+  </macrodef>
+</project>

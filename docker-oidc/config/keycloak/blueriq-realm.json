@@ -1,0 +1,76 @@
+{
+  "id": "Blueriq",
+  "realm": "Blueriq",
+  "enabled": true,
+  "roles": {
+    "realm": [
+      {
+        "name": "Aanvrager"
+      },
+      {
+        "name": "Behandelaar"
+      }
+    ]
+  },
+  "users": [
+    {
+      "username": "Aanvrager",
+      "firstName": "Aanvrager",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "Aanvrager"
+        }
+      ],
+      "realmRoles": [
+        "Aanvrager",
+        "default-roles-blueriq"
+      ]
+    },
+    {
+      "username": "Behandelaar",
+      "firstName": "Behandelaar",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "Behandelaar"
+        }
+      ],
+      "realmRoles": [
+        "Behandelaar",
+        "default-roles-blueriq"
+      ]
+    }
+  ],
+  "clients": [
+    {
+      "clientId": "blueriq-runtime-client",
+      "enabled": true,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "lzNSH2Ovn7cNuybov80ZFZ6pvJcbsuLd",
+      "protocol": "openid-connect",
+      "redirectUris": [
+        "*"
+      ],
+      "protocolMappers": [
+        {
+          "name": "realm roles",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-realm-role-mapper",
+          "config": {
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "realm_access.roles",
+            "jsonType.label": "String",
+            "multivalued": "true"
+          }
+        }
+      ],
+      "defaultClientScopes": [
+        "profile"
+      ]
+    }
+  ]
+}
