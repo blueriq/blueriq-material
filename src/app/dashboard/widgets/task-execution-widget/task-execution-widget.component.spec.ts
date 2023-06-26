@@ -11,6 +11,7 @@ import objectContaining = jasmine.objectContaining;
 
 describe('Task Execution Widget Component', () => {
   beforeEach(async () => {
+    jasmine.clock().install();
     await TestBed.configureTestingModule({
       declarations: [TaskExecutionWidgetComponent],
       imports: [
@@ -29,6 +30,10 @@ describe('Task Execution Widget Component', () => {
         CloseSessionStrategy,
       ],
     }).compileComponents();
+  });
+
+  afterEach(() => {
+    jasmine.clock().uninstall();
   });
 
   it('should set correct notification on session expired call', () => {
@@ -135,7 +140,7 @@ describe('Task Execution Widget Component', () => {
     expect(notification!.dismiss?.label).toEqual('Back to case...');
   });
 
-  it('should call dispatcher with OpenCaseAction on flow ended call', () => {
+  it('should show notification and call dispatcher with OpenCaseAction on flow ended call', () => {
     // Arrange
     const fixture = TestBed.createComponent(TaskExecutionWidgetComponent);
     fixture.componentInstance.widget = {
@@ -156,6 +161,15 @@ describe('Task Execution Widget Component', () => {
     fixture.componentInstance.onFlowEnded(expectedCaseType, expectedCaseId);
 
     // Assert
+    const notification = fixture.componentInstance.notification;
+    expect(notification!.type).toBe(NotificationType.Info);
+    expect(notification!.title).toEqual('Task completed');
+    expect(notification!.message).toEqual('You will be redirected back to the case dashboard in a moment.');
+    expect(notification!.dismiss).toBeUndefined();
+
+    // Fast-forward clock to after redirection timeout
+    jasmine.clock().tick(2001);
+
     expect(dispatcher.dispatch).toHaveBeenCalledWith(objectContaining({
       type: DashboardActions.OPENCASE,
       caseType: expectedCaseType,
