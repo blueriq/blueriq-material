@@ -1,10 +1,10 @@
-import { Component, isDevMode } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Dispatcher, FailedAction, isBlueriqError } from '@blueriq/angular';
-import { DashboardWidgetSession } from '@blueriq/dashboard';
-import { NotificationModel, NotificationType } from '../../../notification-overlay/notification.model';
-import { LoginAction, OpenCaseAction } from '../../events/actions';
-import { SessionWidgetComponent } from '../session-widget.component';
+import {Component, isDevMode} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {Dispatcher, FailedAction, isBlueriqError} from '@blueriq/angular';
+import {DashboardWidgetSession} from '@blueriq/dashboard';
+import {NotificationModel, NotificationType} from '../../../notification-overlay/notification.model';
+import {LoginAction, OpenCaseAction} from '../../events/actions';
+import {SessionWidgetComponent} from '../session-widget.component';
 
 @Component({
   selector: 'bq-task-execution-widget',
@@ -37,7 +37,7 @@ export class TaskExecutionWidgetComponent extends SessionWidgetComponent {
     }
 
     if (isBlueriqError(action.error)) {
-      const { title, message } = action.error.cause;
+      const {title, message} = action.error.cause;
       this.notification = new NotificationModel(NotificationType.Error, title, message);
     } else {
       this.notification = new NotificationModel(
@@ -49,7 +49,11 @@ export class TaskExecutionWidgetComponent extends SessionWidgetComponent {
   }
 
   onFlowEnded(caseType: string, caseId: string): void {
-    this.dispatcher.dispatch(new OpenCaseAction(caseId, caseType));
+    this.notification = new NotificationModel(
+      NotificationType.Info,
+      'Task completed',
+      'You will be redirected back to the case dashboard in a moment.');
+    setTimeout(() => this.dispatcher.dispatch(new OpenCaseAction(caseId, caseType)), 2000);
   }
 
   onForbidden(caseType: string, caseId: string): void {
