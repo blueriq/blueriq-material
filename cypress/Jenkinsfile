@@ -10,6 +10,9 @@ properties([
       ]),
     strategy: [$class: 'LogRotator', numToKeepStr: '5']
   ],
+  pipelineTriggers([
+    cron(triggerCron)
+  ]),
   parameters([
     gitParameter(name: 'BRANCH_NAME', defaultValue: 'master', selectedValue: 'DEFAULT', type: 'PT_BRANCH'),
     string(name: 'RUNTIME_BRANCH', defaultValue: 'master', description: "The runtime branch to test against"),
