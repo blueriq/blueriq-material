@@ -1,7 +1,7 @@
 #!groovy
 
 boolean isMaster = BRANCH_NAME == 'master'
-String triggerCron = isMaster ? "H 13 * * 7" : ""
+String triggerCron = isMaster ? "H 13 * * 6" : ""
 
 properties([
   [
