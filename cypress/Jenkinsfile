@@ -5,9 +5,6 @@ String triggerCron = isMaster ? "30 5 * * *" : ""
 properties([
   [
     $class  : 'BuildDiscarderProperty',
-    pipelineTriggers([
-        cron(triggerCron)
-      ]),
     strategy: [$class: 'LogRotator', numToKeepStr: '5']
   ],
   pipelineTriggers([
