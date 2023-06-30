@@ -77,7 +77,45 @@ describe('File Upload', () => {
     cy.visitRuntime('flow/export-Fileupload_e2e/Start/0.0-Trunk/en-US');
 
     // Verify max upload hint is set 10MB and not the configured 20MB
-    cy.get('#P791-C4 bq-file-upload mat-hint').should('have.text', 'Maximum file size is: 10 MB');
+    cy.get('#P791-C4 bq-file-upload mat-hint[id="fileSizeHint"]').should('have.text', 'Maximum file size is: 10 MB');
+  });
+
+  it('should enforce the max file amount of the configured runtime', () => {
+    cy.visitRuntime('flow/export-Fileupload_e2e/Start/0.0-Trunk/en-US');
+
+    // Verify max file amount hint is set to 2
+    cy.get('#P791-C1 bq-file-upload mat-hint[id="fileAmountHint"]').should('have.text', 'Allowed amount of files: 2');
+
+    //Upload three files
+    uploadFile('#P791-C1 bq-file-upload', 'single.txt', 'multi_1.txt', 'multi_2.txt');
+    cy.get('#P791-C1 bq-file-upload mat-error').should('have.text', 'Exceeded maximum file amount');
+  });
+
+  it('should handle validation on a required file upload', () => {
+    cy.visitRuntime('flow/export-Fileupload_e2e/Start/0.0-Trunk/en-US');
+
+    // Continue to the next page without validation
+    cy.getButtonFor('P791','Submit').click();
+    cy.getTitleTextFor('P595','Next').equalIgnoreWhiteSpace('Next');
+
+    // Go Back to the File Upload Page
+    cy.getButtonFor('P595','Submit').click();
+    cy.getTitleTextFor('P791','Page').equalIgnoreWhiteSpace('Upload');
+
+    // Continue to the next page with validation
+    cy.getButtonFor('P791','Validate').click();
+
+    // Still on the same page with validation error
+    cy.getTitleTextFor('P791','Page').equalIgnoreWhiteSpace('Upload');
+    cy.get('#P791-C5 bq-file-upload mat-error').should('have.text', 'This is a required field.');
+
+    // Upload a valid file.
+    uploadFile('#P791-C5 bq-file-upload', 'single-again.txt');
+    cy.get('#P791-C5 bq-file-upload mat-error').should('not.exist');
+
+    // Continue to the next page with validation
+    cy.getButtonFor('P791','Validate').click();
+    cy.getTitleTextFor('P595','Next').equalIgnoreWhiteSpace('Next');
   });
 
   it('should handle validation on a required file upload', () => {

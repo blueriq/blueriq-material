@@ -1,5 +1,5 @@
 import { FileItem, FileUploader, FileUploaderOptions } from 'ng2-file-upload';
-import { CustomFileUploader } from './custom-file-uploader';
+import { CustomFileUploader, CustomFileUploaderOptions } from './custom-file-uploader';
 
 describe('CustomFileUploader', () => {
 
@@ -11,8 +11,8 @@ describe('CustomFileUploader', () => {
       url: 'www.some-url.com',
       maxFileSize: 256,
       autoUpload: true,
-      headers: [{name: 'headerName', value: 'headerValue'}],
-      additionalParameter: {'aParam': 'aValue'},
+      headers: [{ name: 'headerName', value: 'headerValue' }],
+      additionalParameter: { 'aParam': 'aValue' },
     };
     customFileUploader = new CustomFileUploader(uploadOptions);
     const xhrSend = spyOn(XMLHttpRequest.prototype, 'send');
@@ -36,6 +36,53 @@ describe('CustomFileUploader', () => {
     // asserting on the formData the XHR has been called with does not look at the contents of the formData,
     // which is why the formData is asserted directly. Only verify here that send was actually called.
     expect(xhrSend).toHaveBeenCalled();
+  });
+
+  describe('queue limit', () => {
+    it('should not upload when the amount of files exceed the queueLimit', (done) => {
+      // Init
+      const uploadOptions: CustomFileUploaderOptions = {
+        url: 'www.some-url.com',
+        maxFileSize: 256,
+        autoUpload: false,
+        allowedFileType: ['txt'],
+        maxFiles: 1,
+      };
+      customFileUploader = new CustomFileUploader(uploadOptions);
+
+      // SUT
+      customFileUploader.addToQueue([createFile('hello.txt')._file, createFile('hello2.txt')._file], uploadOptions);
+
+      customFileUploader.onWhenMaxFilesExceeded = () => {
+        expect(customFileUploader.queue.length).toBe(0);
+        done();
+      };
+
+      // Verify
+      customFileUploader.uploadAll();
+    });
+
+    it('should upload when the amount of files meet the queue limit', (done) => {
+      // Init
+      const uploadOptions: CustomFileUploaderOptions = {
+        url: 'www.some-url.com',
+        maxFileSize: 256,
+        autoUpload: true,
+        allowedFileType: ['txt'],
+        maxFiles: 1,
+      };
+      customFileUploader = new CustomFileUploader(uploadOptions);
+      const fileItem = createFile('hello.txt');
+      customFileUploader.queue.push(fileItem);
+
+      // SUT
+      customFileUploader.onCompleteAll = () => {
+        done();
+      };
+
+      //verify
+      customFileUploader.uploadAll();
+    });
   });
 
   describe('_fileTypeFilter', () => {
