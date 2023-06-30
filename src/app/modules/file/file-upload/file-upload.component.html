@@ -2,13 +2,16 @@
   <bq-heading [styles]="container.styles" [title]="container.displayName"></bq-heading>
 
   <button (click)="fileInput.value=''; fileInput.click()" [disabled]="bqFileUpload.readonly" color="primary" mat-raised-button style="display: block;">{{bqFileUpload.uploadLabel}}</button>
-  <input #fileInput [multiple]="bqFileUpload.multiple" [uploader]="ngFileUploader" hidden ng2FileSelect type="file" [accept]="bqFileUpload.allowedExtensions | dottedFileExtensions">
+  <input #fileInput [multiple]="bqFileUpload.multiple" [uploader]="ngFileUploader" [accept]="bqFileUpload.allowedExtensions | dottedFileExtensions" hidden ng2FileSelect type="file">
   <div>
     <mat-hint *ngIf="bqFileUpload.allowedExtensions">{{bqFileUpload.allowedExtensionsDescription}}</mat-hint>
     <mat-hint *ngIf="bqFileUpload.maxFileSize">{{bqFileUpload.maxFileSizeDescription}}</mat-hint>
     <mat-error *ngIf="ngFileUploadErrorMessage">{{ngFileUploadErrorMessage}}</mat-error>
     <ng-container *ngIf="bqFileUploadErrorMessages && !ngFileUploadErrorMessage">
       <mat-error *ngFor="let errorMessage of bqFileUploadErrorMessages.children">{{asTextItem(errorMessage).plainText}}</mat-error>
+    </ng-container>
+    <ng-container *ngIf="bqFileUploadRequired">
+      <mat-error *ngFor="let errorMessage of bqFileUploadRequired.messages">{{errorMessage.text}}</mat-error>
     </ng-container>
   </div>
 

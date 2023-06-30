@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { UploadDetails } from '@blueriq/angular';
 import { FileUpload } from '@blueriq/angular/files';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
-import { ButtonTemplate, ContainerTemplate } from '@blueriq/core/testing';
+import { ButtonTemplate, ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
 import { BqContainerDirective } from '@shared/directive/container/bq-container.directive';
 import { FileItem, FileLikeObject, FileSelectDirective, FileUploader } from 'ng2-file-upload';
 import { FileModule } from '../file.modules';
@@ -48,6 +48,7 @@ describe('FileUploadComponent', () => {
     .children(
       ButtonTemplate.create('FileUploaded'),
       ButtonTemplate.create('Unauthorized'),
+      FieldTemplate.text('required').required(true),
     );
     session = BlueriqSessionTemplate.create().build(container);
     component = session.get(FileUploadComponent);
@@ -214,10 +215,23 @@ describe('FileUploadComponent', () => {
     expect(component.debugElement.query(By.directive(BqContainerDirective))).toBeTruthy();
   });
 
-  it('should use apply the accepts attribute on the file input', () =>{
+  it('should use apply the accepts attribute on the file input', () => {
     const inputElement = component.debugElement.query(By.css('input')).nativeElement as HTMLInputElement;
     // Verify
     expect(inputElement.accept).toEqual('.txt,.doc');
+  });
+
+  it('should display the required field messages', () => {
+    const requiredField = container.getChildren().filter(child => child.toJson().name === 'required')[0] as FieldTemplate;
+    session.update(
+      requiredField.error('This field is required'),
+    );
+
+    const errors = component.nativeElement.querySelectorAll('mat-error');
+
+    // Verify
+    expect(errors.length).toBe(1);
+    expect(errors[0].innerHTML).toBe('This field is required');
   });
 
   function createFile(): FileItem {
