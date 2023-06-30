@@ -36,9 +36,11 @@ describe('FileUploadComponent', () => {
       'maxfilesize': '1337',
       'extensiondescription': 'Allowed file extensions are: {0}',
       'filesizedescription': 'Maximum file size is: {0}',
-      'singlefilemode': true,
-      'extensionvalidationmessage': 'File type not allowed',
+      'fileamountdescription': 'Allowed amount of files: {0}',
+      'maxfileamount': '1',
+      'extensionvalidationmessage': 'File extension not allowed',
       'filesizevalidationmessage': 'File is too large',
+      'fileamountvalidationmessage': 'The Maximum amount of files is exceeded',
       'singleuploadlabel': 'Add file...',
       'multiuploadlabel': 'Add files...',
     };
@@ -85,9 +87,10 @@ describe('FileUploadComponent', () => {
     const hints = component.nativeElement.querySelectorAll('mat-hint');
 
     // Verify
-    expect(hints.length).toBe(2);
+    expect(hints.length).toBe(3);
     expect(hints[0].innerHTML).toBe(component.componentInstance.bqFileUpload.allowedExtensionsDescription);
     expect(hints[1].innerHTML).toBe(component.componentInstance.bqFileUpload.maxFileSizeDescription);
+    expect(hints[2].innerHTML).toBe(component.componentInstance.bqFileUpload.maxFileAmountDescription);
   });
 
   it('should not display an extension hint when all extensions are allowed', () => {
@@ -98,13 +101,55 @@ describe('FileUploadComponent', () => {
     const hints = component.nativeElement.querySelectorAll('mat-hint');
 
     // Verify
-    expect(hints.length).toBe(1);
+    expect(hints.length).toBe(2);
     expect(hints[0].innerHTML).toBe(component.componentInstance.bqFileUpload.maxFileSizeDescription);
+    expect(hints[1].innerHTML).toBe(component.componentInstance.bqFileUpload.maxFileAmountDescription);
+  });
+
+  it('should not display a file amount hint when there is no limit', () => {
+    // Init
+    session.update(
+      container.properties({ ...properties, maxfileamount: '-1' }),
+    );
+    const hints = component.nativeElement.querySelectorAll('mat-hint');
+
+    // Verify
+    expect(hints.length).toBe(2);
+    expect(hints[0].innerHTML).toBe(component.componentInstance.bqFileUpload.allowedExtensionsDescription);
+    expect(hints[1].innerHTML).toBe(component.componentInstance.bqFileUpload.maxFileSizeDescription);
+  });
+
+  it('should not display a file amount hint when the old multi mode file option is used', () => {
+    // Init
+    session.update(
+      container.properties({ ...properties, maxfileamount: undefined, singlefilemode: false }),
+    );
+    component.detectChanges();
+    const hints = component.nativeElement.querySelectorAll('mat-hint');
+
+    // Verify
+    expect(hints.length).toBe(2);
+    expect(hints[0].innerHTML).toBe(component.componentInstance.bqFileUpload.allowedExtensionsDescription);
+    expect(hints[1].innerHTML).toBe(component.componentInstance.bqFileUpload.maxFileSizeDescription);
+  });
+
+  it('should display a file amount hint when the old single file mode option is used', () => {
+    // Init
+    session.update(
+      container.properties({ ...properties, maxfileamount: undefined, singlefilemode: true }),
+    );
+    const hints = component.nativeElement.querySelectorAll('mat-hint');
+
+    // Verify
+    expect(hints.length).toBe(3);
+    expect(hints[0].innerHTML).toBe(component.componentInstance.bqFileUpload.allowedExtensionsDescription);
+    expect(hints[1].innerHTML).toBe(component.componentInstance.bqFileUpload.maxFileSizeDescription);
+    expect(hints[2].innerHTML).toBe(component.componentInstance.bqFileUpload.maxFileAmountDescription);
   });
 
   it('should display an error message when file type is incorrect', () => {
     // Sut
-    component.componentInstance.ngFileUploader.onWhenAddingFileFailed(new FileLikeObject({} as File), { name: 'fileType' }, {});
+    fileSelectDirective.uploader!.onWhenAddingFileFailed(new FileLikeObject({} as File), { name: 'fileType' }, {});
     component.detectChanges();
     const errors = component.nativeElement.querySelectorAll('mat-error');
 
@@ -122,6 +167,17 @@ describe('FileUploadComponent', () => {
     // Verify
     expect(errors.length).toBe(1);
     expect(errors[0].innerHTML).toBe(component.componentInstance.bqFileUpload.fileTooLargeValidationMessage);
+  });
+
+  it('should display an error message when maximum uploaded files are exceeded', () => {
+    // Sut
+    component.componentInstance.ngFileUploader.onWhenMaxFilesExceeded();
+    component.detectChanges();
+    const errors = component.nativeElement.querySelectorAll('mat-error');
+
+    // Verify
+    expect(errors.length).toBe(1);
+    expect(errors[0].innerHTML).toBe(component.componentInstance.bqFileUpload.maxFileAmountValidationMessage);
   });
 
   it('should display an error message even with a unknown error', () => {
@@ -199,7 +255,7 @@ describe('FileUploadComponent', () => {
     );
 
     // Sut
-    component.componentInstance.ngFileUploader.uploadAll();
+    fileSelectDirective.uploader!.uploadAll();
 
     // Verify
     expect(CustomFileUploader.prototype.uploadAll).toHaveBeenCalled();

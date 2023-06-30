@@ -15,13 +15,33 @@ import { FileLikeObject } from 'ng2-file-upload/file-upload/file-like-object.cla
  * is implemented below. It simply wraps all the files to upload in FormData and
  * sends that in one request.
  */
+
+export interface CustomFileUploaderOptions extends FileUploaderOptions {
+  /**
+   * Set the maximum amount of files that may be uploaded. The queueLimit property is enforced on a per-file basis, which
+   * is not suitable for our custom file uploader.
+   */
+  maxFiles?: number;
+}
+
 export class CustomFileUploader extends FileUploader {
 
-  constructor(options: FileUploaderOptions) {
+  private maxFiles?: number;
+
+  onWhenMaxFilesExceeded: () => void;
+
+  constructor(options: CustomFileUploaderOptions) {
     super(options);
+    this.maxFiles = options.maxFiles;
   }
 
   uploadAll(): void {
+    if (this.maxFiles && this.queue.length > this.maxFiles) {
+      this.clearQueue();
+      this.onWhenMaxFilesExceeded();
+      return;
+    }
+
     const xhr = new XMLHttpRequest();
     const sendable = new FormData();
     const fakeItem: FileItem = null!;
@@ -101,5 +121,10 @@ export class CustomFileUploader extends FileUploader {
     } else {
       return true;
     }
+  }
+
+  setOptions(options: CustomFileUploaderOptions) {
+    super.setOptions(options);
+    this.maxFiles = options.maxFiles;
   }
 }

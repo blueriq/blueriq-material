@@ -2,8 +2,7 @@ import { Component, Self } from '@angular/core';
 import { BlueriqChild, BlueriqComponent } from '@blueriq/angular';
 import { FileUpload } from '@blueriq/angular/files';
 import { Container, Element, Field, TextItem } from '@blueriq/core';
-import { FileUploaderOptions } from 'ng2-file-upload';
-import { CustomFileUploader } from './custom-file-uploader';
+import { CustomFileUploader, CustomFileUploaderOptions } from './custom-file-uploader';
 
 @Component({
   selector: 'bq-file-upload',
@@ -43,7 +42,7 @@ export class FileUploadComponent {
     /**
      * When adding a file is done hide the progress bar
      * */
-    this.ngFileUploader.onAfterAddingFile = (file) => {
+    this.ngFileUploader.onAfterAddingFile = () => {
       this.isBusy = true;
     };
 
@@ -63,9 +62,9 @@ export class FileUploadComponent {
     };
 
     /**
-     * Set a error message when adding a item did not match the (client-side) filter
+     * Set an error message when adding an item did not match the (client-side) filter
      */
-    this.ngFileUploader.onWhenAddingFileFailed = (item, filter, options) => {
+    this.ngFileUploader.onWhenAddingFileFailed = (item, filter) => {
       switch (filter.name) {
         case 'fileType':
           this.ngFileUploadErrorMessage = this.bqFileUpload.extensionInvalidValidationMessage;
@@ -73,10 +72,18 @@ export class FileUploadComponent {
         case 'fileSize':
           this.ngFileUploadErrorMessage = this.bqFileUpload.fileTooLargeValidationMessage;
           break;
+        case 'queueLimit':
+          this.ngFileUploadErrorMessage = this.bqFileUpload.maxFileAmountValidationMessage;
+          break;
         default:
           this.ngFileUploadErrorMessage = 'File could not be uploaded';
           break;
       }
+    };
+
+    this.ngFileUploader.onWhenMaxFilesExceeded = () => {
+      this.ngFileUploadErrorMessage = this.bqFileUpload.maxFileAmountValidationMessage;
+      this.isBusy = false;
     };
 
   }
@@ -92,7 +99,7 @@ export class FileUploadComponent {
     return extensions.map(param => `.${ param }`);
   }
 
-  private getCurrentOptions(): FileUploaderOptions {
+  private getCurrentOptions(): CustomFileUploaderOptions {
     const details = this.bqFileUpload.getUploadDetails();
 
     return {
@@ -105,6 +112,7 @@ export class FileUploadComponent {
       }, {}),
       maxFileSize: this.bqFileUpload.maxFileSize,
       allowedFileType: this.bqFileUpload.allowedExtensions,
+      maxFiles: this.bqFileUpload.maxFileAmount,
     };
   }
 
