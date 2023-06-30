@@ -1,7 +1,7 @@
 import { Component, Self } from '@angular/core';
 import { BlueriqChild, BlueriqComponent } from '@blueriq/angular';
 import { FileUpload } from '@blueriq/angular/files';
-import { Container, Element, TextItem } from '@blueriq/core';
+import { Container, Element, Field, TextItem } from '@blueriq/core';
 import { FileUploaderOptions } from 'ng2-file-upload';
 import { CustomFileUploader } from './custom-file-uploader';
 
@@ -20,6 +20,10 @@ export class FileUploadComponent {
   // Error messages due to validation on the server side
   @BlueriqChild(Container, '[name=errorMessages]', { optional: true })
   bqFileUploadErrorMessages: Container;
+
+  // Field for the required state of the container
+  @BlueriqChild(Field, '[name=required]', { optional: true })
+  bqFileUploadRequired: Field;
 
   ngFileUploader: CustomFileUploader;
   // Error message due to validation on the client side

@@ -44,7 +44,7 @@ describe('File Upload', () => {
 
     // Verify file not uploaded because file has the wrong extensions.
     cy.get('#P791_File-Name_1').should('not.exist');
-    cy.get('#P791-C0 bq-file-upload mat-error').should('have.text', 'File type not allowed');
+    cy.get('#P791-C0 bq-file-upload mat-error').should('have.text', 'File extension not allowed');
   });
 
   it('should remove the container after the file is uploaded due to a precondition', () => {
@@ -78,6 +78,33 @@ describe('File Upload', () => {
 
     // Verify max upload hint is set 10MB and not the configured 20MB
     cy.get('#P791-C4 bq-file-upload mat-hint').should('have.text', 'Maximum file size is: 10 MB');
+  });
+
+  it('should handle validation on a required file upload', () => {
+    cy.visitRuntime('flow/export-Fileupload_e2e/Start/0.0-Trunk/en-US');
+
+    // Continue to the next page without validation
+    cy.getButtonFor('P791','Submit').click();
+    cy.getTitleTextFor('P595','Next').equalIgnoreWhiteSpace('Next');
+
+    // Go Back to the File Upload Page
+    cy.getButtonFor('P595','Submit').click();
+    cy.getTitleTextFor('P791','Page').equalIgnoreWhiteSpace('Upload');
+
+    // Continue to the next page with validation
+    cy.getButtonFor('P791','Validate').click();
+
+    // Still on the same page with validation error
+    cy.getTitleTextFor('P791','Page').equalIgnoreWhiteSpace('Upload');
+    cy.get('#P791-C5 bq-file-upload mat-error').should('have.text', 'This is a required field.');
+
+    // Upload a valid file.
+    uploadFile('#P791-C5 bq-file-upload', 'single-again.txt');
+    cy.get('#P791-C5 bq-file-upload mat-error').should('not.exist');
+
+    // Continue to the next page with validation
+    cy.getButtonFor('P791','Validate').click();
+    cy.getTitleTextFor('P595','Next').equalIgnoreWhiteSpace('Next');
   });
 });
 
