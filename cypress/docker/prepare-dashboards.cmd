@@ -64,6 +64,8 @@ if %skipBuild% == false (
 
 call :get_version com.blueriq.customerdata.api.version cdsVersion
 call :get_version com.blueriq.dcm.lists.api.version dcmVersion
+call :get_version com.blueriq.dcm.dashboard.version dashboardVersion
+call :get_version com.blueriq.gateway.version gatewayVersion
 call xcopy /I runtime\blueriq-runtime-standalone\target\*.jar  ..\..\cypress\docker\preparations
 cd ..\..\
 exit /B
