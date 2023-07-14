@@ -9,4 +9,7 @@ When setting `FileExtension` these also will be displayed below the upload butto
 When setting `MaxFileSize` these also will be displayed below the upload button
 When setting `Mode` to single, only one file can be selected in the pop-up dialog
 When setting `Mode` to multi, multiple files can be selected in the pop-up dialog
+When setting `MaxFileAmount` to 1, only one file can be selected in the pop-up dialog
+When setting `MaxFileAmount` to -1, multiple files can be selected in the pop-up dialog
+When setting `MaxFileAmount` higher than 1, the number of files can be uploaded.
 When setting `Required` the container will contain a field with error messages that should be displayed. 
