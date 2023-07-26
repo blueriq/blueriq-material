@@ -78,6 +78,48 @@ describe('Dashboards App', () => {
       });
     });
 
+    it('Should display an error when the dashboard service response with an HTTP 404 response', () => {
+      cy.startDashboard('/dashboard/henk', { loginRequired: true });
+
+      cy.doGatewayLogin('Aanvrager', 'Aanvrager');
+
+      cy.intercept({ method: 'get', url: '/dashboards/**' }).as('getDashboard');
+
+      cy.visit('/dashboard/henk', {
+        onBeforeLoad: (win) => {
+          win.sessionStorage.clear();
+        },
+      });
+
+      cy.wait('@getDashboard').its('response.statusCode').should('equal', 404);
+
+      cy.get('bq-notification-overlay').within(() => {
+        cy.get('.message').should('have.text', 'Dashboard not found');
+        cy.get('.notification-error').should('exist');
+      });
+    });
+
+    it('Should display an error when the dashboard service responds with an HTTP 400 response', () => {
+      cy.startDashboard('/dashboard/ingr!d', { loginRequired: true });
+
+      cy.doGatewayLogin('Aanvrager', 'Aanvrager');
+
+      cy.intercept({ method: 'get', url: '/dashboards/**' }).as('getDashboard');
+
+      cy.visit('/dashboard/ingr!d', {
+        onBeforeLoad: (win) => {
+          win.sessionStorage.clear();
+        },
+      });
+
+      cy.wait('@getDashboard').its('response.statusCode').should('equal', 400);
+
+      cy.get('bq-notification-overlay').within(() => {
+        cy.get('.message').should('have.text', 'An unknown error occurred');
+        cy.get('.notification-error').should('exist');
+      });
+    });
+
     it('should display dcm dashboard main page as Aanvrager', () => {
       cy.startDashboard('/dashboard/e2e', { loginRequired: true });
 
@@ -127,7 +169,7 @@ describe('Dashboards App', () => {
       const reference = 'open-case';
       cy.startCaseTypeA(reference);
 
-      cy.get(`@${reference}`).then(referenceId => cy.openCase(referenceId as unknown as string));
+      cy.get(`@${ reference }`).then(referenceId => cy.openCase(referenceId as unknown as string));
     });
 
     it('should display an involved case with additional parameters', () => {
@@ -140,9 +182,9 @@ describe('Dashboards App', () => {
 
       cy.doGatewayLogout();
 
-      cy.doGatewayLogin('Behandelaar','Behandelaar');
+      cy.doGatewayLogin('Behandelaar', 'Behandelaar');
 
-      cy.get(`@${reference}`).then(referenceId => cy.involveCase(referenceId as unknown as string));
+      cy.get(`@${ reference }`).then(referenceId => cy.involveCase(referenceId as unknown as string));
     });
 
     it('should refresh the dashboard widgets', () => {
@@ -184,7 +226,7 @@ describe('Dashboards App', () => {
 
       cy.startCaseTypeA(reference);
 
-      cy.get(`@${reference}`).then(referenceId => cy.openCase(referenceId as unknown as string));
+      cy.get(`@${ reference }`).then(referenceId => cy.openCase(referenceId as unknown as string));
 
       cy.get(DASHBOARD_WIDGET + '[id="open-case-tasks"]').within(() => {
         cy.waitForListEntry('Toevoegen bewijsstukken');
@@ -213,7 +255,7 @@ describe('Dashboards App', () => {
 
       cy.startCaseTypeA(reference);
 
-      cy.get(`@${reference}`).then(referenceId => cy.openCase(referenceId as unknown as string));
+      cy.get(`@${ reference }`).then(referenceId => cy.openCase(referenceId as unknown as string));
 
       cy.get(DASHBOARD_WIDGET + '[id="open-case-tasks"]').within(() => {
         cy.waitForListEntry('Toevoegen bewijsstukken');

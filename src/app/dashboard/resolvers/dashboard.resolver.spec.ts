@@ -1,9 +1,11 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { ActivatedRouteSnapshot, convertToParamMap, UrlSegment } from '@angular/router';
 import { Dispatcher } from '@blueriq/angular';
 import { DashboardService, UnauthorizedError } from '@blueriq/dashboard';
 import { of, throwError } from 'rxjs';
 import { LoginAction } from '../events/actions';
+import { DashboardError } from './dashboard-error';
 import { DashboardResolver } from './dashboard.resolver';
 import createSpyObj = jasmine.createSpyObj;
 
@@ -39,29 +41,42 @@ describe('Dashboard Resolver', () => {
     }).unsubscribe();
   });
 
-  it('should not crash if the route does not contain a dashboard id', (done) => {
+  it('should return an error when the route does not contain a dashboard id', (done) => {
     const paramMap = convertToParamMap({});
     const resolve = resolver.resolve({ paramMap } as ActivatedRouteSnapshot);
 
     resolve.subscribe(resolved => {
-      expect(resolved).toBeUndefined();
+      expect(resolved).toEqual(new DashboardError('Unable to display dashboard'));
       done();
     }).unsubscribe();
   });
 
-  it('should return error if we are not able to retrieve a dashboard', (done) => {
+  it('should return an error when we are not able to retrieve a dashboard due to a 404', (done) => {
+    const expectedError = new HttpErrorResponse({ status: 404 });
+    service.getDashboard.and.callFake(() => throwError(expectedError));
+
+    const paramMap = convertToParamMap({ 'dashboardId': 'TestId' });
+    const resolve = resolver.resolve({ paramMap } as ActivatedRouteSnapshot);
+
+    resolve.subscribe(data => {
+      // test should always fail when this callback is called, because the error callback should be called.
+      expect(data).toEqual(new DashboardError('Dashboard not found'));
+      expect(service.getDashboard).toHaveBeenCalledWith('TestId');
+      expect(dispatcher.dispatch).not.toHaveBeenCalled();
+      done();
+    }).unsubscribe();
+  });
+
+  it('should return an error when we are not able to retrieve a dashboard due to a generic error', (done) => {
     const expectedError = new Error('expectedError');
     service.getDashboard.and.callFake(() => throwError(expectedError));
 
     const paramMap = convertToParamMap({ 'dashboardId': 'TestId' });
     const resolve = resolver.resolve({ paramMap } as ActivatedRouteSnapshot);
 
-    resolve.subscribe(_ => {
+    resolve.subscribe(data => {
       // test should always fail when this callback is called, because the error callback should be called.
-      expect(true).toBeFalse();
-    }, error => {
-      expect(error).toBeDefined();
-      expect(error.message).toEqual('expectedError');
+      expect(data).toEqual(new DashboardError('An unknown error occurred'));
       expect(service.getDashboard).toHaveBeenCalledWith('TestId');
       expect(dispatcher.dispatch).not.toHaveBeenCalled();
       done();

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { DashboardModel, PageModel, WidgetIdManager } from '@blueriq/dashboard';
 import { DASHBOARD_PAGE_ID } from '../routing/route-fragments';
+import { DashboardError } from './dashboard-error';
 
 @Injectable()
 export class PageResolver implements Resolve<PageModel | undefined> {
@@ -10,8 +11,8 @@ export class PageResolver implements Resolve<PageModel | undefined> {
   }
 
   resolve(route: ActivatedRouteSnapshot): PageModel | undefined {
-    const dashboard = route.parent?.data?.dashboard as DashboardModel;
-    if (dashboard === undefined) {
+    const dashboard = route.parent?.data?.dashboard as DashboardModel | DashboardError;
+    if (dashboard === undefined || dashboard instanceof DashboardError) {
       return undefined;
     }
 
