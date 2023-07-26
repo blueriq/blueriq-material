@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { Dispatcher } from '@blueriq/angular';
@@ -6,28 +7,36 @@ import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { LoginAction } from '../events/actions';
 import { DASHBOARD_ID } from '../routing/route-fragments';
+import { DashboardError, EMPTY } from './dashboard-error';
 
 @Injectable()
-export class DashboardResolver implements Resolve<DashboardModel | unknown> {
+export class DashboardResolver implements Resolve<DashboardModel | DashboardError> {
   constructor(private readonly dashboardService: DashboardService,
               private readonly dispatcher: Dispatcher) {
   }
 
-  resolve(route: ActivatedRouteSnapshot): Observable<DashboardModel | unknown> {
+  resolve(route: ActivatedRouteSnapshot): Observable<DashboardModel | DashboardError> {
     const dashboardId: string | null = route.paramMap.get(DASHBOARD_ID);
     if (dashboardId === null) {
-      return of(undefined);
+      return of(new DashboardError('Unable to display dashboard'));
     }
     return this.dashboardService.getDashboard(dashboardId).pipe(
       map(dashboard => dashboard),
       catchError(error => {
         if (error instanceof UnauthorizedError) {
           this.dispatcher.dispatch(new LoginAction());
-          return of(undefined);
+          return of(EMPTY);
         } else {
-          throw error;
+          return of(this.createError(error));
         }
       }),
     );
+  }
+
+  private createError(error: Error): DashboardError {
+    if (error instanceof HttpErrorResponse && error.status === 404) {
+      return new DashboardError('Dashboard not found');
+    }
+    return new DashboardError('An unknown error occurred');
   }
 }

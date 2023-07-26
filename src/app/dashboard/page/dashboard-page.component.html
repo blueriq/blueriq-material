@@ -10,8 +10,11 @@
           <bq-flow-widget *ngIf="!refreshWidget" [widget]="widget" [id]="widget.id"></bq-flow-widget>
         </ng-container>
 
-        <bq-task-execution-widget *ngSwitchCase="'blueriq-task'" [widget]="widget" [id]="widget.id"></bq-task-execution-widget>
+        <bq-task-execution-widget *ngSwitchCase="'blueriq-task'" [widget]="widget"
+                                  [id]="widget.id"></bq-task-execution-widget>
       </ng-container>
     </div>
   </div>
 </ng-container>
+
+<bq-notification-overlay *ngIf="notification" [notification]="notification"></bq-notification-overlay>
