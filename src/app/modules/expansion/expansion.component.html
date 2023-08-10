@@ -1,0 +1,10 @@
+<mat-accordion>
+    <mat-expansion-panel *ngFor="let child of container.children | bqIncluded">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{ child.displayName || '[' + child.name + ']' }}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <ng-container [bqElement]="child"></ng-container>
+    </mat-expansion-panel>
+</mat-accordion>
