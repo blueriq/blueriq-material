@@ -21,6 +21,7 @@ import { ButtonModule } from './modules/button/button.module';
 import { CommentModule } from './modules/comment/comment.module';
 import { ContainerModule } from './modules/container/container.module';
 import { ContentItemModule } from './modules/contentitem/contentitem.module';
+import { ExpansionModule } from './modules/expansion/expansion.module';
 import { FileModule } from './modules/file/file.modules';
 import { FormControlModule } from './modules/form-controls/form-control.module';
 import { HeaderModule } from './modules/header/header.module';
@@ -90,6 +91,7 @@ const routes: Routes = [
     CommentModule,
     ContainerModule,
     ContentItemModule,
+    ExpansionModule,
     FileModule,
     FormControlModule,
     HeaderModule,

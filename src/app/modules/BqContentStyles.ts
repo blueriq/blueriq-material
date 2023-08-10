@@ -19,6 +19,7 @@ export class BqContentStyles {
   static TASK_LIST = 'tasklist';
 
   static TAB = 'tabs';
+  static EXPANSION = 'Expansion';
 
   static WEIGHT_REGEXP = new RegExp('^' + BqContentStyles.DASHBOARD_COLUMN_PREFIX + '(\\d+)$');
 }
