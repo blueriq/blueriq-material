@@ -13,7 +13,9 @@ services:
     ports:
       - "9083:8080"
   mongodb:
-    image: mongo:6.0.5@sha256:83801634df07132cff11fab970dd54182ebcd39428b1a6bdef02d35ca8328a71
+    build:
+      context: .
+      dockerfile: Dockerfile.MONGO
     restart: always
     ports:
       - "9084:27017"

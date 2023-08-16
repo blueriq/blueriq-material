@@ -109,7 +109,7 @@ node {
       }
 
       // archive integration outputs
-      archiveArtifacts artifacts: 'cypress/videos/*, cypress/screenshots/**/*, cypress/snapshots/**/*.diff.png, tmp/e2e-logs.txt, cypress-visual-screenshots/diff/*, cypress-visual-screenshots/comparison/*'
+      archiveArtifacts artifacts: 'cypress/videos/*, cypress/screenshots/**/*, cypress/snapshots/**/*.diff.png, tmp/e2e-logs.txt, tmp/e2e-dashboards-logs.txt, cypress-visual-screenshots/diff/*, cypress-visual-screenshots/comparison/*'
     }
     notifyBuildStatus();
     deleteDir();
