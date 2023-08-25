@@ -34,8 +34,8 @@ describe('ModalComponent', () => {
         ContainerTemplate.create('container1').displayName('Container 1'),
         ContainerTemplate.create('container2').displayName('Container 2'),
         ButtonTemplate.create('closebutton').styles(BqPresentationStyles.MODAL_CLOSE_BUTTON),
-        ButtonTemplate.create('cancel').caption('Cancel'),
-        ButtonTemplate.create('ok').caption('Ok')
+        ButtonTemplate.create('cancel').caption('Cancel').styles(BqPresentationStyles.MODAL_ACTION_BUTTON),
+        ButtonTemplate.create('ok').caption('Ok').styles(BqPresentationStyles.MODAL_ACTION_BUTTON)
       );
     session = BlueriqSessionTemplate.create().build(modalTemplate);
     modalFixture = session.get(ModalComponent);
@@ -51,20 +51,20 @@ describe('ModalComponent', () => {
     expect(getOverLay().querySelector('.dialog-content')).toBeTruthy();
 
     expect(modalFixture.componentInstance.modalCloseButton).toBeTruthy();
-    expect(modalFixture.componentInstance.modalActionButtons.length).toBe(3);
+    expect(modalFixture.componentInstance.modalActionButtons.length).toBe(2);
     expect(modalFixture.componentInstance.container.children.length).toBe(5);
   });
 
   it('should close the dialog on close button click', () => {
-    spyOn(modalFixture.componentInstance, 'onClick');
+    spyOn(modalFixture.componentInstance, 'closeDialog');
     getOverLay().querySelector('.close-button')?.firstElementChild?.dispatchEvent(new Event('click'));
-    expect(modalFixture.componentInstance.onClick).toHaveBeenCalled();
+    expect(modalFixture.componentInstance.closeDialog).toHaveBeenCalled();
   });
 
   it('should close the dialog on action button click', () => {
-    spyOn(modalFixture.componentInstance, 'onClick');
+    spyOn(modalFixture.componentInstance, 'closeDialog');
     getOverLay().querySelector('.dialog-actions')?.firstElementChild?.dispatchEvent(new Event('click'));
-    expect(modalFixture.componentInstance.onClick).toHaveBeenCalled();
+    expect(modalFixture.componentInstance.closeDialog).toHaveBeenCalled();
   });
 
   function getOverLay() {
