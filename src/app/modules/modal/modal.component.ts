@@ -28,7 +28,6 @@ export class ModalComponent implements OnInit {
   modalCloseButton: Button;
 
   constructor(private readonly dialog: MatDialog, public container: Container) {
-    console.log(container);
   }
 
   ngOnInit() {
