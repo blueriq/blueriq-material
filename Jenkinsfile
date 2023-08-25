@@ -56,7 +56,7 @@ node {
     def mvnHome = tool "apache-maven-3.5.4"
     def nodeHome = tool 'node-18.16.0'
     env.PATH = "${env.JAVA_HOME}\\bin;${mvnHome}\\bin;${nodeHome};${env.PATH}"
-    env.CHROME_BIN = env.CHROME_80_0_3987_132
+    env.CHROME_BIN = env.CHROME_116_0_5845_97
 
     stage('checkout') {
       def scmVars = checkout scm
@@ -142,6 +142,7 @@ node {
     currentBuild.result = 'FAILURE'
   } finally {
     stage("Publish results") {
+      archiveArtifacts artifacts: 'testresults/*.xml';
       // Test results
       step([$class: 'JUnitResultArchiver', testResults: 'testresults/*.xml'])
 
