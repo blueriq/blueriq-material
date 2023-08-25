@@ -39,6 +39,7 @@ import { VisualizationModule } from './modules/visualization/visualization.modul
 import { WidgetModule } from './modules/widget/widget.module';
 import { NotificationOverlayModule } from './notification-overlay/notification-overlay.module';
 import { ProjectComponent } from './project.component';
+import { ModalModule } from './modules/modal/modal.module';
 
 const routes: Routes = [
   {
@@ -98,6 +99,7 @@ const routes: Routes = [
     ImageModule,
     ListModule,
     MenuModule,
+    ModalModule,
     PageModule,
     ReadonlyModule,
     TabModule,
