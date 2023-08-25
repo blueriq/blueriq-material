@@ -1,0 +1,29 @@
+@import 'globals/variables';
+
+.dialog-title {
+  display: flex;
+  margin-top: $bq-margin;
+
+  .title {
+    display: flex;
+    flex-grow: 1;
+    justify-items: left;
+  }
+
+  .close-button {
+    display: flex;
+    flex-grow: 0;
+    justify-items: right;
+  }
+}
+
+.dialog-content {
+  display: block;
+  margin-top: $bq-margin;
+  margin-bottom: $bq-margin;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: right;
+}

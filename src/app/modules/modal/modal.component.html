@@ -1,0 +1,28 @@
+<ng-template #dialog>
+  <div mat-dialog-title class="dialog-title">
+    <div class="title">
+      <h1>{{ container.displayName || '[' + container.name + ']' }}</h1>
+    </div>
+    <div class="close-button">
+      <button [bqButton]="modalCloseButton" bqKey bqClasses mat-button
+              class="mat-icon-button"
+              (click)="closeDialog()"
+      >
+        <mat-icon fontIcon="close"></mat-icon>
+      </button>
+    </div>
+  </div>
+  <div mat-dialog-content class="dialog-content">
+    <ng-container *ngFor="let child of container.children | bqIncluded"
+                  [bqElement]="child"></ng-container>
+  </div>
+  <div mat-dialog-actions class="dialog-actions">
+    <ng-container *ngFor="let button of modalActionButtons">
+      <div (click)="closeDialog()"
+      >
+        <ng-container [bqElement]="button">
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+</ng-template>

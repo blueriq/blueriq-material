@@ -26,6 +26,8 @@ export class BqPresentationStyles {
   static SWITCH = 'Switch';
   static DO_NOT_SHOW_SEARCH = 'DoNotShowSearch';
   static PASSWORD = 'Password';
+  static MODAL_CLOSE_BUTTON = 'ModalCloseButton';
+  static MODAL_ACTION_BUTTON = 'ModalActionButton';
 
   // Presentation styles reused from AquimaLibrary, these can be refactored in the future
   static DANGER = 'Danger';
