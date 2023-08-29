@@ -16,7 +16,7 @@ describe('RadioButtonComponent', () => {
   let component: ComponentFixture<RadioButtonComponent>;
   let loader: HarnessLoader;
 
-  beforeEach(async() => {
+  beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
@@ -28,14 +28,14 @@ describe('RadioButtonComponent', () => {
 
   beforeEach(() => {
     field = FieldTemplate.text('muppets')
-    .domain({
-      'kermit': 'Kermit',
-      'miss_piggy': 'Miss Piggy',
-      'beaker': 'Beaker',
-    })
-    .styles(BqPresentationStyles.ALLOPTIONSVISIBLE)
-    .readonly(false)
-    .value('');
+      .domain({
+        'kermit': 'Kermit',
+        'miss_piggy': 'Miss Piggy',
+        'beaker': 'Beaker',
+      })
+      .styles(BqPresentationStyles.ALLOPTIONSVISIBLE)
+      .readonly(false)
+      .value('');
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(RadioButtonComponent);
     component.autoDetectChanges();
@@ -54,7 +54,7 @@ describe('RadioButtonComponent', () => {
     expect(inputField).toBeTruthy();
   });
 
-  it('should update immediately when checked, without needing to get out of focus', async() => {
+  it('should update immediately when checked, without needing to get out of focus', async () => {
     const radioGroup = await loader.getHarness(MatRadioGroupHarness);
 
     let event = false;
@@ -112,7 +112,7 @@ describe('RadioButtonComponent', () => {
       field.styles(BqPresentationStyles.DEPRECATED_RADIO, BqPresentationStyles.DEPRECATED_HORIZONTAL),
     );
     styledDiv = component.nativeElement.querySelector('mat-radio-group').querySelector('div');
-    expect(styledDiv.style.flexFlow).toBe('row wrap');
+    expect(styledDiv.style.flexFlow).toBe('wrap');
     expect(styledDiv.style.boxSizing).toBe('border-box');
     expect(styledDiv.style.display).toBe('flex');
   });
@@ -128,7 +128,7 @@ describe('RadioButtonComponent', () => {
       field.styles(BqPresentationStyles.HORIZONTAL),
     );
     styledDiv = component.nativeElement.querySelector('mat-radio-group').querySelector('div');
-    expect(styledDiv.style.flexFlow).toBe('row wrap');
+    expect(styledDiv.style.flexFlow).toBe('wrap');
     expect(styledDiv.style.boxSizing).toBe('border-box');
     expect(styledDiv.style.display).toBe('flex');
   });
