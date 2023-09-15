@@ -12,7 +12,7 @@ export class DashboardEffects {
 
   readonly navigation$: Observable<unknown> = createEffect(() => this.actions$.pipe(
     ofType<NavigateAction>(DashboardActions.NAVIGATE),
-    tap(action => this.router.navigate([action.url], { queryParams: action.queryParameters })),
+    tap(action => this.navigate(action)),
   ), { dispatch: false });
 
   readonly login$: Observable<unknown> = createEffect(() => this.actions$.pipe(
@@ -42,5 +42,16 @@ export class DashboardEffects {
     private readonly router: Router,
     private readonly authService: DashboardAuthService,
   ) {
+  }
+
+  private navigate(action: NavigateAction): Promise<boolean> {
+    let queryParameters = action.queryParameters;
+    if (this.router.routerState.root.snapshot.queryParams['devtools'] !== undefined) {
+      queryParameters = {
+        ...queryParameters,
+        'devtools': '',
+      };
+    }
+    return this.router.navigate([action.url], { queryParams: queryParameters });
   }
 }

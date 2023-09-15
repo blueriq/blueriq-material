@@ -1,6 +1,28 @@
 const process = require("process");
-const proxyTargetUrl = process.env.BQ_MATERIAL_NG_PROXY_TARGET_URL || "http://localhost:9090";
+const proxyTargetUrl = process.env.BQ_MATERIAL_NG_PROXY_TARGET_URL || "http://localhost:20120";
 const PROXY_CONFIG = [
+  {
+    context: [
+      "/server",
+    ],
+    target: proxyTargetUrl,
+    "pathRewrite": {
+      "^/server/": "/runtime/server/"
+    },
+    "secure": false,
+    "logLevel": "debug"
+  },
+  {
+    context: [
+      "/devtools",
+    ],
+    target: proxyTargetUrl,
+    "pathRewrite": {
+      "^/devtools/": "/runtime/devtools/"
+    },
+    "secure": false,
+    "logLevel": "debug"
+  },
   {
     context: [
       "/runtime",
