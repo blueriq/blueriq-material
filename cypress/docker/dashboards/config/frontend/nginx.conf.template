@@ -30,6 +30,11 @@ server {
         proxy_pass http://gateway/;
     }
 
+    location /server/ {
+          rewrite ^/server/(.*)$ /runtime/server/$1 break;
+          proxy_pass http://gateway/;
+      }
+
     location /dashboards/ {
         proxy_pass http://gateway/;
     }
