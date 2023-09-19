@@ -85,7 +85,7 @@ exit /B
 :get_version
 set expression=%~1
 set storeVar=%~2
-call mvn -B help:evaluate -Dexpression=%expression% -q -DforceStdout > tempVersion.txt
+call mvn -B org.apache.maven.plugins:maven-help-plugin:3.3.0:evaluate -Dexpression=%expression% -q -DforceStdout > tempVersion.txt
 call set /p %storeVar%=<tempVersion.txt
 call DEL /F /Q tempVersion.txt
 exit /B
