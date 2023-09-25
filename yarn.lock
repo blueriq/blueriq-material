@@ -1611,32 +1611,32 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
-"@blueriq/angular@0.17.2":
-  version "0.17.2"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/angular/-/@blueriq/angular-0.17.2.tgz#377d210bf53c9a41d1408b2c7239fb02d42f1426"
-  integrity sha1-N30hC/U8mkHRQIsscjn7AtQvFCY=
+"@blueriq/angular@0.17.3":
+  version "0.17.3"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/angular/-/@blueriq/angular-0.17.3.tgz#930f1e0e6bb13d3772a04071cd835a93a15372c6"
+  integrity sha1-kw8eDmuxPTdyoEBxzYNak6FTcsY=
   dependencies:
     tslib "^2.3.0"
 
-"@blueriq/core@0.17.2":
-  version "0.17.2"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/core/-/@blueriq/core-0.17.2.tgz#cf692325f406e3ee8590395fee315a39b0487717"
-  integrity sha1-z2kjJfQG4+6FkDlf7jFaObBIdxc=
+"@blueriq/core@0.17.3":
+  version "0.17.3"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/core/-/@blueriq/core-0.17.3.tgz#d330c1e568158f1680d1205e9dbc36484e22a4ca"
+  integrity sha1-0zDB5WgVjxaA0SBenbw2SE4ipMo=
   dependencies:
     css-selector-parser "1.3.0"
     tslib "^2.3.0"
 
-"@blueriq/dashboard@0.17.2":
-  version "0.17.2"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/dashboard/-/@blueriq/dashboard-0.17.2.tgz#f275c8c4207590f02f7fd511be4a7807cfd889a8"
-  integrity sha1-8nXIxCB1kPAvf9URvkp4B8/Yiag=
+"@blueriq/dashboard@0.17.3":
+  version "0.17.3"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/dashboard/-/@blueriq/dashboard-0.17.3.tgz#7639f4fda5a18d0ae4030031537e6ad59e2ebb1b"
+  integrity sha1-djn0/aWhjQrkAwAxU35q1Z4uuxs=
   dependencies:
     tslib "^2.3.0"
 
-"@blueriq/devtools@0.17.2":
-  version "0.17.2"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/devtools/-/@blueriq/devtools-0.17.2.tgz#bb838d441603224be0af5ffd5238b2e075eb92b4"
-  integrity sha1-u4ONRBYDIkvgr1/9Ujiy4HXrkrQ=
+"@blueriq/devtools@0.17.3":
+  version "0.17.3"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/devtools/-/@blueriq/devtools-0.17.3.tgz#b4051a1602d53f82f08cd33e6747ef61e691f056"
+  integrity sha1-tAUaFgLVP4LwjNM+Z0fvYeaR8FY=
   dependencies:
     tslib "^2.3.0"
 

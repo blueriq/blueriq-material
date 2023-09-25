@@ -24,6 +24,11 @@ server {
         index index.html index.htm;
         try_files $uri $uri/ /index.html =404;
     }
+	
+	location /runtime/api/ {
+        rewrite ^/runtime/([^/]*)/(.*)$ /runtime/server/$1/$2 break;
+        proxy_pass http://gateway/;
+    }
 
     location /runtime/ {
         rewrite ^/runtime/([^/]*)/(.*)$ /runtime/$1/server/$2 break;
