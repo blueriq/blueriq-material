@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { CanActivate } from '@angular/router';
 import { JwtAuthService } from '@blueriq/angular';
 import { Observable, of } from 'rxjs';
 import { catchError, mapTo, tap } from 'rxjs/operators';
@@ -13,9 +13,8 @@ import { catchError, mapTo, tap } from 'rxjs/operators';
 export class JwtLoginGuard implements CanActivate {
 
   constructor(
-              private readonly jwtAuthService: JwtAuthService,
-              private readonly router: Router,
-              @Inject(DOCUMENT) private readonly document: Document) {
+    private readonly jwtAuthService: JwtAuthService,
+    @Inject(DOCUMENT) private readonly document: Document) {
   }
 
   canActivate(): Observable<boolean> {
