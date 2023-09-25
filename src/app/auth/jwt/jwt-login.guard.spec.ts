@@ -57,7 +57,7 @@ describe('JwtLoginGuard', () => {
 
     expect(doc.location!.href).toEqual('http://example.com/login');
     expect(jwtAuthService.login).toHaveBeenCalledWith({
-      redirectUrl: '/',
+      redirectUrl: 'http://example.com/',
     });
   }));
 
@@ -69,7 +69,7 @@ describe('JwtLoginGuard', () => {
 
     expect(router.url).toEqual('/login');
     expect(jwtAuthService.login).toHaveBeenCalledWith({
-      redirectUrl: '/',
+      redirectUrl: 'http://example.com/',
     });
   }));
 });

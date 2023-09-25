@@ -32,7 +32,7 @@ describe('Dashboards App', () => {
       cy.get('#password').type('Behandelaar');
       cy.get('#kc-login').click();
 
-      cy.get("h2").contains('Zaak intake').should('exist');
+      cy.get('h2').contains('Zaak intake').should('exist');
     });
 
     it('should be able to login via the gateway', () => {
