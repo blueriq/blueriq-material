@@ -106,6 +106,8 @@ Cypress.Commands.add('verifyOpenCasePage', verifyOpenCasePage);
 
 Cypress.Commands.add('waitForListEntry', waitForListEntry);
 
+Cypress.Commands.add('blockKeycloakResourceLoading', blockKeycloakResourceLoading);
+
 function getById(page: string, field: string, nr = '1'): Chainable<unknown> {
   return getByTagName('', page, field, nr);
 }
@@ -124,7 +126,7 @@ function visitRuntime(url: string, visitOptions: VisitOptions = { loginRequired:
 
 function startDashboard(url: string, visitOptions: VisitOptions = { loginRequired: false }): Chainable<unknown> {
   if (visitOptions.loginRequired) {
-    interceptGatewayAuthCssLoading();
+    blockKeycloakResourceLoading();
   }
 
   cy.intercept({ method: 'get', url: '/dashboards/**' }).as('getDashboard');
@@ -177,7 +179,7 @@ function doLogout(): Chainable<unknown> {
 }
 
 function doGatewayLogout(): Chainable<unknown> {
-  interceptGatewayAuthCssLoading();
+  blockKeycloakResourceLoading();
 
   cy.get(DASHBOARD_HEADER).within(() => {
     cy.get('button.active-user-menu').should('exist').click();
@@ -324,7 +326,7 @@ function waitForListEntry(reference: string, attempts: number = 0): Chainable<un
 
 }
 
-function interceptGatewayAuthCssLoading() {
+function blockKeycloakResourceLoading() {
   cy.intercept({ method: 'get', url: '*signin.css' }, req => req.reply('success'));
   cy.intercept({ method: 'get', url: '*bootstrap.min.css' }, req => req.reply('success'));
 }
@@ -410,6 +412,11 @@ declare global {
        * @param reference the reference to search for.
        */
       waitForListEntry(reference: string): Chainable<Subject>;
+
+      /**
+       * Intercepts and block keycloak resource loading
+       */
+      blockKeycloakResourceLoading(): Chainable<Subject>;
     }
   }
 }

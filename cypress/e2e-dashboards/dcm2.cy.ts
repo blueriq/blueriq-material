@@ -22,13 +22,26 @@ describe('Dashboards App', () => {
   });
 
   describe('authentication flow', () => {
-    it('should be able to login', () => {
+    it('should be able to login when starting a separate flow with JWT authentication enabled', () => {
+      cy.blockKeycloakResourceLoading();
+      cy.visitRuntime('/shortcut/ZaakIntake', { loginRequired: true });
+
+      cy.get('a[href*="oauth2/authorization/keycloak"]').click();
+
+      cy.get('#username').type('Behandelaar');
+      cy.get('#password').type('Behandelaar');
+      cy.get('#kc-login').click();
+
+      cy.get("h2").contains('Zaak intake').should('exist');
+    });
+
+    it('should be able to login via the gateway', () => {
       cy.startDashboard('/dashboard/e2e', { loginRequired: true });
 
       cy.doGatewayLogin('Behandelaar', 'Behandelaar');
     });
 
-    it('should be able to logout', () => {
+    it('should be able to logout via the gateway', () => {
       cy.startDashboard('/dashboard/e2e', { loginRequired: true });
 
       cy.doGatewayLogin('Behandelaar', 'Behandelaar');
