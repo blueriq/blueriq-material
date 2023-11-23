@@ -29,6 +29,8 @@ import { ImageModule } from './modules/image/image.module';
 import { ListModule } from './modules/list/list.module';
 import { LoadingModule } from './modules/loading/loading.module';
 import { MenuModule } from './modules/menu/menu.module';
+import { ModalModule } from './modules/modal/modal.module';
+import { NavigationModule } from './modules/navigation/navigation.module';
 import { PageModule } from './modules/page/page.module';
 import { ReadonlyModule } from './modules/readonly/readonly.module';
 import { TabModule } from './modules/tab/tabs.module';
@@ -39,7 +41,6 @@ import { VisualizationModule } from './modules/visualization/visualization.modul
 import { WidgetModule } from './modules/widget/widget.module';
 import { NotificationOverlayModule } from './notification-overlay/notification-overlay.module';
 import { ProjectComponent } from './project.component';
-import { ModalModule } from './modules/modal/modal.module';
 
 const routes: Routes = [
   {
@@ -100,6 +101,7 @@ const routes: Routes = [
     ListModule,
     MenuModule,
     ModalModule,
+    NavigationModule,
     PageModule,
     ReadonlyModule,
     TabModule,

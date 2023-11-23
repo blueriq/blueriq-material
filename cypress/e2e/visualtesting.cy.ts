@@ -1,6 +1,6 @@
 describe('Visual testing', () => {
   beforeEach(() => {
-    cy.viewport(1920,4000);
+    cy.viewport(1920, 4000);
   });
 
   describe('Input fields', () => {
@@ -88,13 +88,13 @@ describe('Visual testing', () => {
       cy.compareSnapshot('date-pickers', 0.02);
     });
 
-    it ('Check Date Time Pickers', () => {
+    it('Check Date Time Pickers', () => {
       // check date time pickers
       cy.get('#mat-tab-label-0-1').click().wait(2000);
       cy.compareSnapshot('datetime-pickers', 0.02);
     });
 
-    it ('Check Date Time Pickers Material', () => {
+    it('Check Date Time Pickers Material', () => {
       // check date time pickers material
       cy.get('#mat-tab-label-0-2').click().wait(2000);
       cy.compareSnapshot('datetime-pickers-material', 0.02);

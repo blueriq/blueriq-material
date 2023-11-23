@@ -21,6 +21,7 @@ export class BqContentStyles {
   static TAB = 'tabs';
   static EXPANSION = 'Expansion';
   static MODAL = 'Modal';
+  static NAVIGATION_MENU = 'NavigationMenu';
 
   static WEIGHT_REGEXP = new RegExp('^' + BqContentStyles.DASHBOARD_COLUMN_PREFIX + '(\\d+)$');
 }

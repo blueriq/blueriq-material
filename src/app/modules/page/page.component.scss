@@ -1,29 +1,17 @@
 @use '@angular/material' as mat;
 @import '@angular/material/theming';
 @import 'globals/variables';
-@import 'globals/images';
 
 .header {
   @include mat.elevation(1);
 
-  position: fixed;
+  position: sticky;
+  top: 0;
   width: 100%;
   z-index: $z-index-drawer + 10;
 }
 
-.page {
-  margin-bottom: $bq-margin-double;
-}
-
-/* There could be more toolbars on the page
-*  this takes care for at least 5 toolbars
-*/
-@for $i from 0 through 5 {
-  .margin-#{$i} {
-    @if $header-display == none {
-      padding-top: $bq-toolbar-height * $i;
-    } @else {
-      padding-top: $bq-toolbar-height * ($i + 1);
-    }
-  }
+.sticky-menu {
+  position: sticky;
+  top: $bq-toolbar-height;
 }

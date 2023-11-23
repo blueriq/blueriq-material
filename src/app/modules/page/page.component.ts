@@ -7,7 +7,7 @@ import { BqContentStyles } from '../BqContentStyles';
   selector: 'bq-page',
   templateUrl: './page.component.html',
   styleUrls: [
-    './page.component.scss'
+    './page.component.scss',
   ],
 })
 @BlueriqComponent({
@@ -21,9 +21,10 @@ export class PageComponent implements OnInit, OnUpdate {
   @BlueriqChildren(Container, BqContentStyles.DASHBOARD_MENU, { exclude: true })
   dashboardMenus: Container[];
 
-  pageSize: string;
+  @BlueriqChild(Container, BqContentStyles.NAVIGATION_MENU, { exclude: true, optional: true, descendants: true })
+  navigationMenu: Container;
 
-  toolbarsCounter = 1;
+  pageSize: string;
 
   constructor(public page: Page) {
     this.pageSize = this.determinePageSize();
@@ -35,7 +36,6 @@ export class PageComponent implements OnInit, OnUpdate {
    */
   ngOnInit(): void {
     window.scroll(0, 0);
-    this.toolbarsCounter = this.dashboardMenus.length;
   }
 
   bqOnUpdate(): void {

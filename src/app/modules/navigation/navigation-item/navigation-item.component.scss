@@ -1,0 +1,57 @@
+@use '@angular/material' as mat;
+@use 'sass:map';
+@import 'globals/variables';
+@import '../navigation.component';
+
+:host {
+  display: flex;
+}
+
+.circle {
+  position: relative;
+  width: $shape-size;
+  height: $shape-size;
+  background: map.get(mat.$light-theme-background-palette, card);
+  border-radius: 50%;
+  border: $shape-line solid mat.get-color-from-palette($bq-primary-palette);
+  flex-shrink: 0;
+
+  .mat-icon {
+    font-size: 18px;
+    font-weight: bold;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+  }
+
+  &.active {
+    .mat-icon {
+      display: none;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 2px;
+      background: mat.get-color-from-palette($bq-primary-palette);
+      color: mat.get-color-from-palette($bq-primary-palette, default-contrast);
+      border-radius: 50%;
+    }
+  }
+
+  &.error:not(.active) {
+    border-color: mat.get-color-from-palette($bq-error-palette);
+    color: mat.get-color-from-palette($bq-error-palette);
+  }
+}
+
+button {
+  text-align: left;
+  border-radius: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

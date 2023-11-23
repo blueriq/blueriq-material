@@ -31,4 +31,14 @@ describe('ReadonlyComponent', () => {
     const floatLabel = component.nativeElement.querySelector('mat-form-field').getAttribute('appearance');
     expect(floatLabel).toContain('fill');
   });
+
+  it('should have a error', () => {
+    expect(component.nativeElement.querySelector('.mat-error')).toBeFalsy();
+    component.detectChanges();
+    session.update(
+      field.required(true),
+      field.error('wrong IBAN'),
+    );
+    expect(component.nativeElement.querySelector('.mat-error')).toBeTruthy();
+  });
 });

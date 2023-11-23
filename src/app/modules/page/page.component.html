@@ -4,8 +4,15 @@
   <ng-container *ngFor="let dashboardMenu of dashboardMenus" [bqElement]="dashboardMenu"></ng-container>
 </div>
 
-<div [ngClass]="['page', pageSize, 'margin-'+toolbarsCounter]">
-  <div *ngFor="let child of page.children | bqIncluded" [bqElement]="child"></div>
+<div [ngClass]="['page', pageSize]">
+  <div fxFlex="25" *ngIf="navigationMenu">
+    <div class="sticky-menu">
+      <ng-container [bqElement]="navigationMenu"></ng-container>
+    </div>
+  </div>
+  <div fxFlex>
+    <ng-container *ngFor="let child of page.children | bqIncluded" [bqElement]="child"></ng-container>
+  </div>
 </div>
 
 <bq-footer></bq-footer>

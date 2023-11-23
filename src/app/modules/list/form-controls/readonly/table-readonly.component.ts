@@ -6,7 +6,7 @@ import { ReadonlyComponent } from '../../../readonly/readonly.component';
 @Component({
   selector: 'bq-table-readonly',
   templateUrl: './table-readonly.component.html',
-  styleUrls: ['../table-form-control.scss'],
+  styleUrls: ['./table-readonly.component.scss'],
 })
 @BlueriqComponent({
   type: Field,
@@ -14,4 +14,9 @@ import { ReadonlyComponent } from '../../../readonly/readonly.component';
     '[readonly][hasDomain]', { priorityOffset: 1000 }),
 })
 export class TableReadonlyComponent extends ReadonlyComponent {
+
+  getErrors(): string {
+    return this.field.messages.all.map(error => error.text).join('\n');
+  }
+
 }
