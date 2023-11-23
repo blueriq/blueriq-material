@@ -1,3 +1,6 @@
-<div bqKey bqClasses>
+<div bqKey bqClasses
+  [class.validations]="!field.messages.isEmpty"
+  [matTooltip]="getErrors()"
+  matTooltipClass="tooltip-error">
   {{ field.getValue() | bqDisplay}}
 </div>

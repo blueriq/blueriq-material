@@ -1,4 +1,7 @@
 <mat-form-field bqKey bqClasses fxFlex appearance="fill">
   <mat-label>{{field.questionText}}</mat-label>
   <textarea matInput mat-autosize [readonly]="true" [value]="field.getValue() | bqDisplay"></textarea>
+  <div class="mat-form-field-subscript-wrapper" *ngIf="!field.messages.isEmpty">
+    <span class="mat-error" *ngFor="let msg of field.messages">{{msg.text}}</span>
+  </div>
 </mat-form-field>

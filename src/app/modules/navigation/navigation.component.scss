@@ -1,0 +1,21 @@
+@use '@angular/material' as mat;
+@import 'globals/variables';
+
+$shape-size: 1.2rem;
+$shape-line: 2.8px;
+
+.navigation {
+  overflow: hidden;
+  max-height: 64vh;
+  overflow-y: auto;
+  position: relative;
+  margin: $bq-margin-double;
+}
+
+.line {
+  position: absolute;
+  inset: 1rem (-$shape-line / 2);
+  width: $shape-line;
+  background: mat.get-color-from-palette($bq-primary-palette);
+  margin-left: $bq-margin-triple;
+}

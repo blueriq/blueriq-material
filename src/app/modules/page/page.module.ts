@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FlexModule } from '@angular/flex-layout';
 import { MatDividerModule } from '@angular/material/divider';
 import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
 import { FooterModule } from '../footer/footer.module';
@@ -27,6 +28,7 @@ const BLUERIQ_COMPONENTS = [
 
     /* Material modules */
     MatDividerModule,
+    FlexModule,
   ],
   exports: [BLUERIQ_COMPONENTS],
 })

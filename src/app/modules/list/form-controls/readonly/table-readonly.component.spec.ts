@@ -13,6 +13,7 @@ describe('TableReadonlyComponent', () => {
   let readonlyTemplate: ContainerTemplate;
   let session: BlueriqTestSession;
   let component: ComponentFixture<ListComponent>;
+  let field: FieldTemplate;
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
@@ -25,20 +26,20 @@ describe('TableReadonlyComponent', () => {
   });
 
   beforeEach(() => {
-    const tableSelect = FieldTemplate.text('color').value('You can only read this').readonly(true);
+    field = FieldTemplate.text('color').value('You can only read this').readonly(true);
 
     readonlyTemplate = ContainerTemplate.create()
-      .contentStyle(BqContentStyles.TABLE)
+    .contentStyle(BqContentStyles.TABLE)
+    .children(
+      // ---------- Row #1 ----------
+      ContainerTemplate
+      .create('row')
+      .contentStyle('tablerow')
       .children(
-        // ---------- Row #1 ----------
-        ContainerTemplate
-          .create('row')
-          .contentStyle('tablerow')
-          .children(
-            tableSelect,
-          ),
-        // ---------- End ----------
-      );
+        field,
+      ),
+      // ---------- End ----------
+    );
     const list = ContainerTemplate.create().children(readonlyTemplate);
     session = BlueriqSessionTemplate.create().build(list);
     component = session.get(ListComponent);
@@ -51,6 +52,15 @@ describe('TableReadonlyComponent', () => {
   it('should only render text', () => {
     const tableReadonly = component.nativeElement.querySelector('bq-table-readonly');
     expect(tableReadonly.innerHTML).toContain('You can only read this');
+  });
+
+  it('should have a error', () => {
+    expect(component.nativeElement.querySelector('.validations')).toBeFalsy();
+    component.detectChanges();
+    session.update(
+      field.error('error'),
+    );
+    expect(component.nativeElement.querySelector('.validations')).toBeTruthy();
   });
 
 });

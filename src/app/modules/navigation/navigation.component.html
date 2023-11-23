@@ -1,0 +1,6 @@
+<div class="navigation card" [bqContainer]="container" bqClasses bqKey fxFlex fxLayout="column">
+  <div class="line"></div>
+  <div fxFlex="1 1 auto" fxLayout="column">
+    <ng-container *ngFor="let button of buttons" [bqElement]="button"></ng-container>
+  </div>
+</div>
