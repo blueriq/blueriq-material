@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <!--
+     The following function is introduced to dynamically discover the base url.
+     This function should not be used in production when the base url is known,
+     instead replace the entire script with the base url where the front-end is served from.
+     Do make sure that the base url starts and ends with a slash.
+     Examples:
+      - https://example.com/ -> <base href="/" />
+      - https://example.com/front-end/ -> <base href="/front-end/" />
+  -->
   <script type="text/javascript">
     function getBaseHref() {
       var prefix = "<base href='";
@@ -17,7 +26,6 @@
     }
 
     document.write(getBaseHref());
-
   </script>
   <meta charset="utf-8">
   <title></title>
