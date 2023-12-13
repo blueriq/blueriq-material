@@ -83,9 +83,7 @@ services:
       - "9088:15672"
     restart: always
   e2e-mongodb:
-    build:
-      context: ../
-      dockerfile: dashboards/Dockerfile.MONGO
+    image: mongo:6.0.12
     mem_limit: 256m
     restart: always
     ports:
@@ -119,9 +117,7 @@ services:
     ports:
       - "9090:8080"
   e2e-redis:
-    build:
-      context: ../
-      dockerfile: dashboards/Dockerfile.REDIS
+    image: docker-internal.blueriq.com/redis7.2:1.0
     mem_limit: 256m
     environment:
       CONNECTION_PASSWORD: blueriq
