@@ -24,7 +24,7 @@ describe('Dashboards App', () => {
   describe('authentication flow', () => {
     it('should be able to login when starting a separate flow with JWT authentication enabled', () => {
       cy.blockKeycloakResourceLoading();
-      cy.visitRuntime('/shortcut/ZaakIntake', { loginRequired: true });
+      cy.visitRuntime('/shortcut/ZaakIntake', {loginRequired: true});
 
       cy.get('a[href*="oauth2/authorization/keycloak"]').click();
 
@@ -36,13 +36,13 @@ describe('Dashboards App', () => {
     });
 
     it('should be able to login via the gateway', () => {
-      cy.startDashboard('/dashboard/e2e', { loginRequired: true });
+      cy.startDashboard('/dashboard/dcm_dashboard', {loginRequired: true});
 
       cy.doGatewayLogin('Behandelaar', 'Behandelaar');
     });
 
     it('should be able to logout via the gateway', () => {
-      cy.startDashboard('/dashboard/e2e', { loginRequired: true });
+      cy.startDashboard('/dashboard/dcm_dashboard', {loginRequired: true});
 
       cy.doGatewayLogin('Behandelaar', 'Behandelaar');
       cy.doGatewayLogout();
@@ -50,7 +50,7 @@ describe('Dashboards App', () => {
     });
 
     it('should be able to login with multiple users', () => {
-      cy.startDashboard('/dashboard/e2e', { loginRequired: true });
+      cy.startDashboard('/dashboard/dcm_dashboard', {loginRequired: true});
 
       cy.doGatewayLogin('Behandelaar', 'Behandelaar');
       cy.doGatewayLogout();
@@ -58,7 +58,7 @@ describe('Dashboards App', () => {
     });
 
     it('should display the full name of the user', () => {
-      cy.startDashboard('/dashboard/e2e', { loginRequired: true });
+      cy.startDashboard('/dashboard/dcm_dashboard', {loginRequired: true});
 
       cy.doGatewayLogin('johndoe', 'johndoe');
 
@@ -70,7 +70,7 @@ describe('Dashboards App', () => {
 
   describe('by routes and authorization', () => {
     it('should display dcm dashboard main page as Behandelaar', () => {
-      cy.startDashboard('/dashboard/e2e', { loginRequired: true });
+      cy.startDashboard('/dashboard/dcm_dashboard', {loginRequired: true});
 
       cy.doGatewayLogin('Behandelaar', 'Behandelaar');
 
@@ -81,22 +81,22 @@ describe('Dashboards App', () => {
       cy.get(DASHBOARD_PAGE).within(() => {
         cy.get(DASHBOARD_WIDGET).should('have.length', 2);
 
-        cy.get(DASHBOARD_WIDGET + '[id="toegewezen-zaken"]').should('exist').within(() => {
+        cy.get(DASHBOARD_WIDGET + '[id="maindashboard-shortcut-zakentoegewezen-1"]').should('exist').within(() => {
           cy.get(DASHBOARD_WIDGET_PROJECT).should('exist');
         });
 
-        cy.get(DASHBOARD_WIDGET + '[id="niet-toegewezen-zaken"]').should('exist').within(() => {
+        cy.get(DASHBOARD_WIDGET + '[id="maindashboard-shortcut-zakentoegewezen-1"]').should('exist').within(() => {
           cy.get(DASHBOARD_WIDGET_PROJECT).should('exist');
         });
       });
     });
 
     it('Should display an error when the dashboard service response with an HTTP 404 response', () => {
-      cy.startDashboard('/dashboard/henk', { loginRequired: true });
+      cy.startDashboard('/dashboard/henk', {loginRequired: true});
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
-      cy.intercept({ method: 'get', url: '/dashboards/**' }).as('getDashboard');
+      cy.intercept({method: 'get', url: '/dashboards/**'}).as('getDashboard');
 
       cy.visit('/dashboard/henk', {
         onBeforeLoad: (win) => {
@@ -113,11 +113,11 @@ describe('Dashboards App', () => {
     });
 
     it('Should display an error when the dashboard service responds with an HTTP 400 response', () => {
-      cy.startDashboard('/dashboard/ingr!d', { loginRequired: true });
+      cy.startDashboard('/dashboard/ingr!d', {loginRequired: true});
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
-      cy.intercept({ method: 'get', url: '/dashboards/**' }).as('getDashboard');
+      cy.intercept({method: 'get', url: '/dashboards/**'}).as('getDashboard');
 
       cy.visit('/dashboard/ingr!d', {
         onBeforeLoad: (win) => {
@@ -134,7 +134,7 @@ describe('Dashboards App', () => {
     });
 
     it('should display dcm dashboard main page as Aanvrager', () => {
-      cy.startDashboard('/dashboard/e2e', { loginRequired: true });
+      cy.startDashboard('/dashboard/dcm_dashboard', {loginRequired: true});
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
@@ -145,16 +145,16 @@ describe('Dashboards App', () => {
       cy.get(DASHBOARD_PAGE).within(() => {
         cy.get(DASHBOARD_WIDGET).should('have.length', 1);
 
-        cy.get(DASHBOARD_WIDGET + '[id="toegewezen-zaken"]').should('exist').within(() => {
+        cy.get(DASHBOARD_WIDGET + '[id="maindashboard-shortcut-zakentoegewezen-1"]').should('exist').within(() => {
           cy.get(DASHBOARD_WIDGET_PROJECT).should('exist');
         });
       });
 
-      cy.get(DASHBOARD_WIDGET + '[id="niet-toegewezen-zaken"]').should('not.exist');
+      cy.get(DASHBOARD_WIDGET + '[id="maindashboard-shortcut-zakenniettoegewezen-1"]').should('not.exist');
     });
 
     it('should display login page after logout while on restricted route', () => {
-      cy.startDashboard('/dashboard/e2e', { loginRequired: true });
+      cy.startDashboard('/dashboard/dcm_dashboard', {loginRequired: true});
 
       cy.doGatewayLogin('Behandelaar', 'Behandelaar');
 
@@ -167,7 +167,7 @@ describe('Dashboards App', () => {
 
   describe('case actions', () => {
     it('should start a case', () => {
-      cy.startDashboard('/dashboard/e2e', { loginRequired: true });
+      cy.startDashboard('/dashboard/dcm_dashboard', {loginRequired: true});
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
@@ -175,18 +175,18 @@ describe('Dashboards App', () => {
     });
 
     it('should display open case', () => {
-      cy.startDashboard('/dashboard/e2e', { loginRequired: true });
+      cy.startDashboard('/dashboard/dcm_dashboard', {loginRequired: true});
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
       const reference = 'open-case';
       cy.startCaseTypeA(reference);
 
-      cy.get(`@${ reference }`).then(referenceId => cy.openCase(referenceId as unknown as string));
+      cy.get(`@${reference}`).then(referenceId => cy.openCase(referenceId as unknown as string));
     });
 
     it('should display an involved case with additional parameters', () => {
-      cy.startDashboard('/dashboard/e2e', { loginRequired: true });
+      cy.startDashboard('/dashboard/dcm_dashboard', {loginRequired: true});
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
@@ -197,11 +197,11 @@ describe('Dashboards App', () => {
 
       cy.doGatewayLogin('Behandelaar', 'Behandelaar');
 
-      cy.get(`@${ reference }`).then(referenceId => cy.involveCase(referenceId as unknown as string));
+      cy.get(`@${reference}`).then(referenceId => cy.involveCase(referenceId as unknown as string));
     });
 
     it('should refresh the dashboard widgets', () => {
-      cy.startDashboard('/dashboard/e2e', { loginRequired: true });
+      cy.startDashboard('/dashboard/dcm_dashboard', {loginRequired: true});
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
@@ -209,7 +209,7 @@ describe('Dashboards App', () => {
 
       // set filter to have no values in table
       cy.intercept('POST', '/runtime/*/api/v2/session/*/event').as('events');
-      cy.get(DASHBOARD_WIDGET + '[id="toegewezen-zaken"]').within(() => {
+      cy.get(DASHBOARD_WIDGET + '[id="maindashboard-shortcut-zakentoegewezen-1"]').within(() => {
         cy.get(`bq-filter button`).click();
         cy.root().parentsUntil('html').last().within(() => {
           cy.get('mat-dialog-container mat-form-field mat-select').selectOption('Kenmerk');
@@ -218,20 +218,20 @@ describe('Dashboards App', () => {
         });
       });
       cy.wait('@events').its('response.statusCode').should('equal', 200);
-      cy.get(DASHBOARD_WIDGET + '[id="toegewezen-zaken"] bq-table tbody').children().should('have.length', 0);
+      cy.get(DASHBOARD_WIDGET + '[id="maindashboard-shortcut-zakentoegewezen-1"] bq-table tbody').children().should('have.length', 0);
 
       // reload page
       cy.get('button[id="dashboard-refresh"]').click();
 
       // verify that filter is reset
-      cy.get(DASHBOARD_WIDGET + '[id="toegewezen-zaken"] bq-table tbody').children().should('have.length.above', 0);
+      cy.get(DASHBOARD_WIDGET + '[id="maindashboard-shortcut-zakentoegewezen-1"] bq-table tbody').children().should('have.length.above', 0);
     });
 
   });
 
   describe('task actions', () => {
     it('should be able to successfully complete a task', () => {
-      cy.startDashboard('/dashboard/e2e', { loginRequired: true });
+      cy.startDashboard('/dashboard/dcm_dashboard', {loginRequired: true});
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
@@ -239,9 +239,9 @@ describe('Dashboards App', () => {
 
       cy.startCaseTypeA(reference);
 
-      cy.get(`@${ reference }`).then(referenceId => cy.openCase(referenceId as unknown as string));
+      cy.get(`@${reference}`).then(referenceId => cy.openCase(referenceId as unknown as string));
 
-      cy.get(DASHBOARD_WIDGET + '[id="open-case-tasks"]').within(() => {
+      cy.get(DASHBOARD_WIDGET + '[id="zaakdashboard-shortcut-widgettakenlijst-1"]').within(() => {
         cy.waitForListEntry('Toevoegen bewijsstukken');
       });
 
@@ -254,13 +254,13 @@ describe('Dashboards App', () => {
       cy.verifyOpenCasePage();
 
       // New task should be available
-      cy.get(DASHBOARD_WIDGET + '[id="open-case-tasks"]').within(() => {
+      cy.get(DASHBOARD_WIDGET + '[id="zaakdashboard-shortcut-widgettakenlijst-1"]').within(() => {
         cy.waitForListEntry('Toevoegen bewijsstukken');
       });
     });
 
     it('should be able to successfully cancel a task', () => {
-      cy.startDashboard('/dashboard/e2e', { loginRequired: true });
+      cy.startDashboard('/dashboard/dcm_dashboard', {loginRequired: true});
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
@@ -268,9 +268,9 @@ describe('Dashboards App', () => {
 
       cy.startCaseTypeA(reference);
 
-      cy.get(`@${ reference }`).then(referenceId => cy.openCase(referenceId as unknown as string));
+      cy.get(`@${reference}`).then(referenceId => cy.openCase(referenceId as unknown as string));
 
-      cy.get(DASHBOARD_WIDGET + '[id="open-case-tasks"]').within(() => {
+      cy.get(DASHBOARD_WIDGET + '[id="zaakdashboard-shortcut-widgettakenlijst-1"]').within(() => {
         cy.waitForListEntry('Toevoegen bewijsstukken');
       });
 
@@ -284,7 +284,7 @@ describe('Dashboards App', () => {
       cy.verifyOpenCasePage();
 
       // Verify the task is still in the list
-      cy.get(DASHBOARD_WIDGET + '[id="open-case-tasks"]').within(() => {
+      cy.get(DASHBOARD_WIDGET + '[id="zaakdashboard-shortcut-widgettakenlijst-1"]').within(() => {
         cy.waitForListEntry('Toevoegen bewijsstukken');
       });
     });

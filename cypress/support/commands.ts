@@ -22,7 +22,7 @@ interface VisitOptions {
   loginRequired: boolean;
 }
 
-Cypress.Commands.add('equalIgnoreWhiteSpace', { prevSubject: true },
+Cypress.Commands.add('equalIgnoreWhiteSpace', {prevSubject: true},
   // eslint-disable-next-line
   (subject: any, equalTo: string) => {
     expect(subject.text().trim()).to.eq(equalTo);
@@ -53,7 +53,7 @@ Cypress.Commands.add('getSelectFor',
   (page: string, field: string) => cy.getById(page, field).find('mat-select'),
 );
 
-Cypress.Commands.add('selectOption', { prevSubject: true },
+Cypress.Commands.add('selectOption', {prevSubject: true},
   // eslint-disable-next-line
   (subject: any, selectOption: string) => {
     subject.click();
@@ -113,23 +113,23 @@ function getById(page: string, field: string, nr = '1'): Chainable<unknown> {
 }
 
 function getByTagName(tagName: string, page: string, field: string, nr = '1'): Chainable<unknown> {
-  return cy.get(`${ tagName }[id^=${ page + '_' + field + '_' + nr }]`);
+  return cy.get(`${tagName}[id^=${page + '_' + field + '_' + nr}]`);
 }
 
-function visitRuntime(url: string, visitOptions: VisitOptions = { loginRequired: false }): Chainable<unknown> {
-  cy.intercept({ method: 'POST', url: /\/runtime\/api\/v2\/start(\/?).*$/ }).as('visitRuntime');
+function visitRuntime(url: string, visitOptions: VisitOptions = {loginRequired: false}): Chainable<unknown> {
+  cy.intercept({method: 'POST', url: /\/runtime\/api\/v2\/start(\/?).*$/}).as('visitRuntime');
   cy.visit(url);
 
   // A login page could be expected (401 = unauthorized)
   return cy.wait('@visitRuntime').its('response.statusCode').should('equal', visitOptions.loginRequired ? 401 : 200);
 }
 
-function startDashboard(url: string, visitOptions: VisitOptions = { loginRequired: false }): Chainable<unknown> {
+function startDashboard(url: string, visitOptions: VisitOptions = {loginRequired: false}): Chainable<unknown> {
   if (visitOptions.loginRequired) {
     blockKeycloakResourceLoading();
   }
 
-  cy.intercept({ method: 'get', url: '/dashboards/**' }).as('getDashboard');
+  cy.intercept({method: 'get', url: '/dashboards/**'}).as('getDashboard');
   cy.visit(url, {
     onBeforeLoad: (win) => {
       win.sessionStorage.clear();
@@ -141,7 +141,7 @@ function startDashboard(url: string, visitOptions: VisitOptions = { loginRequire
 }
 
 function clickForDashboardChange(button: Chainable): Chainable<unknown> {
-  cy.intercept({ method: 'get', url: /\/runtime\/(.*)\/api\/v2\/start(\/?).*$/ }).as('dashboardChanges');
+  cy.intercept({method: 'get', url: /\/runtime\/(.*)\/api\/v2\/start(\/?).*$/}).as('dashboardChanges');
   button.click();
 
   return cy.wait('@dashboardChanges').its('response.statusCode').should('equal', 200);
@@ -197,7 +197,7 @@ function startCaseTypeA(reference: string): Chainable<unknown> {
   });
 
   cy.get(DASHBOARD_PAGE).within(() => {
-    cy.get(DASHBOARD_WIDGET + '[id="start-cases"]').should('exist').within(_ => {
+    cy.get(DASHBOARD_WIDGET + '[id="zaakcatalogus-shortcut-productinformatie-1"]').should('exist').within(_ => {
       cy.intercept('POST', '/runtime/*/api/v2/session/*/load').as('startCase');
       cy.getButtonFor('P169', 'Aanvragen').click();
       cy.wait('@startCase').its('response.statusCode').should('equal', 200);
@@ -205,14 +205,14 @@ function startCaseTypeA(reference: string): Chainable<unknown> {
   });
 
   cy.get(DASHBOARD_PAGE).within(() => {
-    cy.get(DASHBOARD_WIDGET + '[id="StartZaak"]').should('exist').within(_ => {
+    cy.get(DASHBOARD_WIDGET + '[id="startzaak-shortcut-zaakintake-1"]').should('exist').within(_ => {
       cy.getInputFor('P572', 'Domeingegevens-Aanvraaggegevens').type(reference);
       cy.getButtonFor('P572', 'Ok').click();
     });
   });
 
   cy.get(DASHBOARD_PAGE).within(() => {
-    cy.get(DASHBOARD_WIDGET + '[id="StartZaak"]').should('exist').within(_ => {
+    cy.get(DASHBOARD_WIDGET + '[id="startzaak-shortcut-zaakintake-1"]').should('exist').within(_ => {
       cy.get('div[id="P525_AanvraagGeregistreerd_1"]').contains('De aanvraag is bekend met het kenmerk');
       cy.get('div[id="P525_AanvraagGeregistreerd_1"] bq-textitem-dynamic').then($element => {
         cy.wrap($element.text()).as(reference);
@@ -225,8 +225,8 @@ function startCaseTypeA(reference: string): Chainable<unknown> {
   });
 
   return cy.get(DASHBOARD_PAGE).within(() => {
-    cy.get(DASHBOARD_WIDGET + '[id="StartZaak"]').should('not.exist');
-    cy.get(DASHBOARD_WIDGET + '[id="toegewezen-zaken"]').should('exist');
+    cy.get(DASHBOARD_WIDGET + '[id="startzaak-shortcut-zaakintake-1"]').should('not.exist');
+    cy.get(DASHBOARD_WIDGET + '[id="maindashboard-shortcut-zakentoegewezen-1"]').should('exist');
   });
 }
 
@@ -240,9 +240,11 @@ function involveCase(reference: string): Chainable<unknown> {
 
 function handleCase(reference: string, type: 'involve' | 'open'): Chainable<unknown> {
   cy.get(DASHBOARD_PAGE).within(() => {
-    const widgetId = type === 'open' ? 'toegewezen-zaken' : 'niet-toegewezen-zaken';
+    const widgetId = type === 'open'
+      ? 'maindashboard-shortcut-zakentoegewezen-1'
+      : 'maindashboard-shortcut-zakenniettoegewezen-1';
 
-    cy.get(DASHBOARD_WIDGET + `[id="${ widgetId }"]`).should('exist').within(() => {
+    cy.get(DASHBOARD_WIDGET + `[id="${widgetId}"]`).should('exist').within(() => {
       cy.intercept('POST', '/runtime/*/api/v2/session/*/load').as('handleCase');
 
       waitForListEntry(reference);
@@ -270,26 +272,26 @@ function verifyOpenCasePage(type: 'involve' | 'open' = 'open'): Chainable<unknow
   return cy.get(DASHBOARD_PAGE).within(() => {
     cy.get(DASHBOARD_WIDGET).should('have.length', 6);
 
-    cy.get(DASHBOARD_WIDGET + '[id="open-case-details"]').should('exist').within(() => {
+    cy.get(DASHBOARD_WIDGET + '[id="zaakdashboard-shortcut-widgetzaakgegevens-1"]').should('exist').within(() => {
       if (type === 'involve') {
         cy.url().should('include', 'Event=NeemInBehandeling');
       }
 
       cy.get(DASHBOARD_WIDGET_PROJECT).should('exist');
     });
-    cy.get(DASHBOARD_WIDGET + '[id="open-case-tasks"]').should('exist').within(() => {
+    cy.get(DASHBOARD_WIDGET + '[id="zaakdashboard-shortcut-widgettakenlijst-1"]').should('exist').within(() => {
       cy.get(DASHBOARD_WIDGET_PROJECT).should('exist');
     });
-    cy.get(DASHBOARD_WIDGET + '[id="open-case-documents"]').should('exist').within(() => {
+    cy.get(DASHBOARD_WIDGET + '[id="zaakdashboard-shortcut-widgetdocumenten-1"]').should('exist').within(() => {
       cy.get(DASHBOARD_WIDGET_PROJECT).should('exist');
     });
-    cy.get(DASHBOARD_WIDGET + '[id="open-case-applicants"]').should('exist').within(() => {
+    cy.get(DASHBOARD_WIDGET + '[id="zaakdashboard-shortcut-widgetbetrokkenen-1"]').should('exist').within(() => {
       cy.get(DASHBOARD_WIDGET_PROJECT).should('exist');
     });
-    cy.get(DASHBOARD_WIDGET + '[id="open-case-notes"]').should('exist').within(() => {
+    cy.get(DASHBOARD_WIDGET + '[id="zaakdashboard-shortcut-widgetnotities-1"]').should('exist').within(() => {
       cy.get(DASHBOARD_WIDGET_PROJECT).should('exist');
     });
-    cy.get(DASHBOARD_WIDGET + '[id="open-case-history"]').should('exist').within(() => {
+    cy.get(DASHBOARD_WIDGET + '[id="zaakdashboard-shortcut-widgetzaaktijdlijn-1"]').should('exist').within(() => {
       cy.get(DASHBOARD_WIDGET_PROJECT).should('exist');
     });
 
@@ -301,7 +303,7 @@ function verifyOpenCasePage(type: 'involve' | 'open' = 'open'): Chainable<unknow
 
 function waitForListEntry(reference: string, attempts: number = 0): Chainable<unknown> {
   if (attempts > 5) {
-    throw new Error(`entry with reference '${ reference }' was not found in time`);
+    throw new Error(`entry with reference '${reference}' was not found in time`);
   }
 
   return cy.get('bq-table').then($table => {
@@ -327,8 +329,8 @@ function waitForListEntry(reference: string, attempts: number = 0): Chainable<un
 }
 
 function blockKeycloakResourceLoading() {
-  cy.intercept({ method: 'get', url: '*signin.css' }, req => req.reply('success'));
-  cy.intercept({ method: 'get', url: '*bootstrap.min.css' }, req => req.reply('success'));
+  cy.intercept({method: 'get', url: '*signin.css'}, req => req.reply('success'));
+  cy.intercept({method: 'get', url: '*bootstrap.min.css'}, req => req.reply('success'));
 }
 
 declare global {

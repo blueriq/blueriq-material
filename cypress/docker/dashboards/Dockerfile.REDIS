@@ -1,2 +1,0 @@
-FROM docker-internal.blueriq.com/redis6.2:1.0
-LABEL maintainer="support@blueriq.com"
