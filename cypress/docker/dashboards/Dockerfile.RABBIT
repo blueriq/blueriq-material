@@ -1,4 +1,4 @@
-FROM rabbitmq:3.11.11-management-alpine@sha256:23472a5584f99d97bcb046b01124ee90d276b74a20aeece40a9c40f8ae131b36
+FROM rabbitmq:3.12.10-management-alpine@sha256:bb0ba003fe45928a0898a99c590ebb8afb1c4cf131bbab1eecc710b1d9e243af
 ADD dashboards/config/rabbitmq/rabbitmq.conf /etc/rabbitmq/
 ADD dashboards/config/rabbitmq/definitions.json /etc/rabbitmq/
 RUN chown rabbitmq:rabbitmq /etc/rabbitmq/rabbitmq.conf /etc/rabbitmq/definitions.json
