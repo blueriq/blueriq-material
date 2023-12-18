@@ -27,7 +27,7 @@
       <arg value="${composeFile}"/>
       <arg value="down"/>
       <arg value="--rmi"/>
-      <arg value="all"/>
+      <arg value="local"/>
     </exec>
   </target>
 
@@ -85,7 +85,7 @@
       <arg value="${composeFile}"/>
       <arg value="down"/>
       <arg value="--rmi"/>
-      <arg value="all"/>
+      <arg value="local"/>
       <arg value="-v"/>
     </exec>
   </target>
