@@ -36,13 +36,13 @@ describe('Dashboards App', () => {
     });
 
     it('should be able to login via the gateway', () => {
-      cy.startDashboard('/dashboard/dcm_dashboard', {loginRequired: true});
+      cy.startDashboard('/dashboard/Foundation', {loginRequired: true});
 
       cy.doGatewayLogin('Behandelaar', 'Behandelaar');
     });
 
     it('should be able to logout via the gateway', () => {
-      cy.startDashboard('/dashboard/dcm_dashboard', {loginRequired: true});
+      cy.startDashboard('/dashboard/Foundation', {loginRequired: true});
 
       cy.doGatewayLogin('Behandelaar', 'Behandelaar');
       cy.doGatewayLogout();
@@ -50,7 +50,7 @@ describe('Dashboards App', () => {
     });
 
     it('should be able to login with multiple users', () => {
-      cy.startDashboard('/dashboard/dcm_dashboard', {loginRequired: true});
+      cy.startDashboard('/dashboard/Foundation', {loginRequired: true});
 
       cy.doGatewayLogin('Behandelaar', 'Behandelaar');
       cy.doGatewayLogout();
@@ -58,7 +58,7 @@ describe('Dashboards App', () => {
     });
 
     it('should display the full name of the user', () => {
-      cy.startDashboard('/dashboard/dcm_dashboard', {loginRequired: true});
+      cy.startDashboard('/dashboard/Foundation', {loginRequired: true});
 
       cy.doGatewayLogin('johndoe', 'johndoe');
 
@@ -70,7 +70,7 @@ describe('Dashboards App', () => {
 
   describe('by routes and authorization', () => {
     it('should display dcm dashboard main page as Behandelaar', () => {
-      cy.startDashboard('/dashboard/dcm_dashboard', {loginRequired: true});
+      cy.startDashboard('/dashboard/Foundation', {loginRequired: true});
 
       cy.doGatewayLogin('Behandelaar', 'Behandelaar');
 
@@ -134,7 +134,7 @@ describe('Dashboards App', () => {
     });
 
     it('should display dcm dashboard main page as Aanvrager', () => {
-      cy.startDashboard('/dashboard/dcm_dashboard', {loginRequired: true});
+      cy.startDashboard('/dashboard/Foundation', {loginRequired: true});
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
@@ -154,7 +154,7 @@ describe('Dashboards App', () => {
     });
 
     it('should display login page after logout while on restricted route', () => {
-      cy.startDashboard('/dashboard/dcm_dashboard', {loginRequired: true});
+      cy.startDashboard('/dashboard/Foundation', {loginRequired: true});
 
       cy.doGatewayLogin('Behandelaar', 'Behandelaar');
 
@@ -167,7 +167,7 @@ describe('Dashboards App', () => {
 
   describe('case actions', () => {
     it('should start a case', () => {
-      cy.startDashboard('/dashboard/dcm_dashboard', {loginRequired: true});
+      cy.startDashboard('/dashboard/Foundation', {loginRequired: true});
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
@@ -175,7 +175,7 @@ describe('Dashboards App', () => {
     });
 
     it('should display open case', () => {
-      cy.startDashboard('/dashboard/dcm_dashboard', {loginRequired: true});
+      cy.startDashboard('/dashboard/Foundation', {loginRequired: true});
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
@@ -186,7 +186,7 @@ describe('Dashboards App', () => {
     });
 
     it('should display an involved case with additional parameters', () => {
-      cy.startDashboard('/dashboard/dcm_dashboard', {loginRequired: true});
+      cy.startDashboard('/dashboard/Foundation', {loginRequired: true});
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
@@ -201,7 +201,7 @@ describe('Dashboards App', () => {
     });
 
     it('should refresh the dashboard widgets', () => {
-      cy.startDashboard('/dashboard/dcm_dashboard', {loginRequired: true});
+      cy.startDashboard('/dashboard/Foundation', {loginRequired: true});
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
@@ -231,7 +231,7 @@ describe('Dashboards App', () => {
 
   describe('task actions', () => {
     it('should be able to successfully complete a task', () => {
-      cy.startDashboard('/dashboard/dcm_dashboard', {loginRequired: true});
+      cy.startDashboard('/dashboard/Foundation', {loginRequired: true});
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
@@ -260,7 +260,7 @@ describe('Dashboards App', () => {
     });
 
     it('should be able to successfully cancel a task', () => {
-      cy.startDashboard('/dashboard/dcm_dashboard', {loginRequired: true});
+      cy.startDashboard('/dashboard/Foundation', {loginRequired: true});
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
