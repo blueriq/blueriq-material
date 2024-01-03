@@ -36,7 +36,8 @@ describe('Kinderbijslag App', () => {
     fillInQuestionsOuderKind();
 
     cy.getContainerTitleTextFor(PAGE_ID_VRAGENLIJST_OUDERSKIND, 'Kind').equalIgnoreWhiteSpace('Vragen over het kind');
-    fillInRequiredFieldsKind();
+    let yearOfBirth = (new Date().getFullYear() - 2);
+    fillInRequiredFieldsKind(yearOfBirth);
     cy.getButtonFor(PAGE_ID_VRAGENLIJST_OUDERSKIND, 'Verder').click();
 
     // should be able to add a child
@@ -44,7 +45,7 @@ describe('Kinderbijslag App', () => {
     cy.getContainerTitleTextFor(PAGE_ID_OVERZICHT_KINDEREN, 'LijstVanKinderen').equalIgnoreWhiteSpace('Kinderen');
     cy.getTableCellFor(PAGE_ID_OVERZICHT_KINDEREN, 'cell', '6').equalIgnoreWhiteSpace('Jack');
     cy.getTableCellFor(PAGE_ID_OVERZICHT_KINDEREN, 'cell', '7').equalIgnoreWhiteSpace('Sparrow');
-    cy.getTableCellFor(PAGE_ID_OVERZICHT_KINDEREN, 'cell', '8').equalIgnoreWhiteSpace('01-01-2018');
+    cy.getTableCellFor(PAGE_ID_OVERZICHT_KINDEREN, 'cell', '8').equalIgnoreWhiteSpace(`01-01-${yearOfBirth}`);
 
 
     cy.getButtonFor(PAGE_ID_OVERZICHT_KINDEREN, 'Bereken').click();
@@ -75,11 +76,11 @@ describe('Kinderbijslag App', () => {
     cy.getSelectFor(PAGE_ID_VRAGENLIJST_OUDERSKIND, 'Kind-VrouwAlsMoeder').selectOption('Ja');
   }
 
-  function fillInRequiredFieldsKind() {
+  function fillInRequiredFieldsKind(yearOfBirth: number) {
     cy.getSelectFor(PAGE_ID_VRAGENLIJST_OUDERSKIND, 'Kind-BehoortTotHuishoudenVerzekerde').selectOption('Ja');
     cy.getSelectFor(PAGE_ID_VRAGENLIJST_OUDERSKIND, 'Kind-WoontInNederlandEersteDagKalenderkwartaal').selectOption('Ja');
     cy.getInputFor(PAGE_ID_VRAGENLIJST_OUDERSKIND, 'Kind-Voornaam').type('Jack');
-    cy.getInputFor(PAGE_ID_VRAGENLIJST_OUDERSKIND, 'Kind-Geboortedatum').type('01-01-2018');
+    cy.getInputFor(PAGE_ID_VRAGENLIJST_OUDERSKIND, 'Kind-Geboortedatum').type(`01-01-${yearOfBirth}`);
   }
 
 });
