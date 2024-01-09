@@ -10,7 +10,8 @@ set runtimeVersion="16.7.0.1843"
 set cdsVersion="4.3.3"
 set dcmVersion="3.0.9"
 set dashboardVersion="1.0.0"
-set gatewayVersion="0.2.4"
+set gatewayVersion="0.3.0"
+set hostName=localhost
 
 @echo off
 call :read_params %*
@@ -31,9 +32,10 @@ if %composeOnly% == false (
   call xcopy /I dist cypress\docker\preparations\dist /Y
 )
 
+call echo HOST_NAME=%hostName%> cypress\docker\preparations\.dockerEnv
 
 :: Docker build and start
-call docker-compose --compatibility --file ./cypress/docker/dashboards/docker-compose.yml up -d --build
+call docker-compose --compatibility --file ./cypress/docker/dashboards/docker-compose.yml --env-file ./cypress/docker/preparations/.dockerEnv up -d --build
 exit %ERROR_LEVEL%
 
 :read_params

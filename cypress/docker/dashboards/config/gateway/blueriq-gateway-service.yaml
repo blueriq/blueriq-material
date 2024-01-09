@@ -4,6 +4,11 @@ blueriq:
       registration-extensions:
         keycloak:
           end-session-endpoint: http://localhost:8080/realms/Blueriq/protocol/openid-connect/logout
+    security:
+      login-redirect-allow-list:
+        - http://${HOST_NAME}:9081/**
+      logout-redirect-allow-list:
+        - http://${HOST_NAME}:9081/**
 spring:
   data:
     redis:
