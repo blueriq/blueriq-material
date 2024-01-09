@@ -32,6 +32,7 @@ services:
       JPDA_ADDRESS: 8000
       JPDA_TRANSPORT: dt_socket
       JAVA_TOOL_OPTIONS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000
+      HOST_NAME: ${HOST_NAME:-localhost}
   e2e-runtime:
     build:
       context: ../

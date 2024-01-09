@@ -75,7 +75,7 @@ node {
           writeFile file: './cypress/docker/dashboards/config/runtime/license.aql', text: readFile(license_file)
           writeFile file: './cypress/docker/dashboards/config/case-engine/license.aql', text: readFile(license_file)
         }
-        bat "yarn e2e:docker-prepare-dashboards -overrideVersion=true  -skipBuild=true -runtimeBranch=${params.RUNTIME_BRANCH} -runtimeUrl=${env.RUNTIME_GIT_URL}";
+        bat "yarn e2e:docker-prepare-dashboards -overrideVersion=true  -skipBuild=true -runtimeBranch=${params.RUNTIME_BRANCH} -runtimeUrl=${env.RUNTIME_GIT_URL} -hostName=bq-docker-lin.blueriq.local";
       }
 
       stage('e2e tests-dashboards') {
