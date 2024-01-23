@@ -18,7 +18,7 @@ const PROXY_CONFIG = [
     ],
     target: proxyTargetUrl,
     "pathRewrite": {
-      "^/devtools/": "/runtime/devtools/"
+      "^/devtools/": "/runtime/server/devtools/"
     },
     "secure": false,
     "logLevel": "debug"
@@ -29,7 +29,7 @@ const PROXY_CONFIG = [
     ],
     target: proxyTargetUrl,
     "pathRewrite": {
-      "^/runtime/(.*?)/": "/runtime/$1/server/"
+      "^/runtime/([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}/)?(server/)?(.*)$": "/runtime/$1server/$3"
     },
     "secure": false,
     "logLevel": "debug"
