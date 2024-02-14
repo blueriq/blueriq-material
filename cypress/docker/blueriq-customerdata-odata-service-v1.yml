@@ -6,7 +6,7 @@ blueriq:
       customer-data-sql-store:
         url: 'jdbc:h2:./customerdata-sql-store;AUTO_SERVER=TRUE'
         username: sa
-        password: 
+        password: pa
         driver-class-name: org.h2.Driver
 hibernate:
   dialect: org.hibernate.dialect.H2Dialect

@@ -6,12 +6,12 @@ blueriq:
       customer-data-sql-store:
         url: 'jdbc:h2:tcp://e2e-h2:1521/customerdata-sql-store'
         username: sa
-        password:
+        password: pa
         driver-class-name: org.h2.Driver
 hibernate:
   dialect: org.hibernate.dialect.H2Dialect
   hbm2ddl:
-    auto: none
+    auto: update
   id:
     new_generator_mappings: true
   show_sql: false
