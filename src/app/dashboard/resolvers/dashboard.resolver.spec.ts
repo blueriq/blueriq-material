@@ -5,7 +5,7 @@ import { Dispatcher } from '@blueriq/angular';
 import { DashboardService, UnauthorizedError } from '@blueriq/dashboard';
 import { of, throwError } from 'rxjs';
 import { LoginAction } from '../events/actions';
-import { DashboardError } from './dashboard-error';
+import { DashboardMessageError } from './dashboard-error';
 import { DashboardResolver } from './dashboard.resolver';
 import createSpyObj = jasmine.createSpyObj;
 
@@ -46,7 +46,7 @@ describe('Dashboard Resolver', () => {
     const resolve = resolver.resolve({ paramMap } as ActivatedRouteSnapshot);
 
     resolve.subscribe(resolved => {
-      expect(resolved).toEqual(new DashboardError('Unable to display dashboard'));
+      expect(resolved).toEqual(new DashboardMessageError('Unable to display dashboard'));
       done();
     }).unsubscribe();
   });
@@ -60,7 +60,7 @@ describe('Dashboard Resolver', () => {
 
     resolve.subscribe(data => {
       // test should always fail when this callback is called, because the error callback should be called.
-      expect(data).toEqual(new DashboardError('Dashboard not found'));
+      expect(data).toEqual(new DashboardMessageError('Dashboard not found'));
       expect(service.getDashboard).toHaveBeenCalledWith('TestId');
       expect(dispatcher.dispatch).not.toHaveBeenCalled();
       done();
@@ -76,7 +76,7 @@ describe('Dashboard Resolver', () => {
 
     resolve.subscribe(data => {
       // test should always fail when this callback is called, because the error callback should be called.
-      expect(data).toEqual(new DashboardError('An unknown error occurred'));
+      expect(data).toEqual(new DashboardMessageError('An unknown error occurred'));
       expect(service.getDashboard).toHaveBeenCalledWith('TestId');
       expect(dispatcher.dispatch).not.toHaveBeenCalled();
       done();

@@ -7,7 +7,7 @@ import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { NotificationModel, NotificationType } from '../../notification-overlay/notification.model';
 import { DashboardActions, NavigateAction, RefreshAction } from '../events/actions';
-import { DashboardError } from '../resolvers/dashboard-error';
+import { DashboardMessageError, DashboardError } from '../resolvers/dashboard-error';
 import { PageFinderService } from '../routing/page-finder.service';
 import { RouteResolveService } from '../routing/route-resolve.service';
 
@@ -18,6 +18,7 @@ import { RouteResolveService } from '../routing/route-resolve.service';
 })
 export class DashboardPageComponent implements OnInit, OnDestroy, AfterViewChecked {
   readonly dashboard$: Observable<DashboardModel | DashboardError>;
+  // page$ is only undefined when an unauthorized exception occurs.
   readonly page$: Observable<PageModel | undefined>;
   refreshWidget = false;
   notification: NotificationModel | undefined;
@@ -48,7 +49,8 @@ export class DashboardPageComponent implements OnInit, OnDestroy, AfterViewCheck
     .subscribe(() => this.refreshWidget = true));
 
     this.subscription.add(this.dashboard$.subscribe((data) => {
-      if (data instanceof DashboardError) {
+      if (data instanceof DashboardMessageError) {
+        // Notifications should be shown except when the DashboardError is of type DashboardUnauthorizedError
         this.notification = new NotificationModel(NotificationType.Error, 'Oops!', data.message);
         console.error(data);
       }

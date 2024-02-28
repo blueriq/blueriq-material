@@ -1,6 +1,12 @@
-export class DashboardError {
+export abstract class DashboardError {
+}
+
+export class DashboardMessageError extends DashboardError {
   constructor(readonly message: string) {
+    super();
   }
 }
 
-export const EMPTY: DashboardError = new DashboardError('');
+export class DashboardUnauthorizedError extends DashboardError {
+}
+
