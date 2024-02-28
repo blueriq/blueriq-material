@@ -7,7 +7,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { LoginAction } from '../events/actions';
 import { DASHBOARD_ID } from '../routing/route-fragments';
-import { DashboardError, EMPTY } from './dashboard-error';
+import { DashboardError, DashboardMessageError, DashboardUnauthorizedError } from './dashboard-error';
 
 @Injectable()
 export class DashboardResolver implements Resolve<DashboardModel | DashboardError> {
@@ -18,14 +18,14 @@ export class DashboardResolver implements Resolve<DashboardModel | DashboardErro
   resolve(route: ActivatedRouteSnapshot): Observable<DashboardModel | DashboardError> {
     const dashboardId: string | null = route.paramMap.get(DASHBOARD_ID);
     if (dashboardId === null) {
-      return of(new DashboardError('Unable to display dashboard'));
+      return of(new DashboardMessageError('Unable to display dashboard'));
     }
     return this.dashboardService.getDashboard(dashboardId).pipe(
       map(dashboard => dashboard),
       catchError(error => {
         if (error instanceof UnauthorizedError) {
           this.dispatcher.dispatch(new LoginAction());
-          return of(EMPTY);
+          return of(new DashboardUnauthorizedError());
         } else {
           return of(this.createError(error));
         }
@@ -33,10 +33,10 @@ export class DashboardResolver implements Resolve<DashboardModel | DashboardErro
     );
   }
 
-  private createError(error: Error): DashboardError {
+  private createError(error: Error): DashboardMessageError {
     if (error instanceof HttpErrorResponse && error.status === 404) {
-      return new DashboardError('Dashboard not found');
+      return new DashboardMessageError('Dashboard not found');
     }
-    return new DashboardError('An unknown error occurred');
+    return new DashboardMessageError('An unknown error occurred');
   }
 }
