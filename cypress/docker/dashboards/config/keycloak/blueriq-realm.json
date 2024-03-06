@@ -68,8 +68,7 @@
       "secret": "0Hv2WMsjIsBdHsAq3bNycIEKgCWaluEf",
       "protocol": "openid-connect",
       "redirectUris": [
-        "/login/oauth2/code/keycloak/*",
-        "/gateway/logout"
+        "*"
       ],
       "protocolMappers": [
         {

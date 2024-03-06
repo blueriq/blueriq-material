@@ -11,7 +11,7 @@ set cdsVersion="4.3.3"
 set dcmVersion="3.0.9"
 set dashboardVersion="1.0.0"
 set gatewayVersion="0.3.0"
-set hostName=localhost
+set hostName=host.docker.internal
 
 @echo off
 call :read_params %*

@@ -23,7 +23,7 @@
     "verify": "ng test --watch false --code-coverage true",
     "verify:all": "yarn verify && yarn eslint && yarn stylelint",
     "e2e:dev": "yarn e2e:docker-prepare && yarn start-server-and-test e2e:app:start 1337 \"cypress open --config baseUrl=http://localhost:1337\"",
-    "e2e:dev-dashboard": "yarn build && yarn e2e:docker-prepare-dashboards -overrideVersion=true && cypress open --config baseUrl=http://localhost:9081",
+    "e2e:dev-dashboard": "yarn build && yarn e2e:docker-prepare-dashboards -overrideVersion=true && cypress open --config baseUrl=http://host.docker.internal:9081",
     "e2e:local": "cypress open --config baseUrl=http://localhost:4200",
     "e2e:app:start": "ng serve --port 1337 --proxy-config proxy-e2e.conf.js",
     "e2e:docker-prepare": "cypress/docker/prepare.cmd",

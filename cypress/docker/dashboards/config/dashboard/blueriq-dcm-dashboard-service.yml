@@ -9,4 +9,4 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: http://e2e-gateway:8080/realms/Blueriq/protocol/openid-connect/certs
+          jwk-set-uri: http://${HOST_NAME}:9079/realms/Blueriq/protocol/openid-connect/certs

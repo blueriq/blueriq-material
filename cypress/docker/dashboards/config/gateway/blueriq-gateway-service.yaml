@@ -1,9 +1,5 @@
 blueriq:
   gateway:
-    oauth2:
-      registration-extensions:
-        keycloak:
-          end-session-endpoint: http://localhost:8080/realms/Blueriq/protocol/openid-connect/logout
     security:
       login-redirect-allow-list:
         - http://${HOST_NAME}:9081/**
@@ -34,26 +30,12 @@ spring:
           uri: http://e2e-dashboard:8080
           predicates:
             - Path=/dashboards/**
-        - id: keycloak
-          uri: http://e2e-keycloak:8080
-          predicates:
-            - Path=/realms/**, /resources/**
-          filters:
-            - RewriteLocationResponseHeader=AS_IN_REQUEST, Location, ,
-            - BackendForFrontend
   security:
     oauth2:
       client:
         provider:
           local-keycloak-provider:
-            client-name: Keycloak-Login
-            # When the issuer-uri is not set the authorization-uri and jwk-set-uri need to be set and either the token-uri or the user-info-uri
-            # We cannot set the issuer-uri due to that the gateway is not able to resolve the correct issuer from within our gateway.
-            # We set the token-uri, because the user-info-uri results into an error when verifying the issuer.
-            token-uri: http://localhost:8080/realms/Blueriq/protocol/openid-connect/token
-            authorization-uri: http://localhost:8080/realms/Blueriq/protocol/openid-connect/auth
-            jwk-set-uri: http://localhost:8080/realms/Blueriq/protocol/openid-connect/certs
-            # Set the user-name-attribute to which result in a default user's name of the full name is not set.
+            issuer-uri: http://${HOST_NAME}:9079/realms/Blueriq
             user-name-attribute: preferred_username
         registration:
           keycloak:
@@ -64,6 +46,4 @@ spring:
             client-secret: 0Hv2WMsjIsBdHsAq3bNycIEKgCWaluEf
             authorization-grant-type: authorization_code
             redirect-uri: "{baseScheme}://{baseHost}{basePort}{basePath}/login/oauth2/code/keycloak"
-server:
-  forward-headers-strategy: NATIVE
-  use-forward-headers: true
+            client-name: keycloak

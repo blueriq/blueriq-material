@@ -44,4 +44,6 @@ export default defineConfig({
     runMode: 3,
     openMode: 0,
   },
+  // By setting the chromeWebSecurity to false, we are allowed to switch between urls which is not possible by default
+  chromeWebSecurity: false,
 });

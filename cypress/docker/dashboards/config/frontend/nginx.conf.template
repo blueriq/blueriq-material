@@ -57,15 +57,7 @@ server {
         proxy_pass http://gateway;
     }
 
-    location /realms/ {
-        proxy_pass http://gateway;
-    }
-
     location /gateway/ {
-        proxy_pass http://gateway;
-    }
-
-    location /resources/ {
         proxy_pass http://gateway;
     }
 }
