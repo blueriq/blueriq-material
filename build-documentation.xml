@@ -2,7 +2,7 @@
 <project name="documentation" basedir=".">
 	<property name="documentation" location=".\dist\docs"/>
 	<property name="documentationZip" location=".\dist\docs\documentation.zip"/>
-	<property name="communityDocsBase" value="/var/confluence-home/confluence/ApiDocs/material"/>
+	<property name="communityDocsBase" value="/data/nginx/wwwroot/ApiDocs/material"/>
 	<property name="communityDocsFolder" value="${communityDocsBase}/${releaseVersion}"/>
 	
 	<target name="deployDocumentation">
