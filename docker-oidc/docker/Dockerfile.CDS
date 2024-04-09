@@ -1,4 +1,4 @@
-FROM tomcat:10.1.0-jdk17-openjdk-slim
+FROM docker-internal.blueriq.com/tomcat10.1-jdk21:1.0
 LABEL maintainer="support@blueriq.com"
 
 RUN rm -rf /usr/local/tomcat/webapps/*

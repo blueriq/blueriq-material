@@ -1,16 +1,12 @@
 #!groovy
 
 boolean isMaster = BRANCH_NAME == 'master'
-String triggerCron = isMaster ? "H 13 * * 6" : ""
 
 properties([
   [
     $class  : 'BuildDiscarderProperty',
     strategy: [$class: 'LogRotator', numToKeepStr: '5']
   ],
-  pipelineTriggers([
-    cron(triggerCron)
-  ]),
   parameters([
     booleanParam(
       name: 'deploySnapshot',
@@ -52,8 +48,8 @@ properties([
 
 node {
   try {
-    env.JAVA_HOME = tool 'jdk-11.0.1'
-    def mvnHome = tool "apache-maven-3.5.4"
+    env.JAVA_HOME = tool 'jdk-21.0.1'
+    def mvnHome = tool "apache-maven-3.9.6"
     def nodeHome = tool 'node-18.16.0'
     env.PATH = "${env.JAVA_HOME}\\bin;${mvnHome}\\bin;${nodeHome};${env.PATH}"
     env.CHROME_BIN = env.CHROME_116_0_5845_97

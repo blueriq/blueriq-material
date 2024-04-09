@@ -1,4 +1,4 @@
-FROM openjdk:17-jdk-buster@sha256:fcc1f2be2f2361da9a9f65754864218fe5fed86ea085ca39779114c91edfd41a
+FROM openjdk:21-jdk-buster
 
 LABEL maintainer="support@blueriq.com"
 
