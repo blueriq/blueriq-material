@@ -1,4 +1,5 @@
 #!groovy
+int timeout_in_mins = 30;
 
 properties([
   [
@@ -11,80 +12,81 @@ properties([
 ])
 node {
   try {
-    env.JAVA_HOME = tool 'jdk-21.0.1'
-    def mvnHome = tool "apache-maven-3.9.6"
-    def nodeHome = tool 'node-18.16.0'
-    env.PATH = "${env.JAVA_HOME}\\bin;${mvnHome}\\bin;${nodeHome};${env.PATH}";
-    env.COMPOSE_PROJECT_NAME = "material-e2e-cypress";
+    timeout(time: timeout_in_mins, unit: 'MINUTES') {
+      env.JAVA_HOME = tool 'jdk-21.0.1'
+      def mvnHome = tool "apache-maven-3.9.6"
+      def nodeHome = tool 'node-18.16.0'
+      env.PATH = "${env.JAVA_HOME}\\bin;${mvnHome}\\bin;${nodeHome};${env.PATH}";
+      env.COMPOSE_PROJECT_NAME = "material-e2e-cypress";
 
-    def cdsVersion;
-    def dashboardVersion = '0.0.1-M16'
-    def dcmListsVersion;
+      def cdsVersion;
+      def dashboardVersion = '0.0.1-M16'
+      def dcmListsVersion;
 
-    stage('checkout') {
-      checkout scm;
-      bat "git checkout ${params.BRANCH_NAME}";
-    }
-
-    stage('install tools') {
-      bat 'tools/_install-tools.bat'
-      env.ANT_HOME = "${pwd()}\\tools\\apache-ant-1.10.3"
-      env.PATH = "${env.ANT_HOME}\\bin;${env.PATH}"
-    }
-
-    stage('build') {
-      withCredentials([file(credentialsId: 'npmrc_file', variable: 'npmrc_file')]) {
-        bat "ant -f scripts/docker/build.xml build " +
-          "-Ddocker.host=bq-build-lin.blueriq.local " +
-          "-Dcommit=${env.GIT_COMMIT} " +
-          "-DisRelease=false " +
-          "-DnpmrcFileLocation=${npmrc_file}"
+      stage('checkout') {
+        checkout scm;
       }
-    }
 
-    try {
-      stage('docker prepare') {
-        withCredentials([file(credentialsId: 'BLUERIQ_LICENSE_15', variable: 'license_file')]) {
-          writeFile file: './cypress/docker/config/license.aql', text: readFile(license_file)
-        }
-        bat "yarn e2e:docker-prepare -overrideVersion=true -runtimeBranch=${params.RUNTIME_BRANCH} -runtimeUrl=${env.RUNTIME_GIT_URL}";
+      stage('install tools') {
+        bat 'tools/_install-tools.bat'
+        env.ANT_HOME = "${pwd()}\\tools\\apache-ant-1.10.3"
+        env.PATH = "${env.ANT_HOME}\\bin;${env.PATH}"
       }
-      stage('e2e tests') {
+
+      stage('build') {
         withCredentials([file(credentialsId: 'npmrc_file', variable: 'npmrc_file')]) {
-          bat "ant -f scripts/docker/e2e.xml run " +
-            "-Ddocker.host=bq-docker-lin.blueriq.local " +
+          bat "ant -f scripts/docker/build.xml build " +
+            "-Ddocker.host=bq-build-lin.blueriq.local " +
             "-Dcommit=${env.GIT_COMMIT} " +
+            "-DisRelease=false " +
             "-DnpmrcFileLocation=${npmrc_file}"
         }
       }
-     }
-     finally {
-       stage('docker down') {
-         bat "yarn e2e:docker-down";
-       }
-     }
 
-     try {
-      stage('docker prepare dashboards') {
-       withCredentials([file(credentialsId: 'BLUERIQ_LICENSE_15', variable: 'license_file')]) {
-          writeFile file: './cypress/docker/dashboards/config/runtime/license.aql', text: readFile(license_file)
-          writeFile file: './cypress/docker/dashboards/config/case-engine/license.aql', text: readFile(license_file)
+      try {
+        stage('docker prepare') {
+          withCredentials([file(credentialsId: 'BLUERIQ_LICENSE_15', variable: 'license_file')]) {
+            writeFile file: './cypress/docker/config/license.aql', text: readFile(license_file)
+          }
+          bat "yarn e2e:docker-prepare -overrideVersion=true -runtimeBranch=${params.RUNTIME_BRANCH} -runtimeUrl=${env.RUNTIME_GIT_URL}";
         }
-        bat "yarn e2e:docker-prepare-dashboards -overrideVersion=true  -skipBuild=true -runtimeBranch=${params.RUNTIME_BRANCH} -runtimeUrl=${env.RUNTIME_GIT_URL} -hostName=bq-docker-lin.blueriq.local";
-      }
-
-      stage('e2e tests-dashboards') {
-        withCredentials([file(credentialsId: 'npmrc_file', variable: 'npmrc_file')]) {
-          bat "ant -f scripts/docker/e2e.xml run-e2e-dashboards " +
-            "-Ddocker.host=bq-docker-lin.blueriq.local " +
-            "-Dcommit=${env.GIT_COMMIT} " +
-            "-DnpmrcFileLocation=${npmrc_file}"
+        stage('e2e tests') {
+          withCredentials([file(credentialsId: 'npmrc_file', variable: 'npmrc_file')]) {
+            bat "ant -f scripts/docker/e2e.xml run " +
+              "-Ddocker.host=bq-docker-lin.blueriq.local " +
+              "-Dcommit=${env.GIT_COMMIT} " +
+              "-DnpmrcFileLocation=${npmrc_file}"
+          }
         }
       }
-    }
-    finally {
-      stage('docker down') {
-        bat "yarn e2e:docker-down-dashboards";
+      finally {
+        stage('docker down') {
+          bat "yarn e2e:docker-down";
+        }
+      }
+
+      try {
+        stage('docker prepare dashboards') {
+          withCredentials([file(credentialsId: 'BLUERIQ_LICENSE_15', variable: 'license_file')]) {
+            writeFile file: './cypress/docker/dashboards/config/runtime/license.aql', text: readFile(license_file)
+            writeFile file: './cypress/docker/dashboards/config/case-engine/license.aql', text: readFile(license_file)
+          }
+          bat "yarn e2e:docker-prepare-dashboards -overrideVersion=true  -skipBuild=true -runtimeBranch=${params.RUNTIME_BRANCH} -runtimeUrl=${env.RUNTIME_GIT_URL} -hostName=bq-docker-lin.blueriq.local";
+        }
+
+        stage('e2e tests-dashboards') {
+          withCredentials([file(credentialsId: 'npmrc_file', variable: 'npmrc_file')]) {
+            bat "ant -f scripts/docker/e2e.xml run-e2e-dashboards " +
+              "-Ddocker.host=bq-docker-lin.blueriq.local " +
+              "-Dcommit=${env.GIT_COMMIT} " +
+              "-DnpmrcFileLocation=${npmrc_file}"
+          }
+        }
+      }
+      finally {
+        stage('docker down') {
+          bat "yarn e2e:docker-down-dashboards";
+        }
       }
     }
   } catch (anyException) {
