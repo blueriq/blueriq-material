@@ -1,5 +1,6 @@
 #!groovy
 
+int timeout_in_mins = 30
 boolean isMaster = BRANCH_NAME == 'master'
 
 properties([
@@ -48,91 +49,92 @@ properties([
 
 node {
   try {
-    env.JAVA_HOME = tool 'jdk-21.0.1'
-    def mvnHome = tool "apache-maven-3.9.6"
-    def nodeHome = tool 'node-18.16.0'
-    env.PATH = "${env.JAVA_HOME}\\bin;${mvnHome}\\bin;${nodeHome};${env.PATH}"
-    env.CHROME_BIN = env.CHROME_116_0_5845_97
+    timeout(time: timeout_in_mins, unit: 'MINUTES') {
+      env.JAVA_HOME = tool 'jdk-21.0.1'
+      def mvnHome = tool "apache-maven-3.9.6"
+      def nodeHome = tool 'node-18.16.0'
+      env.PATH = "${env.JAVA_HOME}\\bin;${mvnHome}\\bin;${nodeHome};${env.PATH}"
+      env.CHROME_BIN = env.CHROME_116_0_5845_97
 
-    stage('checkout') {
-      def scmVars = checkout scm
-      env.GIT_COMMIT = scmVars.GIT_COMMIT
-    }
+      stage('checkout') {
+        def scmVars = checkout scm
+        env.GIT_COMMIT = scmVars.GIT_COMMIT
+      }
 
-    stage('install tools') {
-      bat 'tools/_install-tools.bat'
-      env.ANT_HOME = "${pwd()}\\tools\\apache-ant-1.10.3"
-      env.PATH = "${env.ANT_HOME}\\bin;${env.PATH}"
-    }
+      stage('install tools') {
+        bat 'tools/_install-tools.bat'
+        env.ANT_HOME = "${pwd()}\\tools\\apache-ant-1.10.3"
+        env.PATH = "${env.ANT_HOME}\\bin;${env.PATH}"
+      }
 
-    stage('install') {
-      bat 'node -v'
-      bat 'yarn -v'
-      bat 'yarn install --ignore-engines'
-      bat 'yarn ng:version'
-    }
+      stage('install') {
+        bat 'node -v'
+        bat 'yarn -v'
+        bat 'yarn install --ignore-engines'
+        bat 'yarn ng:version'
+      }
 
-    stage('verify & build') {
-      parallel(
-        'test': {
-          def result = bat([returnStdout: true, script: "yarn verify"]);
-          println result;
+      stage('verify & build') {
+        parallel(
+          'test': {
+            def result = bat([returnStdout: true, script: "yarn verify"]);
+            println result;
 
-          // Unfortunatly it is needed to check if the coverage is not met because the coverage-reporter always exits with error_level=0
-          // so we need to make the build unstable manually. you can check the coverage html result to see where it is failing
-          if (result.contains('ERROR [reporter.coverage-istanbul]:') || result.contains('WARN [reporter.coverage-istanbul]:')) {
-            println 'Unit tests do not meet coverage thresholds, setting the build to unstable';
-            currentBuild.result = 'UNSTABLE';
+            // Unfortunatly it is needed to check if the coverage is not met because the coverage-reporter always exits with error_level=0
+            // so we need to make the build unstable manually. you can check the coverage html result to see where it is failing
+            if (result.contains('ERROR [reporter.coverage-istanbul]:') || result.contains('WARN [reporter.coverage-istanbul]:')) {
+              println 'Unit tests do not meet coverage thresholds, setting the build to unstable';
+              currentBuild.result = 'UNSTABLE';
+            }
+          },
+          'eslint': {
+            // eslint
+            bat 'yarn eslint --format checkstyle --output-file eslint_results_checkstyle.xml'
+          },
+          'stylelint': {
+            // stylelint
+            bat 'node_modules\\.bin\\stylelint --custom-formatter node_modules/stylelint-checkstyle-reporter/index.js src/**/*.scss -o stylelint_results_checkstyle.xml'
+          },
+          'build': {
+            withCredentials([file(credentialsId: 'npmrc_file', variable: 'npmrc_file')]) {
+              bat "ant -f scripts/docker/build.xml build " +
+                "-Ddocker.host=bq-build-lin.blueriq.local " +
+                "-Dcommit=${env.GIT_COMMIT} " +
+                "-DisRelease=${params.isRelease} " +
+                "-DnpmrcFileLocation=${npmrc_file}"
+            }
           }
-        },
-        'eslint': {
-          // eslint
-          bat 'yarn eslint --format checkstyle --output-file eslint_results_checkstyle.xml'
-        },
-        'stylelint': {
-          // stylelint
-          bat 'node_modules\\.bin\\stylelint --custom-formatter node_modules/stylelint-checkstyle-reporter/index.js src/**/*.scss -o stylelint_results_checkstyle.xml'
-        },
-        'build': {
-          withCredentials([file(credentialsId: 'npmrc_file', variable: 'npmrc_file')]) {
-            bat "ant -f scripts/docker/build.xml build " +
-              "-Ddocker.host=bq-build-lin.blueriq.local " +
-              "-Dcommit=${env.GIT_COMMIT} " +
-              "-DisRelease=${params.isRelease} " +
-              "-DnpmrcFileLocation=${npmrc_file}"
-          }
+        );
+      }
+      if (params.deploySnapshot) {
+        stage('deploy snapshot') {
+          bat "mvn clean deploy"
         }
-      );
+      } else if (params.isRelease) {
+        stage('release') {
+          // update versions and tag
+          def tag = "blueriq-material-theme-${params.releaseVersion}"
+
+          bat "mvn versions:set -DnewVersion=${params.releaseVersion} -DgenerateBackupPoms=false"
+          bat "git commit -am \"chore: prepare release ${tag}\""
+          bat "git tag ${tag}"
+
+          // release
+          bat "mvn -B deploy"
+          bat "git push origin ${tag}"
+
+          // update to next development version
+          bat "mvn versions:set -DnewVersion=${params.developmentVersion} -DgenerateBackupPoms=false"
+          bat "git commit -am \"chore: prepare for next development iteration ${params.developmentVersion}\""
+          bat "git push origin HEAD"
+        }
+
+        stage('publish docs') {
+          bat "yarn docs --silent --name \"@blueriq/material - ${params.releaseVersion}\""
+          bat "build-publish-docs.bat ${params.releaseVersion} ${params.communityHost} ${params.communityUser} ${params.communityPass}"
+        }
+      } // end if
     }
-    if (params.deploySnapshot) {
-      stage('deploy snapshot') {
-        bat "mvn clean deploy"
-      }
-    } else if (params.isRelease) {
-      stage('release') {
-        // update versions and tag
-        def tag = "blueriq-material-theme-${params.releaseVersion}"
-
-        bat "mvn versions:set -DnewVersion=${params.releaseVersion} -DgenerateBackupPoms=false"
-        bat "git commit -am \"chore: prepare release ${tag}\""
-        bat "git tag ${tag}"
-
-        // release
-        bat "mvn -B deploy"
-        bat "git push origin ${tag}"
-
-        // update to next development version
-        bat "mvn versions:set -DnewVersion=${params.developmentVersion} -DgenerateBackupPoms=false"
-        bat "git commit -am \"chore: prepare for next development iteration ${params.developmentVersion}\""
-        bat "git push origin HEAD"
-      }
-
-      stage('publish docs') {
-        bat "yarn docs --silent --name \"@blueriq/material - ${params.releaseVersion}\""
-        bat "build-publish-docs.bat ${params.releaseVersion} ${params.communityHost} ${params.communityUser} ${params.communityPass}"
-      }
-    } // end if
-
   } catch (anyException) {
     echo "An error occured (${anyException}) marking build as failed."
     currentBuild.result = 'FAILURE'
