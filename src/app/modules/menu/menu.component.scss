@@ -3,13 +3,6 @@
 
 .mat-toolbar {
   min-height: $bq-toolbar-height;
-
-  // stylelint-disable
-  background: linear-gradient(
-      to right,
-      map_get($bq-mat-primary-blue, 900),
-      map_get($bq-mat-primary-purple, 900),
-      map_get($bq-mat-primary-violet, 900)
-  );
+  background: map_get($bq-mat-primary-blue, 700);
   color: $light-primary-text;
 }
