@@ -1,2 +1,0 @@
-FROM mongo:7.0.4@sha256:3ee80b67778b162efb3323c1f1539c573c9928c0540a567ebf5fec15d387327a
-LABEL maintainer="support@blueriq.com"
