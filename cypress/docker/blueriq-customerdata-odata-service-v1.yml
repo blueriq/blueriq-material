@@ -4,14 +4,14 @@ blueriq:
   customerdata:
     datasource:
       customer-data-sql-store:
-        url: 'jdbc:h2:./customerdata-sql-store;AUTO_SERVER=TRUE'
-        username: sa
-        password: pa
-        driver-class-name: org.h2.Driver
+        url: jdbc:postgresql://postgres:5432/
+        username: postgres
+        password: password!123
+        driver-class-name: org.postgresql.Driver
 hibernate:
-  dialect: org.hibernate.dialect.H2Dialect
+  dialect: org.hibernate.dialect.PostgreSQLDialect
   hbm2ddl:
-    auto: create
+    auto: update
   id:
     new_generator_mappings: true
   show_sql: false
