@@ -55,8 +55,8 @@ services:
       - "9082:8080"
     depends_on:
       - e2e-case-engine
-      - e2e-h2
       - e2e-gateway
+      - e2e-postgres
     environment:
       HOST_NAME: ${HOST_NAME:-host.docker.internal}
   e2e-case-engine:
@@ -68,7 +68,7 @@ services:
       - "9085:8080"
     depends_on:
       - e2e-dcm-lists
-      - e2e-h2
+      - e2e-postgres
       - e2e-customerdata
   e2e-customerdata:
     build:
@@ -78,7 +78,7 @@ services:
     ports:
       - "9083:8080"
     depends_on:
-      - e2e-h2
+      - e2e-postgres
   e2e-dcm-lists:
     build:
       context: ../
@@ -104,15 +104,6 @@ services:
     restart: always
     ports:
       - "9084:27017"
-  e2e-h2:
-    build:
-      context: ../
-      dockerfile: dashboards/Dockerfile.H2
-    mem_limit: 256m
-    ports:
-      - "9089:81"
-    environment:
-      - H2_OPTIONS=-ifNotExists
   e2e-blueriq-material-theme:
     build:
       context: ../
@@ -143,3 +134,14 @@ services:
       CONNECTION_PASSWORD: blueriq
     ports:
       - "9091:6379"
+  e2e-postgres:
+    image: postgres:16.2@sha256:4aea012537edfad80f98d870a36e6b90b4c09b27be7f4b4759d72db863baeebb
+    mem_limit: 512m
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    environment:
+      PGUSER: postgres
+      POSTGRES_PASSWORD: password!123

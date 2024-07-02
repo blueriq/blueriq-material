@@ -6,8 +6,8 @@ set skipBuild=false
 set composeOnly=false
 set runtimeBranch="master"
 set runtimeUrl="git@bq-gitlab.everest.nl:blueriq/blueriq.git"
-set runtimeVersion="15.13.0.1287"
-set cdsVersion="4.2.0"
+set runtimeVersion="17.2.0.52"
+set cdsVersion="5.0.3"
 
 @echo off
 call :read_params %*

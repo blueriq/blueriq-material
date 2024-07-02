@@ -6,11 +6,11 @@ set skipBuild=false
 set composeOnly=false
 set runtimeBranch="master"
 set runtimeUrl="git@bq-gitlab.everest.nl:blueriq/blueriq.git"
-set runtimeVersion="16.7.0.1843"
-set cdsVersion="4.3.3"
-set dcmVersion="3.0.9"
-set dashboardVersion="1.0.0"
-set gatewayVersion="0.3.0"
+set runtimeVersion="17.2.0.52"
+set cdsVersion="5.0.3"
+set dcmVersion="4.0.2"
+set dashboardVersion="2.0.2"
+set gatewayVersion="1.0.2"
 set hostName=host.docker.internal
 
 @echo off
