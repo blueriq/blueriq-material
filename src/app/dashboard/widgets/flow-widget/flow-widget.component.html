@@ -8,7 +8,8 @@
               [parameters]="parameters$ | async"
               (flowEnded)="onFlowEnded()"
               (expired)="onSessionExpired()"
-              (error)="onError($event)">
+              (error)="onError($event)"
+              (unauthorized)="onUnauthorized()">
   </bq-project>
   <bq-project *ngSwitchCase="'shortcut'"
               [sessionName]=sessionName
@@ -17,7 +18,8 @@
               [parameters]="parameters$ | async"
               (flowEnded)="onFlowEnded()"
               (expired)="onSessionExpired()"
-              (error)="onError($event)">
+              (error)="onError($event)"
+              (unauthorized)="onUnauthorized()">
   </bq-project>
   <p *ngSwitchDefault>The widget definition is invalid.</p>
 </div>

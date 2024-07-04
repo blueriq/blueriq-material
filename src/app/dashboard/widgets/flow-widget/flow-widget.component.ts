@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FailedAction, isBlueriqError } from '@blueriq/angular';
+import { Dispatcher, FailedAction, isBlueriqError } from '@blueriq/angular';
 import { DashboardWidgetSession, FlowWidgetModel } from '@blueriq/dashboard';
 import { NotificationModel, NotificationType } from '../../../notification-overlay/notification.model';
 import { SessionWidgetComponent } from '../session-widget.component';
@@ -19,8 +19,9 @@ export class FlowWidgetComponent extends SessionWidgetComponent {
   constructor(
     route: ActivatedRoute,
     widgetSession: DashboardWidgetSession,
+    dispatcher: Dispatcher,
   ) {
-    super(route, widgetSession);
+    super(route, widgetSession, dispatcher);
   }
 
   get flowWidget(): FlowWidgetModel {

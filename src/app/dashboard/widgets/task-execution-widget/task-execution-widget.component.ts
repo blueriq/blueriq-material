@@ -1,10 +1,10 @@
-import {Component, isDevMode} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {Dispatcher, FailedAction, isBlueriqError} from '@blueriq/angular';
-import {DashboardWidgetSession} from '@blueriq/dashboard';
-import {NotificationModel, NotificationType} from '../../../notification-overlay/notification.model';
-import {LoginAction, OpenCaseAction} from '../../events/actions';
-import {SessionWidgetComponent} from '../session-widget.component';
+import { Component, isDevMode } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Dispatcher, FailedAction, isBlueriqError } from '@blueriq/angular';
+import { DashboardWidgetSession } from '@blueriq/dashboard';
+import { NotificationModel, NotificationType } from '../../../notification-overlay/notification.model';
+import { OpenCaseAction } from '../../events/actions';
+import { SessionWidgetComponent } from '../session-widget.component';
 
 @Component({
   selector: 'bq-task-execution-widget',
@@ -18,9 +18,9 @@ export class TaskExecutionWidgetComponent extends SessionWidgetComponent {
   constructor(
     route: ActivatedRoute,
     widgetSession: DashboardWidgetSession,
-    private readonly dispatcher: Dispatcher,
+    dispatcher: Dispatcher,
   ) {
-    super(route, widgetSession);
+    super(route, widgetSession, dispatcher);
   }
 
   onSessionExpired(caseType: string, caseId: string): void {
@@ -37,7 +37,7 @@ export class TaskExecutionWidgetComponent extends SessionWidgetComponent {
     }
 
     if (isBlueriqError(action.error)) {
-      const {title, message} = action.error.cause;
+      const { title, message } = action.error.cause;
       this.notification = new NotificationModel(NotificationType.Error, title, message);
     } else {
       this.notification = new NotificationModel(
@@ -62,10 +62,6 @@ export class TaskExecutionWidgetComponent extends SessionWidgetComponent {
       'Forbidden',
       'You are forbidden to execute this task.');
     this.setBackToCaseNotificationDismiss(caseType, caseId);
-  }
-
-  onUnauthorized(): void {
-    this.dispatcher.dispatch(new LoginAction());
   }
 
   private setBackToCaseNotificationDismiss(caseType: string, caseId: string): void {
