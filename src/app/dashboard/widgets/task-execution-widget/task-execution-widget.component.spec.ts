@@ -176,28 +176,4 @@ describe('Task Execution Widget Component', () => {
       caseId: expectedCaseId,
     }));
   });
-
-  it('should call dispatcher with LoginAction on unauthorized call', () => {
-    // Arrange
-    const fixture = TestBed.createComponent(TaskExecutionWidgetComponent);
-    fixture.componentInstance.widget = {
-      id: 'TEST-ID',
-      type: 'blueriq-flow',
-      baseUrl: '/',
-      flowName: 'TEST_FLOW',
-      projectName: 'TEST_PROJECT',
-      versionName: 'TEST_VERSION',
-    };
-    fixture.componentInstance.ngOnInit();
-
-    const dispatcher = TestBed.inject(Dispatcher);
-
-    // Act
-    fixture.componentInstance.onUnauthorized();
-
-    // Assert
-    expect(dispatcher.dispatch).toHaveBeenCalledWith(objectContaining({
-      type: DashboardActions.LOGIN,
-    }));
-  });
 });

@@ -1,9 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
 import { CloseSessionStrategy, Dispatcher, SessionRegistry } from '@blueriq/angular';
-import { TestDispatcher } from '@blueriq/angular/testing';
 import { DashboardSessionModule, DashboardWidgetSession } from '@blueriq/dashboard';
 import { SessionWidgetComponent } from './session-widget.component';
+import { DashboardActions } from '../events/actions';
+import objectContaining = jasmine.objectContaining;
+import createSpy = jasmine.createSpy;
 
 describe('Session Widget Component', () => {
 
@@ -17,7 +19,12 @@ describe('Session Widget Component', () => {
       providers: [
         DashboardWidgetSession,
         SessionRegistry,
-        { provide: Dispatcher, useClass: TestDispatcher },
+        {
+          provide: Dispatcher,
+          useClass: class {
+            dispatch = createSpy('dispatch');
+          },
+        },
         CloseSessionStrategy,
       ],
     }).compileComponents();
@@ -76,9 +83,34 @@ describe('Session Widget Component', () => {
 
     // Act
     fixture.componentInstance.ngOnInit();
-    const name =  fixture.componentInstance.sessionName;
+    const name = fixture.componentInstance.sessionName;
 
     // Assert
     expect(name).toContain('widget-');
+  });
+
+
+  it('should call dispatcher with LoginAction on unauthorized call', () => {
+    // Arrange
+    const fixture = TestBed.createComponent(SessionWidgetComponent);
+    fixture.componentInstance.widget = {
+      id: 'TEST-ID',
+      type: 'blueriq-flow',
+      baseUrl: '/',
+      flowName: 'TEST_FLOW',
+      projectName: 'TEST_PROJECT',
+      versionName: 'TEST_VERSION',
+    };
+    fixture.componentInstance.ngOnInit();
+
+    const dispatcher = TestBed.inject(Dispatcher);
+
+    // Act
+    fixture.componentInstance.onUnauthorized();
+
+    // Assert
+    expect(dispatcher.dispatch).toHaveBeenCalledWith(objectContaining({
+      type: DashboardActions.LOGIN,
+    }));
   });
 });

@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { DashboardWidgetSession, WidgetModels } from '@blueriq/dashboard';
 import { Observable } from 'rxjs';
+import { LoginAction } from '../events/actions';
+import { Dispatcher } from '@blueriq/angular';
 
 @Component({
   selector: 'bq-session-widget',
@@ -26,6 +28,7 @@ export class SessionWidgetComponent implements OnInit {
   constructor(
     private readonly route: ActivatedRoute,
     private readonly widgetSession: DashboardWidgetSession,
+    protected readonly dispatcher: Dispatcher,
   ) {
   }
 
@@ -33,6 +36,10 @@ export class SessionWidgetComponent implements OnInit {
     this.widgetSession.initialize(this.widget.id);
     this.baseUrl = this.widget.baseUrl + '/' + this.widgetSession.id;
     this.parameters$ = this.route.queryParams;
+  }
+
+  onUnauthorized(): void {
+    this.dispatcher.dispatch(new LoginAction());
   }
 
 }

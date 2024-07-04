@@ -3,9 +3,9 @@ import { RouterModule } from '@angular/router';
 import { BlueriqResponseError, CloseSessionStrategy, Dispatcher, SessionRegistry } from '@blueriq/angular';
 import { ErrorType } from '@blueriq/core';
 import { DashboardSessionModule, DashboardWidgetSession } from '@blueriq/dashboard';
-import { TestDispatcher } from '@blueriq/angular/testing';
 import { NotificationType } from '../../../notification-overlay/notification.model';
 import { FlowWidgetComponent } from './flow-widget.component';
+import { TestDispatcher } from '@blueriq/angular/testing';
 
 describe('Flow Widget Component', () => {
   beforeEach(async () => {
@@ -18,7 +18,10 @@ describe('Flow Widget Component', () => {
       providers: [
         DashboardWidgetSession,
         SessionRegistry,
-        { provide: Dispatcher, useClass: TestDispatcher },
+        {
+          provide: Dispatcher,
+          useClass: TestDispatcher,
+        },
         CloseSessionStrategy,
       ],
     }).compileComponents();
