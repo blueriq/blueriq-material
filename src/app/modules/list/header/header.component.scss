@@ -11,14 +11,6 @@
     }
   }
 
-  ::ng-deep {
-    bq-textitem-static {
-      color: mat.get-color-from-palette($bq-mat-grey-medium, 300);
-      font-size: $font-size-list-header;
-      font-weight: 500;
-    }
-  }
-
   &:hover {
     .sort-toggle {
       &.none {
