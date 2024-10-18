@@ -29,7 +29,7 @@ spring:
         - id: dashboard
           uri: http://e2e-dashboard:8080
           predicates:
-            - Path=/dashboards/**
+            - Path=/dcm-dashboard/**
   security:
     oauth2:
       client:

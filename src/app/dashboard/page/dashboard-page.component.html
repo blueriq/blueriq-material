@@ -1,4 +1,4 @@
-<ng-container *ngIf="page$ | async as page">
+<ng-container *ngIf="page">
   <div class="header">
     <bq-dashboard-header [menuItems]="page.menuItems"></bq-dashboard-header>
   </div>
@@ -18,5 +18,3 @@
 
   <bq-footer></bq-footer>
 </ng-container>
-
-<bq-notification-overlay *ngIf="notification" [notification]="notification"></bq-notification-overlay>

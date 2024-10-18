@@ -15,7 +15,6 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { AUTH_ROUTES } from './auth/routes';
-import { DASHBOARD_ROOT } from './dashboard/routing/route-fragments';
 import { AssetModule } from './modules/asset/asset.module';
 import { ButtonModule } from './modules/button/button.module';
 import { CommentModule } from './modules/comment/comment.module';
@@ -43,7 +42,7 @@ import { ProjectComponent } from './project.component';
 
 const routes: Routes = [
   {
-    path: DASHBOARD_ROOT,
+    path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard.module').then(mod => mod.DashboardModule),
   },
   { path: 'session/:sessionId', component: ProjectComponent },

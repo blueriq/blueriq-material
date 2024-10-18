@@ -1,1 +1,14 @@
-<router-outlet></router-outlet>
+<bq-dashboard
+  [shortcut]="shortcut | async"
+  [project]="project | async"
+  [dashboard]="dashboard | async"
+  [page]=" page | async"
+  [parameters]="parameters | async"
+  (pageChanged)="onPageChanged($event)"
+  (unauthorized)="onUnauthorized()"
+  (notFound)="onNotFound()"
+  (errors)="onError($event)">
+  <bq-dashboard-page></bq-dashboard-page>
+</bq-dashboard>
+
+<bq-notification-overlay *ngIf="notification" [notification]="notification"></bq-notification-overlay>

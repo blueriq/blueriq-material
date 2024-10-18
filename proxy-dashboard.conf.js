@@ -36,12 +36,9 @@ const PROXY_CONFIG = [
   },
   {
     context: [
-      "/dashboards"
+      "/dcm-dashboard"
     ],
     target: proxyTargetUrl,
-    "pathRewrite": {
-      "^/dashboards": ""
-    },
     "secure": false,
     "logLevel": "debug"
   },

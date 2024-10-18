@@ -1,10 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
 import { CloseSessionStrategy, Dispatcher, SessionRegistry } from '@blueriq/angular';
-import { DashboardSessionModule, DashboardWidgetSession } from '@blueriq/dashboard';
+import {
+  BlueriqDashboard,
+  DashboardAuthService,
+  DashboardSessionModule,
+  DashboardWidgetSession
+} from '@blueriq/dashboard';
 import { SessionWidgetComponent } from './session-widget.component';
-import { DashboardActions } from '../events/actions';
-import objectContaining = jasmine.objectContaining;
+import { Actions } from '@ngrx/effects';
+import { Subject } from 'rxjs';
 import createSpy = jasmine.createSpy;
 
 describe('Session Widget Component', () => {
@@ -24,6 +29,17 @@ describe('Session Widget Component', () => {
           useClass: class {
             dispatch = createSpy('dispatch');
           },
+        },
+        {
+          provide: DashboardAuthService,
+          useClass: class {
+            login = createSpy('login');
+          },
+        },
+        BlueriqDashboard,
+        {
+          provide: Actions,
+          useValue: new Subject(),
         },
         CloseSessionStrategy,
       ],
@@ -103,14 +119,12 @@ describe('Session Widget Component', () => {
     };
     fixture.componentInstance.ngOnInit();
 
-    const dispatcher = TestBed.inject(Dispatcher);
+    const authService = TestBed.inject(DashboardAuthService);
 
     // Act
     fixture.componentInstance.onUnauthorized();
 
     // Assert
-    expect(dispatcher.dispatch).toHaveBeenCalledWith(objectContaining({
-      type: DashboardActions.LOGIN,
-    }));
+    expect(authService.login).toHaveBeenCalled();
   });
 });

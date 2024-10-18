@@ -1,9 +1,8 @@
 import { Component, isDevMode } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Dispatcher, FailedAction, isBlueriqError } from '@blueriq/angular';
-import { DashboardWidgetSession } from '@blueriq/dashboard';
+import { BlueriqDashboard, DashboardAuthService, DashboardWidgetSession, OpenCaseAction } from '@blueriq/dashboard';
 import { NotificationModel, NotificationType } from '../../../notification-overlay/notification.model';
-import { OpenCaseAction } from '../../events/actions';
 import { SessionWidgetComponent } from '../session-widget.component';
 
 @Component({
@@ -18,9 +17,11 @@ export class TaskExecutionWidgetComponent extends SessionWidgetComponent {
   constructor(
     route: ActivatedRoute,
     widgetSession: DashboardWidgetSession,
-    dispatcher: Dispatcher,
+    dashboard: BlueriqDashboard,
+    authService: DashboardAuthService,
+    private readonly dispatcher: Dispatcher,
   ) {
-    super(route, widgetSession, dispatcher);
+    super(route, widgetSession, dashboard, authService);
   }
 
   onSessionExpired(caseType: string, caseId: string): void {
@@ -53,7 +54,7 @@ export class TaskExecutionWidgetComponent extends SessionWidgetComponent {
       NotificationType.Info,
       'Task completed',
       'You will be redirected back to the case dashboard in a moment.');
-    setTimeout(() => this.dispatcher.dispatch(new OpenCaseAction(caseId, caseType)), 2000);
+    setTimeout(() => this.dispatcher.dispatch(new OpenCaseAction(caseType, caseId)), 2000);
   }
 
   onForbidden(caseType: string, caseId: string): void {
@@ -67,7 +68,8 @@ export class TaskExecutionWidgetComponent extends SessionWidgetComponent {
   private setBackToCaseNotificationDismiss(caseType: string, caseId: string): void {
     this.notification!.dismiss = {
       label: 'Back to case...',
-      action: () => this.dispatcher.dispatch(new OpenCaseAction(caseId, caseType)),
+      action: () => this.dispatcher.dispatch(new OpenCaseAction(caseType, caseId)),
     };
   }
+
 }

@@ -1,9 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { DashboardWidgetSession, WidgetModels } from '@blueriq/dashboard';
+import {
+  BlueriqDashboard,
+  DashboardAuthService,
+  DashboardState,
+  DashboardWidgets,
+  DashboardWidgetSession
+} from '@blueriq/dashboard';
 import { Observable } from 'rxjs';
-import { LoginAction } from '../events/actions';
-import { Dispatcher } from '@blueriq/angular';
 
 @Component({
   selector: 'bq-session-widget',
@@ -11,11 +15,13 @@ import { Dispatcher } from '@blueriq/angular';
 })
 export class SessionWidgetComponent implements OnInit {
 
-  @Input()
-  widget: WidgetModels;
-
+  readonly DashboardState = DashboardState;
   parameters$: Observable<Params>;
   baseUrl: string;
+  dashboardState: DashboardState;
+
+  @Input()
+  widget: DashboardWidgets;
 
   get sessionName(): string {
     return this.widgetSession.name;
@@ -28,7 +34,8 @@ export class SessionWidgetComponent implements OnInit {
   constructor(
     private readonly route: ActivatedRoute,
     private readonly widgetSession: DashboardWidgetSession,
-    protected readonly dispatcher: Dispatcher,
+    private readonly dashboard: BlueriqDashboard,
+    private readonly authService: DashboardAuthService,
   ) {
   }
 
@@ -36,10 +43,11 @@ export class SessionWidgetComponent implements OnInit {
     this.widgetSession.initialize(this.widget.id);
     this.baseUrl = this.widget.baseUrl + '/' + this.widgetSession.id;
     this.parameters$ = this.route.queryParams;
+    this.dashboard.state.subscribe(state => this.dashboardState = state);
   }
 
   onUnauthorized(): void {
-    this.dispatcher.dispatch(new LoginAction());
+    this.authService.login();
   }
 
 }

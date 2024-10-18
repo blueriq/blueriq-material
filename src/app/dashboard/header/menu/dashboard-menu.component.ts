@@ -1,8 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Dispatcher } from '@blueriq/angular';
-import { MenuItemModel } from '@blueriq/dashboard';
-import { NavigateAction, RefreshAction } from '../../events/actions';
-import { RouteResolveService } from '../../routing/route-resolve.service';
+import { DashboardMenuItem, NavigatePageAction } from '@blueriq/dashboard';
+import { RefreshAction } from '../../events/actions';
 
 @Component({
   selector: 'bq-dashboard-menu',
@@ -16,17 +15,16 @@ import { RouteResolveService } from '../../routing/route-resolve.service';
 export class DashboardMenuComponent {
 
   @Input()
-  menuItems: MenuItemModel[];
+  menuItems: DashboardMenuItem[];
 
-  constructor(private readonly dispatcher: Dispatcher,
-              private readonly routeResolveService: RouteResolveService) {
+  constructor(private readonly dispatcher: Dispatcher) {
   }
 
-  onClick(path: string) {
-    this.dispatcher.dispatch(new NavigateAction(this.routeResolveService.resolveRoute({ uri: path })));
+  navigate(page: string): void {
+    this.dispatcher.dispatch(new NavigatePageAction(page));
   }
 
-  refresh() {
+  refresh(): void {
     this.dispatcher.dispatch(new RefreshAction());
   }
 }

@@ -2,9 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { By } from '@angular/platform-browser';
 import { Action, Dispatcher } from '@blueriq/angular';
-import { NavigateAction } from '../../events/actions';
-import { RouteResolveService, RouteResolveOptions } from '../../routing/route-resolve.service';
+import { RefreshAction } from '../../events/actions';
 import { DashboardMenuComponent } from './dashboard-menu.component';
+import { NavigatePageAction } from '@blueriq/dashboard';
 
 describe('Dashboard Menu', () => {
 
@@ -21,7 +21,6 @@ describe('Dashboard Menu', () => {
       imports: [MatToolbarModule],
       providers: [
         { provide: Dispatcher, useValue: dispatcher },
-        { provide: RouteResolveService, useValue: { resolveRoute: (options: RouteResolveOptions) => `/routed/${options.uri}` } },
       ],
     }).compileComponents();
 
@@ -29,17 +28,17 @@ describe('Dashboard Menu', () => {
   });
 
   it('should dispatch a navigation action', () => {
-    fixture.componentInstance.onClick('path');
+    fixture.componentInstance.navigate('path');
 
     expect(dispatches.length).toEqual(1);
-    expect(dispatches[0]).toBeInstanceOf(NavigateAction);
-    const action = dispatches[0] as NavigateAction;
-    expect(action.url).toEqual('/routed/path');
+    expect(dispatches[0]).toBeInstanceOf(NavigatePageAction);
+    const action = dispatches[0] as NavigatePageAction;
+    expect(action.page).toEqual('path');
   });
 
   it('should display the menu', () => {
-    fixture.componentInstance.menuItems = [{ path: 'main', displayText: 'Main' }, {
-      path: 'side',
+    fixture.componentInstance.menuItems = [{ pageId: 'main', displayText: 'Main' }, {
+      pageId: 'side',
       displayText: 'Side',
     }];
     fixture.detectChanges();
@@ -48,5 +47,12 @@ describe('Dashboard Menu', () => {
     expect(fixture.debugElement.nativeElement.innerHTML).toContain('Main');
     expect(fixture.debugElement.nativeElement.innerHTML).toContain('Side');
     expect(fixture.debugElement.nativeElement.innerHTML).toContain('Refresh');
+  });
+
+  it('should dispatch a refresh action', () => {
+    fixture.componentInstance.refresh();
+
+    expect(dispatches.length).toEqual(1);
+    expect(dispatches[0]).toBeInstanceOf(RefreshAction);
   });
 });

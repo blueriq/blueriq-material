@@ -1,8 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Dispatcher } from '@blueriq/angular';
-import { DashboardAuthService, MenuItemModel, UserInfo } from '@blueriq/dashboard';
+import { DashboardAuthService, DashboardMenuItem, UserInfo } from '@blueriq/dashboard';
 import { Observable } from 'rxjs';
-import { LogoutAction } from '../events/actions';
 
 @Component({
   selector: 'bq-dashboard-header',
@@ -17,14 +15,13 @@ export class DashboardHeaderComponent {
   userInfo$: Observable<UserInfo>;
 
   @Input()
-  menuItems: MenuItemModel[];
+  menuItems: DashboardMenuItem[];
 
-  constructor(private readonly authService: DashboardAuthService,
-              private readonly dispatcher: Dispatcher) {
+  constructor(private readonly authService: DashboardAuthService) {
     this.userInfo$ = this.authService.userInfo();
   }
 
   logout(): void {
-    this.dispatcher.dispatch(new LogoutAction());
+    this.authService.logout();
   }
 }
