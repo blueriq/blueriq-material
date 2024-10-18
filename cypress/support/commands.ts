@@ -2,8 +2,6 @@ import Chainable = Cypress.Chainable;
 
 const compareSnapshotCommand = require('cypress-image-diff-js/dist/command');
 import 'cypress-file-upload';
-
-compareSnapshotCommand();
 import {
   DASHBOARD_HEADER,
   DASHBOARD_MENU,
@@ -16,13 +14,15 @@ import {
   PAGE_PROJECT_TAGNAME,
 } from '../shared';
 
+compareSnapshotCommand();
+
 export {};
 
 interface VisitOptions {
   loginRequired: boolean;
 }
 
-Cypress.Commands.add('equalIgnoreWhiteSpace', {prevSubject: true},
+Cypress.Commands.add('equalIgnoreWhiteSpace', { prevSubject: true },
   // eslint-disable-next-line
   (subject: any, equalTo: string) => {
     expect(subject.text().trim()).to.eq(equalTo);
@@ -53,7 +53,7 @@ Cypress.Commands.add('getSelectFor',
   (page: string, field: string) => cy.getById(page, field).find('mat-select'),
 );
 
-Cypress.Commands.add('selectOption', {prevSubject: true},
+Cypress.Commands.add('selectOption', { prevSubject: true },
   // eslint-disable-next-line
   (subject: any, selectOption: string) => {
     subject.click();
@@ -106,8 +106,6 @@ Cypress.Commands.add('verifyOpenCasePage', verifyOpenCasePage);
 
 Cypress.Commands.add('waitForListEntry', waitForListEntry);
 
-Cypress.Commands.add('blockKeycloakResourceLoading', blockKeycloakResourceLoading);
-
 function getById(page: string, field: string, nr = '1'): Chainable<unknown> {
   return getByTagName('', page, field, nr);
 }
@@ -116,20 +114,16 @@ function getByTagName(tagName: string, page: string, field: string, nr = '1'): C
   return cy.get(`${tagName}[id^=${page + '_' + field + '_' + nr}]`);
 }
 
-function visitRuntime(url: string, visitOptions: VisitOptions = {loginRequired: false}): Chainable<unknown> {
-  cy.intercept({method: 'POST', url: /\/runtime\/api\/v2\/start(\/?).*$/}).as('visitRuntime');
+function visitRuntime(url: string, visitOptions: VisitOptions = { loginRequired: false }): Chainable<unknown> {
+  cy.intercept({ method: 'POST', url: /\/runtime\/api\/v2\/start(\/?).*$/ }).as('visitRuntime');
   cy.visit(url);
 
   // A login page could be expected (401 = unauthorized)
   return cy.wait('@visitRuntime').its('response.statusCode').should('equal', visitOptions.loginRequired ? 401 : 200);
 }
 
-function startDashboard(url: string, visitOptions: VisitOptions = {loginRequired: false}): Chainable<unknown> {
-  if (visitOptions.loginRequired) {
-    blockKeycloakResourceLoading();
-  }
-
-  cy.intercept({method: 'get', url: '/dashboards/**'}).as('getDashboard');
+function startDashboard(url: string, visitOptions: VisitOptions = { loginRequired: false }): Chainable<unknown> {
+  cy.intercept({ method: 'get', url: '/dcm-dashboard/**' }).as('getDashboard');
   cy.visit(url, {
     onBeforeLoad: (win) => {
       win.sessionStorage.clear();
@@ -141,7 +135,7 @@ function startDashboard(url: string, visitOptions: VisitOptions = {loginRequired
 }
 
 function clickForDashboardChange(button: Chainable): Chainable<unknown> {
-  cy.intercept({method: 'get', url: /\/runtime\/(.*)\/api\/v2\/start(\/?).*$/}).as('dashboardChanges');
+  cy.intercept({ method: 'get', url: /\/runtime\/(.*)\/api\/v2\/start(\/?).*$/ }).as('dashboardChanges');
   button.click();
 
   return cy.wait('@dashboardChanges').its('response.statusCode').should('equal', 200);
@@ -179,8 +173,6 @@ function doLogout(): Chainable<unknown> {
 }
 
 function doGatewayLogout(): Chainable<unknown> {
-  blockKeycloakResourceLoading();
-
   cy.get(DASHBOARD_HEADER).within(() => {
     cy.get('button.active-user-menu').should('exist').click();
   });
@@ -328,11 +320,6 @@ function waitForListEntry(reference: string, attempts: number = 0): Chainable<un
 
 }
 
-function blockKeycloakResourceLoading() {
-  cy.intercept({method: 'get', url: '*signin.css'}, req => req.reply('success'));
-  cy.intercept({method: 'get', url: '*bootstrap.min.css'}, req => req.reply('success'));
-}
-
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace Cypress {
@@ -414,11 +401,6 @@ declare global {
        * @param reference the reference to search for.
        */
       waitForListEntry(reference: string): Chainable<Subject>;
-
-      /**
-       * Intercepts and block keycloak resource loading
-       */
-      blockKeycloakResourceLoading(): Chainable<Subject>;
     }
   }
 }

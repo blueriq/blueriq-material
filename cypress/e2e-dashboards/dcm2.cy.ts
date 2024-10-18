@@ -23,8 +23,7 @@ describe('Dashboards App', () => {
 
   describe('authentication flow', () => {
     it('should be able to login when starting a separate flow with JWT authentication enabled', () => {
-      cy.blockKeycloakResourceLoading();
-      cy.visitRuntime('/shortcut/ZaakIntake', {loginRequired: true});
+      cy.visitRuntime('/shortcut/ZaakIntake', { loginRequired: true });
 
       cy.get('a[href*="oauth2/authorization/keycloak"]').click();
 
@@ -36,13 +35,13 @@ describe('Dashboards App', () => {
     });
 
     it('should be able to login via the gateway', () => {
-      cy.startDashboard('/dashboard/Foundation', {loginRequired: true});
+      cy.startDashboard('/dashboard/export-foundation:V7_3_0/foundation/maindashboard', { loginRequired: true });
 
       cy.doGatewayLogin('Behandelaar', 'Behandelaar');
     });
 
     it('should be able to logout via the gateway', () => {
-      cy.startDashboard('/dashboard/Foundation', {loginRequired: true});
+      cy.startDashboard('/dashboard/export-foundation:V7_3_0/foundation/maindashboard', { loginRequired: true });
 
       cy.doGatewayLogin('Behandelaar', 'Behandelaar');
       cy.doGatewayLogout();
@@ -50,7 +49,7 @@ describe('Dashboards App', () => {
     });
 
     it('should be able to login with multiple users', () => {
-      cy.startDashboard('/dashboard/Foundation', {loginRequired: true});
+      cy.startDashboard('/dashboard/export-foundation:V7_3_0/foundation/maindashboard', { loginRequired: true });
 
       cy.doGatewayLogin('Behandelaar', 'Behandelaar');
       cy.doGatewayLogout();
@@ -58,7 +57,7 @@ describe('Dashboards App', () => {
     });
 
     it('should display the full name of the user', () => {
-      cy.startDashboard('/dashboard/Foundation', {loginRequired: true});
+      cy.startDashboard('/dashboard/export-foundation:V7_3_0/foundation/maindashboard', { loginRequired: true });
 
       cy.doGatewayLogin('johndoe', 'johndoe');
 
@@ -70,7 +69,7 @@ describe('Dashboards App', () => {
 
   describe('by routes and authorization', () => {
     it('should display dcm dashboard main page as Behandelaar', () => {
-      cy.startDashboard('/dashboard/Foundation', {loginRequired: true});
+      cy.startDashboard('/dashboard/export-foundation:V7_3_0/foundation/maindashboard', { loginRequired: true });
 
       cy.doGatewayLogin('Behandelaar', 'Behandelaar');
 
@@ -92,13 +91,13 @@ describe('Dashboards App', () => {
     });
 
     it('Should display an error when the dashboard service response with an HTTP 404 response', () => {
-      cy.startDashboard('/dashboard/henk', {loginRequired: true});
+      cy.startDashboard('/dashboard/export-foundation:V7_3_0/trunk/maindashboard', { loginRequired: true });
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
-      cy.intercept({method: 'get', url: '/dashboards/**'}).as('getDashboard');
+      cy.intercept({ method: 'get', url: '/dcm-dashboard/**' }).as('getDashboard');
 
-      cy.visit('/dashboard/henk', {
+      cy.visit('/dashboard/export-foundation:V7_3_0/trunk/maindashboard', {
         onBeforeLoad: (win) => {
           win.sessionStorage.clear();
         },
@@ -107,17 +106,17 @@ describe('Dashboards App', () => {
       cy.wait('@getDashboard').its('response.statusCode').should('equal', 404);
 
       cy.get('bq-notification-overlay').within(() => {
-        cy.get('.message').should('have.text', 'Dashboard not found');
+        cy.get('.message').should('have.text', 'Unable to open page');
         cy.get('.notification-error').should('exist');
       });
     });
 
     it('Should display an error when the dashboard service responds with an HTTP 400 response', () => {
-      cy.startDashboard('/dashboard/ingr!d', {loginRequired: true});
+      cy.startDashboard('/dashboard/foundation/trunk/maindashboard', { loginRequired: true });
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
-      cy.intercept({method: 'get', url: '/dashboards/**'}).as('getDashboard');
+      cy.intercept({ method: 'get', url: '/dcm-dashboard/**' }).as('getDashboard');
 
       cy.visit('/dashboard/ingr!d', {
         onBeforeLoad: (win) => {
@@ -134,7 +133,7 @@ describe('Dashboards App', () => {
     });
 
     it('should display dcm dashboard main page as Aanvrager', () => {
-      cy.startDashboard('/dashboard/Foundation', {loginRequired: true});
+      cy.startDashboard('/dashboard/export-foundation:V7_3_0/foundation/maindashboard', { loginRequired: true });
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
@@ -154,7 +153,7 @@ describe('Dashboards App', () => {
     });
 
     it('should display login page after logout while on restricted route', () => {
-      cy.startDashboard('/dashboard/Foundation', {loginRequired: true});
+      cy.startDashboard('/dashboard/export-foundation:V7_3_0/foundation/maindashboard', { loginRequired: true });
 
       cy.doGatewayLogin('Behandelaar', 'Behandelaar');
 
@@ -167,7 +166,7 @@ describe('Dashboards App', () => {
 
   describe('case actions', () => {
     it('should start a case', () => {
-      cy.startDashboard('/dashboard/Foundation', {loginRequired: true});
+      cy.startDashboard('/dashboard/export-foundation:V7_3_0/foundation/maindashboard', { loginRequired: true });
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
@@ -175,7 +174,7 @@ describe('Dashboards App', () => {
     });
 
     it('should display open case', () => {
-      cy.startDashboard('/dashboard/Foundation', {loginRequired: true});
+      cy.startDashboard('/dashboard/export-foundation:V7_3_0/foundation/maindashboard', { loginRequired: true });
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
@@ -186,7 +185,7 @@ describe('Dashboards App', () => {
     });
 
     it('should display an involved case with additional parameters', () => {
-      cy.startDashboard('/dashboard/Foundation', {loginRequired: true});
+      cy.startDashboard('/dashboard/export-foundation:V7_3_0/foundation/maindashboard', { loginRequired: true });
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
@@ -201,7 +200,7 @@ describe('Dashboards App', () => {
     });
 
     it('should refresh the dashboard widgets', () => {
-      cy.startDashboard('/dashboard/Foundation', {loginRequired: true});
+      cy.startDashboard('/dashboard/export-foundation:V7_3_0/foundation/maindashboard', { loginRequired: true });
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
@@ -231,7 +230,7 @@ describe('Dashboards App', () => {
 
   describe('task actions', () => {
     it('should be able to successfully complete a task', () => {
-      cy.startDashboard('/dashboard/Foundation', {loginRequired: true});
+      cy.startDashboard('/dashboard/export-foundation:V7_3_0/foundation/maindashboard', { loginRequired: true });
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
@@ -260,7 +259,7 @@ describe('Dashboards App', () => {
     });
 
     it('should be able to successfully cancel a task', () => {
-      cy.startDashboard('/dashboard/Foundation', {loginRequired: true});
+      cy.startDashboard('/dashboard/export-foundation:V7_3_0/foundation/maindashboard', { loginRequired: true });
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 

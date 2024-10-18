@@ -36,8 +36,8 @@ server {
           proxy_pass http://gateway/;
       }
 
-    location /dashboards/ {
-        proxy_pass http://gateway/;
+    location /dcm-dashboard/ {
+        proxy_pass http://gateway;
     }
 
     location /auth/ {

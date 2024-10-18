@@ -1,11 +1,23 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
-import { BlueriqResponseError, CloseSessionStrategy, Dispatcher, SessionRegistry } from '@blueriq/angular';
+import {
+  BlueriqResponseError,
+  CloseSessionStrategy,
+  Dispatcher,
+  SessionEventActions,
+  SessionRegistry
+} from '@blueriq/angular';
 import { ErrorType } from '@blueriq/core';
-import { DashboardSessionModule, DashboardWidgetSession } from '@blueriq/dashboard';
+import {
+  BlueriqDashboard,
+  DashboardAuthService,
+  DashboardSessionModule,
+  DashboardWidgetSession
+} from '@blueriq/dashboard';
 import { NotificationType } from '../../../notification-overlay/notification.model';
-import { DashboardActions } from '../../events/actions';
 import { TaskExecutionWidgetComponent } from './task-execution-widget.component';
+import { Actions } from '@ngrx/effects';
+import { Subject } from 'rxjs';
 import createSpy = jasmine.createSpy;
 import objectContaining = jasmine.objectContaining;
 
@@ -26,6 +38,17 @@ describe('Task Execution Widget Component', () => {
           useClass: class {
             dispatch = createSpy('dispatch');
           },
+        },
+        {
+          provide: DashboardAuthService,
+          useClass: class {
+            login = createSpy('login');
+          },
+        },
+        BlueriqDashboard,
+        {
+          provide: Actions,
+          useValue: new Subject(),
         },
         CloseSessionStrategy,
       ],
@@ -171,9 +194,10 @@ describe('Task Execution Widget Component', () => {
     jasmine.clock().tick(2001);
 
     expect(dispatcher.dispatch).toHaveBeenCalledWith(objectContaining({
-      type: DashboardActions.OPENCASE,
-      caseType: expectedCaseType,
-      caseId: expectedCaseId,
+      type: SessionEventActions.PORTAL_CHANGE,
+      changeType: 'open-case',
+      changeContext: expectedCaseType,
+      parameters: { caseId: expectedCaseId },
     }));
   });
 });

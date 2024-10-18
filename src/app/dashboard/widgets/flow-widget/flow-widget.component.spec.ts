@@ -2,10 +2,17 @@ import { TestBed } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
 import { BlueriqResponseError, CloseSessionStrategy, Dispatcher, SessionRegistry } from '@blueriq/angular';
 import { ErrorType } from '@blueriq/core';
-import { DashboardSessionModule, DashboardWidgetSession } from '@blueriq/dashboard';
+import {
+  BlueriqDashboard,
+  DashboardAuthService,
+  DashboardSessionModule,
+  DashboardWidgetSession
+} from '@blueriq/dashboard';
 import { NotificationType } from '../../../notification-overlay/notification.model';
 import { FlowWidgetComponent } from './flow-widget.component';
 import { TestDispatcher } from '@blueriq/angular/testing';
+import { Actions } from '@ngrx/effects';
+import { Subject } from 'rxjs';
 
 describe('Flow Widget Component', () => {
   beforeEach(async () => {
@@ -21,6 +28,16 @@ describe('Flow Widget Component', () => {
         {
           provide: Dispatcher,
           useClass: TestDispatcher,
+        },
+        {
+          provide: DashboardAuthService,
+          useClass: class {
+          },
+        },
+        BlueriqDashboard,
+        {
+          provide: Actions,
+          useValue: new Subject(),
         },
         CloseSessionStrategy,
       ],

@@ -10,3 +10,6 @@ spring:
       resourceserver:
         jwt:
           jwk-set-uri: http://${HOST_NAME}:9079/realms/Blueriq/protocol/openid-connect/certs
+server:
+  servlet:
+    context-path: /dcm-dashboard

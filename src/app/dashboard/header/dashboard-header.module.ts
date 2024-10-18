@@ -9,22 +9,24 @@ import { MatLegacyTooltipModule as MatTooltipModule } from '@angular/material/le
 import { MenuModule } from '../../modules/menu/menu.module';
 import { DashboardHeaderComponent } from './dashboard-header.component';
 import { DashboardMenuComponent } from './menu/dashboard-menu.component';
+import { RouterLink } from '@angular/router';
 
 @NgModule({
   declarations: [
     DashboardMenuComponent,
     DashboardHeaderComponent
   ],
-    imports: [
-        CommonModule,
-        MatToolbarModule,
-        FlexModule,
-        MatButtonModule,
-        MenuModule,
-        MatIconModule,
-        MatMenuModule,
-        MatTooltipModule,
-    ],
+  imports: [
+    CommonModule,
+    MatToolbarModule,
+    FlexModule,
+    MatButtonModule,
+    MenuModule,
+    MatIconModule,
+    MatMenuModule,
+    MatTooltipModule,
+    RouterLink,
+  ],
   exports: [
     DashboardHeaderComponent
   ],

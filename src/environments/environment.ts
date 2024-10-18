@@ -6,7 +6,7 @@
 export const environment = {
   production: false,
   baseUrl: '/runtime',
-  dashboardUrl: '/dashboards',
+  dashboardUrl: '/dcm-dashboard',
   dashboardAuthUrl: '/auth',
   devtoolsUrl: '/devtools/index.html',
   envName: 'development',

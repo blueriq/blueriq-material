@@ -15,4 +15,6 @@
 
 <bq-loading></bq-loading>
 
-<bq-notification-overlay *ngIf="notification" [notification]="notification"></bq-notification-overlay>
+<ng-container *ngIf="dashboardState === DashboardState.STABLE">
+  <bq-notification-overlay *ngIf="notification" [notification]="notification"></bq-notification-overlay>
+</ng-container>
