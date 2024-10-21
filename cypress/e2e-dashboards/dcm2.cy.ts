@@ -112,13 +112,13 @@ describe('Dashboards App', () => {
     });
 
     it('Should display an error when the dashboard service responds with an HTTP 400 response', () => {
-      cy.startDashboard('/dashboard/foundation/trunk/maindashboard', { loginRequired: true });
+      cy.startDashboard('/dashboard/export-foundation:V7_3_0/foundation/maindashboard', { loginRequired: true });
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
       cy.intercept({ method: 'get', url: '/dcm-dashboard/**' }).as('getDashboard');
 
-      cy.visit('/dashboard/ingr!d', {
+      cy.visit('/dashboard/export-foundation/foundation/maindashboard', {
         onBeforeLoad: (win) => {
           win.sessionStorage.clear();
         },
@@ -127,7 +127,7 @@ describe('Dashboards App', () => {
       cy.wait('@getDashboard').its('response.statusCode').should('equal', 400);
 
       cy.get('bq-notification-overlay').within(() => {
-        cy.get('.message').should('have.text', 'An unknown error occurred');
+        cy.get('.title').should('have.text', 'Unexpected error');
         cy.get('.notification-error').should('exist');
       });
     });
