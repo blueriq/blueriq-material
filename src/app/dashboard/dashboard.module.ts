@@ -15,7 +15,7 @@ import { TaskExecutionWidgetComponent } from './widgets/task-execution-widget/ta
 
 export const ROUTES: Routes = [
   {
-    path: `:project/:dashboard/:page`,
+    path: `:project/:version/:dashboard/:page`,
     component: DashboardComponent
   },
 ];

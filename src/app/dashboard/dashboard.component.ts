@@ -17,6 +17,7 @@ export class DashboardComponent {
 
   shortcut: Observable<string | null>;
   project: Observable<string | null>;
+  version: Observable<string | null>;
   dashboard: Observable<string | null>;
   page: Observable<string | null>;
   parameters: Observable<QueryParameters | null>;
@@ -27,6 +28,7 @@ export class DashboardComponent {
               private readonly authService: DashboardAuthService) {
     this.shortcut = this.route.paramMap.pipe(map(param => param.get('shortcut')));
     this.project = this.route.paramMap.pipe(map(param => param.get('project')));
+    this.version = this.route.paramMap.pipe(map(param => param.get('version')));
     this.dashboard = this.route.paramMap.pipe(map(param => param.get('dashboard')));
     this.page = this.route.paramMap.pipe(map(param => param.get('page')));
     this.parameters = this.route.queryParams;
