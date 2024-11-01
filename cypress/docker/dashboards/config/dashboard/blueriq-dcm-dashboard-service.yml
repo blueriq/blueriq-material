@@ -1,15 +1,18 @@
 blueriq:
   dcm:
     dashboard:
-      definitions:
+      exports:
+        enabled: true
         location: ${spring.config.additional-location}dashboard-definitions/
-
+      shortcuts:
+        foundation:
+          project: export-foundation
+          version: V7_3_0
+          dashboard-name: foundation
+          entry-page: maindashboard
 spring:
   security:
     oauth2:
       resourceserver:
         jwt:
           jwk-set-uri: http://${HOST_NAME}:9079/realms/Blueriq/protocol/openid-connect/certs
-server:
-  servlet:
-    context-path: /dcm-dashboard

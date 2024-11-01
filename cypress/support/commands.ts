@@ -188,27 +188,21 @@ function startCaseTypeA(reference: string): Chainable<unknown> {
     cy.get(DASHBOARD_MENU).contains('button', 'Zaakcatalogus').click();
   });
 
-  cy.get(DASHBOARD_PAGE).within(() => {
-    cy.get(DASHBOARD_WIDGET + '[id="zaakcatalogus-shortcut-productinformatie-1"]').should('exist').within(_ => {
-      cy.intercept('POST', '/runtime/*/api/v2/session/*/load').as('startCase');
-      cy.getButtonFor('P169', 'Aanvragen').click();
-      cy.wait('@startCase').its('response.statusCode').should('equal', 200);
-    });
+  cy.get(`${DASHBOARD_PAGE} ${DASHBOARD_WIDGET}[id="zaakcatalogus-shortcut-productinformatie-1"]`).should('exist').within(_ => {
+    cy.intercept('POST', '/runtime/*/api/v2/session/*/load').as('startCase');
+    cy.getButtonFor('P169', 'Aanvragen').click();
+    cy.wait('@startCase').its('response.statusCode').should('equal', 200);
   });
 
-  cy.get(DASHBOARD_PAGE).within(() => {
-    cy.get(DASHBOARD_WIDGET + '[id="startzaak-shortcut-zaakintake-1"]').should('exist').within(_ => {
-      cy.getInputFor('P572', 'Domeingegevens-Aanvraaggegevens').type(reference);
-      cy.getButtonFor('P572', 'Ok').click();
-    });
+  cy.get(`${DASHBOARD_PAGE} ${DASHBOARD_WIDGET}[id="startzaak-shortcut-zaakintake-1"]`).should('exist').within(_ => {
+    cy.getInputFor('P572', 'Domeingegevens-Aanvraaggegevens').type(reference);
+    cy.getButtonFor('P572', 'Ok').click();
   });
 
-  cy.get(DASHBOARD_PAGE).within(() => {
-    cy.get(DASHBOARD_WIDGET + '[id="startzaak-shortcut-zaakintake-1"]').should('exist').within(_ => {
-      cy.get('div[id="P525_AanvraagGeregistreerd_1"]').contains('De aanvraag is bekend met het kenmerk');
-      cy.get('div[id="P525_AanvraagGeregistreerd_1"] bq-textitem-dynamic').then($element => {
-        cy.wrap($element.text()).as(reference);
-      });
+  cy.get(`${DASHBOARD_PAGE} ${DASHBOARD_WIDGET}[id="startzaak-shortcut-zaakintake-1"]`).should('exist').within(_ => {
+    cy.get('div[id="P525_AanvraagGeregistreerd_1"]').contains('De aanvraag is bekend met het kenmerk');
+    cy.get('div[id="P525_AanvraagGeregistreerd_1"] bq-textitem-dynamic').then($element => {
+      cy.wrap($element.text()).as(reference);
     });
   });
 
@@ -216,10 +210,8 @@ function startCaseTypeA(reference: string): Chainable<unknown> {
     cy.get(DASHBOARD_MENU).contains('button', 'Home').click();
   });
 
-  return cy.get(DASHBOARD_PAGE).within(() => {
-    cy.get(DASHBOARD_WIDGET + '[id="startzaak-shortcut-zaakintake-1"]').should('not.exist');
-    cy.get(DASHBOARD_WIDGET + '[id="maindashboard-shortcut-zakentoegewezen-1"]').should('exist');
-  });
+  cy.get(`${DASHBOARD_PAGE} ${DASHBOARD_WIDGET}[id="startzaak-shortcut-zaakintake-1"]`).should('not.exist');
+  cy.get(`${DASHBOARD_PAGE} ${DASHBOARD_WIDGET}[id="maindashboard-shortcut-zakentoegewezen-1"]`).should('exist');
 }
 
 function openCase(reference: string): Chainable<unknown> {

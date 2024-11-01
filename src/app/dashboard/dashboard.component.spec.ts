@@ -3,7 +3,7 @@ import { DashboardComponent } from './dashboard.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { DashboardAuthService } from '@blueriq/dashboard';
 import { NotificationType } from '../notification-overlay/notification.model';
-import { ActivatedRoute, ActivatedRouteSnapshot, convertToParamMap, Router } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, convertToParamMap, Params, Router } from '@angular/router';
 import { of } from 'rxjs';
 
 describe('Dashboard Component', () => {
@@ -17,11 +17,13 @@ describe('Dashboard Component', () => {
 
     authService = jasmine.createSpyObj<DashboardAuthService>('DashboardAuthService', ['login']);
     router = jasmine.createSpyObj<Router>('Router', ['navigate']);
+    const routeParams: Params = { page: 'default' };
     route = jasmine.createSpyObj<ActivatedRoute>('ActivateRoute', [], {
       'paramMap': of(convertToParamMap({})),
       'queryParams': of(convertToParamMap({})),
       'snapshot': {
-        queryParams: {}
+        queryParams: {},
+        params: routeParams,
       } as ActivatedRouteSnapshot,
     });
     await TestBed.configureTestingModule({
@@ -68,6 +70,19 @@ describe('Dashboard Component', () => {
     component.componentInstance.onPageChanged({ page: 'page', parameters: null });
 
     expect(router.navigate).toHaveBeenCalledWith([`../page`], {
+      relativeTo: route,
+      queryParams: {},
+    });
+  });
+
+  it('should update the url when the page is changed in case of a shortcut without a page', () => {
+    const activatedRoute = TestBed.inject(ActivatedRoute);
+
+    activatedRoute.snapshot.params = { 'shortcut': 'shortcut' };
+
+    component.componentInstance.onPageChanged({ page: 'page', parameters: null });
+
+    expect(router.navigate).toHaveBeenCalledWith([`page`], {
       relativeTo: route,
       queryParams: {},
     });

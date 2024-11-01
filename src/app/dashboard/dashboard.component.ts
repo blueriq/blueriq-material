@@ -36,7 +36,7 @@ export class DashboardComponent {
   }
 
   onPageChanged(pageChange: DashboardPageChange): void {
-    this.router.navigate([`../${pageChange.page}`], {
+    this.router.navigate([this.determineRoutePage(pageChange.page)], {
       relativeTo: this.route,
       queryParams: this.determineQueryParameters(this.route, pageChange.parameters),
     });
@@ -54,7 +54,11 @@ export class DashboardComponent {
     this.notification = new NotificationModel(NotificationType.Error, 'Unexpected error', error);
   }
 
-  determineQueryParameters(route: ActivatedRoute, currentParams?: Params | null): Params {
+  private determineRoutePage(page: string): string {
+    return this.route.snapshot.params['page'] ? `../${page}` : `${page}`;
+  }
+
+  private determineQueryParameters(route: ActivatedRoute, currentParams?: Params | null): Params {
     const params = currentParams ?? {};
     if (route.snapshot.queryParams['devtools'] !== undefined) {
       return {
