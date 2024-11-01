@@ -175,6 +175,14 @@ describe('Dashboards App', () => {
       cy.startCaseTypeA('start-case');
     });
 
+    it('should start a case for a shortcut', () => {
+      cy.startDashboard('/dashboard/shortcut/foundation', { loginRequired: true });
+
+      cy.doGatewayLogin('Aanvrager', 'Aanvrager');
+
+      cy.startCaseTypeA('start-case');
+    });
+
     it('should display open case', () => {
       cy.startDashboard('/dashboard/export-foundation/V7_3_0/foundation/maindashboard', { loginRequired: true });
 

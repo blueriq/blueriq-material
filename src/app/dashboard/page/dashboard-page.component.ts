@@ -12,7 +12,7 @@ import { DashboardActions, RefreshAction } from '../events/actions';
 export class DashboardPageComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   private readonly subscription = new Subscription();
-  page: DashboardPage;
+  page: DashboardPage | null;
   refreshWidget = false;
 
   constructor(private readonly actions$: Actions,
