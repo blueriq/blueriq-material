@@ -32,7 +32,7 @@ pipeline {
     stage('Analyze') {
       steps {
         bat 'md reports'
-        bat 'npx auditjs@4.0.36 ossi --prod -x --whitelist auditjs-suppressions.json > reports/scan_node_modules.xml'
+        bat 'yarn --silent auditjs ossi --prod -x --whitelist auditjs-suppressions.json > reports/scan_node_modules.xml'
       }
       post {
         always {
