@@ -3,6 +3,10 @@
     {
       "id": "CVE-2024-39249",
       "reason": "The vulnerability is reported for cypress, which is optional but a optional dev dependency"
+    },
+    {
+      "id": "CVE-2024-21538",
+      "reason": "Only used as dev deps"
     }
   ]
 }
