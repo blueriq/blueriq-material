@@ -25,8 +25,6 @@ describe('Dashboards App', () => {
     it('should be able to login when starting a separate flow with JWT authentication enabled', () => {
       cy.visitRuntime('/shortcut/ZaakIntake', { loginRequired: true });
 
-      cy.get('a[href*="oauth2/authorization/keycloak"]').click();
-
       cy.get('#username').type('Behandelaar');
       cy.get('#password').type('Behandelaar');
       cy.get('#kc-login').click();
@@ -45,7 +43,7 @@ describe('Dashboards App', () => {
 
       cy.doGatewayLogin('Behandelaar', 'Behandelaar');
       cy.doGatewayLogout();
-      cy.get('a[href*="oauth2/authorization/keycloak"]').should('be.visible');
+      cy.get('#kc-login').should('be.visible');
     });
 
     it('should be able to login with multiple users', () => {
@@ -162,7 +160,7 @@ describe('Dashboards App', () => {
       cy.doGatewayLogout();
 
       // Should be back on login page because the return path from logout page is restricted
-      cy.url().should('include', '/auth/login');
+      cy.get('#kc-login').should('be.visible');
     });
   });
 
