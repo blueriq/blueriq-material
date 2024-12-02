@@ -155,8 +155,6 @@ function doLogin(username: string, password: string): Chainable<unknown> {
 }
 
 function doGatewayLogin(username: string, password: string): Chainable<unknown> {
-  cy.get('a[href*="oauth2/authorization/keycloak"]').click();
-
   cy.get('#username').type(username);
   cy.get('#password').type(password);
   cy.get('#kc-login').click();
