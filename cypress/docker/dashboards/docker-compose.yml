@@ -1,9 +1,14 @@
-version: '3'
 services:
   e2e-keycloak:
     build:
       context: ../
       dockerfile: dashboards/Dockerfile.KEYCLOAK
+    healthcheck:
+      test: [ "CMD-SHELL", "exec 3<>/dev/tcp/127.0.0.1/8080;echo -e \"GET /health/ready HTTP/1.1\r\nhost: http://localhost\r\nConnection: close\r\n\r\n\" >&3;grep \"HTTP/1.1 200 OK\" <&3" ]
+      interval: 5s
+      timeout: 5s
+      start_period: 10s
+      retries: 10
     mem_limit: 512m
     command:
       - start-dev
@@ -16,12 +21,6 @@ services:
       - KEYCLOAK_LOGLEVEL=DEBUG
       - KC_HEALTH_ENABLED=true
       - KC_METRICS_ENABLED=true
-    healthcheck:
-      test: "curl --fail --silent http://localhost:8080/health/ready || exit 1"
-      interval: 5s
-      timeout: 5s
-      start_period: 45s
-      retries: 20
   e2e-gateway:
     build:
       context: ../
