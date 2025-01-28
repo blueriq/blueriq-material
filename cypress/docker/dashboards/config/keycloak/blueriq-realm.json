@@ -18,6 +18,8 @@
       "firstName": "John",
       "lastName": "Doe",
       "enabled": true,
+      "emailVerified": true,
+      "requiredActions": [],
       "credentials": [
         {
           "type": "password",
@@ -33,6 +35,8 @@
       "username": "Aanvrager",
       "firstName": "Aanvrager",
       "enabled": true,
+      "emailVerified": true,
+      "requiredActions": [],
       "credentials": [
         {
           "type": "password",
@@ -48,6 +52,8 @@
       "username": "Behandelaar",
       "firstName": "Behandelaar",
       "enabled": true,
+      "emailVerified": true,
+      "requiredActions": [],
       "credentials": [
         {
           "type": "password",
@@ -86,6 +92,17 @@
       "defaultClientScopes": [
         "profile"
       ]
+    }
+  ],
+  "requiredActions": [
+    {
+      "alias": "VERIFY_PROFILE",
+      "name": "Verify Profile",
+      "providerId": "VERIFY_PROFILE",
+      "enabled": false,
+      "defaultAction": false,
+      "priority": 90,
+      "config": {}
     }
   ]
 }
