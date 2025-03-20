@@ -56,7 +56,7 @@ if %skipBuild% == false (
 )
 cd %checkoutDir%\Runtime
 if %skipBuild% == false (
-  call mvn -B clean package -DskipTests -P!quality -am -pl runtime/blueriq-runtime-standalone || exit /b
+  call mvn -B clean package -DskipTests -P!quality -am -pl runtime/blueriq-runtime-standalone,dcm/blueriq-case-engine-standalone || exit /b
 )
 
 call :get_version com.blueriq.customerdata.api.version cdsVersion

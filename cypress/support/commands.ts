@@ -186,20 +186,19 @@ function startCaseTypeA(reference: string): Chainable<unknown> {
     cy.get(DASHBOARD_MENU).contains('button', 'Zaakcatalogus').click();
   });
 
-  cy.get(`${DASHBOARD_PAGE} ${DASHBOARD_WIDGET}[id="zaakcatalogus-shortcut-productinformatie-1"]`).should('exist').within(_ => {
+  cy.get(`${DASHBOARD_PAGE} ${DASHBOARD_WIDGET}[id="zaakcatalogus-shortcut-regressionwidgetproductinformatie-1"]`).should('exist').within(_ => {
     cy.intercept('POST', '/runtime/*/api/v2/session/*/load').as('startCase');
     cy.getButtonFor('P169', 'Aanvragen').click();
     cy.wait('@startCase').its('response.statusCode').should('equal', 200);
   });
 
-  cy.get(`${DASHBOARD_PAGE} ${DASHBOARD_WIDGET}[id="startzaak-shortcut-zaakintake-1"]`).should('exist').within(_ => {
+  cy.get(`${DASHBOARD_PAGE} ${DASHBOARD_WIDGET}[id="zaaktype_regression_intake-shortcut-zaaktype_regression_intake-1"]`).should('exist').within(_ => {
     cy.getInputFor('P572', 'Domeingegevens-Aanvraaggegevens').type(reference);
     cy.getButtonFor('P572', 'Ok').click();
   });
 
-  cy.get(`${DASHBOARD_PAGE} ${DASHBOARD_WIDGET}[id="startzaak-shortcut-zaakintake-1"]`).should('exist').within(_ => {
-    cy.get('div[id="P525_AanvraagGeregistreerd_1"]').contains('De aanvraag is bekend met het kenmerk');
-    cy.get('div[id="P525_AanvraagGeregistreerd_1"] bq-textitem-dynamic').then($element => {
+  cy.get(`${DASHBOARD_PAGE} ${DASHBOARD_WIDGET}[id="zaaktype_regression_intake-shortcut-zaaktype_regression_intake-1"]`).should('exist').within(_ => {
+    cy.get('div[id="P525_AanvraagGeregistreerd_2"] bq-textitem-dynamic').then($element => {
       cy.wrap($element.text()).as(reference);
     });
   });
@@ -208,8 +207,7 @@ function startCaseTypeA(reference: string): Chainable<unknown> {
     cy.get(DASHBOARD_MENU).contains('button', 'Home').click();
   });
 
-  cy.get(`${DASHBOARD_PAGE} ${DASHBOARD_WIDGET}[id="startzaak-shortcut-zaakintake-1"]`).should('not.exist');
-  cy.get(`${DASHBOARD_PAGE} ${DASHBOARD_WIDGET}[id="maindashboard-shortcut-zakentoegewezen-1"]`).should('exist');
+  cy.get(`${DASHBOARD_PAGE} ${DASHBOARD_WIDGET}[id="maindashboard-shortcut-regressionwidgetzakentoegewezen-1"]`).should('exist');
 }
 
 function openCase(reference: string): Chainable<unknown> {
@@ -223,8 +221,8 @@ function involveCase(reference: string): Chainable<unknown> {
 function handleCase(reference: string, type: 'involve' | 'open'): Chainable<unknown> {
   cy.get(DASHBOARD_PAGE).within(() => {
     const widgetId = type === 'open'
-      ? 'maindashboard-shortcut-zakentoegewezen-1'
-      : 'maindashboard-shortcut-zakenniettoegewezen-1';
+      ? 'maindashboard-shortcut-regressionwidgetzakentoegewezen-1'
+      : 'maindashboard-shortcut-regressionwidgetzakenniettoegewezen-1';
 
     cy.get(DASHBOARD_WIDGET + `[id="${widgetId}"]`).should('exist').within(() => {
       cy.intercept('POST', '/runtime/*/api/v2/session/*/load').as('handleCase');
@@ -236,7 +234,7 @@ function handleCase(reference: string, type: 'involve' | 'open'): Chainable<unkn
         if (type === 'open') {
           cy.get('button[id^="P682_Open_"]').click();
         } else {
-          cy.get('button[id^="P76_NeemInBehandeling_"]').click();
+          cy.get('button[id^="P76_Open_"]').click();
         }
 
         cy.wait('@handleCase').its('response.statusCode').should('equal', 200);
@@ -247,33 +245,32 @@ function handleCase(reference: string, type: 'involve' | 'open'): Chainable<unkn
     });
   });
 
-  return verifyOpenCasePage(type);
+  return verifyOpenCasePage();
 }
 
-function verifyOpenCasePage(type: 'involve' | 'open' = 'open'): Chainable<unknown> {
+function verifyOpenCasePage(): Chainable<unknown> {
   return cy.get(DASHBOARD_PAGE).within(() => {
-    cy.get(DASHBOARD_WIDGET).should('have.length', 6);
+    cy.get(DASHBOARD_WIDGET).should('have.length', 7);
 
-    cy.get(DASHBOARD_WIDGET + '[id="zaakdashboard-shortcut-widgetzaakgegevens-1"]').should('exist').within(() => {
-      if (type === 'involve') {
-        cy.url().should('include', 'Event=NeemInBehandeling');
-      }
-
+  cy.get(DASHBOARD_WIDGET + '[id="zaaktype_regression_dashboard-shortcut-regressionwidgetzaaktestfunctionaliteit-1"]').should('exist').within(() => {
       cy.get(DASHBOARD_WIDGET_PROJECT).should('exist');
     });
-    cy.get(DASHBOARD_WIDGET + '[id="zaakdashboard-shortcut-widgettakenlijst-1"]').should('exist').within(() => {
+    cy.get(DASHBOARD_WIDGET + '[id="zaaktype_regression_dashboard-shortcut-regressionwidgetzaakgegevens-1"]').should('exist').within(() => {
       cy.get(DASHBOARD_WIDGET_PROJECT).should('exist');
     });
-    cy.get(DASHBOARD_WIDGET + '[id="zaakdashboard-shortcut-widgetdocumenten-1"]').should('exist').within(() => {
+    cy.get(DASHBOARD_WIDGET + '[id="zaaktype_regression_dashboard-shortcut-regressionwidgettakenlijst-1"]').should('exist').within(() => {
       cy.get(DASHBOARD_WIDGET_PROJECT).should('exist');
     });
-    cy.get(DASHBOARD_WIDGET + '[id="zaakdashboard-shortcut-widgetbetrokkenen-1"]').should('exist').within(() => {
+    cy.get(DASHBOARD_WIDGET + '[id="zaaktype_regression_dashboard-shortcut-regressionwidgetdocumenten-1"]').should('exist').within(() => {
       cy.get(DASHBOARD_WIDGET_PROJECT).should('exist');
     });
-    cy.get(DASHBOARD_WIDGET + '[id="zaakdashboard-shortcut-widgetnotities-1"]').should('exist').within(() => {
+    cy.get(DASHBOARD_WIDGET + '[id="zaaktype_regression_dashboard-shortcut-regressionwidgetbetrokkenen-1"]').should('exist').within(() => {
       cy.get(DASHBOARD_WIDGET_PROJECT).should('exist');
     });
-    cy.get(DASHBOARD_WIDGET + '[id="zaakdashboard-shortcut-widgetzaaktijdlijn-1"]').should('exist').within(() => {
+    cy.get(DASHBOARD_WIDGET + '[id="zaaktype_regression_dashboard-shortcut-regressionwidgetnotities-1"]').should('exist').within(() => {
+      cy.get(DASHBOARD_WIDGET_PROJECT).should('exist');
+    });
+    cy.get(DASHBOARD_WIDGET + '[id="zaaktype_regression_dashboard-shortcut-regressionwidgetzaaktijdlijn-1"]').should('exist').within(() => {
       cy.get(DASHBOARD_WIDGET_PROJECT).should('exist');
     });
 

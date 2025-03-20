@@ -5,10 +5,10 @@ blueriq:
         enabled: true
         location: ${spring.config.additional-location}dashboard-definitions/
       shortcuts:
-        foundation:
-          project: export-foundation
-          version: V7_3_0
-          dashboard-name: foundation
+        regressiontest:
+          project: export-regressiontest
+          version: DCM_Dashboarding_Rebuild
+          dashboard-name: regressiontest
           entry-page: maindashboard
 spring:
   security:

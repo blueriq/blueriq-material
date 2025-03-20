@@ -68,16 +68,6 @@ services:
     depends_on:
       - e2e-dcm-lists
       - e2e-postgres
-      - e2e-customerdata
-  e2e-customerdata:
-    build:
-      context: ../
-      dockerfile: dashboards/Dockerfile.CDS
-    mem_limit: 384m
-    ports:
-      - "9083:8080"
-    depends_on:
-      - e2e-postgres
   e2e-dcm-lists:
     build:
       context: ../
