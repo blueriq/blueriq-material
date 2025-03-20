@@ -6,9 +6,9 @@ ARG BLUERIQ_LICENSE
 
 EXPOSE 8080 8000
 
-COPY preparations/blueriq-runtime-standalone-*.jar ~/runtime.jar
+COPY preparations/blueriq-case-engine-standalone-*.jar ~/case-engine.jar
 COPY dashboards/config/case-engine /config/blueriq-case-engine/
 COPY dashboards/config/exports /config/blueriq-case-engine/exports/
 
 WORKDIR ~
-ENTRYPOINT ["java", "-Dserver.servlet.context-path=/runtime", "-Dspring.config.additional-location=file:///config/blueriq-case-engine/", "-Djava.security.egd=file:/dev/./urandom", "-Dlogging.file.name=case-engine.log", "-Duser.timezone=Europe/Amsterdam", "-jar", "runtime.jar" ,"-Xmx512m", "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000"]
+ENTRYPOINT ["java", "-Dserver.servlet.context-path=/case-engine", "-Dspring.config.additional-location=file:///config/blueriq-case-engine/", "-Djava.security.egd=file:/dev/./urandom", "-Dlogging.file.name=case-engine.log", "-Duser.timezone=Europe/Amsterdam", "-jar", "case-engine.jar" ,"-Xmx512m", "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000"]

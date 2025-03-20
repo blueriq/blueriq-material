@@ -33,13 +33,13 @@ describe('Dashboards App', () => {
     });
 
     it('should be able to login via the gateway', () => {
-      cy.startDashboard('/dashboard/export-foundation/V7_3_0/foundation/maindashboard', { loginRequired: true });
+      cy.startDashboard('/dashboard/export-regressiontest/DCM_Dashboarding_Rebuild/regressiontest/maindashboard', { loginRequired: true });
 
       cy.doGatewayLogin('Behandelaar', 'Behandelaar');
     });
 
     it('should be able to logout via the gateway', () => {
-      cy.startDashboard('/dashboard/export-foundation/V7_3_0/foundation/maindashboard', { loginRequired: true });
+      cy.startDashboard('/dashboard/export-regressiontest/DCM_Dashboarding_Rebuild/regressiontest/maindashboard', { loginRequired: true });
 
       cy.doGatewayLogin('Behandelaar', 'Behandelaar');
       cy.doGatewayLogout();
@@ -47,7 +47,7 @@ describe('Dashboards App', () => {
     });
 
     it('should be able to login with multiple users', () => {
-      cy.startDashboard('/dashboard/export-foundation/V7_3_0/foundation/maindashboard', { loginRequired: true });
+      cy.startDashboard('/dashboard/export-regressiontest/DCM_Dashboarding_Rebuild/regressiontest/maindashboard', { loginRequired: true });
 
       cy.doGatewayLogin('Behandelaar', 'Behandelaar');
       cy.doGatewayLogout();
@@ -55,7 +55,7 @@ describe('Dashboards App', () => {
     });
 
     it('should display the full name of the user', () => {
-      cy.startDashboard('/dashboard/export-foundation/V7_3_0/foundation/maindashboard', { loginRequired: true });
+      cy.startDashboard('/dashboard/export-regressiontest/DCM_Dashboarding_Rebuild/regressiontest/maindashboard', { loginRequired: true });
 
       cy.doGatewayLogin('johndoe', 'johndoe');
 
@@ -67,22 +67,22 @@ describe('Dashboards App', () => {
 
   describe('by routes and authorization', () => {
     it('should display dcm dashboard main page as Behandelaar', () => {
-      cy.startDashboard('/dashboard/export-foundation/V7_3_0/foundation/maindashboard', { loginRequired: true });
+      cy.startDashboard('/dashboard/export-regressiontest/DCM_Dashboarding_Rebuild/regressiontest/maindashboard', { loginRequired: true });
 
       cy.doGatewayLogin('Behandelaar', 'Behandelaar');
 
       cy.get(DASHBOARD_HEADER).within(() => {
-        cy.get(DASHBOARD_MENU).contains('button', 'Business Activity Monitor');
+        cy.get(DASHBOARD_MENU).contains('button', 'BAM');
       });
 
       cy.get(DASHBOARD_PAGE).within(() => {
         cy.get(DASHBOARD_WIDGET).should('have.length', 2);
 
-        cy.get(DASHBOARD_WIDGET + '[id="maindashboard-shortcut-zakentoegewezen-1"]').should('exist').within(() => {
+        cy.get(DASHBOARD_WIDGET + '[id="maindashboard-shortcut-regressionwidgetzakenniettoegewezen-1"]').should('exist').within(() => {
           cy.get(DASHBOARD_WIDGET_PROJECT).should('exist');
         });
 
-        cy.get(DASHBOARD_WIDGET + '[id="maindashboard-shortcut-zakentoegewezen-1"]').should('exist').within(() => {
+        cy.get(DASHBOARD_WIDGET + '[id="maindashboard-shortcut-regressionwidgetzakentoegewezen-2"]').should('exist').within(() => {
           cy.get(DASHBOARD_WIDGET_PROJECT).should('exist');
         });
       });
@@ -133,27 +133,29 @@ describe('Dashboards App', () => {
     });
 
     it('should display dcm dashboard main page as Aanvrager', () => {
-      cy.startDashboard('/dashboard/export-foundation/V7_3_0/foundation/maindashboard', { loginRequired: true });
+      cy.startDashboard('/dashboard/export-regressiontest/DCM_Dashboarding_Rebuild/regressiontest/maindashboard', { loginRequired: true });
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
       cy.get(DASHBOARD_HEADER).within(() => {
-        cy.get(DASHBOARD_MENU).contains('button', 'Business Activity Monitor').should('not.exist');
+        cy.get(DASHBOARD_MENU).contains('button', 'BAM').should('not.exist');
       });
 
       cy.get(DASHBOARD_PAGE).within(() => {
-        cy.get(DASHBOARD_WIDGET).should('have.length', 1);
+        cy.get(DASHBOARD_WIDGET).should('have.length', 2);
 
-        cy.get(DASHBOARD_WIDGET + '[id="maindashboard-shortcut-zakentoegewezen-1"]').should('exist').within(() => {
+        cy.get(DASHBOARD_WIDGET + '[id="maindashboard-shortcut-regressionwidgetzakentoegewezen-1"]').should('exist').within(() => {
           cy.get(DASHBOARD_WIDGET_PROJECT).should('exist');
         });
       });
 
-      cy.get(DASHBOARD_WIDGET + '[id="maindashboard-shortcut-zakenniettoegewezen-1"]').should('not.exist');
+      cy.get(DASHBOARD_WIDGET + '[id="maindashboard-shortcut-regressionwidgetnieuweaanvraag-1"]').should('exist').within(() => {
+        cy.get(DASHBOARD_WIDGET_PROJECT).should('exist');
+      });
     });
 
     it('should display login page after logout while on restricted route', () => {
-      cy.startDashboard('/dashboard/export-foundation/V7_3_0/foundation/maindashboard', { loginRequired: true });
+      cy.startDashboard('/dashboard/export-regressiontest/DCM_Dashboarding_Rebuild/regressiontest/maindashboard', { loginRequired: true });
 
       cy.doGatewayLogin('Behandelaar', 'Behandelaar');
 
@@ -166,7 +168,7 @@ describe('Dashboards App', () => {
 
   describe('case actions', () => {
     it('should start a case', () => {
-      cy.startDashboard('/dashboard/export-foundation/V7_3_0/foundation/maindashboard', { loginRequired: true });
+      cy.startDashboard('/dashboard/export-regressiontest/DCM_Dashboarding_Rebuild/regressiontest/maindashboard', { loginRequired: true });
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
@@ -174,7 +176,7 @@ describe('Dashboards App', () => {
     });
 
     it('should start a case for a shortcut', () => {
-      cy.startDashboard('/dashboard/shortcut/foundation', { loginRequired: true });
+      cy.startDashboard('/dashboard/shortcut/regressiontest', { loginRequired: true });
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
@@ -182,7 +184,7 @@ describe('Dashboards App', () => {
     });
 
     it('should display open case', () => {
-      cy.startDashboard('/dashboard/export-foundation/V7_3_0/foundation/maindashboard', { loginRequired: true });
+      cy.startDashboard('/dashboard/export-regressiontest/DCM_Dashboarding_Rebuild/regressiontest/maindashboard', { loginRequired: true });
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
@@ -193,7 +195,7 @@ describe('Dashboards App', () => {
     });
 
     it('should display an involved case with additional parameters', () => {
-      cy.startDashboard('/dashboard/export-foundation/V7_3_0/foundation/maindashboard', { loginRequired: true });
+      cy.startDashboard('/dashboard/export-regressiontest/DCM_Dashboarding_Rebuild/regressiontest/maindashboard', { loginRequired: true });
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
@@ -208,7 +210,7 @@ describe('Dashboards App', () => {
     });
 
     it('should refresh the dashboard widgets', () => {
-      cy.startDashboard('/dashboard/export-foundation/V7_3_0/foundation/maindashboard', { loginRequired: true });
+      cy.startDashboard('/dashboard/export-regressiontest/DCM_Dashboarding_Rebuild/regressiontest/maindashboard', { loginRequired: true });
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
@@ -216,7 +218,7 @@ describe('Dashboards App', () => {
 
       // set filter to have no values in table
       cy.intercept('POST', '/runtime/*/api/v2/session/*/event').as('events');
-      cy.get(DASHBOARD_WIDGET + '[id="maindashboard-shortcut-zakentoegewezen-1"]').within(() => {
+      cy.get(DASHBOARD_WIDGET + '[id="maindashboard-shortcut-regressionwidgetzakentoegewezen-1"]').within(() => {
         cy.get(`bq-filter button`).click();
         cy.root().parentsUntil('html').last().within(() => {
           cy.get('mat-dialog-container mat-form-field mat-select').selectOption('Kenmerk');
@@ -225,20 +227,20 @@ describe('Dashboards App', () => {
         });
       });
       cy.wait('@events').its('response.statusCode').should('equal', 200);
-      cy.get(DASHBOARD_WIDGET + '[id="maindashboard-shortcut-zakentoegewezen-1"] bq-table tbody').children().should('have.length', 0);
+      cy.get(DASHBOARD_WIDGET + '[id="maindashboard-shortcut-regressionwidgetzakentoegewezen-1"] bq-table tbody').children().should('have.length', 0);
 
       // reload page
       cy.get('button[id="dashboard-refresh"]').click();
 
       // verify that filter is reset
-      cy.get(DASHBOARD_WIDGET + '[id="maindashboard-shortcut-zakentoegewezen-1"] bq-table tbody').children().should('have.length.above', 0);
+      cy.get(DASHBOARD_WIDGET + '[id="maindashboard-shortcut-regressionwidgetzakentoegewezen-1"] bq-table tbody').children().should('have.length.above', 0);
     });
 
   });
 
   describe('task actions', () => {
     it('should be able to successfully complete a task', () => {
-      cy.startDashboard('/dashboard/export-foundation/V7_3_0/foundation/maindashboard', { loginRequired: true });
+      cy.startDashboard('/dashboard/export-regressiontest/DCM_Dashboarding_Rebuild/regressiontest/maindashboard', { loginRequired: true });
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
@@ -248,26 +250,26 @@ describe('Dashboards App', () => {
 
       cy.get(`@${reference}`).then(referenceId => cy.openCase(referenceId as unknown as string));
 
-      cy.get(DASHBOARD_WIDGET + '[id="zaakdashboard-shortcut-widgettakenlijst-1"]').within(() => {
+      cy.get(DASHBOARD_WIDGET + '[id="zaaktype_regression_dashboard-shortcut-regressionwidgettakenlijst-1"]').within(() => {
         cy.waitForListEntry('Toevoegen bewijsstukken');
       });
 
       // Start Task
       cy.getButtonFor('P893', 'Start').click();
       // Finish Task
-      cy.getButtonFor('P463', 'Ok').click();
+      cy.getButtonFor('P977', 'Ok').click();
 
       // Verify we are back in the case
       cy.verifyOpenCasePage();
 
       // New task should be available
-      cy.get(DASHBOARD_WIDGET + '[id="zaakdashboard-shortcut-widgettakenlijst-1"]').within(() => {
+      cy.get(DASHBOARD_WIDGET + '[id="zaaktype_regression_dashboard-shortcut-regressionwidgettakenlijst-1"]').within(() => {
         cy.waitForListEntry('Toevoegen bewijsstukken');
       });
     });
 
     it('should be able to successfully cancel a task', () => {
-      cy.startDashboard('/dashboard/export-foundation/V7_3_0/foundation/maindashboard', { loginRequired: true });
+      cy.startDashboard('/dashboard/export-regressiontest/DCM_Dashboarding_Rebuild/regressiontest/maindashboard', { loginRequired: true });
 
       cy.doGatewayLogin('Aanvrager', 'Aanvrager');
 
@@ -277,7 +279,7 @@ describe('Dashboards App', () => {
 
       cy.get(`@${reference}`).then(referenceId => cy.openCase(referenceId as unknown as string));
 
-      cy.get(DASHBOARD_WIDGET + '[id="zaakdashboard-shortcut-widgettakenlijst-1"]').within(() => {
+      cy.get(DASHBOARD_WIDGET + '[id="zaaktype_regression_dashboard-shortcut-regressionwidgettakenlijst-1"]').within(() => {
         cy.waitForListEntry('Toevoegen bewijsstukken');
       });
 
@@ -285,13 +287,13 @@ describe('Dashboards App', () => {
       cy.getButtonFor('P893', 'Start').click();
 
       // Cancel Task
-      cy.getButtonFor('P463', 'Annuleren').click();
+      cy.getButtonFor('P977', 'Cancel').click();
 
       // Verify we are back in the case
       cy.verifyOpenCasePage();
 
       // Verify the task is still in the list
-      cy.get(DASHBOARD_WIDGET + '[id="zaakdashboard-shortcut-widgettakenlijst-1"]').within(() => {
+      cy.get(DASHBOARD_WIDGET + '[id="zaaktype_regression_dashboard-shortcut-regressionwidgettakenlijst-1"]').within(() => {
         cy.waitForListEntry('Toevoegen bewijsstukken');
       });
     });

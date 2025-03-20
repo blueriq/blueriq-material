@@ -7,7 +7,6 @@ set composeOnly=false
 set runtimeBranch="master"
 set runtimeUrl="git@bq-gitlab.everest.nl:blueriq/blueriq.git"
 set runtimeVersion="17.6.0.196"
-set cdsVersion="5.0.6"
 set dcmVersion="4.0.6"
 set dashboardVersion="2.1.1"
 set gatewayVersion="1.1.2"
@@ -61,23 +60,23 @@ if %skipBuild% == false (
 )
 cd %checkoutDir%\Runtime
 if %skipBuild% == false (
-  call mvn -B clean package -DskipTests -P!quality -am -pl runtime/blueriq-runtime-standalone || exit /b
+  call mvn -B clean package -DskipTests -P!quality -am -pl runtime/blueriq-runtime-standalone,dcm/blueriq-case-engine-standalone || exit /b
 )
 
-call :get_version com.blueriq.customerdata.api.version cdsVersion
 call :get_version com.blueriq.dcm.lists.api.version dcmVersion
 call :get_version com.blueriq.dcm.dashboard.version dashboardVersion
 call :get_version com.blueriq.gateway.version gatewayVersion
 call xcopy /I runtime\blueriq-runtime-standalone\target\*.jar  ..\..\cypress\docker\preparations
+call xcopy /I dcm\blueriq-case-engine-standalone\target\*.jar  ..\..\cypress\docker\preparations
 cd ..\..\
 exit /B
 
 :download_runtime
 call mvn -B  dependency:copy "-Dartifact=com.blueriq:blueriq-runtime-standalone:%runtimeVersion%:jar" "-DoutputDirectory=%location%" "-Dproject.basedir=%location%"
+call mvn -B  dependency:copy "-Dartifact=com.blueriq:blueriq-case-engine-standalone:%runtimeVersion%:jar" "-DoutputDirectory=%location%" "-Dproject.basedir=%location%"
 exit /B
 
 :download_services
-call mvn -B  dependency:copy "-Dartifact=com.blueriq:blueriq-customerdata-sql-store-standalone:%cdsVersion%:jar" "-DoutputDirectory=%location%" || exit /b
 call mvn -B  dependency:copy "-Dartifact=com.blueriq:blueriq-dcm-lists-standalone:%dcmVersion%:jar" "-DoutputDirectory=%location%" || exit /b
 call mvn -B  dependency:copy "-Dartifact=com.blueriq:blueriq-dcm-dashboard-service-standalone:%dashboardVersion%:jar" "-DoutputDirectory=%location%" || exit /b
 call mvn -B  dependency:copy "-Dartifact=com.blueriq:blueriq-gateway-service:%gatewayVersion%:jar" "-DoutputDirectory=%location%" || exit /b
