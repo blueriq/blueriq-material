@@ -13,6 +13,7 @@ spring:
       password: blueriq
   cloud:
     gateway:
+      trusted-proxies: .*
       x-forwarded:
         enabled: true
       forwarded:
