@@ -1,14 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { BlueriqResponseError, FailedAction, SessionRegistry } from '@blueriq/angular';
-import {
-  BlueriqSessionTemplate,
-  BlueriqTestingModule,
-  BlueriqTestSession,
-  SessionTemplate,
-} from '@blueriq/angular/testing';
+import { BlueriqResponseError, FailedAction } from '@blueriq/angular';
+import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession, } from '@blueriq/angular/testing';
 import { ErrorType } from '@blueriq/core';
-import { ContainerTemplate, PageModelTemplate, PageTemplate } from '@blueriq/core/testing';
+import { ContainerTemplate } from '@blueriq/core/testing';
 import { BqContainerDirective } from '@shared/directive/container/bq-container.directive';
 import { WidgetModule } from '../widget.module';
 import { FlowWidgetComponent } from './flow-widget.component';
@@ -18,7 +13,7 @@ describe('FlowWidgetComponent', () => {
   let component: ComponentFixture<FlowWidgetComponent>;
   let session: BlueriqTestSession;
 
-  beforeEach(async() => {
+  beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
         BlueriqTestingModule,
@@ -32,14 +27,6 @@ describe('FlowWidgetComponent', () => {
       .displayName('Container display name')
       .contentStyle('dashboard_flowwidget')
       .properties({ 'info': 'WidgetInfo_DashboardFlowWidget' });
-
-    const pageModel = PageModelTemplate.create(PageTemplate.create('pagename').displayName('Widget display name'));
-    const dashboardSession = SessionTemplate.create()
-      .sessionName('session-name-DashboardFlowWidget')
-      .pageModel(pageModel).build();
-
-    const sessionRegistry: SessionRegistry = TestBed.inject(SessionRegistry);
-    sessionRegistry.register(dashboardSession);
 
     session = BlueriqSessionTemplate.create().build(container);
     component = session.get(FlowWidgetComponent);

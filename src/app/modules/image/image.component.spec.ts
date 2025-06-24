@@ -31,8 +31,9 @@ describe('ImageComponent', () => {
   it('should render properly', () => {
     expect(component.nativeElement.querySelector('img').getAttribute('width')).toBeFalsy();
     expect(component.nativeElement.querySelector('img').getAttribute('height')).toBeFalsy();
+    expect(component.nativeElement.querySelector('img').getAttribute('alt')).toBeFalsy();
     expect(component.nativeElement.querySelector('img').getAttribute('src'))
-      .toBe('/blueriq/api/v2/session/session-id/image/myImage/key/P0-I0');
+    .toBe('/blueriq/api/v2/session/session-id/image/myImage/key/P0-I0');
   });
 
   it('should have the correct dimensions set', () => {
@@ -42,6 +43,13 @@ describe('ImageComponent', () => {
     );
     expect(component.nativeElement.querySelector('img').getAttribute('width')).toBe('10');
     expect(component.nativeElement.querySelector('img').getAttribute('height')).toBe('1100');
+  });
+
+  it('should have the correct alternative text set', () => {
+    session.update(
+      imageTemplate.alternativeText('hele mooie dingen'),
+    );
+    expect(component.nativeElement.querySelector('img').getAttribute('alt')).toBe('hele mooie dingen');
   });
 
 });
