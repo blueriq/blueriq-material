@@ -1692,33 +1692,33 @@
     "@babel/helper-string-parser" "^7.25.9"
     "@babel/helper-validator-identifier" "^7.25.9"
 
-"@blueriq/angular@0.18.11":
-  version "0.18.11"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/angular/-/@blueriq/angular-0.18.11.tgz#1c261e507b38a65dc1b1114602471169f85410e7"
-  integrity sha512-2B167X3fmHYPyy2xEnv5bZOVjvUmu7ifTq8C5AA0rc1vVvyW+M5/e34elPt6gReaAmXgdZYL6Z8kuO2MAVxmCg==
+"@blueriq/angular@0.18.13":
+  version "0.18.13"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/angular/-/@blueriq/angular-0.18.13.tgz#b56d5671013f1364697889c69540af5836edd599"
+  integrity sha512-SJtLxVgbapgpCGEZTS4WI54V0WWUepXGu3Sy4iGlhjghcOtv+jVjBP2ozwMRoSpxXDgLbvkKZeZ97fRtE9q5KA==
   dependencies:
     js-base64 "^3.7.5"
     tslib "^2.3.0"
 
-"@blueriq/core@0.18.11":
-  version "0.18.11"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/core/-/@blueriq/core-0.18.11.tgz#76917421674cab414bb97908a1ccde4fdead9877"
-  integrity sha512-GqG5tyFAn1HZnot+ZrjV0EzopW1ggqpYjpOGiipYMgB82HknBNSZ89z6nigFYnqDWwifsMKVwZ6ZSwwbYBUHqw==
+"@blueriq/core@0.18.13":
+  version "0.18.13"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/core/-/@blueriq/core-0.18.13.tgz#9a1aec011d01a23e74880e1b5c6bc80ba9c547e2"
+  integrity sha512-r+uQOB7JKgulfCcXL494ghaj1vghDnEJSDmEset+mkSbHagAaEie7qR7RNvtdcOOLmSGEjxaC398KfyAphG34g==
   dependencies:
     css-selector-parser "1.3.0"
     tslib "^2.3.0"
 
-"@blueriq/dashboard@0.18.11":
-  version "0.18.11"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/dashboard/-/@blueriq/dashboard-0.18.11.tgz#a1d58406fe7975ee993ecd0a04d15851bbcea22c"
-  integrity sha512-G2Ns/tmjoSrahxYVB2lc9UoEL+VjHxs7wjmSLuC6pLzaU+Nh/F7SBFK/bnPCuNawn8JSja1niy4+PsqURvZkFQ==
+"@blueriq/dashboard@0.18.13":
+  version "0.18.13"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/dashboard/-/@blueriq/dashboard-0.18.13.tgz#945a3354413d7f11cfdbaa28e6dc8a97ef639df8"
+  integrity sha512-0/BBegHr/A8zi5sipKA/tzecC+AE7KmEIqan4qRpDVQLiN/OeVw1pWbriAn+Ov2N614jnSBDeFWQARayNN5IYg==
   dependencies:
     tslib "^2.3.0"
 
-"@blueriq/devtools@0.18.11":
-  version "0.18.11"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/devtools/-/@blueriq/devtools-0.18.11.tgz#faecc0f264af7893fa8938a89205baad1ac66805"
-  integrity sha512-bRhZ/0ulwr1uLtp9/sH5OXRxo1KvLf6ygh8CApUD45flBQZI60YsDgB+ofzIY6hVVcSsp1E38uNE5pbspo47+A==
+"@blueriq/devtools@0.18.13":
+  version "0.18.13"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/devtools/-/@blueriq/devtools-0.18.13.tgz#ca4bc2e16bbde1fbeb8b6abbce5916d1a647122f"
+  integrity sha512-IHiW6NMB6RgICkYDOSHqozLqkbvwIEU6DhsMbjJAba++SQRHNgPEIZOy6+8WCy/FGEMvaaNKuL5RmgLmzyCy8w==
   dependencies:
     tslib "^2.3.0"
 

@@ -15,7 +15,7 @@ describe('WidgetPageComponent', () => {
   let component: ComponentFixture<FlowWidgetComponent>;
   let session: BlueriqTestSession;
 
-  beforeEach(async() => {
+  beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
         BlueriqTestingModule,
@@ -26,9 +26,11 @@ describe('WidgetPageComponent', () => {
   });
 
   beforeEach(() => {
-    const flowWidgetContainer = ContainerTemplate.create('container')
+    const flowWidgetContainer = ContainerTemplate.create('widget-container')
       .contentStyle('dashboard_flowwidget')
       .properties({ 'info': 'WidgetInfo_DashboardFlowWidget' });
+
+    session = BlueriqSessionTemplate.create().build(flowWidgetContainer);
 
     const widgetPageModel = PageModelTemplate.create(
       PageTemplate.create('pagename')
@@ -38,13 +40,11 @@ describe('WidgetPageComponent', () => {
         ),
     );
     const dashboardSession = SessionTemplate.create()
-      .sessionName('session-name-DashboardFlowWidget')
+      .sessionName('session-name-widget-container-flow-widget')
       .pageModel(widgetPageModel).build();
 
     const sessionRegistry: SessionRegistry = TestBed.inject(SessionRegistry);
     sessionRegistry.register(dashboardSession);
-
-    session = BlueriqSessionTemplate.create().build(flowWidgetContainer);
 
     component = session.get(FlowWidgetComponent);
     component.detectChanges();
