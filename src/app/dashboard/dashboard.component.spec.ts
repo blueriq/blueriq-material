@@ -1,10 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { DashboardComponent } from './dashboard.component';
-import { RouterTestingModule } from '@angular/router/testing';
-import { DashboardAuthService } from '@blueriq/dashboard';
-import { NotificationType } from '../notification-overlay/notification.model';
 import { ActivatedRoute, ActivatedRouteSnapshot, convertToParamMap, Params, Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Dispatcher } from '@blueriq/angular';
+import { TestDispatcher } from '@blueriq/angular/testing';
+import { DashboardAuthService } from '@blueriq/dashboard';
+import { ToastrService } from 'ngx-toastr';
 import { of } from 'rxjs';
+import { NotificationType } from '../notification-overlay/notification.model';
+import { DashboardComponent } from './dashboard.component';
 
 describe('Dashboard Component', () => {
 
@@ -12,9 +15,11 @@ describe('Dashboard Component', () => {
   let authService: DashboardAuthService;
   let router: Router;
   let route: jasmine.SpyObj<ActivatedRoute>;
+  let toastrService: ToastrService;
+  let testDispatcher: TestDispatcher;
 
-  beforeEach(async () => {
-
+  beforeEach(async() => {
+    testDispatcher = new TestDispatcher();
     authService = jasmine.createSpyObj<DashboardAuthService>('DashboardAuthService', ['login']);
     router = jasmine.createSpyObj<Router>('Router', ['navigate']);
     const routeParams: Params = { page: 'default' };
@@ -26,6 +31,7 @@ describe('Dashboard Component', () => {
         params: routeParams,
       } as ActivatedRouteSnapshot,
     });
+    toastrService = jasmine.createSpyObj<ToastrService>('ToastrService', ['success', 'info', 'warning']);
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [DashboardComponent],
@@ -33,7 +39,9 @@ describe('Dashboard Component', () => {
         { provide: DashboardAuthService, useValue: authService },
         { provide: Router, useValue: router },
         { provide: ActivatedRoute, useValue: route },
-      ]
+        { provide: ToastrService, useValue: toastrService },
+        { provide: Dispatcher, useValue: testDispatcher },
+      ],
     }).compileComponents();
 
     component = TestBed.createComponent(DashboardComponent);
@@ -89,11 +97,11 @@ describe('Dashboard Component', () => {
   });
 
   it('should update the url when the page is changed with parameters', () => {
-    component.componentInstance.onPageChanged({ page: 'page', parameters: { param: 1 } });
+    component.componentInstance.onPageChanged({ page: 'page', parameters: { param: '1' } });
 
     expect(router.navigate).toHaveBeenCalledWith([`../page`], {
       relativeTo: route,
-      queryParams: { param: 1 },
+      queryParams: { param: '1' },
     });
   });
 
@@ -102,11 +110,11 @@ describe('Dashboard Component', () => {
 
     activatedRoute.snapshot.queryParams['devtools'] = '';
 
-    component.componentInstance.onPageChanged({ page: 'page', parameters: { param: 1 } });
+    component.componentInstance.onPageChanged({ page: 'page', parameters: { param: '1' } });
 
     expect(router.navigate).toHaveBeenCalledWith([`../page`], {
       relativeTo: route,
-      queryParams: { param: 1, devtools: '' },
+      queryParams: { param: '1', devtools: '' },
     });
   });
 
@@ -115,11 +123,11 @@ describe('Dashboard Component', () => {
 
     activatedRoute.snapshot.queryParams['param_2'] = 'test';
 
-    component.componentInstance.onPageChanged({ page: 'page', parameters: { param: 1 } });
+    component.componentInstance.onPageChanged({ page: 'page', parameters: { param: '1' } });
 
     expect(router.navigate).toHaveBeenCalledWith([`../page`], {
       relativeTo: route,
-      queryParams: { param: 1 },
+      queryParams: { param: '1' },
     });
   });
 });

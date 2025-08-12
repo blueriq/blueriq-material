@@ -16,15 +16,15 @@ import { TaskExecutionWidgetComponent } from './widgets/task-execution-widget/ta
 export const ROUTES: Routes = [
   {
     path: `shortcut/:shortcut`,
-    component: DashboardComponent
+    component: DashboardComponent,
   },
   {
     path: `shortcut/:shortcut/:page`,
-    component: DashboardComponent
+    component: DashboardComponent,
   },
   {
     path: `:project/:version/:dashboard/:page`,
-    component: DashboardComponent
+    component: DashboardComponent,
   },
 ];
 

@@ -9,6 +9,7 @@ export const environment = {
   dashboardUrl: '/dcm-dashboard',
   dashboardAuthUrl: '/auth',
   devtoolsUrl: '/devtools/index.html',
+  eventBusBaseUrl: './event-bus/events',
   envName: 'development',
   isBundled: false,
 };

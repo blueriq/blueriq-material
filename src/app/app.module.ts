@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BlueriqModule } from '@blueriq/angular';
 import { V2BackendModule } from '@blueriq/angular/backend/v2';
 import { DevtoolsModule } from '@blueriq/angular/devtools';
+import { LiveUpdatesModule } from '@blueriq/angular/live-updates';
 import { BlueriqStoreModule } from '@blueriq/angular/store';
 import { DateFormats } from '@blueriq/core';
 import { EffectsModule } from '@ngrx/effects';
@@ -11,6 +12,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { provideDateFormats } from '@shared/date/bq-date-parser';
 import { BqEffectsModule } from '@shared/effects/bq-effects.module';
+import { ToastrModule } from 'ngx-toastr';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
@@ -69,8 +71,13 @@ const routes: Routes = [
       name: 'Blueriq',
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
+    ToastrModule.forRoot({
+      autoDismiss: true,
+      positionClass: 'toast-bottom-right',
+      timeOut: 7500,
+    }),
 
-    // Blueriq
+    /* Blueriq */
     BlueriqModule.forRoot({
       isBundled: environment.isBundled,
     }),
@@ -84,7 +91,13 @@ const routes: Routes = [
       targetOrigin: '*',
     }),
 
-    /* Blueriq Modules */
+    // Remove this module declaration if your setup doesn't include Blueriq's LiveUpdates feature
+    LiveUpdatesModule.forRoot({
+      baseUrl: environment.eventBusBaseUrl,
+      giveUpAfterNrOfAttempts: 5,
+    }),
+
+    /* Blueriq Theme Modules */
     AssetModule,
     BqEffectsModule,
     ButtonModule,

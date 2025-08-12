@@ -4,6 +4,7 @@ export const environment = {
   dashboardUrl: '/dcm-dashboard',
   dashboardAuthUrl: '/auth',
   devtoolsUrl: '/runtime/devtools/index.html',
+  eventBusBaseUrl: './event-bus/events',
   envName: 'production',
   isBundled: false,
 };
