@@ -5,6 +5,7 @@
 @import 'roboto-fontface/css/roboto/roboto-fontface.css';
 @import 'globals/index';
 @import 'components/index';
+@import 'ngx-toastr/toastr';
 
 // TODO(v15): As of v15 mat.legacy-core no longer includes default typography styles.
 //  The following line adds:

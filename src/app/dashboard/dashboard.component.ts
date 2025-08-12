@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import { BlueriqComponents } from '@blueriq/angular';
-import { DashboardAuthService, DashboardPageChange, QueryParameters } from '@blueriq/dashboard';
-import { WidgetPageComponent } from '../modules/widget/widget-page/widget-page.component';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { BlueriqComponents, Dispatcher } from '@blueriq/angular';
+import { DashboardAuthService, DashboardPageChange, QueryParameters } from '@blueriq/dashboard';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { WidgetPageComponent } from '../modules/widget/widget-page/widget-page.component';
 import { NotificationModel, NotificationType } from '../notification-overlay/notification.model';
+import { ActivateCaseAction } from '../shared/dcm/case-aware.service';
+import { ActivateTaskAction } from '../shared/dcm/task-aware.service';
 
 @Component({
   templateUrl: './dashboard.component.html',
@@ -25,7 +27,9 @@ export class DashboardComponent {
 
   constructor(private readonly route: ActivatedRoute,
               private readonly router: Router,
-              private readonly authService: DashboardAuthService) {
+              private readonly authService: DashboardAuthService,
+              private readonly dispatcher: Dispatcher,
+  ) {
     this.shortcut = this.route.paramMap.pipe(map(param => param.get('shortcut')));
     this.project = this.route.paramMap.pipe(map(param => param.get('project')));
     this.version = this.route.paramMap.pipe(map(param => param.get('version')));
@@ -33,6 +37,14 @@ export class DashboardComponent {
     this.page = this.route.paramMap.pipe(map(param => param.get('page')));
     this.parameters = this.route.queryParams;
 
+    this.parameters.subscribe((query) => {
+      if (query != null && query['caseId'] != null) {
+        this.dispatcher.dispatch(new ActivateCaseAction(query['caseId']));
+      }
+      if (query != null && query['taskId'] != null) {
+        this.dispatcher.dispatch(new ActivateTaskAction(query['taskId']));
+      }
+    });
   }
 
   onPageChanged(pageChange: DashboardPageChange): void {
@@ -55,7 +67,7 @@ export class DashboardComponent {
   }
 
   private determineRoutePage(page: string): string {
-    return this.route.snapshot.params['page'] ? `../${page}` : `${page}`;
+    return this.route.snapshot.params['page'] ? `../${ page }` : `${ page }`;
   }
 
   private determineQueryParameters(route: ActivatedRoute, currentParams?: Params | null): Params {

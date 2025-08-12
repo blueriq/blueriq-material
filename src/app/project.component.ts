@@ -1,12 +1,6 @@
 import { Component, isDevMode, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {
-  FailedAction,
-  ForbiddenProjectAction,
-  isBlueriqError,
-  QueryParameters,
-  UnauthorizedProjectAction,
-} from '@blueriq/angular';
+import { FailedAction, ForbiddenProjectAction, isBlueriqError, QueryParameters, UnauthorizedProjectAction } from '@blueriq/angular';
 import { SessionId } from '@blueriq/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -30,7 +24,8 @@ export class ProjectComponent implements OnInit {
   notification: NotificationModel | undefined;
 
   constructor(private readonly auth: AuthService,
-              private readonly route: ActivatedRoute) {
+              private readonly route: ActivatedRoute,
+  ) {
   }
 
   ngOnInit(): void {
@@ -100,5 +95,4 @@ export class ProjectComponent implements OnInit {
       },
     };
   }
-
 }
