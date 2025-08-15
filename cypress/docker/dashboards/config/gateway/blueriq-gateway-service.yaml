@@ -13,24 +13,26 @@ spring:
       password: blueriq
   cloud:
     gateway:
-      trusted-proxies: .*
-      x-forwarded:
-        enabled: true
-      forwarded:
-        enabled: true
-      default-filters:
-        - TokenRelay
-      routes:
-        - id: runtime
-          uri: http://e2e-runtime:8080
-          predicates:
-            - Path=/runtime/**
-          filters:
-            - WidgetSession=/runtime
-        - id: dashboard
-          uri: http://e2e-dashboard:8080
-          predicates:
-            - Path=/dcm-dashboard/**
+      server:
+        webflux:
+          trusted-proxies: .*
+          x-forwarded:
+            enabled: true
+          forwarded:
+            enabled: true
+          default-filters:
+            - TokenRelay
+          routes:
+            - id: runtime
+              uri: http://e2e-runtime:8080
+              predicates:
+                - Path=/runtime/**
+              filters:
+                - WidgetSession=/runtime
+            - id: dashboard
+              uri: http://e2e-dashboard:8080
+              predicates:
+                - Path=/dcm-dashboard/**
   security:
     oauth2:
       client:
