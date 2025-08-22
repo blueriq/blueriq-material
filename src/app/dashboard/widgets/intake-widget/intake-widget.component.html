@@ -1,0 +1,17 @@
+<bq-intake *ngIf="parameters$ | async as parameters"
+           [sessionName]=sessionName
+           [languageCode]="parameters.languageCode"
+           [caseType]="parameters.caseType"
+           [baseUrl]="baseUrl"
+           (expired)="onSessionExpired()"
+           (error)="onError($event)"
+           (flowEnded)="onFlowEnded()"
+           (forbidden)="onForbidden()"
+           (unauthorized)="onUnauthorized()">
+</bq-intake>
+
+<bq-loading></bq-loading>
+
+<ng-container *ngIf="dashboardState === DashboardState.STABLE">
+  <bq-notification-overlay *ngIf="notification" [notification]="notification"></bq-notification-overlay>
+</ng-container>

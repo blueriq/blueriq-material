@@ -12,6 +12,8 @@
 
         <bq-task-execution-widget *ngSwitchCase="'blueriq-task'" [widget]="widget"
                                   [id]="widget.id"></bq-task-execution-widget>
+        <bq-intake-widget *ngSwitchCase="'blueriq-intake'" [widget]="widget"
+                          [id]="widget.id"></bq-intake-widget>
       </ng-container>
     </div>
   </div>
