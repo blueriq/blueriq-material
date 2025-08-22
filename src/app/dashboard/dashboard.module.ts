@@ -11,6 +11,7 @@ import { DashboardComponent } from './dashboard.component';
 import { DashboardHeaderModule } from './header/dashboard-header.module';
 import { DashboardPageComponent } from './page/dashboard-page.component';
 import { FlowWidgetComponent } from './widgets/flow-widget/flow-widget.component';
+import { IntakeWidgetComponent } from './widgets/intake-widget/intake-widget.component';
 import { TaskExecutionWidgetComponent } from './widgets/task-execution-widget/task-execution-widget.component';
 
 export const ROUTES: Routes = [
@@ -34,6 +35,7 @@ export const ROUTES: Routes = [
     DashboardPageComponent,
     FlowWidgetComponent,
     TaskExecutionWidgetComponent,
+    IntakeWidgetComponent,
   ],
   imports: [
     // Angular Modules
