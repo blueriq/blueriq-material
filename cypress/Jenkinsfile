@@ -29,7 +29,7 @@ node {
 
       stage('install tools') {
         bat 'tools/_install-tools.bat'
-        env.ANT_HOME = "${pwd()}\\tools\\apache-ant-1.10.3"
+        env.ANT_HOME = "${pwd()}\\tools\\apache-ant-1.10.14"
         env.PATH = "${env.ANT_HOME}\\bin;${env.PATH}"
       }
 
@@ -95,14 +95,14 @@ node {
   } finally {
     stage("Publish results") {
       // Test results
-      dir('cypress/report'){
-            publishHTML([       allowMissing         : false,
-                                alwaysLinkToLastBuild: false,
-                                keepAll              : true,
-                                reportDir            : 'mochareports',
-                                reportFiles          : 'report.html',
-                                reportName           : 'Cypress e2e report',
-                                reportTitles         : 'Cypress e2e report'])
+      dir('cypress/report') {
+        publishHTML([allowMissing         : false,
+                     alwaysLinkToLastBuild: false,
+                     keepAll              : true,
+                     reportDir            : 'mochareports',
+                     reportFiles          : 'report.html',
+                     reportName           : 'Cypress e2e report',
+                     reportTitles         : 'Cypress e2e report'])
       }
 
       // archive integration outputs

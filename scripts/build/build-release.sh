@@ -4,3 +4,4 @@ mkdir -p dist
 node -v
 yarn -v
 yarn build:runtime
+yarn build:standalone

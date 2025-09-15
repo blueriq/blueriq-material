@@ -1,7 +1,7 @@
 setlocal
 
 set SOFTWARE=%cd%\tools
-set ANT_HOME=%SOFTWARE%\apache-ant-1.10.3
+set ANT_HOME=%SOFTWARE%\apache-ant-1.10.14
 set PATH=%ANT_HOME%\bin;%MAVEN%\bin;%PATH%;
 
 set releaseVersion=%1

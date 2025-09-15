@@ -29,21 +29,21 @@ properties([
       defaultValue: '1.0.x-SNAPSHOT',
       description: 'In case of a release-build please provide the next development version.'
     ),
-	string(
-	  name: 'communityHost',
-	  defaultValue: '',
-	  description: 'In case of a release-build please provide the hostname of the server where to publish the community documentation to.'
-	),
-	string(
-	  name: 'communityUser',
-	  defaultValue: '',
-	  description: 'In case of a release-build please provide the username for the server where to publish the community documentation to.'
-	),
-	password(
-	  name: 'communityPass',
-	  defaultValue: '',
-	  description: 'In case of a release-build please provide the password for the server where to publish the community documentation to.'
-	)
+    string(
+      name: 'communityHost',
+      defaultValue: '',
+      description: 'In case of a release-build please provide the hostname of the server where to publish the community documentation to.'
+    ),
+    string(
+      name: 'communityUser',
+      defaultValue: '',
+      description: 'In case of a release-build please provide the username for the server where to publish the community documentation to.'
+    ),
+    password(
+      name: 'communityPass',
+      defaultValue: '',
+      description: 'In case of a release-build please provide the password for the server where to publish the community documentation to.'
+    )
   ])
 ])
 
@@ -63,7 +63,7 @@ node {
 
       stage('install tools') {
         bat 'tools/_install-tools.bat'
-        env.ANT_HOME = "${pwd()}\\tools\\apache-ant-1.10.3"
+        env.ANT_HOME = "${pwd()}\\tools\\apache-ant-1.10.14"
         env.PATH = "${env.ANT_HOME}\\bin;${env.PATH}"
       }
 
@@ -172,7 +172,7 @@ node {
             canRunOnFailed           : true])
     }
 
-	if (isMaster && currentBuild.result.equals('SUCCESS')) {
+    if (isMaster && currentBuild.result.equals('SUCCESS')) {
       stage('push to Github') {
         withCredentials([usernamePassword(credentialsId: 'blueriq-material_github.com', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
           // We want the tags now that where not fetched in the 'checkout' stage
@@ -183,7 +183,7 @@ node {
           bat "git push upstream --tags"
         }
       }
-	}
+    }
 
     notifyBuildStatus()
     deleteDir()
