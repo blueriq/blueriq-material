@@ -1,7 +1,7 @@
 setlocal
 
 set OLD_DIR=%CD%
-set ANT_VERSION=1.10.3
+set ANT_VERSION=1.10.14
 set ANT_DIR=apache-ant-%ANT_VERSION%
 
 cd %~dp0

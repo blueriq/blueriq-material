@@ -1,58 +1,76 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.blueriq</groupId>
-	<artifactId>blueriq-material-theme</artifactId>
-	<packaging>jar</packaging>
-	<version>1.6.1-SNAPSHOT</version>
+  <groupId>com.blueriq</groupId>
+  <artifactId>blueriq-material-theme</artifactId>
+  <packaging>jar</packaging>
+  <version>1.6.1-SNAPSHOT</version>
 
-	<name>Blueriq Material theme</name>
-	<description>Blueriq Material theme</description>
+  <name>Blueriq Material theme</name>
+  <description>Blueriq Material theme</description>
 
-	<properties>
-		<scm.connection>scm:git:git@bq-gitlab.everest.nl:blueriq/blueriq-material.git</scm.connection>
-		<scm.developerConnection>scm:git:git@bq-gitlab.everest.nl:blueriq/blueriq-material.git</scm.developerConnection>
-		<scm.url>https://git.blueriq.com/blueriq/blueriq-material/tree/master</scm.url>
-	</properties>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <scm.connection>scm:git:git@bq-gitlab.everest.nl:blueriq/blueriq-material.git</scm.connection>
+    <scm.developerConnection>scm:git:git@bq-gitlab.everest.nl:blueriq/blueriq-material.git</scm.developerConnection>
+    <scm.url>https://git.blueriq.com/blueriq/blueriq-material/tree/master</scm.url>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>3.1.0</version>
-				<executions>
-					<execution>
-						<id>filter-resources</id>
-						<phase>initialize</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${project.build.outputDirectory}/webresources/angular/material/</outputDirectory>
-							<resources>
-								<resource>
-									<filtering>false</filtering>
-									<directory>dist/</directory>
-									<include>**</include>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+    <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
+  </properties>
+
+  <build>
+    <plugins>
       <plugin>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <version>2.5.5</version>
-        <configuration>
-          <descriptors>
-            <descriptor>assembly.xml</descriptor>
-          </descriptors>
-          <appendAssemblyId>false</appendAssemblyId>
-        </configuration>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>${maven-resources-plugin.version}</version>
         <executions>
           <execution>
+            <id>filter-resources</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.outputDirectory}/webresources/angular/material/</outputDirectory>
+              <resources>
+                <resource>
+                  <filtering>false</filtering>
+                  <directory>dist/</directory>
+                  <include>**</include>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <configuration>
+              <descriptors>
+                <descriptor>assembly.xml</descriptor>
+              </descriptors>
+              <appendAssemblyId>false</appendAssemblyId>
+            </configuration>
             <id>make-assembly</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+          <execution>
+            <configuration>
+              <descriptors>
+                <descriptor>assembly-standalone.xml</descriptor>
+              </descriptors>
+              <appendAssemblyId>true</appendAssemblyId>
+            </configuration>
+            <id>make-standalone-assembly</id>
             <phase>package</phase>
             <goals>
               <goal>single</goal>
@@ -60,27 +78,27 @@
           </execution>
         </executions>
       </plugin>
-		</plugins>
-	</build>
+    </plugins>
+  </build>
 
-	<distributionManagement>
-		<repository>
-			<id>artifactory</id>
-			<name>artifactory-releases</name>
-			<url>https://artifactory.blueriq.com/artifactory/libs-blueriq-material-release-local/</url>
-		</repository>
-		<snapshotRepository>
-			<id>artifactory</id>
-			<name>artifactory-snapshots</name>
-			<url>https://artifactory.blueriq.com/artifactory/libs-blueriq-material-snapshot-local/</url>
-		</snapshotRepository>
-	</distributionManagement>
+  <distributionManagement>
+    <repository>
+      <id>artifactory</id>
+      <name>artifactory-releases</name>
+      <url>https://artifactory.blueriq.com/artifactory/libs-blueriq-material-release-local/</url>
+    </repository>
+    <snapshotRepository>
+      <id>artifactory</id>
+      <name>artifactory-snapshots</name>
+      <url>https://artifactory.blueriq.com/artifactory/libs-blueriq-material-snapshot-local/</url>
+    </snapshotRepository>
+  </distributionManagement>
 
-	<scm>
-		<connection>${scm.connection}</connection>
-		<developerConnection>${scm.developerConnection}</developerConnection>
-		<url>${scm.url}</url>
-		<tag>HEAD</tag>
-	</scm>
+  <scm>
+    <connection>${scm.connection}</connection>
+    <developerConnection>${scm.developerConnection}</developerConnection>
+    <url>${scm.url}</url>
+    <tag>HEAD</tag>
+  </scm>
 
 </project>
