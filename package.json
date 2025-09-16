@@ -14,7 +14,7 @@
     "start": "ng serve --open --host 0.0.0.0 --proxy-config proxy.conf.js",
     "start:nolive": "yarn start --live-reload false --watch false",
     "build": "ng build --configuration production",
-    "build:runtime": "ng build --configuration production -c runtime",
+    "build:runtime": "ng build --configuration runtime",
     "build:standalone": "ng build --configuration standalone",
     "test": "ng test",
     "lint": "yarn eslint && yarn stylelint",
