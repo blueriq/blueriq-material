@@ -49,6 +49,9 @@
       <finally>
         <copy-from-container container.id="${container.id}" copy.from.dir="${container.src.dir}/dist"
                              copy.to.dir="${sources.dir}"/>
+        <mkdir dir="${sources.dir}/standalone"/>
+        <copy-from-container container.id="${container.id}" copy.from.dir="${container.src.dir}/standalone/dist"
+                             copy.to.dir="${sources.dir}/standalone/dist"/>
       </finally>
     </trycatch>
 
