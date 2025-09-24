@@ -1,0 +1,25 @@
+@use '@angular/material' as mat;
+@use 'sass:map';
+@import '@angular/material/theming';
+@import 'globals/variables';
+
+.icon {
+  transform: scale(0.75);
+}
+
+.deadline {
+  margin-bottom: $bq-margin;
+}
+
+h3 {
+  font-size: $h3-size;
+  margin-top: 0;
+  margin-bottom: $bq-margin-half;
+  color: $bq-header-color;
+  font-weight: 400;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}

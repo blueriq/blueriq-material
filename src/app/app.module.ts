@@ -34,6 +34,7 @@ import { ModalModule } from './modules/modal/modal.module';
 import { NavigationModule } from './modules/navigation/navigation.module';
 import { PageModule } from './modules/page/page.module';
 import { ReadonlyModule } from './modules/readonly/readonly.module';
+import { SummaryModule } from './modules/summary/summary.module';
 import { TabModule } from './modules/tab/tabs.module';
 import { TextItemModule } from './modules/textitem/textitem.module';
 import { TimelineModule } from './modules/timeline/timeline.module';
@@ -115,6 +116,7 @@ const routes: Routes = [
     NavigationModule,
     PageModule,
     ReadonlyModule,
+    SummaryModule,
     TabModule,
     TextItemModule,
     TimelineModule,

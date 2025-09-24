@@ -66,6 +66,17 @@ export function dateToShortTime(date: Date, localization: Localization): string 
 }
 
 /**
+ * Converts a JS Date object to a date/time (DD-MM-YYYY HH:mm:ss) string
+ * @param date the JS Date object
+ * @param localization the localization information to use
+ * @returns string with the date/time (DD-MM-YYYY HH:mm:ss)
+ */
+export function dateToDateTime(date: Date, localization: Localization): string {
+  const mdate = convertBqDateToMoment(date, localization);
+  return mdate.format(DEFAULT_DATETIME_PATTERN);
+}
+
+/**
  * Retrieves the first day of the week based on the locale in the Blueriq session
  * @returns the first day of the week (0 = Sunday, 1 = Monday ... 6 = Saturday)
  */
