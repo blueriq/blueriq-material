@@ -50,7 +50,7 @@ properties([
 node {
   try {
     timeout(time: timeout_in_mins, unit: 'MINUTES') {
-      env.JAVA_HOME = tool 'jdk-21.0.1'
+      env.JAVA_HOME = tool 'jdk-21'
       def mvnHome = tool "apache-maven-3.9.6"
       def nodeHome = tool 'node-18.16.0'
       env.PATH = "${env.JAVA_HOME}\\bin;${mvnHome}\\bin;${nodeHome};${env.PATH}"

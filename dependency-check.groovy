@@ -9,7 +9,6 @@ pipeline {
     disableConcurrentBuilds()
   }
   tools {
-    jdk 'jdk-21.0.1'
     nodejs 'nodejs-18.16.0'
   }
   environment {
