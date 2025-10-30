@@ -1692,33 +1692,33 @@
     "@babel/helper-string-parser" "^7.25.9"
     "@babel/helper-validator-identifier" "^7.25.9"
 
-"@blueriq/angular@0.18.19":
-  version "0.18.19"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/angular/-/@blueriq/angular-0.18.19.tgz#a2af66d3b52ff6c3a82175e1cb41bfcf93665edb"
-  integrity sha512-cYqRYLabWPbPS2nHrm3Sq5QcOZjKhrsZCrBORb933rs9sGj1CBIQMruLmOA6aZtoa6NE82FjBgZUmbJD6Gu/Lw==
+"@blueriq/angular@0.18.20":
+  version "0.18.20"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn-local/@blueriq/angular/-/@blueriq/angular-0.18.20.tgz#e4106586ca90efe09b69fd768576a7a32e211647"
+  integrity sha512-IW5+jEVOVjJxtv+l/hRp/BDNIplt56yG1isb/kTn61xZWs3qQLWKZ+WZP/+sqz1GEBSbZKzVAMJGicuyzaLxfw==
   dependencies:
     js-base64 "^3.7.5"
     tslib "^2.3.0"
 
-"@blueriq/core@0.18.19":
-  version "0.18.19"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/core/-/@blueriq/core-0.18.19.tgz#d9fe4383701f69d3e24470af7c1764b22bb4d2b0"
-  integrity sha512-qOno5f6HDOAXQiaxDPYtQGnJbO7EwWBkL2K4TmqzU5YCjJwOFiuUMRu2d7usv2TzJ1ujIOHZWPtchZEFvu4eAQ==
+"@blueriq/core@0.18.20":
+  version "0.18.20"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn-local/@blueriq/core/-/@blueriq/core-0.18.20.tgz#201e0e76c603f3a53ab6df086e524782360f7ee9"
+  integrity sha512-688ZGz8Rlm9dDiKauzYVDVHENfNKST1ykuR0q3oDnZD7LM9g8/xKSrwRBqDs6uadWeMQKTjAQkWvGuhkY57F0A==
   dependencies:
     css-selector-parser "1.3.0"
     tslib "^2.3.0"
 
-"@blueriq/dashboard@0.18.19":
-  version "0.18.19"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/dashboard/-/@blueriq/dashboard-0.18.19.tgz#f539715fee75c0ada8677f7ec70962c9895cabbf"
-  integrity sha512-Kb/1ynvv4NJ9xO47X5Q6dAW22raWiBNJo/DdafnJ9lc+ZSYXPJjMfJxORcgQsLz7bbCXMLvmDYQls709M3ACfA==
+"@blueriq/dashboard@0.18.20":
+  version "0.18.20"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn-local/@blueriq/dashboard/-/@blueriq/dashboard-0.18.20.tgz#c5c0969c368cbad6ebc2ece5d95a9590b96b0040"
+  integrity sha512-orTFqP93fTjzhJqZaHRbkn6Lxo2WmS5N/m4Zc1ShpWEVt+ZgI1Z6lE+hDUgMQXdtb81kySYg4/a0FysXOukH8w==
   dependencies:
     tslib "^2.3.0"
 
-"@blueriq/devtools@0.18.19":
-  version "0.18.19"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/devtools/-/@blueriq/devtools-0.18.19.tgz#126408aa48b0d130d9ab5f7c43268f4b18b1c7b3"
-  integrity sha512-TJv8AIZze8pN5cu3CU7a1AMDS4Decnqqm7s6GXxWb+eW/gLz1cEWDCVWJrNIPETNPjtKJ4jGzcamPHypfTTLJQ==
+"@blueriq/devtools@0.18.20":
+  version "0.18.20"
+  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn-local/@blueriq/devtools/-/@blueriq/devtools-0.18.20.tgz#e397a58223b1e45553c84a84fa608e0f756a5275"
+  integrity sha512-YvxtiH0P4t1vB+Ao1zSqqpZXLkgzUDktz33dd6Rvv6Ph4XrVFcprDIu59fPSqQTXJN+szidoXiOEb8OqNedMfA==
   dependencies:
     tslib "^2.3.0"
 
@@ -10174,16 +10174,7 @@ streamroller@^3.1.5:
     debug "^4.3.4"
     fs-extra "^8.1.0"
 
-"string-width-cjs@npm:string-width@^4.2.0":
-  version "4.2.3"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
-  integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
-  dependencies:
-    emoji-regex "^8.0.0"
-    is-fullwidth-code-point "^3.0.0"
-    strip-ansi "^6.0.1"
-
-"string-width@^1.0.2 || 2 || 3 || 4", string-width@^4.1.0, string-width@^4.2.0, string-width@^4.2.3:
+"string-width-cjs@npm:string-width@^4.2.0", "string-width@^1.0.2 || 2 || 3 || 4", string-width@^4.1.0, string-width@^4.2.0, string-width@^4.2.3:
   version "4.2.3"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
   integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
@@ -10252,7 +10243,7 @@ string_decoder@~1.1.1:
   dependencies:
     safe-buffer "~5.1.0"
 
-"strip-ansi-cjs@npm:strip-ansi@^6.0.1":
+"strip-ansi-cjs@npm:strip-ansi@^6.0.1", strip-ansi@^6.0.0, strip-ansi@^6.0.1:
   version "6.0.1"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
@@ -10265,13 +10256,6 @@ strip-ansi@^5.0.0, strip-ansi@^5.1.0, strip-ansi@^5.2.0:
   integrity sha512-DuRs1gKbBqsMKIZlrffwlug8MHkcnpjs5VPmL1PAh+mA30U0DTotfDZ0d2UUsXpPmPmMMJ6W773MaA3J+lbiWA==
   dependencies:
     ansi-regex "^4.1.0"
-
-strip-ansi@^6.0.0, strip-ansi@^6.0.1:
-  version "6.0.1"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
-  integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
-  dependencies:
-    ansi-regex "^5.0.1"
 
 strip-ansi@^7.0.1:
   version "7.1.0"
@@ -11267,7 +11251,7 @@ workerpool@6.2.1:
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/workerpool/-/workerpool-6.2.1.tgz#46fc150c17d826b86a008e5a4508656777e9c343"
   integrity sha512-ILEIE97kDZvF9Wb9f6h5aXK4swSlKGUcOEGiIYb2OOu/IrDU9iwj0fD//SsA6E5ibwJxpEvhullJY4Sl4GcpAw==
 
-"wrap-ansi-cjs@npm:wrap-ansi@^7.0.0":
+"wrap-ansi-cjs@npm:wrap-ansi@^7.0.0", wrap-ansi@^7.0.0:
   version "7.0.0"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/wrap-ansi/-/wrap-ansi-7.0.0.tgz#67e145cff510a6a6984bdf1152911d69d2eb9e43"
   integrity sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==
@@ -11289,15 +11273,6 @@ wrap-ansi@^6.2.0:
   version "6.2.0"
   resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/wrap-ansi/-/wrap-ansi-6.2.0.tgz#e9393ba07102e6c91a3b221478f0257cd2856e53"
   integrity sha512-r6lPcBGxZXlIcymEu7InxDMhdW0KDxpLgoFLcguasxCaJ/SOIZwINatK9KY/tf+ZrlywOKU0UDj3ATXUBfxJXA==
-  dependencies:
-    ansi-styles "^4.0.0"
-    string-width "^4.1.0"
-    strip-ansi "^6.0.0"
-
-wrap-ansi@^7.0.0:
-  version "7.0.0"
-  resolved "https://artifactory.blueriq.com/artifactory/api/npm/yarn/wrap-ansi/-/wrap-ansi-7.0.0.tgz#67e145cff510a6a6984bdf1152911d69d2eb9e43"
-  integrity sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==
   dependencies:
     ansi-styles "^4.0.0"
     string-width "^4.1.0"
