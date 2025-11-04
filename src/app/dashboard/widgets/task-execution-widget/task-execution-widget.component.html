@@ -9,6 +9,7 @@
          (expired)="onSessionExpired(parameters.caseType, parameters.caseId)"
          (error)="onError($event, parameters.caseType, parameters.caseId)"
          (flowEnded)="onFlowEnded(parameters.caseType, parameters.caseId)"
+         (taskCancelled)="onTaskCancelled(parameters.caseType, parameters.caseId)"
          (forbidden)="onForbidden(parameters.caseType, parameters.caseId)"
          (unauthorized)="onUnauthorized()">
 </bq-task>

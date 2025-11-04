@@ -57,6 +57,14 @@ export class TaskExecutionWidgetComponent extends SessionWidgetComponent {
     setTimeout(() => this.dispatcher.dispatch(new OpenCaseAction(caseType, caseId)), 2000);
   }
 
+  onTaskCancelled(caseType: string, caseId: string): void {
+    this.notification = new NotificationModel(
+      NotificationType.Info,
+      'Task cancelled',
+      'You will be redirected back to the case dashboard in a moment.');
+    setTimeout(() => this.dispatcher.dispatch(new OpenCaseAction(caseType, caseId)), 2000);
+  }
+
   onForbidden(caseType: string, caseId: string): void {
     this.notification = new NotificationModel(
       NotificationType.Error,
