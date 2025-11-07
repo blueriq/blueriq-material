@@ -28,21 +28,6 @@ properties([
       name: 'developmentVersion',
       defaultValue: '1.0.x-SNAPSHOT',
       description: 'In case of a release-build please provide the next development version.'
-    ),
-    string(
-      name: 'communityHost',
-      defaultValue: '',
-      description: 'In case of a release-build please provide the hostname of the server where to publish the community documentation to.'
-    ),
-    string(
-      name: 'communityUser',
-      defaultValue: '',
-      description: 'In case of a release-build please provide the username for the server where to publish the community documentation to.'
-    ),
-    password(
-      name: 'communityPass',
-      defaultValue: '',
-      description: 'In case of a release-build please provide the password for the server where to publish the community documentation to.'
     )
   ])
 ])
@@ -131,7 +116,9 @@ node {
 
         stage('publish docs') {
           bat "yarn docs --silent --name \"@blueriq/material - ${params.releaseVersion}\""
-          bat "build-publish-docs.bat ${params.releaseVersion} ${params.communityHost} ${params.communityUser} ${params.communityPass}"
+          withCredentials([usernamePassword(credentialsId: 'bq-docs-publish-credentials', passwordVariable: 'docsPass', usernameVariable: 'docsUser'), string(credentialsId: 'bq-docs-publish-host', variable: 'docsHost')]) {
+            bat "build-publish-docs.bat ${params.releaseVersion} $docsHost $docsUser $docsPass"
+          }
         }
       } // end if
     }
