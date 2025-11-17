@@ -1,18 +1,27 @@
-import {TestBed} from '@angular/core/testing';
-import {RouterModule} from '@angular/router';
-import {BlueriqResponseError, CloseSessionStrategy, Dispatcher, SessionRegistry} from '@blueriq/angular';
-import {ErrorType} from '@blueriq/core';
+import { TestBed } from '@angular/core/testing';
+import { RouterModule } from '@angular/router';
+import {
+  BlueriqResponseError,
+  CaseCreatedAction,
+  CloseSessionStrategy,
+  Dispatcher,
+  IntakeCompletedAction,
+  SessionEventActions,
+  SessionRegistry,
+} from '@blueriq/angular';
+import { ErrorType } from '@blueriq/core';
 import {
   BlueriqDashboard,
   DashboardAuthService,
   DashboardSessionModule,
   DashboardWidgetSession,
 } from '@blueriq/dashboard';
-import {Actions} from '@ngrx/effects';
-import {Subject} from 'rxjs';
-import {NotificationType} from '../../../notification-overlay/notification.model';
-import {IntakeWidgetComponent} from './intake-widget.component';
+import { Actions } from '@ngrx/effects';
+import { Subject } from 'rxjs';
+import { NotificationType } from '../../../notification-overlay/notification.model';
+import { IntakeWidgetComponent } from './intake-widget.component';
 import createSpy = jasmine.createSpy;
+import objectContaining = jasmine.objectContaining;
 
 describe('Intake Widget Component', () => {
   beforeEach(async () => {
@@ -155,7 +164,7 @@ describe('Intake Widget Component', () => {
     expect(notification!.dismiss).toBeUndefined();
   });
 
-  it('should do nothing yet on flow ended call', () => {
+  it('should set correct notification on intake completed call', () => {
     // Arrange
     const fixture = TestBed.createComponent(IntakeWidgetComponent);
     fixture.componentInstance.widget = {
@@ -169,13 +178,65 @@ describe('Intake Widget Component', () => {
     fixture.componentInstance.ngOnInit();
 
     // Act
-    fixture.componentInstance.onFlowEnded();
+    const action = new IntakeCompletedAction('session', 'reference', 'id');
+    fixture.componentInstance.onIntakeCompleted(action);
 
     // Assert
     const notification = fixture.componentInstance.notification;
     expect(notification!.type).toBe(NotificationType.Info);
-    expect(notification!.title).toEqual('Case intake completed');
-    expect(notification!.message).toEqual('The case intake has been completed.');
-    expect(notification!.dismiss).toBeUndefined();
+    expect(notification!.title).toEqual('Intake Completed');
+    expect(notification!.message).toEqual(`The case intake has been completed. You will be redirected to the case with reference '${action.reference}' when it is ready.`);
+    expect(notification!.dismiss?.label).toBeUndefined();
+  });
+
+  it('should set correct notification on intake aborted call', () => {
+    // Arrange
+    const fixture = TestBed.createComponent(IntakeWidgetComponent);
+    fixture.componentInstance.widget = {
+      id: 'TEST-ID',
+      type: 'blueriq-flow',
+      baseUrl: '/',
+      flowName: 'TEST_FLOW',
+      projectName: 'TEST_PROJECT',
+      versionName: 'TEST_VERSION',
+    };
+    fixture.componentInstance.ngOnInit();
+
+    // Act
+    fixture.componentInstance.onIntakeAborted();
+
+    // Assert
+    const notification = fixture.componentInstance.notification;
+    expect(notification!.type).toBe(NotificationType.Info);
+    expect(notification!.title).toEqual('Intake Aborted');
+    expect(notification!.message).toEqual('The case intake has been aborted.');
+    expect(notification!.dismiss?.label).toEqual('Dismiss');
+  });
+
+  it('should dispatch on case created call', () => {
+    // Arrange
+    const fixture = TestBed.createComponent(IntakeWidgetComponent);
+    fixture.componentInstance.widget = {
+      id: 'TEST-ID',
+      type: 'blueriq-flow',
+      baseUrl: '/',
+      flowName: 'TEST_FLOW',
+      projectName: 'TEST_PROJECT',
+      versionName: 'TEST_VERSION',
+    };
+    fixture.componentInstance.ngOnInit();
+    const dispatcher = TestBed.inject(Dispatcher);
+
+    // Act
+    const action = new CaseCreatedAction('session', '123', 'id');
+    fixture.componentInstance.onCaseCreated(action, 'ZONE');
+
+    // Assert
+    expect(dispatcher.dispatch).toHaveBeenCalledWith(objectContaining({
+      type: SessionEventActions.PORTAL_CHANGE,
+      changeType: 'open-case',
+      changeContext: 'ZONE',
+      parameters: { caseId: action.caseId },
+    }));
   });
 });
