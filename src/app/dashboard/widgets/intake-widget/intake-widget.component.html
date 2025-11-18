@@ -5,9 +5,11 @@
            [baseUrl]="baseUrl"
            (expired)="onSessionExpired()"
            (error)="onError($event)"
-           (flowEnded)="onFlowEnded()"
            (forbidden)="onForbidden()"
-           (unauthorized)="onUnauthorized()">
+           (unauthorized)="onUnauthorized()"
+           (intakeCompleted)="onIntakeCompleted($event)"
+           (intakeAborted)="onIntakeAborted()"
+           (caseCreated)="onCaseCreated($event, parameters.caseType)">
 </bq-intake>
 
 <bq-loading></bq-loading>
