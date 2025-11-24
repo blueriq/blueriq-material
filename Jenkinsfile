@@ -129,36 +129,36 @@ node {
     stage("Publish results") {
       archiveArtifacts artifacts: 'testresults/*.xml';
       // Test results
-      step([$class: 'JUnitResultArchiver', testResults: 'testresults/*.xml'])
+      junit 'testresults/*.xml'
 
       // coverage results
-      step([$class                    : 'hudson.plugins.cobertura.CoberturaPublisher',
-            coberturaReportFile       : 'coverage/cobertura-coverage.xml',
-            onlyStable                : false,
-            failUnhealthy             : true,
-            failUnstable              : true,
-            autoUpdateHealth          : false,
-            autoUpdateStability       : false,
-            zoomCoverageChart         : false,
-            failNoReports             : true,
-            //                          healthy, unhealthy, failing
-            lineCoverageTargets       : '80.0, 80.0, 80.0',
-            packageCoverageTargets    : '80.0, 80.0, 80.0',
-            fileCoverageTargets       : '80.0, 80.0, 80.0',
-            classCoverageTargets      : '80.0, 80.0, 80.0',
-            methodCoverageTargets     : '80.0, 80.0, 80.0',
-            conditionalCoverageTargets: '80.0, 80.0, 80.0'
-      ])
+      recordCoverage(
+          tools: [[parser: 'COBERTURA', pattern: 'coverage/cobertura-coverage.xml']],
+          failOnError: true,
+          qualityGates: [
+          [criticality: 'FAILURE', integerThreshold: 80, metric: 'LINE', threshold: 80.0],
+          [criticality: 'FAILURE', integerThreshold: 80, metric: 'PACKAGE', threshold: 80.0],
+          [criticality: 'FAILURE', integerThreshold: 80, metric: 'CLASS', threshold: 80.0],
+          [criticality: 'FAILURE', integerThreshold: 80, metric: 'METHOD', threshold: 80.0],
+          [criticality: 'FAILURE', integerThreshold: 80, metric: 'FILE', threshold: 80.0],
+          [criticality: 'FAILURE', integerThreshold: 80, metric: 'BRANCH', threshold: 80.0],
+          ]
+      )
 
       // lint results
-      step([$class                   : 'hudson.plugins.checkstyle.CheckStylePublisher',
-            pattern                  : '*_results_checkstyle.xml',
-            useStableBuildAsReference: true,
-            unstableTotalAll         : '1',
-            shouldDetectModules      : true,
-            canRunOnFailed           : true])
+      recordIssues blameDisabled: true,
+                  enabledForFailure: true,
+                  aggregatingResults: true,
+                  name: 'Linting warnings',
+                  tool: checkStyle(pattern: '*_results_checkstyle.xml'),
+                  sourceCodeEncoding: 'UTF-8',
+                  qualityGates: [
+                          [threshold: 1, type: 'TOTAL', unstable: false],
+                          [threshold: 1, type: 'TOTAL_HIGH', unstable: true],
+                          [threshold: 1, type: 'TOTAL_NORMAL', unstable: true],
+                          [threshold: 1, type: 'TOTAL_LOW', unstable: true]
+                  ]
     }
-
     if (isMaster && currentBuild.result.equals('SUCCESS')) {
       stage('push to Github') {
         withCredentials([usernamePassword(credentialsId: 'blueriq-material_github.com', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
