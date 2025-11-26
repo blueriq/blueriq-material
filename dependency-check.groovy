@@ -13,6 +13,8 @@ pipeline {
   }
   environment {
     CYPRESS_INSTALL_BINARY = '0'
+    OSSINDEX_USERNAME = 'support@blueriq.com'
+    OSSINDEX_TOKEN = credentials('ossindex-sonatype-api-key')
   }
   stages {
     stage('Checkout SCM') {
@@ -31,7 +33,7 @@ pipeline {
     stage('Analyze') {
       steps {
         bat 'md reports'
-        bat 'yarn --silent auditjs ossi --prod -x --whitelist auditjs-suppressions.json > reports/scan_node_modules.xml'
+        bat 'yarn --silent auditjs ossi --prod -x --user "%OSSINDEX_USERNAME%" --password "%OSSINDEX_TOKEN%" --whitelist auditjs-suppressions.json > reports/scan_node_modules.xml'
       }
       post {
         always {
