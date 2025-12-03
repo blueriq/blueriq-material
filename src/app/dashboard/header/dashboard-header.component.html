@@ -1,14 +1,14 @@
 <mat-toolbar>
-  <div fxLayout="row" fxLayoutAlign=" center" fxFill>
-    <div fxFlex="1 1 0%">
+  <div class="fx-flex-row top-bar">
+    <div class="fx-flex">
       <span class="img-logo-white"></span>
     </div>
 
-    <div fxFlex="0 0 auto" class="application-actions">
+    <div style="flex: 0 0 auto;" class="application-actions">
       <button type="button" mat-button [matMenuTriggerFor]="userMenu" aria-label="Open user menu"
               class="active-user-menu">
-        <div fxLayout="row" fxLayoutGap="12px" class="icon">
-          <div fxLayoutAlign="center center">
+        <div class="fx-flex-row fx-gap-12px icon">
+          <div class="fx-flex-row account-circle">
             <mat-icon>account_circle</mat-icon>
           </div>
           <div class="username" *ngIf="userInfo$ | async as userInfo">
@@ -25,4 +25,4 @@
     </div>
   </div>
 </mat-toolbar>
-<bq-dashboard-menu fxFlex [menuItems]="menuItems"></bq-dashboard-menu>
+<bq-dashboard-menu class="fx-flex" [menuItems]="menuItems"></bq-dashboard-menu>

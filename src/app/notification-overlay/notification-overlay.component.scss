@@ -11,6 +11,9 @@
   bottom: 0;
   left: 0;
   z-index: $z-index-drawer + 200;
+  display: flex;
+  place-content: center;
+  align-items: center;
 
   .notification-error {
     background-color: mat.get-color-from-palette($bq-error-palette);
@@ -45,6 +48,9 @@
     padding: $bq-margin;
     color: $white-87-opacity;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     .title,
     .message,

@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
 import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
 import { BlueriqComponents } from '@blueriq/angular';
@@ -23,7 +22,6 @@ const BLUERIQ_COMPONENTS = [
     CommonModule,
     SharedModule,
     FormattingModule.forRoot(), // for pipe 'bqDisplay'
-    FlexLayoutModule,
 
     /* Material modules */
     MatFormFieldModule,

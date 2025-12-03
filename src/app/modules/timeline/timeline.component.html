@@ -1,10 +1,10 @@
 <div [bqContainer]="container">
   <bq-heading [title]="container.displayName" [styles]="container.styles"></bq-heading>
   <div class="timeline">
-    <div *ngFor="let entry of timeline.entries$ | async; let first = first" fxLayout="row">
+    <div *ngFor="let entry of timeline.entries$ | async; let first = first" class="fx-flex-row">
 
       <!-- left side of the timeline -->
-      <div fxFlex="20" class="line">
+      <div class="line">
         <div *ngIf="first" class="dotted-border"></div>
         <div class="content">
           <p class="date">{{ dateToHumanReadableFormat(entry.occurredAt) }}</p>
@@ -15,14 +15,14 @@
       </div>
 
       <!-- right side of the timeline -->
-      <div fxFlex="80" class="time-card">
+      <div class="time-card">
         <div class="shape-position">
           <div class="triangle"></div>
         </div>
         <div class="content">
-          <div fxLayout="row">
-            <div fxFlex class="user">{{ entry.username }}</div>
-            <div fxFlex="nogrow" class="time">{{ dateToShortTime(entry.occurredAt) }}</div>
+          <div class="fx-flex-row">
+            <div class="user">{{ entry.username }}</div>
+            <div class="time" >{{ dateToShortTime(entry.occurredAt) }}</div>
           </div>
           <mat-divider></mat-divider>
           <p class="action-name">{{ entry.actionName }}</p>

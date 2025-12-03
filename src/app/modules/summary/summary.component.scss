@@ -3,6 +3,11 @@
 @import '@angular/material/theming';
 @import 'globals/variables';
 
+.summary {
+  display: flex;
+  flex-direction: column;
+}
+
 .icon {
   transform: scale(0.75);
 }
@@ -22,4 +27,14 @@ h3 {
 p {
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.row-item {
+  display: flex;
+  align-items: center;
+}
+
+.expiration-times {
+  display: flex;
+  flex-direction: column;
 }

@@ -1,4 +1,4 @@
-<div fxLayout="row" fxLayoutAlign="end center">
+<div class="fx-flex-row" style="place-content: center flex-end; align-items: center">
   <button mat-icon-button
     (click)="showFilter(filterDialog)"
     [matBadge]="filter.currentFilters.length"
@@ -16,11 +16,11 @@
 
 <ng-template #filterDialog>
   <div class="margin">
-    <div fxLayout="row" fxLayoutGap="1em" fxFlexAlign="start end" class="header">
-      <mat-label fxFlex="0 0 14em">Column name</mat-label>
-      <mat-label fxFlex="0 0 14em">Operation</mat-label>
-      <mat-label fxFlex="0 0 14em">Value</mat-label>
-      <mat-label fxFlex="0 0 4em">{{showUnknownLabel}}</mat-label>
+    <div class="fx-flex-row fx-gap-1em header">
+      <mat-label class="fx-flex0-0-14em">Column name</mat-label>
+      <mat-label class="fx-flex0-0-14em">Operation</mat-label>
+      <mat-label class="fx-flex0-0-14em">Value</mat-label>
+      <mat-label class="fx-flex0-0-4em">{{showUnknownLabel}}</mat-label>
     </div>
 
     <bq-filter-row *ngFor="let candidate of filterCandidates"
@@ -29,10 +29,10 @@
       (removed)="removeFilter(candidate)">
     </bq-filter-row>
 
-    <div *ngIf="canAddFilter()" fxLayout="row" fxLayoutGap="10px">
+    <div *ngIf="canAddFilter()" class="fx-flex-row">
       <button mat-button class="plain-link" (click)="addFilter()">Add filter</button>
     </div>
-    <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end center">
+    <div class="fx-flex-row" style="justify-content: flex-end">
       <button mat-flat-button [color]="'primary'" (click)="applyFilters()">Apply filter</button>
     </div>
 

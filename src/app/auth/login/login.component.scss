@@ -13,8 +13,21 @@
   }
 }
 
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  place-content: center;
+}
+
+.backdrop {
+  flex: 2;
+}
+
 .center {
   width: 100%;
+  flex: 6;
 
   .background {
     position: relative;
@@ -23,6 +36,10 @@
     background: map.get($bq-mat-primary-blue, 700);
     overflow: hidden;
     box-sizing: inherit;
+    display: flex;
+    flex-flow: column wrap;
+    place-content: center;
+    align-items: center;
 
     .background-icons {
       position: absolute;
@@ -43,6 +60,18 @@
   .failed {
     background: map.get($bq-mat-primary-purple, 700);
   }
+}
+
+mat-card-header {
+  place-content: stretch center;
+  align-items: stretch;
+  width: 400px;
+}
+
+mat-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 mat-card {

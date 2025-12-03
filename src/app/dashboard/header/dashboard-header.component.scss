@@ -7,3 +7,17 @@
 .logout {
   margin-right: $bq-margin-double;
 }
+
+.top-bar {
+  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  min-width: 100%;
+  place-content: center flex-start;
+  align-items: center;
+}
+
+.account-circle {
+  place-content: center;
+  align-items: center;
+}

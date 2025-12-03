@@ -1,9 +1,9 @@
-<div class="mat-paginator" fxLayout="row">
-  <div fxFlex fxLayoutAlign=" center">
+<div class="mat-paginator fx-flex-row">
+  <div style="place-content: center; flex: 1 1 0;">
     <!-- Display feedback -->
     <div *ngIf="pagination.pagingFeedback">{{pagination.pagingFeedback.text}}</div>
   </div>
-  <div fxFlex="nogrow" fxLayoutAlign="center center">
+  <div class="fx-flex-row" style="align-items: center; flex: 0 1 auto;">
 
     <!-- Range -->
     <div class="mat-paginator-range-label">{{pagination.paginationText}}</div>
@@ -23,3 +23,4 @@
     </button>
   </div>
 </div>
+

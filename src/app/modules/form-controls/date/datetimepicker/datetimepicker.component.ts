@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { Field, FieldMessages } from '@blueriq/core';
@@ -19,6 +19,8 @@ import { dateTimeFormatProvider } from './datetimepicker.owl';
   selector: '[dataType=date],[dataType=datetime]',
 })
 export class DateTimepickerComponent {
+
+  @HostBinding('class.fx-flex-row')
 
   formControl = this.form.control(this.field, {
     updateOn: 'blur',

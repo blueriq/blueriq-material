@@ -1,6 +1,6 @@
-<div class="navigation card" [bqContainer]="container" bqClasses bqKey fxFlex fxLayout="column">
+<div class="navigation card fx-flex-row fx-flex" style="flex-direction: column" [bqContainer]="container" bqClasses bqKey>
   <div class="line"></div>
-  <div fxFlex="1 1 auto" fxLayout="column">
+  <div style="flex: 1 1 auto; flex-direction: column" >
     <ng-container *ngFor="let button of buttons" [bqElement]="button"></ng-container>
   </div>
 </div>

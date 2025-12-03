@@ -6,7 +6,7 @@
     (expired)="handleSessionExpired()" (error)="handleError($event)"></bq-session>
 
   <div *ngIf="shouldDisplayError()">
-    <mat-error fxLayout="row" fxLayoutAlign="center">
+    <mat-error style="display: flex; place-content: stretch center; align-items: stretch;">
       <mat-icon>error</mat-icon>
       <span>{{errorMessage}}</span>
     </mat-error>

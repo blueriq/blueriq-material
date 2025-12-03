@@ -1,35 +1,34 @@
-<div fxFill fxLayout="column" fxLayoutAlign="center center">
+<div class="container">
 
-  <div fxFlex="20"></div>
+  <div class="backdrop"></div>
 
-  <div fxFlex="60" class="center">
-    <div fxLayoutAlign="center center" class="background" [class.failed]="failed">
+  <div class="center">
+    <div class="background" [class.failed]="failed">
       <div class="background-icons"></div>
 
       <mat-card class="mat-elevation-z8">
 
         <form [formGroup]="loginForm">
 
-          <mat-card-header fxLayoutAlign="center">
+          <mat-card-header>
             <mat-card-title>
               <div class="img-logo"></div>
             </mat-card-title>
           </mat-card-header>
 
           <mat-card-content>
-
-            <mat-form-field fxFill appearance="fill">
+            <mat-form-field appearance="fill">
               <mat-label>Username</mat-label>
               <input matInput formControlName="username" name="username">
             </mat-form-field>
-            <mat-form-field fxFill appearance="fill">
+            <mat-form-field appearance="fill">
               <mat-label>Password</mat-label>
               <input matInput formControlName="password" type="password" name="password" autocomplete="off">
             </mat-form-field>
             <div>
               <mat-error *ngIf="failed">Authentication failed</mat-error>
             </div>
-            <button mat-raised-button fxFill (click)="login()" color="primary" id="loginbutton">Login</button>
+            <button mat-raised-button (click)="login()" color="primary" id="loginbutton">Login</button>
           </mat-card-content>
 
         </form>
@@ -37,7 +36,6 @@
     </div>
   </div>
 
-  <div fxFlex>
-  </div>
+  <div class="backdrop"></div>
 
 </div>

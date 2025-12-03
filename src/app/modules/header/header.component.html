@@ -1,21 +1,21 @@
 <mat-toolbar bqKey class="dashboard-header">
-  <div fxLayout="row" fxLayoutAlign=" center" fxFill>
-    <div fxFlex="1 1 0%">
+  <div style="height: 100%; min-height: 100%; min-width: 100%; width: 100%; flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
+    <div class="fx-flex fx-flex-row">
       <span class="img-logo-white"></span>
-      <h1 fxFlex>{{ displayName }}</h1>
+      <h1 class="fx-flex">{{ displayName }}</h1>
     </div>
 
-    <div fxFlex>
+    <div class="fx-flex">
       <ng-container *ngIf="dashboardHeader">
         <ng-container *ngFor="let child of dashboardHeader.children | bqIncluded" [bqElement]="child"></ng-container>
       </ng-container>
     </div>
 
-    <div fxFlex="0 0 auto" class="application-actions" *ngIf="authenticatedUser || logoutLink">
+    <div style="flex: 0 0 auto" class="application-actions" *ngIf="authenticatedUser || logoutLink">
 
       <button type="button" mat-button [matMenuTriggerFor]="userMenu" aria-label="Open user menu" class="active-user-menu">
-        <div fxLayout="row" fxLayoutGap="12px" class="icon">
-          <div fxLayoutAlign="center center">
+        <div style="gap: 12px" class="fx-flex-row icon">
+          <div class="account-circle">
             <mat-icon>account_circle</mat-icon>
           </div>
           <div class="username" *ngIf="authenticatedUser">

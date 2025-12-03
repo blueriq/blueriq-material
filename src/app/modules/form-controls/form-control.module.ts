@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatLegacyAutocompleteModule as MatAutocompleteModule } from '@angular/material/legacy-autocomplete';
 import { MatLegacyCheckboxModule as MatCheckboxModule } from '@angular/material/legacy-checkbox';
@@ -71,7 +70,6 @@ const FORM_CONTROL_COMPONENTS = [
     BrowserAnimationsModule,
     CommonModule,
     SharedModule,
-    FlexLayoutModule,
     OwlDateTimeModule,
     OwlMomentDateTimeModule,
     FormsModule,

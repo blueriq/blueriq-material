@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { DomainValue, Field, FieldMessages } from '@blueriq/core';
@@ -16,6 +16,9 @@ import { DomainValueTransformer } from './domain-value-transformer';
   selector: '[hasDomain][multiValued=false].' + BqPresentationStyles.AUTOCOMPLETE,
 })
 export class AutocompleteComponent implements OnInit {
+
+  @HostBinding('class.fx-flex-row')
+
   formControl = this.form.control(this.field, {
     syncOn: 'update',
     disableWhen: BqPresentationStyles.DISABLED,

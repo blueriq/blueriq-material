@@ -1,38 +1,40 @@
 <div [bqContainer]="container">
   <bq-heading [title]="container.displayName" [styles]="container.styles"></bq-heading>
-  <div fxLayout="column" fxLayoutGap="1.5em">
-    <div *ngIf="summary.phases$ | async as phases" fxLayout="column" fxLayoutGap="1.5em">
-      <div>
-        <h3>Case reference</h3>
-        <p>{{ summary.reference }}</p>
-      </div>
-      <div fxLayout="row" fxLayoutGap="1em">
-        <div>
-          <h3>Phases</h3>
-          <div *ngFor="let completedPhase of phases.completed" fxLayout="row" fxLayoutAlign="none center">
-            <mat-icon fontIcon="check" color="primary" class="icon"></mat-icon>
-            <p>{{ completedPhase }}</p>
-          </div>
-          <div fxLayout="row" fxLayoutAlign="none center">
-            <mat-icon fontIcon="more_horiz" color="primary" class="icon"></mat-icon>
-            <p>{{ phases.current }}</p>
-          </div>
-          <div *ngFor="let futurePhase of phases.future" fxLayout="row" fxLayoutAlign="none center">
-            <mat-icon color="primary" class="icon"></mat-icon>
-            <p>{{ futurePhase }}</p>
-          </div>
+  <div class="summary fx-gap-1em">
+
+    <div>
+      <h3>Case reference</h3>
+      <p>{{ summary.reference }}</p>
+    </div>
+
+    <div class="fx-flex-row fx-gap-1em">
+
+      <div *ngIf="summary.phases$ | async as phases">
+        <h3>Phases</h3>
+        <div *ngFor="let completedPhase of phases.completed"  class="row-item">
+          <mat-icon fontIcon="check" color="primary" class="icon"></mat-icon>
+          <p>{{ completedPhase }}</p>
         </div>
-        <div *ngIf="summary.results$ | async as results" fxLayoutGap="1em">
-          <div fxLayout="column">
-            <h3>Results</h3>
-            <div *ngFor="let achievedResult of results.achievedResults" fxLayout="row" fxLayoutAlign="none center">
-              <mat-icon fontIcon="check" color="primary" class="icon"></mat-icon>
-              <p>{{ achievedResult }}</p>
-            </div>
-            <div *ngFor="let pendingResult of results.pendingResults" fxLayout="row" fxLayoutAlign="none center">
-              <mat-icon color="primary" class="icon"></mat-icon>
-              <p>{{ pendingResult }}</p>
-            </div>
+        <div class="row-item">
+          <mat-icon fontIcon="more_horiz" color="primary" class="icon"></mat-icon>
+          <p>{{ phases.current }}</p>
+        </div>
+        <div class="row-item" *ngFor="let futurePhase of phases.future">
+          <mat-icon color="primary" class="icon"></mat-icon>
+          <p>{{ futurePhase }}</p>
+        </div>
+      </div>
+
+      <div *ngIf="summary.results$ | async as results" class="fx-gap-1em">
+        <div>
+          <h3>Results</h3>
+          <div *ngFor="let achievedResult of results.achievedResults" class="row-item">
+            <mat-icon fontIcon="check" color="primary" class="icon"></mat-icon>
+            <p>{{ achievedResult }}</p>
+          </div>
+          <div *ngFor="let pendingResult of results.pendingResults" class="row-item">
+            <mat-icon color="primary" class="icon"></mat-icon>
+            <p>{{ pendingResult }}</p>
           </div>
         </div>
       </div>
@@ -40,18 +42,17 @@
 
     <div>
       <h3>Deadlines</h3>
-      <div fxLayout="row wrap">
-        <div *ngFor="let deadline of summary.deadlines$ | async" fxLayout="column" fxFlex="32" class="deadline">
-          <div>
-            <div fxLayout="row" fxLayoutAlign="none center">
+      <div class="fx-flex-row fx-gap-1em">
+        <div *ngFor="let deadline of summary.deadlines$ | async" class="deadline">
+          <div *ngIf="deadline.expirationTimes.length !== 0">
+            <div class="row-item">
               <mat-icon fontIcon="calendar_today" color="primary" class="icon"></mat-icon>
               <p>{{ deadline.name }}</p>
             </div>
-            <div fxLayout="column">
-              <div *ngFor="let expirationTime of deadline.expirationTimes" fxLayout="row" fxLayoutAlign="none center">
-                <mat-icon fontIcon="{{ expirationTimeIcon(expirationTime) }}" color="primary" class="icon"
-                          fxFlex="noshrink"></mat-icon>
-                <p fxFlex="grow">{{ dateToExpirationFormat(expirationTime) }}</p>
+            <div class="expiration-times">
+              <div *ngFor="let expirationTime of deadline.expirationTimes" class="row-item">
+                <mat-icon fontIcon="{{ expirationTimeIcon(expirationTime) }}" color="primary" class="icon"></mat-icon>
+                <p>{{ dateToExpirationFormat(expirationTime) }}</p>
               </div>
             </div>
           </div>

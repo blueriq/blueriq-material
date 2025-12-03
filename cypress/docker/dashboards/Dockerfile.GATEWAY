@@ -1,4 +1,4 @@
-FROM openjdk:21-jdk-buster
+FROM azul/zulu-openjdk-centos:21
 
 LABEL maintainer="support@blueriq.com"
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
-import { Summary } from '@blueriq/angular/zone';
+import { Summary} from '@blueriq/angular/zone';
 import { Container } from '@blueriq/core';
 import {
   dateFromNowHumanReadable,

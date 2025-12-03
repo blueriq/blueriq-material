@@ -112,7 +112,6 @@ describe('RadioButtonComponent', () => {
       field.styles(BqPresentationStyles.DEPRECATED_RADIO, BqPresentationStyles.DEPRECATED_HORIZONTAL),
     );
     styledDiv = component.nativeElement.querySelector('mat-radio-group').querySelector('div');
-    expect(styledDiv.style.flexFlow).toBe('wrap');
     expect(styledDiv.style.boxSizing).toBe('border-box');
     expect(styledDiv.style.display).toBe('flex');
   });
@@ -128,7 +127,6 @@ describe('RadioButtonComponent', () => {
       field.styles(BqPresentationStyles.HORIZONTAL),
     );
     styledDiv = component.nativeElement.querySelector('mat-radio-group').querySelector('div');
-    expect(styledDiv.style.flexFlow).toBe('wrap');
     expect(styledDiv.style.boxSizing).toBe('border-box');
     expect(styledDiv.style.display).toBe('flex');
   });

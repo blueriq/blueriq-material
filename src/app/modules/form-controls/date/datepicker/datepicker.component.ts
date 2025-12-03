@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { Field, FieldMessages } from '@blueriq/core';
@@ -17,6 +17,8 @@ import { dateFormatProvider } from './datepicker.material';
   selector: '.DatepickerMaterial[dataType=date]',
 })
 export class DatepickerComponent {
+
+  @HostBinding('class.fx-flex-row')
 
   formControl = this.form.control(this.field, {
     updateOn: 'blur',

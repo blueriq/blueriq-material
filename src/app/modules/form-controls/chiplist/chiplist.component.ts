@@ -1,5 +1,5 @@
 import { COMMA, ENTER, TAB } from '@angular/cdk/keycodes';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostBinding, OnInit, ViewChild } from '@angular/core';
 import { MatLegacyChipInputEvent as MatChipInputEvent } from '@angular/material/legacy-chips';
 import { MatLegacyOptionSelectionChange as MatOptionSelectionChange } from '@angular/material/legacy-core';
 import { BlueriqComponent, BlueriqSession, bySelector, OnUpdate } from '@blueriq/angular';
@@ -28,6 +28,8 @@ export class ChiplistComponent implements OnInit, OnUpdate {
   values: ChiplistValue[];
   formControl = this.form.control(this.field, { syncOn: 'blur', disableWhen: BqPresentationStyles.DISABLED });
   filteredDomainOptions: DomainValue[] = [];
+
+  @HostBinding('class.fx-flex-row')
 
   @ViewChild('input', { static: true })
   inputField: ElementRef;

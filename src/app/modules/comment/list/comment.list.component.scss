@@ -5,13 +5,24 @@ mat-list {
   overflow-y: auto;
 }
 
-.header {
+.row {
+  display: flex;
+  align-items: center;
   margin-bottom: $bq-margin-half;
+}
+
+.header {
+  flex: 1 1 0;
+  box-sizing: border-box;
 
   .title {
     margin-left: $bq-margin-half;
     color: $dark-secondary-text;
   }
+}
+
+.push-right {
+  margin-left: auto;
 }
 
 .mat-card-subtitle {
