@@ -1,9 +1,9 @@
 <div class="backdrop"></div>
 
-<div class="error-container" fxFlex fxLayoutAlign="center center">
+<div class="error-container">
   <div [class]="'notification notification-' + notification.type">
 
-    <div fxFlex fxLayout="column" fxLayoutAlign="space-around center">
+    <div class="fx-flex" style="flex-direction: column; place-content: center space-around; align-items: center;">
 
       <div class="image">
         <span class="img-oops" *ngIf="notification.type === 'error'"></span>
@@ -15,7 +15,7 @@
       <p class="message">{{ notification.message }}</p>
       <p class="details" *ngIf="notification.details">{{ notification.details }}</p>
 
-      <p class="button" *ngIf="notification.dismiss" fxLayout="column" fxLayoutAlign="start center">
+      <p class="button" *ngIf="notification.dismiss" style="display: flex; flex-direction: column; place-content: center flex-start; align-items: center;">
         <button mat-button (click)="notification.dismiss.action()">{{ notification.dismiss.label }}</button>
       </p>
     </div>

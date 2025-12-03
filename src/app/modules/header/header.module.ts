@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatLegacyMenuModule as MatMenuModule } from '@angular/material/legacy-menu';
@@ -23,7 +22,6 @@ const BLUERIQ_COMPONENTS = [
   imports: [
     CommonModule,
     BlueriqCommonModule,
-    FlexLayoutModule,
     SharedModule, // using bqKey
 
     /* Material modules */

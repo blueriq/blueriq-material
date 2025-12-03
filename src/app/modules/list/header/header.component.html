@@ -1,4 +1,4 @@
-<div class="header" fxLayout="row" fxLayoutAlign="start center">
+<div class="fx-flex-row" style="place-content: center flex-start; align-items: center;">
 
   <!-- Header name -->
   <ng-container [bqElement]="column.header"></ng-container>
@@ -10,7 +10,7 @@
   </button>
 
   <!-- Filtering -->
-  <button *ngIf="column.filter" mat-icon-button fxLayoutAlign="center center" disabled>
+  <button *ngIf="column.filter" mat-icon-button disabled style="place-content: center; align-items: center;">
     <mat-icon *ngIf="column.filter.isActive$ | async">filter_list</mat-icon>
   </button>
 

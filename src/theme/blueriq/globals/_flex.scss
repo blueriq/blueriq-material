@@ -1,0 +1,38 @@
+.fx-flex-row {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+}
+
+.fx-flex {
+  flex: 1 1 0;
+  box-sizing: border-box;
+}
+
+.fx-flex0-0-32em {
+  flex: 0 0 32em;
+  box-sizing: border-box;
+}
+
+.fx-flex0-0-14em {
+  flex: 0 0 14em;
+  box-sizing: border-box;
+}
+
+.fx-flex0-0-4em {
+  flex: 0 0 4em;
+  box-sizing: border-box;
+}
+
+.fx-flex0-0-2em {
+  flex: 0 0 2em;
+  box-sizing: border-box;
+}
+
+.fx-gap-1em {
+  gap: 1em;
+}
+
+.fx-gap-12px {
+  gap: 12px;
+}

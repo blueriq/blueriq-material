@@ -1,9 +1,9 @@
-<div *ngIf="search.enabled" bqKey bqClasses fxLayoutAlign="end center">
+<div *ngIf="search.enabled" bqKey bqClasses class="search">
   <mat-form-field
     *ngIf="fieldIsVisible()"
     appearance="standard"
     floatLabel="auto"
-    fxFlex="70"
+    style="flex: 70; max-width: 70%"
     [@slideIn]="'*'"
     (@slideIn.done)="focusField()">
     <mat-chip-list #chipList>

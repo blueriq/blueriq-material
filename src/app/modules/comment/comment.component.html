@@ -1,15 +1,15 @@
 <div [bqContainer]="container">
   <bq-heading [title]="container.displayName" [styles]="container.styles"></bq-heading>
 
-  <div fxLayout="row">
-    <mat-form-field bqKey fxFlex appearance="fill">
+  <div class="fx-flex-row">
+    <mat-form-field class="fx-flex" bqKey appearance="fill">
       <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
         [formControl]="formControl"></textarea>
       <mat-error *ngFor="let msg of getFieldMessages()">{{msg.text}}</mat-error>
     </mat-form-field>
   </div>
 
-  <div fxLayout="row" fxLayoutAlign="end">
+  <div class="fx-flex-row" style="place-content: stretch flex-end; align-items: stretch;">
     <button bqKey bqClasses mat-raised-button (click)="comment.submit()" color="primary">
       {{comment.submitCaption}}
     </button>

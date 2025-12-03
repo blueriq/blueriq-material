@@ -1,10 +1,9 @@
 <mat-list>
   <div *ngFor="let entry of commentList.entries$ | async">
-    <div fxLayout="row">
-      <div class="header" fxFlex>{{entry.username}} <span class="title">{{entry.title}}</span></div>
-      <div></div>
-      <mat-card-subtitle>
-        <div class="date" fxFlex="nogrow">{{dateToHumanReadableFormat(entry.postedAt)}}</div>
+    <div class="fx-flex-row">
+      <div class="header">{{entry.username}} <span class="title">{{entry.title}}</span></div>
+      <mat-card-subtitle class="push-right">
+        <div class="date">{{dateToHumanReadableFormat(entry.postedAt)}}</div>
       </mat-card-subtitle>
     </div>
     <mat-card-subtitle class="comment">{{entry.comment}}</mat-card-subtitle>

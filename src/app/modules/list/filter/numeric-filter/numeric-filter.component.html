@@ -1,5 +1,5 @@
-<div fxLayout="row" fxLayoutGap="1em">
-  <div fxFlex="0 0 14em">
+<div class="fx-flex-row fx-gap-1em">
+  <div class="fx-flex0-0-14em">
     <mat-form-field appearance="fill">
       <mat-select [value]="operator" (selectionChange)="onOperatorChanged($event.value)">
         <mat-option [value]="operations.lte">Less than or Equal to</mat-option>
@@ -8,12 +8,12 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <div fxFlex="0 0 14em">
+  <div class="fx-flex0-0-14em">
     <mat-form-field appearance="fill">
       <input matInput [value]="value" (change)="onValueChanged($event.target.value)">
     </mat-form-field>
   </div>
-  <div fxFlex="0 0 2em" fxLayoutAlign="start start">
+  <div class="fx-flex0-0-2em">
     <mat-checkbox [checked]="showUnknown" (change)="onUnknownChanged($event.checked)" color="primary"></mat-checkbox>
   </div>
 </div>

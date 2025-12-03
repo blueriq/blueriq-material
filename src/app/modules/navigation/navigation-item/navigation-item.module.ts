@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule } from '@angular/material/icon';
 import { MatLegacyButtonModule } from '@angular/material/legacy-button';
 import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
@@ -16,7 +15,6 @@ import { NavigationItemComponent } from './navigation-item.component';
   imports: [
     BlueriqCommonModule,
     SharedModule,
-    FlexLayoutModule,
 
     /* Material modules */
     MatLegacyButtonModule,

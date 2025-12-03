@@ -1,5 +1,5 @@
-<div fxLayout="row" fxLayoutGap="1em">
-  <div fxFlex="0 0 14em">
+<div class="fx-flex-row fx-gap-1em">
+  <div class="fx-flex0-0-14em">
     <mat-form-field appearance="fill">
       <mat-select placeholder="Column name" [value]="candidate.selectedColumn"
                   (selectionChange)="onColumnChanged($event.value)">
@@ -8,7 +8,7 @@
     </mat-form-field>
   </div>
 
-  <div [ngSwitch]="getType()" fxFlex="0 0 32em">
+  <div [ngSwitch]="getType()" class="fx-flex0-0-32em">
     <bq-domain-filter *ngSwitchCase="'domain'"
                            [candidate]="candidate"
                            [domain]="candidate.selectedColumn!.domain"></bq-domain-filter>
@@ -31,7 +31,7 @@
     <bq-empty-filter *ngSwitchDefault></bq-empty-filter>
   </div>
 
-  <div fxFlex="0 0 2em" fxLayoutAlign="end">
+  <div class="fx-flex0-0-2em">
     <button mat-icon-button (click)="removed.emit()">
       <mat-icon>clear</mat-icon>
     </button>

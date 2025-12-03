@@ -1,5 +1,5 @@
 <div>
-  <div class="message" fxLayout="row" (dblclick)="showTrace=!showTrace">
+  <div class="message fx-flex-row" (dblclick)="showTrace=!showTrace">
     {{failedElement.message}}
     <ng-container *ngIf="isDev">
       <button mat-icon-button matTooltip="Copy trace to clipboard" (click)="copyToClipboard()">
@@ -10,7 +10,7 @@
       </button>
     </ng-container>
   </div>
-  <div *ngIf="isDev && showTrace" class="trace" fxLayout="row">
+  <div *ngIf="isDev && showTrace" class="trace fx-flex-row">
     <pre>{{failedElement.stacktrace}}</pre>
   </div>
 </div>

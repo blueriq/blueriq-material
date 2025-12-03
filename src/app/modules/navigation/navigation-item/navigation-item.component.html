@@ -1,9 +1,9 @@
-<div fxFlex fxLayout="row" fxLayoutAlign=" center" fxFill>
+<div class="fx-flex fx-flex-row" style="place-content: center flex-start; align-items: center; width:100%; height:100%;">
   <div class="circle" [class.active]="button.properties['active']" [class.error]="state === 'incomplete'">
     <mat-icon *ngIf="state === 'complete'" color="primary">check</mat-icon>
     <mat-icon *ngIf="state === 'incomplete'">priority_high</mat-icon>
   </div>
-  <button mat-button [bqButton]="button" [disabled]="button.disabled || button.properties['blocked']" [color]="state ? 'primary': undefined" fxFlex="1 1 0%">
+  <button mat-button [bqButton]="button" [disabled]="button.disabled || button.properties['blocked']" [color]="state ? 'primary': undefined" class="fx-flex">
     {{button.caption}}
   </button>
 </div>

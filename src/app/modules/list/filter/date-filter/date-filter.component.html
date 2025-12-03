@@ -1,5 +1,5 @@
-<div fxLayout="row" fxLayoutGap="1em">
-  <div fxFlex="0 0 14em">
+<div class="fx-flex-row fx-gap-1em">
+  <div class="fx-flex0-0-14em">
     <mat-form-field appearance="fill">
       <mat-select [value]="operator" (selectionChange)="onOperatorChanged($event.value)">
         <mat-option [value]="operations.before">Before</mat-option>
@@ -8,7 +8,7 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <div fxFlex="0 0 14em">
+  <div class="fx-flex0-0-14em">
     <mat-form-field appearance="fill">
       <input matInput (dateTimeChange)="onDateChanged($event)" [formControl]="dateControl" [owlDateTime]="dtPicker">
       <button matPrefix class="mat-icon-button" [owlDateTimeTrigger]="dtPicker">
@@ -18,7 +18,7 @@
                      showSecondsTimer></owl-date-time>
     </mat-form-field>
   </div>
-  <div fxFlex="0 0 2em" fxLayoutAlign="start start">
+  <div class="fx-flex0-0-2em">
     <mat-checkbox [checked]="showUnknown" (change)="onUnknownChanged($event.checked)" color="primary"></mat-checkbox>
   </div>
 </div>

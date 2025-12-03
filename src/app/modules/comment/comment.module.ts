@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
@@ -35,7 +34,6 @@ const COMMENT_COMPONENTS = [
     CommonModule,
     ReactiveFormsModule,
     BlueriqCommonModule,
-    FlexLayoutModule,
     SharedModule,
     HeadingModule,
 
