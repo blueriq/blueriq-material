@@ -30,7 +30,7 @@ describe('DomainFilterComponent', () => {
   it('domain filter with options', () => {
     const candidate = component.candidate = new FilterCandidate();
     // there are two mat-selects, the first is for operator, second is domain values, which is the one we need
-    const triggers = fixture.debugElement.queryAll(By.css('.mat-select-trigger'));
+    const triggers = fixture.debugElement.queryAll(By.css('.mat-mdc-select-trigger'));
     triggers[1].nativeElement.click();
     fixture.detectChanges();
 

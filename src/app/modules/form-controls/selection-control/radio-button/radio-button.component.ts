@@ -8,7 +8,7 @@ import { BqPresentationStyles } from '../../../BqPresentationStyles';
 @Component({
   selector: 'bq-radio-button',
   templateUrl: './radio-button.component.html',
-  styleUrls: ['./radio-button.component.scss', '../selection-control.component.scss'],
+  styleUrls: ['../selection-control.component.scss'],
 })
 @BlueriqComponent({
   type: Field,

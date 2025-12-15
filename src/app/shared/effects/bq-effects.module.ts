@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { EffectsModule } from '@ngrx/effects';
 import { CaseAwareService } from '@shared/dcm/case-aware.service';
 import { TaskAwareService } from '@shared/dcm/task-aware.service';

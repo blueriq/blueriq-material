@@ -60,7 +60,7 @@ describe('CheckboxListComponent', () => {
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(CheckboxListComponent);
 
-    const inputField = component.nativeElement.querySelector('.mat-checkbox-disabled');
+    const inputField = component.nativeElement.querySelector('.mat-mdc-checkbox-disabled');
     expect(inputField).toBeTruthy();
   });
 
@@ -70,7 +70,7 @@ describe('CheckboxListComponent', () => {
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(CheckboxListComponent);
 
-    const inputField = component.nativeElement.querySelector('.mat-checkbox-disabled');
+    const inputField = component.nativeElement.querySelector('.mat-mdc-checkbox-disabled');
     expect(inputField).toBeTruthy();
     const checkboxContainer = component.nativeElement.querySelector('mat-checkbox').parentElement;
     expect(checkboxContainer.style.flexDirection).toBe('row');

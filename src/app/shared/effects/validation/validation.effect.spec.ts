@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { InvalidFormAction } from '@blueriq/angular/forms';
 import { provideMockActions } from '@ngrx/effects/testing';

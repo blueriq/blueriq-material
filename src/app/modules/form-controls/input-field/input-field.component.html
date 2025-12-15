@@ -1,6 +1,6 @@
 <mat-form-field appearance="fill" bqClasses bqKey class="fx-flex">
   <span *ngIf="fieldPrefix" matPrefix>{{fieldPrefix}}</span>
-  <span *ngIf="iconPrefix" matPrefix><mat-icon>{{iconPrefix}}</mat-icon></span>
+  <mat-icon *ngIf="iconPrefix" matPrefix>{{iconPrefix}}</mat-icon>
   <mat-label>{{field.questionText}}</mat-label>
   <input [formControl]="formControl" [placeholder]="placeholder" [required]="field.required" matInput type="{{inputType}}">
   <span *ngIf="fieldSuffix" matSuffix>{{fieldSuffix}}</span>

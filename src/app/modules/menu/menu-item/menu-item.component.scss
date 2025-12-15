@@ -1,23 +1,56 @@
 @import '@angular/material/theming';
 @import 'globals/variables';
 
-.mat-button,
-.mat-menu-item {
+:host {
   color: $light-primary-text;
-  font-size: $default-font-size;
-  font-weight: 400;
-  text-transform: uppercase;
 
-  .mat-icon {
-    width: $default-font-size;
-    height: $default-font-size;
-    margin: 0;
-    color: $light-primary-text;
+  .mat-mdc-button,
+  .mat-mdc-menu-item {
     font-size: $default-font-size;
+    font-weight: 400;
+    text-transform: uppercase;
+
+    .mat-icon {
+      width: $default-font-size;
+      height: $default-font-size;
+      margin: 0;
+      color: $light-primary-text;
+      font-size: $default-font-size;
+    }
+  }
+
+  ::ng-deep {
+    .mat-mdc-menu-item {
+      .nested-menu-item {
+        justify-content: start;
+        width: 100%;
+        padding-left: $bq-base-margin;
+      }
+
+      .mdc-list-item__primary-text { // stylelint-disable-line selector-class-pattern
+        font-size: $default-font-size;
+        font-weight: 400;
+        text-transform: uppercase;
+      }
+    }
+
+    .root-menu-item .mdc-list-item__primary-text { // stylelint-disable-line selector-class-pattern
+      color: $light-primary-text;
+      font-size: $default-font-size;
+      font-weight: 400;
+      font-family: $bq-font-family;
+      text-transform: uppercase;
+    }
   }
 }
 
-bq-menu-item > * > .mat-menu-item {
+bq-menu-item .mat-menu-item {
   color: $dark-primary-text;
+  font-size: $default-font-size;
+  font-weight: 400;
   text-transform: uppercase;
+  justify-content: start;
+  width: 100%;
+  height: 48px;
+  padding: 0 32px 0 16px;
 }

@@ -60,8 +60,8 @@ describe('TableSearchComponent', () => {
     component.detectChanges();
 
     expect(component.nativeElement.querySelector('input')['placeholder']).toBe('Zoeken');
-    expect(component.nativeElement.querySelector('mat-chip-list')).toBeTruthy();
-    expect(component.nativeElement.querySelector('mat-chip')).toBeFalsy();
+    expect(component.nativeElement.querySelector('.mat-mdc-chip-input')).toBeTruthy();
+    expect(component.nativeElement.querySelector('mat-chip-row')).toBeFalsy();
   });
 
   it('should render multiple chips', () => {
@@ -69,7 +69,7 @@ describe('TableSearchComponent', () => {
       field.value(['term1', 'term2', 'term3']),
     );
 
-    expect(component.nativeElement.querySelectorAll('mat-chip').length).toBe(3);
+    expect(component.nativeElement.querySelectorAll('mat-chip-row').length).toBe(3);
   });
 
   it('should add a search term', () => {

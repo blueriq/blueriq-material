@@ -46,7 +46,7 @@ Cypress.Commands.add('getTextareaFor',
 );
 
 Cypress.Commands.add('getCheckboxFor',
-  (page: string, field: string, nr = '1') => cy.getById(page, field, nr).find('label'),
+  (page: string, field: string, nr = '1') => cy.getById(page, field, nr).find('input'),
 );
 
 Cypress.Commands.add('getSelectFor',

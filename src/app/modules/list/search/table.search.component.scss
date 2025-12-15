@@ -1,38 +1,27 @@
 @import 'globals/variables';
 
-.mat-form-field {
+.mat-mdc-form-field {
   font-size: $default-font-size;
 
-  .mat-chip {
+  .mat-mdc-chip {
     margin: 1px;
     padding: 2px 7px;
   }
 }
 
 :host ::ng-deep {
-  .mat-form-field-appearance-standard {
-    .mat-form-field-wrapper {
-      padding-bottom: 0;
-    }
+  .mdc-text-field {
+    background-color: transparent;
+  }
 
-    .mat-form-field-flex {
-      padding-top: 0;
-    }
-
-    .mat-form-field-infix {
-      border-top: 0;
-    }
-
-    .mat-form-field-underline {
-      bottom: 0;
-    }
+  .mat-mdc-form-field-focus-overlay {
+    background-color: transparent;
   }
 }
 
 .search {
   display: flex;
   place-content: center flex-end;
-  align-items: center;
   flex-direction: row;
   box-sizing: border-box;
 }

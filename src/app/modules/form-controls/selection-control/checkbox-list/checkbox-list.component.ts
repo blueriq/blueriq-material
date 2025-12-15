@@ -1,5 +1,5 @@
 import { Component, OnInit, Optional } from '@angular/core';
-import { MatLegacyCheckboxChange as MatCheckboxChange } from '@angular/material/legacy-checkbox';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 import { BlueriqComponent, OnUpdate } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { List } from '@blueriq/angular/lists';
@@ -9,7 +9,7 @@ import { BqPresentationStyles } from '../../../BqPresentationStyles';
 @Component({
   selector: 'bq-checkbox-list',
   templateUrl: './checkbox-list.component.html',
-  styleUrls: ['./checkbox-list.component.scss', '../selection-control.component.scss'],
+  styleUrls: ['../selection-control.component.scss'],
 })
 @BlueriqComponent({
   type: Field,

@@ -10,19 +10,13 @@ button {
   background-color: transparent;
   color: mat.get-color-from-palette($bq-tertiary-palette);
 
-  &.mat-raised-button {
+  &.mat-mdc-raised-button {
     background-color: mat.get-color-from-palette($bq-tertiary-palette);
     color: mat.get-color-from-palette($bq-tertiary-palette, default-contrast);
   }
 }
 
 ::ng-deep {
-  .Tertiary { // stylelint-disable-line selector-class-pattern
-    .mat-button-focus-overlay {
-      background-color: mat.get-color-from-palette($bq-tertiary-palette, 0.12);
-    }
-  }
-
   // Default buttons in cards or elevated widgets get a slightly darker background compared to default
   // buttons in transparent containers.
   .card,

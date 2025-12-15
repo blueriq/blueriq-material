@@ -2,7 +2,8 @@
   <p *ngIf="field.questionText">{{field.questionText}}</p>
   <div>
     <mat-radio-group [required]="field.required" [formControl]="formControl">
-      <div style="display: flex; box-sizing: border-box" [ngStyle]="{'flex-direction': direction === 'vertical' ? 'column': 'row'}">
+      <div style="display: flex; box-sizing: border-box; flex-flow: wrap"
+           [ngStyle]="{'flex-direction': direction === 'vertical' ? 'column': 'row'}">
         <mat-radio-button *ngFor="let option of field.getFieldOptions()" [value]="option.value" [disabled]="!option.valid" color="primary">
           {{option.displayValue}}
         </mat-radio-button>

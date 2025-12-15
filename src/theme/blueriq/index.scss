@@ -15,7 +15,7 @@
 //  If you don't need the default component typographies but still want the hierarchy styles,
 //  you can delete this line and instead use:
 //    `@include mat.legacy-typography-hierarchy($bq-mat-typography);`
-@include mat.all-legacy-component-typographies($bq-mat-typography);
-@include mat.legacy-core;
+@include mat.all-component-typographies($bq-mat-typography);
+@include mat.core;
 
-@include mat.all-legacy-component-themes($bq-theme);
+@include mat.all-component-themes($bq-theme);

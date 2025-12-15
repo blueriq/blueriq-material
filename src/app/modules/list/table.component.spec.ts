@@ -125,7 +125,7 @@ describe('TableComponent', () => {
     });
 
     it('should have a header displayed with the correct content', () => {
-      const matRows = component.nativeElement.querySelectorAll('.mat-row');
+      const matRows = component.nativeElement.querySelectorAll('.mat-mdc-row');
       expect(matRows.length).toBe(2);
       expect(matRows[0].cells[0].innerText.trim()).toBe('Mike');
       expect(matRows[0].cells[1].innerText.trim()).toBe('CLICKME');
@@ -134,7 +134,7 @@ describe('TableComponent', () => {
     });
 
     it('should have a row with correct header content', () => {
-      const matHeaderCell = component.nativeElement.querySelectorAll('.mat-header-cell');
+      const matHeaderCell = component.nativeElement.querySelectorAll('.mat-mdc-header-cell');
       expect(matHeaderCell.length).toBe(3);
 
       const headerCellContent = matHeaderCell[0].querySelector('bq-textitem-static').innerText;
@@ -142,7 +142,7 @@ describe('TableComponent', () => {
     });
 
     it('should have a mat-button in a tablecell', () => {
-      const matButtons = component.nativeElement.querySelectorAll('.mat-button');
+      const matButtons = component.nativeElement.querySelectorAll('.mat-mdc-button');
       expect(matButtons.length).toBe(2);
     });
 
@@ -172,7 +172,7 @@ describe('TableComponent', () => {
 
     it('should apply presentation styles to rows', () => {
       // Verify
-      expect(component.nativeElement.querySelectorAll('.mat-row.somePresentationStyle').length).toBe(1);
+      expect(component.nativeElement.querySelectorAll('.mat-mdc-row.somePresentationStyle').length).toBe(1);
     });
   });
 
@@ -221,17 +221,17 @@ describe('TableComponent', () => {
     });
 
     it('should render two rows', () => {
-      const rows = component.nativeElement.querySelectorAll('.mat-row');
+      const rows = component.nativeElement.querySelectorAll('.mat-mdc-row');
       expect(rows.length).toBe(2);
     });
 
     it('should render six cells', () => {
-      const cells = component.nativeElement.querySelectorAll('.mat-cell');
+      const cells = component.nativeElement.querySelectorAll('.mat-mdc-cell');
       expect(cells.length).toBe(6);
     });
 
     it('should render two buttons', () => {
-      const buttons = component.nativeElement.querySelectorAll('.mat-button');
+      const buttons = component.nativeElement.querySelectorAll('.mat-mdc-button');
       expect(buttons.length).toBe(2);
     });
 

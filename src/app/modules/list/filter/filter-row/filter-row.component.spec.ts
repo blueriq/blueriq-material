@@ -49,7 +49,7 @@ describe('FilterRowComponent', () => {
   });
 
   it('should create', () => {
-    const trigger = fixture.debugElement.query(By.css('.mat-select-trigger')).nativeElement;
+    const trigger = fixture.debugElement.query(By.css('.mat-mdc-select-trigger')).nativeElement;
     trigger.click();
     fixture.detectChanges();
 
@@ -60,7 +60,7 @@ describe('FilterRowComponent', () => {
   });
 
   function selectColumn(type: string): void {
-    const trigger = fixture.debugElement.query(By.css('.mat-select-trigger')).nativeElement;
+    const trigger = fixture.debugElement.query(By.css('.mat-mdc-select-trigger')).nativeElement;
     trigger.click();
     fixture.detectChanges();
 

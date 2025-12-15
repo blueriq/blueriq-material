@@ -44,7 +44,7 @@ describe('TabComponent', () => {
   });
 
   it('should display the correct tab headers', () => {
-    const matHeaderLabels = tabFixture.nativeElement.querySelectorAll('.mat-tab-label');
+    const matHeaderLabels = tabFixture.nativeElement.querySelectorAll('.mdc-tab__text-label');
 
     expect(matHeaderLabels.length).toBe(4);
     expect(matHeaderLabels[0].innerText).toEqual('News'); // mat-tab-label-content
@@ -58,7 +58,7 @@ describe('TabComponent', () => {
 
     expect(tabBodies.length).toBe(4);
     expect(tabBodies[0].querySelector('bq-container')).withContext('The first container should be displayed').toBeTruthy();
-    const activeLabel = tabFixture.nativeElement.querySelector('.mat-tab-label-active');
+    const activeLabel = tabFixture.nativeElement.querySelector('.mdc-tab-indicator--active');
     expect(activeLabel.innerText).withContext('First tab should be selected').toEqual('News', );
   });
 
@@ -74,7 +74,7 @@ describe('TabComponent', () => {
 
   it('should not show bq-heading within a mat-tab-group', () => {
     // init
-    const tabBody = tabFixture.nativeElement.querySelector('.mat-tab-body');
+    const tabBody = tabFixture.nativeElement.querySelector('.mat-mdc-tab-body');
     const tabBodyHeading = tabBody.querySelector('bq-heading');
 
     // Verify

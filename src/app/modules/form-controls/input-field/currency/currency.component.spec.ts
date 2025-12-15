@@ -27,7 +27,7 @@ describe('CurrencyFieldComponent', () => {
   });
 
   it('should contain euro sign', () => {
-    const prefix = component.nativeElement.querySelector('.mat-form-field-prefix').innerText;
+    const prefix = component.nativeElement.querySelector('.mat-mdc-form-field-icon-prefix').innerText;
     expect(prefix.trim()).toBe('euro_symbol');
   });
 });

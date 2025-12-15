@@ -3,10 +3,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
 import { BqContentStyles } from '../../../BqContentStyles';
-import { InputFieldComponent } from '../../../form-controls/input-field/input-field.component';
 import { ListComponent } from '../../list.component';
 import { ListModule } from '../../list.module';
-import { TableInputFieldComponent } from './table-input-field.component';
 
 describe('TableInputFieldComponent', () => {
   let tableTemplate: ContainerTemplate;
@@ -44,16 +42,12 @@ describe('TableInputFieldComponent', () => {
     component = session.get(ListComponent);
   });
 
-  it('should extend from InputFieldComponent', () => {
-    expect((TableInputFieldComponent.prototype instanceof InputFieldComponent)).toBeTruthy();
-  });
-
   it('should have required marker in placeholder text', () => {
     session.update(
       fieldIntegerTemplate.placeholder('myPlaceholder'),
       fieldIntegerTemplate.required(true),
     );
-    expect(component.nativeElement.querySelector('input[data-placeholder]')).toBeTruthy();
-    expect(component.nativeElement.querySelector('input').getAttribute('data-placeholder')).toBe('myPlaceholder *');
+    expect(component.nativeElement.querySelector('input[placeholder]')).toBeTruthy();
+    expect(component.nativeElement.querySelector('input').getAttribute('placeholder')).toBe('myPlaceholder *');
   });
 });

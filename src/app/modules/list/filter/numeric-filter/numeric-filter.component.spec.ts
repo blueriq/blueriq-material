@@ -28,9 +28,9 @@ describe('NumericFilterComponent', () => {
     component.candidate = new FilterCandidate();
     fixture.detectChanges();
 
-    const operation = fixture.nativeElement.querySelector('.mat-select-value-text').innerText;
+    const operation = fixture.nativeElement.querySelector('.mat-mdc-select-value-text').innerText;
     expect(operation).toBe('Equal to');
-    const showUnknown = fixture.nativeElement.querySelector('.mat-checkbox-input');
+    const showUnknown = fixture.nativeElement.querySelector('.mdc-checkbox__native-control');
     expect(showUnknown.checked).toBe(true);
   });
 
@@ -38,7 +38,7 @@ describe('NumericFilterComponent', () => {
     component.candidate = new FilterCandidate();
     fixture.detectChanges();
 
-    const trigger = fixture.debugElement.query(By.css('.mat-select-trigger')).nativeElement;
+    const trigger = fixture.debugElement.query(By.css('.mat-mdc-select-trigger')).nativeElement;
     trigger.click();
     fixture.detectChanges();
 

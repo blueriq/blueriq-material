@@ -1,7 +1,7 @@
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatLegacyRadioGroupHarness as MatRadioGroupHarness } from '@angular/material/legacy-radio/testing';
+import { MatRadioGroupHarness as MatRadioGroupHarness } from '@angular/material/radio/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
@@ -44,13 +44,13 @@ describe('RadioButtonComponent', () => {
   });
 
   it('should be checked', () => {
-    let inputField = component.nativeElement.querySelector('.mat-radio-checked');
+    let inputField = component.nativeElement.querySelector('.mat-mdc-radio-checked');
     expect(inputField).withContext('by default nothing is checked').toBeFalsy();
 
     session.update(
       field.value('beaker'),
     );
-    inputField = component.nativeElement.querySelector('.mat-radio-checked');
+    inputField = component.nativeElement.querySelector('.mat-mdc-radio-checked');
     expect(inputField).toBeTruthy();
   });
 
@@ -69,10 +69,10 @@ describe('RadioButtonComponent', () => {
     session.update(
       field.value('unavailable'),
     );
-    const inputField = component.nativeElement.querySelector('.mat-radio-checked');
+    const inputField = component.nativeElement.querySelector('.mat-mdc-radio-checked');
     expect(inputField).toBeTruthy();
     expect(inputField.innerText).toContain('unavailable');
-    expect(inputField.classList.contains('mat-radio-disabled')).toBe(true);
+    expect(inputField.querySelector('.mdc-radio--disabled')).toBeTruthy();
   });
 
   it('should be disabled', () => {
