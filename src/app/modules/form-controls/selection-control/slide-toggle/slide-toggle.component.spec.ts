@@ -28,11 +28,11 @@ describe('SlideToggleComponent', () => {
   });
 
   it('should be rendered properly', () => {
-    const label = component.nativeElement.querySelector('.mat-slide-toggle-label');
+    const label = component.nativeElement.querySelector('label');
     expect(label.innerText.trim()).toBe('Setting1');
     const hint = component.nativeElement.querySelector('mat-hint');
     expect(hint.innerText.trim()).toBe('Explain2');
-    const inputField = component.nativeElement.querySelector('.mat-checked');
+    const inputField = component.nativeElement.querySelector('.mdc-switch--checked');
     expect(inputField).toBeFalsy();
   });
 
@@ -40,14 +40,14 @@ describe('SlideToggleComponent', () => {
     session.update(
       field.value('true'),
     );
-    let inputField = component.nativeElement.querySelector('.mat-checked');
+    let inputField = component.nativeElement.querySelector('.mdc-switch--checked');
     expect(inputField).toBeTruthy();
 
     session.update(
       field.value('false'),
     );
-    inputField = component.nativeElement.querySelector('.mat-checked');
-    expect(inputField).toBeFalsy();
+    inputField = component.nativeElement.querySelector('.mdc-switch--unselected');
+    expect(inputField).toBeTruthy();
   });
 
   it('should be disabled', () => {
@@ -55,7 +55,7 @@ describe('SlideToggleComponent', () => {
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(SlideToggleComponent);
 
-    const inputField = component.nativeElement.querySelector('.mat-disabled');
+    const inputField = component.nativeElement.querySelector('.mdc-switch--unselected');
     expect(inputField).toBeTruthy();
   });
 

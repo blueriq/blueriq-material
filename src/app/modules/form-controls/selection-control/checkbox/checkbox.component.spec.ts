@@ -32,14 +32,14 @@ describe('CheckboxComponent', () => {
     session.update(
       field.value('true'),
     );
-    let inputField = component.nativeElement.querySelector('.mat-checkbox-input');
+    let inputField = component.nativeElement.querySelector('.mdc-checkbox__native-control');
     expect(inputField.checked).toBe(true);
 
     // Change again
     session.update(
       field.value('false'),
     );
-    inputField = component.nativeElement.querySelector('.mat-checkbox-input');
+    inputField = component.nativeElement.querySelector('.mdc-checkbox__native-control');
     expect(inputField.checked).toBe(false);
   });
 
@@ -48,7 +48,7 @@ describe('CheckboxComponent', () => {
     session = BlueriqSessionTemplate.create().build(field);
     component = session.get(CheckboxComponent);
 
-    const inputField = component.nativeElement.querySelector('.mat-checkbox-disabled');
+    const inputField = component.nativeElement.querySelector('.mat-mdc-checkbox-disabled');
     expect(inputField).toBeTruthy();
   });
 });

@@ -6,20 +6,20 @@ table {
 }
 
 :host ::ng-deep {
-  .mat-row {
+  .mat-mdc-row {
     &:hover {
-      background-color: mat.get-color-from-palette($bq-mat-grey-light, 50);
+      background-color: mat.get-color-from-palette($bq-mat-grey-light, 50) !important;
     }
   }
 
   /* Header cell has base margins
   *  where the cells itself have the half margin padding and half margin margin.
   */
-  .mat-header-cell {
+  .mat-mdc-header-cell {
     padding-left: $bq-base-margin;
   }
 
-  .mat-cell {
+  .mat-mdc-cell {
     padding-left: $bq-margin-half;
 
     bq-asset,
@@ -32,10 +32,16 @@ table {
     mat-checkbox,
     mat-select {
       margin-left: $bq-margin-half;
+      font-size: $default-font-size;
     }
 
     bq-container {
       width: 100%;
     }
+  }
+
+  // remove wrapper on the bottom of a field
+  .mat-mdc-form-field-subscript-wrapper {
+    display: none;
   }
 }

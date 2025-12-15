@@ -1,3 +1,8 @@
-.mat-paginator {
+.mat-mdc-paginator {
   min-height: 56px;
+}
+
+.mat-mdc-paginator-range-label,
+.feedback-label {
+  font-size: 12px;
 }

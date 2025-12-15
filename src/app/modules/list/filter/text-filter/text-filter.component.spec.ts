@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatLegacyInput as MatInput } from '@angular/material/legacy-input';
+import { MatInput } from '@angular/material/input';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TextPredicate } from '@blueriq/angular/lists';

@@ -1,7 +1,7 @@
 import { COMMA, ENTER, TAB } from '@angular/cdk/keycodes';
 import { Component, ElementRef, HostBinding, OnInit, ViewChild } from '@angular/core';
-import { MatLegacyChipInputEvent as MatChipInputEvent } from '@angular/material/legacy-chips';
-import { MatLegacyOptionSelectionChange as MatOptionSelectionChange } from '@angular/material/legacy-core';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { MatOptionSelectionChange } from '@angular/material/core';
 import { BlueriqComponent, BlueriqSession, bySelector, OnUpdate } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { DomainValue, Field, FieldMessages } from '@blueriq/core';

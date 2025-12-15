@@ -91,7 +91,7 @@ $gutter-width-large: $bq-margin-quadruple;
 
 // Enable/disable the header; choose between: `flex` or `none`
 $header-display: flex;
-$bq-mat-typography: mat.define-legacy-typography-config(
+$bq-mat-typography: mat.define-typography-config(
   $font-family: ($bq-font-family)
 );
 $bq-theme: mat.define-light-theme(

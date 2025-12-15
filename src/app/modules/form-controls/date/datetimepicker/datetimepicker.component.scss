@@ -1,11 +1,13 @@
 @import 'globals/variables';
 
-.mat-form-field {
+.mat-mdc-form-field {
   margin-bottom: $bq-base-margin;
 
   button {
     &[matprefix] {
-      width: 24px;
+      padding-left: $bq-base-margin;
+      border: 0;
+      background-color: transparent;
     }
   }
 }

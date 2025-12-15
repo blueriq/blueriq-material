@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 import { BlueriqCommonModule, BlueriqComponents } from '@blueriq/angular';
 import { SharedModule } from '@shared/shared.module';
 import { NavigationItemComponent } from './navigation-item.component';
@@ -17,7 +17,7 @@ import { NavigationItemComponent } from './navigation-item.component';
     SharedModule,
 
     /* Material modules */
-    MatLegacyButtonModule,
+    MatButtonModule,
     MatIconModule,
   ],
   exports: [NavigationItemComponent],

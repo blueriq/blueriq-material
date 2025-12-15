@@ -1,6 +1,6 @@
 @import 'globals/variables';
 
-.mat-form-field {
+.mat-mdc-form-field {
   margin-bottom: $bq-base-margin;
 }
 
@@ -9,5 +9,11 @@
   mat-icon,
   [matsuffix] {
     opacity: 0.35;
+  }
+}
+
+.mat-mdc-form-field-has-icon-suffix {
+  span {
+    padding-right: $bq-base-margin;
   }
 }

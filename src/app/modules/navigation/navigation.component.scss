@@ -1,4 +1,5 @@
 @use '@angular/material' as mat;
+@use 'sass:math' as math;
 @import 'globals/variables';
 
 $shape-size: 1.2rem;
@@ -14,7 +15,7 @@ $shape-line: 2.8px;
 
 .line {
   position: absolute;
-  inset: 1rem (-$shape-line / 2);
+  inset: 1rem math.div(-$shape-line, 2);
   width: $shape-line;
   background: mat.get-color-from-palette($bq-primary-palette);
   margin-left: $bq-margin-triple;

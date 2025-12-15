@@ -7,7 +7,7 @@
 
   <!-- container with button(s) -->
   <ng-container *ngSwitchCase="'container'">
-    <button (keydown)="handleEnterSubmenu($event,child)" [bqKey]="child" [matMenuTriggerFor]="menu" class="menu-list" mat-menu-item name="{{child.functionalKey}}">
+    <button [class.root-menu-item]="isRootOfMenubar(child)" [class.nested-menu-item]="!isRootOfMenubar(child)" (keydown)="handleEnterSubmenu($event,child)" [bqKey]="child" [matMenuTriggerFor]="menu" class="menu-list" mat-menu-item name="{{child.functionalKey}}">
       {{ asContainer(child).displayName }}
       <mat-icon *ngIf="isRootOfMenubar(child)">arrow_drop_down</mat-icon>
     </button>

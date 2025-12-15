@@ -1,15 +1,14 @@
 <mat-form-field appearance="fill" bqKey bqClasses class="fx-flex">
   <mat-label>{{ field.questionText }}</mat-label>
-  <mat-chip-list #chipList [formControl]="formControl" [multiple]="true">
+  <mat-chip-grid #chipList [formControl]="formControl">
 
-    <mat-chip (removed)="remove(value)"
+    <mat-chip-row (removed)="remove(value)"
       *ngFor="let value of values"
       [disabled]="isDisabled()"
-      [removable]="true"
-      [selectable]="!isDisabled()">
+      [removable]="true" >
       {{value.displayValue}}
       <mat-icon *ngIf="!isDisabled()" matChipRemove>cancel</mat-icon>
-    </mat-chip>
+    </mat-chip-row>
 
     <input #input
       (blur)="addDomainValueOnBlur($event)"
@@ -19,7 +18,6 @@
       [matChipInputAddOnBlur]="!field.hasDomain"
       [matChipInputFor]="chipList"
       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-      [placeholder]="field.placeholder"
       [required]="field.required">
 
     <mat-autocomplete #matAuto="matAutocomplete" autoActiveFirstOption>
@@ -30,7 +28,7 @@
       </mat-option>
     </mat-autocomplete>
 
-  </mat-chip-list>
+  </mat-chip-grid>
   <mat-hint>{{field.explainText}}</mat-hint>
   <mat-error *ngFor="let msg of getMessages()">{{msg.text}}</mat-error>
 </mat-form-field>

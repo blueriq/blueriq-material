@@ -35,7 +35,7 @@ describe('ChiplistComponent', () => {
 
     it('should create', () => {
       expect(component.values.length).toBe(3);
-      expect(fixture.nativeElement.querySelectorAll('mat-chip').length).toBe(3);
+      expect(fixture.nativeElement.querySelectorAll('mat-chip-row').length).toBe(3);
     });
 
     it('should add a chip', () => {
@@ -47,9 +47,9 @@ describe('ChiplistComponent', () => {
 
       fixture.detectChanges();
       expect(component.values.length).toBe(4);
-      expect(fixture.nativeElement.querySelectorAll('mat-chip').length).toBe(4);
-      expect(Array.from(fixture.nativeElement.querySelectorAll('mat-chip'))
-        .some((chip: any) => chip.childNodes[1].nodeValue.trim() === 'Yellow')).toBeTruthy();
+      expect(fixture.nativeElement.querySelectorAll('mat-chip-row').length).toBe(4);
+      expect(Array.from(fixture.nativeElement.querySelectorAll('mat-chip-row'))
+        .some((chip: any) => chip.childNodes[4].innerText === 'Yellow')).toBeTruthy();
       expect(inputField.value).toBe('');
     });
 
@@ -59,7 +59,7 @@ describe('ChiplistComponent', () => {
       fixture = session.get(ChiplistComponent);
       component = fixture.componentInstance;
 
-      const inputField = fixture.nativeElement.querySelector('.mat-input-element');
+      const inputField = fixture.nativeElement.querySelector('.mat-mdc-input-element');
       expect(inputField).toBeTruthy();
 
       inputField.value = '678.20';
@@ -67,22 +67,22 @@ describe('ChiplistComponent', () => {
 
       fixture.detectChanges();
       expect(component.values.length).toBe(4);
-      expect(fixture.nativeElement.querySelectorAll('mat-chip').length).toBe(4);
-      expect(Array.from(fixture.nativeElement.querySelectorAll('mat-chip'))
-        .some((chip: any) => chip.childNodes[1].nodeValue.trim() === '678.20')).toBeTruthy();
+      expect(fixture.nativeElement.querySelectorAll('mat-chip-row').length).toBe(4);
+      expect(Array.from(fixture.nativeElement.querySelectorAll('mat-chip-row'))
+        .some((chip: any) => chip.childNodes[4].innerText === '678.20')).toBeTruthy();
       expect(inputField.value).toBe('');
     });
 
     it('should remove a chip', () => {
-      const chipRemoveButton = fixture.nativeElement.querySelectorAll('.mat-chip-remove')[0];
+      const chipRemoveButton = fixture.nativeElement.querySelectorAll('.mat-mdc-chip-remove')[0];
 
       chipRemoveButton.dispatchEvent(new Event('click'));
 
       fixture.detectChanges();
       expect(component.values.length).toBe(2);
-      expect(fixture.nativeElement.querySelectorAll('mat-chip').length).toBe(2);
-      expect(Array.from(fixture.nativeElement.querySelectorAll('mat-chip'))
-        .some((chip: any) => chip.childNodes[1].nodeValue.trim() === 'Red')).toBeFalsy();
+      expect(fixture.nativeElement.querySelectorAll('mat-chip-row').length).toBe(2);
+      expect(Array.from(fixture.nativeElement.querySelectorAll('mat-chip-row'))
+        .some((chip: any) => chip.childNodes[4].innerText === 'Red')).toBeFalsy();
     });
 
     it('should not add an existing chip case insensitive', () => {
@@ -94,7 +94,7 @@ describe('ChiplistComponent', () => {
 
       fixture.detectChanges();
       expect(component.values.length).toBe(3);
-      expect(fixture.nativeElement.querySelectorAll('mat-chip').length).toBe(3);
+      expect(fixture.nativeElement.querySelectorAll('mat-chip-row').length).toBe(3);
     });
 
   });
@@ -130,7 +130,7 @@ describe('ChiplistComponent', () => {
     });
 
     it('should add chip from autocomplete selected value', async() => {
-      const autocompleteInput = fixture.debugElement.query(By.css('.mat-input-element'));
+      const autocompleteInput = fixture.debugElement.query(By.css('.mat-mdc-input-element'));
       expect(autocompleteInput).toBeTruthy();
       expect(component.field.getValue()).toEqual(['r', 'g']);
 
@@ -142,7 +142,7 @@ describe('ChiplistComponent', () => {
       await fixture.whenStable();
       fixture.detectChanges();
 
-      const autocompleteContent = fixture.debugElement.query(By.css('.mat-autocomplete-panel')).nativeElement;
+      const autocompleteContent = fixture.debugElement.query(By.css('.mat-mdc-autocomplete-panel')).nativeElement;
       const autocompleteOptions = autocompleteContent.querySelector('mat-option');
       // Click on the 'Blue' option
       autocompleteOptions.click();

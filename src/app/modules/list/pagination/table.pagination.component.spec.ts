@@ -6,11 +6,11 @@ import { ListComponent } from '../list.component';
 import { ListModule } from '../list.module';
 
 describe('TablePaginationComponent', () => {
-  const LABEL = '.mat-paginator-range-label';
-  const NAVIGATION_PREVIOUS = '.mat-paginator-navigation-previous';
-  const NAVIGATION_NEXT = '.mat-paginator-navigation-next';
-  const NAVIGATION_LAST = '.mat-paginator-navigation-last';
-  const NAVIGATION_FIRST = '.mat-paginator-navigation-first';
+  const LABEL = '.mat-mdc-paginator-range-label';
+  const NAVIGATION_PREVIOUS = '.mat-mdc-paginator-navigation-previous';
+  const NAVIGATION_NEXT = '.mat-mdc-paginator-navigation-next';
+  const NAVIGATION_LAST = '.mat-mdc-paginator-navigation-last';
+  const NAVIGATION_FIRST = '.mat-mdc-paginator-navigation-first';
 
   let session: BlueriqTestSession;
   let component: ComponentFixture<ListComponent>;

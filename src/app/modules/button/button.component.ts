@@ -41,13 +41,13 @@ export class ButtonComponent {
     return BqIconDirective.hasIcon(this.button.styles);
   }
 
-  getColor(): ThemePalette | null {
+  getColor(): ThemePalette {
     if (this.button.styles.has(BqPresentationStyles.PRIMARY)) {
       return 'primary';
     } else if (this.button.styles.has(BqPresentationStyles.ACCENT)) {
       return 'accent';
     } else {
-      return null;
+      return undefined;
     }
   }
 

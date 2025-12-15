@@ -1,6 +1,7 @@
 <div [class.selection-control]="!list" bqKey>
   <p *ngIf="field.questionText">{{field.questionText}}</p>
-  <div style="display: flex; box-sizing: border-box" [ngStyle]="{'flex-direction': direction === 'vertical' ? 'column': 'row'}">
+  <div style="display: flex; box-sizing: border-box; flex-flow: wrap"
+       [ngStyle]="{'flex-direction': direction === 'vertical' ? 'column': 'row'}">
     <mat-checkbox *ngFor="let option of field.getFieldOptions()" [value]="option.value" [checked]="isChecked(option)"
                   [disabled]="formControl.disabled" (change)="onChange(option, $event)" color="primary">
       {{option.displayValue}}

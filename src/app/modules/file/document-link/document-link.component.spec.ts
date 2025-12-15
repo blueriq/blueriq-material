@@ -52,7 +52,7 @@ describe('DocumentLinkComponent DocumentLink', () => {
     );
     const element = component.nativeElement.querySelector('button');
     expect(element.getAttribute('class')).toContain('mat-raised-button');
-    expect(element.querySelector('span').innerHTML.trim()).toContain(LINK_TEXT);
+    expect(element.querySelector('.mdc-button__label').innerHTML.trim()).toContain(LINK_TEXT);
   });
 
   it('should contain the correct class when presentation styles "Button" and "primary" are set', () => {
@@ -62,7 +62,7 @@ describe('DocumentLinkComponent DocumentLink', () => {
     const element = component.nativeElement.querySelector('button');
     expect(element.getAttribute('class')).toContain('mat-raised-button');
     expect(element.getAttribute('class')).toContain('mat-primary');
-    expect(element.querySelector('span').innerHTML.trim()).toContain(LINK_TEXT);
+    expect(element.querySelector('.mdc-button__label').innerHTML.trim()).toContain(LINK_TEXT);
   });
 
   it('should contain the correct class when presentation styles "Button" and "tertiary" are set', () => {
@@ -72,7 +72,7 @@ describe('DocumentLinkComponent DocumentLink', () => {
     const element = component.nativeElement.querySelector('button');
     expect(element.getAttribute('class')).toContain('mat-raised-button');
     expect(element.getAttribute('class')).toContain('mat-accent');
-    expect(element.querySelector('span').innerHTML.trim()).toContain(LINK_TEXT);
+    expect(element.querySelector('.mdc-button__label').innerHTML.trim()).toContain(LINK_TEXT);
   });
 
   it('should change the href when the download handler is called', () => {

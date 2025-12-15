@@ -33,7 +33,7 @@ describe('ButtonComponent', () => {
   });
 
   it('should display the button text', () => {
-    const buttonText: string = component.nativeElement.querySelector('.mat-button-wrapper').textContent.trim();
+    const buttonText: string = component.nativeElement.querySelector('.mdc-button__label').textContent.trim();
     expect(buttonText).toBe('Click me!');
 
   });
@@ -92,7 +92,7 @@ describe('ButtonComponent', () => {
 
   it('should be raised by default', () => {
     const classes: string = component.nativeElement.querySelector('button').getAttribute('class');
-    expect(classes).toContain('mat-raised-button');
+    expect(classes).toContain('mat-mdc-raised-button');
   });
 
   it('should be flat on presentation style', () => {

@@ -1,25 +1,33 @@
 @import 'globals/variables';
 
 :host ::ng-deep {
-  .mat-form-field {
+  .mat-mdc-form-field {
     width: 100%;
   }
 
   // resize the default material fields to make the fields more compressed
-  .mat-form-field-infix {
+  .mat-mdc-form-field-infix {
     border-top: 0;
   }
 
-  .mat-form-field-appearance-fill .mat-select-arrow-wrapper,
-  .mat-form-field-appearance-standard .mat-select-arrow-wrapper {
+  .mat-mdc-form-field-appearance-fill .mat-mdc-select-arrow-wrapper,
+  .mat-mdc-form-field-appearance-standard {
     transform: none;
   }
 
-  .mat-checkbox {
+  .mat-mdc-checkbox {
     margin-top: 12px;
   }
 
-  .mat-form-field-prefix {
+  .mat-mdc-form-field-icon-prefix {
     font-size: $font-size-filter-row-icon;
+  }
+
+  button {
+    &[matprefix] {
+      padding-left: $bq-base-margin;
+      border: 0;
+      background-color: transparent;
+    }
   }
 }

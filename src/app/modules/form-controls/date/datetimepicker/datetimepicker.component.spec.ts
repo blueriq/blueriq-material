@@ -80,8 +80,8 @@ describe('DateTimepickerComponent', () => {
     session.update(
       field.placeholder('myPlaceholder'),
     );
-    expect(component.nativeElement.querySelector('input[data-placeholder]')).toBeTruthy();
-    expect(component.nativeElement.querySelector('input').getAttribute('data-placeholder')).toBe('myPlaceholder');
+    expect(component.nativeElement.querySelector('input[placeholder]')).toBeTruthy();
+    expect(component.nativeElement.querySelector('input').getAttribute('placeholder')).toBe('myPlaceholder');
   });
 
   it('should have an error', () => {

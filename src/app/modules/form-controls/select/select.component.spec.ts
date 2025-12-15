@@ -49,30 +49,30 @@ describe('SelectComponent', () => {
 
     const unavailableOption = selectOptions[4];
     expect(unavailableOption.innerText).toContain('unavailable');
-    expect(unavailableOption.classList.contains('mat-option-disabled')).toBe(true);
+    expect(unavailableOption.classList.contains('mdc-list-item--disabled')).toBe(true);
   });
 
   it('should be disabled', () => {
-    let selectDisabled = component.nativeElement.querySelector('.mat-select-disabled');
+    let selectDisabled = component.nativeElement.querySelector('.mdc-text-field--disabled');
     expect(selectDisabled).toBeFalsy();
 
     session.update(
       field.styles(BqPresentationStyles.DISABLED),
     );
 
-    selectDisabled = component.nativeElement.querySelector('.mat-select-disabled');
+    selectDisabled = component.nativeElement.querySelector('.mdc-text-field--disabled');
     expect(selectDisabled).toBeTruthy();
   });
 
   it('should be read only', () => {
-    let selectReadonly = component.nativeElement.querySelector('.mat-select-disabled');
+    let selectReadonly = component.nativeElement.querySelector('.mdc-text-field--disabled');
     expect(selectReadonly).toBeFalsy();
 
     session.update(
       field.readonly(true),
     );
 
-    selectReadonly = component.nativeElement.querySelector('.mat-select-disabled');
+    selectReadonly = component.nativeElement.querySelector('.mdc-text-field--disabled');
     expect(selectReadonly).toBeTruthy();
   });
 
@@ -88,8 +88,8 @@ describe('SelectComponent', () => {
     session.update(
       field.placeholder('myPlaceholder'),
     );
-    expect(component.nativeElement.querySelector('.mat-select-placeholder')).toBeTruthy();
-    expect(component.nativeElement.querySelector('.mat-select-placeholder').innerText).toBe('myPlaceholder');
+    expect(component.nativeElement.querySelector('.mat-mdc-select-placeholder')).toBeTruthy();
+    expect(component.nativeElement.querySelector('.mat-mdc-select-placeholder').innerText).toBe('myPlaceholder');
   });
 
   it('should have an error', () => {
@@ -104,14 +104,14 @@ describe('SelectComponent', () => {
   });
 
   it('should select one value', () => {
-    let selectedOneValue = component.nativeElement.querySelector('.mat-select-value-text');
+    let selectedOneValue = component.nativeElement.querySelector('.mat-mdc-select-value-text');
     expect(selectedOneValue).toBeNull();
 
     session.update(
       field.value('blue'),
     );
 
-    selectedOneValue = component.nativeElement.querySelector('.mat-select-value-text').innerText;
+    selectedOneValue = component.nativeElement.querySelector('.mat-mdc-select-value-text').innerText;
     expect(selectedOneValue).toBe('Blue');
   });
 
@@ -129,7 +129,7 @@ describe('SelectComponent', () => {
     await component.whenStable();
     component.detectChanges();
 
-    const selectValue = component.nativeElement.querySelector('.mat-select-value-text');
+    const selectValue = component.nativeElement.querySelector('.mat-mdc-select-value-text');
     expect(selectValue.innerText).toBe('Blue, Pink, White');
   });
 
@@ -160,7 +160,7 @@ describe('SelectComponent', () => {
   });
 
   async function openOverlay() {
-    const selectTrigger = component.debugElement.query(By.css('.mat-select-trigger'));
+    const selectTrigger = component.debugElement.query(By.css('.mat-mdc-select-trigger'));
     selectTrigger.nativeElement.click();
 
     await component.whenStable();

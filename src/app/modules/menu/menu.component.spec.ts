@@ -1,6 +1,6 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatLegacyMenuTrigger as MatMenuTrigger } from '@angular/material/legacy-menu';
+import { MatMenuTrigger } from '@angular/material/menu';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSession } from '@blueriq/angular';
@@ -60,8 +60,8 @@ describe('MenuComponent', () => {
     await component.whenStable();
     spyOn(BlueriqSession.prototype, 'pressed').and.callThrough();
 
-    const setSubMenu1 = component.debugElement.query(By.css('.mat-menu-content')).nativeElement;
-    const menuButtons = setSubMenu1.querySelectorAll('button:not(.mat-menu-item-submenu-trigger)');
+    const setSubMenu1 = component.debugElement.query(By.css('.mat-mdc-menu-content')).nativeElement;
+    const menuButtons = setSubMenu1.querySelectorAll('button:not(.mat-mdc-menu-item-submenu-trigger)');
     expect(menuButtons.length).toBe(2);
     menuButtons[0].click();
     menuButtons[1].click(); // is disabled
@@ -70,7 +70,7 @@ describe('MenuComponent', () => {
 
   it('should display submenus when the menu button is clicked', async() => {
     // by default, no submenus are shown
-    const subMenu = component.debugElement.query(By.css('.mat-menu-content'));
+    const subMenu = component.debugElement.query(By.css('.mat-mdc-menu-content'));
     expect(subMenu).toBeFalsy();
 
     // retrieve the trigger
@@ -82,7 +82,7 @@ describe('MenuComponent', () => {
 
     await component.whenStable();
 
-    const setSubMenu1 = component.debugElement.query(By.css('.mat-menu-content')).nativeElement;
+    const setSubMenu1 = component.debugElement.query(By.css('.mat-mdc-menu-content')).nativeElement;
     const menuOptions = setSubMenu1.querySelectorAll('bq-menu-item') as NodeListOf<HTMLElement>;
 
     // verify
@@ -97,7 +97,7 @@ describe('MenuComponent', () => {
     await component.whenStable();
 
     // now 2 mat-menu-content sections exist, we want to verify the last one with the sub-submenu
-    const setSubMenu2 = component.debugElement.queryAll(By.css('.mat-menu-content'))[1].nativeElement;
+    const setSubMenu2 = component.debugElement.queryAll(By.css('.mat-mdc-menu-content'))[1].nativeElement;
     const setMenuOptions = setSubMenu2.querySelectorAll('bq-menu-item') as NodeListOf<HTMLElement>;
     // verify
     expect(setMenuOptions.length).toBe(2);
@@ -106,7 +106,7 @@ describe('MenuComponent', () => {
   });
 
   it('should navigate submenus with arrowkeys', async() => {
-    const subMenu = component.debugElement.query(By.css('.mat-menu-content'));
+    const subMenu = component.debugElement.query(By.css('.mat-mdc-menu-content'));
     expect(subMenu).toBeFalsy();
 
     // retrieve the trigger
