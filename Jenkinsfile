@@ -146,9 +146,8 @@ node {
       )
 
       // lint results
-      recordIssues blameDisabled: true,
+      recordIssues skipBlames: true,
                   enabledForFailure: true,
-                  aggregatingResults: true,
                   name: 'Linting warnings',
                   tool: checkStyle(pattern: '*_results_checkstyle.xml'),
                   sourceCodeEncoding: 'UTF-8',
@@ -159,7 +158,8 @@ node {
                           [threshold: 1, type: 'TOTAL_LOW', unstable: true]
                   ]
     }
-    if (isMaster && currentBuild.result.equals('SUCCESS')) {
+    String currentStatus = currentBuild.result ?: 'SUCCESS'
+    if (isMaster && currentStatus.equals('SUCCESS')) {
       stage('push to Github') {
         withCredentials([usernamePassword(credentialsId: 'blueriq-material_github.com', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
           // We want the tags now that where not fetched in the 'checkout' stage
