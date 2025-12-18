@@ -1,7 +1,7 @@
-@import 'globals/variables';
+@use 'globals/variables' as var;
 
 .mat-mdc-form-field {
-  font-size: $default-font-size;
+  font-size: var.$default-font-size;
 
   .mat-mdc-chip {
     margin: 1px;

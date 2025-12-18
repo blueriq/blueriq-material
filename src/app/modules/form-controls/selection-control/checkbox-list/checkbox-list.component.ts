@@ -7,9 +7,10 @@ import { Field, FieldMessages, FieldOption, SingleValuedType } from '@blueriq/co
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
 
 @Component({
-  selector: 'bq-checkbox-list',
-  templateUrl: './checkbox-list.component.html',
-  styleUrls: ['../selection-control.component.scss'],
+    selector: 'bq-checkbox-list',
+    templateUrl: './checkbox-list.component.html',
+    styleUrls: ['../selection-control.component.scss'],
+    standalone: false
 })
 @BlueriqComponent({
   type: Field,

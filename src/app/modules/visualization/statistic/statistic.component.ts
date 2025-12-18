@@ -47,8 +47,9 @@ interface ChartOptions {
 }
 
 @Component({
-  templateUrl: './statistic.component.html',
-  providers: [Statistics],
+    templateUrl: './statistic.component.html',
+    providers: [Statistics],
+    standalone: false
 })
 @BlueriqComponent({
   type: Container,

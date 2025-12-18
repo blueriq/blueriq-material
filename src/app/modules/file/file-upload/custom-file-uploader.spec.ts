@@ -28,7 +28,7 @@ describe('CustomFileUploader', () => {
     // file submit
     expect(formData).toHaveBeenCalledWith('files[]', fileItem._file, fileItem._file.name);
     // additional parameters
-    expect(formData).toHaveBeenCalledWith('aParam', 'aValue');
+    expect(formData).toHaveBeenCalledWith('aParam', 'aValue' as any);
     // verify no more formdata
     expect(formData).toHaveBeenCalledTimes(2);
     // headers

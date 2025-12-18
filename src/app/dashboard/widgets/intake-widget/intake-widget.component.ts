@@ -6,9 +6,10 @@ import { NotificationModel, NotificationType } from '../../../notification-overl
 import { SessionWidgetComponent } from '../session-widget.component';
 
 @Component({
-  selector: 'bq-intake-widget',
-  templateUrl: './intake-widget.component.html',
-  providers: [DashboardWidgetSession],
+    selector: 'bq-intake-widget',
+    templateUrl: './intake-widget.component.html',
+    providers: [DashboardWidgetSession],
+    standalone: false
 })
 export class IntakeWidgetComponent extends SessionWidgetComponent {
 

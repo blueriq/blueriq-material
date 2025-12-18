@@ -12,7 +12,8 @@ import { HeadingModule } from './heading.module';
   type: Container,
 })
 @Component({
-  template: '<div><bq-heading [title]="container.displayName" [styles]="container.styles"></bq-heading></div>',
+    template: '<div><bq-heading [title]="container.displayName" [styles]="container.styles"></bq-heading></div>',
+    standalone: false
 })
 class MockContainerComponent {
   constructor(public container: Container) {

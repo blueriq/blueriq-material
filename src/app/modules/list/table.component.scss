@@ -1,5 +1,6 @@
 @use '@angular/material' as mat;
-@import 'globals/variables';
+@use 'globals/variables' as var;
+@use 'globals/color-palettes' as palette;
 
 table {
   width: 100%;
@@ -8,7 +9,7 @@ table {
 :host ::ng-deep {
   .mat-mdc-row {
     &:hover {
-      background-color: mat.get-color-from-palette($bq-mat-grey-light, 50) !important;
+      background-color: mat.m2-get-color-from-palette(palette.$bq-mat-grey-light, 50) !important;
     }
   }
 
@@ -16,23 +17,23 @@ table {
   *  where the cells itself have the half margin padding and half margin margin.
   */
   .mat-mdc-header-cell {
-    padding-left: $bq-base-margin;
+    padding-left: var.$bq-base-margin;
   }
 
   .mat-mdc-cell {
-    padding-left: $bq-margin-half;
+    padding-left: var.$bq-margin-half;
 
     bq-asset,
     bq-table-readonly {
       display: inline-block;
-      margin-left: $bq-margin-half;
+      margin-left: var.$bq-margin-half;
     }
 
     input,
     mat-checkbox,
     mat-select {
-      margin-left: $bq-margin-half;
-      font-size: $default-font-size;
+      margin-left: var.$bq-margin-half;
+      font-size: var.$default-font-size;
     }
 
     bq-container {
@@ -40,7 +41,7 @@ table {
     }
   }
 
-  // remove wrapper on the bottom of a field
+  /* remove wrapper on the bottom of a field */
   .mat-mdc-form-field-subscript-wrapper {
     display: none;
   }

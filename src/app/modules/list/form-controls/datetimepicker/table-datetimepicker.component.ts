@@ -6,11 +6,12 @@ import { DateTimepickerComponent } from '../../../form-controls/date/datetimepic
 import { dateTimeFormatProvider } from '../../../form-controls/date/datetimepicker/datetimepicker.owl';
 
 @Component({
-  selector: 'bq-table-datetimepicker',
-  templateUrl: './table-datetimepicker.component.html',
-  styleUrls: ['../table-form-control.scss'],
-  providers: [dateTimeFormatProvider],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'bq-table-datetimepicker',
+    templateUrl: './table-datetimepicker.component.html',
+    styleUrls: ['../table-form-control.scss'],
+    providers: [dateTimeFormatProvider],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 @BlueriqComponent({
   type: Field,

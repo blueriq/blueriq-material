@@ -1,5 +1,5 @@
 import { DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -105,7 +105,7 @@ describe('MenuComponent', () => {
     expect(setMenuOptions[1].innerText.trim()).toBe('PUBLIC-B');
   });
 
-  it('should navigate submenus with arrowkeys', async() => {
+  it('should navigate submenus with arrowkeys', fakeAsync(() => {
     const subMenu = component.debugElement.query(By.css('.mat-mdc-menu-content'));
     expect(subMenu).toBeFalsy();
 
@@ -115,8 +115,7 @@ describe('MenuComponent', () => {
 
     // click on the menu button (via the trigger) to display the submenu
     selectTrigger.nativeElement.click();
-
-    await component.whenStable();
+    tick();
 
     const menuItems: DebugElement[] = component.debugElement.queryAll(By.directive(MenuItemComponent));
     const arrowDownEvent = new KeyboardEvent('keydown', { key: 'ArrowDown' });
@@ -157,26 +156,28 @@ describe('MenuComponent', () => {
 
     // navigate submenu down and up
     coreHtmlElement.dispatchEvent(arrowDownEvent);
-    await component.whenStable();
+    tick();
 
     financeHtmlElement.dispatchEvent(arrowDownEvent);
-    await component.whenStable();
+    tick();
 
     publicHtmlElement.dispatchEvent(arrowUpEvent);
-    await component.whenStable();
+    tick();
 
     financeHtmlElement.dispatchEvent(arrowUpEvent);
-    await component.whenStable();
+    tick();
 
     // navigate again down to enter sub-sub menu
     coreHtmlElement.dispatchEvent(arrowDownEvent);
-    await component.whenStable();
+    tick();
 
     financeHtmlElement.dispatchEvent(arrowDownEvent);
-    await component.whenStable();
+    tick();
 
     publicBtnItem.dispatchEvent(arrowRightEvent);
-    await component.whenStable();
+    tick();
+
+    flush();
 
     expect(unitBtnOnMenuKeyDown).toHaveBeenCalledTimes(6);
     expect(unitBtnFocusElement).toHaveBeenCalledTimes(6);
@@ -184,6 +185,6 @@ describe('MenuComponent', () => {
     expect(coreBtnFocusSpy).toHaveBeenCalled();
     expect(publicBtnFocusSpy).toHaveBeenCalled();
     expect(publicBtnOnHandleEnterSubmenu).toHaveBeenCalled();
-  });
+  }));
 
 });

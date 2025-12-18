@@ -1,7 +1,6 @@
 @use '@angular/material' as mat;
 @use 'sass:map';
-@import '@angular/material/theming';
-@import 'globals/variables';
+@use 'globals/variables' as var;
 
 .summary {
   display: flex;
@@ -13,14 +12,14 @@
 }
 
 .deadline {
-  margin-bottom: $bq-margin;
+  margin-bottom: var.$bq-margin;
 }
 
 h3 {
-  font-size: $h3-size;
+  font-size: var.$h3-size;
   margin-top: 0;
-  margin-bottom: $bq-margin-half;
-  color: $bq-header-color;
+  margin-bottom: var.$bq-margin-half;
+  color: var.$bq-header-color;
   font-weight: 400;
 }
 

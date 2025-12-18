@@ -3,9 +3,10 @@ import { ColumnFilter } from '@blueriq/angular/lists';
 import { FilterCandidate } from '../types';
 
 @Component({
-  selector: 'bq-filter-row',
-  templateUrl: './filter-row.component.html',
-  styleUrls: ['./filter-row.component.scss'],
+    selector: 'bq-filter-row',
+    templateUrl: './filter-row.component.html',
+    styleUrls: ['./filter-row.component.scss'],
+    standalone: false
 })
 export class FilterRowComponent {
 

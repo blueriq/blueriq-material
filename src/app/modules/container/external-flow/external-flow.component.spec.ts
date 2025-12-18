@@ -22,7 +22,8 @@ import { ExternalFlowModule } from './external-flow.module';
 
 
 @Component({
-  template: '<span id="externalContainer">{{page.displayName}}</span>',
+    template: '<span id="externalContainer">{{page.displayName}}</span>',
+    standalone: false
 })
 @BlueriqComponent({
   type: Page,

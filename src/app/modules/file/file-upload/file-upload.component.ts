@@ -5,10 +5,11 @@ import { Container, Element, Field, TextItem } from '@blueriq/core';
 import { CustomFileUploader, CustomFileUploaderOptions } from './custom-file-uploader';
 
 @Component({
-  selector: 'bq-file-upload',
-  templateUrl: './file-upload.component.html',
-  styleUrls: ['./file-upload.component.scss'],
-  providers: [FileUpload],
+    selector: 'bq-file-upload',
+    templateUrl: './file-upload.component.html',
+    styleUrls: ['./file-upload.component.scss'],
+    providers: [FileUpload],
+    standalone: false
 })
 @BlueriqComponent({
   type: Container,

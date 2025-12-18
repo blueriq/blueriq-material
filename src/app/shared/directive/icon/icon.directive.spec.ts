@@ -5,7 +5,8 @@ import { PresentationStyles } from '@blueriq/core';
 import { BqIconDirective } from '@shared/directive/icon/icon.directive';
 
 @Component({
-  template: '<mat-icon [bqIcon]="styles"></mat-icon>',
+    template: '<mat-icon [bqIcon]="styles"></mat-icon>',
+    standalone: false
 })
 export class MockIconComponent {
 

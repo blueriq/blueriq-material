@@ -4,9 +4,10 @@ import { Container } from '@blueriq/core';
 import { BqContentStyles } from '../BqContentStyles';
 
 @Component({
-  selector: 'bq-expansion-container',
-  templateUrl: './expansion.component.html',
-  styleUrls: ['./expansion.component.scss'],
+    selector: 'bq-expansion-container',
+    templateUrl: './expansion.component.html',
+    styleUrls: ['./expansion.component.scss'],
+    standalone: false
 })
 @BlueriqComponent({
   type: Container,

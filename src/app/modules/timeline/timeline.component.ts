@@ -5,10 +5,11 @@ import { Container } from '@blueriq/core';
 import { dateFromNowHumanReadable, dateToShortTime } from '@shared/date/bq-date-parser';
 
 @Component({
-  selector: 'bq-timeline',
-  templateUrl: './timeline.component.html',
-  styleUrls: ['./timeline.component.scss'],
-  providers: [Timeline],
+    selector: 'bq-timeline',
+    templateUrl: './timeline.component.html',
+    styleUrls: ['./timeline.component.scss'],
+    providers: [Timeline],
+    standalone: false
 })
 @BlueriqComponent({
   type: Container,

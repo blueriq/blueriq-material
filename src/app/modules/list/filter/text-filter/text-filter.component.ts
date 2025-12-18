@@ -3,8 +3,9 @@ import { TextPredicate } from '@blueriq/angular/lists';
 import { FilterCandidate } from '../types';
 
 @Component({
-  selector: 'bq-text-filter',
-  templateUrl: './text-filter.component.html',
+    selector: 'bq-text-filter',
+    templateUrl: './text-filter.component.html',
+    standalone: false
 })
 export class TextFilterComponent {
   private _candidate: FilterCandidate;

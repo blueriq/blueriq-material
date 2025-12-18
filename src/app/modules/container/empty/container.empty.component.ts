@@ -4,8 +4,9 @@ import { Container } from '@blueriq/core';
 import { ContainerEmptyComponentMatcher } from './container.empty.component-matcher';
 
 @Component({
-  selector: 'bq-empty-container',
-  template: '',
+    selector: 'bq-empty-container',
+    template: '',
+    standalone: false
 })
 @BlueriqComponent({
   type: Container,

@@ -4,7 +4,7 @@ import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from
 import { ContainerTemplate } from '@blueriq/core/testing';
 import { DEFAULT_DATE_FROM_NOW_FORMAT } from '@shared/date/bq-date-parser';
 import { BqContainerDirective } from '@shared/directive/container/bq-container.directive';
-import * as moment from 'moment';
+import moment from 'moment';
 import { TimelineComponent } from './timeline.component';
 import { TimelineModule } from './timeline.module';
 

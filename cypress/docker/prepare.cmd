@@ -25,7 +25,7 @@ if %composeOnly% == false (
   call :download_services || exit /b
 
   :: Copy
-  call xcopy /I dist cypress\docker\preparations\dist /Y
+  call xcopy /I /S dist cypress\docker\preparations\dist /Y
 )
 
 :: Docker build and start

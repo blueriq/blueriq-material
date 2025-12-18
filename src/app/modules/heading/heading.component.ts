@@ -3,9 +3,10 @@ import { BlueriqSession } from '@blueriq/angular';
 import { PresentationStyles } from '@blueriq/core';
 
 @Component({
-  selector: 'bq-heading',
-  templateUrl: './heading.component.html',
-  styleUrls: ['./heading.component.scss'],
+    selector: 'bq-heading',
+    templateUrl: './heading.component.html',
+    styleUrls: ['./heading.component.scss'],
+    standalone: false
 })
 export class HeadingComponent {
 

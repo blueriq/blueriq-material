@@ -5,7 +5,6 @@ import { Field, FieldMessages } from '@blueriq/core';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
 
 @Directive()
-// eslint-disable-next-line @angular-eslint/directive-class-suffix
 export class InputFieldComponent implements OnUpdate {
 
   @HostBinding('class.fx-flex-row')

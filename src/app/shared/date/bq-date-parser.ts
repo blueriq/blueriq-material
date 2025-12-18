@@ -1,6 +1,6 @@
 import { DateFormats, Localization } from '@blueriq/core';
 import { MomentDateFormatting } from '@shared/date/date-formatting-library';
-import * as moment from 'moment';
+import moment from 'moment';
 
 export const DEFAULT_DATE_PATTERN = 'DD-MM-YYYY';
 export const DEFAULT_TIME_PATTERN = 'HH:mm:ss';

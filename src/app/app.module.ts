@@ -71,7 +71,7 @@ const routes: Routes = [
     StoreDevtoolsModule.instrument({
       name: 'Blueriq',
       logOnly: environment.production, // Restrict extension to log-only mode
-    }),
+      connectInZone: true}),
     ToastrModule.forRoot({
       autoDismiss: true,
       positionClass: 'toast-bottom-right',

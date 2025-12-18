@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { BlueriqSession } from '@blueriq/angular';
 import { DateOperator, DatePredicate } from '@blueriq/angular/lists';
 import { computeFirstDayOfWeek } from '@shared/date/bq-date-parser';
-import * as moment from 'moment';
+import moment from 'moment';
 import { dateTimeFormatProvider } from '../../../form-controls/date/datetimepicker/datetimepicker.owl';
 import { FilterCandidate } from '../types';
 
@@ -14,9 +14,10 @@ const operations = {
 };
 
 @Component({
-  selector: 'bq-date-filter',
-  templateUrl: './date-filter.component.html',
-  providers: [dateTimeFormatProvider],
+    selector: 'bq-date-filter',
+    templateUrl: './date-filter.component.html',
+    providers: [dateTimeFormatProvider],
+    standalone: false
 })
 export class DateFilterComponent {
   readonly operations = operations;

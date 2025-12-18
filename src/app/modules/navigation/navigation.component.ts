@@ -5,10 +5,11 @@ import { BqContentStyles } from '../BqContentStyles';
 import { NavigationItemComponent } from './navigation-item/navigation-item.component';
 
 @Component({
-  selector: 'bq-navigation-menu',
-  templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.scss'],
-  providers: [BlueriqComponents.scoped([NavigationItemComponent])],
+    selector: 'bq-navigation-menu',
+    templateUrl: './navigation.component.html',
+    styleUrls: ['./navigation.component.scss'],
+    providers: [BlueriqComponents.scoped([NavigationItemComponent])],
+    standalone: false
 })
 @BlueriqComponent({
   type: Container,

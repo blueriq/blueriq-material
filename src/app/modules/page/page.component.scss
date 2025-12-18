@@ -1,6 +1,5 @@
 @use '@angular/material' as mat;
-@import '@angular/material/theming';
-@import 'globals/variables';
+@use 'globals/variables' as var;
 
 .header {
   @include mat.elevation(1);
@@ -8,10 +7,10 @@
   position: sticky;
   top: 0;
   width: 100%;
-  z-index: $z-index-drawer + 10;
+  z-index: var.$z-index-drawer + 10;
 }
 
 .sticky-menu {
   position: sticky;
-  top: $bq-toolbar-height;
+  top: var.$bq-toolbar-height;
 }

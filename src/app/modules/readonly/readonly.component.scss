@@ -1,7 +1,4 @@
-@import 'globals/variables';
-@import '@angular/material/theming';
-
-// Suppress the border on the bottom of the field & background color
+/* Suppress the border on the bottom of the field & background color */
 :host {
   ::ng-deep {
     .mdc-text-field {

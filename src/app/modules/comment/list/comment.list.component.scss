@@ -1,14 +1,16 @@
-@import 'globals/variables';
+@use 'globals/variables' as var;
+@use '@angular/material' as mat;
+@use 'globals/color-palettes' as palette;
 
 mat-list {
-  max-height: $bq-max-height-scrollbar;
+  max-height: var.$bq-max-height-scrollbar;
   overflow-y: auto;
 }
 
 .row {
   display: flex;
   align-items: center;
-  margin-bottom: $bq-margin-half;
+  margin-bottom: var.$bq-margin-half;
 }
 
 .header {
@@ -16,8 +18,8 @@ mat-list {
   box-sizing: border-box;
 
   .title {
-    margin-left: $bq-margin-half;
-    color: $dark-secondary-text;
+    margin-left: var.$bq-margin-half;
+    color: palette.$dark-secondary-text;
   }
 }
 
@@ -28,11 +30,11 @@ mat-list {
 .mat-mdc-card-subtitle {
   align-items: center;
   justify-content: center;
-  margin-right: $bq-margin-half;
+  margin-right: var.$bq-margin-half;
 }
 
 .date {
-  font-size: $font-size-comment-list-date;
+  font-size: var.$font-size-comment-list-date;
 }
 
 .comment {
@@ -40,5 +42,5 @@ mat-list {
 }
 
 .space {
-  margin: $bq-margin 0;
+  margin: var.$bq-margin 0;
 }

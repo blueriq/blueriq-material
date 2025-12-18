@@ -6,7 +6,8 @@ import { BqContentStyles } from '../../../modules/BqContentStyles';
 import { BqPresentationStyles } from '../../../modules/BqPresentationStyles';
 
 @Directive({
-  selector: '[bqContainer]',
+    selector: '[bqContainer]',
+    standalone: false
 })
 export class BqContainerDirective implements OnInit, OnDestroy {
 

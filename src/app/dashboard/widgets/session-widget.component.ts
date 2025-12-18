@@ -10,8 +10,9 @@ import {
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'bq-session-widget',
-  template: '',
+    selector: 'bq-session-widget',
+    template: '',
+    standalone: false
 })
 export class SessionWidgetComponent implements OnInit {
 

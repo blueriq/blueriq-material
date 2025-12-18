@@ -8,9 +8,10 @@ import { SessionWidgetComponent } from '../session-widget.component';
 type WidgetStartType = 'shortcut' | 'regular' | 'invalid';
 
 @Component({
-  selector: 'bq-flow-widget',
-  templateUrl: './flow-widget.component.html',
-  providers: [DashboardWidgetSession],
+    selector: 'bq-flow-widget',
+    templateUrl: './flow-widget.component.html',
+    providers: [DashboardWidgetSession],
+    standalone: false
 })
 export class FlowWidgetComponent extends SessionWidgetComponent {
 

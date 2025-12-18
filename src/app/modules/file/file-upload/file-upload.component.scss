@@ -1,14 +1,14 @@
-@import 'globals/variables';
+@use 'globals/variables' as var;
 
 mat-hint,
 mat-error {
   display: block;
   margin-top: 4px;
-  font-size: $font-size-mat-error;
+  font-size: var.$font-size-mat-error;
 }
 
 h2 {
-  margin-top: 0; // reset top margin, Card padding is in place
-  color: $bq-header-color;
+  margin-top: 0; /* reset top margin, Card padding is in place */
+  color: var.$bq-header-color;
   font-weight: 400;
 }

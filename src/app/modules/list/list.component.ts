@@ -5,9 +5,10 @@ import { Container } from '@blueriq/core';
 import { BqPresentationStyles } from '../BqPresentationStyles';
 
 @Component({
-  selector: 'bq-list',
-  templateUrl: './list.component.html',
-  providers: [List],
+    selector: 'bq-list',
+    templateUrl: './list.component.html',
+    providers: [List],
+    standalone: false
 })
 @BlueriqComponent({
   type: Container,

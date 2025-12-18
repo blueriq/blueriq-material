@@ -37,7 +37,7 @@ node {
     timeout(time: timeout_in_mins, unit: 'MINUTES') {
       env.JAVA_HOME = tool 'jdk-21'
       def mvnHome = tool "apache-maven-3.9.6"
-      def nodeHome = tool 'node-18.16.0'
+      def nodeHome = tool 'node-22.14.0'
       env.PATH = "${env.JAVA_HOME}\\bin;${mvnHome}\\bin;${nodeHome};${env.PATH}"
       env.CHROME_BIN = env.CHROME_116_0_5845_97
 

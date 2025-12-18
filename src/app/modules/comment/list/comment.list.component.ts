@@ -5,10 +5,11 @@ import { Container } from '@blueriq/core';
 import { dateFromNowHumanReadable } from '@shared/date/bq-date-parser';
 
 @Component({
-  selector: 'bq-comment-list',
-  templateUrl: './comment.list.component.html',
-  styleUrls: ['./comment.list.component.scss'],
-  providers: [CommentList],
+    selector: 'bq-comment-list',
+    templateUrl: './comment.list.component.html',
+    styleUrls: ['./comment.list.component.scss'],
+    providers: [CommentList],
+    standalone: false
 })
 @BlueriqComponent({
   type: Container,

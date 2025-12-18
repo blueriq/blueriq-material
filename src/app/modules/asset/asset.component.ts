@@ -3,9 +3,10 @@ import { BlueriqComponent } from '@blueriq/angular';
 import { Asset } from '@blueriq/core';
 
 @Component({
-  selector: 'bq-asset',
-  styleUrls: ['./asset.component.scss'],
-  templateUrl: './asset.component.html',
+    selector: 'bq-asset',
+    styleUrls: ['./asset.component.scss'],
+    templateUrl: './asset.component.html',
+    standalone: false
 })
 @BlueriqComponent({
   type: Asset,

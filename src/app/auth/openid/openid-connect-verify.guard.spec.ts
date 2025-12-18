@@ -8,7 +8,8 @@ import { AuthService } from '../auth.service';
 import { OpenIdConnectVerifyGuard } from './openid-connect-verify.guard';
 
 @Component({
-  template: '',
+    template: '',
+    standalone: false
 })
 export class TestComponent {
 }

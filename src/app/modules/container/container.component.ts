@@ -7,15 +7,16 @@ import { BqContentStyles } from '../BqContentStyles';
 import { BqPresentationStyles } from '../BqPresentationStyles';
 
 @Component({
-  selector: 'bq-container',
-  templateUrl: './container.component.html',
-  animations: [
-    trigger('animate', [
-      transition(':leave', [
-        query('@*', animateChild(), { optional: true }),
-      ]),
-    ]),
-  ],
+    selector: 'bq-container',
+    templateUrl: './container.component.html',
+    animations: [
+        trigger('animate', [
+            transition(':leave', [
+                query('@*', animateChild(), { optional: true }),
+            ]),
+        ]),
+    ],
+    standalone: false
 })
 @BlueriqComponent({
   type: Container,

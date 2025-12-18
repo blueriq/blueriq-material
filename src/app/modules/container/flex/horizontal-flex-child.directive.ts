@@ -11,7 +11,8 @@ import { BqPresentationStyles } from '../../BqPresentationStyles';
  * It is meant for children of containers with presentation style 'horizontal' only!
  */
 @Directive({
-  selector: '[bqFlexChild]',
+    selector: '[bqFlexChild]',
+    standalone: false
 })
 export class HorizontalFlexChildDirective implements OnChanges, OnDestroy {
 

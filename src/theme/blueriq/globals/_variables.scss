@@ -1,21 +1,23 @@
 @use '@angular/material' as mat;
 @use 'sass:math';
-@import '@angular/material/theming';
-@import './color-palettes';
+@use './color-palettes' as pallette;
 
-// The mat-palette() function adds keys to the palette object for easy color retrieval using mat-color()
-$bq-primary-palette: mat.define-palette($bq-mat-primary-blue);
-$bq-accent-palette: mat.define-palette($bq-mat-primary-purple);
-$bq-error-palette: mat.define-palette($bq-mat-accent-red);
+/* Copied from material's core/style/_variables.scss */
+$z-index-drawer: 100 !default;
 
-// Specific none material colour palettes
-$bq-tertiary-palette: mat.define-palette($bq-mat-accent-green);
-$bq-warn-palette: mat.define-palette($bq-mat-accent-orange);
-$bq-info-palette: mat.define-palette($bq-mat-primary-blue);
-$bq-success-palette: mat.define-palette($bq-mat-accent-green);
+/* The mat-palette() function adds keys to the palette object for easy color retrieval using mat-color() */
+$bq-primary-palette: mat.m2-define-palette(pallette.$bq-mat-primary-blue);
+$bq-accent-palette: mat.m2-define-palette(pallette.$bq-mat-primary-purple);
+$bq-error-palette: mat.m2-define-palette(pallette.$bq-mat-accent-red);
 
-// Margin system, for consistency all margins are derivatives from a single base margin
-// Use the $bq-margin-* variables in all SCSS for padding, margin, etc to achieve a form of consistency
+/* Specific none material colour palettes */
+$bq-tertiary-palette: mat.m2-define-palette(pallette.$bq-mat-accent-green);
+$bq-warn-palette: mat.m2-define-palette(pallette.$bq-mat-accent-orange);
+$bq-info-palette: mat.m2-define-palette(pallette.$bq-mat-primary-blue);
+$bq-success-palette: mat.m2-define-palette(pallette.$bq-mat-accent-green);
+
+/* Margin system, for consistency all margins are derivatives from a single base margin
+ Use the $bq-margin-* variables in all SCSS for padding, margin, etc to achieve a form of consistency */
 $bq-base-margin: 12px;
 $bq-margin: $bq-base-margin;
 $bq-margin-half: math.div($bq-base-margin, 2);
@@ -24,16 +26,16 @@ $bq-margin-triple: $bq-base-margin * 3;
 $bq-margin-quadruple: $bq-base-margin * 4;
 $bq-max-height-scrollbar: 700px;
 
-// Specific colour variables which could not not have been achieved using the default material theme variables
+/* Specific colour variables which could not not have been achieved using the default material theme variables */
 $bq-card-button-background: #f5f5f5;
-$bq-header-color: mat.get-color-from-palette($bq-mat-accent-navy, 500);
+$bq-header-color: mat.m2-get-color-from-palette(pallette.$bq-mat-accent-navy, 500);
 $bq-white-37-opacity: rgb(255 255 255 / 37%);
 
-// Other variables
+/* Other variables */
 $bq-font-family: 'Roboto', arial, 'Helvetica Neue', sans-serif;
 $bq-toolbar-height: 77px;
 
-// Default sizes for headings
+/* Default sizes for headings */
 $h1-size: 2em;
 $h2-size: 1.5em;
 $h3-size: 1.17em;
@@ -41,13 +43,13 @@ $h4-size: 1.12em;
 $h5-size: 0.83em;
 $h6-size: 0.75em;
 
-// Preset font-sizes
+/* Preset font-sizes */
 $font-size-smaller: 9px;
 $font-size-small: 12px;
 $default-font-size: 14px;
 $font-size-large: 15px;
 
-// Font sizes per component using the preset font-sizes
+/* Font sizes per component using the preset font-sizes */
 $font-size-mat-error: $font-size-small;
 $font-size-filter-row-icon: $font-size-smaller;
 $font-size-timeline-content: $font-size-small;
@@ -58,7 +60,7 @@ $font-size-list-limit: $font-size-small;
 $font-size-list-header-icon: $font-size-small;
 $default-line-height: 20px;
 
-// URLs
+/* URLs */
 $url-prefix: '/theme/blueriq/images/';
 $url-img-introduction: $url-prefix + 'blueriq-technology.svg';
 $url-img-spinner: $url-prefix + 'spinner_e.gif';
@@ -69,7 +71,7 @@ $url-img-oops: $url-prefix + 'oops-icon.svg';
 $url-img-session-expired: $url-prefix + 'session-expired.svg';
 $url-img-logged-out: $url-prefix + 'logged-out.svg';
 
-// In widgets, headings should be one level smaller
+/* In widgets, headings should be one level smaller */
 $h1-widget-size: $h2-size;
 $h2-widget-size: $h3-size;
 $h3-widget-size: $h4-size;
@@ -77,7 +79,7 @@ $h4-widget-size: $h5-size;
 $h5-widget-size: $h6-size;
 $h6-widget-size: 0.66em;
 
-// Responsive design variables
+/* Responsive design variables */
 $break-small: 768px;
 $break-medium: 1024px;
 $break-large: 1240px;
@@ -89,12 +91,12 @@ $gutter-width-small: $bq-margin;
 $gutter-width-medium: $bq-margin-double;
 $gutter-width-large: $bq-margin-quadruple;
 
-// Enable/disable the header; choose between: `flex` or `none`
+/* Enable/disable the header; choose between: `flex` or `none` */
 $header-display: flex;
-$bq-mat-typography: mat.define-typography-config(
+$bq-mat-typography: mat.m2-define-typography-config(
   $font-family: ($bq-font-family)
 );
-$bq-theme: mat.define-light-theme(
+$bq-theme: mat.m2-define-light-theme(
   (
     color: (
       primary: $bq-primary-palette,

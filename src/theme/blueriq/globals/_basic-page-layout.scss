@@ -1,6 +1,6 @@
 @use 'sass:map';
 @use '@angular/material' as mat;
-@import 'variables';
+@use 'variables' as var;
 
 html,
 body {
@@ -10,8 +10,8 @@ body {
 body {
   margin: 0;
   padding: 0;
-  background: map.get(mat.$gray-palette, 200);
-  font-family: $bq-font-family;
+  background: map.get(mat.$m2-gray-palette, 200);
+  font-family: var.$bq-font-family;
 }
 
 /*
@@ -20,22 +20,22 @@ body {
 
 /* Containers that are directly on a page */
 .top-container {
-  margin: $bq-margin-double;
-  padding: $bq-margin-double;
+  margin: var.$bq-margin-double;
+  padding: var.$bq-margin-double;
 }
 
 /* Display containers as card */
 .card {
   @include mat.elevation(1);
 
-  background: map.get(mat.$light-theme-background-palette, card);
+  background: map.get(mat.$m2-light-theme-background-palette, card);
 }
 
 /* Display containers as transparent with a small image in the corner */
 .introduction {
   background: {
     position: left top;
-    image: url('../../..' + $url-img-introduction);
+    image: url('../../..' + var.$url-img-introduction);
     repeat: no-repeat;
     size: 39px;
   }

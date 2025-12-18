@@ -8,10 +8,11 @@ import { ButtonComponent } from '../../button/button.component';
 import { FileDownloadService } from './file-download.service';
 
 @Component({
-  selector: 'bq-file-download',
-  templateUrl: './file-download.component.html',
-  styleUrls: ['./file-download.component.scss'],
-  providers: [FileDownload],
+    selector: 'bq-file-download',
+    templateUrl: './file-download.component.html',
+    styleUrls: ['./file-download.component.scss'],
+    providers: [FileDownload],
+    standalone: false
 })
 @BlueriqComponent({
   type: Container,

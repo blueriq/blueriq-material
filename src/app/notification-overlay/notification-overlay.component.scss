@@ -1,8 +1,8 @@
 @use '@angular/material' as mat;
 @use '@angular/cdk' as cdk;
-@import 'globals/variables';
-@import '@angular/material/theming';
-@import 'globals/images';
+@use 'globals/variables' as var;
+@use 'globals/color-palettes' as palette;
+@use 'globals/images' as img;
 
 .error-container {
   position: fixed;
@@ -10,34 +10,34 @@
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: $z-index-drawer + 200;
+  z-index: var.$z-index-drawer + 200;
   display: flex;
   place-content: center;
   align-items: center;
 
   .notification-error {
-    background-color: mat.get-color-from-palette($bq-error-palette);
+    background-color: mat.m2-get-color-from-palette(var.$bq-error-palette);
   }
 
   .notification-expired,
   .notification-logged-out,
   .notification-info {
-    background-color: mat.get-color-from-palette($bq-mat-primary-blue, 500);
+    background-color: mat.m2-get-color-from-palette(palette.$bq-mat-primary-blue, 500);
   }
 
   .image {
-    margin-top: $bq-margin-triple;
+    margin-top: var.$bq-margin-triple;
 
     .img-oops {
-      @include image('../../..' + $url-img-oops, 175px, 175px);
+      @include img.image('../../..' + var.$url-img-oops, 175px, 175px);
     }
 
     .img-session-expired {
-      @include image('../../..' + $url-img-session-expired, 175px, 175px);
+      @include img.image('../../..' + var.$url-img-session-expired, 175px, 175px);
     }
 
     .img-logged-out {
-      @include image('../../..' + $url-img-logged-out, 175px, 175px);
+      @include img.image('../../..' + var.$url-img-logged-out, 175px, 175px);
     }
   }
 
@@ -45,8 +45,8 @@
     @include mat.elevation(2);
 
     width: 350px;
-    padding: $bq-margin;
-    color: $white-87-opacity;
+    padding: var.$bq-margin;
+    color: palette.$white-87-opacity;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -60,7 +60,7 @@
     }
 
     .title {
-      margin-bottom: $bq-margin;
+      margin-bottom: var.$bq-margin;
       font-size: 48px;
       font-weight: normal;
     }
@@ -70,8 +70,8 @@
     }
 
     .details {
-      padding: $bq-margin;
-      background-color: $bq-white-37-opacity;
+      padding: var.$bq-margin;
+      background-color: var.$bq-white-37-opacity;
     }
 
     .button {
@@ -79,7 +79,7 @@
 
       button {
         text-transform: uppercase;
-        color: $white-87-opacity;
+        color: palette.$white-87-opacity;
       }
     }
   }
@@ -92,5 +92,5 @@
   bottom: 0;
   left: 0;
   background-color: cdk.$overlay-backdrop-color;
-  z-index: $z-index-drawer + 100;
+  z-index: var.$z-index-drawer + 100;
 }

@@ -49,7 +49,7 @@ describe('ChiplistComponent', () => {
       expect(component.values.length).toBe(4);
       expect(fixture.nativeElement.querySelectorAll('mat-chip-row').length).toBe(4);
       expect(Array.from(fixture.nativeElement.querySelectorAll('mat-chip-row'))
-        .some((chip: any) => chip.childNodes[4].innerText === 'Yellow')).toBeTruthy();
+        .some((chip: any) => chip.childNodes[2].innerText === 'Yellow')).toBeTruthy();
       expect(inputField.value).toBe('');
     });
 
@@ -69,7 +69,7 @@ describe('ChiplistComponent', () => {
       expect(component.values.length).toBe(4);
       expect(fixture.nativeElement.querySelectorAll('mat-chip-row').length).toBe(4);
       expect(Array.from(fixture.nativeElement.querySelectorAll('mat-chip-row'))
-        .some((chip: any) => chip.childNodes[4].innerText === '678.20')).toBeTruthy();
+        .some((chip: any) => chip.childNodes[2].innerText === '678.20')).toBeTruthy();
       expect(inputField.value).toBe('');
     });
 

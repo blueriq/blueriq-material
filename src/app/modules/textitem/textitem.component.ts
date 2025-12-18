@@ -4,9 +4,10 @@ import { TextItem } from '@blueriq/core';
 import { BqPresentationStyles } from '../BqPresentationStyles';
 
 @Component({
-  selector: 'bq-textitem',
-  templateUrl: './textitem.component.html',
-  styleUrls: ['./textitem.component.scss'],
+    selector: 'bq-textitem',
+    templateUrl: './textitem.component.html',
+    styleUrls: ['./textitem.component.scss'],
+    standalone: false
 })
 @BlueriqComponent({
   type: TextItem,

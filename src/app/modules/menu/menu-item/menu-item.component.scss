@@ -1,21 +1,21 @@
-@import '@angular/material/theming';
-@import 'globals/variables';
+@use '@angular/material' as mat;
+@use 'globals/variables' as var;
+@use 'globals/color-palettes' as palette;
 
 :host {
-  color: $light-primary-text;
-
   .mat-mdc-button,
   .mat-mdc-menu-item {
-    font-size: $default-font-size;
+    font-size: var.$default-font-size;
     font-weight: 400;
     text-transform: uppercase;
+    color: palette.$light-primary-text;
 
     .mat-icon {
-      width: $default-font-size;
-      height: $default-font-size;
+      width: var.$default-font-size;
+      height: var.$default-font-size;
       margin: 0;
-      color: $light-primary-text;
-      font-size: $default-font-size;
+      color: palette.$light-primary-text;
+      font-size: var.$default-font-size;
     }
   }
 
@@ -24,29 +24,30 @@
       .nested-menu-item {
         justify-content: start;
         width: 100%;
-        padding-left: $bq-base-margin;
+        padding-left: var.$bq-base-margin;
       }
 
-      .mdc-list-item__primary-text { // stylelint-disable-line selector-class-pattern
-        font-size: $default-font-size;
+      .mat-mdc-menu-item-text { /* stylelint-disable-line selector-class-pattern */
+        font-size: var.$default-font-size !important;
         font-weight: 400;
         text-transform: uppercase;
+        color: palette.$dark-primary-text;
       }
     }
 
-    .root-menu-item .mdc-list-item__primary-text { // stylelint-disable-line selector-class-pattern
-      color: $light-primary-text;
-      font-size: $default-font-size;
+    .root-menu-item .mat-mdc-menu-item-text { /* stylelint-disable-line selector-class-pattern */
+      color: palette.$light-primary-text;
+      font-size: var.$default-font-size;
       font-weight: 400;
-      font-family: $bq-font-family;
+      font-family: var.$bq-font-family;
       text-transform: uppercase;
     }
   }
 }
 
 bq-menu-item .mat-menu-item {
-  color: $dark-primary-text;
-  font-size: $default-font-size;
+  color: palette.$dark-primary-text;
+  font-size: var.$default-font-size;
   font-weight: 400;
   text-transform: uppercase;
   justify-content: start;

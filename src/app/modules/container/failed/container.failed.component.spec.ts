@@ -69,6 +69,7 @@ describe('FailedContainerComponent', () => {
     const buttons = fixture.nativeElement.querySelector(CLASS_MESSAGE).querySelectorAll('button');
     const buttonShowTrace = buttons[1];
     buttonShowTrace.click();
+    fixture.detectChanges();
     expect(fixture.nativeElement.querySelector(CLASS_TRACE).innerHTML).toContain('com.blueriq.exception');
   });
 

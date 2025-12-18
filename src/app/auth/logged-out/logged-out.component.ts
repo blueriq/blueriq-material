@@ -3,9 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationModel, NotificationType } from '../../notification-overlay/notification.model';
 
 @Component({
-  selector: 'bq-logged-out',
-  templateUrl: './logged-out.component.html',
-  styleUrls: ['./logged-out.component.scss'],
+    selector: 'bq-logged-out',
+    templateUrl: './logged-out.component.html',
+    styleUrls: ['./logged-out.component.scss'],
+    standalone: false
 })
 export class LoggedOutComponent {
 

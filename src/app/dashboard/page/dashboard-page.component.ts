@@ -5,9 +5,10 @@ import { Actions, ofType } from '@ngrx/effects';
 import { DashboardActions, RefreshAction } from '../events/actions';
 
 @Component({
-  selector: 'bq-dashboard-page',
-  templateUrl: './dashboard-page.component.html',
-  styleUrls: ['./dashboard-page.component.scss'],
+    selector: 'bq-dashboard-page',
+    templateUrl: './dashboard-page.component.html',
+    styleUrls: ['./dashboard-page.component.scss'],
+    standalone: false
 })
 export class DashboardPageComponent implements OnInit, OnDestroy, AfterViewChecked {
 

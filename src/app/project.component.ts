@@ -8,7 +8,8 @@ import { AuthService } from './auth/auth.service';
 import { NotificationModel, NotificationType } from './notification-overlay/notification.model';
 
 @Component({
-  templateUrl: './project.component.html',
+    templateUrl: './project.component.html',
+    standalone: false
 })
 export class ProjectComponent implements OnInit {
 

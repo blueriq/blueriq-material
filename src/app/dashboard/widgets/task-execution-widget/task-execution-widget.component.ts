@@ -6,9 +6,10 @@ import { NotificationModel, NotificationType } from '../../../notification-overl
 import { SessionWidgetComponent } from '../session-widget.component';
 
 @Component({
-  selector: 'bq-task-execution-widget',
-  templateUrl: './task-execution-widget.component.html',
-  providers: [DashboardWidgetSession],
+    selector: 'bq-task-execution-widget',
+    templateUrl: './task-execution-widget.component.html',
+    providers: [DashboardWidgetSession],
+    standalone: false
 })
 export class TaskExecutionWidgetComponent extends SessionWidgetComponent {
 

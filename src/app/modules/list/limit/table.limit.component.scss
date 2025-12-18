@@ -1,8 +1,8 @@
-@import 'globals/variables';
+@use 'globals/variables' as var;
 
 .limit {
   .explanation {
-    font-size: $font-size-list-limit;
+    font-size: var.$font-size-list-limit;
   }
 
   place-content: center;

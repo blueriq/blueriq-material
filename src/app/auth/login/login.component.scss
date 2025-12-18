@@ -1,6 +1,7 @@
 @use 'sass:map';
-@import 'globals/variables';
-@import 'globals/images';
+@use 'globals/variables' as var;
+@use 'globals/images' as img;
+@use 'globals/color-palettes' as palette;
 
 @keyframes move {
   0%,
@@ -33,7 +34,7 @@
     position: relative;
     height: 100%;
     transition: background 2s ease;
-    background: map.get($bq-mat-primary-blue, 700);
+    background: map.get(palette.$bq-mat-primary-blue, 700);
     overflow: hidden;
     box-sizing: inherit;
     display: flex;
@@ -47,18 +48,18 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('../../..' + $url-img-icons) repeat 50% 50%;
+      background: url('../../..' + var.$url-img-icons) repeat 50% 50%;
       background-size: 100% auto;
       animation: move 8s ease-in-out infinite;
     }
   }
 
   .img-logo {
-    @include image('../../..' + $url-img-logo, 110px, 50px);
+    @include img.image('../../..' + var.$url-img-logo, 110px, 50px);
   }
 
   .failed {
-    background: map.get($bq-mat-primary-purple, 700);
+    background: map.get(palette.$bq-mat-primary-purple, 700);
   }
 }
 
@@ -80,10 +81,10 @@ mat-card {
 
 mat-error {
   display: block;
-  margin-bottom: $bq-base-margin;
+  margin-bottom: var.$bq-base-margin;
   font-size: 75%;
 }
 
 button {
-  margin-top: $bq-margin-double;
+  margin-top: var.$bq-margin-double;
 }

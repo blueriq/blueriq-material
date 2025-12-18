@@ -4,9 +4,10 @@ import { Container, Page, TextItem } from '@blueriq/core';
 import { AuthService } from '../../auth/auth.service';
 
 @Component({
-  selector: 'bq-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
+    selector: 'bq-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.scss'],
+    standalone: false
 })
 @BlueriqComponent({
   type: Container,

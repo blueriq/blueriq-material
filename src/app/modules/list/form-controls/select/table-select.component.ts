@@ -5,10 +5,11 @@ import { Field } from '@blueriq/core';
 import { SelectComponent } from '../../../form-controls/select/select.component';
 
 @Component({
-  selector: 'bq-table-select',
-  templateUrl: './table-select.component.html',
-  styleUrls: ['../table-form-control.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'bq-table-select',
+    templateUrl: './table-select.component.html',
+    styleUrls: ['../table-form-control.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 @BlueriqComponent({
   type: Field,

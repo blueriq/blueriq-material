@@ -5,9 +5,10 @@ import { Button } from '@blueriq/core';
 type State = 'complete' | 'incomplete' | undefined;
 
 @Component({
-  selector: 'bq-navigation-item',
-  templateUrl: './navigation-item.component.html',
-  styleUrls: ['./navigation-item.component.scss'],
+    selector: 'bq-navigation-item',
+    templateUrl: './navigation-item.component.html',
+    styleUrls: ['./navigation-item.component.scss'],
+    standalone: false
 })
 @BlueriqComponent({
   type: Button,

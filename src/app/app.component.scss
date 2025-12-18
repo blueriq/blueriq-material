@@ -1,5 +1,5 @@
-@import '@angular/material/theming';
-@import 'globals/variables';
+@use '@angular/material' as mat;
+@use 'globals/variables';
 
 .page-wrapper {
   display: block;

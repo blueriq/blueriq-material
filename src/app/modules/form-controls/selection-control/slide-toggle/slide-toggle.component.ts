@@ -6,12 +6,13 @@ import { Field, FieldMessages } from '@blueriq/core';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
 
 @Component({
-  selector: 'bq-slide-toggle',
-  templateUrl: './slide-toggle.component.html',
-  styleUrls: [
-    'slide-toggle.component.scss',
-    '../selection-control.component.scss',
-  ],
+    selector: 'bq-slide-toggle',
+    templateUrl: './slide-toggle.component.html',
+    styleUrls: [
+        'slide-toggle.component.scss',
+        '../selection-control.component.scss',
+    ],
+    standalone: false
 })
 @BlueriqComponent({
   type: Field,

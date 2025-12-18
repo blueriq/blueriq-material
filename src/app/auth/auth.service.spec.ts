@@ -10,7 +10,8 @@ import { Observable, of } from 'rxjs';
 import { AuthService } from './auth.service';
 
 @Component({
-  template: '',
+    template: '',
+    standalone: false
 })
 export class TestComponent {
 }

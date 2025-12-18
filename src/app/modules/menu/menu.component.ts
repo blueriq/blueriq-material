@@ -4,9 +4,10 @@ import { Container } from '@blueriq/core';
 import { BqContentStyles } from '../BqContentStyles';
 
 @Component({
-  selector: 'bq-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss'],
+    selector: 'bq-menu',
+    templateUrl: './menu.component.html',
+    styleUrls: ['./menu.component.scss'],
+    standalone: false
 })
 @BlueriqComponent({
   type: Container,

@@ -3,12 +3,13 @@ import { DashboardAuthService, DashboardMenuItem, UserInfo } from '@blueriq/dash
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'bq-dashboard-header',
-  templateUrl: './dashboard-header.component.html',
-  styleUrls: [
-    './dashboard-header.component.scss',
-    '../../modules/header/header.component.scss',
-  ],
+    selector: 'bq-dashboard-header',
+    templateUrl: './dashboard-header.component.html',
+    styleUrls: [
+        './dashboard-header.component.scss',
+        '../../modules/header/header.component.scss',
+    ],
+    standalone: false
 })
 export class DashboardHeaderComponent {
 
