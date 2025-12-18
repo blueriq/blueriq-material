@@ -2,10 +2,9 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
-    "downlevelIteration": true,
     "module": "esnext",
+    "esModuleInterop": true,
     "outDir": "./dist/out-tsc",
-    "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
     "experimentalDecorators": true,

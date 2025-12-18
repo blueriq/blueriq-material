@@ -6,9 +6,10 @@ import { Field, FieldMessages } from '@blueriq/core';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
 
 @Component({
-  selector: 'bq-radio-button',
-  templateUrl: './radio-button.component.html',
-  styleUrls: ['../selection-control.component.scss'],
+    selector: 'bq-radio-button',
+    templateUrl: './radio-button.component.html',
+    styleUrls: ['../selection-control.component.scss'],
+    standalone: false
 })
 @BlueriqComponent({
   type: Field,

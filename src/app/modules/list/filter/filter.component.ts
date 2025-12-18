@@ -7,21 +7,22 @@ import { FilterCandidate } from './types';
 const MAX_FILTERS = 8;
 
 @Component({
-  selector: 'bq-filter',
-  templateUrl: './filter.component.html',
-  styleUrls: ['./filter.component.scss'],
-  animations: [
-    trigger('clearFilters', [
-      transition(':enter', [
-        style({ width: 0, opacity: 0 }),
-        animate('300ms ease-in', style({ width: '*', opacity: 1 })),
-      ]),
-      transition(':leave', [
-        style({ width: '*', opacity: 1 }),
-        animate('300ms ease-out', style({ width: 0, opacity: 0 })),
-      ]),
-    ]),
-  ],
+    selector: 'bq-filter',
+    templateUrl: './filter.component.html',
+    styleUrls: ['./filter.component.scss'],
+    animations: [
+        trigger('clearFilters', [
+            transition(':enter', [
+                style({ width: 0, opacity: 0 }),
+                animate('300ms ease-in', style({ width: '*', opacity: 1 })),
+            ]),
+            transition(':leave', [
+                style({ width: '*', opacity: 1 }),
+                animate('300ms ease-out', style({ width: 0, opacity: 0 })),
+            ]),
+        ]),
+    ],
+    standalone: false
 })
 export class FilterComponent implements OnInit {
 

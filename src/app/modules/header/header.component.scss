@@ -1,27 +1,30 @@
-@import '@angular/material/theming';
-@import 'globals/variables';
-@import 'globals/images';
+@use 'sass:map';
+@use '@angular/material' as mat;
+@use 'globals/variables' as var;
+@use 'globals/images' as img;
+@use 'globals/color-palettes' as palette;
 
 .dashboard-header {
-  display: $header-display;
+  display: var.$header-display;
 }
 
 .mat-toolbar {
   top: 0;
-  min-height: $bq-toolbar-height;
+  min-height: var.$bq-toolbar-height;
   padding: 0 0 0 16px;
 
-  // Specific colors alert, since this is a particular part of the Blueriq branding specific color variables are allowed
-  background: map_get($bq-mat-primary-blue, 500);
-  color: $light-primary-text;
+  /* Specific colors alert, since this is a particular part of the Blueriq branding specific color variables are
+  allowed */
+  background: map.get(palette.$bq-mat-primary-blue, 500);
+  color: palette.$light-primary-text;
 
   .img-logo-white {
-    @include image('../../..' + $url-img-logo-white, 110px, 45px);
+    @include img.image('../../..' + var.$url-img-logo-white, 110px, 45px);
   }
 
   h1 {
     margin: 0 0 0 24px;
-    color: $light-primary-text;
+    color: palette.$light-primary-text;
     font-size: 20px;
     font-weight: 300;
     line-height: 44px;
@@ -31,16 +34,16 @@
     text-align: right;
 
     .active-user-menu {
-      height: $bq-toolbar-height;
+      height: var.$bq-toolbar-height;
       text-align: left;
 
       .icon {
-        height: $bq-toolbar-height;
+        height: var.$bq-toolbar-height;
       }
 
       .username {
         padding-top: 30px;
-        line-height: $default-line-height;
+        line-height: var.$default-line-height;
       }
     }
   }

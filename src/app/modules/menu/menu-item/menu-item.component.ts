@@ -3,9 +3,10 @@ import { MatMenuItem } from '@angular/material/menu';
 import { Button, Container, Element } from '@blueriq/core';
 
 @Component({
-  selector: 'bq-menu-item',
-  templateUrl: './menu-item.component.html',
-  styleUrls: ['./menu-item.component.scss'],
+    selector: 'bq-menu-item',
+    templateUrl: './menu-item.component.html',
+    styleUrls: ['./menu-item.component.scss'],
+    standalone: false
 })
 export class MenuItemComponent {
 

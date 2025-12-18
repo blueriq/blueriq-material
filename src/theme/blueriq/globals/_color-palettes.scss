@@ -1,9 +1,29 @@
+@use '@angular/material' as mat;
+
 /*!
  * Custom Material Palette need to be generated Manually.
  *
  * material palettes based on the colours that on hue 500 matches the most on the
  * branding colour.
  */
+
+/* Copied from material's core/m2/_palette.scss */
+$black-87-opacity: rgba(black, 0.87);
+$white-87-opacity: rgba(white, 0.87);
+$black-12-opacity: rgba(black, 0.12);
+$white-12-opacity: rgba(white, 0.12);
+$black-6-opacity: rgba(black, 0.06);
+$white-6-opacity: rgba(white, 0.06);
+$dark-primary-text: rgba(black, 0.87);
+$dark-secondary-text: rgba(black, 0.54);
+$dark-disabled-text: rgba(black, 0.38);
+$dark-dividers: rgba(black, 0.12);
+$dark-focused: rgba(black, 0.12);
+$light-primary-text: white;
+$light-secondary-text: rgba(white, 0.7);
+$light-disabled-text: rgba(white, 0.5);
+$light-dividers: rgba(white, 0.12);
+$light-focused: rgba(white, 0.12);
 $basic-contrast: (
   50: $dark-primary-text,
   100: $dark-primary-text,

@@ -5,12 +5,13 @@ import { BqContentStyles } from '../../BqContentStyles';
 import { ExternalFlowPageComponent } from './external-flow-page/external-flow-page.component';
 
 @Component({
-  selector: 'bq-external-flow',
-  templateUrl: './external-flow.component.html',
-  providers: [
-    ExternalFlow,
-    BlueriqComponents.scoped([ExternalFlowPageComponent]),
-  ],
+    selector: 'bq-external-flow',
+    templateUrl: './external-flow.component.html',
+    providers: [
+        ExternalFlow,
+        BlueriqComponents.scoped([ExternalFlowPageComponent]),
+    ],
+    standalone: false
 })
 @BlueriqComponent({
   type: Container,

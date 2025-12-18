@@ -1,9 +1,10 @@
 @use '@angular/material' as mat;
-@import '@danielmoncada/angular-datetime-picker/assets/style/picker.min.css';
+@use '@danielmoncada/angular-datetime-picker/assets/style/picker.min.css';
+@use './globals/variables' as var;
+@use '../globals/color-palettes' as palette;
 
-// override specific styling to match it with the global theme
-
-$datepicker-bq-color: rgba(mat.get-color-from-palette($bq-primary-palette), 0.2);
+/* override specific styling to match it with the global theme */
+$datepicker-bq-color: rgba(mat.m2-get-color-from-palette(var.$bq-primary-palette), 0.2);
 
 .owl-dialog-container,
 .owl-dt-timer,
@@ -11,12 +12,12 @@ $datepicker-bq-color: rgba(mat.get-color-from-palette($bq-primary-palette), 0.2)
 .owl-dt-container-buttons,
 .owl-dt-control-button,
 .owl-dt-container-control-button {
-  font-family: $bq-font-family;
+  font-family: var.$bq-font-family;
 }
 
 .owl-dt-calendar-table {
   .owl-dt-calendar-cell-selected {
-    background-color: mat.get-color-from-palette($bq-primary-palette);
+    background-color: mat.m2-get-color-from-palette(var.$bq-primary-palette);
   }
 
   .owl-dt-calendar-cell-in-range {
@@ -25,24 +26,24 @@ $datepicker-bq-color: rgba(mat.get-color-from-palette($bq-primary-palette), 0.2)
 }
 
 .owl-dt-container-buttons {
-  height: 3em; // more spacing for the buttons
-  color: mat.get-color-from-palette($bq-primary-palette);
+  height: 3em; /* more spacing for the buttons */
+  color: mat.m2-get-color-from-palette(var.$bq-primary-palette);
 
   .owl-dt-control-button-content {
     font-weight: 400;
-    text-transform: uppercase; // material style button
+    text-transform: uppercase; /* material style button */
   }
 }
 
 .owl-dt-timer-hour12 {
-  color: mat.get-color-from-palette($bq-primary-palette);
+  color: mat.m2-get-color-from-palette(var.$bq-primary-palette);
 
   .owl-dt-timer-hour12-box {
     &:focus,
     &:hover {
       .owl-dt-control-button-content {
-        background: mat.get-color-from-palette($bq-primary-palette);
-        color: $light-primary-text;
+        background: mat.m2-get-color-from-palette(var.$bq-primary-palette);
+        color: palette.$light-primary-text;
       }
     }
   }
@@ -50,17 +51,17 @@ $datepicker-bq-color: rgba(mat.get-color-from-palette($bq-primary-palette), 0.2)
 
 .owl-dt-timer-content {
   .owl-dt-timer-input {
-    border: 1px solid $dark-dividers; // more subtle border
+    border: 1px solid palette.$dark-dividers; /* more subtle border */
 
     &:active,
     &:focus {
-      border-bottom-color: mat.get-color-from-palette($bq-primary-palette);
+      border-bottom-color: mat.m2-get-color-from-palette(var.$bq-primary-palette);
     }
   }
 }
 
 .owl-dt-container-info {
   .owl-dt-container-info-active {
-    color: mat.get-color-from-palette($bq-primary-palette);
+    color: mat.m2-get-color-from-palette(var.$bq-primary-palette);
   }
 }

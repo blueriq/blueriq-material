@@ -1,13 +1,14 @@
 @use '@angular/material' as mat;
-@import 'globals/variables';
+@use 'globals/variables' as var;
+@use 'globals/color-palettes' as palette;
 
 mat-panel-title {
-  font-size: $h4-size;
-  color: mat.get-color-from-palette($bq-mat-primary-blue, 700);
+  font-size: var.$h4-size;
+  color: mat.m2-get-color-from-palette(palette.$bq-mat-primary-blue, 700);
 }
 
 mat-accordion {
-  margin-top: $bq-base-margin;
+  margin-top: var.$bq-base-margin;
   display: inline-block;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;

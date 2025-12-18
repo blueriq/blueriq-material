@@ -7,7 +7,8 @@ import { BqPresentationStyles } from '../../../modules/BqPresentationStyles';
  * It is meant for use in mat-icon only!
  */
 @Directive({
-  selector: '[bqIcon]',
+    selector: '[bqIcon]',
+    standalone: false
 })
 export class BqIconDirective {
 

@@ -1,7 +1,7 @@
 @use '@angular/material' as mat;
 @use 'sass:map';
-@import 'globals/variables';
-@import '../navigation.component';
+@use 'globals/variables' as var;
+@use '../navigation.component' as nav;
 
 :host {
   display: flex;
@@ -9,11 +9,11 @@
 
 .circle {
   position: relative;
-  width: $shape-size;
-  height: $shape-size;
-  background: map.get(mat.$light-theme-background-palette, card);
+  width: nav.$shape-size;
+  height: nav.$shape-size;
+  background: map.get(mat.$m2-light-theme-background-palette, card);
   border-radius: 50%;
-  border: $shape-line solid mat.get-color-from-palette($bq-primary-palette);
+  border: nav.$shape-line solid mat.m2-get-color-from-palette(var.$bq-primary-palette);
   flex-shrink: 0;
 
   .mat-icon {
@@ -36,15 +36,15 @@
       content: '';
       position: absolute;
       inset: 2px;
-      background: mat.get-color-from-palette($bq-primary-palette);
-      color: mat.get-color-from-palette($bq-primary-palette, default-contrast);
+      background: mat.m2-get-color-from-palette(var.$bq-primary-palette);
+      color: mat.m2-get-color-from-palette(var.$bq-primary-palette, default-contrast);
       border-radius: 50%;
     }
   }
 
   &.error:not(.active) {
-    border-color: mat.get-color-from-palette($bq-error-palette);
-    color: mat.get-color-from-palette($bq-error-palette);
+    border-color: mat.m2-get-color-from-palette(var.$bq-error-palette);
+    color: mat.m2-get-color-from-palette(var.$bq-error-palette);
   }
 }
 

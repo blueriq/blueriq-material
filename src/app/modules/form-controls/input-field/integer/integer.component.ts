@@ -4,10 +4,11 @@ import { Field } from '@blueriq/core';
 import { InputFieldComponent } from '../input-field.component';
 
 @Component({
-  selector: 'bq-integer-field',
-  templateUrl: '../input-field.component.html',
-  styleUrls: ['../input-field.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'bq-integer-field',
+    templateUrl: '../input-field.component.html',
+    styleUrls: ['../input-field.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 @BlueriqComponent({
   type: Field,

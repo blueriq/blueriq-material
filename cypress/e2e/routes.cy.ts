@@ -45,8 +45,8 @@ describe('Blueriq ProjectComponent Routes', () => {
 
   it('should start app for sessionId',  () => {
     cy.visitRuntime(startDefaultShortcutPath);
-
     const sessionName = 'blueriq-session-default-Main';
+    cy.wait(1000);
     cy.window().then(win=> {
       const sessionId = win.sessionStorage.getItem(sessionName);
       cy.wrap(sessionId).should('exist');

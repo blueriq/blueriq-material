@@ -1,37 +1,37 @@
 @use '@angular/material' as mat;
-@import 'variables';
+@use 'variables' as var;
 
-// This file contains styles that have to be global due to use of elements that
-// do not have view encapsulation applied to themselves
+/* This file contains styles that have to be global due to use of elements that
+ do not have view encapsulation applied to themselves */
 
 .text-item {
   span {
     &.warning,
-    &.Warning { // stylelint-disable-line selector-class-pattern
+    &.Warning { /* stylelint-disable-line selector-class-pattern */
       padding-top: 1px;
       padding-bottom: 1px;
-      background-color: mat.get-color-from-palette($bq-warn-palette, 100);
+      background-color: mat.m2-get-color-from-palette(var.$bq-warn-palette, 100);
     }
 
     &.danger,
-    &.Danger { // stylelint-disable-line selector-class-pattern
+    &.Danger { /* stylelint-disable-line selector-class-pattern */
       padding-top: 1px;
       padding-bottom: 1px;
-      background-color: mat.get-color-from-palette($bq-error-palette, 100);
+      background-color: mat.m2-get-color-from-palette(var.$bq-error-palette, 100);
     }
 
     &.info,
-    &.Info { // stylelint-disable-line selector-class-pattern
+    &.Info { /* stylelint-disable-line selector-class-pattern */
       padding-top: 1px;
       padding-bottom: 1px;
-      background-color: mat.get-color-from-palette($bq-info-palette, 100);
+      background-color: mat.m2-get-color-from-palette(var.$bq-info-palette, 100);
     }
 
     &.success,
-    &.Success { // stylelint-disable-line selector-class-pattern
+    &.Success { /* stylelint-disable-line selector-class-pattern */
       padding-top: 1px;
       padding-bottom: 1px;
-      background-color: mat.get-color-from-palette($bq-success-palette, 100);
+      background-color: mat.m2-get-color-from-palette(var.$bq-success-palette, 100);
     }
   }
 }

@@ -8,7 +8,8 @@ import { of, throwError } from 'rxjs';
 import { JwtLoginGuard } from './jwt-login.guard';
 
 @Component({
-  template: '',
+    template: '',
+    standalone: false
 })
 export class TestComponent {
 }

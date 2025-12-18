@@ -13,8 +13,9 @@ interface ChiplistValue {
 }
 
 @Component({
-  selector: 'bq-chiplist',
-  templateUrl: './chiplist.component.html',
+    selector: 'bq-chiplist',
+    templateUrl: './chiplist.component.html',
+    standalone: false
 })
 @BlueriqComponent({
   type: Field,

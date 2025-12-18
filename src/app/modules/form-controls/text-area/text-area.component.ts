@@ -5,9 +5,10 @@ import { Field, FieldMessages } from '@blueriq/core';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
 
 @Component({
-  selector: 'bq-text-area',
-  styleUrls: ['./text-area.component.scss'],
-  templateUrl: './text-area.component.html',
+    selector: 'bq-text-area',
+    styleUrls: ['./text-area.component.scss'],
+    templateUrl: './text-area.component.html',
+    standalone: false
 })
 @BlueriqComponent({
   type: Field,

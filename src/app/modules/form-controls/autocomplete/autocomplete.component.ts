@@ -8,8 +8,9 @@ import { BqPresentationStyles } from '../../BqPresentationStyles';
 import { DomainValueTransformer } from './domain-value-transformer';
 
 @Component({
-  selector: 'bq-autocomplete',
-  templateUrl: './autocomplete.component.html',
+    selector: 'bq-autocomplete',
+    templateUrl: './autocomplete.component.html',
+    standalone: false
 })
 @BlueriqComponent({
   type: Field,

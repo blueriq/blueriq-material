@@ -1,10 +1,11 @@
 @use '@angular/material' as mat;
-@import 'globals/variables';
+@use 'globals/variables' as var;
+@use 'globals/color-palettes' as palette;
 
-$bq-transparent-error-color: mat.get-color-from-palette($bq-error-palette, 500, 0.8);
+$bq-transparent-error-color: mat.m2-get-color-from-palette(var.$bq-error-palette, 500, 0.8);
 
 ::ng-deep {
-  .tooltip-error .mdc-tooltip__surface { // stylelint-disable-line selector-class-pattern
+  .tooltip-error .mdc-tooltip__surface { /* stylelint-disable-line selector-class-pattern */
     background: $bq-transparent-error-color;
     white-space: pre-line;
   }
@@ -17,17 +18,17 @@ $bq-transparent-error-color: mat.get-color-from-palette($bq-error-palette, 500, 
     .mat-mdc-form-field-infix {
       display: flex;
       align-items: flex-start;
-      background-color: mat.get-color-from-palette($bq-mat-grey-light, a100);
+      background-color: mat.m2-get-color-from-palette(palette.$bq-mat-grey-light, a100);
       padding-top: 16px;
       padding-bottom: 16px;
     }
 
     .mat-mdc-form-field-prefix {
-      margin: 0 2px 0 $bq-margin-half;
+      margin: 0 2px 0 var.$bq-margin-half;
     }
 
     .mat-mdc-form-field-suffix {
-      margin: 0 $bq-margin-half 0 2px;
+      margin: 0 var.$bq-margin-half 0 2px;
     }
 
     .mat-mdc-text-field-wrapper {
@@ -35,7 +36,7 @@ $bq-transparent-error-color: mat.get-color-from-palette($bq-error-palette, 500, 
       padding: 0;
     }
 
-    // remove border radius for validation border
+    /* remove border radius for validation border */
     .mdc-text-field {
       border-top-left-radius: 0;
       border-top-right-radius: 0;
@@ -54,7 +55,7 @@ $bq-transparent-error-color: mat.get-color-from-palette($bq-error-palette, 500, 
       display: none;
     }
 
-    // Show mdc-line when focused
+    /* Show mdc-line when focused */
     &:hover {
       .mdc-line-ripple {
         display: block;

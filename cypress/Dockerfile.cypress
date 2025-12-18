@@ -1,4 +1,4 @@
-FROM docker-internal.blueriq.com/nodejs-build:18.16.0-ubi-8.7-1112@sha256:8062f807514634e752aa7750ccd45ab23a7c9d8a3563b3bcae8d70895d337dba as node-base
+FROM docker-internal.blueriq.com/nodejs-build:22.14.0-ubi-9.5-1736404036 as node-base
 
 # syntax = docker/dockerfile:1.2
 FROM node-base AS packages

@@ -1,18 +1,19 @@
 @use '@angular/material' as mat;
-@import 'globals/variables';
+@use 'globals/variables' as var;
+@use 'globals/color-palettes' as palette;
 
 .margin {
-  margin: $bq-margin-half;
+  margin: var.$bq-margin-half;
 }
 
 .header {
-  margin: $bq-margin-half 0;
-  color: $dark-secondary-text;
+  margin: var.$bq-margin-half 0;
+  color: palette.$dark-secondary-text;
 }
 
 button {
   &.plain-link {
-    color: mat.get-color-from-palette($bq-primary-palette);
+    color: mat.m2-get-color-from-palette(var.$bq-primary-palette);
 
     &:hover {
       text-decoration: underline;

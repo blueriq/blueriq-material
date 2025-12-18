@@ -1,11 +1,12 @@
-@import 'globals/variables';
+@use 'globals/variables' as var;
+@use 'globals/color-palettes' as palette;
 
 :host {
   flex-direction: column;
 }
 
 .logout {
-  margin-right: $bq-margin-double;
+  margin-right: var.$bq-margin-double;
 }
 
 .top-bar {
@@ -20,4 +21,9 @@
 .account-circle {
   place-content: center;
   align-items: center;
+}
+
+.username,
+.account-circle {
+  color: palette.$light-primary-text;
 }

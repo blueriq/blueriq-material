@@ -6,8 +6,9 @@ import { BqPresentationStyles } from '../../BqPresentationStyles';
 import { ButtonComponent } from '../button.component';
 
 @Component({
-  selector: 'bq-button-icon',
-  templateUrl: './button.icon.component.html',
+    selector: 'bq-button-icon',
+    templateUrl: './button.icon.component.html',
+    standalone: false
 })
 @BlueriqComponent({
   type: Button,

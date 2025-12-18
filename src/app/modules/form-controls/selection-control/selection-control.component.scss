@@ -1,11 +1,11 @@
-@import 'globals/variables';
+@use 'globals/variables' as var;
 
 mat-hint,
 mat-error {
-  font-size: $font-size-mat-error;
+  font-size: var.$font-size-mat-error;
 }
 
 .selection-control {
-  margin-bottom: $bq-base-margin;
-  padding: $bq-base-margin $bq-base-margin 0;
+  margin-bottom: var.$bq-base-margin;
+  padding: var.$bq-base-margin var.$bq-base-margin 0;
 }

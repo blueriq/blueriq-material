@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { OpenIdConnectAuth } from '@blueriq/angular/openidconnect';
 import { Observable, of } from 'rxjs';
 import { catchError, mapTo, tap } from 'rxjs/operators';
@@ -11,7 +11,7 @@ import { AuthService } from '../auth.service';
  * If no OpenId Connect authentication is needed, this guard should be deleted.
  */
 @Injectable({ providedIn: 'root' })
-export class OpenIdConnectLoginGuard implements CanActivate {
+export class OpenIdConnectLoginGuard  {
 
   constructor(private readonly auth: AuthService,
               private readonly openIdConnect: OpenIdConnectAuth,

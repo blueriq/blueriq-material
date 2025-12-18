@@ -1,13 +1,12 @@
 @use '@angular/material' as mat;
-@import '@angular/material/theming';
-@import 'globals/variables';
+@use 'globals/variables' as var;
 
 .header {
   @include mat.elevation(1);
 
   position: fixed;
   width: 100%;
-  z-index: $z-index-drawer + 10;
+  z-index: var.$z-index-drawer + 10;
 }
 
 .bq-dashboard-column {
@@ -15,8 +14,8 @@
 }
 
 .page {
-  margin-bottom: $bq-margin-double;
-  padding-top: $bq-toolbar-height * 2;
+  margin-bottom: var.$bq-margin-double;
+  padding-top: var.$bq-toolbar-height * 2;
   display: flex;
   flex-flow: row wrap;
 

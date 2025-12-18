@@ -1,28 +1,28 @@
 @use '@angular/material' as mat;
-@import 'globals/variables';
+@use 'globals/variables' as var;
 
 button {
-  margin: $bq-base-margin $bq-base-margin $bq-base-margin 0;
+  margin: var.$bq-base-margin var.$bq-base-margin var.$bq-base-margin 0;
   text-transform: uppercase;
 }
 
-.Tertiary { // stylelint-disable-line selector-class-pattern
+.Tertiary { /* stylelint-disable-line selector-class-pattern */
   background-color: transparent;
-  color: mat.get-color-from-palette($bq-tertiary-palette);
+  color: mat.m2-get-color-from-palette(var.$bq-tertiary-palette);
 
   &.mat-mdc-raised-button {
-    background-color: mat.get-color-from-palette($bq-tertiary-palette);
-    color: mat.get-color-from-palette($bq-tertiary-palette, default-contrast);
+    background-color: mat.m2-get-color-from-palette(var.$bq-tertiary-palette);
+    color: mat.m2-get-color-from-palette(var.$bq-tertiary-palette, default-contrast);
   }
 }
 
 ::ng-deep {
-  // Default buttons in cards or elevated widgets get a slightly darker background compared to default
-  // buttons in transparent containers.
+  /* Default buttons in cards or elevated widgets get a slightly darker background compared to default
+    buttons in transparent containers. */
   .card,
   .flow-widget.elevate {
     .default-styling {
-      background: $bq-card-button-background;
+      background: var.$bq-card-button-background;
     }
   }
 }

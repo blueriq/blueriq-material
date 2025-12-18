@@ -3,8 +3,9 @@ import { BlueriqComponent } from '@blueriq/angular';
 import { Page } from '@blueriq/core';
 
 @Component({
-  selector: 'bq-external-flow-page',
-  templateUrl: './external-flow-page.component.html',
+    selector: 'bq-external-flow-page',
+    templateUrl: './external-flow-page.component.html',
+    standalone: false
 })
 @BlueriqComponent({
   type: Page,

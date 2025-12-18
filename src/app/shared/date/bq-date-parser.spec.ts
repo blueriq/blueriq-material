@@ -1,5 +1,5 @@
 import { LocalizationTemplate } from '@blueriq/core/testing';
-import * as moment from 'moment';
+import moment from 'moment';
 import {
   computeFirstDayOfWeek,
   dateFromNowHumanReadable,

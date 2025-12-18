@@ -2,7 +2,8 @@ import { Directive, HostBinding, Input } from '@angular/core';
 import { Element } from '@blueriq/core';
 
 @Directive({
-  selector: '[bqKey]',
+    selector: '[bqKey]',
+    standalone: false
 })
 export class BqKeyDirective {
 

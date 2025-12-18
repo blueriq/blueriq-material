@@ -6,9 +6,10 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { BqPresentationStyles } from '../BqPresentationStyles';
 
 @Component({
-  selector: 'bq-modal',
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss'],
+    selector: 'bq-modal',
+    templateUrl: './modal.component.html',
+    styleUrls: ['./modal.component.scss'],
+    standalone: false
 })
 @BlueriqComponent({
   type: Container,

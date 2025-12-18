@@ -4,9 +4,10 @@ import { Field } from '@blueriq/core';
 import { ReadonlyComponent } from '../../../readonly/readonly.component';
 
 @Component({
-  selector: 'bq-table-readonly',
-  templateUrl: './table-readonly.component.html',
-  styleUrls: ['./table-readonly.component.scss'],
+    selector: 'bq-table-readonly',
+    templateUrl: './table-readonly.component.html',
+    styleUrls: ['./table-readonly.component.scss'],
+    standalone: false
 })
 @BlueriqComponent({
   type: Field,

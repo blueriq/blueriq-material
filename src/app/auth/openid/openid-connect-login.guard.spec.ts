@@ -9,7 +9,8 @@ import { AuthService } from '../auth.service';
 import { OpenIdConnectLoginGuard } from './openid-connect-login.guard';
 
 @Component({
-  template: '',
+    template: '',
+    standalone: false
 })
 export class TestComponent {
 }

@@ -1,10 +1,10 @@
-@import 'globals/variables';
+@use 'globals/variables' as var;
 
 .mat-mdc-form-field {
-  margin-bottom: $bq-base-margin;
+  margin-bottom: var.$bq-base-margin;
 }
 
-// disable prefix icon & suffix when input is disabled
+/* disable prefix icon & suffix when input is disabled */
 .mat-form-field-disabled {
   mat-icon,
   [matsuffix] {
@@ -14,6 +14,6 @@
 
 .mat-mdc-form-field-has-icon-suffix {
   span {
-    padding-right: $bq-base-margin;
+    padding-right: var.$bq-base-margin;
   }
 }

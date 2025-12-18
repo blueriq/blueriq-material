@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { NotificationModel, NotificationType } from '../../../notification-overlay/notification.model';
 
 @Component({
-  selector: 'bq-openid-connect-verify',
-  templateUrl: './openid-connect-verify.component.html',
-  styleUrls: ['./openid-connect-verify.component.scss'],
+    selector: 'bq-openid-connect-verify',
+    templateUrl: './openid-connect-verify.component.html',
+    styleUrls: ['./openid-connect-verify.component.scss'],
+    standalone: false
 })
 export class OpenIdConnectVerifyComponent {
 

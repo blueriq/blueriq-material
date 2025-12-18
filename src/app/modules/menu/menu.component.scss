@@ -1,8 +1,10 @@
-@import '@angular/material/theming';
-@import 'globals/variables';
+@use 'sass:map';
+@use '@angular/material' as mat;
+@use 'globals/variables' as var;
+@use 'globals/color-palettes' as palette;
 
 .mat-toolbar {
-  min-height: $bq-toolbar-height;
-  background: map_get($bq-mat-primary-blue, 700);
-  color: $light-primary-text;
+  min-height: var.$bq-toolbar-height;
+  background: map.get(palette.$bq-mat-primary-blue, 700);
+  color: palette.$light-primary-text;
 }

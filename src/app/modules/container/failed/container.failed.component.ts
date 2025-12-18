@@ -3,9 +3,10 @@ import { BlueriqChild, BlueriqComponent } from '@blueriq/angular';
 import { Container, FailedElement } from '@blueriq/core';
 
 @Component({
-  selector: 'bq-failed',
-  styleUrls: ['./container.failed.component.scss'],
-  templateUrl: './container.failed.component.html',
+    selector: 'bq-failed',
+    styleUrls: ['./container.failed.component.scss'],
+    templateUrl: './container.failed.component.html',
+    standalone: false
 })
 @BlueriqComponent({
   type: Container,

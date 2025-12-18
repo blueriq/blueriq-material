@@ -7,7 +7,8 @@ import { ContainerTemplate } from '@blueriq/core/testing';
 import { FlexColumnDirective } from './flex-column.directive';
 
 @Component({
-  template: '<div><ng-container [bqElement]="container.children[0]" bqFlexColumn></ng-container></div>',
+    template: '<div><ng-container [bqElement]="container.children[0]" bqFlexColumn></ng-container></div>',
+    standalone: false
 })
 @BlueriqComponent({
   type: Container,
@@ -19,7 +20,8 @@ class MockFlexParentComponent {
 }
 
 @Component({
-  template: '<div class="child"></div>',
+    template: '<div class="child"></div>',
+    standalone: false
 })
 @BlueriqComponent({
   type: Container,

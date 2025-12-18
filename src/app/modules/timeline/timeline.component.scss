@@ -1,29 +1,30 @@
 @use 'sass:math';
 @use 'sass:map';
 @use '@angular/material' as mat;
-@import 'globals/variables';
+@use 'globals/variables' as var;
+@use 'globals/color-palettes' as palette;
 
 $shape-size: 14px;
 $shape-top: 20px;
-$background: map.get(mat.$gray-palette, 200);
-$background-card: map.get(mat.$light-theme-background-palette, card);
+$background: map.get(mat.$m2-gray-palette, 200);
+$background-card: map.get(mat.$m2-light-theme-background-palette, card);
 
 .timeline {
-  max-height: $bq-max-height-scrollbar;
+  max-height: var.$bq-max-height-scrollbar;
   background: $background;
   overflow-y: auto;
 }
 
-// ---- left side of the timeline ---
+/* ---- left side of the timeline --- */
 .line {
   position: relative;
-  border-right: 1px solid map.get($bq-mat-grey-light, 500);
+  border-right: 1px solid map.get(palette.$bq-mat-grey-light, 500);
   flex: 20;
 
   .content {
-    margin: ($shape-top + 6) $bq-margin 0 0;
-    color: $dark-secondary-text;
-    font-size: $font-size-timeline-content;
+    margin: ($shape-top + 6) var.$bq-margin 0 0;
+    color: palette.$dark-secondary-text;
+    font-size: var.$font-size-timeline-content;
     text-align: right;
   }
 
@@ -39,35 +40,35 @@ $background-card: map.get(mat.$light-theme-background-palette, card);
       width: $shape-size;
       height: $shape-size;
       border-radius: 50%;
-      background: map.get($bq-mat-accent-mint, 500);
+      background: map.get(palette.$bq-mat-accent-mint, 500);
     }
   }
 }
 
-// ---- Right side of the timeline ---
+/* ---- Right side of the timeline --- */
 .time-card {
   flex: 80;
 
-  $card-left-margin: $bq-margin;
+  $card-left-margin: var.$bq-margin;
 
   position: relative;
 
   .content {
     @include mat.elevation(1);
 
-    margin: $card-left-margin $bq-margin-double;
-    padding: $bq-margin;
+    margin: $card-left-margin var.$bq-margin-double;
+    padding: var.$bq-margin;
     background: $background-card;
-    font-size: $default-font-size;
+    font-size: var.$default-font-size;
 
     .time {
       flex: 0 1 auto;
-      color: $dark-secondary-text;
+      color: palette.$dark-secondary-text;
     }
 
     .user {
       flex: 1 1 0;
-      color: map.get($bq-mat-accent-mint, 500);
+      color: map.get(palette.$bq-mat-accent-mint, 500);
       font-weight: 500;
     }
 
@@ -76,7 +77,7 @@ $background-card: map.get(mat.$light-theme-background-palette, card);
     }
 
     .entry-name {
-      color: $dark-secondary-text;
+      color: palette.$dark-secondary-text;
     }
   }
 
@@ -84,7 +85,7 @@ $background-card: map.get(mat.$light-theme-background-palette, card);
     display: inline-block;
     position: absolute;
     top: $shape-top;
-    left: $card-left-margin; // Same as card-content left margin
+    left: $card-left-margin; /* Same as card-content left margin */
     background: transparent;
 
     .triangle {
@@ -99,7 +100,7 @@ $background-card: map.get(mat.$light-theme-background-palette, card);
 }
 
 mat-divider {
-  margin: $bq-margin 0;
+  margin: var.$bq-margin 0;
 }
 
 .dotted-border {

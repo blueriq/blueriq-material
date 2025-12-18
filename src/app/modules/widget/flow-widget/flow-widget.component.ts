@@ -5,12 +5,13 @@ import { BqContentStyles } from '../../BqContentStyles';
 import { WidgetPageComponent } from '../widget-page/widget-page.component';
 
 @Component({
-  selector: 'bq-flow-widget',
-  templateUrl: './flow-widget.component.html',
-  providers: [
-    FlowWidget,
-    BlueriqComponents.scoped([WidgetPageComponent]),
-  ],
+    selector: 'bq-flow-widget',
+    templateUrl: './flow-widget.component.html',
+    providers: [
+        FlowWidget,
+        BlueriqComponents.scoped([WidgetPageComponent]),
+    ],
+    standalone: false
 })
 @BlueriqComponent({
   type: Container,

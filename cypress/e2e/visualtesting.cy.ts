@@ -14,22 +14,22 @@ describe('Visual testing', () => {
     });
 
     it('Check Integer fields', () => {
-      cy.get('#mat-tab-label-0-1').click().wait(2000);
+      cy.get('#mat-tab-group-0-label-1').click().wait(2000);
       cy.compareSnapshot('integer-fields', 0.02);
     });
 
     it('Check Number fields', () => {
-      cy.get('#mat-tab-label-0-2').click().wait(2000);
+      cy.get('#mat-tab-group-0-label-2').click().wait(2000);
       cy.compareSnapshot('number-fields', 0.02);
     });
 
     it('Check Percentage fields', () => {
-      cy.get('#mat-tab-label-0-3').click().wait(2000);
+      cy.get('#mat-tab-group-0-label-3').click().wait(2000);
       cy.compareSnapshot('percentage-fields', 0.02);
     });
 
     it('Check Currency fields', () => {
-      cy.get('#mat-tab-label-0-4').click().wait(2000);
+      cy.get('#mat-tab-group-0-label-4').click().wait(2000);
       cy.compareSnapshot('currency-fields', 0.02);
     });
   });
@@ -45,12 +45,12 @@ describe('Visual testing', () => {
     });
 
     it('Check Radio buttons', () => {
-      cy.get('#mat-tab-label-0-1').click().wait(2000);
+      cy.get('#mat-tab-group-0-label-1').click().wait(2000);
       cy.compareSnapshot('radio-buttons', 0.02);
     });
 
     it('Check Instance linkers', () => {
-      cy.get('#mat-tab-label-0-3').click().wait(2000);
+      cy.get('#mat-tab-group-0-label-3').click().wait(2000);
       cy.compareSnapshot('instance-linkers', 0.02);
     });
   });
@@ -66,12 +66,12 @@ describe('Visual testing', () => {
     });
 
     it('Check Checkboxes', () => {
-      cy.get('#mat-tab-label-0-1').click().wait(2000);
+      cy.get('#mat-tab-group-0-label-1').click().wait(2000);
       cy.compareSnapshot('checkboxes', 0.02);
     });
 
     it('Check Slide toggle', () => {
-      cy.get('#mat-tab-label-0-2').click().wait(2000);
+      cy.get('#mat-tab-group-0-label-2').click().wait(2000);
       cy.compareSnapshot('slide-toggle', 0.02);
     });
   });
@@ -81,7 +81,7 @@ describe('Visual testing', () => {
       cy.visitRuntime('flow/export-Suitcase/Demo/0.0-Trunk/en-GB');
       cy.get('#P866_DateTimepicker_1').click();
       // timeout because the date picker content takes a long time to show up due to already existing errors.
-      cy.get('#mat-tab-label-0-0', { timeout: 150000 });
+      cy.get('#mat-tab-group-0-label-0', { timeout: 150000 });
     });
 
     it('Check Date Pickers', () => {
@@ -90,13 +90,13 @@ describe('Visual testing', () => {
 
     it('Check Date Time Pickers', () => {
       // check date time pickers
-      cy.get('#mat-tab-label-0-1').click().wait(2000);
+      cy.get('#mat-tab-group-0-label-1').click().wait(2000);
       cy.compareSnapshot('datetime-pickers', 0.02);
     });
 
     it('Check Date Time Pickers Material', () => {
       // check date time pickers material
-      cy.get('#mat-tab-label-0-2').click().wait(2000);
+      cy.get('#mat-tab-group-0-label-2').click().wait(2000);
       cy.compareSnapshot('datetime-pickers-material', 0.02);
     });
   });

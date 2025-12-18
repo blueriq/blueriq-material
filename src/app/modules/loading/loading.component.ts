@@ -5,15 +5,16 @@ import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
-  selector: 'bq-loading',
-  templateUrl: './loading.component.html',
-  styleUrls: ['./loading.component.scss'],
-  animations: [
-    trigger('state', [
-      state('loading, starting', style({ display: 'inline' })),
-      state('idle', style({ display: 'none' })),
-    ]),
-  ],
+    selector: 'bq-loading',
+    templateUrl: './loading.component.html',
+    styleUrls: ['./loading.component.scss'],
+    animations: [
+        trigger('state', [
+            state('loading, starting', style({ display: 'inline' })),
+            state('idle', style({ display: 'none' })),
+        ]),
+    ],
+    standalone: false
 })
 export class LoadingComponent implements OnInit {
 

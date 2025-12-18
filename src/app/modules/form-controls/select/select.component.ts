@@ -5,10 +5,11 @@ import { Field, FieldMessages } from '@blueriq/core';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
 
 @Component({
-  selector: 'bq-select',
-  templateUrl: './select.component.html',
-  styleUrls: ['./select.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'bq-select',
+    templateUrl: './select.component.html',
+    styleUrls: ['./select.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 @BlueriqComponent({
   type: Field,

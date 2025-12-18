@@ -8,12 +8,13 @@ import {
 } from '@shared/date/bq-date-parser';
 
 @Component({
-  selector: 'bq-summary',
-  templateUrl: './summary.component.html',
-  styleUrls: [
-    './summary.component.scss',
-  ],
-  providers: [Summary],
+    selector: 'bq-summary',
+    templateUrl: './summary.component.html',
+    styleUrls: [
+        './summary.component.scss',
+    ],
+    providers: [Summary],
+    standalone: false
 })
 @BlueriqComponent({
   type: Container,

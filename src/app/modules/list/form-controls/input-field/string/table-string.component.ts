@@ -4,10 +4,11 @@ import { Field } from '@blueriq/core';
 import { TableInputFieldComponent } from '../table-input-field.component';
 
 @Component({
-  selector: 'bq-table-string-field',
-  templateUrl: '../table-input-field.component.html',
-  styleUrls: ['../../table-form-control.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'bq-table-string-field',
+    templateUrl: '../table-input-field.component.html',
+    styleUrls: ['../../table-form-control.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 @BlueriqComponent({
   type: Field,

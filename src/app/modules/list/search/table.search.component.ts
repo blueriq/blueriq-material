@@ -6,21 +6,22 @@ import { Search } from '@blueriq/angular/lists';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'bq-table-search',
-  templateUrl: './table.search.component.html',
-  styleUrls: ['./table.search.component.scss'],
-  animations: [
-    trigger('slideIn', [
-      transition(':enter', [
-        style({ maxWidth: '0px' }),
-        animate(300, style({ maxWidth: '*' })),
-      ]),
-      transition(':leave', [
-        style({ maxWidth: '*' }),
-        animate(300, style({ maxWidth: '0px' })),
-      ]),
-    ]),
-  ],
+    selector: 'bq-table-search',
+    templateUrl: './table.search.component.html',
+    styleUrls: ['./table.search.component.scss'],
+    animations: [
+        trigger('slideIn', [
+            transition(':enter', [
+                style({ maxWidth: '0px' }),
+                animate(300, style({ maxWidth: '*' })),
+            ]),
+            transition(':leave', [
+                style({ maxWidth: '*' }),
+                animate(300, style({ maxWidth: '0px' })),
+            ]),
+        ]),
+    ],
+    standalone: false
 })
 export class TableSearchComponent implements OnInit, OnDestroy {
 

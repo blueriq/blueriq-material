@@ -9,6 +9,7 @@
       {
         "ignorePseudoElements": ["ng-deep"]
       }
-    ]
+    ],
+    "color-function-notation": null
   }
 }

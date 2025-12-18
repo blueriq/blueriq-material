@@ -1,21 +1,21 @@
-@import 'variables';
+@use 'variables' as var;
 
-// Responsive page:
-// - Content width is determined by page class or screen width
-// - Content is always centered
+/* Responsive page:
+ - Content width is determined by page class or screen width
+ - Content is always centered */
 .page {
   margin: 0 auto;
 
   &.large {
-    max-width: $width-large;
+    max-width: var.$width-large;
   }
 
   &.medium {
-    max-width: $width-medium;
+    max-width: var.$width-medium;
   }
 
   &.small {
-    max-width: $width-small;
+    max-width: var.$width-small;
   }
 
   &.full {
@@ -23,57 +23,57 @@
   }
 
   &.responsive {
-    @media (max-width: $break-small - 1) {
-      max-width: $width-small;
+    @media (max-width: var.$break-small - 1) {
+      max-width: var.$width-small;
     }
-    @media (min-width: $break-small) {
-      max-width: $width-medium;
+    @media (min-width: var.$break-small) {
+      max-width: var.$width-medium;
     }
-    @media (min-width: $break-medium) {
-      max-width: $width-large;
+    @media (min-width: var.$break-medium) {
+      max-width: var.$width-large;
     }
-    @media (min-width: $break-large) {
-      max-width: $width-extra-large;
+    @media (min-width: var.$break-large) {
+      max-width: var.$width-extra-large;
     }
   }
 }
 
-//  Responsive row:
-// - Content on screens smaller that $break-small will still be rendered vertically
-// - Otherwise, content in this container is rendered horizontally
+/*  Responsive row:
+ - Content on screens smaller that $break-small will still be rendered vertically
+ - Otherwise, content in this container is rendered horizontally */
 .bq-row {
-  @media (max-width: $break-small - 1) {
+  display: flex;
+
+  @media (max-width: var.$break-small - 1) {
     flex-direction: column;
   }
 
-  @media (min-width: $break-small) {
+  @media (min-width: var.$break-small) {
     flex-direction: row;
   }
-
-  display: flex;
 }
 
-// Responsive column:
-// - Define horizontal gutter based on screen width
-// - 0 width so weights work
+/* Responsive column:
+ - Define horizontal gutter based on screen width
+ - 0 width so weights work */
 .bq-column {
-  @media (max-width: $break-small - 1) {
+  @media (max-width: var.$break-small - 1) {
     margin: 0;
   }
 
-  @media (min-width: $break-small) {
+  @media (min-width: var.$break-small) {
     width: 0;
 
-    @media (max-width: $break-medium - 1) {
-      margin-right: $gutter-width-small;
+    @media (max-width: var.$break-medium - 1) {
+      margin-right: var.$gutter-width-small;
     }
 
-    @media (min-width: $break-medium) and (max-width: $break-large - 1) {
-      margin-right: $gutter-width-medium;
+    @media (min-width: var.$break-medium) and (max-width: var.$break-large - 1) {
+      margin-right: var.$gutter-width-medium;
     }
 
-    @media (min-width: $break-large) {
-      margin-right: $gutter-width-large;
+    @media (min-width: var.$break-large) {
+      margin-right: var.$gutter-width-large;
     }
 
     &:last-child {
@@ -82,20 +82,20 @@
   }
 }
 
-// Responsive widget
-// - Define padding and vertical gutter based on screen width
+/* Responsive widget
+ - Define padding and vertical gutter based on screen width */
 .bq-widget {
-  padding: $bq-margin-double;
+  padding: var.$bq-margin-double;
 
-  @media (max-width: $break-medium - 1) {
-    margin-bottom: $gutter-width-small;
+  @media (max-width: var.$break-medium - 1) {
+    margin-bottom: var.$gutter-width-small;
   }
 
-  @media (min-width: $break-medium) and (max-width: $break-large - 1) {
-    margin-bottom: $gutter-width-medium;
+  @media (min-width: var.$break-medium) and (max-width: var.$break-large - 1) {
+    margin-bottom: var.$gutter-width-medium;
   }
 
-  @media (min-width: $break-large) {
-    margin-bottom: $gutter-width-large;
+  @media (min-width: var.$break-large) {
+    margin-bottom: var.$gutter-width-large;
   }
 }

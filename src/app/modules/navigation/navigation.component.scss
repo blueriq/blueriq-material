@@ -1,6 +1,6 @@
 @use '@angular/material' as mat;
 @use 'sass:math' as math;
-@import 'globals/variables';
+@use 'globals/variables' as var;
 
 $shape-size: 1.2rem;
 $shape-line: 2.8px;
@@ -10,13 +10,13 @@ $shape-line: 2.8px;
   max-height: 64vh;
   overflow-y: auto;
   position: relative;
-  margin: $bq-margin-double;
+  margin: var.$bq-margin-double;
 }
 
 .line {
   position: absolute;
   inset: 1rem math.div(-$shape-line, 2);
   width: $shape-line;
-  background: mat.get-color-from-palette($bq-primary-palette);
-  margin-left: $bq-margin-triple;
+  background: mat.m2-get-color-from-palette(var.$bq-primary-palette);
+  margin-left: var.$bq-margin-triple;
 }

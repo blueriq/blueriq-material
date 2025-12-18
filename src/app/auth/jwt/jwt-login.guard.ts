@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router';
+
 import { JwtAuthService } from '@blueriq/angular';
 import { Observable, of } from 'rxjs';
 import { catchError, mapTo, tap } from 'rxjs/operators';
@@ -10,7 +10,7 @@ import { catchError, mapTo, tap } from 'rxjs/operators';
  * If no OpenId Connect authentication is needed, this guard should be deleted.
  */
 @Injectable({ providedIn: 'root' })
-export class JwtLoginGuard implements CanActivate {
+export class JwtLoginGuard  {
 
   constructor(
     private readonly jwtAuthService: JwtAuthService,

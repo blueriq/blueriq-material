@@ -1,13 +1,14 @@
 @use '@angular/material' as mat;
-@import 'globals/variables';
+@use 'globals/variables' as var;
+@use 'globals/color-palettes' as palette;
 
-// This style uses double flex layout due to vertical alignment of icon and content
+/* This style uses double flex layout due to vertical alignment of icon and content */
 
 .text-item {
   display: flex;
-  color: $dark-primary-text;
-  font-size: $default-font-size;
-  line-height: $default-line-height;
+  color: palette.$dark-primary-text;
+  font-size: var.$default-font-size;
+  line-height: var.$default-line-height;
 
   .gutter {
     display: flex;
@@ -26,34 +27,34 @@
   }
 
   &.warning,
-  &.Warning { // stylelint-disable-line selector-class-pattern
+  &.Warning { /* stylelint-disable-line selector-class-pattern */
     .gutter {
-      background-color: mat.get-color-from-palette($bq-warn-palette, 100);
-      color: mat.get-color-from-palette($bq-warn-palette, 800);
+      background-color: mat.m2-get-color-from-palette(var.$bq-warn-palette, 100);
+      color: mat.m2-get-color-from-palette(var.$bq-warn-palette, 800);
     }
   }
 
   &.danger,
-  &.Danger { // stylelint-disable-line selector-class-pattern
+  &.Danger { /* stylelint-disable-line selector-class-pattern */
     .gutter {
-      background-color: mat.get-color-from-palette($bq-error-palette, 100);
-      color: mat.get-color-from-palette($bq-error-palette, 800);
+      background-color: mat.m2-get-color-from-palette(var.$bq-error-palette, 100);
+      color: mat.m2-get-color-from-palette(var.$bq-error-palette, 800);
     }
   }
 
   &.info,
-  &.Info { // stylelint-disable-line selector-class-pattern
+  &.Info { /* stylelint-disable-line selector-class-pattern */
     .gutter {
-      background-color: mat.get-color-from-palette($bq-info-palette, 100);
-      color: mat.get-color-from-palette($bq-info-palette, 800);
+      background-color: mat.m2-get-color-from-palette(var.$bq-info-palette, 100);
+      color: mat.m2-get-color-from-palette(var.$bq-info-palette, 800);
     }
   }
 
   &.success,
-  &.Success { // stylelint-disable-line selector-class-pattern
+  &.Success { /* stylelint-disable-line selector-class-pattern */
     .gutter {
-      background-color: mat.get-color-from-palette($bq-success-palette, 100);
-      color: mat.get-color-from-palette($bq-success-palette, 800);
+      background-color: mat.m2-get-color-from-palette(var.$bq-success-palette, 100);
+      color: mat.m2-get-color-from-palette(var.$bq-success-palette, 800);
     }
   }
 

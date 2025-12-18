@@ -3,9 +3,10 @@ import { BlueriqComponent, bySelector } from '@blueriq/angular';
 import { Field } from '@blueriq/core';
 
 @Component({
-  selector: 'bq-readonly',
-  templateUrl: './readonly.component.html',
-  styleUrls: ['./readonly.component.scss'],
+    selector: 'bq-readonly',
+    templateUrl: './readonly.component.html',
+    styleUrls: ['./readonly.component.scss'],
+    standalone: false
 })
 @BlueriqComponent({
   type: Field,

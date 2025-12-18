@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, Router, UrlTree } from '@angular/router';
 import { OpenIdConnectCallbackDetails } from '@blueriq/angular';
 import { OpenIdConnectAuth } from '@blueriq/angular/openidconnect';
 import { Observable, of } from 'rxjs';
@@ -12,7 +12,7 @@ import { AuthService } from '../auth.service';
  * the destination.  If verification fails, the user is shown an unsuccessful authentication page.
  */
 @Injectable({ providedIn: 'root' })
-export class OpenIdConnectVerifyGuard implements CanActivate {
+export class OpenIdConnectVerifyGuard  {
 
   constructor(private readonly auth: AuthService,
               private readonly openIdConnect: OpenIdConnectAuth,

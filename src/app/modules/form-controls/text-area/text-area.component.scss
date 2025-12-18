@@ -1,5 +1,5 @@
-@import 'globals/variables';
+@use 'globals/variables' as var;
 
 .mat-mdc-form-field {
-  margin-bottom: $bq-base-margin;
+  margin-bottom: var.$bq-base-margin;
 }

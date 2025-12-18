@@ -6,10 +6,11 @@ import { Container, FieldMessages } from '@blueriq/core';
 import { BqPresentationStyles } from '../BqPresentationStyles';
 
 @Component({
-  selector: 'bq-comment',
-  templateUrl: './comment.component.html',
-  styleUrls: ['./comment.component.scss'],
-  providers: [SubmitComment],
+    selector: 'bq-comment',
+    templateUrl: './comment.component.html',
+    styleUrls: ['./comment.component.scss'],
+    providers: [SubmitComment],
+    standalone: false
 })
 @BlueriqComponent({
   type: Container,

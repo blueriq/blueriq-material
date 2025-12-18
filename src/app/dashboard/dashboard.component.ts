@@ -10,10 +10,11 @@ import { ActivateCaseAction } from '../shared/dcm/case-aware.service';
 import { ActivateTaskAction } from '../shared/dcm/task-aware.service';
 
 @Component({
-  templateUrl: './dashboard.component.html',
-  providers: [
-    BlueriqComponents.scoped([WidgetPageComponent]),
-  ],
+    templateUrl: './dashboard.component.html',
+    providers: [
+        BlueriqComponents.scoped([WidgetPageComponent]),
+    ],
+    standalone: false
 })
 export class DashboardComponent {
 

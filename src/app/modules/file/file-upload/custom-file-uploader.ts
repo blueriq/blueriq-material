@@ -72,13 +72,13 @@ export class CustomFileUploader extends FileUploader {
 
     xhr.onerror = () => {
       const headers = this._parseHeaders(xhr.getAllResponseHeaders());
-      const response = this._transformResponse(xhr.response, headers);
+      const response = this._transformResponse(xhr.response);
       this.onErrorItem(fakeItem, response, xhr.status, headers);
     };
 
     xhr.onabort = () => {
       const headers = this._parseHeaders(xhr.getAllResponseHeaders());
-      const response = this._transformResponse(xhr.response, headers);
+      const response = this._transformResponse(xhr.response);
       this.onErrorItem(fakeItem, response, xhr.status, headers);
     };
 
@@ -96,7 +96,7 @@ export class CustomFileUploader extends FileUploader {
 
     xhr.onload = () => {
       const headers = this._parseHeaders(xhr.getAllResponseHeaders());
-      const response = this._transformResponse(xhr.response, headers);
+      const response = this._transformResponse(xhr.response);
       const gist = this._isSuccessCode(xhr.status) ? 'Success' : 'Error';
       const method = '_on' + gist + 'Item';
       for (const item of this.queue) {

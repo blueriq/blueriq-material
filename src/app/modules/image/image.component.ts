@@ -5,9 +5,10 @@ import { Image } from '@blueriq/core';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'bq-image',
-  templateUrl: './image.component.html',
-  providers: [ImageResource],
+    selector: 'bq-image',
+    templateUrl: './image.component.html',
+    providers: [ImageResource],
+    standalone: false
 })
 @BlueriqComponent({
   type: Image,

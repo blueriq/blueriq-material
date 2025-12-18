@@ -1,8 +1,8 @@
-@import 'globals/variables';
+@use 'globals/variables' as var;
 
 .dialog-title {
   display: flex;
-  margin-top: $bq-margin;
+  margin-top: var.$bq-margin;
 
   .title {
     display: flex;
@@ -19,8 +19,8 @@
 
 .dialog-content {
   display: block;
-  margin-top: $bq-margin;
-  margin-bottom: $bq-margin;
+  margin-top: var.$bq-margin;
+  margin-bottom: var.$bq-margin;
 }
 
 .dialog-actions {

@@ -1,6 +1,6 @@
-@import 'variables';
+@use 'variables' as var;
 
-// prefixes on material form items are aligned directly next to the input itself
+/* prefixes on material form items are aligned directly next to the input itself */
 .mat-mdc-form-field-prefix {
-  margin-right: $bq-margin;
+  margin-right: var.$bq-margin;
 }

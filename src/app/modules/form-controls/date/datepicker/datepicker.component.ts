@@ -7,10 +7,11 @@ import { MomentTransformer } from '../moment-transformer';
 import { dateFormatProvider } from './datepicker.material';
 
 @Component({
-  selector: 'bq-datepicker',
-  templateUrl: './datepicker.component.html',
-  styleUrls: ['./datepicker.component.scss'],
-  providers: [dateFormatProvider],
+    selector: 'bq-datepicker',
+    templateUrl: './datepicker.component.html',
+    styleUrls: ['./datepicker.component.scss'],
+    providers: [dateFormatProvider],
+    standalone: false
 })
 @BlueriqComponent({
   type: Field,

@@ -3,16 +3,17 @@ import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { Field, FieldMessages } from '@blueriq/core';
 import { computeFirstDayOfWeek } from '@shared/date/bq-date-parser';
-import * as moment from 'moment';
+import moment from 'moment';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
 import { MomentTransformer } from '../moment-transformer';
 import { dateTimeFormatProvider } from './datetimepicker.owl';
 
 @Component({
-  selector: 'bq-datetimepicker',
-  templateUrl: './datetimepicker.component.html',
-  styleUrls: ['./datetimepicker.component.scss'],
-  providers: [dateTimeFormatProvider],
+    selector: 'bq-datetimepicker',
+    templateUrl: './datetimepicker.component.html',
+    styleUrls: ['./datetimepicker.component.scss'],
+    providers: [dateTimeFormatProvider],
+    standalone: false
 })
 @BlueriqComponent({
   type: Field,

@@ -9,8 +9,9 @@ const operations = {
 };
 
 @Component({
-  selector: 'bq-numeric-filter',
-  templateUrl: './numeric-filter.component.html',
+    selector: 'bq-numeric-filter',
+    templateUrl: './numeric-filter.component.html',
+    standalone: false
 })
 export class NumericFilterComponent {
   readonly operations = operations;

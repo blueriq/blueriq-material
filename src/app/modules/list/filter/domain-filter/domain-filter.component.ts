@@ -4,8 +4,9 @@ import { Domain, TechnicalValue } from '@blueriq/core';
 import { FilterCandidate } from '../types';
 
 @Component({
-  selector: 'bq-domain-filter',
-  templateUrl: './domain-filter.component.html',
+    selector: 'bq-domain-filter',
+    templateUrl: './domain-filter.component.html',
+    standalone: false
 })
 export class DomainFilterComponent {
   private _candidate: FilterCandidate;

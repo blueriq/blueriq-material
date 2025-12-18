@@ -9,7 +9,7 @@ pipeline {
     disableConcurrentBuilds()
   }
   tools {
-    nodejs 'nodejs-18.16.0'
+    nodejs 'nodejs-22.14.0'
   }
   environment {
     CYPRESS_INSTALL_BINARY = '0'

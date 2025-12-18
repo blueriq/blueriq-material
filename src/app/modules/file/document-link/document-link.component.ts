@@ -7,9 +7,10 @@ import { BqPresentationStyles } from '../../BqPresentationStyles';
 import { FileDownloadService } from '../file-download/file-download.service';
 
 @Component({
-  templateUrl: './document-link.component.html',
-  styleUrls: ['./document-link.component.scss'],
-  providers: [DocumentLink],
+    templateUrl: './document-link.component.html',
+    styleUrls: ['./document-link.component.scss'],
+    providers: [DocumentLink],
+    standalone: false
 })
 @BlueriqComponent({
   type: Container,
