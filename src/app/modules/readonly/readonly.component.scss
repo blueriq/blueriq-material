@@ -1,10 +1,9 @@
 /* Suppress the border on the bottom of the field & background color */
 :host {
   ::ng-deep {
-    .mdc-text-field {
-      background-color: transparent;
-    }
-
+    /* stylelint-disable-next-line selector-class-pattern */
+    .mdc-text-field--filled:not(.mdc-text-field--disabled),
+    .mdc-text-field,
     .mat-mdc-form-field-focus-overlay {
       background-color: transparent;
     }
