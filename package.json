@@ -122,7 +122,7 @@
     "typescript": "5.5.4"
   },
   "optionalDependencies": {
-    "cypress": "15.7.1",
+    "cypress": "15.8.1",
     "cypress-file-upload": "^5.0.8",
     "cypress-image-diff-js": "1.32.0",
     "cypress-multi-reporters": "^1.4.0",
