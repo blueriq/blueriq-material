@@ -6,6 +6,7 @@ import {
   LiveUpdatesReconnectedAction,
   PingUpdate,
   TaskCompletedUpdate,
+  TaskCompletedZoneUpdate,
 } from '@blueriq/angular/live-updates';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { LiveUpdatesEffect } from '@shared/effects/live-updates/live-updates.effect';
@@ -52,6 +53,32 @@ describe('Live Updates Effect', () => {
     tick();
 
     expect(toastrServiceSpy.success).toHaveBeenCalledWith('Task Toevoegen Bewijsstukken is completed', 'Task Completed');
+  }));
+
+  it('shows technical name when TaskCompleted live update from Zone has no displayNames', fakeAsync(() => {
+    const action = new LiveUpdateAction(new TaskCompletedZoneUpdate({
+      type: 'taskCompletedZone', taskName: 'technicalName', taskDisplayNames: {},
+    }));
+    effects.liveUpdateAction$.subscribe();
+    actions.next(action);
+
+    tick();
+
+    expect(toastrServiceSpy.success).toHaveBeenCalledWith('Task technicalName is completed', 'Task Completed');
+  }));
+
+  it('shows first display name when TaskCompleted live update from Zone has displayNames', fakeAsync(() => {
+    const action = new LiveUpdateAction(new TaskCompletedZoneUpdate({
+      type: 'taskCompletedZone',
+      taskName: 'technicalName',
+      taskDisplayNames: {'en-US': 'Functional name', 'nl-NL': 'Functionele naam'},
+    }));
+    effects.liveUpdateAction$.subscribe();
+    actions.next(action);
+
+    tick();
+
+    expect(toastrServiceSpy.success).toHaveBeenCalledWith('Task Functional name is completed', 'Task Completed');
   }));
 
   it('does not respond to Unsupported live update', fakeAsync(() => {
