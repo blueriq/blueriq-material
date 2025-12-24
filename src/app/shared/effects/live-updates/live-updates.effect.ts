@@ -7,6 +7,7 @@ import {
   LiveUpdatesReconnectedAction,
   PingUpdate,
   TaskCompletedUpdate,
+  TaskCompletedZoneUpdate,
 } from '@blueriq/angular/live-updates';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ToastrService } from 'ngx-toastr';
@@ -50,6 +51,13 @@ export class LiveUpdatesEffect {
       this.toastrService.success(`Task ${ update.taskNameDefaultLanguage } is completed`, 'Task Completed');
     } else if (update instanceof PingUpdate) {
       this.toastrService.success('Ping received');
+    } else if (update instanceof TaskCompletedZoneUpdate) {
+      this.toastrService.success(`Task ${ this.getTaskDisplayName(update) } is completed`, 'Task Completed');
     }
+  }
+
+  private getTaskDisplayName(update: TaskCompletedZoneUpdate): string {
+    // as long as we do not know the language, return the first display name for now or the task name if no display names are found
+    return Object.keys(update.taskDisplayNames).length > 0 ? Object.values(update.taskDisplayNames)[0] : update.taskName;
   }
 }
