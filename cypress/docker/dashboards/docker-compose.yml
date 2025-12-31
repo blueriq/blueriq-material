@@ -88,7 +88,7 @@ services:
       - "9088:15672"
     restart: always
   e2e-mongodb:
-    image: mongo:8.0.3@sha256:3984cf5a234e525253619060fcbff12449db0597d62a6d4e18991a18f2365c36
+    image: mongo:8.0.17
     mem_limit: 256m
     restart: always
     ports:
