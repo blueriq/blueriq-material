@@ -93,7 +93,7 @@
     "@angular/compiler-cli": "20.3.15",
     "@angular/language-service": "20.3.15",
     "@compodoc/compodoc": "1.1.19",
-    "@eslint/eslintrc": "4.0.3",
+    "@eslint/eslintrc": "3.3.3",
     "@eslint/js": "9.39.1",
     "@stylistic/eslint-plugin": "5.6.1",
     "@types/jasmine": "4.0.3",
@@ -104,8 +104,6 @@
     "@typescript-eslint/utils": "8.49.0",
     "auditjs": "4.0.46",
     "eslint": "9.39.1",
-    "@eslint/js": "9.39.1",
-    "@eslint/eslintrc": "3.3.3",
     "eslint-formatter-checkstyle": "9.0.1",
     "eslint-plugin-import": "2.32.0",
     "eslint-plugin-no-only-tests": "3.1.0",
@@ -140,7 +138,8 @@
     "validator": "13.15.23",
     "serialize-javascript": "^6.0.2",
     "@babel/helpers": "^7.26.10",
-    "@babel/runtime": "^7.26.10"
+    "@babel/runtime": "^7.26.10",
+    "qs": "6.14.1"
   },
   "packageManager": "yarn@1.22.22"
 }
