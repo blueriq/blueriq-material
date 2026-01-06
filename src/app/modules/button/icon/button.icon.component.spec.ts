@@ -30,8 +30,8 @@ describe('ButtonComponent', () => {
   });
 
   it('should only display a button containing a mat-icon', () => {
-    expect(component.nativeElement.querySelector('mat-icon[ng-reflect-bq-icon]')).toBeTruthy();
-    expect(component.nativeElement).not.toContain('Click me', 'Only a icon should be present');
+    expect(component.nativeElement.querySelector('mat-icon')).toBeTruthy();
+    expect(component.nativeElement.textContent).not.toContain('Click me');
   });
 
   it('should use the bqbutton directive', () => {

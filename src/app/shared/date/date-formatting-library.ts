@@ -1,5 +1,5 @@
 import { DateFormattingLibrary } from '@blueriq/core';
-import moment from 'moment';
+import moment from 'moment/min/moment-with-locales';
 
 export class MomentDateFormatting implements DateFormattingLibrary {
 

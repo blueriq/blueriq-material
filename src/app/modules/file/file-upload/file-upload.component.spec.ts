@@ -1,6 +1,6 @@
 import { DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { UploadDetails } from '@blueriq/angular';
 import { FileUpload } from '@blueriq/angular/files';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
@@ -77,9 +77,9 @@ describe('FileUploadComponent', () => {
 
     // Verify
     expect(component.componentInstance.isBusy).toBe(true);
-    progressBar = component.nativeElement.querySelector('mat-progress-bar');
-    expect(progressBar).toBeTruthy();
-    expect(progressBar.getAttribute('ng-reflect-value')).toBe('33');
+    const progressBarDebugElement = component.debugElement.query(By.css('mat-progress-bar'));
+    expect(progressBarDebugElement).toBeTruthy();
+    expect(progressBarDebugElement.componentInstance.value).toBe(33);
   });
 
   it('should display a hint messages for the upload criteria', () => {

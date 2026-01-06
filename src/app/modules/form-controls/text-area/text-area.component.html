@@ -2,5 +2,7 @@
   <mat-label>{{field.questionText}}</mat-label>
   <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" [formControl]="formControl"> </textarea>
   <mat-hint>{{field.explainText}}</mat-hint>
-  <mat-error *ngFor="let msg of getErrors()">{{msg.text}}</mat-error>
+  @for (msg of getErrors(); track msg) {
+    <mat-error>{{msg.text}}</mat-error>
+  }
 </mat-form-field>

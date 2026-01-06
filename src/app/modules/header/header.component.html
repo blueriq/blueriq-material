@@ -6,29 +6,35 @@
     </div>
 
     <div class="fx-flex">
-      <ng-container *ngIf="dashboardHeader">
-        <ng-container *ngFor="let child of dashboardHeader.children | bqIncluded" [bqElement]="child"></ng-container>
-      </ng-container>
+      @if (dashboardHeader) {
+        @for (child of dashboardHeader.children | bqIncluded; track child) {
+          <ng-container [bqElement]="child"></ng-container>
+        }
+      }
     </div>
 
-    <div style="flex: 0 0 auto" class="application-actions" *ngIf="authenticatedUser || logoutLink">
-
-      <button type="button" mat-button [matMenuTriggerFor]="userMenu" aria-label="Open user menu" class="active-user-menu">
-        <div style="gap: 12px" class="fx-flex-row icon">
-          <div class="account-circle">
-            <mat-icon>account_circle</mat-icon>
+    @if (authenticatedUser || logoutLink) {
+      <div style="flex: 0 0 auto" class="application-actions">
+        <button type="button" mat-button [matMenuTriggerFor]="userMenu" aria-label="Open user menu" class="active-user-menu">
+          <div style="gap: 12px" class="fx-flex-row icon">
+            <div class="account-circle">
+              <mat-icon>account_circle</mat-icon>
+            </div>
+            @if (authenticatedUser) {
+              <div class="username">
+                <span>{{ authenticatedUser.plainText }}</span>
+              </div>
+            }
           </div>
-          <div class="username" *ngIf="authenticatedUser">
-            <span>{{ authenticatedUser.plainText }}</span>
-          </div>
-        </div>
-      </button>
-
-      <mat-menu [overlapTrigger]="false" #userMenu="matMenu">
-        <button mat-menu-item (click)="logout()" *ngIf="logoutLink">
-          {{ logoutLink.plainText }}
         </button>
-      </mat-menu>
-    </div>
+        <mat-menu [overlapTrigger]="false" #userMenu="matMenu">
+          @if (logoutLink) {
+            <button mat-menu-item (click)="logout()">
+              {{ logoutLink.plainText }}
+            </button>
+          }
+        </mat-menu>
+      </div>
+    }
   </div>
 </mat-toolbar>

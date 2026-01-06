@@ -5,6 +5,8 @@
   [disabled]="isDisabled()"
   [class.default-styling]="hasDefaultStyling()">
   <mat-icon [bqIcon]="button.styles"></mat-icon>
-  <ng-container *ngIf="!hasCaption() && !hasIconStyle()">{{ "[" + button.name + "]" }}</ng-container>
+  @if (!hasCaption() && !hasIconStyle()) {
+    {{ "[" + button.name + "]" }}
+  }
   {{ button.caption }}
 </button>

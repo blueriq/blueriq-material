@@ -1,5 +1,4 @@
-import { FileItem, FileUploader, FileUploaderOptions } from 'ng2-file-upload';
-import { FileLikeObject } from 'ng2-file-upload/file-upload/file-like-object.class';
+import {FileItem, FileLikeObject, FileUploader, FileUploaderOptions} from 'ng2-file-upload';
 
 /**
  * Currently the ng2-file-upload sends out a request for every file when uploading

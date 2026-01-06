@@ -1,5 +1,5 @@
-import { DOCUMENT, Location, LocationStrategy } from '@angular/common';
-import { Inject, Injectable, Optional } from '@angular/core';
+import { Location, LocationStrategy } from '@angular/common';
+import { Inject, Injectable, Optional, DOCUMENT } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService as BqAuthService, LoginResult } from '@blueriq/angular';
 import { OpenIdConnectAuth } from '@blueriq/angular/openidconnect';

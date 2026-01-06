@@ -39,7 +39,7 @@ describe('ChiplistComponent', () => {
     });
 
     it('should add a chip', () => {
-      const inputField = fixture.nativeElement.querySelector('.mat-input-element');
+      const inputField = fixture.nativeElement.querySelector('input');
       expect(inputField).toBeTruthy();
 
       inputField.value = 'Yellow';
@@ -48,8 +48,7 @@ describe('ChiplistComponent', () => {
       fixture.detectChanges();
       expect(component.values.length).toBe(4);
       expect(fixture.nativeElement.querySelectorAll('mat-chip-row').length).toBe(4);
-      expect(Array.from(fixture.nativeElement.querySelectorAll('mat-chip-row'))
-        .some((chip: any) => chip.childNodes[2].innerText === 'Yellow')).toBeTruthy();
+      expect(fixture.nativeElement.textContent).toContain('Yellow');
       expect(inputField.value).toBe('');
     });
 
@@ -59,7 +58,7 @@ describe('ChiplistComponent', () => {
       fixture = session.get(ChiplistComponent);
       component = fixture.componentInstance;
 
-      const inputField = fixture.nativeElement.querySelector('.mat-mdc-input-element');
+      const inputField = fixture.nativeElement.querySelector('input');
       expect(inputField).toBeTruthy();
 
       inputField.value = '678.20';
@@ -68,25 +67,23 @@ describe('ChiplistComponent', () => {
       fixture.detectChanges();
       expect(component.values.length).toBe(4);
       expect(fixture.nativeElement.querySelectorAll('mat-chip-row').length).toBe(4);
-      expect(Array.from(fixture.nativeElement.querySelectorAll('mat-chip-row'))
-        .some((chip: any) => chip.childNodes[2].innerText === '678.20')).toBeTruthy();
+      expect(fixture.nativeElement.textContent).toContain('678.20');
       expect(inputField.value).toBe('');
     });
 
     it('should remove a chip', () => {
-      const chipRemoveButton = fixture.nativeElement.querySelectorAll('.mat-mdc-chip-remove')[0];
+      const chipRemoveButton = fixture.nativeElement.querySelectorAll('mat-icon[matChipRemove]')[0];
 
       chipRemoveButton.dispatchEvent(new Event('click'));
 
       fixture.detectChanges();
       expect(component.values.length).toBe(2);
       expect(fixture.nativeElement.querySelectorAll('mat-chip-row').length).toBe(2);
-      expect(Array.from(fixture.nativeElement.querySelectorAll('mat-chip-row'))
-        .some((chip: any) => chip.childNodes[4].innerText === 'Red')).toBeFalsy();
+      expect(fixture.nativeElement.textContent).not.toContain('Red');
     });
 
     it('should not add an existing chip case insensitive', () => {
-      const inputField = fixture.nativeElement.querySelector('.mat-input-element');
+      const inputField = fixture.nativeElement.querySelector('input');
       expect(inputField).toBeTruthy();
 
       inputField.value = 'red';
@@ -130,7 +127,7 @@ describe('ChiplistComponent', () => {
     });
 
     it('should add chip from autocomplete selected value', async() => {
-      const autocompleteInput = fixture.debugElement.query(By.css('.mat-mdc-input-element'));
+      const autocompleteInput = fixture.debugElement.query(By.css('input'));
       expect(autocompleteInput).toBeTruthy();
       expect(component.field.getValue()).toEqual(['r', 'g']);
 

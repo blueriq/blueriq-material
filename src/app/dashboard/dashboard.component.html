@@ -12,4 +12,6 @@
   <bq-dashboard-page></bq-dashboard-page>
 </bq-dashboard>
 
-<bq-notification-overlay *ngIf="notification" [notification]="notification"></bq-notification-overlay>
+@if (notification) {
+  <bq-notification-overlay [notification]="notification"></bq-notification-overlay>
+}

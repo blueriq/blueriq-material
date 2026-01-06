@@ -4,14 +4,20 @@
   <ng-container [bqElement]="column.header"></ng-container>
 
   <!-- Sorting -->
-  <button *ngIf="column.ordering !== 'unavailable'" mat-icon-button
-          [ngClass]="['sort-toggle', column.ordering]" [bqButton]="column.toggleOrdering">
-    <mat-icon aria-label="sort button">{{getIconByDirection()}}</mat-icon>
-  </button>
+  @if (column.ordering !== 'unavailable') {
+    <button mat-icon-button
+      [ngClass]="['sort-toggle', column.ordering]" [bqButton]="column.toggleOrdering">
+      <mat-icon aria-label="sort button">{{getIconByDirection()}}</mat-icon>
+    </button>
+  }
 
   <!-- Filtering -->
-  <button *ngIf="column.filter" mat-icon-button disabled style="place-content: center; align-items: center;">
-    <mat-icon *ngIf="column.filter.isActive$ | async">filter_list</mat-icon>
-  </button>
+  @if (column.filter) {
+    <button mat-icon-button disabled style="place-content: center; align-items: center;">
+      @if (column.filter.isActive$ | async) {
+        <mat-icon>filter_list</mat-icon>
+      }
+    </button>
+  }
 
 </div>

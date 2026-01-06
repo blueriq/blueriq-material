@@ -1,35 +1,36 @@
 <div [bqContainer]="container">
   <bq-heading [title]="container.displayName" [styles]="container.styles"></bq-heading>
   <div class="timeline">
-    <div *ngFor="let entry of timeline.entries$ | async; let first = first" class="fx-flex-row">
-
-      <!-- left side of the timeline -->
-      <div class="line">
-        <div *ngIf="first" class="dotted-border"></div>
-        <div class="content">
-          <p class="date">{{ dateToHumanReadableFormat(entry.occurredAt) }}</p>
-        </div>
-        <div class="shape-position">
-          <div class="dot"></div>
-        </div>
-      </div>
-
-      <!-- right side of the timeline -->
-      <div class="time-card">
-        <div class="shape-position">
-          <div class="triangle"></div>
-        </div>
-        <div class="content">
-          <div class="fx-flex-row">
-            <div class="user">{{ entry.username }}</div>
-            <div class="time" >{{ dateToShortTime(entry.occurredAt) }}</div>
+    @for (entry of timeline.entries$ | async; track entry; let first = $first) {
+      <div class="fx-flex-row">
+        <!-- left side of the timeline -->
+        <div class="line">
+          @if (first) {
+            <div class="dotted-border"></div>
+          }
+          <div class="content">
+            <p class="date">{{ dateToHumanReadableFormat(entry.occurredAt) }}</p>
           </div>
-          <mat-divider></mat-divider>
-          <p class="action-name">{{ entry.actionName }}</p>
-          <p class="entry-name">{{ entry.entryName }}</p>
+          <div class="shape-position">
+            <div class="dot"></div>
+          </div>
+        </div>
+        <!-- right side of the timeline -->
+        <div class="time-card">
+          <div class="shape-position">
+            <div class="triangle"></div>
+          </div>
+          <div class="content">
+            <div class="fx-flex-row">
+              <div class="user">{{ entry.username }}</div>
+              <div class="time" >{{ dateToShortTime(entry.occurredAt) }}</div>
+            </div>
+            <mat-divider></mat-divider>
+            <p class="action-name">{{ entry.actionName }}</p>
+            <p class="entry-name">{{ entry.entryName }}</p>
+          </div>
         </div>
       </div>
-
-    </div>
+    }
   </div>
 </div>

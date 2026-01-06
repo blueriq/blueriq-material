@@ -1,21 +1,25 @@
-<bq-task *ngIf="parameters$ | async as parameters"
-         [sessionName]=sessionName
-         [applicationId]="parameters.applicationId"
-         [languageCode]="parameters.languageCode"
-         [caseId]="parameters.caseId"
-         [caseType]="parameters.caseType"
-         [taskId]="parameters.taskId"
-         [baseUrl]="baseUrl"
-         (expired)="onSessionExpired(parameters.caseType, parameters.caseId)"
-         (error)="onError($event, parameters.caseType, parameters.caseId)"
-         (flowEnded)="onFlowEnded(parameters.caseType, parameters.caseId)"
-         (taskCancelled)="onTaskCancelled(parameters.caseType, parameters.caseId)"
-         (forbidden)="onForbidden(parameters.caseType, parameters.caseId)"
-         (unauthorized)="onUnauthorized()">
-</bq-task>
+@if (parameters$ | async; as parameters) {
+  <bq-task
+    [sessionName]=sessionName
+    [applicationId]="parameters.applicationId"
+    [languageCode]="parameters.languageCode"
+    [caseId]="parameters.caseId"
+    [caseType]="parameters.caseType"
+    [taskId]="parameters.taskId"
+    [baseUrl]="baseUrl"
+    (expired)="onSessionExpired(parameters.caseType, parameters.caseId)"
+    (error)="onError($event, parameters.caseType, parameters.caseId)"
+    (flowEnded)="onFlowEnded(parameters.caseType, parameters.caseId)"
+    (taskCancelled)="onTaskCancelled(parameters.caseType, parameters.caseId)"
+    (forbidden)="onForbidden(parameters.caseType, parameters.caseId)"
+    (unauthorized)="onUnauthorized()">
+  </bq-task>
+}
 
 <bq-loading></bq-loading>
 
-<ng-container *ngIf="dashboardState === DashboardState.STABLE">
-  <bq-notification-overlay *ngIf="notification" [notification]="notification"></bq-notification-overlay>
-</ng-container>
+@if (dashboardState === DashboardState.STABLE) {
+  @if (notification) {
+    <bq-notification-overlay [notification]="notification"></bq-notification-overlay>
+  }
+}

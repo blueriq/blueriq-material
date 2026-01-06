@@ -1,10 +1,12 @@
 <bq-heading [styles]="container.styles" [title]="container.displayName"></bq-heading>
 
 <mat-tab-group [bqContainer]="container">
-  <mat-tab *ngFor="let child of container.children">
-    <ng-template mat-tab-label>
-      {{child.displayName || '[' + child.name + ']'}}
-    </ng-template>
-    <ng-container [bqElement]="child"></ng-container>
-  </mat-tab>
+  @for (child of container.children; track child) {
+    <mat-tab>
+      <ng-template mat-tab-label>
+        {{child.displayName || '[' + child.name + ']'}}
+      </ng-template>
+      <ng-container [bqElement]="child"></ng-container>
+    </mat-tab>
+  }
 </mat-tab-group>

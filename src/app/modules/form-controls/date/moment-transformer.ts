@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ValueTransformer } from '@blueriq/angular/forms';
-import moment from 'moment';
+import moment from 'moment/min/moment-with-locales';
 
 @Injectable()
 export class MomentTransformer implements ValueTransformer<Date, moment.Moment> {

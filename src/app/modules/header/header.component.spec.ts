@@ -1,3 +1,5 @@
+import { MatMenu } from '@angular/material/menu';
+import { By } from '@angular/platform-browser';
 import { APP_BASE_HREF } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -93,7 +95,8 @@ describe('HeaderComponent', () => {
       expect(fixture.nativeElement.querySelector('.img-logo-white')).toBeTruthy();
       expect(fixture.nativeElement.querySelector('h1').innerText).toBe('Page Title');
       expect(fixture.nativeElement.querySelector('.username').innerText.toLowerCase()).toBe('requester');
-      expect(fixture.nativeElement.querySelector('mat-menu').getAttribute('ng-reflect-overlap-trigger')).toBe('false');
+      const menu = fixture.debugElement.query(By.directive(MatMenu));
+      expect(menu.componentInstance.overlapTrigger).toBe(false);
     });
   });
 
@@ -119,7 +122,8 @@ describe('HeaderComponent', () => {
       expect(fixture.nativeElement.querySelector('.img-logo-white')).toBeTruthy();
       expect(fixture.nativeElement.querySelector('h1').innerText).toBe('Page Title');
       expect(fixture.nativeElement.querySelector('.username')).toBeFalsy();
-      expect(fixture.nativeElement.querySelector('mat-menu').getAttribute('ng-reflect-overlap-trigger')).toBe('false');
+      const menu = fixture.debugElement.query(By.directive(MatMenu));
+      expect(menu.componentInstance.overlapTrigger).toBe(false);
     });
   });
 

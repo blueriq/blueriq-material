@@ -1,15 +1,17 @@
-<div bqKey bqClasses [ngClass]="'external-flow-container'" [bqContainer]="container" *ngIf="!authenticationFailed">
-
-  <bq-heading [title]="container.displayName" [styles]="container.styles"></bq-heading>
-
-  <bq-session *ngIf="!shouldDisplayError()" [sessionName]="externalFlow.sessionName" (flowEnded)="handleFlowEnded()"
-    (expired)="handleSessionExpired()" (error)="handleError($event)"></bq-session>
-
-  <div *ngIf="shouldDisplayError()">
-    <mat-error style="display: flex; place-content: stretch center; align-items: stretch;">
-      <mat-icon>error</mat-icon>
-      <span>{{errorMessage}}</span>
-    </mat-error>
+@if (!authenticationFailed) {
+  <div bqKey bqClasses [ngClass]="'external-flow-container'" [bqContainer]="container">
+    <bq-heading [title]="container.displayName" [styles]="container.styles"></bq-heading>
+    @if (!shouldDisplayError()) {
+      <bq-session [sessionName]="externalFlow.sessionName" (flowEnded)="handleFlowEnded()"
+      (expired)="handleSessionExpired()" (error)="handleError($event)"></bq-session>
+    }
+    @if (shouldDisplayError()) {
+      <div>
+        <mat-error style="display: flex; place-content: stretch center; align-items: stretch;">
+          <mat-icon>error</mat-icon>
+          <span>{{errorMessage}}</span>
+        </mat-error>
+      </div>
+    }
   </div>
-
-</div>
+}

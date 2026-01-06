@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
@@ -15,7 +14,6 @@ describe('DatepickerComponent', () => {
   beforeEach(async() => {
     await TestBed.configureTestingModule({
       imports: [
-        NoopAnimationsModule,
         BlueriqTestingModule,
         FormControlModule,
       ],

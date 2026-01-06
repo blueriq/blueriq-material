@@ -2,13 +2,16 @@
   <mat-label>{{ field.questionText }}</mat-label>
   <mat-chip-grid #chipList [formControl]="formControl">
 
-    <mat-chip-row (removed)="remove(value)"
-      *ngFor="let value of values"
-      [disabled]="isDisabled()"
-      [removable]="true" >
-      {{value.displayValue}}
-      <mat-icon *ngIf="!isDisabled()" matChipRemove>cancel</mat-icon>
-    </mat-chip-row>
+    @for (value of values; track value) {
+      <mat-chip-row (removed)="remove(value)"
+        [disabled]="isDisabled()"
+        [removable]="true" >
+        {{value.displayValue}}
+        @if (!isDisabled()) {
+          <mat-icon matChipRemove>cancel</mat-icon>
+        }
+      </mat-chip-row>
+    }
 
     <input #input
       (blur)="addDomainValueOnBlur($event)"
@@ -20,15 +23,18 @@
       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
       [required]="field.required">
 
-    <mat-autocomplete #matAuto="matAutocomplete" autoActiveFirstOption>
-      <mat-option (onSelectionChange)="addByAutoComplete($event, input)"
-        *ngFor="let domainOption of filteredDomainOptions"
-        [value]="domainOption">
-        {{ domainOption.displayValue }}
-      </mat-option>
-    </mat-autocomplete>
+      <mat-autocomplete #matAuto="matAutocomplete" autoActiveFirstOption>
+        @for (domainOption of filteredDomainOptions; track domainOption) {
+          <mat-option (onSelectionChange)="addByAutoComplete($event, input)"
+            [value]="domainOption">
+            {{ domainOption.displayValue }}
+          </mat-option>
+        }
+      </mat-autocomplete>
 
-  </mat-chip-grid>
-  <mat-hint>{{field.explainText}}</mat-hint>
-  <mat-error *ngFor="let msg of getMessages()">{{msg.text}}</mat-error>
-</mat-form-field>
+    </mat-chip-grid>
+    <mat-hint>{{field.explainText}}</mat-hint>
+    @for (msg of getMessages(); track msg) {
+      <mat-error>{{msg.text}}</mat-error>
+    }
+  </mat-form-field>

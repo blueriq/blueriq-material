@@ -1,5 +1,6 @@
 <mat-accordion>
-    <mat-expansion-panel *ngFor="let child of container.children | bqIncluded">
+  @for (child of container.children | bqIncluded; track child) {
+    <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
           {{ child.displayName || '[' + child.name + ']' }}
@@ -7,4 +8,5 @@
       </mat-expansion-panel-header>
       <ng-container [bqElement]="child"></ng-container>
     </mat-expansion-panel>
+  }
 </mat-accordion>

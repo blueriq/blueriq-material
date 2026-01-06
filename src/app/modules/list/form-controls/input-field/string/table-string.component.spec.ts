@@ -1,4 +1,6 @@
+import { By } from '@angular/platform-browser';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatTooltip } from '@angular/material/tooltip';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
@@ -50,10 +52,10 @@ describe('TableStringFieldComponent', () => {
   });
 
   it('should contain error and messages within a tooltip', () => {
-    const tableSelect = component.nativeElement.querySelector('bq-table-string-field');
-    const messages = tableSelect.querySelector('mat-form-field').getAttribute('ng-reflect-message');
-    expect(messages).toContain('Invalid text');
-    expect(messages).toContain('Incorrect text');
+    const matFormField = component.debugElement.query(By.css('bq-table-string-field mat-form-field'));
+    const tooltip = matFormField.injector.get(MatTooltip);
+    expect(tooltip.message).toContain('Invalid text');
+    expect(tooltip.message).toContain('Incorrect text');
   });
 
   it('should not contain certain elements within a table view', () => {

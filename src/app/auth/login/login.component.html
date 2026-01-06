@@ -26,7 +26,9 @@
               <input matInput formControlName="password" type="password" name="password" autocomplete="off">
             </mat-form-field>
             <div>
-              <mat-error *ngIf="failed">Authentication failed</mat-error>
+              @if (failed) {
+                <mat-error>Authentication failed</mat-error>
+              }
             </div>
             <button mat-raised-button (click)="login()" color="primary" id="loginbutton">Login</button>
           </mat-card-content>

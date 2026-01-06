@@ -6,14 +6,16 @@
 
     <div style="flex: 0 0 auto;" class="application-actions">
       <button type="button" mat-button [matMenuTriggerFor]="userMenu" aria-label="Open user menu"
-              class="active-user-menu">
+        class="active-user-menu">
         <div class="fx-flex-row fx-gap-12px icon">
           <div class="fx-flex-row account-circle">
             <mat-icon>account_circle</mat-icon>
           </div>
-          <div class="username" *ngIf="userInfo$ | async as userInfo">
-            <span>{{ userInfo.name }}</span>
-          </div>
+          @if (userInfo$ | async; as userInfo) {
+            <div class="username">
+              <span>{{ userInfo.name }}</span>
+            </div>
+          }
         </div>
       </button>
 

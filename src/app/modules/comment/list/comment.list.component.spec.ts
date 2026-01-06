@@ -3,7 +3,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate } from '@blueriq/core/testing';
 import { DEFAULT_DATETIME_FROM_NOW_FORMAT } from '@shared/date/bq-date-parser';
-import moment from 'moment';
+import moment from 'moment/min/moment-with-locales';
 import { CommentModule } from '../comment.module';
 import { CommentListComponent } from './comment.list.component';
 

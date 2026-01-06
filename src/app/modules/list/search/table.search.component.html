@@ -1,36 +1,44 @@
-<div *ngIf="search.enabled" bqKey bqClasses class="search">
-  <mat-form-field
-    *ngIf="fieldIsVisible()"
-    floatLabel="auto"
-    style="flex: 70; max-width: 70%"
-    [@slideIn]="'*'"
-    (@slideIn.done)="focusField()">
-    <mat-chip-grid #chipList>
-      <mat-chip-row
-        *ngFor="let searchTerm of searchTerms"
-        [removable]="true"
-        (removed)="remove(searchTerm)">
-        {{searchTerm}}
-        <mat-icon matChipRemove>cancel</mat-icon>
-      </mat-chip-row>
-      <input
-        type="text"
-        placeholder="{{search.caption}}"
-        [matChipInputFor]="chipList"
-        [matChipInputSeparatorKeyCodes]="separatorKeyCodes"
-        [matChipInputAddOnBlur]="true"
-        (matChipInputTokenEnd)="add($event)"
-        #inputField>
-    </mat-chip-grid>
-  </mat-form-field>
-  <div class="button-wrapper">
-    <button
-      type="button"
-      mat-icon-button
-      (click)="toggle()"
-      [color]="opened ? undefined : 'primary'">
-      <mat-icon *ngIf="!opened">search</mat-icon>
-      <mat-icon *ngIf="opened">clear</mat-icon>
-    </button>
-  </div>
-</div>
+@if (search.enabled) {
+  <div bqKey bqClasses class="search">
+    @if (fieldIsVisible()) {
+      <mat-form-field
+        floatLabel="auto"
+        style="flex: 70; max-width: 70%"
+        [@slideIn]="'*'"
+        (@slideIn.done)="focusField()">
+        <mat-chip-grid #chipList>
+          @for (searchTerm of searchTerms; track searchTerm) {
+            <mat-chip-row
+              [removable]="true"
+              (removed)="remove(searchTerm)">
+              {{searchTerm}}
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip-row>
+          }
+          <input
+            type="text"
+            placeholder="{{search.caption}}"
+            [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeyCodes"
+            [matChipInputAddOnBlur]="true"
+            (matChipInputTokenEnd)="add($event)"
+            #inputField>
+          </mat-chip-grid>
+        </mat-form-field>
+      }
+      <div class="button-wrapper">
+        <button
+          type="button"
+          mat-icon-button
+          (click)="toggle()"
+          [color]="opened ? undefined : 'primary'">
+          @if (!opened) {
+            <mat-icon>search</mat-icon>
+          }
+          @if (opened) {
+            <mat-icon>clear</mat-icon>
+          }
+        </button>
+      </div>
+    </div>
+  }

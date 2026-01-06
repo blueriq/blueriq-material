@@ -1,15 +1,18 @@
 <div bqKey bqClasses class="text-item">
-  <div class="gutter" *ngIf="shouldDisplayGutter()">
-    <mat-icon class="aligner">{{getGutterIcon()}}</mat-icon>
-  </div>
+  @if (shouldDisplayGutter()) {
+    <div class="gutter">
+      <mat-icon class="aligner">{{getGutterIcon()}}</mat-icon>
+    </div>
+  }
   <div class="aligner">
 
-    <ng-container *ngIf="hasStyledContent; else onlyPlainText"
-                    [bqTextItemNode]="textItem.rootNode"></ng-container>
-
-    <ng-template #onlyPlainText>
+    @if (hasStyledContent) {
+      <ng-container
+      [bqTextItemNode]="textItem.rootNode"></ng-container>
+    } @else {
       {{textItem.plainText}}
-    </ng-template>
+    }
+
 
   </div>
 </div>

@@ -1,14 +1,15 @@
 <table mat-table bqKey bqClasses [dataSource]="table.rows$">
 
-  <ng-container *ngFor="let column of table.columns$ | async" [matColumnDef]="column.name">
-    <th mat-header-cell *matHeaderCellDef>
-      <bq-header-column [column]="column"></bq-header-column>
-    </th>
-
-    <td mat-cell *matCellDef="let row">
-      <ng-container [bqElement]="row.cellFor(column).element"></ng-container>
-    </td>
-  </ng-container>
+  @for (column of table.columns$ | async; track column) {
+    <ng-container [matColumnDef]="column.name">
+      <th mat-header-cell *matHeaderCellDef>
+        <bq-header-column [column]="column"></bq-header-column>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <ng-container [bqElement]="row.cellFor(column).element"></ng-container>
+      </td>
+    </ng-container>
+  }
 
   <tr mat-header-row *matHeaderRowDef="table.columnNames$ | async"></tr>
   <tr mat-row *matRowDef="let row; columns: table.columnNames$ | async" bqClasses [bqClassesStyles]="row.styles"></tr>

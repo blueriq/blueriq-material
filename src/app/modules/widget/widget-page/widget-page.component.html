@@ -1,3 +1,5 @@
 <div bqClasses bqKey>
-  <ng-container *ngFor="let child of page.children | bqIncluded" [bqElement]="child"></ng-container>
+  @for (child of page.children | bqIncluded; track child) {
+    <ng-container [bqElement]="child"></ng-container>
+  }
 </div>

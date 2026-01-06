@@ -25,7 +25,7 @@ module.exports = function (config) {
       environment: 'dev'
     },
     junitReporter: {
-      outputDir: '../testresults',
+      outputDir: './testresults',
       outputFile: 'karmatest.xml',
       suite: 'unit',  // whichever prefix you wish to use
       useBrowserName: false

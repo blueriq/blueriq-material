@@ -8,10 +8,12 @@
     matBadgeColor="primary">
     <mat-icon aria-label="Filter">filter_list</mat-icon>
   </button>
-  <button (click)="clearFilters()" mat-icon-button *ngIf="filter.currentFilters.length > 0"
-    matTooltip="Clear filter" @clearFilters>
-    <mat-icon aria-label="Clear filter">clear</mat-icon>
-  </button>
+  @if (filter.currentFilters.length > 0) {
+    <button (click)="clearFilters()" mat-icon-button
+      matTooltip="Clear filter" @clearFilters>
+      <mat-icon aria-label="Clear filter">clear</mat-icon>
+    </button>
+  }
 </div>
 
 <ng-template #filterDialog>
@@ -23,15 +25,19 @@
       <mat-label class="fx-flex0-0-4em">{{showUnknownLabel}}</mat-label>
     </div>
 
-    <bq-filter-row *ngFor="let candidate of filterCandidates"
-      [currentColumns]="filter.currentColumns"
-      [candidate]="candidate"
-      (removed)="removeFilter(candidate)">
-    </bq-filter-row>
+    @for (candidate of filterCandidates; track candidate) {
+      <bq-filter-row
+        [currentColumns]="filter.currentColumns"
+        [candidate]="candidate"
+        (removed)="removeFilter(candidate)">
+      </bq-filter-row>
+    }
 
-    <div *ngIf="canAddFilter()" class="fx-flex-row">
-      <button mat-button class="plain-link" (click)="addFilter()">Add filter</button>
-    </div>
+    @if (canAddFilter()) {
+      <div class="fx-flex-row">
+        <button mat-button class="plain-link" (click)="addFilter()">Add filter</button>
+      </div>
+    }
     <div class="fx-flex-row" style="justify-content: flex-end">
       <button mat-flat-button [color]="'primary'" (click)="applyFilters()">Apply filter</button>
     </div>

@@ -1,12 +1,14 @@
 <mat-list>
-  <div *ngFor="let entry of commentList.entries$ | async">
-    <div class="fx-flex-row">
-      <div class="header">{{entry.username}} <span class="title">{{entry.title}}</span></div>
-      <mat-card-subtitle class="push-right">
-        <div class="date">{{dateToHumanReadableFormat(entry.postedAt)}}</div>
-      </mat-card-subtitle>
+  @for (entry of commentList.entries$ | async; track entry) {
+    <div>
+      <div class="fx-flex-row">
+        <div class="header">{{entry.username}} <span class="title">{{entry.title}}</span></div>
+        <mat-card-subtitle class="push-right">
+          <div class="date">{{dateToHumanReadableFormat(entry.postedAt)}}</div>
+        </mat-card-subtitle>
+      </div>
+      <mat-card-subtitle class="comment">{{entry.comment}}</mat-card-subtitle>
+      <mat-divider class="space"></mat-divider>
     </div>
-    <mat-card-subtitle class="comment">{{entry.comment}}</mat-card-subtitle>
-    <mat-divider class="space"></mat-divider>
-  </div>
+  }
 </mat-list>

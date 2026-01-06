@@ -6,18 +6,28 @@
     <div class="fx-flex" style="flex-direction: column; place-content: center space-around; align-items: center;">
 
       <div class="image">
-        <span class="img-oops" *ngIf="notification.type === 'error'"></span>
-        <span class="img-session-expired" *ngIf="notification.type === 'expired'"></span>
-        <span class="img-logged-out" *ngIf="notification.type === 'logged-out'"></span>
+        @if (notification.type === 'error') {
+          <span class="img-oops"></span>
+        }
+        @if (notification.type === 'expired') {
+          <span class="img-session-expired"></span>
+        }
+        @if (notification.type === 'logged-out') {
+          <span class="img-logged-out"></span>
+        }
       </div>
 
       <p class="title">{{ notification.title }}</p>
       <p class="message">{{ notification.message }}</p>
-      <p class="details" *ngIf="notification.details">{{ notification.details }}</p>
+      @if (notification.details) {
+        <p class="details">{{ notification.details }}</p>
+      }
 
-      <p class="button" *ngIf="notification.dismiss" style="display: flex; flex-direction: column; place-content: center flex-start; align-items: center;">
-        <button mat-button (click)="notification.dismiss.action()">{{ notification.dismiss.label }}</button>
-      </p>
+      @if (notification.dismiss) {
+        <p class="button" style="display: flex; flex-direction: column; place-content: center flex-start; align-items: center;">
+          <button mat-button (click)="notification.dismiss.action()">{{ notification.dismiss.label }}</button>
+        </p>
+      }
     </div>
 
   </div>
