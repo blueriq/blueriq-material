@@ -3,7 +3,7 @@ import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { Field, FieldMessages } from '@blueriq/core';
 import { computeFirstDayOfWeek } from '@shared/date/bq-date-parser';
-import moment from 'moment';
+import moment from 'moment/min/moment-with-locales';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
 import { MomentTransformer } from '../moment-transformer';
 import { dateTimeFormatProvider } from './datetimepicker.owl';

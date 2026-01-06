@@ -1,4 +1,4 @@
-FROM docker-internal.blueriq.com/nodejs-build:22.14.0-ubi-9.5-1736404036 as node-base
+FROM docker-internal.blueriq.com/nodejs-build:22.14.0-ubi-9.5-1736404036 AS node-base
 
 # syntax = docker/dockerfile:1.2
 FROM node-base AS packages
@@ -39,16 +39,12 @@ RUN --mount=type=bind,target=/docker-context \
 
 ########################################################################################################################
 
-# When updating to a newer version of cypress:
-# 1: `docker pull cypress/included:X.Y.Z` (like: cypress/included:9.7.0)
-# 2: run `docker images --digests`
-# 3: copy the sha and replace it with the sha below
-FROM cypress/included:10.11.0@sha256:058d1834239bf09b381325b8369d05e9e0516a46b65b32e6dc0c991801dc517a as cypress
+FROM cypress/included:15.8.1 AS cypress
 
 COPY --from=workspace /usr/src/ /usr/src/
 
 WORKDIR /usr/src
 
-ENTRYPOINT ["docker-entrypoint.sh"]
+ENTRYPOINT [""]
 
 CMD [ "node" ]

@@ -4,8 +4,10 @@
   <div class="fx-flex-row">
     <mat-form-field class="fx-flex" bqKey appearance="fill">
       <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
-        [formControl]="formControl"></textarea>
-      <mat-error *ngFor="let msg of getFieldMessages()">{{msg.text}}</mat-error>
+      [formControl]="formControl"></textarea>
+      @for (msg of getFieldMessages(); track msg) {
+        <mat-error>{{msg.text}}</mat-error>
+      }
     </mat-form-field>
   </div>
 

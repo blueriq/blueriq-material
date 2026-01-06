@@ -2,12 +2,16 @@
   <mat-label>{{field.questionText}}</mat-label>
   <input matInput [placeholder]="field.placeholder" [formControl]="formControl" [required]="field.required" [owlDateTime]="dtPicker"
     (dateTimeChange)="formatOnChange($event)">
-  <button matPrefix class="mat-icon-button" [owlDateTimeTrigger]="dtPicker">
-    <mat-icon>today</mat-icon>
-  </button>
-  <owl-date-time #dtPicker [pickerType]="getPickerType()" [firstDayOfWeek]="firstDayOfWeek"
+    <button matPrefix class="mat-icon-button" [owlDateTimeTrigger]="dtPicker">
+      <mat-icon>today</mat-icon>
+    </button>
+    <owl-date-time #dtPicker [pickerType]="getPickerType()" [firstDayOfWeek]="firstDayOfWeek"
     [showSecondsTimer]="true" [disabled]="formControl.disabled"></owl-date-time>
-  <mat-hint>{{field.explainText}}</mat-hint>
-  <mat-error *ngIf="invalidInput()">invalid input</mat-error>
-  <mat-error *ngFor="let msg of getMessages()">{{msg.text}}</mat-error>
-</mat-form-field>
+    <mat-hint>{{field.explainText}}</mat-hint>
+    @if (invalidInput()) {
+      <mat-error>invalid input</mat-error>
+    }
+    @for (msg of getMessages(); track msg) {
+      <mat-error>{{msg.text}}</mat-error>
+    }
+  </mat-form-field>

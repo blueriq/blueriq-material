@@ -1,19 +1,23 @@
-<bq-intake *ngIf="parameters$ | async as parameters"
-           [sessionName]=sessionName
-           [languageCode]="parameters.languageCode"
-           [caseType]="parameters.caseType"
-           [baseUrl]="baseUrl"
-           (expired)="onSessionExpired()"
-           (error)="onError($event)"
-           (forbidden)="onForbidden()"
-           (unauthorized)="onUnauthorized()"
-           (intakeCompleted)="onIntakeCompleted($event)"
-           (intakeAborted)="onIntakeAborted()"
-           (caseCreated)="onCaseCreated($event, parameters.caseType)">
-</bq-intake>
+@if (parameters$ | async; as parameters) {
+  <bq-intake
+    [sessionName]=sessionName
+    [languageCode]="parameters.languageCode"
+    [caseType]="parameters.caseType"
+    [baseUrl]="baseUrl"
+    (expired)="onSessionExpired()"
+    (error)="onError($event)"
+    (forbidden)="onForbidden()"
+    (unauthorized)="onUnauthorized()"
+    (intakeCompleted)="onIntakeCompleted($event)"
+    (intakeAborted)="onIntakeAborted()"
+    (caseCreated)="onCaseCreated($event, parameters.caseType)">
+  </bq-intake>
+}
 
 <bq-loading></bq-loading>
 
-<ng-container *ngIf="dashboardState === DashboardState.STABLE">
-  <bq-notification-overlay *ngIf="notification" [notification]="notification"></bq-notification-overlay>
-</ng-container>
+@if (dashboardState === DashboardState.STABLE) {
+  @if (notification) {
+    <bq-notification-overlay [notification]="notification"></bq-notification-overlay>
+  }
+}

@@ -1,17 +1,27 @@
 <div class="header">
-  <bq-header *ngIf="!dashboardHeader" [page]="page"></bq-header>
-  <ng-container *ngIf="dashboardHeader" [bqElement]="dashboardHeader"></ng-container>
-  <ng-container *ngFor="let dashboardMenu of dashboardMenus" [bqElement]="dashboardMenu"></ng-container>
+  @if (!dashboardHeader) {
+    <bq-header [page]="page"></bq-header>
+  }
+  @if (dashboardHeader) {
+    <ng-container [bqElement]="dashboardHeader"></ng-container>
+  }
+  @for (dashboardMenu of dashboardMenus; track dashboardMenu) {
+    <ng-container [bqElement]="dashboardMenu"></ng-container>
+  }
 </div>
 
 <div [ngClass]="['page', pageSize]" class="fx-flex-row">
-  <div style="flex: 1 1 100%; max-width: 25%" *ngIf="navigationMenu">
-    <div class="sticky-menu">
-      <ng-container [bqElement]="navigationMenu"></ng-container>
+  @if (navigationMenu) {
+    <div style="flex: 1 1 100%; max-width: 25%">
+      <div class="sticky-menu">
+        <ng-container [bqElement]="navigationMenu"></ng-container>
+      </div>
     </div>
-  </div>
+  }
   <div class="fx-flex">
-    <ng-container *ngFor="let child of page.children | bqIncluded" [bqElement]="child"></ng-container>
+    @for (child of page.children | bqIncluded; track child) {
+      <ng-container [bqElement]="child"></ng-container>
+    }
   </div>
 </div>
 

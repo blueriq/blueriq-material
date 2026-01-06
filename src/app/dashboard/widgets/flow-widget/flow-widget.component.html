@@ -1,31 +1,41 @@
-<div [ngSwitch]="widgetStartType">
-  <bq-project *ngSwitchCase="'regular'"
-              [sessionName]=sessionName
-              [project]="flowWidget.projectName"
-              [version]="flowWidget.versionName"
-              [flow]="flowWidget.flowName"
-              [baseUrl]="baseUrl"
-              [parameters]="parameters$ | async"
-              (flowEnded)="onFlowEnded()"
-              (expired)="onSessionExpired()"
-              (error)="onError($event)"
-              (unauthorized)="onUnauthorized()">
-  </bq-project>
-  <bq-project *ngSwitchCase="'shortcut'"
-              [sessionName]=sessionName
-              [shortcut]="flowWidget.shortcutName"
-              [baseUrl]="baseUrl"
-              [parameters]="parameters$ | async"
-              (flowEnded)="onFlowEnded()"
-              (expired)="onSessionExpired()"
-              (error)="onError($event)"
-              (unauthorized)="onUnauthorized()">
-  </bq-project>
-  <p *ngSwitchDefault>The widget definition is invalid.</p>
+<div>
+  @switch (widgetStartType) {
+    @case ('regular') {
+      <bq-project
+        [sessionName]=sessionName
+        [project]="flowWidget.projectName"
+        [version]="flowWidget.versionName"
+        [flow]="flowWidget.flowName"
+        [baseUrl]="baseUrl"
+        [parameters]="parameters$ | async"
+        (flowEnded)="onFlowEnded()"
+        (expired)="onSessionExpired()"
+        (error)="onError($event)"
+        (unauthorized)="onUnauthorized()">
+      </bq-project>
+    }
+    @case ('shortcut') {
+      <bq-project
+        [sessionName]=sessionName
+        [shortcut]="flowWidget.shortcutName"
+        [baseUrl]="baseUrl"
+        [parameters]="parameters$ | async"
+        (flowEnded)="onFlowEnded()"
+        (expired)="onSessionExpired()"
+        (error)="onError($event)"
+        (unauthorized)="onUnauthorized()">
+      </bq-project>
+    }
+    @default {
+      <p>The widget definition is invalid.</p>
+    }
+  }
 </div>
 
 <bq-loading></bq-loading>
 
-<ng-container *ngIf="dashboardState === DashboardState.STABLE">
-  <bq-notification-overlay *ngIf="notification" [notification]="notification"></bq-notification-overlay>
-</ng-container>
+@if (dashboardState === DashboardState.STABLE) {
+  @if (notification) {
+    <bq-notification-overlay [notification]="notification"></bq-notification-overlay>
+  }
+}

@@ -1,9 +1,17 @@
 <mat-form-field appearance="fill" bqClasses bqKey class="fx-flex">
-  <span *ngIf="fieldPrefix" matPrefix>{{fieldPrefix}}</span>
-  <mat-icon *ngIf="iconPrefix" matPrefix>{{iconPrefix}}</mat-icon>
+  @if (fieldPrefix) {
+    <span matPrefix>{{fieldPrefix}}</span>
+  }
+  @if (iconPrefix) {
+    <mat-icon matPrefix>{{iconPrefix}}</mat-icon>
+  }
   <mat-label>{{field.questionText}}</mat-label>
   <input [formControl]="formControl" [placeholder]="placeholder" [required]="field.required" matInput type="{{inputType}}">
-  <span *ngIf="fieldSuffix" matSuffix>{{fieldSuffix}}</span>
+  @if (fieldSuffix) {
+    <span matSuffix>{{fieldSuffix}}</span>
+  }
   <mat-hint>{{field.explainText}}</mat-hint>
-  <mat-error *ngFor="let msg of getFieldMessages()">{{msg.text}}</mat-error>
+  @for (msg of getFieldMessages(); track msg) {
+    <mat-error>{{msg.text}}</mat-error>
+  }
 </mat-form-field>

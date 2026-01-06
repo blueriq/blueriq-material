@@ -1,13 +1,21 @@
 <div bqClasses bqKey class="selection-control slide-toggle">
   <div>
     <mat-slide-toggle [formControl]="formControl" [required]="field.required" color="primary">
-      <ng-container *ngIf="!list">{{field.questionText}}</ng-container>
+      @if (!list) {
+        {{field.questionText}}
+      }
     </mat-slide-toggle>
   </div>
-  <ng-container *ngIf="!list">
-    <mat-hint *ngIf="!getMessages().hasMessages">{{field.explainText}}</mat-hint>
-    <div *ngIf="getMessages().hasMessages">
-      <mat-error *ngFor="let msg of getMessages()">{{ msg.text }}</mat-error>
-    </div>
-  </ng-container>
+  @if (!list) {
+    @if (!getMessages().hasMessages) {
+      <mat-hint>{{field.explainText}}</mat-hint>
+    }
+    @if (getMessages().hasMessages) {
+      <div>
+        @for (msg of getMessages(); track msg) {
+          <mat-error>{{ msg.text }}</mat-error>
+        }
+      </div>
+    }
+  }
 </div>

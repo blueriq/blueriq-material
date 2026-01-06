@@ -1,7 +1,9 @@
 <div class="mat-paginator fx-flex-row">
   <div style="place-content: center; flex: 1 1 0;">
     <!-- Display feedback -->
-    <div class="feedback-label" *ngIf="pagination.pagingFeedback">{{pagination.pagingFeedback.text}}</div>
+    @if (pagination.pagingFeedback) {
+      <div class="feedback-label">{{pagination.pagingFeedback.text}}</div>
+    }
   </div>
   <div  class="mat-mdc-paginator-range-actions fx-flex-row" style="align-items: center; flex: 0 1 auto;">
     <!-- Range -->

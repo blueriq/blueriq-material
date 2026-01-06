@@ -1,21 +1,29 @@
-<div [ngSwitch]="child.type">
-  <!-- button -->
-  <button *ngSwitchCase="'button'" [bqButton]="child" [bqKey]="child" class="mat-menu-item" mat-button name="{{child.functionalKey}}">
-    <mat-icon [bqIcon]="child.styles"></mat-icon>
-    {{ asButton(child).caption || "[" + asButton(child).name + "]" }}
-  </button>
-
-  <!-- container with button(s) -->
-  <ng-container *ngSwitchCase="'container'">
-    <button [class.root-menu-item]="isRootOfMenubar(child)" [class.nested-menu-item]="!isRootOfMenubar(child)" (keydown)="handleEnterSubmenu($event,child)" [bqKey]="child" [matMenuTriggerFor]="menu" class="menu-list" mat-menu-item name="{{child.functionalKey}}">
-      {{ asContainer(child).displayName }}
-      <mat-icon *ngIf="isRootOfMenubar(child)">arrow_drop_down</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu" [overlapTrigger]="false">
-      <bq-menu-item #items (keydown)="onMenuKeyDown($event,i)" *ngFor="let grandchild of asContainer(child).children | bqIncluded; let i = index" [child]="grandchild" id="item{{i}}"></bq-menu-item>
-    </mat-menu>
-  </ng-container>
-
-  <!-- Other elements -->
-  <ng-container *ngSwitchDefault [bqElement]="child"></ng-container>
+<div>
+  @switch (child.type) {
+    <!-- button -->
+    @case ('button') {
+      <button [bqButton]="child" [bqKey]="child" class="mat-menu-item" mat-button name="{{child.functionalKey}}">
+        <mat-icon [bqIcon]="child.styles"></mat-icon>
+        {{ asButton(child).caption || "[" + asButton(child).name + "]" }}
+      </button>
+    }
+    <!-- container with button(s) -->
+    @case ('container') {
+      <button [class.root-menu-item]="isRootOfMenubar(child)" [class.nested-menu-item]="!isRootOfMenubar(child)" (keydown)="handleEnterSubmenu($event,child)" [bqKey]="child" [matMenuTriggerFor]="menu" class="menu-list" mat-menu-item name="{{child.functionalKey}}">
+        {{ asContainer(child).displayName }}
+        @if (isRootOfMenubar(child)) {
+          <mat-icon>arrow_drop_down</mat-icon>
+        }
+      </button>
+      <mat-menu #menu="matMenu" [overlapTrigger]="false">
+        @for (grandchild of asContainer(child).children | bqIncluded; track grandchild; let i = $index) {
+          <bq-menu-item #items (keydown)="onMenuKeyDown($event,i)" [child]="grandchild" id="item{{i}}"></bq-menu-item>
+        }
+      </mat-menu>
+    }
+    <!-- Other elements -->
+    @default {
+      <ng-container [bqElement]="child"></ng-container>
+    }
+  }
 </div>

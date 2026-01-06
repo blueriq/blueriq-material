@@ -9,7 +9,9 @@
   <div class="fx-flex0-0-14em">
     <mat-form-field appearance="fill">
       <mat-select multiple [value]="values" (selectionChange)="onValueChanged($event.value)">
-        <mat-option *ngFor="let option of domain.options" [value]="option.value">{{option.displayValue}}</mat-option>
+        @for (option of domain.options; track option) {
+          <mat-option [value]="option.value">{{option.displayValue}}</mat-option>
+        }
       </mat-select>
     </mat-form-field>
   </div>

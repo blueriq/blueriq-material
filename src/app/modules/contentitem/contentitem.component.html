@@ -1,1 +1,3 @@
-<ng-container *ngFor="let child of contentItem.children" [bqElement]="child"></ng-container>
+@for (child of contentItem.children; track child) {
+  <ng-container [bqElement]="child"></ng-container>
+}

@@ -5,24 +5,26 @@
     </div>
     <div class="close-button">
       <button [bqButton]="modalCloseButton" bqKey bqClasses mat-button
-              class="mat-icon-button"
-              (click)="closeDialog()"
-      >
+        class="mat-icon-button"
+        (click)="closeDialog()"
+        >
         <mat-icon fontIcon="close"></mat-icon>
       </button>
     </div>
   </div>
   <div mat-dialog-content class="dialog-content">
-    <ng-container *ngFor="let child of container.children | bqIncluded"
-                  [bqElement]="child"></ng-container>
+    @for (child of container.children | bqIncluded; track child) {
+      <ng-container
+      [bqElement]="child"></ng-container>
+    }
   </div>
   <div mat-dialog-actions class="dialog-actions">
-    <ng-container *ngFor="let button of modalActionButtons">
+    @for (button of modalActionButtons; track button) {
       <div (click)="closeDialog()"
-      >
+        >
         <ng-container [bqElement]="button">
         </ng-container>
       </div>
-    </ng-container>
+    }
   </div>
 </ng-template>

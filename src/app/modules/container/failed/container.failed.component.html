@@ -1,16 +1,18 @@
 <div>
   <div class="message fx-flex-row" (dblclick)="showTrace=!showTrace">
     {{failedElement.message}}
-    <ng-container *ngIf="isDev">
+    @if (isDev) {
       <button mat-icon-button matTooltip="Copy trace to clipboard" (click)="copyToClipboard()">
         <mat-icon aria-label="Copy to clipboard">assignment</mat-icon>
       </button>
       <button mat-icon-button matTooltip="Show stacktrace" (click)="showTrace=!showTrace">
         <mat-icon aria-label="Show stacktrace">more</mat-icon>
       </button>
-    </ng-container>
+    }
   </div>
-  <div *ngIf="isDev && showTrace" class="trace fx-flex-row">
-    <pre>{{failedElement.stacktrace}}</pre>
-  </div>
+  @if (isDev && showTrace) {
+    <div class="trace fx-flex-row">
+      <pre>{{failedElement.stacktrace}}</pre>
+    </div>
+  }
 </div>

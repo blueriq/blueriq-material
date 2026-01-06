@@ -33,9 +33,8 @@ describe('ButtonComponent', () => {
   });
 
   it('should display the button text', () => {
-    const buttonText: string = component.nativeElement.querySelector('.mdc-button__label').textContent.trim();
+    const buttonText: string = component.nativeElement.querySelector('button').textContent.trim();
     expect(buttonText).toBe('Click me!');
-
   });
 
   it('should be disabled', () => {

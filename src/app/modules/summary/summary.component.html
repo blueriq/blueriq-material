@@ -9,54 +9,72 @@
 
     <div class="fx-flex-row fx-gap-1em">
 
-      <div *ngIf="summary.phases$ | async as phases">
-        <h3>Phases</h3>
-        <div *ngFor="let completedPhase of phases.completed"  class="row-item">
-          <mat-icon fontIcon="check" color="primary" class="icon"></mat-icon>
-          <p>{{ completedPhase }}</p>
-        </div>
-        <div class="row-item">
-          <mat-icon fontIcon="more_horiz" color="primary" class="icon"></mat-icon>
-          <p>{{ phases.current }}</p>
-        </div>
-        <div class="row-item" *ngFor="let futurePhase of phases.future">
-          <mat-icon color="primary" class="icon"></mat-icon>
-          <p>{{ futurePhase }}</p>
-        </div>
-      </div>
-
-      <div *ngIf="summary.results$ | async as results" class="fx-gap-1em">
+      @if (summary.phases$ | async; as phases) {
         <div>
-          <h3>Results</h3>
-          <div *ngFor="let achievedResult of results.achievedResults" class="row-item">
-            <mat-icon fontIcon="check" color="primary" class="icon"></mat-icon>
-            <p>{{ achievedResult }}</p>
+          <h3>Phases</h3>
+          @for (completedPhase of phases.completed; track completedPhase) {
+            <div  class="row-item">
+              <mat-icon fontIcon="check" color="primary" class="icon"></mat-icon>
+              <p>{{ completedPhase }}</p>
+            </div>
+          }
+          <div class="row-item">
+            <mat-icon fontIcon="more_horiz" color="primary" class="icon"></mat-icon>
+            <p>{{ phases.current }}</p>
           </div>
-          <div *ngFor="let pendingResult of results.pendingResults" class="row-item">
-            <mat-icon color="primary" class="icon"></mat-icon>
-            <p>{{ pendingResult }}</p>
+          @for (futurePhase of phases.future; track futurePhase) {
+            <div class="row-item">
+              <mat-icon color="primary" class="icon"></mat-icon>
+              <p>{{ futurePhase }}</p>
+            </div>
+          }
+        </div>
+      }
+
+      @if (summary.results$ | async; as results) {
+        <div class="fx-gap-1em">
+          <div>
+            <h3>Results</h3>
+            @for (achievedResult of results.achievedResults; track achievedResult) {
+              <div class="row-item">
+                <mat-icon fontIcon="check" color="primary" class="icon"></mat-icon>
+                <p>{{ achievedResult }}</p>
+              </div>
+            }
+            @for (pendingResult of results.pendingResults; track pendingResult) {
+              <div class="row-item">
+                <mat-icon color="primary" class="icon"></mat-icon>
+                <p>{{ pendingResult }}</p>
+              </div>
+            }
           </div>
         </div>
-      </div>
+      }
     </div>
 
     <div>
       <h3>Deadlines</h3>
       <div class="fx-flex-row fx-gap-1em">
-        <div *ngFor="let deadline of summary.deadlines$ | async" class="deadline">
-          <div *ngIf="deadline.expirationTimes.length !== 0">
-            <div class="row-item">
-              <mat-icon fontIcon="calendar_today" color="primary" class="icon"></mat-icon>
-              <p>{{ deadline.name }}</p>
-            </div>
-            <div class="expiration-times">
-              <div *ngFor="let expirationTime of deadline.expirationTimes" class="row-item">
-                <mat-icon fontIcon="{{ expirationTimeIcon(expirationTime) }}" color="primary" class="icon"></mat-icon>
-                <p>{{ dateToExpirationFormat(expirationTime) }}</p>
+        @for (deadline of summary.deadlines$ | async; track deadline) {
+          <div class="deadline">
+            @if (deadline.expirationTimes.length !== 0) {
+              <div>
+                <div class="row-item">
+                  <mat-icon fontIcon="calendar_today" color="primary" class="icon"></mat-icon>
+                  <p>{{ deadline.name }}</p>
+                </div>
+                <div class="expiration-times">
+                  @for (expirationTime of deadline.expirationTimes; track expirationTime) {
+                    <div class="row-item">
+                      <mat-icon fontIcon="{{ expirationTimeIcon(expirationTime) }}" color="primary" class="icon"></mat-icon>
+                      <p>{{ dateToExpirationFormat(expirationTime) }}</p>
+                    </div>
+                  }
+                </div>
               </div>
-            </div>
+            }
           </div>
-        </div>
+        }
       </div>
     </div>
   </div>

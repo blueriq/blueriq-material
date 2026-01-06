@@ -1,22 +1,29 @@
-<ng-container *ngIf="page">
+@if (page) {
   <div class="header">
     <bq-dashboard-header [menuItems]="page.menuItems"></bq-dashboard-header>
   </div>
-
   <div class="page" [ngClass]="page.layout">
-    <div class="bq-dashboard-column" *ngFor="let column of page.columns">
-      <ng-container *ngFor="let widget of column.widgets" [ngSwitch]="widget.type">
-        <ng-container *ngSwitchCase="'blueriq-flow'">
-          <bq-flow-widget *ngIf="!refreshWidget" [widget]="widget" [id]="widget.id"></bq-flow-widget>
-        </ng-container>
-
-        <bq-task-execution-widget *ngSwitchCase="'blueriq-task'" [widget]="widget"
-                                  [id]="widget.id"></bq-task-execution-widget>
-        <bq-intake-widget *ngSwitchCase="'blueriq-intake'" [widget]="widget"
-                          [id]="widget.id"></bq-intake-widget>
-      </ng-container>
-    </div>
+    @for (column of page.columns; track column) {
+      <div class="bq-dashboard-column">
+        @for (widget of column.widgets; track widget) {
+          @switch (widget.type) {
+            @case ('blueriq-flow') {
+              @if (!refreshWidget) {
+                <bq-flow-widget [widget]="widget" [id]="widget.id"></bq-flow-widget>
+              }
+            }
+            @case ('blueriq-task') {
+              <bq-task-execution-widget [widget]="widget"
+              [id]="widget.id"></bq-task-execution-widget>
+            }
+            @case ('blueriq-intake') {
+              <bq-intake-widget [widget]="widget"
+              [id]="widget.id"></bq-intake-widget>
+            }
+          }
+        }
+      </div>
+    }
   </div>
-
   <bq-footer></bq-footer>
-</ng-container>
+}

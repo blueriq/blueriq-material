@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { BlueriqSession } from '@blueriq/angular';
 import { DateOperator, DatePredicate } from '@blueriq/angular/lists';
 import { computeFirstDayOfWeek } from '@shared/date/bq-date-parser';
-import moment from 'moment';
+import moment from 'moment/min/moment-with-locales';
 import { dateTimeFormatProvider } from '../../../form-controls/date/datetimepicker/datetimepicker.owl';
 import { FilterCandidate } from '../types';
 
