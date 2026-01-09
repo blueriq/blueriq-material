@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { Container } from '@blueriq/core';
 import { BqContentStyles } from '../BqContentStyles';
@@ -13,10 +13,7 @@ import { BqContentStyles } from '../BqContentStyles';
   type: Container,
   selector: BqContentStyles.EXPANSION,
 })
-export class ExpansionComponent {
+export class ExpansionComponent {  container = inject(Container);
 
-  constructor(public container: Container) {
-
-  }
 
 }

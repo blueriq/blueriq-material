@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { BlueriqChild, BlueriqChildren, BlueriqComponent, OnUpdate } from '@blueriq/angular';
 import { Container, Page } from '@blueriq/core';
 import { BqContentStyles } from '../BqContentStyles';
@@ -15,6 +15,8 @@ import { BqContentStyles } from '../BqContentStyles';
   type: Page,
 })
 export class PageComponent implements OnInit, OnUpdate {
+  page = inject(Page);
+
 
   @BlueriqChild(Container, BqContentStyles.DASHBOARD_HEADER, { exclude: true, optional: true })
   dashboardHeader: Container;
@@ -27,7 +29,7 @@ export class PageComponent implements OnInit, OnUpdate {
 
   pageSize: string;
 
-  constructor(public page: Page) {
+  constructor() {
     this.pageSize = this.determinePageSize();
   }
 

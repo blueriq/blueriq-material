@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Filter } from '@blueriq/angular/lists';
 import { FilterComponent } from './filter.component';
 import { FilterCandidate } from './types';
+import { TestBed } from '@angular/core/testing';
 
 describe('FilterComponent', () => {
   let tableFilterComponent: FilterComponent;
@@ -14,7 +15,18 @@ describe('FilterComponent', () => {
     dialogSpy = jasmine.createSpyObj<MatDialog>(['open']);
     dialogRefSpy = jasmine.createSpyObj<MatDialogRef<any, any>>(['close']);
     dialogSpy.open.and.returnValue(dialogRefSpy);
-    tableFilterComponent = new FilterComponent(dialogSpy);
+
+    TestBed.configureTestingModule({
+      providers: [
+        FilterComponent,
+        {
+          provide: MatDialog,
+          useValue: dialogSpy ,
+        },
+      ],
+    });
+
+    tableFilterComponent = TestBed.inject(FilterComponent);
     filter = {
       currentFilters: [],
       currentColumns: [],

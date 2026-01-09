@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { List } from '@blueriq/angular/lists';
 import { Container } from '@blueriq/core';
@@ -15,10 +15,9 @@ import { BqPresentationStyles } from '../BqPresentationStyles';
   selector: `:has(* > table)`,
 })
 export class ListComponent {
+  container = inject(Container);
+  readonly list = inject(List);
 
-  constructor(public container: Container,
-              public readonly list: List) {
-  }
 
   shouldShowSearchBox(): boolean {
     return !this.container.styles.has(BqPresentationStyles.DO_NOT_SHOW_SEARCH);

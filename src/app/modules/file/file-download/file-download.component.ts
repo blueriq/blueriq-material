@@ -1,4 +1,4 @@
-import { Component, OnDestroy, Optional, Self } from '@angular/core';
+import { Component, inject, OnDestroy } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { FileDownload } from '@blueriq/angular/files';
 import { List } from '@blueriq/angular/lists';
@@ -8,24 +8,30 @@ import { ButtonComponent } from '../../button/button.component';
 import { FileDownloadService } from './file-download.service';
 
 @Component({
-    selector: 'bq-file-download',
-    templateUrl: './file-download.component.html',
-    styleUrls: ['./file-download.component.scss'],
-    providers: [FileDownload],
-    standalone: false
+  selector: 'bq-file-download',
+  templateUrl: './file-download.component.html',
+  styleUrls: ['./file-download.component.scss'],
+  providers: [FileDownload],
+  standalone: false
 })
 @BlueriqComponent({
   type: Container,
   selector: 'filedownload',
 })
 export class FileDownloadComponent extends ButtonComponent implements OnDestroy {
+  fileDownload: FileDownload;
+  fileDownloadService = inject(FileDownloadService);
+
 
   downloadSubscription: Subscription | undefined;
 
-  constructor(@Self() public fileDownload: FileDownload,
-              @Optional() public readonly list: List,
-              public fileDownloadService: FileDownloadService) {
+  constructor() {
+    const fileDownload = inject(FileDownload, { self: true });
+    const list = inject(List, { optional: true });
+
     super(fileDownload.downloadButton, list);
+
+    this.fileDownload = fileDownload;
   }
 
   onClick(): void {

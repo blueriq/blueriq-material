@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit, inject } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { DomainValue, Field, FieldMessages } from '@blueriq/core';
@@ -17,6 +17,9 @@ import { DomainValueTransformer } from './domain-value-transformer';
   selector: '[hasDomain][multiValued=false].' + BqPresentationStyles.AUTOCOMPLETE,
 })
 export class AutocompleteComponent implements OnInit {
+  field = inject(Field);
+  private readonly form = inject(BlueriqFormBuilder);
+
 
   @HostBinding('class.fx-flex-row')
 
@@ -26,9 +29,6 @@ export class AutocompleteComponent implements OnInit {
     transformer: DomainValueTransformer,
   });
   filteredDomainOptions$: Observable<DomainValue[]>;
-
-  constructor(public field: Field, private readonly form: BlueriqFormBuilder) {
-  }
 
   ngOnInit() {
     // The possible domain options will be filtered based on the string value from the input field

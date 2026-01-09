@@ -1,4 +1,4 @@
-import { Component, Self } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BlueriqChild, BlueriqComponent } from '@blueriq/angular';
 import { FileUpload } from '@blueriq/angular/files';
 import { Container, Element, Field, TextItem } from '@blueriq/core';
@@ -16,6 +16,9 @@ import { CustomFileUploader, CustomFileUploaderOptions } from './custom-file-upl
   selector: 'fileupload',
 })
 export class FileUploadComponent {
+  bqFileUpload = inject(FileUpload, { self: true });
+  container = inject(Container);
+
 
   // Error messages due to validation on the server side
   @BlueriqChild(Container, '[name=errorMessages]', { optional: true })
@@ -30,7 +33,7 @@ export class FileUploadComponent {
   ngFileUploadErrorMessage: string;
   isBusy = false;
 
-  constructor(@Self() public bqFileUpload: FileUpload, public container: Container) {
+  constructor() {
     this.ngFileUploader = new CustomFileUploader({ autoUpload: true, ...this.getCurrentOptions() });
 
     /**

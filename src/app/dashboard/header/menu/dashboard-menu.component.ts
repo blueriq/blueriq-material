@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { Dispatcher } from '@blueriq/angular';
 import { DashboardMenuItem, NavigatePageAction } from '@blueriq/dashboard';
 import { RefreshAction } from '../../events/actions';
@@ -14,12 +14,11 @@ import { RefreshAction } from '../../events/actions';
     standalone: false
 })
 export class DashboardMenuComponent {
+  private readonly dispatcher = inject(Dispatcher);
+
 
   @Input()
   menuItems: DashboardMenuItem[];
-
-  constructor(private readonly dispatcher: Dispatcher) {
-  }
 
   navigate(page: string): void {
     this.dispatcher.dispatch(new NavigatePageAction(page));

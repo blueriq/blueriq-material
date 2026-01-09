@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { FailedAction, isBlueriqError } from '@blueriq/angular';
-import { BlueriqDashboard, DashboardAuthService, DashboardWidgetSession, FlowWidget } from '@blueriq/dashboard';
+import { DashboardWidgetSession, FlowWidget } from '@blueriq/dashboard';
 import { NotificationModel, NotificationType } from '../../../notification-overlay/notification.model';
 import { SessionWidgetComponent } from '../session-widget.component';
 
@@ -16,15 +15,6 @@ type WidgetStartType = 'shortcut' | 'regular' | 'invalid';
 export class FlowWidgetComponent extends SessionWidgetComponent {
 
   notification: NotificationModel | undefined;
-
-  constructor(
-    route: ActivatedRoute,
-    widgetSession: DashboardWidgetSession,
-    dashboard: BlueriqDashboard,
-    authService: DashboardAuthService,
-  ) {
-    super(route, widgetSession, dashboard, authService);
-  }
 
   get flowWidget(): FlowWidget {
     return this.widget as FlowWidget;

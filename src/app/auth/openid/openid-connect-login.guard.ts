@@ -1,5 +1,5 @@
 
-import { Inject, Injectable, DOCUMENT } from '@angular/core';
+import { Injectable, DOCUMENT, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { OpenIdConnectAuth } from '@blueriq/angular/openidconnect';
 import { Observable, of } from 'rxjs';
@@ -12,12 +12,11 @@ import { AuthService } from '../auth.service';
  */
 @Injectable({ providedIn: 'root' })
 export class OpenIdConnectLoginGuard  {
+  private readonly auth = inject(AuthService);
+  private readonly openIdConnect = inject(OpenIdConnectAuth);
+  private readonly router = inject(Router);
+  private readonly document = inject<Document>(DOCUMENT);
 
-  constructor(private readonly auth: AuthService,
-              private readonly openIdConnect: OpenIdConnectAuth,
-              private readonly router: Router,
-              @Inject(DOCUMENT) private readonly document: Document) {
-  }
 
   canActivate(): Observable<boolean> {
     const redirectUrl = this.auth.prepareOidcReturnUrl(this.router.url);

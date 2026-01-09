@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { BlueriqSession } from '@blueriq/angular';
 import { PresentationStyles } from '@blueriq/core';
 
@@ -9,15 +9,14 @@ import { PresentationStyles } from '@blueriq/core';
     standalone: false
 })
 export class HeadingComponent {
+  private readonly blueriqSession = inject(BlueriqSession);
+
 
   @Input()
   title: string;
 
   @Input()
   styles: PresentationStyles;
-
-  constructor(private readonly blueriqSession: BlueriqSession) {
-  }
 
   get isWidget(): boolean {
     return this.blueriqSession.isWidget;

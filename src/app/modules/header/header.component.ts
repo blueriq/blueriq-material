@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Optional } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { BlueriqChild, BlueriqComponent, BqProjectComponent } from '@blueriq/angular';
 import { Container, Page, TextItem } from '@blueriq/core';
 import { AuthService } from '../../auth/auth.service';
@@ -14,6 +14,10 @@ import { AuthService } from '../../auth/auth.service';
   selector: 'dashboard_header',
 })
 export class HeaderComponent implements OnInit {
+  dashboardHeader = inject(Container, { optional: true });
+  private readonly authService = inject(AuthService);
+  private readonly containingProject = inject(BqProjectComponent);
+
 
   @BlueriqChild(TextItem, '.authenticated_user', { exclude: true, optional: true })
   authenticatedUser: TextItem;
@@ -23,11 +27,6 @@ export class HeaderComponent implements OnInit {
 
   @Input()
   page: Page;
-
-  constructor(@Optional() public dashboardHeader: Container,
-              private readonly authService: AuthService,
-              private readonly containingProject: BqProjectComponent) {
-  }
 
   get displayName() {
     if (this.page) {

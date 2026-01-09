@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BlueriqComponent, OnUpdate } from '@blueriq/angular';
 import { TextItem } from '@blueriq/core';
 import { BqPresentationStyles } from '../BqPresentationStyles';
@@ -13,12 +13,14 @@ import { BqPresentationStyles } from '../BqPresentationStyles';
   type: TextItem,
 })
 export class TextItemComponent implements OnUpdate {
+  textItem = inject(TextItem);
+
   /**
    * Whether or not the text item has content in its nodes.  If not, only the plain text is displayed instead.
    */
   hasStyledContent: boolean;
 
-  constructor(public textItem: TextItem) {
+  constructor() {
     this.hasStyledContent = this.determineHasStyledContent();
   }
 

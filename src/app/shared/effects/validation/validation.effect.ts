@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormActions, InvalidFormAction } from '@blueriq/angular/forms';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
@@ -6,14 +6,14 @@ import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class ValidationEffect {
+  private readonly actions$ = inject(Actions);
+  private readonly snackBar = inject(MatSnackBar);
+
 
   invalidForm$ = createEffect(() => this.actions$.pipe(
     ofType<InvalidFormAction>(FormActions.INVALID_FORM),
     tap(action => this.showSnackBar(action)),
   ), { dispatch: false });
-
-  constructor(private readonly actions$: Actions, private readonly snackBar: MatSnackBar) {
-  }
 
   private showSnackBar(action: InvalidFormAction): void {
     if (action.hasErrors) {

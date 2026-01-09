@@ -1,4 +1,4 @@
-import { Component, OnInit, Optional } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { BlueriqComponent, OnUpdate } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { List } from '@blueriq/angular/lists';
@@ -17,15 +17,14 @@ import { BqPresentationStyles } from '../../../BqPresentationStyles';
     `.${ BqPresentationStyles.ALLOPTIONSVISIBLE }[multiValued=false][hasDomain]`,
 })
 export class RadioButtonComponent implements OnInit, OnUpdate {
+  field = inject(Field);
+  private readonly form = inject(BlueriqFormBuilder);
+  readonly list = inject(List, { optional: true });
+
 
   direction: 'vertical' | 'horizontal';
 
   formControl = this.form.control(this.field, { syncOn: 'update', disableWhen: BqPresentationStyles.DISABLED });
-
-  constructor(public field: Field,
-              private readonly form: BlueriqFormBuilder,
-              @Optional() public readonly list: List) {
-  }
 
   ngOnInit() {
     this.updateDirection();

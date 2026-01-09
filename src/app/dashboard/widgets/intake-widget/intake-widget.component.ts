@@ -1,29 +1,20 @@
-import { Component, isDevMode } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, inject, isDevMode } from '@angular/core';
 import { CaseCreatedAction, Dispatcher, FailedAction, IntakeCompletedAction, isBlueriqError } from '@blueriq/angular';
-import { BlueriqDashboard, DashboardAuthService, DashboardWidgetSession, OpenCaseAction } from '@blueriq/dashboard';
+import { DashboardWidgetSession, OpenCaseAction } from '@blueriq/dashboard';
 import { NotificationModel, NotificationType } from '../../../notification-overlay/notification.model';
 import { SessionWidgetComponent } from '../session-widget.component';
 
 @Component({
-    selector: 'bq-intake-widget',
-    templateUrl: './intake-widget.component.html',
-    providers: [DashboardWidgetSession],
-    standalone: false
+  selector: 'bq-intake-widget',
+  templateUrl: './intake-widget.component.html',
+  providers: [DashboardWidgetSession],
+  standalone: false
 })
 export class IntakeWidgetComponent extends SessionWidgetComponent {
+  private readonly dispatcher = inject(Dispatcher);
+
 
   notification: NotificationModel | undefined;
-
-  constructor(
-    route: ActivatedRoute,
-    widgetSession: DashboardWidgetSession,
-    dashboard: BlueriqDashboard,
-    authService: DashboardAuthService,
-    private readonly dispatcher: Dispatcher,
-  ) {
-    super(route, widgetSession, dashboard, authService);
-  }
 
   onSessionExpired(): void {
     this.notification = new NotificationModel(

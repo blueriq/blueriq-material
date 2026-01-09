@@ -1,4 +1,4 @@
-import { Component, Self } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BlueriqComponent, BlueriqComponents, ExternalFlow, ExternalFlowActions, FailedAction, isBlueriqError } from '@blueriq/angular';
 import { Container } from '@blueriq/core';
 import { BqContentStyles } from '../../BqContentStyles';
@@ -18,15 +18,14 @@ import { ExternalFlowPageComponent } from './external-flow-page/external-flow-pa
   selector: BqContentStyles.EXTERNAL_FLOW,
 })
 export class ExternalFlowComponent {
+  container = inject(Container);
+  externalFlow = inject(ExternalFlow, { self: true });
+
 
   authenticationFailed = false;
   private error: unknown;
   private expired = false;
   private flowEnded = false;
-
-  constructor(public container: Container,
-              @Self() public externalFlow: ExternalFlow) {
-  }
 
   get errorMessage(): string {
     if (this.expired) {

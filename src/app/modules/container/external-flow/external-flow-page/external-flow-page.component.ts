@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { Page } from '@blueriq/core';
 
@@ -10,9 +10,7 @@ import { Page } from '@blueriq/core';
 @BlueriqComponent({
   type: Page,
 })
-export class ExternalFlowPageComponent {
+export class ExternalFlowPageComponent {  page = inject(Page);
 
-  constructor(public page: Page) {
-  }
 
 }

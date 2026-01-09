@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { BlueriqSession } from '@blueriq/angular';
 import { DateOperator, DatePredicate } from '@blueriq/angular/lists';
@@ -14,12 +14,14 @@ const operations = {
 };
 
 @Component({
-    selector: 'bq-date-filter',
-    templateUrl: './date-filter.component.html',
-    providers: [dateTimeFormatProvider],
-    standalone: false
+  selector: 'bq-date-filter',
+  templateUrl: './date-filter.component.html',
+  providers: [dateTimeFormatProvider],
+  standalone: false
 })
 export class DateFilterComponent {
+  private readonly session = inject(BlueriqSession);
+
   readonly operations = operations;
   private _candidate: FilterCandidate;
 
@@ -47,8 +49,8 @@ export class DateFilterComponent {
 
   firstDayOfWeek: number;
 
-  constructor(private readonly session: BlueriqSession) {
-    this.firstDayOfWeek = computeFirstDayOfWeek(session.localization);
+  constructor() {
+    this.firstDayOfWeek = computeFirstDayOfWeek(this.session.localization);
   }
 
   onDateChanged(event: { value: moment.Moment | undefined; source: { value: unknown } }) {

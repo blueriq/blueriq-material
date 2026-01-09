@@ -1,4 +1,4 @@
-import { ComponentRef, Directive, Input, OnChanges, OnDestroy, Renderer2, Self, SimpleChanges } from '@angular/core';
+import { ComponentRef, Directive, Input, OnChanges, OnDestroy, Renderer2, SimpleChanges, inject } from '@angular/core';
 import { BlueriqListeners, BqElementDirective } from '@blueriq/angular';
 import { Element } from '@blueriq/core';
 import { combineLatest, Subscription } from 'rxjs';
@@ -15,16 +15,15 @@ import { BqPresentationStyles } from '../../BqPresentationStyles';
     standalone: false
 })
 export class FlexColumnDirective implements OnChanges, OnDestroy {
+  private readonly renderer = inject(Renderer2);
+  private readonly listeners = inject(BlueriqListeners);
+  private readonly bqElementDirective = inject(BqElementDirective, { self: true });
+
 
   private _subscription: Subscription | undefined;
 
   @Input()
   bqElement: Element;
-
-  constructor(private readonly renderer: Renderer2,
-              private readonly listeners: BlueriqListeners,
-              @Self() private readonly bqElementDirective: BqElementDirective) {
-  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this._subscription) {

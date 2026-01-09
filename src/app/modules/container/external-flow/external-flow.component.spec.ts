@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
@@ -22,15 +22,15 @@ import { ExternalFlowModule } from './external-flow.module';
 
 
 @Component({
-    template: '<span id="externalContainer">{{page.displayName}}</span>',
-    standalone: false
+  template: '<span id="externalContainer">{{page.displayName}}</span>',
+  standalone: false
 })
 @BlueriqComponent({
   type: Page,
 })
 class MockPageComponent {
-  constructor(public readonly page: Page) {
-  }
+  readonly page = inject(Page);
+
 }
 
 describe('ExternalFlowComponent', () => {
@@ -38,7 +38,7 @@ describe('ExternalFlowComponent', () => {
   let component: ComponentFixture<ExternalFlowComponent>;
   let session: BlueriqTestSession;
 
-  beforeEach(async() => {
+  beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [MockPageComponent],
       providers: [BlueriqComponents.register([MockPageComponent])],

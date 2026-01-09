@@ -7,10 +7,10 @@ import { BqIconDirective } from '@shared/directive/icon/icon.directive';
 import { BqPresentationStyles } from '../BqPresentationStyles';
 
 @Component({
-    selector: 'bq-button',
-    templateUrl: './button.component.html',
-    styleUrls: ['./button.component.scss'],
-    standalone: false
+  selector: 'bq-button',
+  templateUrl: './button.component.html',
+  styleUrls: ['./button.component.scss'],
+  standalone: false
 })
 @BlueriqComponent({
   type: Button,
@@ -18,7 +18,7 @@ import { BqPresentationStyles } from '../BqPresentationStyles';
 export class ButtonComponent {
 
   constructor(public button: Button,
-              @Optional() public readonly list: List) {
+              @Optional() public readonly list: List | null) {
   }
 
   isRaisedButton(): boolean {

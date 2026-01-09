@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { ContentItem } from '@blueriq/core';
 
@@ -10,8 +10,6 @@ import { ContentItem } from '@blueriq/core';
 @BlueriqComponent({
   type: ContentItem,
 })
-export class ContentItemComponent {
+export class ContentItemComponent {  contentItem = inject(ContentItem);
 
-  constructor(public contentItem: ContentItem) {
-  }
 }

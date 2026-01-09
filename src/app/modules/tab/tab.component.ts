@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { Container } from '@blueriq/core';
 import { BqContentStyles } from '../BqContentStyles';
@@ -13,9 +13,7 @@ import { BqContentStyles } from '../BqContentStyles';
   type: Container,
   selector: BqContentStyles.TAB,
 })
-export class TabComponent {
+export class TabComponent {  container = inject(Container);
 
-  constructor(public container: Container) {
-  }
 
 }

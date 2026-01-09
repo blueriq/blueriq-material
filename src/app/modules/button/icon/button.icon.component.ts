@@ -1,4 +1,4 @@
-import { Component, Optional } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { List } from '@blueriq/angular/lists';
 import { Button } from '@blueriq/core';
@@ -6,9 +6,9 @@ import { BqPresentationStyles } from '../../BqPresentationStyles';
 import { ButtonComponent } from '../button.component';
 
 @Component({
-    selector: 'bq-button-icon',
-    templateUrl: './button.icon.component.html',
-    standalone: false
+  selector: 'bq-button-icon',
+  templateUrl: './button.icon.component.html',
+  standalone: false
 })
 @BlueriqComponent({
   type: Button,
@@ -16,8 +16,10 @@ import { ButtonComponent } from '../button.component';
 })
 export class ButtonIconComponent extends ButtonComponent {
 
-  constructor(public button: Button,
-              @Optional() public readonly list: List) {
+  constructor() {
+    const button = inject(Button);
+    const list = inject(List, { optional: true });
+
     super(button, list);
   }
 }

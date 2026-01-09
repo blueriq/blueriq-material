@@ -1,4 +1,4 @@
-import { Component, Self } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BlueriqComponent, BlueriqComponents, FailedAction, FlowWidget, isBlueriqError } from '@blueriq/angular';
 import { Container } from '@blueriq/core';
 import { BqContentStyles } from '../../BqContentStyles';
@@ -18,14 +18,13 @@ import { WidgetPageComponent } from '../widget-page/widget-page.component';
   selector: BqContentStyles.DASHBOARD_FLOWWIDGET,
 })
 export class FlowWidgetComponent {
+  widgetContainer = inject(Container);
+  flowWidget = inject(FlowWidget, { self: true });
+
 
   private error: unknown;
   private expired = false;
   private flowEnded = false;
-
-  constructor(public widgetContainer: Container,
-              @Self() public flowWidget: FlowWidget) {
-  }
 
   get errorMessage(): string {
     if (this.expired) {

@@ -1,7 +1,6 @@
-import { Component, isDevMode } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, inject, isDevMode } from '@angular/core';
 import { Dispatcher, FailedAction, isBlueriqError } from '@blueriq/angular';
-import { BlueriqDashboard, DashboardAuthService, DashboardWidgetSession, OpenCaseAction } from '@blueriq/dashboard';
+import { DashboardWidgetSession, OpenCaseAction } from '@blueriq/dashboard';
 import { NotificationModel, NotificationType } from '../../../notification-overlay/notification.model';
 import { SessionWidgetComponent } from '../session-widget.component';
 
@@ -12,18 +11,9 @@ import { SessionWidgetComponent } from '../session-widget.component';
     standalone: false
 })
 export class TaskExecutionWidgetComponent extends SessionWidgetComponent {
+  private readonly dispatcher = inject(Dispatcher);
 
   notification: NotificationModel | undefined;
-
-  constructor(
-    route: ActivatedRoute,
-    widgetSession: DashboardWidgetSession,
-    dashboard: BlueriqDashboard,
-    authService: DashboardAuthService,
-    private readonly dispatcher: Dispatcher,
-  ) {
-    super(route, widgetSession, dashboard, authService);
-  }
 
   onSessionExpired(caseType: string, caseId: string): void {
     this.notification = new NotificationModel(

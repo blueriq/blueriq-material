@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BlueriqComponent, ImageInfo } from '@blueriq/angular';
 import { ImageResource } from '@blueriq/angular/files';
 import { Image } from '@blueriq/core';
@@ -14,12 +14,14 @@ import { Subscription } from 'rxjs';
   type: Image,
 })
 export class ImageComponent {
+  image = inject(Image);
+  private readonly imageResource = inject(ImageResource);
+
 
   imageInfo: ImageInfo;
   private readonly imageInfoSubscription: Subscription;
 
-  constructor(public image: Image,
-              private readonly imageResource: ImageResource) {
+  constructor() {
 
     this.imageInfoSubscription = this.imageResource.getImageInfo().subscribe((info: ImageInfo) => {
       this.imageInfo = info;
