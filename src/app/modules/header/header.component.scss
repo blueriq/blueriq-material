@@ -44,6 +44,7 @@
       .username {
         padding-top: 30px;
         line-height: var.$default-line-height;
+        color: palette.$light-primary-text;
       }
     }
   }
@@ -59,6 +60,8 @@
 }
 
 .account-circle {
+  color: palette.$light-primary-text;
   place-content: center;
   align-items: center;
+  line-height: 0;
 }
