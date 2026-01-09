@@ -1,4 +1,4 @@
-import { Component, Optional } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { List } from '@blueriq/angular/lists';
@@ -16,17 +16,16 @@ import { BqPresentationStyles } from '../../../BqPresentationStyles';
   selector: `[dataType=boolean]:not([hasDomain])`,
 })
 export class CheckboxComponent {
+  field = inject(Field);
+  private readonly form = inject(BlueriqFormBuilder);
+  readonly list = inject(List, { optional: true });
+
 
   formControl = this.form.control(this.field, {
     syncOn: 'update',
     ifUnknown: false,
     disableWhen: BqPresentationStyles.DISABLED,
   });
-
-  constructor(public field: Field,
-              private readonly form: BlueriqFormBuilder,
-              @Optional() public readonly list: List) {
-  }
 
   getMessages(): FieldMessages {
     return getFieldMessages(this.formControl);

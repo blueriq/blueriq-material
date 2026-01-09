@@ -1,4 +1,4 @@
-import { Component, OnInit, Optional } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { BlueriqComponent, OnUpdate } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
@@ -17,6 +17,10 @@ import { BqPresentationStyles } from '../../../BqPresentationStyles';
   selector: `.${ BqPresentationStyles.ALLOPTIONSVISIBLE }[multiValued][hasDomain]`,
 })
 export class CheckboxListComponent implements OnInit, OnUpdate {
+  field = inject(Field);
+  private readonly form = inject(BlueriqFormBuilder);
+  readonly list = inject(List, { optional: true });
+
 
   direction: 'vertical' | 'horizontal';
 
@@ -24,11 +28,6 @@ export class CheckboxListComponent implements OnInit, OnUpdate {
     syncOn: 'update',
     disableWhen: BqPresentationStyles.DISABLED,
   });
-
-  constructor(public field: Field,
-              private readonly form: BlueriqFormBuilder,
-              @Optional() public readonly list: List) {
-  }
 
   ngOnInit() {
     this.updateDirection();

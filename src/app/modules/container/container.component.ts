@@ -1,5 +1,5 @@
 import { animateChild, query, transition, trigger } from '@angular/animations';
-import { Component, OnInit, Optional } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { BlueriqComponent, OnUpdate } from '@blueriq/angular';
 import { List } from '@blueriq/angular/lists';
 import { Container } from '@blueriq/core';
@@ -22,12 +22,11 @@ import { BqPresentationStyles } from '../BqPresentationStyles';
   type: Container,
 })
 export class ContainerComponent implements OnInit, OnUpdate {
+  container = inject(Container);
+  readonly list = inject(List, { optional: true });
+
 
   public isHorizontal = false;
-
-  constructor(public container: Container,
-              @Optional() public readonly list: List) {
-  }
 
   ngOnInit() {
     this.determineDisplayStyle();

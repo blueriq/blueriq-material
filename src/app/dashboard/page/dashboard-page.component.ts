@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { BlueriqDashboard, DashboardPage } from '@blueriq/dashboard';
 import { Subscription } from 'rxjs';
 import { Actions, ofType } from '@ngrx/effects';
@@ -11,14 +11,13 @@ import { DashboardActions, RefreshAction } from '../events/actions';
     standalone: false
 })
 export class DashboardPageComponent implements OnInit, OnDestroy, AfterViewChecked {
+  private readonly actions$ = inject(Actions);
+  private readonly dashboard = inject(BlueriqDashboard);
+
 
   private readonly subscription = new Subscription();
   page: DashboardPage | null;
   refreshWidget = false;
-
-  constructor(private readonly actions$: Actions,
-              private readonly dashboard: BlueriqDashboard) {
-  }
 
   ngOnInit(): void {
     this.subscription.add(this.dashboard.page.subscribe(page => this.page = page));

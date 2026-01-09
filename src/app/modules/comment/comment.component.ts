@@ -1,4 +1,4 @@
-import { Component, Self } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { SubmitComment } from '@blueriq/angular/dashboard';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
@@ -17,16 +17,15 @@ import { BqPresentationStyles } from '../BqPresentationStyles';
   selector: 'storecomment',
 })
 export class CommentComponent {
+  container = inject(Container);
+  comment = inject(SubmitComment, { self: true });
+  private readonly form = inject(BlueriqFormBuilder);
+
 
   formControl = this.form.control(this.comment.commentField, {
     updateOn: 'blur',
     disableWhen: BqPresentationStyles.DISABLED,
   });
-
-  constructor(public container: Container,
-              @Self() public comment: SubmitComment,
-              private readonly form: BlueriqFormBuilder) {
-  }
 
   getFieldMessages(): FieldMessages {
     return getFieldMessages(this.formControl);

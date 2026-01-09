@@ -17,6 +17,7 @@ export class InputFieldComponent implements OnUpdate {
   inputType = 'text';
 
   constructor(public field: Field, private readonly form: BlueriqFormBuilder) {
+
     this.determinePlaceholder();
   }
 

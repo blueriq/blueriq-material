@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostBinding, Input } from '@angular/core';
+import { Directive, ElementRef, HostBinding, Input, inject } from '@angular/core';
 import { PresentationStyles } from '@blueriq/core';
 import { BqPresentationStyles } from '../../../modules/BqPresentationStyles';
 
@@ -11,6 +11,8 @@ import { BqPresentationStyles } from '../../../modules/BqPresentationStyles';
     standalone: false
 })
 export class BqIconDirective {
+  private readonly elementRef = inject(ElementRef);
+
 
   private _class: string;
 
@@ -24,9 +26,6 @@ export class BqIconDirective {
 
   static getFirstMaterialIcon(presentationStyles: PresentationStyles): string | undefined {
     return presentationStyles.get(style => style.startsWith(BqPresentationStyles.ICON_MAT_PREFIX));
-  }
-
-  constructor(private readonly elementRef: ElementRef) {
   }
 
   @HostBinding('attr.class')

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
 import { Summary} from '@blueriq/angular/zone';
 import { Container } from '@blueriq/core';
@@ -21,11 +21,10 @@ import {
   selector: 'summary',
 })
 export class SummaryComponent {
+  container = inject(Container);
+  readonly summary = inject(Summary);
+  private readonly session = inject(BlueriqSession);
 
-  constructor(public container: Container,
-              public readonly summary: Summary,
-              private readonly session: BlueriqSession) {
-  }
 
   dateToExpirationFormat(expirationTime: Date): string {
     if (expirationTime.getTime() < Date.now()){

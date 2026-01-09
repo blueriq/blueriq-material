@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { Asset } from '@blueriq/core';
 
@@ -9,11 +9,9 @@ import { Asset } from '@blueriq/core';
     standalone: false
 })
 @BlueriqComponent({
-  type: Asset,
+    type: Asset,
 })
 export class AssetComponent {
-
-  constructor(public asset: Asset) {
-  }
+    asset = inject(Asset);
 
 }

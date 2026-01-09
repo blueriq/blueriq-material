@@ -1,5 +1,5 @@
 
-import { Inject, Injectable, DOCUMENT } from '@angular/core';
+import { Injectable, DOCUMENT, inject } from '@angular/core';
 
 import { JwtAuthService } from '@blueriq/angular';
 import { Observable, of } from 'rxjs';
@@ -11,11 +11,9 @@ import { catchError, mapTo, tap } from 'rxjs/operators';
  */
 @Injectable({ providedIn: 'root' })
 export class JwtLoginGuard  {
+  private readonly jwtAuthService = inject(JwtAuthService);
+  private readonly document = inject<Document>(DOCUMENT);
 
-  constructor(
-    private readonly jwtAuthService: JwtAuthService,
-    @Inject(DOCUMENT) private readonly document: Document) {
-  }
 
   canActivate(): Observable<boolean> {
     return this.jwtAuthService.login({ redirectUrl: this.document.location.href }).pipe(

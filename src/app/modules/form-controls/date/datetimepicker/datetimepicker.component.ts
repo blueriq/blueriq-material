@@ -1,4 +1,4 @@
-import { Component, HostBinding } from '@angular/core';
+import { Component, HostBinding, inject } from '@angular/core';
 import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { Field, FieldMessages } from '@blueriq/core';
@@ -20,6 +20,9 @@ import { dateTimeFormatProvider } from './datetimepicker.owl';
   selector: '[dataType=date],[dataType=datetime]',
 })
 export class DateTimepickerComponent {
+  field = inject(Field);
+  private readonly form = inject(BlueriqFormBuilder);
+
 
   @HostBinding('class.fx-flex-row')
 
@@ -31,9 +34,9 @@ export class DateTimepickerComponent {
 
   firstDayOfWeek: number;
 
-  constructor(public field: Field,
-              private readonly form: BlueriqFormBuilder,
-              session: BlueriqSession) {
+  constructor() {
+    const session = inject(BlueriqSession);
+
     this.firstDayOfWeek = computeFirstDayOfWeek(session.localization);
   }
 

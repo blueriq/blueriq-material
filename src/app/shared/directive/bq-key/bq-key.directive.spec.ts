@@ -1,12 +1,24 @@
 import { ButtonTemplate } from '@blueriq/core/testing';
 import { BqKeyDirective } from '@shared/directive/bq-key/bq-key.directive';
+import { TestBed } from '@angular/core/testing';
+import { Element } from '@blueriq/core';
 
 describe('BqKeyDirective', () => {
   let bqKeyDirective: BqKeyDirective;
 
   beforeEach(() => {
     const element = ButtonTemplate.create('MyButton').build();
-    bqKeyDirective = new BqKeyDirective(element);
+    TestBed.configureTestingModule({
+      providers: [
+        BqKeyDirective,
+        {
+          provide: Element,
+          useValue:element ,
+        },
+      ],
+    });
+
+    bqKeyDirective = TestBed.inject(BqKeyDirective);
   });
 
   it('should create an instance', () => {

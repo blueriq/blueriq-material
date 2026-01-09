@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
   LiveUpdate,
   LiveUpdateAction,
@@ -15,6 +15,9 @@ import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class LiveUpdatesEffect {
+  private readonly actions$ = inject(Actions);
+  private readonly toastrService = inject(ToastrService);
+
 
   reconnectedActions$ = createEffect(() => this.actions$.pipe(
     ofType<LiveUpdatesReconnectedAction>(LiveUpdatesActions.RECONNECTED),
@@ -30,11 +33,6 @@ export class LiveUpdatesEffect {
     ofType<LiveUpdateAction>(LiveUpdatesActions.LIVE_UPDATE_ACTION_NAME),
     tap(action => this.processLiveUpdate(action.liveUpdate)),
   ), { dispatch: false });
-
-  constructor(private readonly actions$: Actions,
-              private readonly toastrService: ToastrService,
-  ) {
-  }
 
   private showReconnectionMessage(): void {
     this.toastrService.info('The connection with the event bus has been reestablished. Reload to get the latest changes.', 'Connection' +

@@ -1,5 +1,5 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, Input, OnInit, TemplateRef } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, inject } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Filter, FilteredColumn } from '@blueriq/angular/lists';
 import { FilterCandidate } from './types';
@@ -25,6 +25,8 @@ const MAX_FILTERS = 8;
     standalone: false
 })
 export class FilterComponent implements OnInit {
+  dialog = inject(MatDialog);
+
 
   @Input()
   filter: Filter;
@@ -32,9 +34,6 @@ export class FilterComponent implements OnInit {
   filterCandidates: FilterCandidate[];
   showUnknownLabel: string;
   private filterDialog: MatDialogRef<unknown, unknown>;
-
-  constructor(public dialog: MatDialog) {
-  }
 
   ngOnInit(): void {
     this.updateCandidates(this.filter.currentFilters.map(filter => new FilterCandidate(filter)));

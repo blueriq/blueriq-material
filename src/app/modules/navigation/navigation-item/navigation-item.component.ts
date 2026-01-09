@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BlueriqComponent, OnUpdate } from '@blueriq/angular';
 import { Button } from '@blueriq/core';
 
@@ -14,10 +14,12 @@ type State = 'complete' | 'incomplete' | undefined;
   type: Button,
 })
 export class NavigationItemComponent implements OnUpdate {
+  button = inject(Button);
+
 
   state: State = undefined;
 
-  constructor(public button: Button) {
+  constructor() {
     this.update();
   }
 

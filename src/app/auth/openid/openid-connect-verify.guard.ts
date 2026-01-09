@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { ActivatedRouteSnapshot, Router, UrlTree } from '@angular/router';
 import { OpenIdConnectCallbackDetails } from '@blueriq/angular';
 import { OpenIdConnectAuth } from '@blueriq/angular/openidconnect';
@@ -13,11 +13,10 @@ import { AuthService } from '../auth.service';
  */
 @Injectable({ providedIn: 'root' })
 export class OpenIdConnectVerifyGuard  {
+  private readonly auth = inject(AuthService);
+  private readonly openIdConnect = inject(OpenIdConnectAuth);
+  private readonly router = inject(Router);
 
-  constructor(private readonly auth: AuthService,
-              private readonly openIdConnect: OpenIdConnectAuth,
-              private readonly router: Router) {
-  }
 
   canActivate(next: ActivatedRouteSnapshot): Observable<boolean | UrlTree> {
     const state = next.queryParamMap.get('state')!;

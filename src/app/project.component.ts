@@ -1,4 +1,4 @@
-import { Component, isDevMode, OnInit } from '@angular/core';
+import { Component, isDevMode, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FailedAction, ForbiddenProjectAction, isBlueriqError, QueryParameters, UnauthorizedProjectAction } from '@blueriq/angular';
 import { SessionId } from '@blueriq/core';
@@ -12,6 +12,9 @@ import { NotificationModel, NotificationType } from './notification-overlay/noti
     standalone: false
 })
 export class ProjectComponent implements OnInit {
+  private readonly auth = inject(AuthService);
+  private readonly route = inject(ActivatedRoute);
+
 
   sessionName: Observable<string>;
   sessionId: Observable<SessionId | null>;
@@ -23,11 +26,6 @@ export class ProjectComponent implements OnInit {
   parameters: Observable<QueryParameters | null>;
 
   notification: NotificationModel | undefined;
-
-  constructor(private readonly auth: AuthService,
-              private readonly route: ActivatedRoute,
-  ) {
-  }
 
   ngOnInit(): void {
     this.sessionName = this.route.queryParamMap.pipe(map(params => {

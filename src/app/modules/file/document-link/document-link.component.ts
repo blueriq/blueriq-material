@@ -1,4 +1,4 @@
-import { Component, OnDestroy, Self } from '@angular/core';
+import { Component, OnDestroy, inject } from '@angular/core';
 import { AuthorizedDownload, BlueriqComponent } from '@blueriq/angular';
 import { DocumentLink } from '@blueriq/angular/files';
 import { Container } from '@blueriq/core';
@@ -17,13 +17,12 @@ import { FileDownloadService } from '../file-download/file-download.service';
   selector: '*:has(* > [type=link])',
 })
 export class DocumentLinkComponent implements OnDestroy {
+  documentLink = inject(DocumentLink, { self: true });
+  container = inject(Container);
+  private readonly fileDownloadService = inject(FileDownloadService);
+
 
   downloadSubscription: Subscription | undefined;
-
-  constructor(@Self() public documentLink: DocumentLink,
-              public container: Container,
-              private readonly fileDownloadService: FileDownloadService) {
-  }
 
   onClick(): void {
     this.downloadSubscription = this.documentLink.getDownloadInfo()

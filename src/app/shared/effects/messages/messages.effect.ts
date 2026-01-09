@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {
   SecurityActions,
@@ -13,6 +13,10 @@ import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class MessagesEffect {
+  private readonly actions$ = inject(Actions);
+  private readonly snackBar = inject(MatSnackBar);
+  private readonly sessionRegistry = inject(SessionRegistry);
+
 
   sessionActions$ = createEffect(() => this.actions$.pipe(
     ofType<SessionAction>(StartupActions.SESSION_LOADED, SessionEventActions.CHANGED_PAGE, SessionEventActions.PAGE_UPDATED),
@@ -23,11 +27,6 @@ export class MessagesEffect {
     ofType<SecurityViolationAction>(SecurityActions.SECURITY_VIOLATION),
     tap(action => this.showSecurityMessages(action.violations.messages)),
   ), { dispatch: false });
-
-  constructor(private readonly actions$: Actions,
-              private readonly snackBar: MatSnackBar,
-              private readonly sessionRegistry: SessionRegistry) {
-  }
 
   private showSnackBar(action: SessionAction): void {
     const session = this.sessionRegistry.getByNameOptionally(action.sessionName);

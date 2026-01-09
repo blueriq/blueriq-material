@@ -1,12 +1,11 @@
 
-import { Inject, Injectable, DOCUMENT } from '@angular/core';
+import { Injectable, DOCUMENT, inject } from '@angular/core';
 import { withErrorRedirect } from '@blueriq/angular';
 
 @Injectable()
 export class FileDownloadService {
+  private readonly document = inject<Document>(DOCUMENT);
 
-  constructor(@Inject(DOCUMENT) private readonly document: Document) {
-  }
 
   download(url: string): void {
     // Let the browser redirect to the URL, which will initiate the download and abort any actual redirection. In case

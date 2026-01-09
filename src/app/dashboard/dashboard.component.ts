@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { BlueriqComponents, Dispatcher } from '@blueriq/angular';
 import { DashboardAuthService, DashboardPageChange, QueryParameters } from '@blueriq/dashboard';
@@ -17,6 +17,11 @@ import { ActivateTaskAction } from '../shared/dcm/task-aware.service';
     standalone: false
 })
 export class DashboardComponent {
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
+  private readonly authService = inject(DashboardAuthService);
+  private readonly dispatcher = inject(Dispatcher);
+
 
   shortcut: Observable<string | null>;
   project: Observable<string | null>;
@@ -26,11 +31,7 @@ export class DashboardComponent {
   parameters: Observable<QueryParameters | null>;
   notification: NotificationModel | undefined;
 
-  constructor(private readonly route: ActivatedRoute,
-              private readonly router: Router,
-              private readonly authService: DashboardAuthService,
-              private readonly dispatcher: Dispatcher,
-  ) {
+  constructor() {
     this.shortcut = this.route.paramMap.pipe(map(param => param.get('shortcut')));
     this.project = this.route.paramMap.pipe(map(param => param.get('project')));
     this.version = this.route.paramMap.pipe(map(param => param.get('version')));

@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, Input, OnDestroy, OnInit, Renderer2, inject } from '@angular/core';
 import { BlueriqListeners, BlueriqSession } from '@blueriq/angular';
 import { Container, Page } from '@blueriq/core';
 import { Subscription } from 'rxjs';
@@ -10,15 +10,14 @@ import { BqPresentationStyles } from '../../../modules/BqPresentationStyles';
     standalone: false
 })
 export class BqContainerDirective implements OnInit, OnDestroy {
+  private readonly hostElement = inject(ElementRef);
+  private readonly blueriqSession = inject(BlueriqSession);
+  private readonly renderer = inject(Renderer2);
+  private readonly listeners = inject(BlueriqListeners);
+
 
   private _container: Container;
   private _subscription: Subscription | undefined;
-
-  constructor(private readonly hostElement: ElementRef,
-              private readonly blueriqSession: BlueriqSession,
-              private readonly renderer: Renderer2,
-              private readonly listeners: BlueriqListeners) {
-  }
 
   /**
    * Finds presentation styles to determine the look-and-feel of the container

@@ -1,5 +1,5 @@
 import { state, style, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivityType, GlobalLoadingActivity } from '@blueriq/angular';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -17,11 +17,10 @@ import { map } from 'rxjs/operators';
     standalone: false
 })
 export class LoadingComponent implements OnInit {
+  private readonly loadingActivity = inject(GlobalLoadingActivity);
+
 
   state$: Observable<'starting' | 'loading' | 'idle'>;
-
-  constructor(private readonly loadingActivity: GlobalLoadingActivity) {
-  }
 
   ngOnInit(): void {
     const startingSession$ = this.loadingActivity.isActive(ActivityType.StartingSession);

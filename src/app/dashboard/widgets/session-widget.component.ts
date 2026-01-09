@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import {
   BlueriqDashboard,
@@ -15,6 +15,11 @@ import { Observable } from 'rxjs';
     standalone: false
 })
 export class SessionWidgetComponent implements OnInit {
+  private readonly route = inject(ActivatedRoute);
+  private readonly widgetSession = inject(DashboardWidgetSession);
+  private readonly dashboard = inject(BlueriqDashboard);
+  private readonly authService = inject(DashboardAuthService);
+
 
   readonly DashboardState = DashboardState;
   parameters$: Observable<Params>;
@@ -30,14 +35,6 @@ export class SessionWidgetComponent implements OnInit {
 
   get id(): string {
     return this.widgetSession.id;
-  }
-
-  constructor(
-    private readonly route: ActivatedRoute,
-    private readonly widgetSession: DashboardWidgetSession,
-    private readonly dashboard: BlueriqDashboard,
-    private readonly authService: DashboardAuthService,
-  ) {
   }
 
   ngOnInit(): void {

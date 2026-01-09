@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { DashboardAuthService, DashboardMenuItem, UserInfo } from '@blueriq/dashboard';
 import { Observable } from 'rxjs';
 
@@ -12,13 +12,15 @@ import { Observable } from 'rxjs';
     standalone: false
 })
 export class DashboardHeaderComponent {
+  private readonly authService = inject(DashboardAuthService);
+
 
   userInfo$: Observable<UserInfo>;
 
   @Input()
   menuItems: DashboardMenuItem[];
 
-  constructor(private readonly authService: DashboardAuthService) {
+  constructor() {
     this.userInfo$ = this.authService.userInfo();
   }
 

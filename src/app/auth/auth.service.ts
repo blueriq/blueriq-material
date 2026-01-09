@@ -1,5 +1,5 @@
 import { Location, LocationStrategy } from '@angular/common';
-import { Inject, Injectable, Optional, DOCUMENT } from '@angular/core';
+import { DOCUMENT, inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService as BqAuthService, LoginResult } from '@blueriq/angular';
 import { OpenIdConnectAuth } from '@blueriq/angular/openidconnect';
@@ -16,14 +16,13 @@ import { Observable } from 'rxjs';
  */
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+  private readonly auth = inject(BqAuthService);
+  private readonly router = inject(Router);
+  private readonly locationStrategy = inject(LocationStrategy);
+  // OpenId Connect is marked optional, such that tests won't need to provide an implementation.
+  private readonly openIdConnect = inject<OpenIdConnectAuth | null>(OpenIdConnectAuth, { optional: true });
+  private readonly document = inject<Document>(DOCUMENT);
 
-  constructor(private readonly auth: BqAuthService,
-              private readonly router: Router,
-              private readonly locationStrategy: LocationStrategy,
-              // OpenId Connect is marked optional, such that tests won't need to provide an implementation.
-              @Inject(OpenIdConnectAuth) @Optional() private readonly openIdConnect: OpenIdConnectAuth | null,
-              @Inject(DOCUMENT) private readonly document: Document) {
-  }
 
   login(username: string, password: string): Observable<LoginResult> {
     return this.auth.login(username, password);

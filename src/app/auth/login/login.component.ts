@@ -1,4 +1,4 @@
-import { Component, isDevMode } from '@angular/core';
+import { Component, isDevMode, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
@@ -10,6 +10,10 @@ import { AuthService } from '../auth.service';
     standalone: false
 })
 export class LoginComponent {
+  private readonly authService = inject(AuthService);
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
+
 
   username = new FormControl('', { validators: Validators.required, nonNullable: true });
   password = new FormControl('', { validators: Validators.required, nonNullable: true });
@@ -18,11 +22,6 @@ export class LoginComponent {
     password: this.password,
   });
   failed = false;
-
-  constructor(private readonly authService: AuthService,
-              private readonly route: ActivatedRoute,
-              private readonly router: Router) {
-  }
 
   login() {
     this.authService.login(this.username.value, this.password.value).subscribe({

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BlueriqComponent, BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
@@ -14,9 +14,8 @@ import { HorizontalFlexChildDirective } from './horizontal-flex-child.directive'
   type: Container,
   selector: 'parent',
 })
-class MockFlexParentComponent {
-  constructor(public container: Container) {
-  }
+class MockFlexParentComponent {  container = inject(Container);
+
 }
 
 @Component({

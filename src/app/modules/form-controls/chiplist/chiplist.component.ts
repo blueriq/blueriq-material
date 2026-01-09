@@ -1,5 +1,5 @@
 import { COMMA, ENTER, TAB } from '@angular/cdk/keycodes';
-import { Component, ElementRef, HostBinding, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostBinding, OnInit, ViewChild, inject } from '@angular/core';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatOptionSelectionChange } from '@angular/material/core';
 import { BlueriqComponent, BlueriqSession, bySelector, OnUpdate } from '@blueriq/angular';
@@ -24,6 +24,10 @@ interface ChiplistValue {
     ',[multiValued][hasDomain=false]', { priorityOffset: 100 }),
 })
 export class ChiplistComponent implements OnInit, OnUpdate {
+  field = inject(Field);
+  private readonly session = inject(BlueriqSession);
+  private readonly form = inject(BlueriqFormBuilder);
+
 
   separatorKeysCodes = [ENTER, TAB, COMMA];
   values: ChiplistValue[];
@@ -34,11 +38,6 @@ export class ChiplistComponent implements OnInit, OnUpdate {
 
   @ViewChild('input', { static: true })
   inputField: ElementRef;
-
-  constructor(public field: Field,
-              private readonly session: BlueriqSession,
-              private readonly form: BlueriqFormBuilder) {
-  }
 
   ngOnInit() {
     this.syncValues();

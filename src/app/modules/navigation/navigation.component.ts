@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BlueriqChildren, BlueriqComponent, BlueriqComponents } from '@blueriq/angular';
 import { Button, Container } from '@blueriq/core';
 import { BqContentStyles } from '../BqContentStyles';
@@ -16,10 +16,9 @@ import { NavigationItemComponent } from './navigation-item/navigation-item.compo
   selector: `${ BqContentStyles.NAVIGATION_MENU }`,
 })
 export class NavigationComponent {
+  readonly container = inject(Container);
+
 
   @BlueriqChildren(Button)
   buttons: Button[];
-
-  constructor(public readonly container: Container) {
-  }
 }
