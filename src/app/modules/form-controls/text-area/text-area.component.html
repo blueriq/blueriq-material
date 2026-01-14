@@ -1,8 +1,13 @@
 <mat-form-field bqKey class="fx-flex" appearance="fill">
-  <mat-label>{{field.questionText}}</mat-label>
-  <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" [formControl]="formControl"> </textarea>
-  <mat-hint>{{field.explainText}}</mat-hint>
+  <mat-label>{{ field.questionText }}</mat-label>
+  <textarea matInput
+            cdkTextareaAutosize
+            cdkAutosizeMinRows="1"
+            cdkAutosizeMaxRows="5"
+            [required]="field.required"
+            [formControl]="formControl"> </textarea>
+  <mat-hint>{{ field.explainText }}</mat-hint>
   @for (msg of getErrors(); track msg) {
-    <mat-error>{{msg.text}}</mat-error>
+    <mat-error>{{ msg.text }}</mat-error>
   }
 </mat-form-field>
