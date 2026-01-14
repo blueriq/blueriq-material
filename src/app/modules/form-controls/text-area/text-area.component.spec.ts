@@ -11,7 +11,7 @@ describe('TextAreaComponent', () => {
   let component: ComponentFixture<TextAreaComponent>;
   let session: BlueriqTestSession;
 
-  beforeEach(async() => {
+  beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
@@ -68,5 +68,21 @@ describe('TextAreaComponent', () => {
 
     const inputField = component.nativeElement.querySelector('.mat-form-field-disabled');
     expect(inputField).toBeTruthy();
+  });
+
+  it('should be required', () => {
+    session.update(
+      field.required(true),
+    );
+
+    expect(component.nativeElement.querySelector('textarea').required).toBeTruthy();
+  });
+
+  it('should be not required', () => {
+    session.update(
+      field.required(false),
+    );
+
+    expect(component.nativeElement.querySelector('textarea').required).toBeFalsy();
   });
 });
