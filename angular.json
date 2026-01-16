@@ -110,7 +110,8 @@
               "baseHref": "${BASE_HREF}",
               "index": "src/standalone/index.html",
               "outputPath": {
-                "base": "standalone/dist"
+                "base": "standalone/dist",
+                "browser": ""
               }
             }
           },
