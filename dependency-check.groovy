@@ -1,4 +1,4 @@
-package jenkins
+#!groovy
 
 pipeline {
   agent {
@@ -17,14 +17,6 @@ pipeline {
     OSSINDEX_TOKEN = credentials('ossindex-sonatype-api-key')
   }
   stages {
-    stage('Checkout SCM') {
-      steps {
-        script {
-          def scmVars = checkout scm
-          env.GIT_COMMIT = scmVars.GIT_COMMIT
-        }
-      }
-    }
     stage('Install Packages') {
       steps {
         bat 'call yarn install'
@@ -47,7 +39,7 @@ pipeline {
     always {
       step([$class           : 'Mailer',
             sendToIndividuals: false,
-            recipients       : emailextrecipients([culprits(), requestor()]) + " ${DEVELOPERS_EMAIL}  m.van.emmerik@everest.nl"
+            recipients       : emailextrecipients([culprits(), requestor()]) + " ${DEVELOPERS_EMAIL} m.van.emmerik@everest.nl"
       ])
       deleteDir()
     }
