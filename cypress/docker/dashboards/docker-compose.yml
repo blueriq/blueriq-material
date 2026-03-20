@@ -124,7 +124,7 @@ services:
     ports:
       - "9091:6379"
   e2e-postgres:
-    image: postgres:16.2@sha256:4aea012537edfad80f98d870a36e6b90b4c09b27be7f4b4759d72db863baeebb
+    image: postgres:18.3-alpine@sha256:4da1a4828be12604092fa55311276f08f9224a74a62dcb4708bd7439e2a03911
     mem_limit: 512m
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready" ]
