@@ -7,8 +7,8 @@ pipeline {
   agent any
 
   tools {
-    jdk 'jdk-21'
-    maven 'apache-maven-3.9.6'
+    jdk 'jdk-25'
+    maven 'apache-maven-3.9'
     nodejs 'node-22.14.0'
   }
 

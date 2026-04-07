@@ -1,4 +1,4 @@
-FROM azul/zulu-openjdk-centos:21
+FROM azul/zulu-openjdk-centos:25
 LABEL maintainer="support@blueriq.com"
 
 ARG BLUERIQ_LICENSE
