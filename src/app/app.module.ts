@@ -42,6 +42,7 @@ import { VisualizationModule } from './modules/visualization/visualization.modul
 import { WidgetModule } from './modules/widget/widget.module';
 import { NotificationOverlayModule } from './notification-overlay/notification-overlay.module';
 import { ProjectComponent } from './project.component';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -130,6 +131,7 @@ const routes: Routes = [
   ],
   providers: [
     { provide: DateFormats, useFactory: provideDateFormats },
+    provideHttpClient(withInterceptorsFromDi())
   ],
   bootstrap: [AppComponent],
 })
