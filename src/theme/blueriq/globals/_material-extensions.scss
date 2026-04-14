@@ -4,3 +4,17 @@
 .mat-mdc-form-field-prefix {
   margin-right: var.$bq-margin;
 }
+
+.mat-mdc-form-field-error-wrapper {
+  position: relative !important;
+}
+
+.mat-mdc-form-field-subscript-wrapper.mat-mdc-form-field-bottom-align {
+  &::before {
+    height: 3px;
+  }
+
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
