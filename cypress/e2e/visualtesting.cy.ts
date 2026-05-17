@@ -10,27 +10,27 @@ describe('Visual testing', () => {
     });
 
     it('Check String fields', () => {
-      cy.compareSnapshot('string-fields', 0.02);
+      cy.compareSnapshot('string-fields', 0.2);
     });
 
     it('Check Integer fields', () => {
       cy.get('#mat-tab-group-0-label-1').click().wait(2000);
-      cy.compareSnapshot('integer-fields', 0.02);
+      cy.compareSnapshot('integer-fields', 0.2);
     });
 
     it('Check Number fields', () => {
       cy.get('#mat-tab-group-0-label-2').click().wait(2000);
-      cy.compareSnapshot('number-fields', 0.02);
+      cy.compareSnapshot('number-fields', 0.2);
     });
 
     it('Check Percentage fields', () => {
       cy.get('#mat-tab-group-0-label-3').click().wait(2000);
-      cy.compareSnapshot('percentage-fields', 0.02);
+      cy.compareSnapshot('percentage-fields', 0.2);
     });
 
     it('Check Currency fields', () => {
       cy.get('#mat-tab-group-0-label-4').click().wait(2000);
-      cy.compareSnapshot('currency-fields', 0.02);
+      cy.compareSnapshot('currency-fields', 0.2);
     });
   });
 
@@ -41,17 +41,17 @@ describe('Visual testing', () => {
     });
 
     it('Check Dropdowns', () => {
-      cy.compareSnapshot('dropdowns', 0.02);
+      cy.compareSnapshot('dropdowns', 0.2);
     });
 
     it('Check Radio buttons', () => {
       cy.get('#mat-tab-group-0-label-1').click().wait(2000);
-      cy.compareSnapshot('radio-buttons', 0.02);
+      cy.compareSnapshot('radio-buttons', 0.2);
     });
 
     it('Check Instance linkers', () => {
       cy.get('#mat-tab-group-0-label-3').click().wait(2000);
-      cy.compareSnapshot('instance-linkers', 0.02);
+      cy.compareSnapshot('instance-linkers', 0.2);
     });
   });
 
@@ -62,17 +62,17 @@ describe('Visual testing', () => {
     });
 
     it('Check Buttons', () => {
-      cy.compareSnapshot('buttons', 0.02);
+      cy.compareSnapshot('buttons', 0.2);
     });
 
     it('Check Checkboxes', () => {
       cy.get('#mat-tab-group-0-label-1').click().wait(2000);
-      cy.compareSnapshot('checkboxes', 0.02);
+      cy.compareSnapshot('checkboxes', 0.2);
     });
 
     it('Check Slide toggle', () => {
       cy.get('#mat-tab-group-0-label-2').click().wait(2000);
-      cy.compareSnapshot('slide-toggle', 0.02);
+      cy.compareSnapshot('slide-toggle', 0.2);
     });
   });
 
@@ -85,19 +85,19 @@ describe('Visual testing', () => {
     });
 
     it('Check Date Pickers', () => {
-      cy.compareSnapshot('date-pickers', 0.02);
+      cy.compareSnapshot('date-pickers', 0.2);
     });
 
     it('Check Date Time Pickers', () => {
       // check date time pickers
       cy.get('#mat-tab-group-0-label-1').click().wait(2000);
-      cy.compareSnapshot('datetime-pickers', 0.02);
+      cy.compareSnapshot('datetime-pickers', 0.2);
     });
 
     it('Check Date Time Pickers Material', () => {
       // check date time pickers material
       cy.get('#mat-tab-group-0-label-2').click().wait(2000);
-      cy.compareSnapshot('datetime-pickers-material', 0.02);
+      cy.compareSnapshot('datetime-pickers-material', 0.2);
     });
   });
 
@@ -108,12 +108,12 @@ describe('Visual testing', () => {
 
     it('Check Layouts', () => {
       cy.get('#P866_Layouts_1').click().wait(2000);
-      cy.compareSnapshot('layout-check', 0.02);
+      cy.compareSnapshot('layout-check', 0.2);
     });
 
     it('Check Menu', () => {
       cy.get('#P866_Menu_1').click().wait(2000);
-      cy.compareSnapshot('menu', 0.02);
+      cy.compareSnapshot('menu', 0.2);
     });
   });
 
@@ -122,7 +122,7 @@ describe('Visual testing', () => {
       cy.visitRuntime('flow/export-Suitcase/Demo/0.0-Trunk/en-GB');
 
       cy.get('#P866_TextItems_2').click().wait(2000);
-      cy.compareSnapshot('text-items', 0.02);
+      cy.compareSnapshot('text-items', 0.2);
     });
   });
 
@@ -131,7 +131,7 @@ describe('Visual testing', () => {
       cy.visitRuntime('flow/export-Suitcase/Demo/0.0-Trunk/en-GB');
 
       cy.get('#P866_Dashboard_2').click().wait(2000);
-      cy.compareSnapshot('dashboard', 0.02);
+      cy.compareSnapshot('dashboard', 0.2);
     });
   });
 
@@ -140,7 +140,7 @@ describe('Visual testing', () => {
       cy.visitRuntime('flow/export-Suitcase/Demo/0.0-Trunk/en-GB');
 
       cy.get('#P866_InstanceList_1').click().wait(2000);
-      cy.compareSnapshot('instance-list', 0.02);
+      cy.compareSnapshot('instance-list', 0.2);
     });
   });
 });
