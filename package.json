@@ -79,7 +79,7 @@
     "roboto-fontface": "0.10.0",
     "rxjs": "7.8.1",
     "tslib": "2.5.3",
-    "uuid": "9.0.0",
+    "uuid": "14.0.0",
     "zone.js": "0.15.1"
   },
   "devDependencies": {
@@ -102,7 +102,6 @@
     "@typescript-eslint/parser": "8.49.0",
     "@typescript-eslint/types": "8.49.0",
     "@typescript-eslint/utils": "8.49.0",
-    "auditjs": "4.0.46",
     "eslint": "9.39.1",
     "eslint-formatter-checkstyle": "9.0.1",
     "eslint-plugin-import": "2.32.0",
