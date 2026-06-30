@@ -1,4 +1,6 @@
-<div [@state]="state$ | async" class="loading-backdrop">
-  <div class="loading-wrapper">
+@if ((state$ | async) !== 'idle') {
+  <div class="loading-backdrop">
+    <div class="loading-wrapper">
+    </div>
   </div>
-</div>
+}

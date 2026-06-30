@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { BlueriqCommonModule } from '@blueriq/angular';
+import { ActivityType, BlueriqCommonModule, GlobalLoadingActivity } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ButtonTemplate } from '@blueriq/core/testing';
 import { BqPresentationStyles } from '../BqPresentationStyles';
@@ -106,6 +106,23 @@ describe('ButtonComponent', () => {
   it('should use the bqbutton directive', () => {
     // Verify
     expect(component.nativeElement.querySelector('button[bqbutton]')).toBeTruthy();
+  });
+
+  it('should be disabled while a backend request is active', () => {
+    const loadingActivity = TestBed.inject(GlobalLoadingActivity);
+
+    let disabled = component.nativeElement.querySelector('button').hasAttribute('disabled');
+    expect(disabled).toBeFalsy();
+
+    loadingActivity.start(ActivityType.Interaction);
+    component.detectChanges();
+    disabled = component.nativeElement.querySelector('button').hasAttribute('disabled');
+    expect(disabled).toBeTruthy();
+
+    loadingActivity.stop(ActivityType.Interaction);
+    component.detectChanges();
+    disabled = component.nativeElement.querySelector('button').hasAttribute('disabled');
+    expect(disabled).toBeFalsy();
   });
 
 });

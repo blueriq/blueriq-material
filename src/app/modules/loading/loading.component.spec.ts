@@ -1,5 +1,4 @@
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivityType, GlobalLoadingActivity } from '@blueriq/angular';
 
 import { LoadingComponent } from './loading.component';
@@ -13,7 +12,6 @@ describe('LoadingComponent', () => {
   beforeEach(async() => {
     await TestBed.configureTestingModule({
       imports: [
-        NoopAnimationsModule,
         LoadingModule,
       ],
       providers: [GlobalLoadingActivity],

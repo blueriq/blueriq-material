@@ -106,6 +106,8 @@ Cypress.Commands.add('verifyOpenCasePage', verifyOpenCasePage);
 
 Cypress.Commands.add('waitForListEntry', waitForListEntry);
 
+Cypress.Commands.add('waitForPageReady', waitForPageReady);
+
 function getById(page: string, field: string, nr = '1'): Chainable<unknown> {
   return getByTagName('', page, field, nr);
 }
@@ -307,6 +309,14 @@ function waitForListEntry(reference: string, attempts: number = 0): Chainable<un
 
 }
 
+function waitForPageReady(): Chainable<unknown> {
+  // While a blocking request (session start / interaction) is in flight the page is made `inert`.
+  // Right after a navigation the element already exists but the activity may not have stopped yet,
+  // so wait for `inert` to clear before typing/clicking, otherwise those interactions are silently
+  // dropped on the inert page.
+  return cy.get('bq-page', { timeout: 10000 }).should('not.have.attr', 'inert');
+}
+
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace Cypress {
@@ -388,6 +398,13 @@ declare global {
        * @param reference the reference to search for.
        */
       waitForListEntry(reference: string): Chainable<Subject>;
+
+      /**
+       * Wait until the page is no longer `inert`, i.e. no blocking request (session start or
+       * interaction) is in flight. Use after a navigation, before typing or clicking, so the
+       * interaction is not dropped on the still-inert page.
+       */
+      waitForPageReady(): Chainable<Subject>;
     }
   }
 }
