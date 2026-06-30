@@ -1,6 +1,7 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, HostBinding, OnInit, inject } from '@angular/core';
 import { BlueriqChild, BlueriqChildren, BlueriqComponent, OnUpdate } from '@blueriq/angular';
 import { Container, Page } from '@blueriq/core';
+import { BackendBusyService } from '@shared/loading/backend-busy.service';
 import { BqContentStyles } from '../BqContentStyles';
 
 @Component({
@@ -16,7 +17,7 @@ import { BqContentStyles } from '../BqContentStyles';
 })
 export class PageComponent implements OnInit, OnUpdate {
   page = inject(Page);
-
+  private readonly backendBusy = inject(BackendBusyService);
 
   @BlueriqChild(Container, BqContentStyles.DASHBOARD_HEADER, { exclude: true, optional: true })
   dashboardHeader: Container;
@@ -31,6 +32,18 @@ export class PageComponent implements OnInit, OnUpdate {
 
   constructor() {
     this.pageSize = this.determinePageSize();
+  }
+
+  /**
+   * Makes the entire page non-interactive (blocks clicks, focus and typing) while a blocking
+   * request to the backend is in progress, so the user cannot trigger additional requests before
+   * the current one completes. Reacts immediately, unlike the loading overlay which only appears
+   * after 400ms. Uses {@link BackendBusyService.blocking}, which excludes field refreshes, so a
+   * refresh neither locks the page nor breaks tabbing between fields.
+   */
+  @HostBinding('attr.inert')
+  get inert(): string | null {
+    return this.backendBusy.blocking() ? '' : null;
   }
 
   /**

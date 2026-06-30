@@ -19,8 +19,11 @@ describe('Kinderbijslag App', () => {
     cy.getTitleTextFor(PAGE_ID_OUDER_GEGEVENS, 'OuderGegevens').equalIgnoreWhiteSpace('Kinderbijslag Aanvragen');
     cy.getContainerTitleTextFor(PAGE_ID_OUDER_GEGEVENS, 'OuderGegevens', '2').equalIgnoreWhiteSpace('Jouw gegevens');
 
+    // Wait for the page to settle (not inert) so field input is not dropped while a request is active.
+    cy.waitForPageReady();
     fillInRequiredFieldsOuder();
-    cy.getButtonFor(PAGE_ID_OUDER_GEGEVENS, 'Verder').click();
+    // Buttons are disabled while a field-refresh request is in flight; wait until enabled.
+    cy.getButtonFor(PAGE_ID_OUDER_GEGEVENS, 'Verder').should('be.enabled').click();
 
     // should navigate to page: Overzicht Kinderen
     cy.getTitleTextFor(PAGE_ID_OVERZICHT_KINDEREN, 'OverzichtKinderen').equalIgnoreWhiteSpace('Kinderbijslag Aanvragen');
@@ -28,17 +31,18 @@ describe('Kinderbijslag App', () => {
     cy.get('button').should('have.length', 7);
 
     // Page to add a child
-    cy.getButtonFor(PAGE_ID_OVERZICHT_KINDEREN, 'Toevoegen').click();
+    cy.getButtonFor(PAGE_ID_OVERZICHT_KINDEREN, 'Toevoegen').should('be.enabled').click();
 
     cy.getTitleTextFor(PAGE_ID_VRAGENLIJST_OUDERSKIND, 'VragenlijstOudersKind').equalIgnoreWhiteSpace('Kinderbijslag Aanvragen');
     cy.getContainerTitleTextFor(PAGE_ID_VRAGENLIJST_OUDERSKIND, 'SoortOudersVragen').equalIgnoreWhiteSpace('Vragen over ouders kind');
 
+    cy.waitForPageReady();
     fillInQuestionsOuderKind();
 
     cy.getContainerTitleTextFor(PAGE_ID_VRAGENLIJST_OUDERSKIND, 'Kind').equalIgnoreWhiteSpace('Vragen over het kind');
     let yearOfBirth = (new Date().getFullYear() - 2);
     fillInRequiredFieldsKind(yearOfBirth);
-    cy.getButtonFor(PAGE_ID_VRAGENLIJST_OUDERSKIND, 'Verder').click();
+    cy.getButtonFor(PAGE_ID_VRAGENLIJST_OUDERSKIND, 'Verder').should('be.enabled').click();
 
     // should be able to add a child
     cy.getTitleTextFor(PAGE_ID_OVERZICHT_KINDEREN, 'OverzichtKinderen').equalIgnoreWhiteSpace('Kinderbijslag Aanvragen');
@@ -48,7 +52,7 @@ describe('Kinderbijslag App', () => {
     cy.getTableCellFor(PAGE_ID_OVERZICHT_KINDEREN, 'cell', '8').equalIgnoreWhiteSpace(`01-01-${yearOfBirth}`);
 
 
-    cy.getButtonFor(PAGE_ID_OVERZICHT_KINDEREN, 'Bereken').click();
+    cy.getButtonFor(PAGE_ID_OVERZICHT_KINDEREN, 'Bereken').should('be.enabled').click();
 
     // should calculate Kinderbijslag
     cy.getTitleTextFor(PAGE_ID_RESULTAAT_BEREKENING, 'Resultaatberekening').equalIgnoreWhiteSpace('Kinderbijslag Aanvragen');

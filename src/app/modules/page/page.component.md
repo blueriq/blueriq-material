@@ -3,7 +3,9 @@
 This component renders a Blueriq Page. It always renders a header and it triggers rendering of its children.
 
 ### Styles
+
 There are 5 content styles that influence the page's behavior:
+
 * `small` - The content is displayed in a narrow column (maximum width is 512 pixels)
 * `medium` - The content is displayed in a medium sized column (maximum width is 768 pixels)
 * `large` - The content is displayed in a large sized column (maximum width is 1024 pixels)
@@ -13,5 +15,11 @@ There are 5 content styles that influence the page's behavior:
   * It is medium (768 pixels) on screens smaller than 1024 pixels.
   * It is large (1024 pixels) on screens smaller than 1240 pixels.
   * It is extra large (1240 pixels) on screens wider than 1240 pixels.
-  
+
 The widths mentioned can easily be changed to suit your needs in the `theme/globals/_responsive-layout.scss` file.
+
+### Disabling the page when the runtime is busy
+
+When the runtime is busy with a synchronous request for the session, the page becomes inert (disabled).
+Once the request has finished, inputs will be re-enabled.
+For field refreshes, the page remains responsive.

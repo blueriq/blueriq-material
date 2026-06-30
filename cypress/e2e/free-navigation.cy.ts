@@ -14,23 +14,30 @@ describe('Free Navigation', () => {
     cy.get('bq-navigation-menu button').eq(2).equalIgnoreWhiteSpace('Hobbies');
     cy.get('bq-navigation-menu button').eq(3).equalIgnoreWhiteSpace('Summary');
 
-    // Disable hobbies button.
+    // Disable hobbies button. Wait for the field-refresh round-trip to finish so the assertion below
+    // reflects the model-driven disabled state, not the transient disable that applies to every
+    // button while a request to the backend is active.
+    cy.waitForPageReady();
+    cy.intercept('POST', '**/api/v2/session/*/event').as('hobbiesRefresh');
     cy.getCheckboxFor('P355', 'Person-HasHobbies').click();
+    cy.wait('@hobbiesRefresh');
     cy.get('bq-navigation-menu button').eq(2).should('be.disabled');
 
-    // Navigate to next page.
-    cy.getButtonFor('P355', 'Next').click();
+    // Navigate to next page. Buttons are disabled while a request is in flight, so wait until the
+    // button is enabled again before clicking.
+    cy.getButtonFor('P355', 'Next').should('be.enabled').click();
     cy.getTitleTextFor('P129', 'Work').equalIgnoreWhiteSpace('Work');
 
     // Second navigation item is active, first is incomplete.
     cy.get('bq-navigation-item .circle').eq(0).should('have.class', 'error');
     cy.get('bq-navigation-item .circle').eq(1).should('have.class', 'active');
 
-    // Fill in mandatory fields
+    // Fill in mandatory fields (wait for the page to settle so the input is not dropped while inert)
+    cy.waitForPageReady();
     cy.getInputFor('P129', 'Work-Salary').type('10{enter}');
 
-    // Navigate to next page.
-    cy.getButtonFor('P129', 'Next').click();
+    // Navigate to next page (wait out any in-flight request that disables the button).
+    cy.getButtonFor('P129', 'Next').should('be.enabled').click();
     cy.getTitleTextFor('P258', 'Summary').equalIgnoreWhiteSpace('Summary');
 
     // Fourth navigation item is active, first is incomplete, second is complete.

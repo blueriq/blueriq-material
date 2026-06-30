@@ -1,9 +1,10 @@
-import { Component, Optional } from '@angular/core';
+import { Component, Optional, inject } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { List } from '@blueriq/angular/lists';
 import { Button } from '@blueriq/core';
 import { BqIconDirective } from '@shared/directive/icon/icon.directive';
+import { BackendBusyService } from '@shared/loading/backend-busy.service';
 import { BqPresentationStyles } from '../BqPresentationStyles';
 
 @Component({
@@ -16,6 +17,7 @@ import { BqPresentationStyles } from '../BqPresentationStyles';
   type: Button,
 })
 export class ButtonComponent {
+  private readonly backendBusy = inject(BackendBusyService);
 
   constructor(public button: Button,
               @Optional() public readonly list: List | null) {
@@ -62,7 +64,9 @@ export class ButtonComponent {
   }
 
   isDisabled(): boolean {
-    return this.button.disabled || this.button.styles.has(BqPresentationStyles.DISABLED);
+    return this.backendBusy.busy()
+      || this.button.disabled
+      || this.button.styles.has(BqPresentationStyles.DISABLED);
   }
 
 }

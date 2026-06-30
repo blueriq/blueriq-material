@@ -1,24 +1,16 @@
-import { state, style, trigger } from '@angular/animations';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivityType, GlobalLoadingActivity } from '@blueriq/angular';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
-    selector: 'bq-loading',
-    templateUrl: './loading.component.html',
-    styleUrls: ['./loading.component.scss'],
-    animations: [
-        trigger('state', [
-            state('loading, starting', style({ display: 'inline' })),
-            state('idle', style({ display: 'none' })),
-        ]),
-    ],
-    standalone: false
+  selector: 'bq-loading',
+  templateUrl: './loading.component.html',
+  styleUrls: ['./loading.component.scss'],
+  standalone: false,
 })
 export class LoadingComponent implements OnInit {
   private readonly loadingActivity = inject(GlobalLoadingActivity);
-
 
   state$: Observable<'starting' | 'loading' | 'idle'>;
 

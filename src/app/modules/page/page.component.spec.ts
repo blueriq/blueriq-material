@@ -2,7 +2,7 @@ import { APP_BASE_HREF } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { BqProjectComponent } from '@blueriq/angular';
+import { ActivityType, BqProjectComponent, GlobalLoadingActivity } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate, PageTemplate } from '@blueriq/core/testing';
 import { BqContentStyles } from '../BqContentStyles';
@@ -88,6 +88,30 @@ describe('PageComponent', () => {
     );
     expect(page.pageSize).toBe('small');
     expect(pageComponent.nativeElement.querySelector('.page.small')).toBeTruthy();
+  });
+
+  it('should become inert while a backend request is active', () => {
+    const loadingActivity = TestBed.inject(GlobalLoadingActivity);
+
+    expect(pageComponent.nativeElement.hasAttribute('inert')).toBeFalsy();
+
+    loadingActivity.start(ActivityType.Interaction);
+    pageComponent.detectChanges();
+    expect(pageComponent.nativeElement.hasAttribute('inert')).toBeTruthy();
+
+    loadingActivity.stop(ActivityType.Interaction);
+    pageComponent.detectChanges();
+    expect(pageComponent.nativeElement.hasAttribute('inert')).toBeFalsy();
+  });
+
+  it('should NOT become inert during a field refresh, so tabbing between fields keeps working', () => {
+    const loadingActivity = TestBed.inject(GlobalLoadingActivity);
+
+    loadingActivity.start(ActivityType.FieldRefresh);
+    pageComponent.detectChanges();
+    expect(pageComponent.nativeElement.hasAttribute('inert')).toBeFalsy();
+
+    loadingActivity.stop(ActivityType.FieldRefresh);
   });
 
 });
