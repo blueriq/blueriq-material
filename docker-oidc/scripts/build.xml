@@ -78,7 +78,8 @@
   <target name="build-frontend">
     <exec executable="cmd" dir="${rootDir}">
       <arg value="/c"/>
-      <arg value="yarn"/>
+      <arg value="pnpm"/>
+      <arg value="run"/>
       <arg value="build"/>
       <arg value="--progress=false"/>
     </exec>

@@ -71,6 +71,10 @@
       <buildTargetArgs>
         <arg value="--target"/>
         <arg value="cypress"/>
+        <arg value="--secret"/>
+        <arg value="id=npm_username,env=NPM_USERNAME"/>
+        <arg value="--secret"/>
+        <arg value="id=npm_password,env=NPM_PASSWORD"/>
       </buildTargetArgs>
     </create-image>
   </target>

@@ -3,7 +3,6 @@
 
   <!-- input properties -->
   <property name="isRelease" value="false"/>
-  <property name="npmrcFileLocation" value="${user.home}/.npmrc"/>
 
   <property name="toolsFolder" location="../../tools"/>
 
@@ -37,7 +36,14 @@
     <create-container image.name="${docker.image}"
                       containerId.property="container.id"
                       run.command="${build-command}"
-                      unless:set="${build.error}"/>
+                      unless:set="${build.error}">
+      <volumeArgs>
+        <arg value="-e"/>
+        <arg value="NPM_USERNAME"/>
+        <arg value="-e"/>
+        <arg value="NPM_PASSWORD"/>
+      </volumeArgs>
+    </create-container>
     <property name="container.id" value="[not-set]"/>  <!-- reference property setter -->
 
     <trycatch>
@@ -62,14 +68,16 @@
   </target>
 
   <target name="create-build-image">
-    <copy file="${npmrcFileLocation}" tofile="${sources.dir}/.npmrc" failonerror="false"/>
-
     <create-image execution.dir="${sources.dir}"
                   docker.file="${build-scripts.dir}/Dockerfile"
                   image.name="${docker.image}">
       <buildTargetArgs>
         <arg value="--target"/>
         <arg value="workspace"/>
+        <arg value="--secret"/>
+        <arg value="id=npm_username,env=NPM_USERNAME"/>
+        <arg value="--secret"/>
+        <arg value="id=npm_password,env=NPM_PASSWORD"/>
       </buildTargetArgs>
     </create-image>
   </target>

@@ -22,7 +22,7 @@ pipeline {
       steps {
         script {
           cvePods.node {
-            cveCheck.yarn1(name: 'material-theme')
+            cveCheck.pnpm(name: 'material-theme')
           }
         }
       }

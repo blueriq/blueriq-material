@@ -1,2 +1,2 @@
-call yarn install --cwd %~dp0/scripts/license --no-lockfile
+call pnpm install --dir "%~dp0/scripts/license" --ignore-workspace --config.lockfile=false
 call node %~dp0/scripts/license/extract.js

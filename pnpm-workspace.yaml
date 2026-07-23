@@ -1,0 +1,23 @@
+nodeLinker: isolated
+strictPeerDependencies: false
+minimumReleaseAge: 0
+trustLockfile: true
+registries:
+  '@blueriq': https://artifactory.blueriq.com/artifactory/api/npm/yarn/
+overrides:
+  glob-parent: ^6.0.2
+  minimatch: ^3.0.5
+  validator: 13.15.23
+  serialize-javascript: ^6.0.2
+  '@babel/helpers': ^7.26.10
+  '@babel/runtime': ^7.26.10
+  qs: 6.15.0
+  lodash: ^4.17.23
+  diff: ^5.2.2
+allowBuilds:
+  '@compodoc/compodoc': true
+  '@parcel/watcher': true
+  cypress: true
+  esbuild: true
+  lmdb: true
+  msgpackr-extract: true

@@ -15,7 +15,7 @@ function runCommand(command) {
 }
 
 const cypress = runCommand(`cypress run --config baseUrl=http://${host}:9081 --spec ${spec} --browser chrome`);
-const report = runCommand(`yarn e2e:reporting`);
+const report = runCommand(`pnpm run e2e:reporting`);
 if (report.status !== 0) {
   process.exit(report.status);
 }
