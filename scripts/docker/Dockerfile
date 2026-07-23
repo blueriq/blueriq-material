@@ -1,6 +1,6 @@
-FROM docker-internal.blueriq.com/nodejs-build:22.14.0-ubi-9.5-1736404036 as node-base
+# syntax = docker/dockerfile:1.24@sha256:87999aa3d42bdc6bea60565083ee17e86d1f3339802f543c0d03998580f9cb89
+FROM docker-internal.blueriq.com/nodejs-build:24.18.0-ubi-9.5-1736404036@sha256:03a02f713b02c218cca891e4d783ccc7988dc456e701f136dc38656c7dd978a0 as node-base
 
-# syntax = docker/dockerfile:1.2
 FROM node-base AS packages
 
 WORKDIR /usr/src
@@ -11,12 +11,14 @@ RUN --mount=type=bind,target=/docker-context \
     cd /docker-context/; \
     find . -name "package.json" -mindepth 0 -maxdepth 4 -exec cp --parents "{}" /usr/src/ \;
 
-# Copy nprmc and yarn.lock files if they exist into the layer. This uses a bind mount and checks if the files exists
-# instead of Docker's COPY instruction. Docker fails if a file does not exist, which should be a valid option.
+# Copy npmrc, pnpm-lock.yaml and pnpm-workspace.yaml files if they exist into the layer. This uses a bind mount and
+# checks if the files exist instead of Docker's COPY instruction. Docker fails if a file does not exist, which should
+# be a valid option.
 RUN --mount=type=bind,target=/docker-context \
     cd /docker-context/; \
-    [ -e yarn.lock ] && cp yarn.lock /usr/src/ && \
-    [ -e .npmrc ] && cp .npmrc /usr/src/ || exit 0
+    [ -e pnpm-lock.yaml ] && cp pnpm-lock.yaml /usr/src/ ; \
+    [ -e pnpm-workspace.yaml ] && cp pnpm-workspace.yaml /usr/src/ ; \
+    exit 0
 
 ########################################################################################################################
 
@@ -24,10 +26,12 @@ FROM node-base AS node
 
 WORKDIR /usr/src
 COPY --from=packages /usr/src/ .
-RUN --mount=type=cache,id=yarn,target=/yarn/cache,sharing=locked \
-    yarn config set cache-folder /yarn/cache && \
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store,sharing=locked \
+    --mount=type=secret,id=npm_username,env=NPM_USERNAME,required=true \
+    --mount=type=secret,id=npm_password,env=NPM_PASSWORD,required=true \
+    pnpm config set store-dir /pnpm/store && \
     cp package.json package.json.bkp && \
-    yarn install --prefer-offline --frozen-lockfile --ignore-scripts --network-timeout=100000
+    pnpm install --prefer-offline --frozen-lockfile --ignore-scripts
 
 ########################################################################################################################
 

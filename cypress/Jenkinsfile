@@ -34,12 +34,11 @@ node {
       }
 
       stage('build') {
-        withCredentials([file(credentialsId: 'npmrc_file', variable: 'npmrc_file')]) {
+        withCredentials([usernamePassword(credentialsId: 'npm-readonly', usernameVariable: 'NPM_USERNAME', passwordVariable: 'NPM_PASSWORD')]) {
           bat "ant -f scripts/docker/build.xml build " +
             "-Ddocker.host=bq-build-lin.blueriq.local " +
             "-Dcommit=${env.GIT_COMMIT} " +
-            "-DisRelease=false " +
-            "-DnpmrcFileLocation=${npmrc_file}"
+            "-DisRelease=false"
         }
       }
 
@@ -48,10 +47,11 @@ node {
           withCredentials([file(credentialsId: 'BLUERIQ_RUNTIME_LICENSE', variable: 'license_file')]) {
             writeFile file: './cypress/docker/config/license.aql', text: readFile(license_file)
           }
-          bat "yarn e2e:docker-prepare -overrideVersion=true -runtimeBranch=${params.RUNTIME_BRANCH} -runtimeUrl=${env.RUNTIME_GIT_URL}";
+          bat "pnpm run e2e:docker-prepare -overrideVersion true -runtimeBranch ${params.RUNTIME_BRANCH} -runtimeUrl ${env.RUNTIME_GIT_URL}";
         }
         stage('e2e tests') {
-          withCredentials([file(credentialsId: 'npmrc_file', variable: 'npmrc_file')]) {
+          withCredentials([file(credentialsId: 'npmrc_file', variable: 'npmrc_file'),
+                           usernamePassword(credentialsId: 'npm-readonly', usernameVariable: 'NPM_USERNAME', passwordVariable: 'NPM_PASSWORD')]) {
             bat "ant -f scripts/docker/e2e.xml run " +
               "-Ddocker.host=bq-docker-lin.blueriq.local " +
               "-Dcommit=${env.GIT_COMMIT} " +
@@ -61,7 +61,7 @@ node {
       }
       finally {
         stage('docker down') {
-          bat "yarn e2e:docker-down";
+          bat 'pnpm run e2e:docker-down';
         }
       }
 
@@ -71,11 +71,12 @@ node {
             writeFile file: './cypress/docker/dashboards/config/runtime/license.aql', text: readFile(license_file)
             writeFile file: './cypress/docker/dashboards/config/case-engine/license.aql', text: readFile(license_file)
           }
-          bat "yarn e2e:docker-prepare-dashboards -overrideVersion=true  -skipBuild=true -runtimeBranch=${params.RUNTIME_BRANCH} -runtimeUrl=${env.RUNTIME_GIT_URL} -hostName=bq-docker-lin.blueriq.local";
+          bat "pnpm run e2e:docker-prepare-dashboards -overrideVersion true -skipBuild true -runtimeBranch ${params.RUNTIME_BRANCH} -runtimeUrl ${env.RUNTIME_GIT_URL} -hostName bq-docker-lin.blueriq.local";
         }
 
         stage('e2e tests-dashboards') {
-          withCredentials([file(credentialsId: 'npmrc_file', variable: 'npmrc_file')]) {
+          withCredentials([file(credentialsId: 'npmrc_file', variable: 'npmrc_file'),
+                           usernamePassword(credentialsId: 'npm-readonly', usernameVariable: 'NPM_USERNAME', passwordVariable: 'NPM_PASSWORD')]) {
             bat "ant -f scripts/docker/e2e.xml run-e2e-dashboards " +
               "-Ddocker.host=bq-docker-lin.blueriq.local " +
               "-Dcommit=${env.GIT_COMMIT} " +
@@ -85,7 +86,7 @@ node {
       }
       finally {
         stage('docker down') {
-          bat "yarn e2e:docker-down-dashboards";
+          bat 'pnpm run e2e:docker-down-dashboards';
         }
       }
     }

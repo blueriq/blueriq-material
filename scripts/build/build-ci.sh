@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-FORCE_COLOR=0 # disable colors in yarn
+FORCE_COLOR=0 # disable colors in pnpm
 mkdir -p dist
 node -v
-yarn -v
-yarn build --progress=false
+pnpm -v
+pnpm run build --progress=false

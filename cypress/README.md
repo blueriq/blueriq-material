@@ -7,10 +7,10 @@
     actually copies this war to its container
 
 # How to test
-Run `yarn e2e:dev` to execute the end-to-end tests via Cypress when you want to run everything from docker
+Run `pnpm run e2e:dev` to execute the end-to-end tests via Cypress when you want to run everything from docker
 This will first start docker with a runtime, customer data and dcm list and after completion it will start the Cypress UI
 
-Run `yarn e2e:local` to execute the end-to-end tests via Cypress when you everything running from your local environment (make sure to check your ports!)
+Run `pnpm run e2e:local` to execute the end-to-end tests via Cypress when you everything running from your local environment (make sure to check your ports!)
 
 ## Visual regression testing
 

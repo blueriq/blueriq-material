@@ -14,6 +14,18 @@ pipeline {
 
   environment {
     CHROME_BIN = "${env.CHROME_116_0_5845_97}"
+    // BQ-19897: the corepack pnpm shim resolves pnpm from the packageManager field, fetching it from
+    // Artifactory with the npm-readonly credential (Basic auth). The agent's ambient ~/.npmrc supplies
+    // pnpm's package-install auth, so the stages just call bare `pnpm`.
+    COREPACK_NPM_REGISTRY = 'https://artifactory.blueriq.com/artifactory/api/npm/yarn'
+    COREPACK_INTEGRITY_KEYS = '0'
+    COREPACK_ENABLE_DOWNLOAD_PROMPT = '0'
+    NPM_READONLY = credentials('npm-readonly')
+    COREPACK_NPM_USERNAME = "${env.NPM_READONLY_USR}"
+    COREPACK_NPM_PASSWORD = "${env.NPM_READONLY_PSW}"
+    // Same npm-readonly credential, fed to build.xml's docker BuildKit secrets (--secret id=npm_username,env=NPM_USERNAME).
+    NPM_USERNAME = "${env.NPM_READONLY_USR}"
+    NPM_PASSWORD = "${env.NPM_READONLY_PSW}"
   }
 
   options {
@@ -67,12 +79,14 @@ pipeline {
       }
     }
 
-    stage('yarn install') {
+    stage('install') {
       steps {
-        bat 'node -v'
-        bat 'yarn -v'
-        bat 'yarn install --ignore-engines'
-        bat 'yarn ng:version'
+        bat '''
+          call node -v
+          call pnpm -v
+          call pnpm install --frozen-lockfile --ignore-scripts
+          call pnpm run ng:version
+        '''
       }
     }
     stage('verify & build') {
@@ -80,7 +94,7 @@ pipeline {
         stage('test') {
           steps {
             script {
-              def result = bat([returnStdout: true, script: 'yarn verify'])
+              def result = bat([returnStdout: true, script: 'pnpm run verify'])
               println result
 
               // Unfortunately it is needed to check if the coverage is not met because the coverage-reporter always
@@ -94,7 +108,7 @@ pipeline {
         }
         stage('eslint') {
           steps {
-            bat 'yarn eslint --format checkstyle --output-file eslint_results_checkstyle.xml'
+            bat 'pnpm run eslint --format checkstyle --output-file eslint_results_checkstyle.xml'
           }
         }
         stage('stylelint') {
@@ -104,13 +118,10 @@ pipeline {
         }
         stage('build') {
           steps {
-            withCredentials([file(credentialsId: 'npmrc_file', variable: 'npmrc_file')]) {
-              bat 'ant -f scripts/docker/build.xml build ' +
-                '-Ddocker.host=bq-build-lin.blueriq.local ' +
-                "-Dcommit=${env.GIT_COMMIT} " +
-                "-DisRelease=${params.isRelease} " +
-                '-DnpmrcFileLocation=%npmrc_file%'
-            }
+            bat 'ant -f scripts/docker/build.xml build ' +
+              '-Ddocker.host=bq-build-lin.blueriq.local ' +
+              "-Dcommit=${env.GIT_COMMIT} " +
+              "-DisRelease=${params.isRelease}"
           }
         }
       }
@@ -149,7 +160,7 @@ pipeline {
     stage('publish docs') {
       when { expression { params.isRelease } }
       steps {
-        bat "yarn docs --silent --name \"@blueriq/material - ${params.releaseVersion}\""
+        bat "pnpm run docs --silent --name \"@blueriq/material - ${params.releaseVersion}\""
         withCredentials([usernamePassword(credentialsId: 'bq-docs-publish-credentials', passwordVariable: 'docsPass', usernameVariable: 'docsUser'), string(credentialsId: 'bq-docs-publish-host', variable: 'docsHost')]) {
           bat "build-publish-docs.bat ${params.releaseVersion} %docsHost% %docsUser% %docsPass%"
         }
