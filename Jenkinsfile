@@ -1,6 +1,5 @@
 #!groovy
 
-int timeout_in_mins = 30
 boolean isMaster = BRANCH_NAME == 'master'
 
 pipeline {
@@ -29,7 +28,7 @@ pipeline {
   }
 
   options {
-    timeout(time: timeout_in_mins, unit: 'MINUTES')
+    timeout(time: 30, unit: 'MINUTES')
     buildDiscarder logRotator(numToKeepStr: '5')
     disableConcurrentBuilds()
     gitLabConnection gitLabConnection: 'Blueriq-Gitlab'
@@ -171,8 +170,8 @@ pipeline {
 
   post {
     always {
-      archiveArtifacts artifacts: 'testresults/*.xml'
-      junit 'testresults/*.xml'
+      archiveArtifacts artifacts: 'testresults/*.xml', allowEmptyArchive: true
+      junit testResults: 'testresults/*.xml', allowEmptyResults: true
       recordIssues skipBlames: true,
         enabledForFailure: true,
         name: 'Linting warnings',
@@ -199,22 +198,20 @@ pipeline {
       notifyBuildStatus()
     }
     success {
-      updateGitlabCommitStatus name: 'Branch build', state: 'success'
       script {
         if (isMaster) {
-          withCredentials([usernamePassword(credentialsId: 'blueriq-material_github.com', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-            // We want the tags now that where not fetched in the 'checkout' stage
-            bat 'git fetch --tags'
-            bat 'git remote add upstream "https://%GIT_USERNAME%:%GIT_PASSWORD%@github.com/blueriq/blueriq-material.git"'
-            // Push only the master branch and all tags to Github
-            bat 'git push upstream master'
-            bat 'git push upstream --tags'
+          try {
+            pushToGithub()
+          } catch (error) {
+            updateGitlabCommitStatus name: 'Branch build', state: 'failed'
+            throw error
           }
         }
+        updateGitlabCommitStatus name: 'Branch build', state: 'success'
       }
     }
 
-    failure {
+    unsuccessful {
       updateGitlabCommitStatus name: 'Branch build', state: 'failed'
     }
 
@@ -230,14 +227,18 @@ def notifyBuildStatus() {
   // notify the person who started the build and the persons who's commits broke the build
   step([$class                  : 'Mailer',
         notifyEveryUnstableBuild: true,
-        recipients              : emailextrecipients([
-          [$class: 'CulpritsRecipientProvider'],
-          [$class: 'RequesterRecipientProvider']
-        ])
+        sendToIndividuals       : false,
+        recipients              : emailextrecipients([culprits(), requestor()]) + " ${DEVELOPERS_EMAIL}"
   ])
+}
 
-  step([$class                  : 'Mailer',
-        notifyEveryUnstableBuild: true,
-        sendToIndividuals       : true
-  ])
+def pushToGithub() {
+  withCredentials([usernamePassword(credentialsId: 'blueriq-material_github.com', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+    // We want the tags now that where not fetched in the 'checkout' stage
+    bat 'git fetch --tags'
+    // Push straight to the remote URL rather than `git remote add`, which persists the credential
+    // into .git/config and fails on a re-run because the remote already exists. @ suppresses the echo.
+    bat '@git push "https://%GIT_USERNAME%:%GIT_PASSWORD%@github.com/blueriq/blueriq-material.git" master'
+    bat '@git push "https://%GIT_USERNAME%:%GIT_PASSWORD%@github.com/blueriq/blueriq-material.git" --tags'
+  }
 }
