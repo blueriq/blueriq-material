@@ -1,39 +1,33 @@
 #!groovy
-int timeout_in_mins = 30;
 
-properties([
-  [
-    $class  : 'BuildDiscarderProperty',
-    strategy: [$class: 'LogRotator', numToKeepStr: '5']
-  ],
-  parameters([
-    string(name: 'RUNTIME_BRANCH', defaultValue: 'master', description: "The runtime branch to test against"),
-  ])
-])
-node {
-  try {
-    timeout(time: timeout_in_mins, unit: 'MINUTES') {
-      env.JAVA_HOME = tool 'jdk-25'
-      def mvnHome = tool "apache-maven-3.9"
-      def nodeHome = tool 'node-22.14.0'
-      env.PATH = "${env.JAVA_HOME}\\bin;${mvnHome}\\bin;${nodeHome};${env.PATH}";
-      env.COMPOSE_PROJECT_NAME = "material-e2e-cypress";
+pipeline {
+  agent any
 
-      def cdsVersion;
-      def dashboardVersion = '0.0.1-M16'
-      def dcmListsVersion;
+  tools {
+    jdk 'jdk-25'
+    maven 'apache-maven-3.9'
+    nodejs 'node-22.14.0'
+    ant 'apache-ant-1.10'
+  }
 
-      stage('checkout') {
-        checkout scm;
-      }
+  environment {
+    COMPOSE_PROJECT_NAME = 'material-e2e-cypress'
+  }
 
-      stage('install tools') {
-        bat 'tools/_install-tools.bat'
-        env.ANT_HOME = "${pwd()}\\tools\\apache-ant-1.10.14"
-        env.PATH = "${env.ANT_HOME}\\bin;${env.PATH}"
-      }
+  options {
+    timeout(time: 30, unit: 'MINUTES')
+    buildDiscarder logRotator(numToKeepStr: '5')
+    disableConcurrentBuilds()
+    ansiColor('xterm')
+  }
 
-      stage('build') {
+  parameters {
+    string(name: 'RUNTIME_BRANCH', defaultValue: 'master', description: "The runtime branch to test against")
+  }
+
+  stages {
+    stage('build') {
+      steps {
         withCredentials([usernamePassword(credentialsId: 'npm-readonly', usernameVariable: 'NPM_USERNAME', passwordVariable: 'NPM_PASSWORD')]) {
           bat "ant -f scripts/docker/build.xml build " +
             "-Ddocker.host=bq-build-lin.blueriq.local " +
@@ -41,63 +35,74 @@ node {
             "-DisRelease=false"
         }
       }
+    }
 
-      try {
+    stage('e2e') {
+      stages {
         stage('docker prepare') {
-          withCredentials([file(credentialsId: 'BLUERIQ_RUNTIME_LICENSE', variable: 'license_file')]) {
-            writeFile file: './cypress/docker/config/license.aql', text: readFile(license_file)
+          steps {
+            withCredentials([file(credentialsId: 'BLUERIQ_RUNTIME_LICENSE', variable: 'license_file')]) {
+              writeFile file: './cypress/docker/config/license.aql', text: readFile(license_file)
+            }
+            bat "pnpm run e2e:docker-prepare -overrideVersion true -runtimeBranch ${params.RUNTIME_BRANCH} -runtimeUrl ${env.RUNTIME_GIT_URL}"
           }
-          bat "pnpm run e2e:docker-prepare -overrideVersion true -runtimeBranch ${params.RUNTIME_BRANCH} -runtimeUrl ${env.RUNTIME_GIT_URL}";
         }
+
         stage('e2e tests') {
-          withCredentials([file(credentialsId: 'npmrc_file', variable: 'npmrc_file'),
-                           usernamePassword(credentialsId: 'npm-readonly', usernameVariable: 'NPM_USERNAME', passwordVariable: 'NPM_PASSWORD')]) {
-            bat "ant -f scripts/docker/e2e.xml run " +
-              "-Ddocker.host=bq-docker-lin.blueriq.local " +
-              "-Dcommit=${env.GIT_COMMIT} " +
-              "-DnpmrcFileLocation=${npmrc_file}"
+          steps {
+            withCredentials([file(credentialsId: 'npmrc_file', variable: 'npmrc_file'),
+                             usernamePassword(credentialsId: 'npm-readonly', usernameVariable: 'NPM_USERNAME', passwordVariable: 'NPM_PASSWORD')]) {
+              bat "ant -f scripts/docker/e2e.xml run " +
+                "-Ddocker.host=bq-docker-lin.blueriq.local " +
+                "-Dcommit=${env.GIT_COMMIT} " +
+                "-DnpmrcFileLocation=${npmrc_file}"
+            }
           }
         }
       }
-      finally {
-        stage('docker down') {
-          bat 'pnpm run e2e:docker-down';
-        }
-      }
-
-      try {
-        stage('docker prepare dashboards') {
-          withCredentials([file(credentialsId: 'BLUERIQ_RUNTIME_LICENSE', variable: 'license_file')]) {
-            writeFile file: './cypress/docker/dashboards/config/runtime/license.aql', text: readFile(license_file)
-            writeFile file: './cypress/docker/dashboards/config/case-engine/license.aql', text: readFile(license_file)
-          }
-          bat "pnpm run e2e:docker-prepare-dashboards -overrideVersion true -skipBuild true -runtimeBranch ${params.RUNTIME_BRANCH} -runtimeUrl ${env.RUNTIME_GIT_URL} -hostName bq-docker-lin.blueriq.local";
-        }
-
-        stage('e2e tests-dashboards') {
-          withCredentials([file(credentialsId: 'npmrc_file', variable: 'npmrc_file'),
-                           usernamePassword(credentialsId: 'npm-readonly', usernameVariable: 'NPM_USERNAME', passwordVariable: 'NPM_PASSWORD')]) {
-            bat "ant -f scripts/docker/e2e.xml run-e2e-dashboards " +
-              "-Ddocker.host=bq-docker-lin.blueriq.local " +
-              "-Dcommit=${env.GIT_COMMIT} " +
-              "-DnpmrcFileLocation=${npmrc_file}"
-          }
-        }
-      }
-      finally {
-        stage('docker down') {
-          bat 'pnpm run e2e:docker-down-dashboards';
+      post {
+        always {
+          bat 'pnpm run e2e:docker-down'
         }
       }
     }
-  } catch (anyException) {
-    echo "An error occured (${anyException}) marking build as failed.";
-    currentBuild.result = 'FAILURE';
-  } finally {
-    stage("Publish results") {
-      // Test results
+
+    stage('e2e dashboards') {
+      stages {
+        stage('docker prepare dashboards') {
+          steps {
+            withCredentials([file(credentialsId: 'BLUERIQ_RUNTIME_LICENSE', variable: 'license_file')]) {
+              writeFile file: './cypress/docker/dashboards/config/runtime/license.aql', text: readFile(license_file)
+              writeFile file: './cypress/docker/dashboards/config/case-engine/license.aql', text: readFile(license_file)
+            }
+            bat "pnpm run e2e:docker-prepare-dashboards -overrideVersion true -skipBuild true -runtimeBranch ${params.RUNTIME_BRANCH} -runtimeUrl ${env.RUNTIME_GIT_URL} -hostName bq-docker-lin.blueriq.local"
+          }
+        }
+
+        stage('e2e tests dashboards') {
+          steps {
+            withCredentials([file(credentialsId: 'npmrc_file', variable: 'npmrc_file'),
+                             usernamePassword(credentialsId: 'npm-readonly', usernameVariable: 'NPM_USERNAME', passwordVariable: 'NPM_PASSWORD')]) {
+              bat "ant -f scripts/docker/e2e.xml run-e2e-dashboards " +
+                "-Ddocker.host=bq-docker-lin.blueriq.local " +
+                "-Dcommit=${env.GIT_COMMIT} " +
+                "-DnpmrcFileLocation=${npmrc_file}"
+            }
+          }
+        }
+      }
+      post {
+        always {
+          bat 'pnpm run e2e:docker-down-dashboards'
+        }
+      }
+    }
+  }
+
+  post {
+    always {
       dir('cypress/report') {
-        publishHTML([allowMissing         : false,
+        publishHTML([allowMissing         : true,
                      alwaysLinkToLastBuild: false,
                      keepAll              : true,
                      reportDir            : 'mochareports',
@@ -107,25 +112,23 @@ node {
       }
 
       // archive integration outputs
-      archiveArtifacts artifacts: 'cypress/videos/*, cypress/screenshots/**/*, cypress/snapshots/**/*.diff.png, tmp/e2e-logs.txt, tmp/e2e-dashboards-logs.txt, cypress-visual-screenshots/diff/*, cypress-visual-screenshots/comparison/*'
+      archiveArtifacts artifacts: 'cypress/videos/*, cypress/screenshots/**/*, cypress/snapshots/**/*.diff.png, tmp/e2e-logs.txt, tmp/e2e-dashboards-logs.txt, cypress-visual-screenshots/diff/*, cypress-visual-screenshots/comparison/*',
+        allowEmptyArchive: true
+
+      notifyBuildStatus()
     }
-    notifyBuildStatus();
-    deleteDir();
+
+    cleanup {
+      deleteDir()
+    }
   }
-}// node
+}
 
 def notifyBuildStatus() {
   // notify the person who started the build and the persons who's commits broke the build
   step([$class                  : 'Mailer',
         notifyEveryUnstableBuild: true,
-        recipients              : emailextrecipients([
-          [$class: 'CulpritsRecipientProvider'],
-          [$class: 'RequesterRecipientProvider']
-        ])
-  ]);
-
-  step([$class                  : 'Mailer',
-        notifyEveryUnstableBuild: true,
-        sendToIndividuals       : true
-  ]);
+        sendToIndividuals       : false,
+        recipients              : emailextrecipients([culprits(), requestor()]) + " ${DEVELOPERS_EMAIL}"
+  ])
 }
