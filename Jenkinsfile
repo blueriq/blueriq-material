@@ -1,4 +1,5 @@
 #!groovy
+@Library('cve-checks') _
 
 boolean isMaster = BRANCH_NAME == 'master'
 
@@ -154,6 +155,22 @@ pipeline {
         bat "pnpm run docs --silent --name \"@blueriq/material - ${params.releaseVersion}\""
         withCredentials([usernamePassword(credentialsId: 'bq-docs-publish-credentials', passwordVariable: 'docsPass', usernameVariable: 'docsUser'), string(credentialsId: 'bq-docs-publish-host', variable: 'docsHost')]) {
           bat "build-publish-docs.bat ${params.releaseVersion} %docsHost% %docsUser% %docsPass%"
+        }
+      }
+    }
+
+    stage('publish SBOM') {
+      steps {
+        bat 'pnpm sbom --sbom-format cyclonedx --sbom-spec-version 1.6 --sbom-type application --prod --no-optional ' +
+          '--fail-if-no-match --filter-prod "blueriq-material..." --out material-theme-sbom-cyclonedx.json'
+        script {
+          cveCheck.publishSbom(
+            component: 'blueriq-material-theme',
+            artifact : 'material-theme-sbom-cyclonedx.json',
+            release  : params.isRelease,
+            version  : params.releaseVersion,
+            latest   : isMaster
+          )
         }
       }
     }
