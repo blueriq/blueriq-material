@@ -69,7 +69,7 @@ call mvn -B  dependency:copy "-Dartifact=com.blueriq:blueriq-runtime-standalone:
 exit /B
 
 :download_services
-call mvn -B  dependency:copy "-Dartifact=com.blueriq:blueriq-customerdata-sql-store-standalone:%cdsVersion%:jar" "-DoutputDirectory=%location%" || exit /b
+call mvn -B  dependency:copy "-Dartifact=com.blueriq:blueriq-customerdata-sql-store-standalone-rest:%cdsVersion%:jar" "-DoutputDirectory=%location%" || exit /b
 exit /B
 
 :get_version

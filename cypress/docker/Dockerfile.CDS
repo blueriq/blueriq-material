@@ -4,8 +4,8 @@ LABEL maintainer="support@blueriq.com"
 
 EXPOSE 8080
 
-COPY preparations/blueriq-customerdata-sql-store-standalone-*.jar ~/customerdata.jar
-COPY blueriq-customerdata-odata-service-v1.yml /config/blueriq-customerdata/
+COPY preparations/blueriq-customerdata-sql-store-standalone-rest-*.jar ~/customerdata.jar
+COPY blueriq-customerdata-service.yml /config/blueriq-customerdata/
 
 WORKDIR ~
 
