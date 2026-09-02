@@ -9,4 +9,4 @@ COPY dashboards/config/dashboard /config/blueriq-dashboard/
 
 WORKDIR ~
 
-ENTRYPOINT ["java", "-Dspring.config.additional-location=file:///config/blueriq-dashboard/", "-jar", "dashboard.jar", "-Xmx256m" ]
+ENTRYPOINT ["java", "-Dspring.config.additional-location=file:///config/blueriq-dashboard/", "-Xmx256m", "-jar", "dashboard.jar"]

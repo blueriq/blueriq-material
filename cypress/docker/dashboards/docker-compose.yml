@@ -31,7 +31,7 @@ services:
       timeout: 5s
       start_period: 10s
       retries: 10
-    mem_limit: 384m
+    mem_limit: 512m
     depends_on:
       e2e-keycloak:
         condition: service_healthy
@@ -72,7 +72,7 @@ services:
     build:
       context: ../
       dockerfile: dashboards/Dockerfile.DCMLISTS
-    mem_limit: 384m
+    mem_limit: 512m
     ports:
       - "9086:8000"
     depends_on:
@@ -111,7 +111,7 @@ services:
     build:
       context: ../
       dockerfile: dashboards/Dockerfile.DASHBOARD
-    mem_limit: 128m
+    mem_limit: 512m
     ports:
       - "9090:8080"
     environment:
