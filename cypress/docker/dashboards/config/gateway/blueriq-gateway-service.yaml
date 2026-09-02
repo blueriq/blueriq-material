@@ -2,9 +2,9 @@ blueriq:
   gateway:
     security:
       login-redirect-allow-list:
-        - http://${HOST_NAME}:9081/**
+        - http://${FRONTEND_HOST}/**
       logout-redirect-allow-list:
-        - http://${HOST_NAME}:9081/**
+        - http://${FRONTEND_HOST}/**
 spring:
   data:
     redis:
@@ -38,7 +38,7 @@ spring:
       client:
         provider:
           local-keycloak-provider:
-            issuer-uri: http://${HOST_NAME}:9079/realms/Blueriq
+            issuer-uri: http://${KEYCLOAK_HOST}/realms/Blueriq
             user-name-attribute: preferred_username
         registration:
           keycloak:

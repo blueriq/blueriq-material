@@ -4,9 +4,12 @@
   <!-- input properties -->
   <property name="npmrcFileLocation" value="${user.home}/.npmrc"/>
 
-  <condition property="run.host" value="host.docker.internal" else="${docker.host}">
-    <equals arg1="localhost" arg2="${docker.host}"/>
+  <property environment="env"/>
+
+  <condition property="compose.project" value="${env.COMPOSE_PROJECT_NAME}" else="material-e2e-cypress">
+    <isset property="env.COMPOSE_PROJECT_NAME"/>
   </condition>
+  <property name="compose.network" value="${compose.project}_default"/>
 
   <property name="toolsFolder" location="../../tools"/>
 
@@ -29,15 +32,18 @@
   <target name="run-e2e-dashboards">
     <antcall target="run">
       <param name="cypress.spec" value="cypress/e2e-dashboards/*.cy.ts"/>
+      <param name="cypress.base.url" value="http://e2e-blueriq-material-theme"/>
     </antcall>
   </target>
 
   <target name="run" depends="create-build-image">
     <property name="cypress.spec" value="cypress/e2e/*.cy.ts"/>
-    <echo message="cypress.spec=${cypress.spec}" />
+    <property name="cypress.base.url" value="http://blueriq-material-theme"/>
+    <echo message="cypress.spec=${cypress.spec} baseUrl=${cypress.base.url} network=${compose.network}" />
     <create-container image.name="${docker.image}"
                       containerId.property="container.id"
-                      run.command="node cypress/scripts/run.mjs ${run.host} ${cypress.spec}"
+                      run.command="node cypress/scripts/run.mjs ${cypress.base.url} ${cypress.spec}"
+                      extra.args="--network ${compose.network}"
                       unless:set="${build.error}">
     </create-container>
     <property name="container.id" value="[not-set]"/>  <!-- reference property setter -->
