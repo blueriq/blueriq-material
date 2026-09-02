@@ -8,10 +8,15 @@ set runtimeBranch="master"
 set runtimeUrl="git@bq-gitlab.everest.nl:blueriq/blueriq.git"
 set runtimeVersion="17.2.0.52"
 set cdsVersion="5.0.3"
+set inNetwork=false
 
 @echo off
 call :read_params %*
 @echo on
+
+set composeFiles=--file ./cypress/docker/docker-compose.yml --file ./cypress/docker/docker-compose.ports.yml
+
+if %inNetwork% == true set composeFiles=--file ./cypress/docker/docker-compose.yml
 
 if %composeOnly% == false (
   :: Clean up preparations
@@ -29,7 +34,7 @@ if %composeOnly% == false (
 )
 
 :: Docker build and start
-call docker-compose --compatibility --file ./cypress/docker/docker-compose.yml up -d --build
+call docker-compose --compatibility %composeFiles% up -d --build
 exit %ERROR_LEVEL%
 
 

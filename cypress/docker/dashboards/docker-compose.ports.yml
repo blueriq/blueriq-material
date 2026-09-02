@@ -1,0 +1,33 @@
+services:
+  e2e-keycloak:
+    ports:
+      - "9079:8080"
+  e2e-gateway:
+    ports:
+      - "9080:8080"
+      - "20121:8000"
+  e2e-runtime:
+    ports:
+      - "9082:8080"
+  e2e-case-engine:
+    ports:
+      - "9085:8080"
+  e2e-dcm-lists:
+    ports:
+      - "9086:8000"
+  e2e-rabbitmq:
+    ports:
+      - "9087:5672"
+      - "9088:15672"
+  e2e-mongodb:
+    ports:
+      - "9084:27017"
+  e2e-blueriq-material-theme:
+    ports:
+      - "9081:80"
+  e2e-dashboard:
+    ports:
+      - "9090:8080"
+  e2e-redis:
+    ports:
+      - "9091:6379"

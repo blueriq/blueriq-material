@@ -13,8 +13,6 @@ services:
     command:
       - start-dev
       - --import-realm
-    ports:
-      - "9079:8080"
     environment:
       - KEYCLOAK_ADMIN=admin
       - KEYCLOAK_ADMIN_PASSWORD=admin
@@ -37,34 +35,28 @@ services:
         condition: service_healthy
       e2e-redis:
         condition: service_started
-    ports:
-      - "9080:8080"
-      - "20121:8000"
     environment:
       JPDA_ADDRESS: 8000
       JPDA_TRANSPORT: dt_socket
       JAVA_TOOL_OPTIONS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000
-      HOST_NAME: ${HOST_NAME:-host.docker.internal}
+      KEYCLOAK_HOST: ${KEYCLOAK_HOST:-host.docker.internal:9079}
+      FRONTEND_HOST: ${FRONTEND_HOST:-host.docker.internal:9081}
   e2e-runtime:
     build:
       context: ../
       dockerfile: dashboards/Dockerfile.RUNTIME
     mem_limit: 768m
-    ports:
-      - "9082:8080"
     depends_on:
       - e2e-case-engine
       - e2e-gateway
       - e2e-postgres
     environment:
-      HOST_NAME: ${HOST_NAME:-host.docker.internal}
+      KEYCLOAK_HOST: ${KEYCLOAK_HOST:-host.docker.internal:9079}
   e2e-case-engine:
     build:
       context: ../
       dockerfile: dashboards/Dockerfile.CASEENGINE
     mem_limit: 768m
-    ports:
-      - "9085:8080"
     depends_on:
       - e2e-dcm-lists
       - e2e-postgres
@@ -73,8 +65,6 @@ services:
       context: ../
       dockerfile: dashboards/Dockerfile.DCMLISTS
     mem_limit: 512m
-    ports:
-      - "9086:8000"
     depends_on:
       - e2e-rabbitmq
       - e2e-mongodb
@@ -83,25 +73,18 @@ services:
       context: ../
       dockerfile: dashboards/Dockerfile.RABBIT
     mem_limit: 256m
-    ports:
-      - "9087:5672"
-      - "9088:15672"
     restart: always
   e2e-mongodb:
     image: mongo:8.0.17
     mem_limit: 256m
     restart: always
-    ports:
-      - "9084:27017"
   e2e-blueriq-material-theme:
     build:
       context: ../
       dockerfile: dashboards/Dockerfile.DASHBOARD-FRONTEND
       args:
-        HOST_PORT: 9081
+        HOST_PORT: ${HOST_PORT:-9081}
     mem_limit: 128m
-    ports:
-      - "9081:80"
     depends_on:
       e2e-gateway:
         condition: service_healthy
@@ -112,17 +95,13 @@ services:
       context: ../
       dockerfile: dashboards/Dockerfile.DASHBOARD
     mem_limit: 512m
-    ports:
-      - "9090:8080"
     environment:
-      HOST_NAME: ${HOST_NAME:-host.docker.internal}
+      KEYCLOAK_HOST: ${KEYCLOAK_HOST:-host.docker.internal:9079}
   e2e-redis:
     image: docker-internal.blueriq.com/redis7.2:1.0
     mem_limit: 256m
     environment:
       CONNECTION_PASSWORD: blueriq
-    ports:
-      - "9091:6379"
   e2e-postgres:
     image: postgres:18.3-alpine@sha256:4da1a4828be12604092fa55311276f08f9224a74a62dcb4708bd7439e2a03911
     mem_limit: 512m

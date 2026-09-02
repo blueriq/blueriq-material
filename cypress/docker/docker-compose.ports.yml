@@ -1,0 +1,13 @@
+services:
+  runtime:
+    ports:
+      - "9082:8080"
+  customerdata:
+    ports:
+      - "9083:8080"
+  mongodb:
+    ports:
+      - "9084:27017"
+  blueriq-material-theme:
+    ports:
+      - "9081:80"

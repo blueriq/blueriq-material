@@ -37,6 +37,7 @@
     <attribute name="image.name"/>
     <attribute name="containerId.property"/>
     <attribute name="run.command"/>
+    <attribute name="extra.args" default=""/>
     <element name="volumeArgs" optional="true"/>
     <sequential>
       <exec executable="cmd" resultproperty="container.error.property" failonerror="false">
@@ -47,6 +48,7 @@
         <arg value="${docker.host}"/>
         <arg value="create"/>
         <volumeArgs/>
+        <arg line="@{extra.args}"/>
         <arg value="-it"/>
         <arg value="@{image.name}"/>
         <arg line="@{run.command}"/>

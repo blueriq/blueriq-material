@@ -45,7 +45,7 @@ pipeline {
             withCredentials([file(credentialsId: 'BLUERIQ_RUNTIME_LICENSE', variable: 'license_file')]) {
               writeFile file: './cypress/docker/config/license.aql', text: readFile(license_file)
             }
-            bat "pnpm run e2e:docker-prepare -overrideVersion true -runtimeBranch ${params.RUNTIME_BRANCH} -runtimeUrl ${env.RUNTIME_GIT_URL}"
+            bat "pnpm run e2e:docker-prepare -overrideVersion true -inNetwork true -runtimeBranch ${params.RUNTIME_BRANCH} -runtimeUrl ${env.RUNTIME_GIT_URL}"
           }
         }
 
@@ -76,7 +76,7 @@ pipeline {
               writeFile file: './cypress/docker/dashboards/config/runtime/license.aql', text: readFile(license_file)
               writeFile file: './cypress/docker/dashboards/config/case-engine/license.aql', text: readFile(license_file)
             }
-            bat "pnpm run e2e:docker-prepare-dashboards -overrideVersion true -skipBuild true -runtimeBranch ${params.RUNTIME_BRANCH} -runtimeUrl ${env.RUNTIME_GIT_URL} -hostName bq-docker-lin.blueriq.local"
+            bat "pnpm run e2e:docker-prepare-dashboards -overrideVersion true -skipBuild true -inNetwork true -runtimeBranch ${params.RUNTIME_BRANCH} -runtimeUrl ${env.RUNTIME_GIT_URL}"
           }
         }
 

@@ -4,29 +4,21 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.RUNTIME
-    ports:
-      - "9082:8080"
     depends_on:
       - postgres
   customerdata:
     build:
       context: .
       dockerfile: Dockerfile.CDS
-    ports:
-      - "9083:8080"
     depends_on:
       - postgres
   mongodb:
     image: mongo:8.0.17
     restart: always
-    ports:
-      - "9084:27017"
   blueriq-material-theme:
     build:
       context: .
       dockerfile: Dockerfile.frontend
-    ports:
-      - "9081:80"
     depends_on:
       - runtime
   postgres:

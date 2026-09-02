@@ -11,10 +11,23 @@ set dcmVersion="4.0.6"
 set dashboardVersion="2.1.1"
 set gatewayVersion="1.1.2"
 set hostName=host.docker.internal
+set inNetwork=false
 
 @echo off
 call :read_params %*
 @echo on
+
+set frontendHost=%hostName%:9081
+set keycloakHost=%hostName%:9079
+set hostPort=9081
+set composeFiles=--file ./cypress/docker/dashboards/docker-compose.yml --file ./cypress/docker/dashboards/docker-compose.ports.yml
+
+if %inNetwork% == true (
+  set frontendHost=e2e-blueriq-material-theme
+  set keycloakHost=e2e-keycloak:8080
+  set hostPort=80
+  set composeFiles=--file ./cypress/docker/dashboards/docker-compose.yml
+)
 
 if %composeOnly% == false (
   :: Clean up preparations
@@ -31,10 +44,12 @@ if %composeOnly% == false (
   call xcopy /I /S dist cypress\docker\preparations\dist /Y
 )
 
-call echo HOST_NAME=%hostName%> cypress\docker\preparations\.dockerEnv
+call echo FRONTEND_HOST=%frontendHost%> cypress\docker\preparations\.dockerEnv
+call echo KEYCLOAK_HOST=%keycloakHost%>> cypress\docker\preparations\.dockerEnv
+call echo HOST_PORT=%hostPort%>> cypress\docker\preparations\.dockerEnv
 
 :: Docker build and start
-call docker-compose --compatibility --file ./cypress/docker/dashboards/docker-compose.yml --env-file ./cypress/docker/preparations/.dockerEnv up -d --build
+call docker-compose --compatibility %composeFiles% --env-file ./cypress/docker/preparations/.dockerEnv up -d --build
 exit %ERROR_LEVEL%
 
 :read_params
@@ -90,3 +105,4 @@ call mvn -B org.apache.maven.plugins:maven-help-plugin:3.3.0:evaluate -Dexpressi
 call set /p %storeVar%=<tempVersion.txt
 call DEL /F /Q tempVersion.txt
 exit /B
+
