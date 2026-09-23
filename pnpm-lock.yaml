@@ -53,17 +53,17 @@ importers:
         specifier: 20.3.30
         version: 20.3.30(@angular/common@20.3.30(@angular/core@20.3.30(@angular/compiler@20.3.30)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.30(@angular/compiler@20.3.30)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@20.3.30(@angular/animations@20.3.30(@angular/core@20.3.30(@angular/compiler@20.3.30)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.30(@angular/core@20.3.30(@angular/compiler@20.3.30)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.30(@angular/compiler@20.3.30)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
       '@blueriq/angular':
-        specifier: 0.20.2
-        version: 0.20.2(88f07f80c8ac0e58eaaa904839567b70)
+        specifier: 0.22.0
+        version: 0.22.0(a4c0cdd384746ad158293075414d9438)
       '@blueriq/core':
-        specifier: 0.20.2
-        version: 0.20.2
+        specifier: 0.22.0
+        version: 0.22.0
       '@blueriq/dashboard':
-        specifier: 0.20.2
-        version: 0.20.2(@angular/core@20.3.30(@angular/compiler@20.3.30)(rxjs@7.8.2)(zone.js@0.15.1))(@blueriq/angular@0.20.2(88f07f80c8ac0e58eaaa904839567b70))(@blueriq/core@0.20.2)(@ngrx/effects@20.1.0(@angular/core@20.3.30(@angular/compiler@20.3.30)(rxjs@7.8.2)(zone.js@0.15.1))(@ngrx/store@20.1.0(@angular/core@20.3.30(@angular/compiler@20.3.30)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(rxjs@7.8.2))(rxjs@7.8.2)
+        specifier: 0.22.0
+        version: 0.22.0(@angular/core@20.3.30(@angular/compiler@20.3.30)(rxjs@7.8.2)(zone.js@0.15.1))(@blueriq/angular@0.22.0(a4c0cdd384746ad158293075414d9438))(@blueriq/core@0.22.0)(@ngrx/effects@20.1.0(@angular/core@20.3.30(@angular/compiler@20.3.30)(rxjs@7.8.2)(zone.js@0.15.1))(@ngrx/store@20.1.0(@angular/core@20.3.30(@angular/compiler@20.3.30)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(rxjs@7.8.2))(rxjs@7.8.2)
       '@blueriq/devtools':
-        specifier: 0.20.2
-        version: 0.20.2(rxjs@7.8.2)
+        specifier: 0.22.0
+        version: 0.22.0(rxjs@7.8.2)
       '@danielmoncada/angular-datetime-picker':
         specifier: 20.0.1
         version: 20.0.1(@angular/cdk@20.2.14(@angular/common@20.3.30(@angular/core@20.3.30(@angular/compiler@20.3.30)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.30(@angular/compiler@20.3.30)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/common@20.3.30(@angular/core@20.3.30(@angular/compiler@20.3.30)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.30(@angular/compiler@20.3.30)(rxjs@7.8.2)(zone.js@0.15.1))
@@ -1146,16 +1146,16 @@ packages:
     resolution: {integrity: sha512-Vj1jF3cPfxg7OAfoI7QnVKLoILlm2JF9pnVHrX8qx7AHMiYWT+NDAA7jChlNgRS4WTLc/fD1lXLmPixluj+3Gg==}
     engines: {node: '>=6.9.0'}
 
-  '@blueriq/angular@0.20.2':
-    resolution: {integrity: sha512-3n24N5K/xVfKF+KsCwfLTgFQeNDGOOaXRNstq6/cgrDGugpseDIXGwvB06R/52DEXhFMcqloaHcIQ0w6NILUyQ==, tarball: https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/angular/-/@blueriq/angular-0.20.2.tgz}
+  '@blueriq/angular@0.22.0':
+    resolution: {integrity: sha512-ONinWQO9PpX10WKcbshMF5DbP9TC8h96LnywTW8BKzkMui/RRiP4yt+jL/EnuUkzK1byG/qYbPzF/MGCYgnR3Q==, tarball: https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/angular/-/@blueriq/angular-0.22.0.tgz}
     peerDependencies:
-      '@angular/common': ^19.2.18 || ^20.0.0 || ^21.0.0
-      '@angular/core': ^19.2.18 || ^20.0.0 || ^21.0.0
-      '@angular/forms': ^19.2.18 || ^20.0.0 || ^21.0.0
-      '@blueriq/core': 0.20.2
-      '@blueriq/devtools': 0.20.2
-      '@ngrx/effects': ^19.2.1 || ^20.0.0 || ^21.0.0
-      '@ngrx/store': ^19.2.1 || ^20.0.0 || ^21.0.0
+      '@angular/common': ^20.3.0 || ^21.0.0 || ^22.0.0
+      '@angular/core': ^20.3.0 || ^21.0.0 || ^22.0.0
+      '@angular/forms': ^20.3.0 || ^21.0.0 || ^22.0.0
+      '@blueriq/core': 0.22.0
+      '@blueriq/devtools': 0.22.0
+      '@ngrx/effects': ^20.0.0 || ^21.0.0
+      '@ngrx/store': ^20.0.0 || ^21.0.0
       '@stomp/rx-stomp': ^2.0.1
       '@stomp/stompjs': ^7.1.1
       rxjs: ^7.8.1
@@ -1163,20 +1163,20 @@ packages:
       '@blueriq/devtools':
         optional: true
 
-  '@blueriq/core@0.20.2':
-    resolution: {integrity: sha512-SM//BeP3nd8s+m5kGmam8AykEk9vSARXWsjXkiQ8M1SNl6NrgYXbIlakhFmiFT0PGWR9MZAjUentFE3VRvwvBg==, tarball: https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/core/-/@blueriq/core-0.20.2.tgz}
+  '@blueriq/core@0.22.0':
+    resolution: {integrity: sha512-iG6Zqz2Js9+H5zhd3g29BannHBiotP+YsdcSXt+A5pw6NgYYFGKLkdRYrgOrkcY2q0i742TydY4x2HQE623bgA==, tarball: https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/core/-/@blueriq/core-0.22.0.tgz}
 
-  '@blueriq/dashboard@0.20.2':
-    resolution: {integrity: sha512-k97ll7//TaAF7DPC7SLLFinwLQsIRKyI1fD78luBsRkeq2KUmkhgOJjAYpeEueq0/adFfCbjq5YC1g4UekCR5w==, tarball: https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/dashboard/-/@blueriq/dashboard-0.20.2.tgz}
+  '@blueriq/dashboard@0.22.0':
+    resolution: {integrity: sha512-1TaacAbQ/5s5oqR8TuWrjeVpExTXNqstKesn7oPF+25lzabhNAk7EAYOnGUu6ZYfdJ1WUmja0NH00gdO3oB9Yg==, tarball: https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/dashboard/-/@blueriq/dashboard-0.22.0.tgz}
     peerDependencies:
-      '@angular/core': ^19.2.18 || ^20.0.0 || ^21.0.0
-      '@blueriq/angular': 0.20.2
-      '@blueriq/core': 0.20.2
-      '@ngrx/effects': ^19.2.1 || ^20.0.0 || ^21.0.0
+      '@angular/core': ^20.3.0 || ^21.0.0 || ^22.0.0
+      '@blueriq/angular': 0.22.0
+      '@blueriq/core': 0.22.0
+      '@ngrx/effects': ^20.0.0 || ^21.0.0
       rxjs: ^7.8.1
 
-  '@blueriq/devtools@0.20.2':
-    resolution: {integrity: sha512-DQd6qy7twthDEZ0XlSrs4DjNR9TJNHTWRL54diPITUFMnJCUKe6rkJTNNLx+TCiAcLpLJMmdcEZMbd15sga09A==, tarball: https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/devtools/-/@blueriq/devtools-0.20.2.tgz}
+  '@blueriq/devtools@0.22.0':
+    resolution: {integrity: sha512-a/4fBw0eQb/I42iUKeDWNJnt+Uk5ymEfVPwpUSAoayPnnS7Ys1IwCoEswA1ClARNeZONDMdp5hQU1IdIuVwlIw==, tarball: https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/devtools/-/@blueriq/devtools-0.22.0.tgz}
     peerDependencies:
       rxjs: ^7.8.0
 
@@ -8595,12 +8595,12 @@ snapshots:
       '@babel/helper-string-parser': 7.29.7
       '@babel/helper-validator-identifier': 7.29.7
 
-  '@blueriq/angular@0.20.2(88f07f80c8ac0e58eaaa904839567b70)':
+  '@blueriq/angular@0.22.0(a4c0cdd384746ad158293075414d9438)':
     dependencies:
       '@angular/common': 20.3.30(@angular/core@20.3.30(@angular/compiler@20.3.30)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
       '@angular/core': 20.3.30(@angular/compiler@20.3.30)(rxjs@7.8.2)(zone.js@0.15.1)
       '@angular/forms': 20.3.30(@angular/common@20.3.30(@angular/core@20.3.30(@angular/compiler@20.3.30)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.30(@angular/compiler@20.3.30)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@20.3.30(@angular/animations@20.3.30(@angular/core@20.3.30(@angular/compiler@20.3.30)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.30(@angular/core@20.3.30(@angular/compiler@20.3.30)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.30(@angular/compiler@20.3.30)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
-      '@blueriq/core': 0.20.2
+      '@blueriq/core': 0.22.0
       '@ngrx/effects': 20.1.0(@angular/core@20.3.30(@angular/compiler@20.3.30)(rxjs@7.8.2)(zone.js@0.15.1))(@ngrx/store@20.1.0(@angular/core@20.3.30(@angular/compiler@20.3.30)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(rxjs@7.8.2)
       '@ngrx/store': 20.1.0(@angular/core@20.3.30(@angular/compiler@20.3.30)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
       '@stomp/rx-stomp': 2.4.0(@stomp/stompjs@7.3.0)(rxjs@7.8.2)(uuid@14.0.2)
@@ -8609,24 +8609,24 @@ snapshots:
       rxjs: 7.8.2
       tslib: 2.5.3
     optionalDependencies:
-      '@blueriq/devtools': 0.20.2(rxjs@7.8.2)
+      '@blueriq/devtools': 0.22.0(rxjs@7.8.2)
 
-  '@blueriq/core@0.20.2':
+  '@blueriq/core@0.22.0':
     dependencies:
       css-selector-parser: 1.3.0
       tslib: 2.5.3
 
-  '@blueriq/dashboard@0.20.2(@angular/core@20.3.30(@angular/compiler@20.3.30)(rxjs@7.8.2)(zone.js@0.15.1))(@blueriq/angular@0.20.2(88f07f80c8ac0e58eaaa904839567b70))(@blueriq/core@0.20.2)(@ngrx/effects@20.1.0(@angular/core@20.3.30(@angular/compiler@20.3.30)(rxjs@7.8.2)(zone.js@0.15.1))(@ngrx/store@20.1.0(@angular/core@20.3.30(@angular/compiler@20.3.30)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(rxjs@7.8.2))(rxjs@7.8.2)':
+  '@blueriq/dashboard@0.22.0(@angular/core@20.3.30(@angular/compiler@20.3.30)(rxjs@7.8.2)(zone.js@0.15.1))(@blueriq/angular@0.22.0(a4c0cdd384746ad158293075414d9438))(@blueriq/core@0.22.0)(@ngrx/effects@20.1.0(@angular/core@20.3.30(@angular/compiler@20.3.30)(rxjs@7.8.2)(zone.js@0.15.1))(@ngrx/store@20.1.0(@angular/core@20.3.30(@angular/compiler@20.3.30)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(rxjs@7.8.2))(rxjs@7.8.2)':
     dependencies:
       '@angular/core': 20.3.30(@angular/compiler@20.3.30)(rxjs@7.8.2)(zone.js@0.15.1)
-      '@blueriq/angular': 0.20.2(88f07f80c8ac0e58eaaa904839567b70)
-      '@blueriq/core': 0.20.2
+      '@blueriq/angular': 0.22.0(a4c0cdd384746ad158293075414d9438)
+      '@blueriq/core': 0.22.0
       '@ngrx/effects': 20.1.0(@angular/core@20.3.30(@angular/compiler@20.3.30)(rxjs@7.8.2)(zone.js@0.15.1))(@ngrx/store@20.1.0(@angular/core@20.3.30(@angular/compiler@20.3.30)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(rxjs@7.8.2)
       rxjs: 7.8.2
       tslib: 2.5.3
       uuid: 14.0.2
 
-  '@blueriq/devtools@0.20.2(rxjs@7.8.2)':
+  '@blueriq/devtools@0.22.0(rxjs@7.8.2)':
     dependencies:
       rxjs: 7.8.2
       tslib: 2.5.3

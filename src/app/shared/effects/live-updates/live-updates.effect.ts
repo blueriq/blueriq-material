@@ -6,6 +6,7 @@ import {
   LiveUpdatesConnectionLostAction,
   LiveUpdatesReconnectedAction,
   PingUpdate,
+  TaskAvailableZoneUpdate,
   TaskCompletedUpdate,
   TaskCompletedZoneUpdate,
 } from '@blueriq/angular/live-updates';
@@ -51,10 +52,12 @@ export class LiveUpdatesEffect {
       this.toastrService.success('Ping received');
     } else if (update instanceof TaskCompletedZoneUpdate) {
       this.toastrService.success(`Task ${ this.getTaskDisplayName(update) } is completed`, 'Task Completed');
+    } else if (update instanceof TaskAvailableZoneUpdate) {
+      this.toastrService.info(`Task ${ this.getTaskDisplayName(update) } is available`, 'Task Available');
     }
   }
 
-  private getTaskDisplayName(update: TaskCompletedZoneUpdate): string {
+  private getTaskDisplayName(update: TaskCompletedZoneUpdate | TaskAvailableZoneUpdate): string {
     // as long as we do not know the language, return the first display name for now or the task name if no display names are found
     return Object.keys(update.taskDisplayNames).length > 0 ? Object.values(update.taskDisplayNames)[0] : update.taskName;
   }

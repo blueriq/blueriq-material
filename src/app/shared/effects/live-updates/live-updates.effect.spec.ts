@@ -5,6 +5,7 @@ import {
   LiveUpdatesConnectionLostAction,
   LiveUpdatesReconnectedAction,
   PingUpdate,
+  TaskAvailableZoneUpdate,
   TaskCompletedUpdate,
   TaskCompletedZoneUpdate,
 } from '@blueriq/angular/live-updates';
@@ -79,6 +80,32 @@ describe('Live Updates Effect', () => {
     tick();
 
     expect(toastrServiceSpy.success).toHaveBeenCalledWith('Task Functional name is completed', 'Task Completed');
+  }));
+
+  it('shows technical name when TaskAvailable live update from Zone has no displayNames', fakeAsync(() => {
+    const action = new LiveUpdateAction(new TaskAvailableZoneUpdate({
+      type: 'taskAvailableZone', taskName: 'technicalName', taskDisplayNames: {},
+    }));
+    effects.liveUpdateAction$.subscribe();
+    actions.next(action);
+
+    tick();
+
+    expect(toastrServiceSpy.info).toHaveBeenCalledWith('Task technicalName is available', 'Task Available');
+  }));
+
+  it('shows first display name when TaskAvailable live update from Zone has displayNames', fakeAsync(() => {
+    const action = new LiveUpdateAction(new TaskAvailableZoneUpdate({
+      type: 'taskAvailableZone',
+      taskName: 'technicalName',
+      taskDisplayNames: {'en-US': 'Functional name', 'nl-NL': 'Functionele naam'},
+    }));
+    effects.liveUpdateAction$.subscribe();
+    actions.next(action);
+
+    tick();
+
+    expect(toastrServiceSpy.info).toHaveBeenCalledWith('Task Functional name is available', 'Task Available');
   }));
 
   it('does not respond to Unsupported live update', fakeAsync(() => {

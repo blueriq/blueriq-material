@@ -5,8 +5,9 @@ import { Dispatcher } from '@blueriq/angular';
 import { TestDispatcher } from '@blueriq/angular/testing';
 import { DashboardAuthService } from '@blueriq/dashboard';
 import { ToastrService } from 'ngx-toastr';
-import { of } from 'rxjs';
+import { of, Subject } from 'rxjs';
 import { NotificationType } from '../notification-overlay/notification.model';
+import { ActivateCaseAction, DeactivateCaseAction } from '../shared/dcm/case-aware.service';
 import { DashboardComponent } from './dashboard.component';
 
 describe('Dashboard Component', () => {
@@ -17,15 +18,17 @@ describe('Dashboard Component', () => {
   let route: jasmine.SpyObj<ActivatedRoute>;
   let toastrService: ToastrService;
   let testDispatcher: TestDispatcher;
+  let queryParams: Subject<Params>;
 
   beforeEach(async() => {
     testDispatcher = new TestDispatcher();
+    queryParams = new Subject<Params>();
     authService = jasmine.createSpyObj<DashboardAuthService>('DashboardAuthService', ['login']);
     router = jasmine.createSpyObj<Router>('Router', ['navigate']);
     const routeParams: Params = { page: 'default' };
     route = jasmine.createSpyObj<ActivatedRoute>('ActivateRoute', [], {
       'paramMap': of(convertToParamMap({})),
-      'queryParams': of(convertToParamMap({})),
+      'queryParams': queryParams,
       'snapshot': {
         queryParams: {},
         params: routeParams,
@@ -128,6 +131,52 @@ describe('Dashboard Component', () => {
     expect(router.navigate).toHaveBeenCalledWith([`../page`], {
       relativeTo: route,
       queryParams: { param: '1' },
+    });
+  });
+
+  describe('case topic subscription', () => {
+    const dispatched = () => testDispatcher.dispatched
+      .map(action => `${ action.type }:${ (action as ActivateCaseAction | DeactivateCaseAction).caseId }`);
+
+    it('activates the case in the url', () => {
+      queryParams.next({ caseId: 'A' });
+
+      expect(dispatched()).toEqual(['activateCase:A']);
+    });
+
+    it('does not re-activate the case when other query parameters change', () => {
+      queryParams.next({ caseId: 'A' });
+      queryParams.next({ caseId: 'A', devtools: '' });
+
+      expect(dispatched()).toEqual(['activateCase:A']);
+    });
+
+    it('deactivates the previous case when another case is opened', () => {
+      queryParams.next({ caseId: 'A' });
+      queryParams.next({ caseId: 'B' });
+
+      expect(dispatched()).toEqual(['activateCase:A', 'deactivateCase:A', 'activateCase:B']);
+    });
+
+    it('deactivates the case when navigating to a page without a case', () => {
+      queryParams.next({ caseId: 'A' });
+      queryParams.next({});
+
+      expect(dispatched()).toEqual(['activateCase:A', 'deactivateCase:A']);
+    });
+
+    it('deactivates the case when the dashboard is destroyed', () => {
+      queryParams.next({ caseId: 'A' });
+      component.destroy();
+
+      expect(dispatched()).toEqual(['activateCase:A', 'deactivateCase:A']);
+    });
+
+    it('dispatches nothing without a case', () => {
+      queryParams.next({});
+      component.destroy();
+
+      expect(testDispatcher.dispatched).toEqual([]);
     });
   });
 });
