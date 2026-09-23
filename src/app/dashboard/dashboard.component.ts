@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { BlueriqComponents, Dispatcher } from '@blueriq/angular';
 import { DashboardAuthService, DashboardPageChange, QueryParameters } from '@blueriq/dashboard';
@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { WidgetPageComponent } from '../modules/widget/widget-page/widget-page.component';
 import { NotificationModel, NotificationType } from '../notification-overlay/notification.model';
-import { ActivateCaseAction } from '../shared/dcm/case-aware.service';
+import { ActivateCaseAction, DeactivateCaseAction } from '../shared/dcm/case-aware.service';
 import { ActivateTaskAction } from '../shared/dcm/task-aware.service';
 
 @Component({
@@ -16,7 +16,7 @@ import { ActivateTaskAction } from '../shared/dcm/task-aware.service';
     ],
     standalone: false
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnDestroy {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly authService = inject(DashboardAuthService);
@@ -30,6 +30,7 @@ export class DashboardComponent {
   page: Observable<string | null>;
   parameters: Observable<QueryParameters | null>;
   notification: NotificationModel | undefined;
+  private activeCaseId: string | undefined;
 
   constructor() {
     this.shortcut = this.route.paramMap.pipe(map(param => param.get('shortcut')));
@@ -40,13 +41,15 @@ export class DashboardComponent {
     this.parameters = this.route.queryParams;
 
     this.parameters.subscribe((query) => {
-      if (query != null && query['caseId'] != null) {
-        this.dispatcher.dispatch(new ActivateCaseAction(query['caseId']));
-      }
+      this.activateCase(query?.['caseId'] ?? undefined);
       if (query != null && query['taskId'] != null) {
         this.dispatcher.dispatch(new ActivateTaskAction(query['taskId']));
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.activateCase(undefined);
   }
 
   onPageChanged(pageChange: DashboardPageChange): void {
@@ -66,6 +69,19 @@ export class DashboardComponent {
 
   onError(error: string) {
     this.notification = new NotificationModel(NotificationType.Error, 'Unexpected error', error);
+  }
+
+  private activateCase(caseId: string | undefined): void {
+    if (caseId === this.activeCaseId) {
+      return;
+    }
+    if (this.activeCaseId != null) {
+      this.dispatcher.dispatch(new DeactivateCaseAction(this.activeCaseId));
+    }
+    if (caseId != null) {
+      this.dispatcher.dispatch(new ActivateCaseAction(caseId));
+    }
+    this.activeCaseId = caseId;
   }
 
   private determineRoutePage(page: string): string {

@@ -75,6 +75,10 @@ const routes: Routes = [
       connectInZone: true}),
     ToastrModule.forRoot({
       autoDismiss: true,
+      maxOpened: 5,
+      preventDuplicates: true,
+      countDuplicates: true,
+      resetTimeoutOnDuplicate: true,
       positionClass: 'toast-bottom-right',
       timeOut: 7500,
     }),
