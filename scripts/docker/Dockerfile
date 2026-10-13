@@ -1,5 +1,5 @@
 # syntax = docker/dockerfile:1.24@sha256:87999aa3d42bdc6bea60565083ee17e86d1f3339802f543c0d03998580f9cb89
-FROM docker-internal.blueriq.com/nodejs-build:24.18.0-ubi-9.5-1736404036@sha256:03a02f713b02c218cca891e4d783ccc7988dc456e701f136dc38656c7dd978a0 as node-base
+FROM docker-internal.blueriq.com/nodejs-build:24.18.0-ubi-9.5-1736404036@sha256:b0eabeb868e2ccc6fb40ad498a8916f6d27a294819ac0d2b5d2026b1ab4fa078 as node-base
 
 FROM node-base AS packages
 

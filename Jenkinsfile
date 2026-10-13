@@ -15,16 +15,12 @@ pipeline {
 
   environment {
     CHROME_BIN = "${env.CHROME_116_0_5845_97}"
-    // BQ-19897: the corepack pnpm shim resolves pnpm from the packageManager field, fetching it from
-    // Artifactory with the npm-readonly credential (Basic auth). The agent's ambient ~/.npmrc supplies
-    // pnpm's package-install auth, so the stages just call bare `pnpm`.
-    COREPACK_NPM_REGISTRY = 'https://artifactory.blueriq.com/artifactory/api/npm/yarn'
-    COREPACK_INTEGRITY_KEYS = '0'
-    COREPACK_ENABLE_DOWNLOAD_PROMPT = '0'
+    // pnpm runs as its native binary, fetched into PNPM_EXE_DIR by the install stage. Steps that run pnpm put
+    // PNPM_EXE_DIR first on PATH with withEnv, as tools are put back in front of PATH for every stage.
+    PNPM_VERSION = '12.11.2'
+    PNPM_EXE_DIR = "${env.WORKSPACE}\\.pnpm-bin"
+    // The npm-readonly credential, fed to build.xml's docker BuildKit secrets (--secret id=npm_username,env=NPM_USERNAME).
     NPM_READONLY = credentials('npm-readonly')
-    COREPACK_NPM_USERNAME = "${env.NPM_READONLY_USR}"
-    COREPACK_NPM_PASSWORD = "${env.NPM_READONLY_PSW}"
-    // Same npm-readonly credential, fed to build.xml's docker BuildKit secrets (--secret id=npm_username,env=NPM_USERNAME).
     NPM_USERNAME = "${env.NPM_READONLY_USR}"
     NPM_PASSWORD = "${env.NPM_READONLY_PSW}"
   }
@@ -73,12 +69,18 @@ pipeline {
 
     stage('install') {
       steps {
-        bat '''
-          call node -v
-          call pnpm -v
-          call pnpm install --frozen-lockfile --ignore-scripts
-          call pnpm run ng:version
-        '''
+        withEnv(["PATH+PNPM=${env.PNPM_EXE_DIR}"]) {
+          // npm pack fetches the package without running install scripts; Windows' bsdtar extracts pnpm.exe from it.
+          bat '''
+            if not exist "%PNPM_EXE_DIR%" mkdir "%PNPM_EXE_DIR%"
+            call npm pack @pnpm/exe.win32-x64@%PNPM_VERSION% --pack-destination "%PNPM_EXE_DIR%" || exit /b 1
+            %SystemRoot%\\System32\\tar.exe -xzf "%PNPM_EXE_DIR%\\pnpm-exe.win32-x64-%PNPM_VERSION%.tgz" -C "%PNPM_EXE_DIR%" --strip-components=1 package/pnpm.exe || exit /b 1
+            call node -v
+            call pnpm -v
+            call pnpm install --frozen-lockfile --ignore-scripts
+            call pnpm run ng:version
+          '''
+        }
       }
     }
     stage('verify & build') {
@@ -86,7 +88,9 @@ pipeline {
         stage('test') {
           steps {
             script {
-              def result = bat([returnStdout: true, script: 'pnpm run verify'])
+              def result = withEnv(["PATH+PNPM=${env.PNPM_EXE_DIR}"]) {
+                bat([returnStdout: true, script: 'pnpm run verify'])
+              }
               println result
 
               // Unfortunately it is needed to check if the coverage is not met because the coverage-reporter always
@@ -100,7 +104,9 @@ pipeline {
         }
         stage('eslint') {
           steps {
-            bat 'pnpm run eslint --format checkstyle --output-file eslint_results_checkstyle.xml'
+            withEnv(["PATH+PNPM=${env.PNPM_EXE_DIR}"]) {
+              bat 'pnpm run eslint --format checkstyle --output-file eslint_results_checkstyle.xml'
+            }
           }
         }
         stage('stylelint') {
@@ -152,7 +158,9 @@ pipeline {
     stage('publish docs') {
       when { expression { params.isRelease } }
       steps {
-        bat "pnpm run docs --silent --name \"@blueriq/material - ${params.releaseVersion}\""
+        withEnv(["PATH+PNPM=${env.PNPM_EXE_DIR}"]) {
+          bat "pnpm run docs --silent --name \"@blueriq/material - ${params.releaseVersion}\""
+        }
         withCredentials([usernamePassword(credentialsId: 'bq-docs-publish-credentials', passwordVariable: 'docsPass', usernameVariable: 'docsUser'), string(credentialsId: 'bq-docs-publish-host', variable: 'docsHost')]) {
           bat "build-publish-docs.bat ${params.releaseVersion} %docsHost% %docsUser% %docsPass%"
         }
@@ -161,8 +169,10 @@ pipeline {
 
     stage('publish SBOM') {
       steps {
-        bat 'pnpm sbom --sbom-format cyclonedx --sbom-spec-version 1.6 --sbom-type application --prod --no-optional ' +
-          '--fail-if-no-match --filter-prod "blueriq-material..." --out material-theme-sbom-cyclonedx.json'
+        withEnv(["PATH+PNPM=${env.PNPM_EXE_DIR}"]) {
+          bat 'pnpm sbom --sbom-format cyclonedx --sbom-spec-version 1.6 --sbom-type application --prod --no-optional ' +
+            '--fail-if-no-match --filter-prod "blueriq-material..." --out material-theme-sbom-cyclonedx.json'
+        }
         script {
           cveCheck.publishSbom(
             component: 'blueriq-material-theme',
