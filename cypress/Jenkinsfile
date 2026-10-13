@@ -12,6 +12,10 @@ pipeline {
 
   environment {
     COMPOSE_PROJECT_NAME = 'material-e2e-cypress'
+    // pnpm runs as its native binary, fetched into PNPM_EXE_DIR by the install pnpm stage. Steps that run pnpm put
+    // PNPM_EXE_DIR first on PATH with withEnv, as tools are put back in front of PATH for every stage.
+    PNPM_VERSION = '12.11.2'
+    PNPM_EXE_DIR = "${env.WORKSPACE}\\.pnpm-bin"
   }
 
   options {
@@ -27,6 +31,20 @@ pipeline {
   }
 
   stages {
+    stage('install pnpm') {
+      steps {
+        withEnv(["PATH+PNPM=${env.PNPM_EXE_DIR}"]) {
+          // npm pack fetches the package without running install scripts; Windows' bsdtar extracts pnpm.exe from it.
+          bat '''
+            if not exist "%PNPM_EXE_DIR%" mkdir "%PNPM_EXE_DIR%"
+            call npm pack @pnpm/exe.win32-x64@%PNPM_VERSION% --pack-destination "%PNPM_EXE_DIR%" || exit /b 1
+            %SystemRoot%\\System32\\tar.exe -xzf "%PNPM_EXE_DIR%\\pnpm-exe.win32-x64-%PNPM_VERSION%.tgz" -C "%PNPM_EXE_DIR%" --strip-components=1 package/pnpm.exe || exit /b 1
+            call pnpm -v
+          '''
+        }
+      }
+    }
+
     stage('build') {
       steps {
         withCredentials([usernamePassword(credentialsId: 'npm-readonly', usernameVariable: 'NPM_USERNAME', passwordVariable: 'NPM_PASSWORD')]) {
@@ -45,7 +63,9 @@ pipeline {
             withCredentials([file(credentialsId: 'BLUERIQ_RUNTIME_LICENSE', variable: 'license_file')]) {
               writeFile file: './cypress/docker/config/license.aql', text: readFile(license_file)
             }
-            bat "pnpm run e2e:docker-prepare -overrideVersion true -inNetwork true -runtimeBranch ${params.RUNTIME_BRANCH} -runtimeUrl ${env.RUNTIME_GIT_URL}"
+            withEnv(["PATH+PNPM=${env.PNPM_EXE_DIR}"]) {
+              bat "pnpm run e2e:docker-prepare -overrideVersion true -inNetwork true -runtimeBranch ${params.RUNTIME_BRANCH} -runtimeUrl ${env.RUNTIME_GIT_URL}"
+            }
           }
         }
 
@@ -63,7 +83,9 @@ pipeline {
       }
       post {
         always {
-          bat 'pnpm run e2e:docker-down'
+          withEnv(["PATH+PNPM=${env.PNPM_EXE_DIR}"]) {
+            bat 'pnpm run e2e:docker-down'
+          }
         }
       }
     }
@@ -76,7 +98,9 @@ pipeline {
               writeFile file: './cypress/docker/dashboards/config/runtime/license.aql', text: readFile(license_file)
               writeFile file: './cypress/docker/dashboards/config/case-engine/license.aql', text: readFile(license_file)
             }
-            bat "pnpm run e2e:docker-prepare-dashboards -overrideVersion true -skipBuild true -inNetwork true -runtimeBranch ${params.RUNTIME_BRANCH} -runtimeUrl ${env.RUNTIME_GIT_URL}"
+            withEnv(["PATH+PNPM=${env.PNPM_EXE_DIR}"]) {
+              bat "pnpm run e2e:docker-prepare-dashboards -overrideVersion true -skipBuild true -inNetwork true -runtimeBranch ${params.RUNTIME_BRANCH} -runtimeUrl ${env.RUNTIME_GIT_URL}"
+            }
           }
         }
 
@@ -94,7 +118,9 @@ pipeline {
       }
       post {
         always {
-          bat 'pnpm run e2e:docker-down-dashboards'
+          withEnv(["PATH+PNPM=${env.PNPM_EXE_DIR}"]) {
+            bat 'pnpm run e2e:docker-down-dashboards'
+          }
         }
       }
     }
