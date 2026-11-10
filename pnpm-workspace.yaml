@@ -6,14 +6,14 @@ registries:
   '@blueriq': https://artifactory.blueriq.com/artifactory/api/npm/yarn/
 overrides:
   glob-parent: ^6.0.2
-  minimatch: ^3.0.5
+  minimatch: 3.1.5
   validator: 13.15.23
   serialize-javascript: ^6.0.2
-  '@babel/helpers': ^7.26.10
-  '@babel/runtime': ^7.26.10
+  '@babel/helpers': 7.29.13
+  '@babel/runtime': 7.29.13
   qs: 6.15.0
-  lodash: ^4.17.23
-  diff: ^5.2.2
+  lodash: 4.18.1
+  diff: 5.2.2
 allowBuilds:
   '@compodoc/compodoc': true
   '@parcel/watcher': true
