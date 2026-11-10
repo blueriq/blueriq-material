@@ -1,0 +1,52 @@
+{
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  extends: ['local>blueriq/renovate-config:default.json5', ':prConcurrentLimit20', ':prHourlyLimit4'],
+  enabledManagers: ['npm', 'maven', 'dockerfile', 'custom.regex'],
+  baseBranchPatterns: ['master'],
+  customManagers: [
+    {
+      customType: 'regex',
+      description: 'The pnpm version the Jenkins install stage and the Cypress image install, which must match packageManager',
+      managerFilePatterns: ['/^Jenkinsfile$/', '/^cypress/Dockerfile\\.cypress$/'],
+      matchStrings: ["PNPM_VERSION = '(?<currentValue>[^']+)'", 'npm install -g pnpm@(?<currentValue>\\S+)'],
+      depNameTemplate: 'pnpm',
+      datasourceTemplate: 'npm',
+    },
+  ],
+  packageRules: [
+    {
+      description: 'These Dockerfiles assemble the e2e test environment from the Blueriq releases a theme version is tested against; only the build images are kept up to date',
+      matchFileNames: ['cypress/docker/**', 'docker-oidc/**'],
+      enabled: false,
+    },
+    {
+      description: 'The nodejs-build image carries the Node version the build runs on; only let its digest be refreshed',
+      matchPackageNames: ['docker-internal.blueriq.com/nodejs-build'],
+      matchUpdateTypes: ['major', 'minor', 'patch'],
+      enabled: false,
+    },
+    {
+      description: 'The @blueriq packages are red-cow releases that move together and set the frontend a theme version ships with, so they update as one group after approval on the Dependency Dashboard',
+      matchManagers: ['npm'],
+      matchPackageNames: ['@blueriq/**'],
+      groupName: 'red-cow',
+      dependencyDashboardApproval: true,
+    },
+    {
+      description: 'Disable Node updates, as they may require updating docker build images',
+      matchPackageNames: ['node'],
+      enabled: false,
+    },
+    {
+      description: 'TypeScript: only patch updates allowed (no major/minor)',
+      matchPackageNames: ['typescript'],
+      matchUpdateTypes: ['major', 'minor'],
+      enabled: false,
+    },
+    {
+      description: 'pnpm moves in packageManager, the Jenkinsfile and the Cypress image together, so that they cannot drift apart',
+      matchPackageNames: ['pnpm'],
+      groupName: 'pnpm',
+    },
+  ],
+}
