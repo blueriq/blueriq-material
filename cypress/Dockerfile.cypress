@@ -51,7 +51,7 @@ COPY --from=workspace /usr/src/ /usr/src/
 WORKDIR /usr/src
 
 # The cypress base image ships Node but not pnpm; install it so the in-container `pnpm run e2e:reporting` step can run.
-RUN cp /usr/src/.npmrc "$HOME/.npmrc" && npm install -g pnpm@12.11.2
+RUN cp /usr/src/.npmrc "$HOME/.npmrc" && npm install -g pnpm@12.18.0
 
 ENTRYPOINT [""]
 
