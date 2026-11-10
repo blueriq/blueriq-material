@@ -179,8 +179,7 @@ pipeline {
             artifact : 'material-theme-sbom-cyclonedx.json',
             release  : params.isRelease,
             version  : params.releaseVersion,
-            latest   : isMaster,
-            gate     : true
+            latest   : isMaster
           )
         }
       }
