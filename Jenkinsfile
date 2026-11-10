@@ -17,7 +17,7 @@ pipeline {
     CHROME_BIN = "${env.CHROME_116_0_5845_97}"
     // pnpm runs as its native binary, fetched into PNPM_EXE_DIR by the install stage. Steps that run pnpm put
     // PNPM_EXE_DIR first on PATH with withEnv, as tools are put back in front of PATH for every stage.
-    PNPM_VERSION = '12.11.2'
+    PNPM_VERSION = '12.18.0'
     PNPM_EXE_DIR = "${env.WORKSPACE}\\.pnpm-bin"
     // The npm-readonly credential, fed to build.xml's docker BuildKit secrets (--secret id=npm_username,env=NPM_USERNAME).
     NPM_READONLY = credentials('npm-readonly')
