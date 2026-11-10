@@ -16,7 +16,7 @@
     <scm.developerConnection>scm:git:git@bq-gitlab.everest.nl:blueriq/blueriq-material.git</scm.developerConnection>
     <scm.url>https://git.blueriq.com/blueriq/blueriq-material/tree/master</scm.url>
 
-    <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
+    <maven-resources-plugin.version>3.5.0</maven-resources-plugin.version>
   </properties>
 
   <build>
