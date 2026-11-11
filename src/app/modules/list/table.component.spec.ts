@@ -132,17 +132,17 @@ describe('TableComponent', () => {
     it('should have a header displayed with the correct content', () => {
       const matRows = component.nativeElement.querySelectorAll('.mat-mdc-row');
       expect(matRows.length).toBe(2);
-      expect(matRows[0].cells[0].innerText.trim()).toBe('Mike');
-      expect(matRows[0].cells[1].innerText.trim()).toBe('CLICKME');
-      expect(matRows[1].cells[0].innerText.trim()).toBe('Tilly');
-      expect(matRows[1].cells[1].innerText.trim()).toBe('CLICKME');
+      expect(matRows[0].cells[0].textContent.trim()).toBe('Mike');
+      expect(matRows[0].cells[1].textContent.trim()).toBe('CLICKME');
+      expect(matRows[1].cells[0].textContent.trim()).toBe('Tilly');
+      expect(matRows[1].cells[1].textContent.trim()).toBe('CLICKME');
     });
 
     it('should have a row with correct header content', () => {
       const matHeaderCell = component.nativeElement.querySelectorAll('.mat-mdc-header-cell');
       expect(matHeaderCell.length).toBe(3);
 
-      const headerCellContent = matHeaderCell[0].querySelector('bq-textitem-static').innerText;
+      const headerCellContent = matHeaderCell[0].querySelector('bq-textitem-static').textContent;
       expect(headerCellContent.trim()).toBe('Name');
     });
 

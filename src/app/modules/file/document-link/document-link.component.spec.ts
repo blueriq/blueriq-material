@@ -18,7 +18,7 @@ describe('DocumentLinkComponent DocumentLink', () => {
   let mockFileDownloadService: FileDownloadService;
 
   beforeEach(async() => {
-    mockFileDownloadService = jasmine.createSpyObj(['download']);
+    mockFileDownloadService = { download: vi.fn() };
     await TestBed.configureTestingModule({
       providers: [
         provideFileComponents(),

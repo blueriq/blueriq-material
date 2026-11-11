@@ -1,4 +1,4 @@
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivityType, GlobalLoadingActivity } from '@blueriq/angular';
 
 import { LoadingComponent } from './loading.component';
@@ -7,6 +7,9 @@ describe('LoadingComponent', () => {
   let component: LoadingComponent;
   let fixture: ComponentFixture<LoadingComponent>;
   let loadingActivity: GlobalLoadingActivity;
+
+  beforeEach(() => vi.useFakeTimers());
+  afterEach(() => vi.useRealTimers());
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
@@ -31,49 +34,49 @@ describe('LoadingComponent', () => {
     expect(state).toEqual('idle');
   });
 
-  it('is starting when a session is starting', fakeAsync(() => {
+  it('is starting when a session is starting', async () => {
     let state!: string;
     component.state$.subscribe(s => state = s);
 
     loadingActivity.start(ActivityType.StartingSession);
-    tick();
+    await vi.advanceTimersByTimeAsync(0);
     expect(state).toEqual('starting');
 
     loadingActivity.stop(ActivityType.StartingSession);
-    tick();
+    await vi.advanceTimersByTimeAsync(0);
     expect(state).toEqual('idle');
-  }));
+  });
 
-  it('is loading on interaction activity', fakeAsync(() => {
+  it('is loading on interaction activity', async () => {
     let state!: string;
     component.state$.subscribe(s => state = s);
 
     loadingActivity.start(ActivityType.Interaction);
     expect(state).toEqual('idle');
 
-    tick(400);
+    await vi.advanceTimersByTimeAsync(400);
     expect(state).toEqual('loading');
 
     loadingActivity.stop(ActivityType.Interaction);
 
-    tick();
+    await vi.advanceTimersByTimeAsync(0);
     expect(state).toEqual('idle');
-  }));
+  });
 
-  it('is loading during field refreshes', fakeAsync(() => {
+  it('is loading during field refreshes', async () => {
     let state!: string;
     component.state$.subscribe(s => state = s);
 
     loadingActivity.start(ActivityType.FieldRefresh);
     expect(state).toEqual('idle');
 
-    tick(400);
+    await vi.advanceTimersByTimeAsync(400);
     expect(state).toEqual('loading');
 
     loadingActivity.stop(ActivityType.FieldRefresh);
 
-    tick();
+    await vi.advanceTimersByTimeAsync(0);
     expect(state).toEqual('idle');
-  }));
+  });
 
 });

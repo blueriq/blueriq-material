@@ -87,9 +87,9 @@ describe('CheckboxListComponent', () => {
     );
 
     let checkboxes = component.nativeElement.querySelectorAll('mat-checkbox');
-    expect(getChecked(checkboxes, 0)).toBeTrue();
-    expect(getChecked(checkboxes, 1)).toBeFalse();
-    expect(getChecked(checkboxes, 2)).toBeFalse();
+    expect(getChecked(checkboxes, 0)).toBe(true);
+    expect(getChecked(checkboxes, 1)).toBe(false);
+    expect(getChecked(checkboxes, 2)).toBe(false);
 
     // Change
     session.update(
@@ -97,9 +97,9 @@ describe('CheckboxListComponent', () => {
     );
 
     checkboxes = component.nativeElement.querySelectorAll('mat-checkbox');
-    expect(getChecked(checkboxes, 0)).toBeTrue();
-    expect(getChecked(checkboxes, 1)).toBeFalse();
-    expect(getChecked(checkboxes, 2)).toBeTrue();
+    expect(getChecked(checkboxes, 0)).toBe(true);
+    expect(getChecked(checkboxes, 1)).toBe(false);
+    expect(getChecked(checkboxes, 2)).toBe(true);
   });
 
   it('should update field when checkbox is checked', () => {

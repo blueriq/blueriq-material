@@ -1,4 +1,5 @@
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import type { Mocked } from 'vitest';
+import { TestBed } from '@angular/core/testing';
 import { LiveUpdatesService } from '@blueriq/angular/live-updates';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { ActivateTaskAction, DeactivateTaskAction, TaskAwareService } from '@shared/dcm/task-aware.service';
@@ -9,8 +10,11 @@ describe('Task Aware Service', () => {
   let liveUpdatesService: LiveUpdatesService;
   let effects: TaskAwareService;
 
+  beforeEach(() => vi.useFakeTimers());
+  afterEach(() => vi.useRealTimers());
+
   beforeEach(async() => {
-    liveUpdatesService = jasmine.createSpyObj<LiveUpdatesService>('LiveUpdatesService', ['subscribe', 'unsubscribe']);
+    liveUpdatesService = { subscribe: vi.fn(), unsubscribe: vi.fn() } as unknown as Mocked<LiveUpdatesService>;
     actions = new Subject();
 
     await TestBed.configureTestingModule({
@@ -23,24 +27,24 @@ describe('Task Aware Service', () => {
     effects = TestBed.inject(TaskAwareService);
   });
 
-  it('responds on activateTaskAction', fakeAsync(() => {
+  it('responds on activateTaskAction', async () => {
     const action = new ActivateTaskAction('123-abc');
     effects.activateTaskActions$.subscribe();
     actions.next(action);
 
-    tick();
+    await vi.advanceTimersByTimeAsync(0);
 
     expect(liveUpdatesService.subscribe).toHaveBeenCalledWith('/topic/task/123-abc');
-  }));
+  });
 
-  it('responds on deactivateTaskAction', fakeAsync(() => {
+  it('responds on deactivateTaskAction', async () => {
     const action = new DeactivateTaskAction('123-abc');
     effects.deactivateTaskActions$.subscribe();
     actions.next(action);
 
-    tick();
+    await vi.advanceTimersByTimeAsync(0);
 
     expect(liveUpdatesService.unsubscribe).toHaveBeenCalledWith('/topic/task/123-abc');
-  }));
+  });
 
 });

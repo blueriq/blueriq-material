@@ -40,7 +40,7 @@ describe('TableSearchComponent', () => {
     const tableSearchElement = component.nativeElement.querySelector('bq-table-search');
     expect(tableSearchElement.querySelector('mat-form-field')).toBeFalsy();
     expect(tableSearchElement.querySelector('button')).toBeTruthy();
-    expect(tableSearchElement.querySelector('button mat-icon').innerText).toMatch(/^search$/i);
+    expect(tableSearchElement.querySelector('button mat-icon').textContent).toMatch(/^search$/i);
   });
 
   /* The search button becomes disabled when a instance list is readonly. The backend can not handle search when this is the case.
@@ -52,7 +52,7 @@ describe('TableSearchComponent', () => {
     const tableSearchElement = component.nativeElement.querySelector('bq-table-search');
 
     // Verify
-    expect(tableSearchElement.innerText).toBeFalsy();
+    expect(tableSearchElement.textContent).toBeFalsy();
   });
 
   it('should show empty search field on button click', () => {

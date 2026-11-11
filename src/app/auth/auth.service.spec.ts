@@ -1,7 +1,8 @@
+import type { Mocked } from 'vitest';
 import { LocationStrategy } from '@angular/common';
 import { MockLocationStrategy } from '@angular/common/testing';
 import { Component, DOCUMENT } from '@angular/core';
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AuthService as BqAuthService, LogoutResult } from '@blueriq/angular';
@@ -16,15 +17,18 @@ export class TestComponent {
 describe('AuthService', () => {
 
   let auth: AuthService;
-  let blueriqAuth: jasmine.SpyObj<BqAuthService>;
+  let blueriqAuth: Mocked<BqAuthService>;
   let openIdConnect: OpenIdConnectAuth;
   let router: Router;
   let doc: Document;
 
+  beforeEach(() => vi.useFakeTimers());
+  afterEach(() => vi.useRealTimers());
+
   beforeEach(() => {
-    blueriqAuth = jasmine.createSpyObj<BqAuthService>(['login', 'logout']);
+    blueriqAuth = { login: vi.fn(), logout: vi.fn() } as unknown as Mocked<BqAuthService>;
     openIdConnect = {
-      login: jasmine.createSpy(),
+      login: vi.fn(),
       configuration: { enabled: false, logoutUrl: undefined },
     } as unknown as OpenIdConnectAuth;
     const mockDocument = {
@@ -58,33 +62,33 @@ describe('AuthService', () => {
   describe('basic usage', () => {
 
     describe('logging out', () => {
-      it('should logout from Blueriq and redirect to the login route', fakeAsync(() => {
+      it('should logout from Blueriq and redirect to the login route', async () => {
         let loggedOut = false;
-        blueriqAuth.logout.and.returnValue(new Observable(subscriber => {
+        blueriqAuth.logout.mockReturnValue(new Observable(subscriber => {
           loggedOut = true;
           subscriber.next({});
         }));
 
         auth.logoutAndNavigate('/return');
-        tick();
+        await vi.advanceTimersByTimeAsync(0);
 
         expect(loggedOut).toBe(true);
         expect(router.url).toEqual('/logged-out?returnPath=%2Freturn');
-      }));
+      });
 
-      it('should allow omitting a return path', fakeAsync(() => {
+      it('should allow omitting a return path', async () => {
         let loggedOut = false;
-        blueriqAuth.logout.and.returnValue(new Observable(subscriber => {
+        blueriqAuth.logout.mockReturnValue(new Observable(subscriber => {
           loggedOut = true;
           subscriber.next({});
         }));
 
         auth.logoutAndNavigate(null);
-        tick();
+        await vi.advanceTimersByTimeAsync(0);
 
         expect(loggedOut).toBe(true);
         expect(router.url).toEqual('/logged-out');
-      }));
+      });
     });
 
   });
@@ -101,7 +105,7 @@ describe('AuthService', () => {
       // mock to create own logout result which can have a ssoLogoutUrl and a id_token_hint
       const configureLogout = (ssoLogoutUrl: string | undefined, id_token_hint: string | undefined) => {
         const logoutResult: LogoutResult = { ssoLogoutUrl, id_token_hint };
-        blueriqAuth.logout.and.returnValue(of(logoutResult));
+        blueriqAuth.logout.mockReturnValue(of(logoutResult));
       };
 
       it('should redirect to OpenId logout endpoint if logout endpoint is available', () => {
@@ -120,13 +124,13 @@ describe('AuthService', () => {
           `http://openidconnect.com/logout?post_logout_redirect_uri=http%3A%2F%2Fexample.com%2Flogged-out&id_token_hint=aToken`);
       });
 
-      it('should not redirect to OpenId logout endpoint if logout endpoint is not available', fakeAsync(() => {
+      it('should not redirect to OpenId logout endpoint if logout endpoint is not available', async () => {
         configureLogout(undefined, 'aToken');
         auth.logoutAndNavigate('/return');
-        tick();
+        await vi.advanceTimersByTimeAsync(0);
 
         expect(router.url).toEqual('/logged-out?returnPath=%2Freturn');
-      }));
+      });
 
       it('handles preconfigured ?post_logout_redirect_uri query parameter', () => {
         configureLogout('http://openidconnect.com/logout?post_logout_redirect_uri=preconfigured', 'aToken');

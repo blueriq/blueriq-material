@@ -43,7 +43,7 @@ describe('SelectComponent', () => {
     expect(selectOptions.length).toBe(5);
 
     const unavailableOption = selectOptions[4];
-    expect(unavailableOption.innerText).toContain('unavailable');
+    expect(unavailableOption.textContent).toContain('unavailable');
     expect(unavailableOption.classList.contains('mdc-list-item--disabled')).toBe(true);
   });
 
@@ -84,7 +84,7 @@ describe('SelectComponent', () => {
       field.placeholder('myPlaceholder'),
     );
     expect(component.nativeElement.querySelector('.mat-mdc-select-placeholder')).toBeTruthy();
-    expect(component.nativeElement.querySelector('.mat-mdc-select-placeholder').innerText).toBe('myPlaceholder');
+    expect(component.nativeElement.querySelector('.mat-mdc-select-placeholder').textContent).toBe('myPlaceholder');
   });
 
   it('should have an error', () => {
@@ -106,7 +106,7 @@ describe('SelectComponent', () => {
       field.value('blue'),
     );
 
-    selectedOneValue = component.nativeElement.querySelector('.mat-mdc-select-value-text').innerText;
+    selectedOneValue = component.nativeElement.querySelector('.mat-mdc-select-value-text').textContent;
     expect(selectedOneValue).toBe('Blue');
   });
 
@@ -125,7 +125,7 @@ describe('SelectComponent', () => {
     component.detectChanges();
 
     const selectValue = component.nativeElement.querySelector('.mat-mdc-select-value-text');
-    expect(selectValue.innerText).toBe('Blue, Pink, White');
+    expect(selectValue.textContent).toBe('Blue, Pink, White');
   });
 
   it('should set selected value to fieldValue', async() => {
@@ -148,10 +148,10 @@ describe('SelectComponent', () => {
 
     // Verify
     expect(selectOptions.length).toBe(4);
-    expect(selectOptions[0].innerText).toEqual('');
-    expect(selectOptions[1].innerText).toContain('Blue');
-    expect(selectOptions[2].innerText).toContain('Pink');
-    expect(selectOptions[3].innerText).toContain('White');
+    expect(selectOptions[0].textContent).toEqual('');
+    expect(selectOptions[1].textContent).toContain('Blue');
+    expect(selectOptions[2].textContent).toContain('Pink');
+    expect(selectOptions[3].textContent).toContain('White');
   });
 
   async function openOverlay() {

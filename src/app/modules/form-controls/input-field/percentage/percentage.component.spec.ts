@@ -27,7 +27,7 @@ describe('PercentageFieldComponent', () => {
   });
 
   it('should contain percentage sign', () => {
-    const suffix = component.nativeElement.querySelector('.mat-mdc-form-field-icon-suffix').innerText;
+    const suffix = component.nativeElement.querySelector('.mat-mdc-form-field-icon-suffix').textContent;
     expect(suffix).toBe('%');
   });
 });

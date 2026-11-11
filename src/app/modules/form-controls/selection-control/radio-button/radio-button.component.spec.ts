@@ -45,7 +45,7 @@ describe('RadioButtonComponent', () => {
 
   it('should be checked', () => {
     let inputField = component.nativeElement.querySelector('.mat-mdc-radio-checked');
-    expect(inputField).withContext('by default nothing is checked').toBeFalsy();
+    expect(inputField, 'by default nothing is checked').toBeFalsy();
 
     session.update(
       field.value('beaker'),
@@ -71,13 +71,13 @@ describe('RadioButtonComponent', () => {
     );
     const inputField = component.nativeElement.querySelector('.mat-mdc-radio-checked');
     expect(inputField).toBeTruthy();
-    expect(inputField.innerText).toContain('unavailable');
+    expect(inputField.textContent).toContain('unavailable');
     expect(inputField.querySelector('.mdc-radio--disabled')).toBeTruthy();
   });
 
   it('should be disabled', () => {
     let isDisabled = component.nativeElement.querySelector('input[type=radio]').hasAttribute('disabled');
-    expect(isDisabled).withContext('by default nothing is disabled').toBeFalsy();
+    expect(isDisabled, 'by default nothing is disabled').toBeFalsy();
 
     field.styles(BqPresentationStyles.DEPRECATED_RADIO, BqPresentationStyles.DISABLED);
     session = BlueriqSessionTemplate.create().build(field);

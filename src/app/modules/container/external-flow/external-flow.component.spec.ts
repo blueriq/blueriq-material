@@ -80,9 +80,9 @@ describe('ExternalFlowComponent', () => {
     const errorElement = component.nativeElement.querySelector('mat-error');
 
     // Verify
-    expect(containerSessionSpan).toBeFalsy('No container should be shown');
+    expect(containerSessionSpan, 'No container should be shown').toBeFalsy();
     expect(errorElement).toBeTruthy();
-    expect(errorElement.innerText).toContain('Whoops');
+    expect(errorElement.textContent).toContain('Whoops');
   });
 
   it('should display a generic error for an unrecognized error', () => {
@@ -94,9 +94,9 @@ describe('ExternalFlowComponent', () => {
     const errorElement = component.nativeElement.querySelector('mat-error');
 
     // Verify
-    expect(containerSessionSpan).toBeFalsy('No container should be shown');
+    expect(containerSessionSpan, 'No container should be shown').toBeFalsy();
     expect(errorElement).toBeTruthy();
-    expect(errorElement.innerText).toContain('An unknown error occurred');
+    expect(errorElement.textContent).toContain('An unknown error occurred');
   });
 
   it('should display an error message when container session is expired', () => {
@@ -107,9 +107,9 @@ describe('ExternalFlowComponent', () => {
     const errorElement = component.nativeElement.querySelector('mat-error');
 
     // Verify
-    expect(containerSessionSpan).toBeFalsy('No container should be shown');
+    expect(containerSessionSpan, 'No container should be shown').toBeFalsy();
     expect(errorElement).toBeTruthy();
-    expect(errorElement.innerText).toContain('Your session has expired');
+    expect(errorElement.textContent).toContain('Your session has expired');
   });
 
   it('should display an error message when flow has ended', () => {
@@ -120,9 +120,9 @@ describe('ExternalFlowComponent', () => {
     const errorElement = component.nativeElement.querySelector('mat-error');
 
     // Verify
-    expect(containerSessionSpan).toBeFalsy('No container should be shown');
+    expect(containerSessionSpan, 'No container should be shown').toBeFalsy();
     expect(errorElement).toBeTruthy();
-    expect(errorElement.innerText).toContain('The flow has ended');
+    expect(errorElement.textContent).toContain('The flow has ended');
   });
 
 });

@@ -33,9 +33,9 @@ describe('IconDirective', () => {
 
   it('should use the given presentationstyles to pick the correct icon and rename if necessary', () => {
     const matIcon = element.querySelector('mat-icon');
-    expect(matIcon.classList).not.toContain('some_presentationstyle', 'only icon_ prefixed presentation styles should have been used');
-    expect(matIcon.classList).toContain('fa', 'for fontawesome to work, "fa" class only should have also been added');
-    expect(matIcon.classList).toContain('fa-my-awesome-icon', 'should have replaced the _ with - and have stripped the icon_ prefix');
+    expect(matIcon.classList, 'only icon_ prefixed presentation styles should have been used').not.toContain('some_presentationstyle');
+    expect(matIcon.classList, 'for fontawesome to work, "fa" class only should have also been added').toContain('fa');
+    expect(matIcon.classList, 'should have replaced the _ with - and have stripped the icon_ prefix').toContain('fa-my-awesome-icon');
   });
 
 });
@@ -58,13 +58,13 @@ describe('IconDirectiveStylesUpdate', () => {
 
   it('should use the given presentationstyles to pick the correct icon and rename if necessary', () => {
     const matIcon = element.querySelector('mat-icon');
-    expect(matIcon.classList).not.toContain('some_presentationstyle', 'only icon_ prefixed presentation styles should have been used');
-    expect(matIcon.classList).toContain('fa', 'for fontawesome to work, "fa" class only should have also been added');
-    expect(matIcon.classList).toContain('fa-my-awesome-icon', 'should have replaced the _ with - and have stripped the icon_ prefix');
+    expect(matIcon.classList, 'only icon_ prefixed presentation styles should have been used').not.toContain('some_presentationstyle');
+    expect(matIcon.classList, 'for fontawesome to work, "fa" class only should have also been added').toContain('fa');
+    expect(matIcon.classList, 'should have replaced the _ with - and have stripped the icon_ prefix').toContain('fa-my-awesome-icon');
 
     component.styles = new PresentationStyles(['some_presentationstyle']);
     fixture.detectChanges();
-    expect(matIcon.classList).not.toContain('fa-my-awesome-icon', 'class should have been removed so the icon is not visible anymore after update.');
+    expect(matIcon.classList, 'class should have been removed so the icon is not visible anymore after update.').not.toContain('fa-my-awesome-icon');
   });
 
 });

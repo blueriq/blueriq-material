@@ -15,9 +15,9 @@ describe('CustomFileUploader', () => {
       additionalParameter: { 'aParam': 'aValue' },
     };
     customFileUploader = new CustomFileUploader(uploadOptions);
-    const xhrSend = spyOn(XMLHttpRequest.prototype, 'send');
-    const xhrHeader = spyOn(XMLHttpRequest.prototype, 'setRequestHeader');
-    const formData = spyOn(FormData.prototype, 'append');
+    const xhrSend = vi.spyOn(XMLHttpRequest.prototype, 'send').mockReturnValue(undefined);
+    const xhrHeader = vi.spyOn(XMLHttpRequest.prototype, 'setRequestHeader').mockReturnValue(undefined);
+    const formData = vi.spyOn(FormData.prototype, 'append').mockReturnValue(undefined);
     const fileItem = createFile('hello.txt');
     customFileUploader.queue.push(fileItem);
 

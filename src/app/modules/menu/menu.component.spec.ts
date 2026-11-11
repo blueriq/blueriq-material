@@ -1,5 +1,5 @@
 import { DebugElement } from '@angular/core';
-import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,6 +17,9 @@ describe('MenuComponent', () => {
   let btnPublicB: ButtonTemplate;
   let component: ComponentFixture<MenuComponent>;
   let session: BlueriqTestSession;
+
+  beforeEach(() => vi.useFakeTimers());
+  afterEach(() => vi.useRealTimers());
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
@@ -58,7 +61,7 @@ describe('MenuComponent', () => {
     selectTrigger.nativeElement.click();
 
     await component.whenStable();
-    spyOn(BlueriqSession.prototype, 'pressed').and.callThrough();
+    vi.spyOn(BlueriqSession.prototype, 'pressed');
 
     const setSubMenu1 = component.debugElement.query(By.css('.mat-mdc-menu-content')).nativeElement;
     const menuButtons = setSubMenu1.querySelectorAll('button:not(.mat-mdc-menu-item-submenu-trigger)');
@@ -87,9 +90,9 @@ describe('MenuComponent', () => {
 
     // verify
     expect(menuOptions.length).toBe(3);
-    expect(menuOptions[0].innerText.trim()).toBe('CORE');
-    expect(menuOptions[1].innerText.trim()).toBe('FINANCE');
-    expect(menuOptions[2].innerText.trim()).toBe('PUBLIC');
+    expect(menuOptions[0].textContent.trim()).toBe('CORE');
+    expect(menuOptions[1].textContent.trim()).toBe('FINANCE');
+    expect(menuOptions[2].textContent.trim()).toBe('PUBLIC');
 
     // expand the following submenu by clicking the 'Public' button
     menuOptions[2].getElementsByTagName('button')[0].click();
@@ -101,11 +104,11 @@ describe('MenuComponent', () => {
     const setMenuOptions = setSubMenu2.querySelectorAll('bq-menu-item') as NodeListOf<HTMLElement>;
     // verify
     expect(setMenuOptions.length).toBe(2);
-    expect(setMenuOptions[0].innerText.trim()).toBe('PUBLIC-A');
-    expect(setMenuOptions[1].innerText.trim()).toBe('PUBLIC-B');
+    expect(setMenuOptions[0].textContent.trim()).toBe('PUBLIC-A');
+    expect(setMenuOptions[1].textContent.trim()).toBe('PUBLIC-B');
   });
 
-  it('should navigate submenus with arrowkeys', fakeAsync(() => {
+  it('should navigate submenus with arrowkeys', async () => {
     const subMenu = component.debugElement.query(By.css('.mat-mdc-menu-content'));
     expect(subMenu).toBeFalsy();
 
@@ -115,15 +118,15 @@ describe('MenuComponent', () => {
 
     // click on the menu button (via the trigger) to display the submenu
     selectTrigger.nativeElement.click();
-    tick();
+    await vi.advanceTimersByTimeAsync(0);
 
     const menuItems: DebugElement[] = component.debugElement.queryAll(By.directive(MenuItemComponent));
     const arrowDownEvent = new KeyboardEvent('keydown', { key: 'ArrowDown' });
     const arrowUpEvent = new KeyboardEvent('keydown', { key: 'ArrowUp' });
     const arrowRightEvent = new KeyboardEvent('keydown', { key: 'ArrowRight' });
 
-    const unitBtn = menuItems.find(el => el.nativeElement.innerText.includes('UNIT'))!;
-    const publicBtn = menuItems.find(el => el.nativeElement.innerText.includes('PUBLIC'))!;
+    const unitBtn = menuItems.find(el => el.nativeElement.textContent.includes('UNIT'))!;
+    const publicBtn = menuItems.find(el => el.nativeElement.textContent.includes('PUBLIC'))!;
 
     expect(unitBtn).toBeTruthy();
     expect(publicBtn).toBeTruthy();
@@ -131,19 +134,18 @@ describe('MenuComponent', () => {
     const unitChildBtns = unitBtn.queryAll(By.css('button'));
     const unitChildContainers = unitBtn.queryAll(By.css('.menu-list'));
 
-    const unitBtnOnMenuKeyDown = spyOn(unitBtn.componentInstance, 'onMenuKeyDown').and.callThrough();
-    const unitBtnFocusElement = spyOn(unitBtn.componentInstance, 'focusElement').and.callThrough();
-    const publicBtnOnHandleEnterSubmenu = spyOn(publicBtn.componentInstance, 'handleEnterSubmenu')
-      .and.callThrough();
+    const unitBtnOnMenuKeyDown = vi.spyOn(unitBtn.componentInstance, 'onMenuKeyDown');
+    const unitBtnFocusElement = vi.spyOn(unitBtn.componentInstance, 'focusElement');
+    const publicBtnOnHandleEnterSubmenu = vi.spyOn(publicBtn.componentInstance, 'handleEnterSubmenu');
 
     // elements that change focus
     const financeBtnItem = document.getElementsByName(unitChildBtns[2].nativeElement.name)[0];
     const coreBtnItem = document.getElementsByName(unitChildBtns[1].nativeElement.name)[0];
     const publicBtnItem = document.getElementsByName(unitChildContainers[1].nativeElement.name)[0];
 
-    const financeBtnFocusSpy = spyOn(financeBtnItem, 'focus');
-    const coreBtnFocusSpy = spyOn(coreBtnItem, 'focus');
-    const publicBtnFocusSpy = spyOn(publicBtnItem, 'focus');
+    const financeBtnFocusSpy = vi.spyOn(financeBtnItem, 'focus').mockReturnValue(undefined);
+    const coreBtnFocusSpy = vi.spyOn(coreBtnItem, 'focus').mockReturnValue(undefined);
+    const publicBtnFocusSpy = vi.spyOn(publicBtnItem, 'focus').mockReturnValue(undefined);
 
     // actual submenu buttons that trigger onMenuKeyDown
     const coreHtmlElement = document.getElementById('item0')!;
@@ -156,28 +158,28 @@ describe('MenuComponent', () => {
 
     // navigate submenu down and up
     coreHtmlElement.dispatchEvent(arrowDownEvent);
-    tick();
+    await vi.advanceTimersByTimeAsync(0);
 
     financeHtmlElement.dispatchEvent(arrowDownEvent);
-    tick();
+    await vi.advanceTimersByTimeAsync(0);
 
     publicHtmlElement.dispatchEvent(arrowUpEvent);
-    tick();
+    await vi.advanceTimersByTimeAsync(0);
 
     financeHtmlElement.dispatchEvent(arrowUpEvent);
-    tick();
+    await vi.advanceTimersByTimeAsync(0);
 
     // navigate again down to enter sub-sub menu
     coreHtmlElement.dispatchEvent(arrowDownEvent);
-    tick();
+    await vi.advanceTimersByTimeAsync(0);
 
     financeHtmlElement.dispatchEvent(arrowDownEvent);
-    tick();
+    await vi.advanceTimersByTimeAsync(0);
 
     publicBtnItem.dispatchEvent(arrowRightEvent);
-    tick();
+    await vi.advanceTimersByTimeAsync(0);
 
-    flush();
+    await vi.runAllTimersAsync();
 
     expect(unitBtnOnMenuKeyDown).toHaveBeenCalledTimes(6);
     expect(unitBtnFocusElement).toHaveBeenCalledTimes(6);
@@ -185,6 +187,6 @@ describe('MenuComponent', () => {
     expect(coreBtnFocusSpy).toHaveBeenCalled();
     expect(publicBtnFocusSpy).toHaveBeenCalled();
     expect(publicBtnOnHandleEnterSubmenu).toHaveBeenCalled();
-  }));
+  });
 
 });

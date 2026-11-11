@@ -1,4 +1,5 @@
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import type { Mocked } from 'vitest';
+import { TestBed } from '@angular/core/testing';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {
   ChangedPageAction,
@@ -16,7 +17,7 @@ import { Subject } from 'rxjs';
 
 describe('MessagesEffect', () => {
   let actions: Subject<any>;
-  let snackBarSpy: jasmine.SpyObj<MatSnackBar>;
+  let snackBarSpy: Mocked<MatSnackBar>;
   let effects: MessagesEffect;
   let sessionRegistry: SessionRegistry;
 
@@ -30,8 +31,11 @@ describe('MessagesEffect', () => {
     messages: {},
   };
 
+  beforeEach(() => vi.useFakeTimers());
+  afterEach(() => vi.useRealTimers());
+
   beforeEach(async () => {
-    snackBarSpy = jasmine.createSpyObj<MatSnackBar>('MatSnackBar', ['open']);
+    snackBarSpy = { open: vi.fn() } as unknown as Mocked<MatSnackBar>;
     actions = new Subject();
 
     await TestBed.configureTestingModule({
@@ -46,7 +50,7 @@ describe('MessagesEffect', () => {
     effects = TestBed.inject(MessagesEffect);
   });
 
-  it('does animate snackbar again even if already displayed the message', fakeAsync(() => {
+  it('does animate snackbar again even if already displayed the message', async () => {
     const session = SessionTemplate.create()
       .sessionName('Main')
       .pageModel(PageModelTemplate.create(PageTemplate.create().error(errorMsg))).build();
@@ -56,13 +60,13 @@ describe('MessagesEffect', () => {
     effects.sessionActions$.subscribe();
     actions.next(action);
 
-    tick();
+    await vi.advanceTimersByTimeAsync(0);
 
     // messages are already displayed, so snackbar should not be called
     expect(snackBarSpy.open).toHaveBeenCalled();
-  }));
+  });
 
-  it('opens snackbar with an error message when session is loaded', fakeAsync(() => {
+  it('opens snackbar with an error message when session is loaded', async () => {
 
     const session = SessionTemplate.create()
       .sessionName('Main')
@@ -73,14 +77,14 @@ describe('MessagesEffect', () => {
     effects.sessionActions$.subscribe();
     actions.next(action);
 
-    tick();
+    await vi.advanceTimersByTimeAsync(0);
 
     expect(snackBarSpy.open).toHaveBeenCalledWith(errorMsg, 'Ok', {
       panelClass: 'snackbar-error',
     });
-  }));
+  });
 
-  it('opens snackbar with an error message when page is updated', fakeAsync(() => {
+  it('opens snackbar with an error message when page is updated', async () => {
     const session = SessionTemplate.create()
       .sessionName('my-session')
       .pageModel(PageModelTemplate.create(pageWithError)).build();
@@ -91,14 +95,14 @@ describe('MessagesEffect', () => {
     effects.sessionActions$.subscribe();
     actions.next(action);
 
-    tick();
+    await vi.advanceTimersByTimeAsync(0);
 
     expect(snackBarSpy.open).toHaveBeenCalledWith(errorMsg, 'Ok', {
       panelClass: 'snackbar-error',
     });
-  }));
+  });
 
-  it('opens snackbar with an error message when page is changed', fakeAsync(() => {
+  it('opens snackbar with an error message when page is changed', async () => {
     const session = SessionTemplate.create()
       .sessionName('my-session')
       .pageModel(PageModelTemplate.create(pageWithError)).build();
@@ -109,14 +113,14 @@ describe('MessagesEffect', () => {
     effects.sessionActions$.subscribe();
     actions.next(action);
 
-    tick();
+    await vi.advanceTimersByTimeAsync(0);
 
     expect(snackBarSpy.open).toHaveBeenCalledWith(errorMsg, 'Ok', {
       panelClass: 'snackbar-error',
     });
-  }));
+  });
 
-  it('opens snackbar with multiple error messages', fakeAsync(() => {
+  it('opens snackbar with multiple error messages', async () => {
     const anotherErrorMsg = 'Another error message';
     const session = SessionTemplate.create()
       .sessionName('my-session')
@@ -128,14 +132,14 @@ describe('MessagesEffect', () => {
     effects.sessionActions$.subscribe();
     actions.next(action);
 
-    tick();
+    await vi.advanceTimersByTimeAsync(0);
 
     expect(snackBarSpy.open).toHaveBeenCalledWith(`${errorMsg}, ${anotherErrorMsg}`, 'Ok', {
       panelClass: 'snackbar-error',
     });
-  }));
+  });
 
-  it('opens error snackbar with mixed error and warning messages', fakeAsync(() => {
+  it('opens error snackbar with mixed error and warning messages', async () => {
     const session = SessionTemplate.create()
       .sessionName('my-session')
       .pageModel(PageModelTemplate.create(PageTemplate.create().error(errorMsg).warning(warnMsg))).build();
@@ -146,14 +150,14 @@ describe('MessagesEffect', () => {
     effects.sessionActions$.subscribe();
     actions.next(action);
 
-    tick();
+    await vi.advanceTimersByTimeAsync(0);
 
     expect(snackBarSpy.open).toHaveBeenCalledWith(`${errorMsg}, ${warnMsg}`, 'Ok', {
       panelClass: 'snackbar-error',
     });
-  }));
+  });
 
-  it('opens snackbar with a warning message', fakeAsync(() => {
+  it('opens snackbar with a warning message', async () => {
     const session = SessionTemplate.create()
       .sessionName('my-session')
       .pageModel(PageModelTemplate.create(pageWithWarning)).build();
@@ -164,26 +168,26 @@ describe('MessagesEffect', () => {
     effects.sessionActions$.subscribe();
     actions.next(action);
 
-    tick();
+    await vi.advanceTimersByTimeAsync(0);
 
     expect(snackBarSpy.open).toHaveBeenCalledWith(warnMsg, 'Ok', {
       panelClass: 'snackbar-warning',
     });
-  }));
+  });
 
-  it('does not do anything when page has no errors or warnings', fakeAsync(() => {
+  it('does not do anything when page has no errors or warnings', async () => {
     const action = new SessionLoadedAction('Main', undefined, undefined, '1', 60, '', '', languageConf, PageModelTemplate.create(PageTemplate.create()).toJson(), undefined);
 
     effects.sessionActions$.subscribe();
     actions.next(action);
 
-    tick();
+    await vi.advanceTimersByTimeAsync(0);
 
     expect(snackBarSpy.open).not.toHaveBeenCalled();
-  }));
+  });
 
   describe('security messages', () => {
-    it('shows a snackbar for security violations', fakeAsync(() => {
+    it('shows a snackbar for security violations', async () => {
       const msg1 = 'There are insecure fields on the page';
       const msg2 = 'More messages!';
       const violations = {
@@ -194,14 +198,14 @@ describe('MessagesEffect', () => {
       effects.securityViolations$.subscribe();
       actions.next(action);
 
-      tick();
+      await vi.advanceTimersByTimeAsync(0);
 
       expect(snackBarSpy.open).toHaveBeenCalledWith(`${msg1}, ${msg2}`, 'Ok', {
         panelClass: 'snackbar-error',
       });
-    }));
+    });
 
-    it('does not show a snackbar when there are no messages', fakeAsync(() => {
+    it('does not show a snackbar when there are no messages', async () => {
       const violations = {
         messages: [],
       } as unknown as SecurityViolations;
@@ -210,10 +214,10 @@ describe('MessagesEffect', () => {
       effects.securityViolations$.subscribe();
       actions.next(action);
 
-      tick();
+      await vi.advanceTimersByTimeAsync(0);
 
       expect(snackBarSpy.open).not.toHaveBeenCalled();
-    }));
+    });
   });
 
 });

@@ -10,7 +10,6 @@ import {
 import { SessionWidgetComponent } from './session-widget.component';
 import { Actions } from '@ngrx/effects';
 import { Subject } from 'rxjs';
-import createSpy = jasmine.createSpy;
 
 describe('Session Widget Component', () => {
 
@@ -26,13 +25,13 @@ describe('Session Widget Component', () => {
         {
           provide: Dispatcher,
           useClass: class {
-            dispatch = createSpy('dispatch');
+            dispatch = vi.fn();
           },
         },
         {
           provide: DashboardAuthService,
           useClass: class {
-            login = createSpy('login');
+            login = vi.fn();
           },
         },
         BlueriqDashboard,

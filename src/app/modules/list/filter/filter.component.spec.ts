@@ -1,3 +1,4 @@
+import type { Mocked } from 'vitest';
 import { TemplateRef } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Filter } from '@blueriq/angular/lists';
@@ -7,14 +8,14 @@ import { TestBed } from '@angular/core/testing';
 
 describe('FilterComponent', () => {
   let tableFilterComponent: FilterComponent;
-  let dialogSpy: jasmine.SpyObj<MatDialog>;
-  let dialogRefSpy: jasmine.SpyObj<MatDialogRef<any, any>>;
+  let dialogSpy: Mocked<MatDialog>;
+  let dialogRefSpy: Mocked<MatDialogRef<any, any>>;
   let filter: Filter;
 
   beforeEach(() => {
-    dialogSpy = jasmine.createSpyObj<MatDialog>(['open']);
-    dialogRefSpy = jasmine.createSpyObj<MatDialogRef<any, any>>(['close']);
-    dialogSpy.open.and.returnValue(dialogRefSpy);
+    dialogSpy = { open: vi.fn() } as unknown as Mocked<MatDialog>;
+    dialogRefSpy = { close: vi.fn() } as unknown as Mocked<MatDialogRef<any, any>>;
+    dialogSpy.open.mockReturnValue(dialogRefSpy);
 
     TestBed.configureTestingModule({
       providers: [
@@ -30,8 +31,8 @@ describe('FilterComponent', () => {
     filter = {
       currentFilters: [],
       currentColumns: [],
-      clear: jasmine.createSpy(),
-      apply: jasmine.createSpy(),
+      clear: vi.fn(),
+      apply: vi.fn(),
     } as unknown as Filter;
     tableFilterComponent.filter = filter;
     tableFilterComponent.ngOnInit();
