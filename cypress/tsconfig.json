@@ -3,6 +3,7 @@
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "module": "commonjs",
+    "moduleResolution": "node",
     "target": "es5",
     "types": [
       "cypress",

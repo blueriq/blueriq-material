@@ -1,5 +1,4 @@
-import { OverlayContainer } from '@angular/cdk/overlay';
-import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
@@ -12,7 +11,6 @@ describe('SelectComponent', () => {
   let field: FieldTemplate;
   let session: BlueriqTestSession;
   let component: ComponentFixture<SelectComponent>;
-  let _containerElement;
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
@@ -22,9 +20,6 @@ describe('SelectComponent', () => {
         FormControlModule,
       ],
     }).compileComponents();
-    inject([OverlayContainer], (oc: OverlayContainer) => {
-      _containerElement = oc.getContainerElement();
-    })();
   });
 
   beforeEach(() => {
@@ -168,7 +163,7 @@ describe('SelectComponent', () => {
   }
 
   function getMatOptionsFromOverlay(): HTMLElement[] {
-    return Array.from(_containerElement.querySelectorAll('mat-option'));
+    return Array.from(document.querySelectorAll('mat-option'));
   }
 
 });

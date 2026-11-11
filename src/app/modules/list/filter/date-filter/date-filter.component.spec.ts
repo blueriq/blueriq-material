@@ -1,4 +1,3 @@
-import { OverlayContainer } from '@angular/cdk/overlay';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -55,7 +54,6 @@ describe('DateFilterComponent', () => {
   });
 
   function getMatOptionsFromOverlay(): HTMLElement[] {
-    const _containerElement = TestBed.inject(OverlayContainer).getContainerElement();
-    return Array.from(_containerElement.querySelectorAll('mat-option'));
+    return Array.from(document.querySelectorAll('mat-option'));
   }
 });
