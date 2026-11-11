@@ -58,7 +58,13 @@ Cypress.Commands.add('selectOption', { prevSubject: true },
   (subject: any, selectOption: string) => {
     subject.click();
     cy.wait(100);
-    return cy.get('mat-option').contains(selectOption).click();
+    cy.get('mat-option').contains(selectOption).click();
+    cy.root().then($root => {
+      if ($root.find('mat-select[aria-expanded="true"]').length) {
+        cy.get('mat-select[aria-expanded="true"]').type('{esc}');
+      }
+    });
+    return cy.get('mat-select[aria-expanded="true"]').should('not.exist');
   },
 );
 

@@ -6,7 +6,7 @@
     "esModuleInterop": true,
     "outDir": "./dist/out-tsc",
     "declaration": false,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "experimentalDecorators": true,
     "useDefineForClassFields": false,
     "strictNullChecks": true,
