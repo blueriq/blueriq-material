@@ -29,10 +29,14 @@ describe('Dashboard Component', () => {
     authService = { login: vi.fn() } as unknown as Mocked<DashboardAuthService>;
     router = { navigate: vi.fn() } as unknown as Mocked<Router>;
     const routeParams: Params = { page: 'default' };
-    route = { 'paramMap': of(convertToParamMap({})), 'queryParams': queryParams, 'snapshot': {
+    route = {
+      'paramMap': of(convertToParamMap({})),
+      'queryParams': queryParams,
+      'snapshot': {
         queryParams: {},
         params: routeParams,
-      } as ActivatedRouteSnapshot } as unknown as Mocked<ActivatedRoute>;
+      } as ActivatedRouteSnapshot,
+    } as unknown as Mocked<ActivatedRoute>;
     toastrService = { success: vi.fn(), info: vi.fn(), warning: vi.fn() } as unknown as Mocked<ToastrService>;
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule, DashboardComponent],

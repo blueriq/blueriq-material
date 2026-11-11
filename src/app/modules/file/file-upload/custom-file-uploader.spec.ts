@@ -39,7 +39,7 @@ describe('CustomFileUploader', () => {
   });
 
   describe('queue limit', () => {
-    it('should not upload when the amount of files exceed the queueLimit', (done) => {
+    it('should not upload when the amount of files exceed the queueLimit', () => new Promise<void>(done => {
       // Init
       const uploadOptions: CustomFileUploaderOptions = {
         url: 'www.some-url.com',
@@ -60,9 +60,9 @@ describe('CustomFileUploader', () => {
 
       // Verify
       customFileUploader.uploadAll();
-    });
+    }));
 
-    it('should upload when the amount of files meet the queue limit', (done) => {
+    it('should upload when the amount of files meet the queue limit', () => {
       // Init
       const uploadOptions: CustomFileUploaderOptions = {
         url: 'www.some-url.com',
@@ -74,14 +74,13 @@ describe('CustomFileUploader', () => {
       customFileUploader = new CustomFileUploader(uploadOptions);
       const fileItem = createFile('hello.txt');
       customFileUploader.queue.push(fileItem);
+      const xhrSend = vi.spyOn(XMLHttpRequest.prototype, 'send').mockReturnValue(undefined);
 
       // SUT
-      customFileUploader.onCompleteAll = () => {
-        done();
-      };
+      customFileUploader.uploadAll();
 
       //verify
-      customFileUploader.uploadAll();
+      expect(xhrSend).toHaveBeenCalled();
     });
   });
 

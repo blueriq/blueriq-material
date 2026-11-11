@@ -44,7 +44,7 @@ describe('FailedContainerComponent', () => {
   });
 
   it('should copy to clipboard', () => {
-    vi.spyOn(document, 'execCommand');
+    document.execCommand = vi.fn();
     const buttons = fixture.nativeElement.querySelector(CLASS_MESSAGE).querySelectorAll('button');
     const buttonCopyToClipBoard = buttons[0];
     buttonCopyToClipBoard.click();
@@ -56,7 +56,7 @@ describe('FailedContainerComponent', () => {
       failedTemplate.stacktrace(undefined),
     );
 
-    vi.spyOn(document, 'execCommand');
+    document.execCommand = vi.fn();
     const buttons = fixture.nativeElement.querySelector(CLASS_MESSAGE).querySelectorAll('button');
     const buttonCopyToClipBoard = buttons[0];
     buttonCopyToClipBoard.click();

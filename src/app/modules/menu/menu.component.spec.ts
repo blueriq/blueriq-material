@@ -90,9 +90,9 @@ describe('MenuComponent', () => {
 
     // verify
     expect(menuOptions.length).toBe(3);
-    expect(menuOptions[0].textContent.trim()).toBe('CORE');
-    expect(menuOptions[1].textContent.trim()).toBe('FINANCE');
-    expect(menuOptions[2].textContent.trim()).toBe('PUBLIC');
+    expect(menuOptions[0].textContent.trim()).toBe('Core');
+    expect(menuOptions[1].textContent.trim()).toBe('Finance');
+    expect(menuOptions[2].textContent.trim()).toBe('Public');
 
     // expand the following submenu by clicking the 'Public' button
     menuOptions[2].getElementsByTagName('button')[0].click();
@@ -104,8 +104,8 @@ describe('MenuComponent', () => {
     const setMenuOptions = setSubMenu2.querySelectorAll('bq-menu-item') as NodeListOf<HTMLElement>;
     // verify
     expect(setMenuOptions.length).toBe(2);
-    expect(setMenuOptions[0].textContent.trim()).toBe('PUBLIC-A');
-    expect(setMenuOptions[1].textContent.trim()).toBe('PUBLIC-B');
+    expect(setMenuOptions[0].textContent.trim()).toBe('Public-A');
+    expect(setMenuOptions[1].textContent.trim()).toBe('Public-B');
   });
 
   it('should navigate submenus with arrowkeys', async () => {
@@ -125,8 +125,8 @@ describe('MenuComponent', () => {
     const arrowUpEvent = new KeyboardEvent('keydown', { key: 'ArrowUp' });
     const arrowRightEvent = new KeyboardEvent('keydown', { key: 'ArrowRight' });
 
-    const unitBtn = menuItems.find(el => el.nativeElement.textContent.includes('UNIT'))!;
-    const publicBtn = menuItems.find(el => el.nativeElement.textContent.includes('PUBLIC'))!;
+    const unitBtn = menuItems.find(el => el.nativeElement.textContent.includes('Unit'))!;
+    const publicBtn = menuItems.find(el => el.nativeElement.textContent.includes('Public'))!;
 
     expect(unitBtn).toBeTruthy();
     expect(publicBtn).toBeTruthy();
