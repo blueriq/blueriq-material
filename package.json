@@ -80,7 +80,7 @@
     "rxjs": "7.8.2",
     "tslib": "2.9.1",
     "uuid": "14.0.2",
-    "zone.js": "0.15.1"
+    "zone.js": "0.16.3"
   },
   "devDependencies": {
     "@angular-eslint/builder": "21.4.0",
