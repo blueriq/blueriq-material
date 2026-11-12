@@ -1,10 +1,9 @@
 # Prerequisites
 
 * A Blueriq license file is required before starting docker. Copy the license to `./docker/config`
-* If for any reason another version of Blueriq Runtime needs to be tested this could be achieved by doing the following:
-  * Go to `prepare.cmd` and change the version number on top
-  * OR put a war in `./cypress/docker/preparations`, check the Dockerfile.Runtime what the name should be so docker
-    actually copies this war to its container
+* The Runtime and Case Engine come from the `runtime-test-container-<branch>` and `case-engine-test-container-<branch>`
+  images that the Blueriq branch build pushes; the service versions are read from that branch's `Runtime/parent/pom.xml`.
+  The branch defaults to `master`; pass `-runtimeBranch <branch>` to the prepare scripts to test a specific branch.
 
 # How to test
 Run `pnpm run e2e:dev` to execute the end-to-end tests via Cypress when you want to run everything from docker

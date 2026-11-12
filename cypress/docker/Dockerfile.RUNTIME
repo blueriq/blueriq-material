@@ -1,12 +1,7 @@
-FROM azul/zulu-openjdk-centos:25
+ARG RUNTIME_IMAGE
+FROM ${RUNTIME_IMAGE}
 LABEL maintainer="support@blueriq.com"
 
-ARG BLUERIQ_LICENSE
+ENV JAVA_OPTS="-Dspring.config.additional-location=file:///config/ -Duser.timezone=Europe/Amsterdam"
 
-EXPOSE 8080 8000
-
-COPY preparations/blueriq-runtime-standalone-*.jar ~/runtime.jar
-COPY /config /config/blueriq-runtime/
-
-WORKDIR ~
-ENTRYPOINT ["java", "-Dserver.servlet.context-path=/runtime", "-Dspring.config.additional-location=file:///config/blueriq-runtime/", "-Djava.security.egd=file:/dev/./urandom", "-Dlogging.file.name=runtime.log", "-Duser.timezone=Europe/Amsterdam", "-jar", "runtime.jar" ,"-Xmx512m", "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000"]
+COPY /config /config/
