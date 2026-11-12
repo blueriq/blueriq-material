@@ -5,8 +5,8 @@ import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from
 import { FieldTemplate, LocalizationTemplate } from '@blueriq/core/testing';
 import { OWL_DATE_TIME_LOCALE, OwlDateTimeIntl } from '@danielmoncada/angular-datetime-picker';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
-import { FormControlModule } from '../../form-control.module';
 import { DateTimepickerComponent } from './datetimepicker.component';
+import { provideFormControlComponents } from '../../form-control.providers';
 
 describe('DateTimepickerComponent', () => {
   let field: FieldTemplate;
@@ -16,10 +16,10 @@ describe('DateTimepickerComponent', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
+      providers: [provideFormControlComponents()],
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        FormControlModule,
       ],
     }).compileComponents();
   });

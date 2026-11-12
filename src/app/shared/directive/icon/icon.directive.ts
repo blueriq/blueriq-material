@@ -6,10 +6,7 @@ import { BqPresentationStyles } from '../../../modules/BqPresentationStyles';
  * This directive can be added to <mat-icon> that will pick the correct icon based on the container's presentation styles.
  * It is meant for use in mat-icon only!
  */
-@Directive({
-    selector: '[bqIcon]',
-    standalone: false
-})
+@Directive({ selector: '[bqIcon]' })
 export class BqIconDirective {
   private readonly elementRef = inject(ElementRef);
 

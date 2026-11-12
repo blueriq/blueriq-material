@@ -4,7 +4,9 @@ import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from
 import { FieldTemplate } from '@blueriq/core/testing';
 
 import { ReadonlyComponent } from './readonly.component';
-import { ReadonlyModule } from './readonly.module';
+import { provideReadonlyComponents } from './readonly.providers';
+import { importProvidersFrom } from '@angular/core';
+import { FormattingModule } from '@blueriq/angular/formatting';
 
 describe('ReadonlyComponent', () => {
   let field: FieldTemplate;
@@ -13,10 +15,10 @@ describe('ReadonlyComponent', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
+      providers: [provideReadonlyComponents(), importProvidersFrom(FormattingModule.forRoot())],
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        ReadonlyModule,
       ],
     }).compileComponents();
   });

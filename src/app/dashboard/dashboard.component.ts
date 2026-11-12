@@ -1,20 +1,23 @@
 import { Component, inject, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { BlueriqComponents, Dispatcher } from '@blueriq/angular';
-import { DashboardAuthService, DashboardPageChange, QueryParameters } from '@blueriq/dashboard';
+import { DashboardAuthService, DashboardPageChange, QueryParameters, BlueriqDashboardModule } from '@blueriq/dashboard';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { WidgetPageComponent } from '../modules/widget/widget-page/widget-page.component';
 import { NotificationModel, NotificationType } from '../notification-overlay/notification.model';
 import { ActivateCaseAction, DeactivateCaseAction } from '../shared/dcm/case-aware.service';
 import { ActivateTaskAction } from '../shared/dcm/task-aware.service';
+import { DashboardPageComponent } from './page/dashboard-page.component';
+import { NotificationOverlayComponent } from '../notification-overlay/notification-overlay.component';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     templateUrl: './dashboard.component.html',
     providers: [
         BlueriqComponents.scoped([WidgetPageComponent]),
     ],
-    standalone: false
+    imports: [BlueriqDashboardModule, DashboardPageComponent, NotificationOverlayComponent, AsyncPipe]
 })
 export class DashboardComponent implements OnDestroy {
   private readonly route = inject(ActivatedRoute);

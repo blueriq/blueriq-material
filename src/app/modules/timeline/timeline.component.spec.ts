@@ -6,7 +6,7 @@ import { DEFAULT_DATE_FROM_NOW_FORMAT } from '@shared/date/bq-date-parser';
 import { BqContainerDirective } from '@shared/directive/container/bq-container.directive';
 import moment from 'moment';
 import { TimelineComponent } from './timeline.component';
-import { TimelineModule } from './timeline.module';
+import { provideTimelineComponents } from './timeline.providers';
 
 describe('TimelineComponent', () => {
 
@@ -19,9 +19,9 @@ describe('TimelineComponent', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
+      providers: [provideTimelineComponents()],
       imports: [
         BlueriqTestingModule,
-        TimelineModule,
       ],
     }).compileComponents();
   });

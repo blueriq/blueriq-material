@@ -1,17 +1,21 @@
 import { Component, Optional, inject } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
-import { BlueriqComponent } from '@blueriq/angular';
+import { BlueriqComponent, BlueriqCommonModule } from '@blueriq/angular';
 import { List } from '@blueriq/angular/lists';
 import { Button } from '@blueriq/core';
 import { BqIconDirective } from '@shared/directive/icon/icon.directive';
 import { BackendBusyService } from '@shared/loading/backend-busy.service';
 import { BqPresentationStyles } from '../BqPresentationStyles';
+import { MatButton } from '@angular/material/button';
+import { BqKeyDirective } from '../../shared/directive/bq-key/bq-key.directive';
+import { MatIcon } from '@angular/material/icon';
+import { BqIconDirective as BqIconDirective_1 } from '../../shared/directive/icon/icon.directive';
 
 @Component({
   selector: 'bq-button',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
-  standalone: false
+  imports: [MatButton, BlueriqCommonModule, BqKeyDirective, MatIcon, BqIconDirective_1]
 })
 @BlueriqComponent({
   type: Button,

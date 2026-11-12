@@ -4,10 +4,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate } from '@blueriq/core/testing';
 import { BqContainerDirective } from '@shared/directive/container/bq-container.directive';
-import { SharedModule } from '@shared/shared.module';
 import { BqPresentationStyles } from '../BqPresentationStyles';
 import { ContainerComponent } from './container.component';
-import { ContainerModule } from './container.module';
+import { provideContainerComponents } from './container.providers';
 
 describe('ContainerComponent', () => {
   let containerTemplate: ContainerTemplate;
@@ -16,11 +15,10 @@ describe('ContainerComponent', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
+      providers: [provideContainerComponents()],
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        SharedModule,
-        ContainerModule,
       ],
     }).compileComponents();
   });

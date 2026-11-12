@@ -9,10 +9,7 @@ import { OpenIdConnectAuth } from '@blueriq/angular/openidconnect';
 import { Observable, of } from 'rxjs';
 import { AuthService } from './auth.service';
 
-@Component({
-    template: '',
-    standalone: false
-})
+@Component({ template: '' })
 export class TestComponent {
 }
 
@@ -44,14 +41,12 @@ describe('AuthService', () => {
           { path: 'login', component: TestComponent },
           { path: 'logged-out', component: TestComponent },
         ]),
+        TestComponent,
       ],
       providers: [
         { provide: BqAuthService, useFactory: () => blueriqAuth },
         { provide: OpenIdConnectAuth, useFactory: () => openIdConnect },
         { provide: DOCUMENT, useValue: mockDocument },
-      ],
-      declarations: [
-        TestComponent,
       ],
     });
 

@@ -5,7 +5,7 @@ import { ContainerTemplate } from '@blueriq/core/testing';
 import { BqContentStyles } from '../../../modules/BqContentStyles';
 import { BqPresentationStyles } from '../../../modules/BqPresentationStyles';
 import { ContainerComponent } from '../../../modules/container/container.component';
-import { ContainerModule } from '../../../modules/container/container.module';
+import { provideContainerComponents } from '../../../modules/container/container.providers';
 
 describe('BqContainerDirective', () => {
 
@@ -15,10 +15,10 @@ describe('BqContainerDirective', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
+      providers: [provideContainerComponents()],
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        ContainerModule,
       ],
     }).compileComponents();
   });

@@ -1,12 +1,15 @@
 import { Component, isDevMode } from '@angular/core';
 import { BlueriqChild, BlueriqComponent } from '@blueriq/angular';
 import { Container, FailedElement } from '@blueriq/core';
+import { MatIconButton } from '@angular/material/button';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
     selector: 'bq-failed',
     styleUrls: ['./container.failed.component.scss'],
     templateUrl: './container.failed.component.html',
-    standalone: false
+    imports: [MatIconButton, MatTooltip, MatIcon]
 })
 @BlueriqComponent({
   type: Container,

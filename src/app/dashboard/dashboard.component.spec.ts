@@ -1,3 +1,5 @@
+import { AsyncPipe } from '@angular/common';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, ActivatedRouteSnapshot, convertToParamMap, Params, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -36,8 +38,7 @@ describe('Dashboard Component', () => {
     });
     toastrService = jasmine.createSpyObj<ToastrService>('ToastrService', ['success', 'info', 'warning']);
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
-      declarations: [DashboardComponent],
+      imports: [RouterTestingModule, DashboardComponent],
       providers: [
         { provide: DashboardAuthService, useValue: authService },
         { provide: Router, useValue: router },
@@ -45,7 +46,7 @@ describe('Dashboard Component', () => {
         { provide: ToastrService, useValue: toastrService },
         { provide: Dispatcher, useValue: testDispatcher },
       ],
-    }).compileComponents();
+    }).overrideComponent(DashboardComponent, { set: { imports: [AsyncPipe], schemas: [NO_ERRORS_SCHEMA] } }).compileComponents();
 
     component = TestBed.createComponent(DashboardComponent);
   });

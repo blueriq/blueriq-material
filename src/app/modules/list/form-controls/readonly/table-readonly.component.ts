@@ -1,13 +1,16 @@
 import { Component } from '@angular/core';
-import { BlueriqComponent, bySelector } from '@blueriq/angular';
+import { BlueriqComponent, bySelector, BlueriqCommonModule } from '@blueriq/angular';
 import { Field } from '@blueriq/core';
 import { ReadonlyComponent } from '../../../readonly/readonly.component';
+import { BqKeyDirective } from '../../../../shared/directive/bq-key/bq-key.directive';
+import { MatTooltip } from '@angular/material/tooltip';
+import { FormattingModule } from '@blueriq/angular/formatting';
 
 @Component({
     selector: 'bq-table-readonly',
     templateUrl: './table-readonly.component.html',
     styleUrls: ['./table-readonly.component.scss'],
-    standalone: false
+    imports: [BqKeyDirective, BlueriqCommonModule, MatTooltip, FormattingModule]
 })
 @BlueriqComponent({
   type: Field,

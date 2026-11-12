@@ -5,10 +5,7 @@ import { Subscription } from 'rxjs';
 import { BqContentStyles } from '../../../modules/BqContentStyles';
 import { BqPresentationStyles } from '../../../modules/BqPresentationStyles';
 
-@Directive({
-    selector: '[bqContainer]',
-    standalone: false
-})
+@Directive({ selector: '[bqContainer]' })
 export class BqContainerDirective implements OnInit, OnDestroy {
   private readonly hostElement = inject(ElementRef);
   private readonly blueriqSession = inject(BlueriqSession);

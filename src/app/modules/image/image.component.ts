@@ -3,12 +3,13 @@ import { BlueriqComponent, ImageInfo } from '@blueriq/angular';
 import { ImageResource } from '@blueriq/angular/files';
 import { Image } from '@blueriq/core';
 import { Subscription } from 'rxjs';
+import { BqKeyDirective } from '../../shared/directive/bq-key/bq-key.directive';
 
 @Component({
     selector: 'bq-image',
     templateUrl: './image.component.html',
     providers: [ImageResource],
-    standalone: false
+    imports: [BqKeyDirective]
 })
 @BlueriqComponent({
   type: Image,

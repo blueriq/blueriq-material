@@ -3,13 +3,17 @@ import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
 import { Timeline } from '@blueriq/angular/dashboard';
 import { Container } from '@blueriq/core';
 import { dateFromNowHumanReadable, dateToShortTime } from '@shared/date/bq-date-parser';
+import { BqContainerDirective } from '../../shared/directive/container/bq-container.directive';
+import { HeadingComponent } from '../heading/heading.component';
+import { MatDivider } from '@angular/material/divider';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'bq-timeline',
     templateUrl: './timeline.component.html',
     styleUrls: ['./timeline.component.scss'],
     providers: [Timeline],
-    standalone: false
+    imports: [BqContainerDirective, HeadingComponent, MatDivider, AsyncPipe]
 })
 @BlueriqComponent({
   type: Container,

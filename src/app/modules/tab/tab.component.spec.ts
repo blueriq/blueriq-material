@@ -4,11 +4,10 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
 import { BqContainerDirective } from '@shared/directive/container/bq-container.directive';
-import { SharedModule } from '@shared/shared.module';
 import { BqContentStyles } from '../BqContentStyles';
-import { ContainerModule } from '../container/container.module';
 import { TabComponent } from './tab.component';
-import { TabModule } from './tabs.module';
+import { provideContainerComponents } from '../container/container.providers';
+import { provideTabComponents } from './tabs.providers';
 
 describe('TabComponent', () => {
 
@@ -20,12 +19,10 @@ describe('TabComponent', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
+      providers: [provideContainerComponents(), provideTabComponents()],
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        SharedModule,
-        TabModule,
-        ContainerModule,
       ],
     }).compileComponents();
     tabField = FieldTemplate.text('field');

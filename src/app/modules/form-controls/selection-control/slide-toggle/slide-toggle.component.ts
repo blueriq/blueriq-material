@@ -4,6 +4,10 @@ import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { List } from '@blueriq/angular/lists';
 import { Field, FieldMessages } from '@blueriq/core';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
+import { BqKeyDirective } from '../../../../shared/directive/bq-key/bq-key.directive';
+import { MatSlideToggle } from '@angular/material/slide-toggle';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatHint, MatError } from '@angular/material/form-field';
 
 @Component({
     selector: 'bq-slide-toggle',
@@ -12,7 +16,7 @@ import { BqPresentationStyles } from '../../../BqPresentationStyles';
         'slide-toggle.component.scss',
         '../selection-control.component.scss',
     ],
-    standalone: false
+    imports: [BqKeyDirective, MatSlideToggle, FormsModule, ReactiveFormsModule, MatHint, MatError]
 })
 @BlueriqComponent({
   type: Field,

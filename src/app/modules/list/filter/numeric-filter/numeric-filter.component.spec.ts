@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NumericOperator } from '@blueriq/angular/lists';
-import { FilterModule } from '../filter.module';
 import { FilterCandidate } from '../types';
 
 import { NumericFilterComponent } from './numeric-filter.component';
@@ -15,7 +14,6 @@ describe('NumericFilterComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        FilterModule,
       ],
     }).compileComponents();
     fixture = TestBed.createComponent(NumericFilterComponent);

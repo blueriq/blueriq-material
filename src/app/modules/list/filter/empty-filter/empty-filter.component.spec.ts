@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { FilterModule } from '../filter.module';
 
 import { EmptyFilterComponent } from './empty-filter.component';
 
@@ -12,7 +11,6 @@ describe('EmptyFilterComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        FilterModule,
       ],
     }).compileComponents();
     fixture = TestBed.createComponent(EmptyFilterComponent);

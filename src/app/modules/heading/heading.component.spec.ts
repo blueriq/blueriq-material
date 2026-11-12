@@ -6,14 +6,14 @@ import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from
 import { Container } from '@blueriq/core';
 import { ContainerTemplate } from '@blueriq/core/testing';
 import { BqPresentationStyles } from '../BqPresentationStyles';
-import { HeadingModule } from './heading.module';
+import { HeadingComponent } from './heading.component';
 
 @BlueriqComponent({
   type: Container,
 })
 @Component({
     template: '<div><bq-heading [title]="container.displayName" [styles]="container.styles"></bq-heading></div>',
-    standalone: false
+    imports: [HeadingComponent]
 })
 class MockContainerComponent {  container = inject(Container);
 
@@ -27,12 +27,11 @@ describe('HeadingComponent', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
-      declarations: [MockContainerComponent],
       providers: [BlueriqComponents.register([MockContainerComponent])],
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        HeadingModule,
+        MockContainerComponent,
       ],
     }).compileComponents();
   });

@@ -1,3 +1,5 @@
+import { AsyncPipe } from '@angular/common';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
 import { BlueriqResponseError, CloseSessionStrategy, Dispatcher, SessionRegistry } from '@blueriq/angular';
@@ -17,10 +19,10 @@ import { Subject } from 'rxjs';
 describe('Flow Widget Component', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FlowWidgetComponent],
       imports: [
         RouterModule.forRoot([]),
         DashboardSessionModule,
+        FlowWidgetComponent,
       ],
       providers: [
         DashboardWidgetSession,
@@ -41,7 +43,7 @@ describe('Flow Widget Component', () => {
         },
         CloseSessionStrategy,
       ],
-    }).compileComponents();
+    }).overrideComponent(FlowWidgetComponent, { set: { imports: [AsyncPipe], schemas: [NO_ERRORS_SCHEMA] } }).compileComponents();
   });
 
   it('should return widgetStartType regular when NO shortcut is set', () => {

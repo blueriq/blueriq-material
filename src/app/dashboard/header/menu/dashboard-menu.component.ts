@@ -2,6 +2,9 @@ import { Component, Input, inject } from '@angular/core';
 import { Dispatcher } from '@blueriq/angular';
 import { DashboardMenuItem, NavigatePageAction } from '@blueriq/dashboard';
 import { RefreshAction } from '../../events/actions';
+import { MatToolbar } from '@angular/material/toolbar';
+import { MatButton } from '@angular/material/button';
+import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
     selector: 'bq-dashboard-menu',
@@ -11,7 +14,7 @@ import { RefreshAction } from '../../events/actions';
         '../../../modules/menu/menu.component.scss',
         '../../../modules/menu/menu-item/menu-item.component.scss',
     ],
-    standalone: false
+    imports: [MatToolbar, MatButton, MatTooltip]
 })
 export class DashboardMenuComponent {
   private readonly dispatcher = inject(Dispatcher);

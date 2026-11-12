@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import { FailedAction, isBlueriqError } from '@blueriq/angular';
+import { FailedAction, isBlueriqError, BlueriqCommonModule } from '@blueriq/angular';
 import { DashboardWidgetSession, FlowWidget } from '@blueriq/dashboard';
 import { NotificationModel, NotificationType } from '../../../notification-overlay/notification.model';
 import { SessionWidgetComponent } from '../session-widget.component';
+import { LoadingComponent } from '../../../modules/loading/loading.component';
+import { NotificationOverlayComponent } from '../../../notification-overlay/notification-overlay.component';
+import { AsyncPipe } from '@angular/common';
 
 type WidgetStartType = 'shortcut' | 'regular' | 'invalid';
 
@@ -10,7 +13,7 @@ type WidgetStartType = 'shortcut' | 'regular' | 'invalid';
     selector: 'bq-flow-widget',
     templateUrl: './flow-widget.component.html',
     providers: [DashboardWidgetSession],
-    standalone: false
+    imports: [BlueriqCommonModule, LoadingComponent, NotificationOverlayComponent, AsyncPipe]
 })
 export class FlowWidgetComponent extends SessionWidgetComponent {
 

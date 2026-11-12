@@ -5,8 +5,7 @@ import { Asset } from '@blueriq/core';
 @Component({
     selector: 'bq-asset',
     styleUrls: ['./asset.component.scss'],
-    templateUrl: './asset.component.html',
-    standalone: false
+    templateUrl: './asset.component.html'
 })
 @BlueriqComponent({
     type: Asset,

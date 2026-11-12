@@ -3,10 +3,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate, PageTemplate } from '@blueriq/core/testing';
-import { SharedModule } from '@shared/shared.module';
-import { ContainerModule } from '../../container.module';
-import { ExternalFlowModule } from '../external-flow.module';
 import { ExternalFlowPageComponent } from './external-flow-page.component';
+import { provideContainerComponents } from '../../container.providers';
+import { provideExternalFlowComponents } from '../external-flow.providers';
 
 describe('ExternalFlowPage', () => {
   let pageTemplate: PageTemplate;
@@ -18,11 +17,10 @@ describe('ExternalFlowPage', () => {
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        SharedModule,
-        ContainerModule,
-        ExternalFlowModule,
       ],
       providers: [
+        provideContainerComponents(),
+        provideExternalFlowComponents(),
         // ExternalFlowPageComponent is not registered in an NgModule as it's supposed to be scoped, so register it
         // manually here.
         BlueriqComponents.register([ExternalFlowPageComponent]),

@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BooleanPredicate, ColumnFilter } from '@blueriq/angular/lists';
-import { FilterModule } from '../filter.module';
 import { FilterCandidate } from '../types';
 
 import { BooleanFilterComponent } from './boolean-filter.component';
@@ -15,7 +14,6 @@ describe('BooleanFilterComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        FilterModule,
       ],
     }).compileComponents();
     fixture = TestBed.createComponent(BooleanFilterComponent);

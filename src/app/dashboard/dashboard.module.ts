@@ -4,11 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BlueriqCommonModule } from '@blueriq/angular';
 import { BlueriqDashboardModule, DashboardV2BackendModule } from '@blueriq/dashboard';
 import { environment } from '../../environments/environment';
-import { FooterModule } from '../modules/footer/footer.module';
-import { LoadingModule } from '../modules/loading/loading.module';
-import { NotificationOverlayModule } from '../notification-overlay/notification-overlay.module';
 import { DashboardComponent } from './dashboard.component';
-import { DashboardHeaderModule } from './header/dashboard-header.module';
 import { DashboardPageComponent } from './page/dashboard-page.component';
 import { FlowWidgetComponent } from './widgets/flow-widget/flow-widget.component';
 import { IntakeWidgetComponent } from './widgets/intake-widget/intake-widget.component';
@@ -30,13 +26,6 @@ export const ROUTES: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    DashboardComponent,
-    DashboardPageComponent,
-    FlowWidgetComponent,
-    TaskExecutionWidgetComponent,
-    IntakeWidgetComponent,
-  ],
   imports: [
     // Angular Modules
     CommonModule,
@@ -50,10 +39,11 @@ export const ROUTES: Routes = [
     DashboardV2BackendModule.forRoot(),
     // Blueriq Modules
     BlueriqCommonModule,
-    NotificationOverlayModule,
-    DashboardHeaderModule,
-    FooterModule,
-    LoadingModule,
+    DashboardComponent,
+    DashboardPageComponent,
+    FlowWidgetComponent,
+    TaskExecutionWidgetComponent,
+    IntakeWidgetComponent,
   ],
 })
 export class DashboardModule {

@@ -2,12 +2,13 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ActivityType, GlobalLoadingActivity } from '@blueriq/angular';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'bq-loading',
   templateUrl: './loading.component.html',
   styleUrls: ['./loading.component.scss'],
-  standalone: false,
+  imports: [AsyncPipe],
 })
 export class LoadingComponent implements OnInit {
   private readonly loadingActivity = inject(GlobalLoadingActivity);

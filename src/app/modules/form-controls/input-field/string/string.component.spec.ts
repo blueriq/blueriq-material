@@ -3,9 +3,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
-import { FormControlModule } from '../../form-control.module';
 
 import { StringFieldComponent } from './string.component';
+import { provideFormControlComponents } from '../../form-control.providers';
 
 describe('StringFieldComponent', () => {
   let field: FieldTemplate;
@@ -14,10 +14,10 @@ describe('StringFieldComponent', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
+      providers: [provideFormControlComponents()],
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        FormControlModule,
       ],
     }).compileComponents();
   });

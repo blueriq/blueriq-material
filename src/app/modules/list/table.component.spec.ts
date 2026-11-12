@@ -11,15 +11,17 @@ import {
   TextItemTemplate,
 } from '@blueriq/core/testing';
 import { BqContainerDirective } from '@shared/directive/container/bq-container.directive';
-import { AssetModule } from '../asset/asset.module';
 import { BqContentStyles } from '../BqContentStyles';
-import { ButtonModule } from '../button/button.module';
-import { ContainerModule } from '../container/container.module';
-import { FormControlModule } from '../form-controls/form-control.module';
-import { ReadonlyModule } from '../readonly/readonly.module';
-import { TextItemModule } from '../textitem/textitem.module';
 import { ListComponent } from './list.component';
-import { ListModule } from './list.module';
+import { provideAssetComponents } from '../asset/asset.providers';
+import { provideButtonComponents } from '../button/button.providers';
+import { provideContainerComponents } from '../container/container.providers';
+import { provideFormControlComponents } from '../form-controls/form-control.providers';
+import { provideListComponents } from './list.providers';
+import { provideReadonlyComponents } from '../readonly/readonly.providers';
+import { provideTextItemComponents } from '../textitem/textitem.providers';
+import { importProvidersFrom } from '@angular/core';
+import { FormattingModule } from '@blueriq/angular/formatting';
 
 describe('TableComponent', () => {
   let tableTemplate: ContainerTemplate;
@@ -28,16 +30,19 @@ describe('TableComponent', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
+      providers: [
+        provideAssetComponents(),
+        provideButtonComponents(),
+        provideContainerComponents(),
+        provideFormControlComponents(),
+        provideListComponents(),
+        provideReadonlyComponents(),
+        provideTextItemComponents(),
+        importProvidersFrom(FormattingModule.forRoot()),
+      ],
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        ContainerModule,
-        ButtonModule,
-        ReadonlyModule,
-        TextItemModule,
-        FormControlModule,
-        AssetModule,
-        ListModule,
       ],
     }).compileComponents();
   });

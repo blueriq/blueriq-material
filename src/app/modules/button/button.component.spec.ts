@@ -6,7 +6,7 @@ import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from
 import { ButtonTemplate } from '@blueriq/core/testing';
 import { BqPresentationStyles } from '../BqPresentationStyles';
 import { ButtonComponent } from './button.component';
-import { ButtonModule } from './button.module';
+import { provideButtonComponents } from './button.providers';
 
 describe('ButtonComponent', () => {
   let button: ButtonTemplate;
@@ -15,12 +15,12 @@ describe('ButtonComponent', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
+      providers: [provideButtonComponents()],
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
         BlueriqCommonModule,
         FormsModule,
-        ButtonModule,
       ],
     }).compileComponents();
   });

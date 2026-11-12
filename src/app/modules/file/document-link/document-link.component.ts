@@ -5,12 +5,16 @@ import { Container } from '@blueriq/core';
 import { Subscription } from 'rxjs';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
 import { FileDownloadService } from '../file-download/file-download.service';
+import { MatButton } from '@angular/material/button';
+import { BqKeyDirective } from '../../../shared/directive/bq-key/bq-key.directive';
+import { MatIcon } from '@angular/material/icon';
+import { BqIconDirective } from '../../../shared/directive/icon/icon.directive';
 
 @Component({
     templateUrl: './document-link.component.html',
     styleUrls: ['./document-link.component.scss'],
     providers: [DocumentLink],
-    standalone: false
+    imports: [MatButton, BqKeyDirective, MatIcon, BqIconDirective]
 })
 @BlueriqComponent({
   type: Container,

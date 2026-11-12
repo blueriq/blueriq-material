@@ -1,10 +1,7 @@
 import { Directive, HostBinding, Input, inject } from '@angular/core';
 import { Element } from '@blueriq/core';
 
-@Directive({
-    selector: '[bqKey]',
-    standalone: false
-})
+@Directive({ selector: '[bqKey]' })
 export class BqKeyDirective {
   private readonly scopedElement = inject(Element);
 

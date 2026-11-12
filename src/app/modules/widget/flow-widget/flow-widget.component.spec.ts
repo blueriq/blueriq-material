@@ -5,8 +5,8 @@ import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession, } fro
 import { ErrorType } from '@blueriq/core';
 import { ContainerTemplate } from '@blueriq/core/testing';
 import { BqContainerDirective } from '@shared/directive/container/bq-container.directive';
-import { WidgetModule } from '../widget.module';
 import { FlowWidgetComponent } from './flow-widget.component';
+import { provideWidgetComponents } from '../widget.providers';
 
 describe('FlowWidgetComponent', () => {
   let container: ContainerTemplate;
@@ -15,9 +15,9 @@ describe('FlowWidgetComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      providers: [provideWidgetComponents()],
       imports: [
         BlueriqTestingModule,
-        WidgetModule,
       ],
     }).compileComponents();
   });

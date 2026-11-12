@@ -1,9 +1,14 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatChipInputEvent } from '@angular/material/chips';
+import { MatChipInputEvent, MatChipGrid, MatChipRow, MatChipRemove, MatChipInput } from '@angular/material/chips';
 import { Search } from '@blueriq/angular/lists';
 import { Subscription } from 'rxjs';
+import { BqKeyDirective } from '../../../shared/directive/bq-key/bq-key.directive';
+import { BlueriqCommonModule } from '@blueriq/angular';
+import { MatFormField } from '@angular/material/form-field';
+import { MatIcon } from '@angular/material/icon';
+import { MatIconButton } from '@angular/material/button';
 
 @Component({
     selector: 'bq-table-search',
@@ -21,7 +26,17 @@ import { Subscription } from 'rxjs';
             ]),
         ]),
     ],
-    standalone: false
+    imports: [
+      BqKeyDirective,
+      BlueriqCommonModule,
+      MatFormField,
+      MatChipGrid,
+      MatChipRow,
+      MatIcon,
+      MatChipRemove,
+      MatChipInput,
+      MatIconButton,
+    ]
 })
 export class TableSearchComponent implements OnInit, OnDestroy {
 

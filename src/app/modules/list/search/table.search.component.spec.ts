@@ -4,8 +4,8 @@ import { Search } from '@blueriq/angular/lists';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ButtonTemplate, ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
 import { ListComponent } from '../list.component';
-import { ListModule } from '../list.module';
 import { TableSearchComponent } from './table.search.component';
+import { provideListComponents } from '../list.providers';
 
 describe('TableSearchComponent', () => {
   let field: FieldTemplate;
@@ -16,10 +16,10 @@ describe('TableSearchComponent', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
+      providers: [provideListComponents()],
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        ListModule,
       ],
     }).compileComponents();
   });

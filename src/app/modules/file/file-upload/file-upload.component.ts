@@ -3,13 +3,32 @@ import { BlueriqChild, BlueriqComponent } from '@blueriq/angular';
 import { FileUpload } from '@blueriq/angular/files';
 import { Container, Element, Field, TextItem } from '@blueriq/core';
 import { CustomFileUploader, CustomFileUploaderOptions } from './custom-file-uploader';
+import { BqContainerDirective } from '../../../shared/directive/container/bq-container.directive';
+import { HeadingComponent } from '../../heading/heading.component';
+import { MatButton, MatIconButton } from '@angular/material/button';
+import { FileUploadModule } from 'ng2-file-upload';
+import { MatHint, MatError } from '@angular/material/form-field';
+import { MatProgressBar } from '@angular/material/progress-bar';
+import { MatIcon } from '@angular/material/icon';
+import { DottedFileExtensionsPipe } from './dotted-file-extensions.pipe';
 
 @Component({
     selector: 'bq-file-upload',
     templateUrl: './file-upload.component.html',
     styleUrls: ['./file-upload.component.scss'],
     providers: [FileUpload],
-    standalone: false
+    imports: [
+      BqContainerDirective,
+      HeadingComponent,
+      MatButton,
+      FileUploadModule,
+      MatHint,
+      MatError,
+      MatProgressBar,
+      MatIconButton,
+      MatIcon,
+      DottedFileExtensionsPipe,
+    ]
 })
 @BlueriqComponent({
   type: Container,

@@ -4,8 +4,8 @@ import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from
 import { ContainerTemplate, LinkTemplate } from '@blueriq/core/testing';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
 import { FileDownloadService } from '../file-download/file-download.service';
-import { FileModule } from '../file.modules';
 import { DocumentLinkComponent } from './document-link.component';
+import { provideFileComponents } from '../file.providers';
 
 describe('DocumentLinkComponent DocumentLink', () => {
 
@@ -21,10 +21,10 @@ describe('DocumentLinkComponent DocumentLink', () => {
     mockFileDownloadService = jasmine.createSpyObj(['download']);
     await TestBed.configureTestingModule({
       providers: [
+        provideFileComponents(),
         { provide: FileDownloadService, useValue: mockFileDownloadService },
       ],
       imports: [
-        FileModule,
         NoopAnimationsModule,
         BlueriqTestingModule,
       ],

@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BlueriqComponent, BlueriqComponents } from '@blueriq/angular';
+import { BlueriqCommonModule, BlueriqComponent, BlueriqComponents } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { Container } from '@blueriq/core';
 import { ContainerTemplate } from '@blueriq/core/testing';
@@ -8,7 +8,7 @@ import { HorizontalFlexChildDirective } from './horizontal-flex-child.directive'
 
 @Component({
     template: '<div><ng-container [bqElement]="container.children[0]" bqFlexChild></ng-container></div>',
-    standalone: false
+    imports: [BlueriqCommonModule, HorizontalFlexChildDirective]
 })
 @BlueriqComponent({
   type: Container,
@@ -19,8 +19,7 @@ class MockFlexParentComponent {  container = inject(Container);
 }
 
 @Component({
-    template: '<div class="child"></div>',
-    standalone: false
+    template: '<div class="child"></div>'
 })
 @BlueriqComponent({
   type: Container,
@@ -36,16 +35,13 @@ describe('HorizontalFlexChildDirective', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
-      declarations: [
-        HorizontalFlexChildDirective,
-        MockFlexChildComponent,
-        MockFlexParentComponent,
-      ],
       providers: [BlueriqComponents.register([
         MockFlexChildComponent,
         MockFlexParentComponent,
       ])],
-      imports: [BlueriqTestingModule],
+      imports: [BlueriqTestingModule,
+        MockFlexChildComponent,
+        MockFlexParentComponent],
     }).compileComponents();
   });
 

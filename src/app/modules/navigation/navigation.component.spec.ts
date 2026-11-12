@@ -6,7 +6,7 @@ import { ButtonTemplate, ContainerTemplate } from '@blueriq/core/testing';
 import { BqContentStyles } from '../BqContentStyles';
 import { NavigationItemComponent } from './navigation-item/navigation-item.component';
 import { NavigationComponent } from './navigation.component';
-import { NavigationModule } from './navigation.module';
+import { provideNavigationComponents } from './navigation.providers';
 
 describe('NavigationComponent', () => {
   let navigationTemplate: ContainerTemplate;
@@ -15,10 +15,10 @@ describe('NavigationComponent', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
+      providers: [provideNavigationComponents()],
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        NavigationModule,
       ],
     }).compileComponents();
 

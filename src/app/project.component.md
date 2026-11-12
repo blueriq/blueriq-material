@@ -1,7 +1,7 @@
 ### Project component
 This component allows users to start a Blueriq application. 
 A Blueriq application can be started in different ways. For the options described below, Angular Routes are 
-configured in the `app.module.ts` file.
+configured in the `app.routes.ts` file.
 
 ### Start a shortcut configured in the Blueriq Runtime
 > _URL format:_ `https://{HOST}/shortcut/{SHORTCUT_NAME}`  

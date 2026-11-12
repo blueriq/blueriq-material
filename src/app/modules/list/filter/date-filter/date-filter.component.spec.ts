@@ -4,7 +4,6 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSession } from '@blueriq/angular';
 import { DateOperator } from '@blueriq/angular/lists';
 import { LocalizationTemplate } from '@blueriq/core/testing';
-import { FilterModule } from '../filter.module';
 import { FilterCandidate } from '../types';
 
 import { DateFilterComponent } from './date-filter.component';
@@ -18,7 +17,6 @@ describe('DateFilterComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        FilterModule,
       ],
       providers: [
         { provide: BlueriqSession, useValue: session },

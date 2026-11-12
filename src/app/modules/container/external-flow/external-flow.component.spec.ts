@@ -18,12 +18,11 @@ import { ErrorType, Page } from '@blueriq/core';
 import { ContainerTemplate, PageModelTemplate, PageTemplate } from '@blueriq/core/testing';
 import { BqContainerDirective } from '@shared/directive/container/bq-container.directive';
 import { ExternalFlowComponent } from './external-flow.component';
-import { ExternalFlowModule } from './external-flow.module';
+import { provideExternalFlowComponents } from './external-flow.providers';
 
 
 @Component({
-  template: '<span id="externalContainer">{{page.displayName}}</span>',
-  standalone: false
+  template: '<span id="externalContainer">{{page.displayName}}</span>'
 })
 @BlueriqComponent({
   type: Page,
@@ -40,11 +39,10 @@ describe('ExternalFlowComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [MockPageComponent],
-      providers: [BlueriqComponents.register([MockPageComponent])],
+      providers: [provideExternalFlowComponents(), BlueriqComponents.register([MockPageComponent])],
       imports: [
         BlueriqTestingModule,
-        ExternalFlowModule,
+        MockPageComponent,
       ],
     }).compileComponents();
   });

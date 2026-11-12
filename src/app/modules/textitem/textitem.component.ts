@@ -1,13 +1,16 @@
 import { Component, inject } from '@angular/core';
-import { BlueriqComponent, OnUpdate } from '@blueriq/angular';
+import { BlueriqComponent, OnUpdate, BlueriqCommonModule } from '@blueriq/angular';
 import { TextItem } from '@blueriq/core';
 import { BqPresentationStyles } from '../BqPresentationStyles';
+import { BqKeyDirective } from '../../shared/directive/bq-key/bq-key.directive';
+import { MatIcon } from '@angular/material/icon';
+import { TextItemModule } from '@blueriq/angular/textitems';
 
 @Component({
     selector: 'bq-textitem',
     templateUrl: './textitem.component.html',
     styleUrls: ['./textitem.component.scss'],
-    standalone: false
+    imports: [BqKeyDirective, BlueriqCommonModule, MatIcon, TextItemModule]
 })
 @BlueriqComponent({
   type: TextItem,

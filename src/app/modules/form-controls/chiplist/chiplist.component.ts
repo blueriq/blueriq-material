@@ -1,11 +1,16 @@
 import { COMMA, ENTER, TAB } from '@angular/cdk/keycodes';
 import { Component, ElementRef, HostBinding, OnInit, ViewChild, inject } from '@angular/core';
-import { MatChipInputEvent } from '@angular/material/chips';
+import { MatChipInputEvent, MatChipGrid, MatChipRow, MatChipRemove, MatChipInput } from '@angular/material/chips';
 import { MatOptionSelectionChange } from '@angular/material/core';
 import { BlueriqComponent, BlueriqSession, bySelector, OnUpdate } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { DomainValue, Field, FieldMessages } from '@blueriq/core';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
+import { MatFormField, MatLabel, MatHint, MatError } from '@angular/material/form-field';
+import { BqKeyDirective } from '../../../shared/directive/bq-key/bq-key.directive';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatIcon } from '@angular/material/icon';
+import { MatAutocompleteTrigger, MatAutocomplete, MatOption } from '@angular/material/autocomplete';
 
 interface ChiplistValue {
   value: string;
@@ -15,7 +20,23 @@ interface ChiplistValue {
 @Component({
     selector: 'bq-chiplist',
     templateUrl: './chiplist.component.html',
-    standalone: false
+    imports: [
+      MatFormField,
+      BqKeyDirective,
+      MatLabel,
+      MatChipGrid,
+      FormsModule,
+      ReactiveFormsModule,
+      MatChipRow,
+      MatIcon,
+      MatChipRemove,
+      MatAutocompleteTrigger,
+      MatChipInput,
+      MatAutocomplete,
+      MatOption,
+      MatHint,
+      MatError,
+    ]
 })
 @BlueriqComponent({
   type: Field,

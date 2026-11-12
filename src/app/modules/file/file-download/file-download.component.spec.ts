@@ -5,9 +5,9 @@ import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from
 import { ButtonTemplate, ContainerTemplate } from '@blueriq/core/testing';
 import { of } from 'rxjs/internal/observable/of';
 import { ButtonComponent } from '../../button/button.component';
-import { FileModule } from '../file.modules';
 import { FileDownloadComponent } from './file-download.component';
 import { FileDownloadService } from './file-download.service';
+import { provideFileComponents } from '../file.providers';
 
 describe('FileDownloadComponent', () => {
 
@@ -17,7 +17,8 @@ describe('FileDownloadComponent', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
-      imports: [BlueriqTestingModule, FileModule],
+      providers: [provideFileComponents()],
+      imports: [BlueriqTestingModule],
     }).compileComponents();
   });
 

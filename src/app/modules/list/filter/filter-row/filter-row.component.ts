@@ -1,12 +1,35 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ColumnFilter } from '@blueriq/angular/lists';
 import { FilterCandidate } from '../types';
+import { MatFormField } from '@angular/material/form-field';
+import { MatSelect } from '@angular/material/select';
+import { MatOption } from '@angular/material/autocomplete';
+import { DomainFilterComponent } from '../domain-filter/domain-filter.component';
+import { BooleanFilterComponent } from '../boolean-filter/boolean-filter.component';
+import { NumericFilterComponent } from '../numeric-filter/numeric-filter.component';
+import { DateFilterComponent } from '../date-filter/date-filter.component';
+import { TextFilterComponent } from '../text-filter/text-filter.component';
+import { EmptyFilterComponent } from '../empty-filter/empty-filter.component';
+import { MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
     selector: 'bq-filter-row',
     templateUrl: './filter-row.component.html',
     styleUrls: ['./filter-row.component.scss'],
-    standalone: false
+    imports: [
+      MatFormField,
+      MatSelect,
+      MatOption,
+      DomainFilterComponent,
+      BooleanFilterComponent,
+      NumericFilterComponent,
+      DateFilterComponent,
+      TextFilterComponent,
+      EmptyFilterComponent,
+      MatIconButton,
+      MatIcon,
+    ]
 })
 export class FilterRowComponent {
 

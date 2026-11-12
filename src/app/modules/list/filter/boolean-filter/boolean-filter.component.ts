@@ -1,11 +1,15 @@
 import { Component, Input } from '@angular/core';
 import { BooleanPredicate } from '@blueriq/angular/lists';
 import { FilterCandidate } from '../types';
+import { MatFormField } from '@angular/material/form-field';
+import { MatSelect } from '@angular/material/select';
+import { MatOption } from '@angular/material/autocomplete';
+import { MatCheckbox } from '@angular/material/checkbox';
 
 @Component({
     selector: 'bq-boolean-filter',
     templateUrl: './boolean-filter.component.html',
-    standalone: false
+    imports: [MatFormField, MatSelect, MatOption, MatCheckbox]
 })
 export class BooleanFilterComponent {
   private _candidate: FilterCandidate;

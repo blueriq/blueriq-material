@@ -1,13 +1,18 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
-import { BlueriqChild, BlueriqComponent, BqProjectComponent } from '@blueriq/angular';
+import { BlueriqChild, BlueriqComponent, BqProjectComponent, BlueriqCommonModule } from '@blueriq/angular';
 import { Container, Page, TextItem } from '@blueriq/core';
 import { AuthService } from '../../auth/auth.service';
+import { MatToolbar } from '@angular/material/toolbar';
+import { BqKeyDirective } from '../../shared/directive/bq-key/bq-key.directive';
+import { MatButton } from '@angular/material/button';
+import { MatMenuTrigger, MatMenu, MatMenuItem } from '@angular/material/menu';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
     selector: 'bq-header',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss'],
-    standalone: false
+    imports: [MatToolbar, BqKeyDirective, BlueriqCommonModule, MatButton, MatMenuTrigger, MatIcon, MatMenu, MatMenuItem]
 })
 @BlueriqComponent({
   type: Container,

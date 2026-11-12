@@ -10,10 +10,7 @@ import { BqPresentationStyles } from '../../BqPresentationStyles';
  * This directive can be added to a container to add a flex-grow style to it, based on the container's content style.
  * It is meant for children of containers with presentation style 'horizontal' only!
  */
-@Directive({
-    selector: '[bqFlexChild]',
-    standalone: false
-})
+@Directive({ selector: '[bqFlexChild]' })
 export class HorizontalFlexChildDirective implements OnChanges, OnDestroy {
   private readonly renderer = inject(Renderer2);
   private readonly listeners = inject(BlueriqListeners);

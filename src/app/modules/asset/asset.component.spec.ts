@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
-import { TextItemModule } from '@blueriq/angular/textitems';
 import { AssetTemplate } from '@blueriq/core/testing';
 
 import { AssetComponent } from './asset.component';
-import { AssetModule } from './asset.module';
+import { provideAssetComponents } from './asset.providers';
+import { provideTextItemComponents } from '../textitem/textitem.providers';
 
 describe('AssetComponent', () => {
   let assetTemplate: AssetTemplate;
@@ -14,11 +14,10 @@ describe('AssetComponent', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
+      providers: [provideAssetComponents(), provideTextItemComponents()],
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        AssetModule,
-        TextItemModule,
       ],
     }).compileComponents();
   });
