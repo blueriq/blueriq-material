@@ -62,6 +62,7 @@ describe('Visual testing', () => {
     });
 
     it('Check Buttons', () => {
+      cy.get('bq-button button').each(button => expect(button).to.have.css('text-transform', 'uppercase'));
       cy.compareSnapshot('buttons', 0.2);
     });
 
@@ -113,6 +114,7 @@ describe('Visual testing', () => {
 
     it('Check Menu', () => {
       cy.get('#P866_Menu_1').click().wait(2000);
+      cy.get('bq-menu-item button').each(button => expect(button).to.have.css('text-transform', 'uppercase'));
       cy.compareSnapshot('menu', 0.2);
     });
   });
