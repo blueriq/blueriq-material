@@ -26,17 +26,20 @@
   <import file="docker-utils.xml"/>
   <property name="commit" value="local"/>
   <property name="docker.image" value="docker-e2e-material:${commit}"/>
+  <property name="suite" value="e2e"/>
+  <property name="results.dir" value="${sources.dir}/tmp/${suite}"/>
   <property name="container.src.dir" value="/usr/src"/>
 
   <!-- targets -->
   <target name="run-e2e-dashboards">
-    <antcall target="run">
+    <antcall target="run" inheritAll="false">
+      <param name="suite" value="e2e-dashboards"/>
       <param name="cypress.spec" value="cypress/e2e-dashboards/*.cy.ts"/>
       <param name="cypress.base.url" value="http://e2e-blueriq-material-theme"/>
     </antcall>
   </target>
 
-  <target name="run" depends="create-build-image">
+  <target name="run">
     <property name="cypress.spec" value="cypress/e2e/*.cy.ts"/>
     <property name="cypress.base.url" value="http://blueriq-material-theme"/>
     <echo message="cypress.spec=${cypress.spec} baseUrl=${cypress.base.url} network=${compose.network}" />
@@ -55,15 +58,15 @@
       <catch>
       </catch>
       <finally>
+        <mkdir dir="${results.dir}"/>
         <copy-from-container container.id="${container.id}" copy.from.dir="${container.src.dir}/cypress/."
-                             copy.to.dir="${sources.dir}/cypress/"/>
+                             copy.to.dir="${results.dir}/cypress/"/>
         <copy-from-container container.id="${container.id}" copy.from.dir="${container.src.dir}/cypress-visual-screenshots/."
-                             copy.to.dir="${sources.dir}/cypress-visual-screenshots/"/>
+                             copy.to.dir="${results.dir}/cypress-visual-screenshots/"/>
       </finally>
     </trycatch>
 
     <cleanup-container container.id="${container.id}"/>
-    <cleanup-image image.name="${docker.image}"/>
 
     <fail if:true="${build.error}" message="Error occurred during run"/>
   </target>
@@ -83,6 +86,12 @@
         <arg value="id=npm_password,env=NPM_PASSWORD"/>
       </buildTargetArgs>
     </create-image>
+
+    <fail if:true="${build.error}" message="Error occurred while creating the image"/>
+  </target>
+
+  <target name="cleanup-build-image">
+    <cleanup-image image.name="${docker.image}"/>
   </target>
 
 </project>

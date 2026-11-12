@@ -4,6 +4,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.RUNTIME
+      args:
+        RUNTIME_IMAGE: docker-internal.blueriq.com/testcontainers/runtime-test-container-${RUNTIME_IMAGE_BRANCH:-master}:latest
     depends_on:
       - postgres
   customerdata:

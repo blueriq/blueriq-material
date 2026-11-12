@@ -7,7 +7,7 @@ services:
       test: [ "CMD-SHELL", "exec 3<>/dev/tcp/127.0.0.1/8080;echo -e \"GET /health/ready HTTP/1.1\r\nhost: http://localhost\r\nConnection: close\r\n\r\n\" >&3;grep \"HTTP/1.1 200 OK\" <&3" ]
       interval: 5s
       timeout: 5s
-      start_period: 10s
+      start_period: 120s
       retries: 10
     mem_limit: 512m
     command:
@@ -27,7 +27,7 @@ services:
       test: "curl --user blueriq:welcome --fail --silent http://localhost:8080/actuator/health | grep UP || exit 1"
       interval: 5s
       timeout: 5s
-      start_period: 10s
+      start_period: 120s
       retries: 10
     mem_limit: 512m
     depends_on:
@@ -45,6 +45,8 @@ services:
     build:
       context: ../
       dockerfile: dashboards/Dockerfile.RUNTIME
+      args:
+        RUNTIME_IMAGE: docker-internal.blueriq.com/testcontainers/runtime-test-container-${RUNTIME_IMAGE_BRANCH:-master}:latest
     mem_limit: 768m
     depends_on:
       - e2e-case-engine
@@ -56,6 +58,8 @@ services:
     build:
       context: ../
       dockerfile: dashboards/Dockerfile.CASEENGINE
+      args:
+        CASE_ENGINE_IMAGE: docker-internal.blueriq.com/testcontainers/case-engine-test-container-${RUNTIME_IMAGE_BRANCH:-master}:latest
     mem_limit: 768m
     depends_on:
       - e2e-dcm-lists
