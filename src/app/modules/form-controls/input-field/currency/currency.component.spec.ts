@@ -2,8 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
-import { FormControlModule } from '../../form-control.module';
 import { CurrencyFieldComponent } from './currency.component';
+import { provideFormControlComponents } from '../../form-control.providers';
 
 describe('CurrencyFieldComponent', () => {
   let field: FieldTemplate;
@@ -12,10 +12,10 @@ describe('CurrencyFieldComponent', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
+      providers: [provideFormControlComponents()],
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        FormControlModule,
       ],
     }).compileComponents();
   });

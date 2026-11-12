@@ -1,3 +1,5 @@
+import { AsyncPipe } from '@angular/common';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
 import {
@@ -25,10 +27,10 @@ describe('Task Execution Widget Component', () => {
   beforeEach(async () => {
     jasmine.clock().install();
     await TestBed.configureTestingModule({
-      declarations: [TaskExecutionWidgetComponent],
       imports: [
         RouterModule.forRoot([]),
         DashboardSessionModule,
+        TaskExecutionWidgetComponent,
       ],
       providers: [
         DashboardWidgetSession,
@@ -52,7 +54,7 @@ describe('Task Execution Widget Component', () => {
         },
         CloseSessionStrategy,
       ],
-    }).compileComponents();
+    }).overrideComponent(TaskExecutionWidgetComponent, { set: { imports: [AsyncPipe], schemas: [NO_ERRORS_SCHEMA] } }).compileComponents();
   });
 
   afterEach(() => {

@@ -4,6 +4,9 @@ import { Statistic, Statistics } from '@blueriq/angular/statistics';
 import { Container, PresentationStyles } from '@blueriq/core';
 import { Chart } from 'chart.js';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
+import { BqKeyDirective } from '../../../shared/directive/bq-key/bq-key.directive';
+import { BqContainerDirective } from '../../../shared/directive/container/bq-container.directive';
+import { HeadingComponent } from '../../heading/heading.component';
 
 type ChartType = 'pie' | 'doughnut' | 'bar' | 'line' | 'radar' | 'polarArea';
 
@@ -49,7 +52,7 @@ interface ChartOptions {
 @Component({
     templateUrl: './statistic.component.html',
     providers: [Statistics],
-    standalone: false
+    imports: [BqKeyDirective, BqContainerDirective, HeadingComponent]
 })
 @BlueriqComponent({
   type: Container,

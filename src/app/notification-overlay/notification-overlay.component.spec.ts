@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatButton } from '@angular/material/button';
 import { By } from '@angular/platform-browser';
 import { NotificationOverlayComponent } from './notification-overlay.component';
-import { NotificationOverlayModule } from './notification-overlay.module';
 import { NotificationModel, NotificationType } from './notification.model';
 
 describe('NotificationOverlayComponent', () => {
@@ -11,7 +10,7 @@ describe('NotificationOverlayComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NotificationOverlayModule],
+      imports: [NotificationOverlayComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(NotificationOverlayComponent);

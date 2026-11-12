@@ -3,7 +3,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { AssetTemplate, ButtonTemplate, ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
 import { ListComponent } from '../list.component';
-import { ListModule } from '../list.module';
+import { provideListComponents } from '../list.providers';
 
 describe('TablePaginationComponent', () => {
   const LABEL = '.mat-mdc-paginator-range-label';
@@ -26,10 +26,10 @@ describe('TablePaginationComponent', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
+      providers: [provideListComponents()],
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        ListModule,
       ],
     }).compileComponents();
   });

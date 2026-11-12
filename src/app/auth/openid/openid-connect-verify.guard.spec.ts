@@ -7,10 +7,7 @@ import { of, throwError } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { OpenIdConnectVerifyGuard } from './openid-connect-verify.guard';
 
-@Component({
-    template: '',
-    standalone: false
-})
+@Component({ template: '' })
 export class TestComponent {
 }
 
@@ -31,13 +28,11 @@ describe('OpenIdConnectVerifyGuard', () => {
           { path: 'verify', component: TestComponent, canActivate: [OpenIdConnectVerifyGuard] },
           { path: 'success', component: TestComponent },
         ]),
+        TestComponent,
       ],
       providers: [
         { provide: AuthService, useFactory: () => auth },
         { provide: OpenIdConnectAuth, useFactory: () => openIdConnect },
-      ],
-      declarations: [
-        TestComponent,
       ],
     });
 

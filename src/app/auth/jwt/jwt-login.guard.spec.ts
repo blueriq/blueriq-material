@@ -7,10 +7,7 @@ import { JwtAuthService } from '@blueriq/angular';
 import { of, throwError } from 'rxjs';
 import { JwtLoginGuard } from './jwt-login.guard';
 
-@Component({
-    template: '',
-    standalone: false
-})
+@Component({ template: '' })
 export class TestComponent {
 }
 
@@ -36,13 +33,11 @@ describe('JwtLoginGuard', () => {
           { path: 'login', component: TestComponent, canActivate: [JwtLoginGuard] },
           { path: 'success', component: TestComponent },
         ]),
+        TestComponent,
       ],
       providers: [
         { provide: JwtAuthService, useFactory: () => jwtAuthService },
         { provide: DOCUMENT, useValue: mockDocument },
-      ],
-      declarations: [
-        TestComponent,
       ],
     });
 

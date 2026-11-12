@@ -16,8 +16,7 @@ describe('Session Widget Component', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SessionWidgetComponent],
-      imports: [
+      imports: [SessionWidgetComponent,
         RouterModule.forRoot([]),
         DashboardSessionModule,
       ],

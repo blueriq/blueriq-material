@@ -5,8 +5,8 @@ import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from
 import { ContainerTemplate } from '@blueriq/core/testing';
 import { BqContainerDirective } from '@shared/directive/container/bq-container.directive';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
-import { VisualizationModule } from '../visualization.module';
 import { StatisticComponent } from './statistic.component';
+import { provideVisualizationComponents } from '../visualization.providers';
 
 describe('StatisticComponent', () => {
 
@@ -16,10 +16,10 @@ describe('StatisticComponent', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
+      providers: [provideVisualizationComponents()],
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        VisualizationModule,
       ],
     }).compileComponents();
   });

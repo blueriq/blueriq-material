@@ -5,8 +5,7 @@ import { ContainerEmptyComponentMatcher } from './container.empty.component-matc
 
 @Component({
     selector: 'bq-empty-container',
-    template: '',
-    standalone: false
+    template: ''
 })
 @BlueriqComponent({
   type: Container,

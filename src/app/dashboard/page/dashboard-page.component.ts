@@ -3,12 +3,18 @@ import { BlueriqDashboard, DashboardPage } from '@blueriq/dashboard';
 import { Subscription } from 'rxjs';
 import { Actions, ofType } from '@ngrx/effects';
 import { DashboardActions, RefreshAction } from '../events/actions';
+import { DashboardHeaderComponent } from '../header/dashboard-header.component';
+import { NgClass } from '@angular/common';
+import { FlowWidgetComponent } from '../widgets/flow-widget/flow-widget.component';
+import { TaskExecutionWidgetComponent } from '../widgets/task-execution-widget/task-execution-widget.component';
+import { IntakeWidgetComponent } from '../widgets/intake-widget/intake-widget.component';
+import { FooterComponent } from '../../modules/footer/footer.component';
 
 @Component({
     selector: 'bq-dashboard-page',
     templateUrl: './dashboard-page.component.html',
     styleUrls: ['./dashboard-page.component.scss'],
-    standalone: false
+    imports: [DashboardHeaderComponent, NgClass, FlowWidgetComponent, TaskExecutionWidgetComponent, IntakeWidgetComponent, FooterComponent]
 })
 export class DashboardPageComponent implements OnInit, OnDestroy, AfterViewChecked {
   private readonly actions$ = inject(Actions);

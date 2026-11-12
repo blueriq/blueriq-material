@@ -6,9 +6,9 @@ import { ActivityType, BqProjectComponent, GlobalLoadingActivity } from '@blueri
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate, PageTemplate } from '@blueriq/core/testing';
 import { BqContentStyles } from '../BqContentStyles';
-import { MenuModule } from '../menu/menu.module';
 import { PageComponent } from './page.component';
-import { PageModule } from './page.module';
+import { provideMenuComponents } from '../menu/menu.providers';
+import { providePageComponents } from './page.providers';
 
 describe('PageComponent', () => {
   let pageTemplate: PageTemplate;
@@ -18,6 +18,8 @@ describe('PageComponent', () => {
   beforeEach(async() => {
     await TestBed.configureTestingModule({
       providers: [
+        provideMenuComponents(),
+        providePageComponents(),
         { provide: APP_BASE_HREF, useValue: '/' },
         {
           provide: BqProjectComponent,
@@ -30,8 +32,6 @@ describe('PageComponent', () => {
         NoopAnimationsModule,
         BlueriqTestingModule,
         RouterModule.forRoot([]),
-        PageModule,
-        MenuModule,
       ],
     }).compileComponents();
   });

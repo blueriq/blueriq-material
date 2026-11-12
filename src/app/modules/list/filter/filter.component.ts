@@ -3,6 +3,12 @@ import { Component, Input, OnInit, TemplateRef, inject } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Filter, FilteredColumn } from '@blueriq/angular/lists';
 import { FilterCandidate } from './types';
+import { MatIconButton, MatButton } from '@angular/material/button';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatBadge } from '@angular/material/badge';
+import { MatIcon } from '@angular/material/icon';
+import { MatLabel } from '@angular/material/form-field';
+import { FilterRowComponent } from './filter-row/filter-row.component';
 
 const MAX_FILTERS = 8;
 
@@ -22,7 +28,7 @@ const MAX_FILTERS = 8;
             ]),
         ]),
     ],
-    standalone: false
+    imports: [MatIconButton, MatTooltip, MatBadge, MatIcon, MatLabel, FilterRowComponent, MatButton]
 })
 export class FilterComponent implements OnInit {
   dialog = inject(MatDialog);

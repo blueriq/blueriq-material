@@ -10,10 +10,7 @@ import { BqPresentationStyles } from '../../BqPresentationStyles';
  * This directive can be added to a container to add a flex-grow style and bq-column class to it, only if it has a content
  * style that starts with `dashboard_column`
  */
-@Directive({
-    selector: '[bqFlexColumn]',
-    standalone: false
-})
+@Directive({ selector: '[bqFlexColumn]' })
 export class FlexColumnDirective implements OnChanges, OnDestroy {
   private readonly renderer = inject(Renderer2);
   private readonly listeners = inject(BlueriqListeners);

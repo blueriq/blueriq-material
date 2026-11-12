@@ -6,7 +6,7 @@ import { TextItemModule } from '@blueriq/angular/textitems';
 import { StaticNodeTemplate, StyleNodeTemplate, TextItemNodeTemplate, TextItemTemplate } from '@blueriq/core/testing';
 import { BqPresentationStyles } from '../BqPresentationStyles';
 import { TextItemComponent } from './textitem.component';
-import { TextItemModule as BlueriqTextItemModule } from './textitem.module';
+import { provideTextItemComponents } from './textitem.providers';
 
 describe('TextItemComponent', () => {
   let textItem: TextItemTemplate;
@@ -15,11 +15,11 @@ describe('TextItemComponent', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
+      providers: [provideTextItemComponents()],
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
         TextItemModule,
-        BlueriqTextItemModule,
       ],
     }).compileComponents();
   });

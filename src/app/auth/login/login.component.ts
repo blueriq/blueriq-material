@@ -1,13 +1,29 @@
 import { Component, isDevMode, inject } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
+import { MatFormField, MatLabel, MatError } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { MatButton } from '@angular/material/button';
 
 @Component({
     selector: 'bq-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss'],
-    standalone: false
+    imports: [
+      MatCard,
+      FormsModule,
+      ReactiveFormsModule,
+      MatCardHeader,
+      MatCardTitle,
+      MatCardContent,
+      MatFormField,
+      MatLabel,
+      MatInput,
+      MatError,
+      MatButton,
+    ]
 })
 export class LoginComponent {
   private readonly authService = inject(AuthService);

@@ -9,8 +9,8 @@ import { BqContentStyles } from '../../../BqContentStyles';
 import { DateTimepickerComponent } from '../../../form-controls/date/datetimepicker/datetimepicker.component';
 import { MomentTransformer } from '../../../form-controls/date/moment-transformer';
 import { ListComponent } from '../../list.component';
-import { ListModule } from '../../list.module';
 import { TableDatetimepickerComponent } from './table-datetimepicker.component';
+import { provideListComponents } from '../../list.providers';
 
 describe('TableDatetimePickerComponent', () => {
 
@@ -20,11 +20,10 @@ describe('TableDatetimePickerComponent', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
-      providers: [MomentTransformer, BlueriqSession],
+      providers: [provideListComponents(), MomentTransformer, BlueriqSession],
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        ListModule,
       ],
     }).compileComponents();
   });

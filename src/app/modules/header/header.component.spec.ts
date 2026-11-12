@@ -10,9 +10,9 @@ import { Element } from '@blueriq/core';
 import { ContainerTemplate, PageTemplate, TextItemTemplate } from '@blueriq/core/testing';
 import { AuthService } from '../../auth/auth.service';
 import { PageComponent } from '../page/page.component';
-import { PageModule } from '../page/page.module';
 import { HeaderComponent } from './header.component';
-import { HeaderModule } from './header.module';
+import { provideHeaderComponents } from './header.providers';
+import { providePageComponents } from '../page/page.providers';
 
 describe('HeaderComponent', () => {
   let session: BlueriqTestSession;
@@ -23,6 +23,8 @@ describe('HeaderComponent', () => {
     authServiceSpy = jasmine.createSpyObj<AuthService>(['logoutAndNavigate']);
     await TestBed.configureTestingModule({
       providers: [
+        provideHeaderComponents(),
+        providePageComponents(),
         {
           provide: APP_BASE_HREF,
           useValue: '/',
@@ -43,8 +45,6 @@ describe('HeaderComponent', () => {
         NoopAnimationsModule,
         BlueriqTestingModule,
         RouterTestingModule.withRoutes([]),
-        HeaderModule,
-        PageModule,
       ],
     }).compileComponents();
   });
@@ -156,6 +156,8 @@ describe('HeaderComponent', () => {
     beforeEach(async() => {
       await TestBed.configureTestingModule({
         providers: [
+          provideHeaderComponents(),
+          providePageComponents(),
           {
             provide: BqProjectComponent,
             useValue: {

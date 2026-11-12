@@ -9,7 +9,7 @@ import { ButtonTemplate, ContainerTemplate } from '@blueriq/core/testing';
 import { BqContentStyles } from '../BqContentStyles';
 import { MenuItemComponent } from './menu-item/menu-item.component';
 import { MenuComponent } from './menu.component';
-import { MenuModule } from './menu.module';
+import { provideMenuComponents } from './menu.providers';
 
 describe('MenuComponent', () => {
   let menu: ContainerTemplate;
@@ -20,10 +20,10 @@ describe('MenuComponent', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
+      providers: [provideMenuComponents()],
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        MenuModule,
       ],
     }).compileComponents();
   });

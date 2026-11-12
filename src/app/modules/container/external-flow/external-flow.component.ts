@@ -1,8 +1,14 @@
 import { Component, inject } from '@angular/core';
-import { BlueriqComponent, BlueriqComponents, ExternalFlow, ExternalFlowActions, FailedAction, isBlueriqError } from '@blueriq/angular';
+import { BlueriqComponent, BlueriqComponents, ExternalFlow, ExternalFlowActions, FailedAction, isBlueriqError, BlueriqCommonModule } from '@blueriq/angular';
 import { Container } from '@blueriq/core';
 import { BqContentStyles } from '../../BqContentStyles';
 import { ExternalFlowPageComponent } from './external-flow-page/external-flow-page.component';
+import { BqKeyDirective } from '../../../shared/directive/bq-key/bq-key.directive';
+import { NgClass } from '@angular/common';
+import { BqContainerDirective } from '../../../shared/directive/container/bq-container.directive';
+import { HeadingComponent } from '../../heading/heading.component';
+import { MatError } from '@angular/material/form-field';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
     selector: 'bq-external-flow',
@@ -11,7 +17,7 @@ import { ExternalFlowPageComponent } from './external-flow-page/external-flow-pa
         ExternalFlow,
         BlueriqComponents.scoped([ExternalFlowPageComponent]),
     ],
-    standalone: false
+    imports: [BqKeyDirective, BlueriqCommonModule, NgClass, BqContainerDirective, HeadingComponent, MatError, MatIcon]
 })
 @BlueriqComponent({
   type: Container,

@@ -2,11 +2,15 @@ import { Component, Input } from '@angular/core';
 import { DomainPredicate } from '@blueriq/angular/lists';
 import { Domain, TechnicalValue } from '@blueriq/core';
 import { FilterCandidate } from '../types';
+import { MatFormField } from '@angular/material/form-field';
+import { MatSelect } from '@angular/material/select';
+import { MatOption } from '@angular/material/autocomplete';
+import { MatCheckbox } from '@angular/material/checkbox';
 
 @Component({
     selector: 'bq-domain-filter',
     templateUrl: './domain-filter.component.html',
-    standalone: false
+    imports: [MatFormField, MatSelect, MatOption, MatCheckbox]
 })
 export class DomainFilterComponent {
   private _candidate: FilterCandidate;

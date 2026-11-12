@@ -3,8 +3,8 @@ import { By } from '@angular/platform-browser';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { FieldTemplate } from '@blueriq/core/testing';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
-import { FormControlModule } from '../../form-control.module';
 import { DatepickerComponent } from './datepicker.component';
+import { provideFormControlComponents } from '../../form-control.providers';
 
 describe('DatepickerComponent', () => {
   let field: FieldTemplate;
@@ -13,9 +13,9 @@ describe('DatepickerComponent', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
+      providers: [provideFormControlComponents()],
       imports: [
         BlueriqTestingModule,
-        FormControlModule,
       ],
     }).compileComponents();
   });

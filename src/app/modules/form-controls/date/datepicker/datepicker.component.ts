@@ -5,13 +5,31 @@ import { Field, FieldMessages } from '@blueriq/core';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
 import { MomentTransformer } from '../moment-transformer';
 import { dateFormatProvider } from './datepicker.material';
+import { MatFormField, MatLabel, MatPrefix, MatHint, MatError } from '@angular/material/form-field';
+import { BqKeyDirective } from '../../../../shared/directive/bq-key/bq-key.directive';
+import { MatInput } from '@angular/material/input';
+import { MatDatepickerInput, MatDatepickerToggle, MatDatepicker } from '@angular/material/datepicker';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
     selector: 'bq-datepicker',
     templateUrl: './datepicker.component.html',
     styleUrls: ['./datepicker.component.scss'],
     providers: [dateFormatProvider],
-    standalone: false
+    imports: [
+      MatFormField,
+      BqKeyDirective,
+      MatLabel,
+      MatInput,
+      MatDatepickerInput,
+      FormsModule,
+      ReactiveFormsModule,
+      MatDatepickerToggle,
+      MatPrefix,
+      MatDatepicker,
+      MatHint,
+      MatError,
+    ]
 })
 @BlueriqComponent({
   type: Field,

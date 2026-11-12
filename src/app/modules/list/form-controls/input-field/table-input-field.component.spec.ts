@@ -4,7 +4,7 @@ import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from
 import { ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
 import { BqContentStyles } from '../../../BqContentStyles';
 import { ListComponent } from '../../list.component';
-import { ListModule } from '../../list.module';
+import { provideListComponents } from '../../list.providers';
 
 describe('TableInputFieldComponent', () => {
   let tableTemplate: ContainerTemplate;
@@ -14,10 +14,10 @@ describe('TableInputFieldComponent', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
+      providers: [provideListComponents()],
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        ListModule,
       ],
     }).compileComponents();
   });

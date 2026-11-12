@@ -2,11 +2,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate } from '@blueriq/core/testing';
-import { SharedModule } from '@shared/shared.module';
 import { BqContentStyles } from '../BqContentStyles';
-import { ContainerModule } from '../container/container.module';
 import { ExpansionComponent } from './expansion.component';
-import { ExpansionModule } from './expansion.module';
+import { provideContainerComponents } from '../container/container.providers';
+import { provideExpansionComponents } from './expansion.providers';
 
 describe('ExpansionComponent', () => {
 
@@ -16,12 +15,10 @@ describe('ExpansionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      providers: [provideContainerComponents(), provideExpansionComponents()],
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        SharedModule,
-        ExpansionModule,
-        ContainerModule,
       ],
     }).compileComponents();
     containerTemplate = ContainerTemplate.create('Main')

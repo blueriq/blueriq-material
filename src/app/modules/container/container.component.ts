@@ -1,10 +1,15 @@
 import { animateChild, query, transition, trigger } from '@angular/animations';
 import { Component, OnInit, inject } from '@angular/core';
-import { BlueriqComponent, OnUpdate } from '@blueriq/angular';
+import { BlueriqComponent, OnUpdate, BlueriqCommonModule } from '@blueriq/angular';
 import { List } from '@blueriq/angular/lists';
 import { Container } from '@blueriq/core';
 import { BqContentStyles } from '../BqContentStyles';
 import { BqPresentationStyles } from '../BqPresentationStyles';
+import { BqKeyDirective } from '../../shared/directive/bq-key/bq-key.directive';
+import { BqContainerDirective } from '../../shared/directive/container/bq-container.directive';
+import { HeadingComponent } from '../heading/heading.component';
+import { HorizontalFlexChildDirective } from './flex/horizontal-flex-child.directive';
+import { FlexColumnDirective } from './flex/flex-column.directive';
 
 @Component({
     selector: 'bq-container',
@@ -16,7 +21,14 @@ import { BqPresentationStyles } from '../BqPresentationStyles';
             ]),
         ]),
     ],
-    standalone: false
+    imports: [
+      BlueriqCommonModule,
+      BqKeyDirective,
+      BqContainerDirective,
+      HeadingComponent,
+      HorizontalFlexChildDirective,
+      FlexColumnDirective,
+    ]
 })
 @BlueriqComponent({
   type: Container,

@@ -2,7 +2,7 @@
 
 This component allows users to start a Blueriq DCM Dashboard application.
 A Blueriq DCM Dashboard application can be started in different ways. For the options described below, Angular Routes are
-configured in the `app.module.ts` file.
+configured in the `app.routes.ts` file.
 
 ### Start a dashboard configured in the Blueriq DCM Dashboard by a project reference, project version, dashboard name and a page name
 

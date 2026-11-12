@@ -2,7 +2,6 @@ import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testin
 import { ActivityType, GlobalLoadingActivity } from '@blueriq/angular';
 
 import { LoadingComponent } from './loading.component';
-import { LoadingModule } from './loading.module';
 
 describe('LoadingComponent', () => {
   let component: LoadingComponent;
@@ -12,7 +11,6 @@ describe('LoadingComponent', () => {
   beforeEach(async() => {
     await TestBed.configureTestingModule({
       imports: [
-        LoadingModule,
       ],
       providers: [GlobalLoadingActivity],
     }).compileComponents();

@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
-import { BlueriqComponent } from '@blueriq/angular';
+import { BlueriqComponent, BlueriqCommonModule } from '@blueriq/angular';
 import { ContentItem } from '@blueriq/core';
 
 @Component({
     selector: 'bq-contentitem',
     templateUrl: './contentitem.component.html',
-    standalone: false
+    imports: [BlueriqCommonModule]
 })
 @BlueriqComponent({
   type: ContentItem,

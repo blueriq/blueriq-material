@@ -2,9 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { AssetTemplate, ButtonTemplate, ContainerTemplate } from '@blueriq/core/testing';
-import { ButtonModule } from '../../button/button.module';
 import { ListComponent } from '../list.component';
-import { ListModule } from '../list.module';
+import { provideButtonComponents } from '../../button/button.providers';
+import { provideListComponents } from '../list.providers';
 
 describe('TableLimitComponent', () => {
   let session: BlueriqTestSession;
@@ -12,11 +12,10 @@ describe('TableLimitComponent', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
+      providers: [provideButtonComponents(), provideListComponents()],
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        ButtonModule,
-        ListModule,
       ],
     }).compileComponents();
   });

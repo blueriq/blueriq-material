@@ -8,10 +8,7 @@ import { of, throwError } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { OpenIdConnectLoginGuard } from './openid-connect-login.guard';
 
-@Component({
-    template: '',
-    standalone: false
-})
+@Component({ template: '' })
 export class TestComponent {
 }
 
@@ -40,14 +37,12 @@ describe('OpenIdConnectLoginGuard', () => {
           { path: 'login', component: TestComponent, canActivate: [OpenIdConnectLoginGuard] },
           { path: 'success', component: TestComponent },
         ]),
+        TestComponent,
       ],
       providers: [
         { provide: AuthService, useFactory: () => auth },
         { provide: OpenIdConnectAuth, useFactory: () => openIdConnect },
         { provide: DOCUMENT, useValue: mockDocument },
-      ],
-      declarations: [
-        TestComponent,
       ],
     });
 

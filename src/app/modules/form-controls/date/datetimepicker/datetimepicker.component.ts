@@ -7,13 +7,31 @@ import moment from 'moment/min/moment-with-locales';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
 import { MomentTransformer } from '../moment-transformer';
 import { dateTimeFormatProvider } from './datetimepicker.owl';
+import { MatFormField, MatLabel, MatPrefix, MatHint, MatError } from '@angular/material/form-field';
+import { BqKeyDirective } from '../../../../shared/directive/bq-key/bq-key.directive';
+import { MatInput } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OwlDateTimeModule } from '@danielmoncada/angular-datetime-picker';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
     selector: 'bq-datetimepicker',
     templateUrl: './datetimepicker.component.html',
     styleUrls: ['./datetimepicker.component.scss'],
     providers: [dateTimeFormatProvider],
-    standalone: false
+    imports: [
+      MatFormField,
+      BqKeyDirective,
+      MatLabel,
+      MatInput,
+      FormsModule,
+      OwlDateTimeModule,
+      ReactiveFormsModule,
+      MatPrefix,
+      MatIcon,
+      MatHint,
+      MatError,
+    ]
 })
 @BlueriqComponent({
   type: Field,

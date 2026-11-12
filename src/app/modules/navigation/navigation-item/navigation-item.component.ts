@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { BlueriqComponent, OnUpdate } from '@blueriq/angular';
+import { BlueriqComponent, OnUpdate, BlueriqCommonModule } from '@blueriq/angular';
 import { Button } from '@blueriq/core';
+import { MatIcon } from '@angular/material/icon';
+import { MatButton } from '@angular/material/button';
 
 type State = 'complete' | 'incomplete' | undefined;
 
@@ -8,7 +10,7 @@ type State = 'complete' | 'incomplete' | undefined;
     selector: 'bq-navigation-item',
     templateUrl: './navigation-item.component.html',
     styleUrls: ['./navigation-item.component.scss'],
-    standalone: false
+    imports: [MatIcon, MatButton, BlueriqCommonModule]
 })
 @BlueriqComponent({
   type: Button,

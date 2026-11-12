@@ -5,10 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
  *
  * Example: doc,txt -> .doc,.txt
  */
-@Pipe({
-    name: 'dottedFileExtensions',
-    standalone: false
-})
+@Pipe({ name: 'dottedFileExtensions' })
 export class DottedFileExtensionsPipe implements PipeTransform {
   transform(extensions: string[] | undefined): string[] | undefined {
     return extensions?.map(extension => `.${ extension }`);

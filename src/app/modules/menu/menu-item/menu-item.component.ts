@@ -1,12 +1,17 @@
 import { Component, ElementRef, Input, QueryList, ViewChildren } from '@angular/core';
-import { MatMenuItem } from '@angular/material/menu';
+import { MatMenuItem, MatMenuTrigger, MatMenu } from '@angular/material/menu';
 import { Button, Container, Element } from '@blueriq/core';
+import { MatButton } from '@angular/material/button';
+import { BlueriqCommonModule } from '@blueriq/angular';
+import { BqKeyDirective } from '../../../shared/directive/bq-key/bq-key.directive';
+import { MatIcon } from '@angular/material/icon';
+import { BqIconDirective } from '../../../shared/directive/icon/icon.directive';
 
 @Component({
     selector: 'bq-menu-item',
     templateUrl: './menu-item.component.html',
     styleUrls: ['./menu-item.component.scss'],
-    standalone: false
+    imports: [MatButton, BlueriqCommonModule, BqKeyDirective, MatIcon, BqIconDirective, MatMenuItem, MatMenuTrigger, MatMenu]
 })
 export class MenuItemComponent {
 

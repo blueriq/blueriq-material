@@ -6,11 +6,30 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { BqPresentationStyles } from '../../BqPresentationStyles';
 import { DomainValueTransformer } from './domain-value-transformer';
+import { MatFormField, MatLabel, MatHint, MatError } from '@angular/material/form-field';
+import { BqKeyDirective } from '../../../shared/directive/bq-key/bq-key.directive';
+import { MatInput } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteTrigger, MatAutocomplete, MatOption } from '@angular/material/autocomplete';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'bq-autocomplete',
     templateUrl: './autocomplete.component.html',
-    standalone: false
+    imports: [
+      MatFormField,
+      BqKeyDirective,
+      MatLabel,
+      MatInput,
+      FormsModule,
+      MatAutocompleteTrigger,
+      ReactiveFormsModule,
+      MatAutocomplete,
+      MatOption,
+      MatHint,
+      MatError,
+      AsyncPipe,
+    ]
 })
 @BlueriqComponent({
   type: Field,

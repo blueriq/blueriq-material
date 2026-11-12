@@ -3,7 +3,6 @@ import { MatInput } from '@angular/material/input';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TextPredicate } from '@blueriq/angular/lists';
-import { FilterModule } from '../filter.module';
 import { FilterCandidate } from '../types';
 
 import { TextFilterComponent } from './text-filter.component';
@@ -17,7 +16,6 @@ describe('TextFilterComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        FilterModule,
       ],
     }).compileComponents();
     fixture = TestBed.createComponent(TextFilterComponent);

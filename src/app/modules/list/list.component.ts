@@ -1,14 +1,34 @@
 import { Component, inject } from '@angular/core';
-import { BlueriqComponent } from '@blueriq/angular';
+import { BlueriqComponent, BlueriqCommonModule } from '@blueriq/angular';
 import { List } from '@blueriq/angular/lists';
 import { Container } from '@blueriq/core';
 import { BqPresentationStyles } from '../BqPresentationStyles';
+import { BqKeyDirective } from '../../shared/directive/bq-key/bq-key.directive';
+import { BqContainerDirective } from '../../shared/directive/container/bq-container.directive';
+import { HeadingComponent } from '../heading/heading.component';
+import { TableSearchComponent } from './search/table.search.component';
+import { FilterComponent } from './filter/filter.component';
+import { TableComponent } from './table.component';
+import { TablePaginationComponent } from './pagination/table.pagination.component';
+import { TableLimitComponent } from './limit/table.limit.component';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'bq-list',
     templateUrl: './list.component.html',
     providers: [List],
-    standalone: false
+    imports: [
+      BqKeyDirective,
+      BlueriqCommonModule,
+      BqContainerDirective,
+      HeadingComponent,
+      TableSearchComponent,
+      FilterComponent,
+      TableComponent,
+      TablePaginationComponent,
+      TableLimitComponent,
+      AsyncPipe,
+    ]
 })
 @BlueriqComponent({
   type: Container,

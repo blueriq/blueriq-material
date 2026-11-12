@@ -6,7 +6,7 @@ import { BqIconDirective } from '@shared/directive/icon/icon.directive';
 
 @Component({
     template: '<mat-icon [bqIcon]="styles"></mat-icon>',
-    standalone: false
+    imports: [MatIconModule, BqIconDirective]
 })
 export class MockIconComponent {
 
@@ -24,8 +24,7 @@ describe('IconDirective', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
-      declarations: [MockIconComponent, BqIconDirective],
-      imports: [MatIconModule],
+      imports: [MockIconComponent],
     }).compileComponents();
     fixture = TestBed.createComponent(MockIconComponent);
     element = fixture.nativeElement;
@@ -49,8 +48,7 @@ describe('IconDirectiveStylesUpdate', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
-      declarations: [MockIconComponent, BqIconDirective],
-      imports: [MatIconModule],
+      imports: [MockIconComponent],
     }).compileComponents();
     fixture = TestBed.createComponent(MockIconComponent);
     component = fixture.componentInstance;

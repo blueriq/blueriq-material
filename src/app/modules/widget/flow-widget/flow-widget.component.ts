@@ -1,8 +1,13 @@
 import { Component, inject } from '@angular/core';
-import { BlueriqComponent, BlueriqComponents, FailedAction, FlowWidget, isBlueriqError } from '@blueriq/angular';
+import { BlueriqComponent, BlueriqComponents, FailedAction, FlowWidget, isBlueriqError, BlueriqCommonModule } from '@blueriq/angular';
 import { Container } from '@blueriq/core';
 import { BqContentStyles } from '../../BqContentStyles';
 import { WidgetPageComponent } from '../widget-page/widget-page.component';
+import { BqKeyDirective } from '../../../shared/directive/bq-key/bq-key.directive';
+import { BqContainerDirective } from '../../../shared/directive/container/bq-container.directive';
+import { HeadingComponent } from '../../heading/heading.component';
+import { MatError } from '@angular/material/form-field';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
     selector: 'bq-flow-widget',
@@ -11,7 +16,7 @@ import { WidgetPageComponent } from '../widget-page/widget-page.component';
         FlowWidget,
         BlueriqComponents.scoped([WidgetPageComponent]),
     ],
-    standalone: false
+    imports: [BqKeyDirective, BlueriqCommonModule, BqContainerDirective, HeadingComponent, MatError, MatIcon]
 })
 @BlueriqComponent({
   type: Container,

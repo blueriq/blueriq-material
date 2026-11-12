@@ -1,3 +1,5 @@
+import { AsyncPipe } from '@angular/common';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
 import {
@@ -27,10 +29,10 @@ describe('Intake Widget Component', () => {
   beforeEach(async () => {
     jasmine.clock().install();
     await TestBed.configureTestingModule({
-      declarations: [IntakeWidgetComponent],
       imports: [
         RouterModule.forRoot([]),
         DashboardSessionModule,
+        IntakeWidgetComponent,
       ],
       providers: [
         DashboardWidgetSession,
@@ -54,7 +56,7 @@ describe('Intake Widget Component', () => {
         },
         CloseSessionStrategy,
       ],
-    }).compileComponents();
+    }).overrideComponent(IntakeWidgetComponent, { set: { imports: [AsyncPipe], schemas: [NO_ERRORS_SCHEMA] } }).compileComponents();
   });
 
   afterEach(() => {

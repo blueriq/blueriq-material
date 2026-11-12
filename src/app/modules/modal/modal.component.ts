@@ -1,15 +1,19 @@
 import { Component, OnInit, TemplateRef, ViewChild, inject } from '@angular/core';
-import { BlueriqChild, BlueriqChildren, BlueriqComponent } from '@blueriq/angular';
+import { BlueriqChild, BlueriqChildren, BlueriqComponent, BlueriqCommonModule } from '@blueriq/angular';
 import { Button, Container } from '@blueriq/core';
 import { BqContentStyles } from '../BqContentStyles';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions } from '@angular/material/dialog';
 import { BqPresentationStyles } from '../BqPresentationStyles';
+import { MatButton } from '@angular/material/button';
+import { BqKeyDirective } from '../../shared/directive/bq-key/bq-key.directive';
+import { MatIcon } from '@angular/material/icon';
+import { CdkScrollable } from '@angular/cdk/scrolling';
 
 @Component({
     selector: 'bq-modal',
     templateUrl: './modal.component.html',
     styleUrls: ['./modal.component.scss'],
-    standalone: false
+    imports: [MatDialogTitle, MatButton, BqKeyDirective, BlueriqCommonModule, MatIcon, CdkScrollable, MatDialogContent, MatDialogActions]
 })
 @BlueriqComponent({
   type: Container,

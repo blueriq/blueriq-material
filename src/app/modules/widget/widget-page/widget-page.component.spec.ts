@@ -7,9 +7,9 @@ import {
   SessionTemplate,
 } from '@blueriq/angular/testing';
 import { ContainerTemplate, PageModelTemplate, PageTemplate } from '@blueriq/core/testing';
-import { ContainerModule } from '../../container/container.module';
 import { FlowWidgetComponent } from '../flow-widget/flow-widget.component';
-import { WidgetModule } from '../widget.module';
+import { provideContainerComponents } from '../../container/container.providers';
+import { provideWidgetComponents } from '../widget.providers';
 
 describe('WidgetPageComponent', () => {
   let component: ComponentFixture<FlowWidgetComponent>;
@@ -17,10 +17,9 @@ describe('WidgetPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      providers: [provideContainerComponents(), provideWidgetComponents()],
       imports: [
         BlueriqTestingModule,
-        WidgetModule,
-        ContainerModule,
       ],
     }).compileComponents();
   });

@@ -1,15 +1,18 @@
 import { Component, isDevMode, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FailedAction, ForbiddenProjectAction, isBlueriqError, QueryParameters, UnauthorizedProjectAction } from '@blueriq/angular';
+import { FailedAction, ForbiddenProjectAction, isBlueriqError, QueryParameters, UnauthorizedProjectAction, BlueriqCommonModule } from '@blueriq/angular';
 import { SessionId } from '@blueriq/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from './auth/auth.service';
 import { NotificationModel, NotificationType } from './notification-overlay/notification.model';
+import { LoadingComponent } from './modules/loading/loading.component';
+import { NotificationOverlayComponent } from './notification-overlay/notification-overlay.component';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     templateUrl: './project.component.html',
-    standalone: false
+    imports: [BlueriqCommonModule, LoadingComponent, NotificationOverlayComponent, AsyncPipe]
 })
 export class ProjectComponent implements OnInit {
   private readonly auth = inject(AuthService);

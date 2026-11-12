@@ -1,11 +1,18 @@
 import { Component, inject, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BlueriqSession } from '@blueriq/angular';
 import { DateOperator, DatePredicate } from '@blueriq/angular/lists';
 import { computeFirstDayOfWeek } from '@shared/date/bq-date-parser';
 import moment from 'moment/min/moment-with-locales';
 import { dateTimeFormatProvider } from '../../../form-controls/date/datetimepicker/datetimepicker.owl';
 import { FilterCandidate } from '../types';
+import { MatFormField, MatPrefix } from '@angular/material/form-field';
+import { MatSelect } from '@angular/material/select';
+import { MatOption } from '@angular/material/autocomplete';
+import { MatInput } from '@angular/material/input';
+import { OwlDateTimeModule } from '@danielmoncada/angular-datetime-picker';
+import { MatIcon } from '@angular/material/icon';
+import { MatCheckbox } from '@angular/material/checkbox';
 
 const operations = {
   before: DateOperator.Before,
@@ -17,7 +24,18 @@ const operations = {
   selector: 'bq-date-filter',
   templateUrl: './date-filter.component.html',
   providers: [dateTimeFormatProvider],
-  standalone: false
+  imports: [
+    MatFormField,
+    MatSelect,
+    MatOption,
+    MatInput,
+    FormsModule,
+    OwlDateTimeModule,
+    ReactiveFormsModule,
+    MatPrefix,
+    MatIcon,
+    MatCheckbox,
+  ]
 })
 export class DateFilterComponent {
   private readonly session = inject(BlueriqSession);

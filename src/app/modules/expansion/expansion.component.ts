@@ -1,13 +1,14 @@
 import { Component, inject } from '@angular/core';
-import { BlueriqComponent } from '@blueriq/angular';
+import { BlueriqComponent, BlueriqCommonModule } from '@blueriq/angular';
 import { Container } from '@blueriq/core';
 import { BqContentStyles } from '../BqContentStyles';
+import { MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle } from '@angular/material/expansion';
 
 @Component({
     selector: 'bq-expansion-container',
     templateUrl: './expansion.component.html',
     styleUrls: ['./expansion.component.scss'],
-    standalone: false
+    imports: [MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle, BlueriqCommonModule]
 })
 @BlueriqComponent({
   type: Container,

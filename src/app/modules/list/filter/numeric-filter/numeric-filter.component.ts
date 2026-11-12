@@ -1,6 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { NumericOperator, NumericPredicate } from '@blueriq/angular/lists';
 import { FilterCandidate } from '../types';
+import { MatFormField } from '@angular/material/form-field';
+import { MatSelect } from '@angular/material/select';
+import { MatOption } from '@angular/material/autocomplete';
+import { MatInput } from '@angular/material/input';
+import { MatCheckbox } from '@angular/material/checkbox';
 
 const operations = {
   equals: NumericOperator.Equals,
@@ -11,7 +16,7 @@ const operations = {
 @Component({
     selector: 'bq-numeric-filter',
     templateUrl: './numeric-filter.component.html',
-    standalone: false
+    imports: [MatFormField, MatSelect, MatOption, MatInput, MatCheckbox]
 })
 export class NumericFilterComponent {
   readonly operations = operations;

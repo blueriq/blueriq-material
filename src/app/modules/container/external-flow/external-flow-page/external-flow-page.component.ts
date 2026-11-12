@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
-import { BlueriqComponent } from '@blueriq/angular';
+import { BlueriqComponent, BlueriqCommonModule } from '@blueriq/angular';
 import { Page } from '@blueriq/core';
+import { BqKeyDirective } from '../../../../shared/directive/bq-key/bq-key.directive';
 
 @Component({
     selector: 'bq-external-flow-page',
     templateUrl: './external-flow-page.component.html',
-    standalone: false
+    imports: [BlueriqCommonModule, BqKeyDirective]
 })
 @BlueriqComponent({
   type: Page,

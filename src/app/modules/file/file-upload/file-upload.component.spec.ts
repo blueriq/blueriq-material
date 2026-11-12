@@ -7,9 +7,9 @@ import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from
 import { ButtonTemplate, ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
 import { BqContainerDirective } from '@shared/directive/container/bq-container.directive';
 import { FileItem, FileLikeObject, FileSelectDirective, FileUploader } from 'ng2-file-upload';
-import { FileModule } from '../file.modules';
 import { CustomFileUploader } from './custom-file-uploader';
 import { FileUploadComponent } from './file-upload.component';
+import { provideFileComponents } from '../file.providers';
 
 describe('FileUploadComponent', () => {
 
@@ -23,9 +23,9 @@ describe('FileUploadComponent', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
+      providers: [provideFileComponents()],
       imports: [
         BlueriqTestingModule,
-        FileModule,
       ],
     }).compileComponents();
   });

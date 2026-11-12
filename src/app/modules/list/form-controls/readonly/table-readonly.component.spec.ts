@@ -5,8 +5,10 @@ import { ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
 import { BqContentStyles } from '../../../BqContentStyles';
 import { ReadonlyComponent } from '../../../readonly/readonly.component';
 import { ListComponent } from '../../list.component';
-import { ListModule } from '../../list.module';
 import { TableReadonlyComponent } from './table-readonly.component';
+import { provideListComponents } from '../../list.providers';
+import { importProvidersFrom } from '@angular/core';
+import { FormattingModule } from '@blueriq/angular/formatting';
 
 describe('TableReadonlyComponent', () => {
 
@@ -17,10 +19,10 @@ describe('TableReadonlyComponent', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
+      providers: [provideListComponents(), importProvidersFrom(FormattingModule.forRoot())],
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        ListModule,
       ],
     }).compileComponents();
   });

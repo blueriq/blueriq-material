@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatDivider } from '@angular/material/divider';
 
 @Component({
     selector: 'bq-footer',
@@ -13,7 +14,7 @@ import { Component } from '@angular/core';
     </footer>
   `,
     styleUrls: ['./footer.component.scss'],
-    standalone: false
+    imports: [MatDivider]
 })
 export class FooterComponent {
 

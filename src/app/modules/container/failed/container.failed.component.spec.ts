@@ -2,9 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ContainerTemplate, FailedElementTemplate } from '@blueriq/core/testing';
-import { SharedModule } from '@shared/shared.module';
-import { ContainerModule } from '../container.module';
 import { ContainerFailedComponent } from './container.failed.component';
+import { provideContainerComponents } from '../container.providers';
 
 describe('FailedContainerComponent', () => {
 
@@ -18,11 +17,10 @@ describe('FailedContainerComponent', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
+      providers: [provideContainerComponents()],
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        SharedModule,
-        ContainerModule,
       ],
     }).compileComponents();
   });

@@ -1,13 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ModalComponent } from './modal.component';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
-import { ModalModule } from './modal.module';
 import { ButtonTemplate, ContainerTemplate } from '@blueriq/core/testing';
-import { SharedModule } from '@shared/shared.module';
 import { BqContentStyles } from '../BqContentStyles';
 import { BqPresentationStyles } from '../BqPresentationStyles';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { OverlayContainer } from '@angular/cdk/overlay';
+import { provideModalComponents } from './modal.providers';
+import { provideButtonComponents } from '../button/button.providers';
 
 describe('ModalComponent', () => {
 
@@ -18,12 +18,11 @@ describe('ModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ModalComponent],
+      providers: [provideModalComponents(), provideButtonComponents()],
       imports: [
         BlueriqTestingModule,
-        SharedModule,
-        ModalModule,
         NoopAnimationsModule,
+        ModalComponent,
       ],
     }).compileComponents();
 

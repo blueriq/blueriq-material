@@ -3,8 +3,8 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession} from '@blueriq/angular/testing';
 import moment from 'moment';
 import {SummaryComponent} from './summary.component';
-import {SummaryModule} from './summary.module';
 import {DEFAULT_DATETIME_FROM_NOW_FORMAT, DEFAULT_DATETIME_PATTERN} from '@shared/date/bq-date-parser';
+import { provideSummaryComponents } from './summary.providers';
 
 describe('SummaryComponent', () => {
   let container: ContainerTemplate;
@@ -16,9 +16,9 @@ describe('SummaryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      providers: [provideSummaryComponents()],
       imports: [
         BlueriqTestingModule,
-        SummaryModule,
       ],
     }).compileComponents();
   });

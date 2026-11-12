@@ -6,13 +6,17 @@ import { Container } from '@blueriq/core';
 import { Subscription } from 'rxjs';
 import { ButtonComponent } from '../../button/button.component';
 import { FileDownloadService } from './file-download.service';
+import { MatButton } from '@angular/material/button';
+import { BqKeyDirective } from '../../../shared/directive/bq-key/bq-key.directive';
+import { MatIcon } from '@angular/material/icon';
+import { BqIconDirective } from '../../../shared/directive/icon/icon.directive';
 
 @Component({
   selector: 'bq-file-download',
   templateUrl: './file-download.component.html',
   styleUrls: ['./file-download.component.scss'],
   providers: [FileDownload],
-  standalone: false
+  imports: [MatButton, BqKeyDirective, MatIcon, BqIconDirective]
 })
 @BlueriqComponent({
   type: Container,

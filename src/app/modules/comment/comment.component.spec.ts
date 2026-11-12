@@ -5,9 +5,9 @@ import { SubmitComment } from '@blueriq/angular/dashboard';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ButtonTemplate, ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
 import { BqContainerDirective } from '@shared/directive/container/bq-container.directive';
-import { FormControlModule } from '../form-controls/form-control.module';
 import { CommentComponent } from './comment.component';
-import { CommentModule } from './comment.module';
+import { provideCommentComponents } from './comment.providers';
+import { provideFormControlComponents } from '../form-controls/form-control.providers';
 
 describe('CommentComponent', () => {
 
@@ -19,11 +19,10 @@ describe('CommentComponent', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
+      providers: [provideCommentComponents(), provideFormControlComponents()],
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        CommentModule,
-        FormControlModule,
       ],
     }).compileComponents();
   });

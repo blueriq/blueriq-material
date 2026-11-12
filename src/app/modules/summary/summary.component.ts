@@ -6,6 +6,10 @@ import {
   dateFromNowHumanReadable,
   dateToDateTime,
 } from '@shared/date/bq-date-parser';
+import { BqContainerDirective } from '../../shared/directive/container/bq-container.directive';
+import { HeadingComponent } from '../heading/heading.component';
+import { MatIcon } from '@angular/material/icon';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'bq-summary',
@@ -14,7 +18,7 @@ import {
         './summary.component.scss',
     ],
     providers: [Summary],
-    standalone: false
+    imports: [BqContainerDirective, HeadingComponent, MatIcon, AsyncPipe]
 })
 @BlueriqComponent({
   type: Container,

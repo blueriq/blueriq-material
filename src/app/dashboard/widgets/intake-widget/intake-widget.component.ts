@@ -1,14 +1,17 @@
 import { Component, inject, isDevMode } from '@angular/core';
-import { CaseCreatedAction, Dispatcher, FailedAction, IntakeCompletedAction, isBlueriqError } from '@blueriq/angular';
+import { CaseCreatedAction, Dispatcher, FailedAction, IntakeCompletedAction, isBlueriqError, BlueriqCommonModule } from '@blueriq/angular';
 import { DashboardWidgetSession, OpenCaseAction } from '@blueriq/dashboard';
 import { NotificationModel, NotificationType } from '../../../notification-overlay/notification.model';
 import { SessionWidgetComponent } from '../session-widget.component';
+import { LoadingComponent } from '../../../modules/loading/loading.component';
+import { NotificationOverlayComponent } from '../../../notification-overlay/notification-overlay.component';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'bq-intake-widget',
   templateUrl: './intake-widget.component.html',
   providers: [DashboardWidgetSession],
-  standalone: false
+  imports: [BlueriqCommonModule, LoadingComponent, NotificationOverlayComponent, AsyncPipe]
 })
 export class IntakeWidgetComponent extends SessionWidgetComponent {
   private readonly dispatcher = inject(Dispatcher);

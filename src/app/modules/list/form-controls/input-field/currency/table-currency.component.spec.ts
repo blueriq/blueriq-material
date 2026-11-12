@@ -6,9 +6,9 @@ import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from
 import { ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
 import { BqContentStyles } from '../../../../BqContentStyles';
 import { ListComponent } from '../../../list.component';
-import { ListModule } from '../../../list.module';
 import { TableInputFieldComponent } from '../table-input-field.component';
 import { TableCurrencyFieldComponent } from './table-currency.component';
+import { provideListComponents } from '../../../list.providers';
 
 describe('TableCurrencyFieldComponent', () => {
 
@@ -18,10 +18,10 @@ describe('TableCurrencyFieldComponent', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
+      providers: [provideListComponents()],
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        ListModule,
       ],
     }).compileComponents();
   });

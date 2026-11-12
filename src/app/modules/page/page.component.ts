@@ -1,8 +1,11 @@
 import { Component, HostBinding, OnInit, inject } from '@angular/core';
-import { BlueriqChild, BlueriqChildren, BlueriqComponent, OnUpdate } from '@blueriq/angular';
+import { BlueriqChild, BlueriqChildren, BlueriqComponent, OnUpdate, BlueriqCommonModule } from '@blueriq/angular';
 import { Container, Page } from '@blueriq/core';
 import { BackendBusyService } from '@shared/loading/backend-busy.service';
 import { BqContentStyles } from '../BqContentStyles';
+import { HeaderComponent } from '../header/header.component';
+import { NgClass } from '@angular/common';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
     selector: 'bq-page',
@@ -10,7 +13,7 @@ import { BqContentStyles } from '../BqContentStyles';
     styleUrls: [
         './page.component.scss',
     ],
-    standalone: false
+    imports: [HeaderComponent, BlueriqCommonModule, NgClass, FooterComponent]
 })
 @BlueriqComponent({
   type: Page,

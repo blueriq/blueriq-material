@@ -4,8 +4,8 @@ import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from
 import { ContainerTemplate } from '@blueriq/core/testing';
 import { DEFAULT_DATETIME_FROM_NOW_FORMAT } from '@shared/date/bq-date-parser';
 import moment from 'moment/min/moment-with-locales';
-import { CommentModule } from '../comment.module';
 import { CommentListComponent } from './comment.list.component';
+import { provideCommentComponents } from '../comment.providers';
 
 describe('CommentListComponent', () => {
   let container: ContainerTemplate;
@@ -18,10 +18,10 @@ describe('CommentListComponent', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
+      providers: [provideCommentComponents()],
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        CommentModule,
       ],
     }).compileComponents();
   });

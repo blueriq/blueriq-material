@@ -2,9 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ImageTemplate } from '@blueriq/core/testing';
-import { SharedModule } from '@shared/shared.module';
 import { ImageComponent } from './image.component';
-import { ImageModule } from './image.module';
+import { provideImageComponents } from './image.providers';
 
 describe('ImageComponent', () => {
   let imageTemplate: ImageTemplate;
@@ -13,11 +12,10 @@ describe('ImageComponent', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
+      providers: [provideImageComponents()],
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        SharedModule,
-        ImageModule,
       ],
     }).compileComponents();
   });

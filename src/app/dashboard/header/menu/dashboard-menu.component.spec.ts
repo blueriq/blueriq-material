@@ -17,8 +17,7 @@ describe('Dashboard Menu', () => {
       dispatch: (action: Action) => dispatches.push(action),
     };
     TestBed.configureTestingModule({
-      declarations: [DashboardMenuComponent],
-      imports: [MatToolbarModule],
+      imports: [MatToolbarModule, DashboardMenuComponent],
       providers: [
         { provide: Dispatcher, useValue: dispatcher },
       ],

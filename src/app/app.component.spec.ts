@@ -8,12 +8,10 @@ describe('AppComponent', () => {
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
-      declarations: [
-        AppComponent,
-      ],
       imports: [
         NoopAnimationsModule,
         RouterModule.forRoot([]),
+        AppComponent,
       ],
       providers: [
         { provide: APP_BASE_HREF, useValue: '/' },
