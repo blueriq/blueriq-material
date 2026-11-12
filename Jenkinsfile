@@ -14,7 +14,6 @@ pipeline {
   }
 
   environment {
-    CHROME_BIN = "${env.CHROME_116_0_5845_97}"
     // pnpm runs as its native binary, fetched into PNPM_EXE_DIR by the install stage. Steps that run pnpm put
     // PNPM_EXE_DIR first on PATH with withEnv, as tools are put back in front of PATH for every stage.
     PNPM_VERSION = '12.18.0'
@@ -87,18 +86,8 @@ pipeline {
       parallel {
         stage('test') {
           steps {
-            script {
-              def result = withEnv(["PATH+PNPM=${env.PNPM_EXE_DIR}"]) {
-                bat([returnStdout: true, script: 'pnpm run verify'])
-              }
-              println result
-
-              // Unfortunately it is needed to check if the coverage is not met because the coverage-reporter always
-              // exits with error_level=0
-              // so we need to make the build unstable manually. you can check the coverage html result to see where it is failing
-              if (result.contains('ERROR [reporter.coverage-istanbul]:') || result.contains('WARN [reporter.coverage-istanbul]:')) {
-                unstable 'Unit tests do not meet coverage thresholds, setting the build to unstable'
-              }
+            withEnv(["PATH+PNPM=${env.PNPM_EXE_DIR}"]) {
+              bat 'pnpm run verify'
             }
           }
         }
@@ -203,7 +192,7 @@ pipeline {
           [threshold: 1, type: 'TOTAL_LOW', unstable: true]
         ]
       recordCoverage(
-        tools: [[parser: 'COBERTURA', pattern: 'coverage/cobertura-coverage.xml']],
+        tools: [[parser: 'COBERTURA', pattern: 'coverage/frontend/cobertura-coverage.xml']],
         failOnError: true,
         qualityGates: [
           [criticality: 'FAILURE', integerThreshold: 80, metric: 'LINE', threshold: 80.0],

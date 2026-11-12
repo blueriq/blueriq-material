@@ -213,7 +213,7 @@ describe('AutocompleteComponent', () => {
 
     // Verify
     input = component.nativeElement.querySelector('.mat-mdc-input-element');
-    expect(input.value).toBe('', 'The value should be cleared when onblur and has incorrect value');
+    expect(input.value, 'The value should be cleared when onblur and has incorrect value').toBe('');
   });
 
   it('should reset input value when the value is not within the domain', async() => {

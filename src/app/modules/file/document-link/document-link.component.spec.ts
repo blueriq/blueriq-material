@@ -1,3 +1,4 @@
+import type { Mocked } from 'vitest';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
@@ -15,10 +16,10 @@ describe('DocumentLinkComponent DocumentLink', () => {
   let container: ContainerTemplate;
   let component: ComponentFixture<DocumentLinkComponent>;
   let session: BlueriqTestSession;
-  let mockFileDownloadService: FileDownloadService;
+  let mockFileDownloadService: Mocked<FileDownloadService>;
 
   beforeEach(async() => {
-    mockFileDownloadService = jasmine.createSpyObj(['download']);
+    mockFileDownloadService = { download: vi.fn() } as unknown as Mocked<FileDownloadService>;
     await TestBed.configureTestingModule({
       providers: [
         provideFileComponents(),

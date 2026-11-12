@@ -1,3 +1,4 @@
+import type { Mocked } from 'vitest';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Dispatcher } from '@blueriq/angular';
 import { TestDispatcher } from '@blueriq/angular/testing';
@@ -7,12 +8,12 @@ import { DashboardHeaderComponent } from './dashboard-header.component';
 
 describe('Dashboard Header', () => {
 
-  let authService: jasmine.SpyObj<DashboardAuthService>;
+  let authService: Mocked<DashboardAuthService>;
   let fixture: ComponentFixture<DashboardHeaderComponent>;
 
   beforeEach(async() => {
-    authService = jasmine.createSpyObj<DashboardAuthService>('DashboardAuthService', ['userInfo', 'logout']);
-    authService.userInfo.and.returnValue(of({ name: 'Jane Doe' }));
+    authService = { userInfo: vi.fn(), logout: vi.fn() } as unknown as Mocked<DashboardAuthService>;
+    authService.userInfo.mockReturnValue(of({ name: 'Jane Doe' }));
     await TestBed.configureTestingModule({
       imports: [DashboardHeaderComponent],
       providers: [
@@ -27,7 +28,7 @@ describe('Dashboard Header', () => {
   it('should display the name of the logged in user', () => {
     fixture.detectChanges();
 
-    expect(fixture.nativeElement.querySelector('.username').innerText).toEqual('Jane Doe');
+    expect(fixture.nativeElement.querySelector('.username').textContent).toEqual('Jane Doe');
   });
 
   it('should logout via the auth service', () => {

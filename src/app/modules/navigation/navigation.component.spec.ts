@@ -39,23 +39,23 @@ describe('NavigationComponent', () => {
   it('should render its content correctly', () => {
     const navigationItems = fixture.nativeElement.querySelectorAll('bq-navigation-item');
     expect(navigationItems.length).toBe(6);
-    expect(navigationItems[0].querySelector('mat-icon').innerText).toBe('check');
+    expect(navigationItems[0].querySelector('mat-icon').textContent).toBe('check');
     expect(navigationItems[0].querySelector('button.mat-primary')).toBeTruthy();
     expect(navigationItems[0].querySelector('button').disabled).toBeFalsy();
 
-    expect(navigationItems[1].querySelector('mat-icon').innerText).toBe('check');
+    expect(navigationItems[1].querySelector('mat-icon').textContent).toBe('check');
     expect(navigationItems[1].querySelector('button.mat-primary')).toBeTruthy();
     expect(navigationItems[1].querySelector('button').disabled).toBeFalsy();
 
-    expect(navigationItems[2].querySelector('mat-icon').innerText).toBe('priority_high');
+    expect(navigationItems[2].querySelector('mat-icon').textContent).toBe('priority_high');
     expect(navigationItems[2].querySelector('button.mat-primary')).toBeTruthy();
     expect(navigationItems[2].querySelector('button').disabled).toBeFalsy();
 
-    expect(navigationItems[3].querySelector('mat-icon').innerText).toBe('priority_high');
+    expect(navigationItems[3].querySelector('mat-icon').textContent).toBe('priority_high');
     expect(navigationItems[3].querySelector('button.mat-primary')).toBeTruthy();
     expect(navigationItems[3].querySelector('button').disabled).toBeFalsy();
 
-    expect(navigationItems[4].querySelector('mat-icon').innerText).toBe('priority_high');
+    expect(navigationItems[4].querySelector('mat-icon').textContent).toBe('priority_high');
     expect(navigationItems[4].querySelector('button.mat-primary')).toBeTruthy();
     expect(navigationItems[4].querySelector('button').disabled).toBeTruthy();
 

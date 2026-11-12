@@ -23,7 +23,7 @@
             },
             "index": "src/index.html",
             "polyfills": [
-              "src/polyfills.ts"
+              "zone.js"
             ],
             "preserveSymlinks": false,
             "tsConfig": "src/tsconfig.app.json",
@@ -135,25 +135,25 @@
           }
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": [
-              "src/polyfills.ts"
-            ],
-            "preserveSymlinks": false,
+            "runner": "vitest",
+            "buildTarget": "frontend:build",
+            "runnerConfig": "vitest.config.ts",
             "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
-            "sourceMap": true,
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "./src/theme/blueriq"
+            "providersFile": "src/test-providers.ts",
+            "reporters": [
+              "default",
+              [
+                "junit",
+                {
+                  "outputFile": "testresults/unit-tests.xml"
+                }
               ]
-            },
-            "scripts": [],
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
+            ],
+            "coverageReporters": [
+              "cobertura",
+              "html"
             ]
           }
         },

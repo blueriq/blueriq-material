@@ -1,6 +1,7 @@
+import type { Mocked } from 'vitest';
 
 import { Component, DOCUMENT } from '@angular/core';
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { OpenIdConnectAuth } from '@blueriq/angular/openidconnect';
@@ -14,9 +15,12 @@ export class TestComponent {
 
 describe('OpenIdConnectLoginGuard', () => {
 
-  let openIdConnect: jasmine.SpyObj<OpenIdConnectAuth>;
+  let openIdConnect: Mocked<OpenIdConnectAuth>;
   let router: Router;
   let doc: Document;
+
+  beforeEach(() => vi.useFakeTimers());
+  afterEach(() => vi.useRealTimers());
 
   beforeEach(() => {
     const auth = {
@@ -29,7 +33,7 @@ describe('OpenIdConnectLoginGuard', () => {
       },
       querySelectorAll: document.querySelectorAll.bind(document),
     };
-    openIdConnect = jasmine.createSpyObj<OpenIdConnectAuth>(['login']);
+    openIdConnect = { login: vi.fn() } as unknown as Mocked<OpenIdConnectAuth>;
 
     TestBed.configureTestingModule({
       imports: [
@@ -50,27 +54,27 @@ describe('OpenIdConnectLoginGuard', () => {
     doc = TestBed.inject(DOCUMENT);
   });
 
-  it('redirects to the OpenId Connect login endpoint if provided', fakeAsync(() => {
-    openIdConnect.login.and.returnValue(of({ url: 'http://openidconnect.com/login' }));
+  it('redirects to the OpenId Connect login endpoint if provided', async () => {
+    openIdConnect.login.mockReturnValue(of({ url: 'http://openidconnect.com/login' }));
 
     router.navigate(['login']);
-    tick();
+    await vi.advanceTimersByTimeAsync(0);
 
     expect(doc.location!.href).toEqual('http://openidconnect.com/login');
     expect(openIdConnect.login).toHaveBeenCalledWith({
       redirectUrl: 'return-to-/',
     });
-  }));
+  });
 
-  it('proceeds to the login component if OpenId Connect is not available', fakeAsync(() => {
-    openIdConnect.login.and.returnValue(throwError(new Error('OpenId Connect unavailable')));
+  it('proceeds to the login component if OpenId Connect is not available', async () => {
+    openIdConnect.login.mockReturnValue(throwError(new Error('OpenId Connect unavailable')));
 
     router.navigate(['login']);
-    tick();
+    await vi.advanceTimersByTimeAsync(0);
 
     expect(router.url).toEqual('/login');
     expect(openIdConnect.login).toHaveBeenCalledWith({
       redirectUrl: 'return-to-/',
     });
-  }));
+  });
 });

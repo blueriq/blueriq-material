@@ -38,8 +38,8 @@ describe('FileDownloadComponent', () => {
   it('should override the onClick and use the downloadService', () => {
     // Init
     const authDownload: AuthorizedDownload = { type: 'authorized', url: '/some/url' };
-    spyOn(FileDownload.prototype, 'getDownloadInfo').and.callFake(() => of(authDownload));
-    spyOn(FileDownloadService.prototype, 'download').and.callFake((url: string) => {
+    vi.spyOn(FileDownload.prototype, 'getDownloadInfo').mockImplementation(() => of(authDownload));
+    vi.spyOn(FileDownloadService.prototype, 'download').mockImplementation((url: string) => {
       // not interested in the actual implementation
       expect(url).toBe('/some/url');
     });

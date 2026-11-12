@@ -49,7 +49,7 @@ describe('HeadingComponent', () => {
   it('should contain a h2 tag with correct title', () => {
     const h2 = fixture.nativeElement.querySelector('bq-heading').querySelector('h2');
     expect(h2).toBeTruthy();
-    expect(h2.innerText).toContain('User Details');
+    expect(h2.textContent).toContain('User Details');
   });
 
   it('should not display an empty title', () => {
@@ -65,12 +65,12 @@ describe('HeadingComponent', () => {
   });
 
   it('should contain a h2 with widget class when it is a widget', () => {
-    spyOnProperty(BlueriqSession.prototype, 'isWidget').and.returnValue(true);
+    vi.spyOn(BlueriqSession.prototype, 'isWidget', 'get').mockReturnValue(true);
     session = BlueriqSessionTemplate.create().build(template);
     fixture = session.get(MockContainerComponent);
     const h2 = fixture.nativeElement.querySelector('bq-heading').querySelector('h2');
     expect(h2).toBeTruthy();
-    expect(h2.innerText).toContain('User Details');
+    expect(h2.textContent).toContain('User Details');
     expect(h2.classList).toContain('widget');
   });
 

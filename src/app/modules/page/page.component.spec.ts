@@ -50,7 +50,7 @@ describe('PageComponent', () => {
   it('should render the header correctly and use the correct margins based on how many headers', () => {
     const header = pageComponent.nativeElement.querySelector('.header');
 
-    expect(header.querySelector('bq-header')).toBeTruthy('No header is set, so the default header should be rendered');
+    expect(header.querySelector('bq-header'), 'No header is set, so the default header should be rendered').toBeTruthy();
     expect(header.querySelectorAll('bq-menu').length).toBe(2);
   });
 

@@ -43,7 +43,7 @@ describe('ModalComponent', () => {
 
   it('should open the dialog when ngOnInit is called', async () => {
     modalFixture.detectChanges();
-    expect(getOverLay().querySelector('h1')?.innerText).toContain('Modal');
+    expect(getOverLay().querySelector('h1')?.textContent).toContain('Modal');
     expect(getOverLay().querySelector('.close-button')?.innerHTML).toContain('button');
     expect(getOverLay().querySelector('.dialog-actions')?.textContent).toContain('Ok');
     expect(getOverLay().querySelector('.dialog-actions')?.textContent).toContain('Cancel');
@@ -55,13 +55,13 @@ describe('ModalComponent', () => {
   });
 
   it('should close the dialog on close button click', () => {
-    spyOn(modalFixture.componentInstance, 'closeDialog');
+    vi.spyOn(modalFixture.componentInstance, 'closeDialog').mockReturnValue(undefined);
     getOverLay().querySelector('.close-button')?.firstElementChild?.dispatchEvent(new Event('click'));
     expect(modalFixture.componentInstance.closeDialog).toHaveBeenCalled();
   });
 
   it('should close the dialog on action button click', () => {
-    spyOn(modalFixture.componentInstance, 'closeDialog');
+    vi.spyOn(modalFixture.componentInstance, 'closeDialog').mockReturnValue(undefined);
     getOverLay().querySelector('.dialog-actions')?.firstElementChild?.dispatchEvent(new Event('click'));
     expect(modalFixture.componentInstance.closeDialog).toHaveBeenCalled();
   });

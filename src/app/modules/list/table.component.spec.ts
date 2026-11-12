@@ -132,17 +132,17 @@ describe('TableComponent', () => {
     it('should have a header displayed with the correct content', () => {
       const matRows = component.nativeElement.querySelectorAll('.mat-mdc-row');
       expect(matRows.length).toBe(2);
-      expect(matRows[0].cells[0].innerText.trim()).toBe('Mike');
-      expect(matRows[0].cells[1].innerText.trim()).toBe('CLICKME');
-      expect(matRows[1].cells[0].innerText.trim()).toBe('Tilly');
-      expect(matRows[1].cells[1].innerText.trim()).toBe('CLICKME');
+      expect(matRows[0].cells[0].textContent.trim()).toBe('Mike');
+      expect(matRows[0].cells[1].textContent.trim()).toBe('clickme');
+      expect(matRows[1].cells[0].textContent.trim()).toBe('Tilly');
+      expect(matRows[1].cells[1].textContent.trim()).toBe('clickme');
     });
 
     it('should have a row with correct header content', () => {
       const matHeaderCell = component.nativeElement.querySelectorAll('.mat-mdc-header-cell');
       expect(matHeaderCell.length).toBe(3);
 
-      const headerCellContent = matHeaderCell[0].querySelector('bq-textitem-static').innerText;
+      const headerCellContent = matHeaderCell[0].querySelector('bq-textitem-static').textContent;
       expect(headerCellContent.trim()).toBe('Name');
     });
 
@@ -159,10 +159,10 @@ describe('TableComponent', () => {
     it('should have a row with the correct checkbox content', () => {
       const checkboxCells = component.nativeElement.querySelectorAll('bq-checkbox');
       expect(checkboxCells.length).toBe(2);
-      expect(checkboxCells[0]).not.toContain('checkme');
-      expect(checkboxCells[0]).not.toContain('checkmeout');
-      expect(checkboxCells[1]).not.toContain('checkme');
-      expect(checkboxCells[1]).not.toContain('checkmeout');
+      expect(checkboxCells[0].textContent).not.toContain('checkme');
+      expect(checkboxCells[0].textContent).not.toContain('checkmeout');
+      expect(checkboxCells[1].textContent).not.toContain('checkme');
+      expect(checkboxCells[1].textContent).not.toContain('checkmeout');
     });
 
     it('should use the bqContainer directive', () => {

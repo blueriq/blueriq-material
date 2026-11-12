@@ -22,12 +22,10 @@ import { Actions } from '@ngrx/effects';
 import { Subject } from 'rxjs';
 import { NotificationType } from '../../../notification-overlay/notification.model';
 import { IntakeWidgetComponent } from './intake-widget.component';
-import createSpy = jasmine.createSpy;
-import objectContaining = jasmine.objectContaining;
 
 describe('Intake Widget Component', () => {
   beforeEach(async () => {
-    jasmine.clock().install();
+    vi.useFakeTimers();
     await TestBed.configureTestingModule({
       imports: [
         RouterModule.forRoot([]),
@@ -40,13 +38,13 @@ describe('Intake Widget Component', () => {
         {
           provide: Dispatcher,
           useClass: class {
-            dispatch = createSpy('dispatch');
+            dispatch = vi.fn();
           },
         },
         {
           provide: DashboardAuthService,
           useClass: class {
-            login = createSpy('login');
+            login = vi.fn();
           },
         },
         BlueriqDashboard,
@@ -60,7 +58,7 @@ describe('Intake Widget Component', () => {
   });
 
   afterEach(() => {
-    jasmine.clock().uninstall();
+    vi.useRealTimers();
   });
 
   it('should set correct notification on session expired call', () => {
@@ -234,7 +232,7 @@ describe('Intake Widget Component', () => {
     fixture.componentInstance.onCaseCreated(action, 'ZONE');
 
     // Assert
-    expect(dispatcher.dispatch).toHaveBeenCalledWith(objectContaining({
+    expect(dispatcher.dispatch).toHaveBeenCalledWith(expect.objectContaining({
       type: SessionEventActions.PORTAL_CHANGE,
       changeType: 'open-case',
       changeContext: 'ZONE',

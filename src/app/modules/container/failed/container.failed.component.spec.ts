@@ -40,11 +40,11 @@ describe('FailedContainerComponent', () => {
   it('should display the message and no stacktrace', () => {
     expect(fixture.nativeElement.querySelector(CLASS_MESSAGE).innerHTML).toContain('Some error has occurred');
     expect(fixture.nativeElement.querySelector(CLASS_TRACE)).toBeFalsy();
-    expect(component.showTrace).toBeFalsy('by default this should be false');
+    expect(component.showTrace, 'by default this should be false').toBeFalsy();
   });
 
   it('should copy to clipboard', () => {
-    spyOn(document, 'execCommand').and.callThrough();
+    document.execCommand = vi.fn();
     const buttons = fixture.nativeElement.querySelector(CLASS_MESSAGE).querySelectorAll('button');
     const buttonCopyToClipBoard = buttons[0];
     buttonCopyToClipBoard.click();
@@ -56,7 +56,7 @@ describe('FailedContainerComponent', () => {
       failedTemplate.stacktrace(undefined),
     );
 
-    spyOn(document, 'execCommand').and.callThrough();
+    document.execCommand = vi.fn();
     const buttons = fixture.nativeElement.querySelector(CLASS_MESSAGE).querySelectorAll('button');
     const buttonCopyToClipBoard = buttons[0];
     buttonCopyToClipBoard.click();
@@ -78,9 +78,9 @@ describe('FailedContainerComponent', () => {
     fixture.detectChanges();
 
     // Verify
-    expect(fixture.nativeElement.querySelector(CLASS_TRACE)).toBeFalsy(
-      'With showTrace true, this still should be visible when not development mode');
-    expect(fixture.nativeElement.querySelector('button')).toBeFalsy('No actions should be available, just the message should be shown');
+    expect(fixture.nativeElement.querySelector(CLASS_TRACE), 'With showTrace true, this still should be visible when not development mode').toBeFalsy(
+      );
+    expect(fixture.nativeElement.querySelector('button'), 'No actions should be available, just the message should be shown').toBeFalsy();
   });
 
 });

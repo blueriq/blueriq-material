@@ -1,3 +1,4 @@
+import type { Mocked } from 'vitest';
 import { MatMenu } from '@angular/material/menu';
 import { By } from '@angular/platform-browser';
 import { APP_BASE_HREF } from '@angular/common';
@@ -17,10 +18,10 @@ import { providePageComponents } from '../page/page.providers';
 describe('HeaderComponent', () => {
   let session: BlueriqTestSession;
   let headerTemplate: ContainerTemplate;
-  let authServiceSpy: jasmine.SpyObj<AuthService>;
+  let authServiceSpy: Mocked<AuthService>;
 
   beforeEach(async() => {
-    authServiceSpy = jasmine.createSpyObj<AuthService>(['logoutAndNavigate']);
+    authServiceSpy = { logoutAndNavigate: vi.fn() } as unknown as Mocked<AuthService>;
     await TestBed.configureTestingModule({
       providers: [
         provideHeaderComponents(),
@@ -61,14 +62,14 @@ describe('HeaderComponent', () => {
 
     it('should render properly', () => {
       expect(fixture.nativeElement.querySelector('.img-logo-white')).toBeTruthy();
-      expect(fixture.nativeElement.querySelector('h1').innerText).toBe('');
+      expect(fixture.nativeElement.querySelector('h1').textContent).toBe('');
       expect(fixture.nativeElement.querySelector('.username')).toBeFalsy();
     });
 
     it('should logout with a return path', () => {
       component.logout();
 
-      expect(authServiceSpy.logoutAndNavigate).toHaveBeenCalledOnceWith();
+      expect(authServiceSpy.logoutAndNavigate).toHaveBeenCalledExactlyOnceWith();
     });
   });
 
@@ -93,8 +94,8 @@ describe('HeaderComponent', () => {
 
     it('should render properly', () => {
       expect(fixture.nativeElement.querySelector('.img-logo-white')).toBeTruthy();
-      expect(fixture.nativeElement.querySelector('h1').innerText).toBe('Page Title');
-      expect(fixture.nativeElement.querySelector('.username').innerText.toLowerCase()).toBe('requester');
+      expect(fixture.nativeElement.querySelector('h1').textContent).toBe('Page Title');
+      expect(fixture.nativeElement.querySelector('.username').textContent.toLowerCase()).toBe('requester');
       const menu = fixture.debugElement.query(By.directive(MatMenu));
       expect(menu.componentInstance.overlapTrigger).toBe(false);
     });
@@ -120,7 +121,7 @@ describe('HeaderComponent', () => {
 
     it('should render properly', () => {
       expect(fixture.nativeElement.querySelector('.img-logo-white')).toBeTruthy();
-      expect(fixture.nativeElement.querySelector('h1').innerText).toBe('Page Title');
+      expect(fixture.nativeElement.querySelector('h1').textContent).toBe('Page Title');
       expect(fixture.nativeElement.querySelector('.username')).toBeFalsy();
       const menu = fixture.debugElement.query(By.directive(MatMenu));
       expect(menu.componentInstance.overlapTrigger).toBe(false);
@@ -147,8 +148,8 @@ describe('HeaderComponent', () => {
 
     it('should render properly', () => {
       expect(fixture.nativeElement.querySelector('.img-logo-white')).toBeTruthy();
-      expect(fixture.nativeElement.querySelector('h1').innerText).toBe('Page Title');
-      expect(fixture.nativeElement.querySelector('.username').innerText.toLowerCase()).toBe('requester');
+      expect(fixture.nativeElement.querySelector('h1').textContent).toBe('Page Title');
+      expect(fixture.nativeElement.querySelector('.username').textContent.toLowerCase()).toBe('requester');
     });
   });
 
@@ -175,7 +176,7 @@ describe('HeaderComponent', () => {
 
       // The redirect should be explicitly set to `null` such that no return URL is used, as the return URL would
       // correspond with the session id that will no longer be available.
-      expect(authServiceSpy.logoutAndNavigate).toHaveBeenCalledOnceWith(null);
+      expect(authServiceSpy.logoutAndNavigate).toHaveBeenCalledExactlyOnceWith(null);
     });
   });
 });

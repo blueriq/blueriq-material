@@ -134,7 +134,7 @@ describe('DateTimepickerComponent', () => {
       .then(() => {
         const errorElement = component.nativeElement.querySelector('mat-error');
         expect(errorElement).toBeTruthy();
-        expect(errorElement.innerText).toBe('invalid input');
+        expect(errorElement.textContent).toBe('invalid input');
       });
   });
 
@@ -162,7 +162,7 @@ describe('DateTimepickerComponent', () => {
     component = session.get(DateTimepickerComponent);
     fixture = component;
     // Init
-    spyOn(DateTimepickerComponent.prototype, 'formatOnChange');
+    vi.spyOn(DateTimepickerComponent.prototype, 'formatOnChange').mockReturnValue(undefined);
     const inputField = component.nativeElement.querySelector('input');
 
     // SUT

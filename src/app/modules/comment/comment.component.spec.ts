@@ -55,7 +55,7 @@ describe('CommentComponent', () => {
 
   it('button click should call submit()', () => {
     // Init
-    const submitSpy = spyOn(SubmitComment.prototype, 'submit');
+    const submitSpy = vi.spyOn(SubmitComment.prototype, 'submit').mockReturnValue(undefined);
     const button = component.nativeElement.querySelector('button');
     session.update(
       commentField.value('this is my first comment'),

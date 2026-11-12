@@ -1,6 +1,7 @@
+import type { Mocked } from 'vitest';
 
 import { Component, DOCUMENT } from '@angular/core';
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { JwtAuthService } from '@blueriq/angular';
@@ -13,9 +14,12 @@ export class TestComponent {
 
 describe('JwtLoginGuard', () => {
 
-  let jwtAuthService: jasmine.SpyObj<JwtAuthService>;
+  let jwtAuthService: Mocked<JwtAuthService>;
   let router: Router;
   let doc: Document;
+
+  beforeEach(() => vi.useFakeTimers());
+  afterEach(() => vi.useRealTimers());
 
   beforeEach(() => {
     const mockDocument = {
@@ -25,7 +29,7 @@ describe('JwtLoginGuard', () => {
       },
       querySelectorAll: document.querySelectorAll.bind(document),
     };
-    jwtAuthService = jasmine.createSpyObj<JwtAuthService>(['login']);
+    jwtAuthService = { login: vi.fn() } as unknown as Mocked<JwtAuthService>;
 
     TestBed.configureTestingModule({
       imports: [
@@ -45,27 +49,27 @@ describe('JwtLoginGuard', () => {
     doc = TestBed.inject(DOCUMENT);
   });
 
-  it('redirects to the login endpoint if provided', fakeAsync(() => {
-    jwtAuthService.login.and.returnValue(of({ url: 'http://example.com/login' }));
+  it('redirects to the login endpoint if provided', async () => {
+    jwtAuthService.login.mockReturnValue(of({ url: 'http://example.com/login' }));
 
     router.navigate(['login']);
-    tick();
+    await vi.advanceTimersByTimeAsync(0);
 
     expect(doc.location!.href).toEqual('http://example.com/login');
     expect(jwtAuthService.login).toHaveBeenCalledWith({
       redirectUrl: 'http://example.com/',
     });
-  }));
+  });
 
-  it('proceeds to the login component if JWT authentication is not available', fakeAsync(() => {
-    jwtAuthService.login.and.returnValue(throwError(new Error('JWT authentication unavailable')));
+  it('proceeds to the login component if JWT authentication is not available', async () => {
+    jwtAuthService.login.mockReturnValue(throwError(new Error('JWT authentication unavailable')));
 
     router.navigate(['login']);
-    tick();
+    await vi.advanceTimersByTimeAsync(0);
 
     expect(router.url).toEqual('/login');
     expect(jwtAuthService.login).toHaveBeenCalledWith({
       redirectUrl: 'http://example.com/',
     });
-  }));
+  });
 });

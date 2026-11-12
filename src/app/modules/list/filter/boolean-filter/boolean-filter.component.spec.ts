@@ -25,7 +25,7 @@ describe('BooleanFilterComponent', () => {
     component.candidate = new FilterCandidate();
     fixture.detectChanges();
 
-    const operation = fixture.nativeElement.querySelector('.mat-mdc-select-value-text').innerText;
+    const operation = fixture.nativeElement.querySelector('.mat-mdc-select-value-text').textContent;
     expect(operation).toBe('Only Yes');
     const checkbox = fixture.nativeElement.querySelector('.mdc-checkbox__native-control');
     expect(checkbox.checked).toBe(true);
@@ -39,7 +39,7 @@ describe('BooleanFilterComponent', () => {
     component.candidate = filterCandidate;
     fixture.detectChanges();
 
-    const operation = fixture.nativeElement.querySelector('.mat-mdc-select-value-text').innerText;
+    const operation = fixture.nativeElement.querySelector('.mat-mdc-select-value-text').textContent;
     expect(operation).toBe('Show Both');
     const checkbox = fixture.nativeElement.querySelector('.mdc-checkbox__native-control');
     expect(checkbox.checked).toBe(true);
@@ -53,7 +53,7 @@ describe('BooleanFilterComponent', () => {
     component.candidate = filterCandidate;
     fixture.detectChanges();
 
-    const operation = fixture.nativeElement.querySelector('.mat-mdc-select-value-text').innerText;
+    const operation = fixture.nativeElement.querySelector('.mat-mdc-select-value-text').textContent;
     expect(operation).toBe('Only No');
     const checkbox = fixture.nativeElement.querySelector('.mdc-checkbox__native-control');
     expect(checkbox.checked).toBe(false);
@@ -67,7 +67,7 @@ describe('BooleanFilterComponent', () => {
     component.candidate = filterCandidate;
     fixture.detectChanges();
 
-    const operation = fixture.nativeElement.querySelector('.mat-mdc-select-value-text').innerText;
+    const operation = fixture.nativeElement.querySelector('.mat-mdc-select-value-text').textContent;
     expect(operation).toBe('Show Neither');
     const checkbox = fixture.nativeElement.querySelector('.mdc-checkbox__native-control');
     expect(checkbox.checked).toBe(true);

@@ -25,7 +25,7 @@ describe('NumericFilterComponent', () => {
     component.candidate = new FilterCandidate();
     fixture.detectChanges();
 
-    const operation = fixture.nativeElement.querySelector('.mat-mdc-select-value-text').innerText;
+    const operation = fixture.nativeElement.querySelector('.mat-mdc-select-value-text').textContent;
     expect(operation).toBe('Equal to');
     const showUnknown = fixture.nativeElement.querySelector('.mdc-checkbox__native-control');
     expect(showUnknown.checked).toBe(true);

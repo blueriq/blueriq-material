@@ -60,7 +60,7 @@ describe('FileUploadComponent', () => {
   });
 
   it('handles change event', () => {
-    spyOn(fileSelectDirective.uploader!, 'addToQueue');
+    vi.spyOn(fileSelectDirective.uploader!, 'addToQueue').mockReturnValue(undefined);
     fileSelectDirective.onChange();
     expect(fileSelectDirective.uploader!.addToQueue).toHaveBeenCalled();
   });
@@ -202,7 +202,7 @@ describe('FileUploadComponent', () => {
       parts: [{ name: 'pageEvent', body: '2' }],
       headers: [{ name: 'accept', value: '2' }],
     };
-    spyOn(FileUpload.prototype, 'getUploadDetails').and.returnValues(details1, details2);
+    vi.spyOn(FileUpload.prototype, 'getUploadDetails').mockReturnValueOnce(details1).mockReturnValueOnce(details2);
 
     // Apply options for the first time
     fileSelectDirective.uploader!.onBuildItemForm(createFile(), null);
@@ -219,7 +219,7 @@ describe('FileUploadComponent', () => {
 
     // Verify the updated options
     const newOptions = fileSelectDirective.uploader!.options;
-    expect(newOptions.filters!.length).toBe(3, 'Reapplying options should not extend the number of filters');
+    expect(newOptions.filters!.length, 'Reapplying options should not extend the number of filters').toBe(3);
     expect(newOptions.url).toEqual('/blueriq/upload/2');
     expect(newOptions.additionalParameter).toEqual({ 'pageEvent': '2' });
     expect(newOptions.headers).toEqual([{ name: 'accept', value: '2' }]);
@@ -227,8 +227,8 @@ describe('FileUploadComponent', () => {
 
   it('should relay the upload response when upload is complete', () => {
     // init
-    spyOn(FileUpload.prototype, 'handleFileUploadCompleted');
-    spyOn(FileUploader.prototype, 'clearQueue');
+    vi.spyOn(FileUpload.prototype, 'handleFileUploadCompleted').mockReturnValue(undefined);
+    vi.spyOn(FileUploader.prototype, 'clearQueue').mockReturnValue(undefined);
 
     // Sut
     fileSelectDirective.uploader!.onCompleteItem(createFile(), 'some_response', 200, {
@@ -243,13 +243,13 @@ describe('FileUploadComponent', () => {
       headers: [{ name: 'content-type', value: 'application/json' }],
     });
     expect(fileSelectDirective.uploader!.clearQueue).toHaveBeenCalled();
-    expect(component.componentInstance.ngFileUploadErrorMessage).toBe('', 'Clear the client error message when a file passes');
-    expect(component.componentInstance.isBusy).toBe(false, 'Upload is complete, no need to show the progress bar');
+    expect(component.componentInstance.ngFileUploadErrorMessage, 'Clear the client error message when a file passes').toBe('');
+    expect(component.componentInstance.isBusy, 'Upload is complete, no need to show the progress bar').toBe(false);
   });
 
   it('should override the "UploadAll" on FileUploader ', () => {
     // Init
-    spyOn(CustomFileUploader.prototype, 'uploadAll').and.callThrough();
+    vi.spyOn(CustomFileUploader.prototype, 'uploadAll');
     session.update(
       container.properties({ ...properties, 'singlefilemode': false }),
     );

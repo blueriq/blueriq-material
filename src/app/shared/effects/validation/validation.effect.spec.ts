@@ -1,3 +1,4 @@
+import type { Mocked } from 'vitest';
 import { TestBed } from '@angular/core/testing';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -8,11 +9,11 @@ import { ValidationEffect } from './validation.effect';
 
 describe('ValidationEffect', () => {
   let actions: Subject<any>;
-  let snackBarSpy: jasmine.SpyObj<MatSnackBar>;
+  let snackBarSpy: Mocked<MatSnackBar>;
   let effects: ValidationEffect;
 
   beforeEach(async() => {
-    snackBarSpy = jasmine.createSpyObj<MatSnackBar>('MatSnackBar', ['open']);
+    snackBarSpy = { open: vi.fn() } as unknown as Mocked<MatSnackBar>;
     actions = new Subject();
 
     await TestBed.configureTestingModule({

@@ -65,9 +65,9 @@ describe('TableSelectComponent', () => {
 
   it('should not contain certain elements within a table view', () => {
     const tableSelect = component.nativeElement.querySelector('bq-table-select');
-    expect(tableSelect.querySelector('mat-label')).toBeFalsy('should not be visible within a table view');
-    expect(tableSelect.querySelector('mat-hint')).toBeFalsy('should not be visible within a table view');
-    expect(tableSelect.querySelector('mat-error')).toBeFalsy('should not be visible within a table view');
+    expect(tableSelect.querySelector('mat-label'), 'should not be visible within a table view').toBeFalsy();
+    expect(tableSelect.querySelector('mat-hint'), 'should not be visible within a table view').toBeFalsy();
+    expect(tableSelect.querySelector('mat-error'), 'should not be visible within a table view').toBeFalsy();
   });
 
 });

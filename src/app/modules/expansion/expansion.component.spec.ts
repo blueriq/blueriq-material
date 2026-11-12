@@ -37,9 +37,9 @@ describe('ExpansionComponent', () => {
     const matHeaderTitles = containerFixture.nativeElement.querySelectorAll('mat-panel-title');
 
     expect(matHeaderTitles.length).toBe(3);
-    expect(matHeaderTitles[0].innerText).toEqual('Hello 1');
-    expect(matHeaderTitles[1].innerText).toEqual('Hello 2');
-    expect(matHeaderTitles[2].innerText).toEqual('Hello 3');
+    expect(matHeaderTitles[0].textContent.trim()).toEqual('Hello 1');
+    expect(matHeaderTitles[1].textContent.trim()).toEqual('Hello 2');
+    expect(matHeaderTitles[2].textContent.trim()).toEqual('Hello 3');
   });
 
   it('should have 3 panels rendered', () => {

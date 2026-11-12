@@ -29,9 +29,9 @@ describe('SlideToggleComponent', () => {
 
   it('should be rendered properly', () => {
     const label = component.nativeElement.querySelector('label');
-    expect(label.innerText.trim()).toBe('Setting1');
+    expect(label.textContent.trim()).toBe('Setting1');
     const hint = component.nativeElement.querySelector('mat-hint');
-    expect(hint.innerText.trim()).toBe('Explain2');
+    expect(hint.textContent.trim()).toBe('Explain2');
     const inputField = component.nativeElement.querySelector('.mdc-switch--checked');
     expect(inputField).toBeFalsy();
   });

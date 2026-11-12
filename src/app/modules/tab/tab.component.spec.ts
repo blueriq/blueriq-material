@@ -44,19 +44,19 @@ describe('TabComponent', () => {
     const matHeaderLabels = tabFixture.nativeElement.querySelectorAll('.mdc-tab__text-label');
 
     expect(matHeaderLabels.length).toBe(4);
-    expect(matHeaderLabels[0].innerText).toEqual('News'); // mat-tab-label-content
-    expect(matHeaderLabels[1].innerText).toEqual('Reviews');
-    expect(matHeaderLabels[2].innerText).toEqual('Pricewatch');
-    expect(matHeaderLabels[3].innerText).toEqual('[tab4]');
+    expect(matHeaderLabels[0].textContent.trim()).toEqual('News'); // mat-tab-label-content
+    expect(matHeaderLabels[1].textContent.trim()).toEqual('Reviews');
+    expect(matHeaderLabels[2].textContent.trim()).toEqual('Pricewatch');
+    expect(matHeaderLabels[3].textContent.trim()).toEqual('[tab4]');
   });
 
   it('should have 4 containers rendered', () => {
     const tabBodies = tabFixture.nativeElement.querySelectorAll('mat-tab-body');
 
     expect(tabBodies.length).toBe(4);
-    expect(tabBodies[0].querySelector('bq-container')).withContext('The first container should be displayed').toBeTruthy();
+    expect(tabBodies[0].querySelector('bq-container'), 'The first container should be displayed').toBeTruthy();
     const activeLabel = tabFixture.nativeElement.querySelector('.mdc-tab-indicator--active');
-    expect(activeLabel.innerText).withContext('First tab should be selected').toEqual('News', );
+    expect(activeLabel.textContent.trim(), 'First tab should be selected').toEqual('News');
   });
 
   it('should use the bqContainer directive', () => {

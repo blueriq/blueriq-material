@@ -20,12 +20,10 @@ import { NotificationType } from '../../../notification-overlay/notification.mod
 import { TaskExecutionWidgetComponent } from './task-execution-widget.component';
 import { Actions } from '@ngrx/effects';
 import { Subject } from 'rxjs';
-import createSpy = jasmine.createSpy;
-import objectContaining = jasmine.objectContaining;
 
 describe('Task Execution Widget Component', () => {
   beforeEach(async () => {
-    jasmine.clock().install();
+    vi.useFakeTimers();
     await TestBed.configureTestingModule({
       imports: [
         RouterModule.forRoot([]),
@@ -38,13 +36,13 @@ describe('Task Execution Widget Component', () => {
         {
           provide: Dispatcher,
           useClass: class {
-            dispatch = createSpy('dispatch');
+            dispatch = vi.fn();
           },
         },
         {
           provide: DashboardAuthService,
           useClass: class {
-            login = createSpy('login');
+            login = vi.fn();
           },
         },
         BlueriqDashboard,
@@ -58,7 +56,7 @@ describe('Task Execution Widget Component', () => {
   });
 
   afterEach(() => {
-    jasmine.clock().uninstall();
+    vi.useRealTimers();
   });
 
   it('should set correct notification on session expired call', () => {
@@ -193,9 +191,9 @@ describe('Task Execution Widget Component', () => {
     expect(notification!.dismiss).toBeUndefined();
 
     // Fast-forward clock to after redirection timeout
-    jasmine.clock().tick(2001);
+    vi.advanceTimersByTime(2001);
 
-    expect(dispatcher.dispatch).toHaveBeenCalledWith(objectContaining({
+    expect(dispatcher.dispatch).toHaveBeenCalledWith(expect.objectContaining({
       type: SessionEventActions.PORTAL_CHANGE,
       changeType: 'open-case',
       changeContext: expectedCaseType,

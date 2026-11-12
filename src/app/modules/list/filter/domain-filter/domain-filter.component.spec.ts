@@ -32,9 +32,9 @@ describe('DomainFilterComponent', () => {
     fixture.detectChanges();
 
     const selectOptions = getMatOptionsFromOverlay();
-    expect(selectOptions[0].innerText.trim()).toBe('een');
-    expect(selectOptions[1].innerText.trim()).toBe('twee');
-    expect(selectOptions[2].innerText.trim()).toBe('drie');
+    expect(selectOptions[0].textContent.trim()).toBe('een');
+    expect(selectOptions[1].textContent.trim()).toBe('twee');
+    expect(selectOptions[2].textContent.trim()).toBe('drie');
     selectOptions[2].click();
     fixture.detectChanges();
 

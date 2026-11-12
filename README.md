@@ -9,7 +9,7 @@ Run `pnpm install` to install required dependencies.
 Run `pnpm run build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
 ## Running unit tests
-Run `pnpm run test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `pnpm run test` to execute the unit tests via [Vitest](https://vitest.dev).
 
 ## Running lints
 Run `pnpm run lint` to execute the lints via eslint

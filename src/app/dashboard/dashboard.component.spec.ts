@@ -1,3 +1,4 @@
+import type { Mocked } from 'vitest';
 import { AsyncPipe } from '@angular/common';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -17,7 +18,7 @@ describe('Dashboard Component', () => {
   let component: ComponentFixture<DashboardComponent>;
   let authService: DashboardAuthService;
   let router: Router;
-  let route: jasmine.SpyObj<ActivatedRoute>;
+  let route: Mocked<ActivatedRoute>;
   let toastrService: ToastrService;
   let testDispatcher: TestDispatcher;
   let queryParams: Subject<Params>;
@@ -25,18 +26,18 @@ describe('Dashboard Component', () => {
   beforeEach(async() => {
     testDispatcher = new TestDispatcher();
     queryParams = new Subject<Params>();
-    authService = jasmine.createSpyObj<DashboardAuthService>('DashboardAuthService', ['login']);
-    router = jasmine.createSpyObj<Router>('Router', ['navigate']);
+    authService = { login: vi.fn() } as unknown as Mocked<DashboardAuthService>;
+    router = { navigate: vi.fn() } as unknown as Mocked<Router>;
     const routeParams: Params = { page: 'default' };
-    route = jasmine.createSpyObj<ActivatedRoute>('ActivateRoute', [], {
+    route = {
       'paramMap': of(convertToParamMap({})),
       'queryParams': queryParams,
       'snapshot': {
         queryParams: {},
         params: routeParams,
       } as ActivatedRouteSnapshot,
-    });
-    toastrService = jasmine.createSpyObj<ToastrService>('ToastrService', ['success', 'info', 'warning']);
+    } as unknown as Mocked<ActivatedRoute>;
+    toastrService = { success: vi.fn(), info: vi.fn(), warning: vi.fn() } as unknown as Mocked<ToastrService>;
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule, DashboardComponent],
       providers: [

@@ -1,6 +1,6 @@
 import { NgClass } from '@angular/common';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ComponentFixture, fakeAsync, flushMicrotasks, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Action } from '@blueriq/angular';
 import { BlueriqDashboard, DashboardPage } from '@blueriq/dashboard';
 import { Actions } from '@ngrx/effects';
@@ -28,6 +28,9 @@ describe('Dashboard Page', () => {
   let page$: BehaviorSubject<DashboardPage | null>;
   let actions$: Subject<Action>;
   let fixture: ComponentFixture<DashboardPageComponent>;
+
+  beforeEach(() => vi.useFakeTimers());
+  afterEach(() => vi.useRealTimers());
 
   beforeEach(async() => {
     page$ = new BehaviorSubject<DashboardPage | null>(null);
@@ -61,7 +64,7 @@ describe('Dashboard Page', () => {
     expect(columns[1].querySelector('bq-intake-widget')).not.toBeNull();
   });
 
-  it('should rerender the flow widget on a refresh', fakeAsync(() => {
+  it('should rerender the flow widget on a refresh', async () => {
     page$.next(page);
     fixture.detectChanges();
 
@@ -69,10 +72,10 @@ describe('Dashboard Page', () => {
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelector('bq-flow-widget')).toBeNull();
 
-    flushMicrotasks();
+    await vi.advanceTimersByTimeAsync(0);
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelector('bq-flow-widget')).not.toBeNull();
-  }));
+  });
 
   it('should stop listening after it is destroyed', () => {
     fixture.detectChanges();
