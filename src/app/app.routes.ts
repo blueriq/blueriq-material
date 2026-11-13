@@ -5,7 +5,7 @@ import { ProjectComponent } from './project.component';
 export const routes: Routes = [
   {
     path: 'dashboard',
-    loadChildren: () => import('./dashboard/dashboard.module').then(mod => mod.DashboardModule),
+    loadChildren: () => import('./dashboard/routes').then(mod => mod.DASHBOARD_ROUTES),
   },
   { path: 'session/:sessionId', component: ProjectComponent },
   { path: 'shortcut/:shortcut', component: ProjectComponent },
