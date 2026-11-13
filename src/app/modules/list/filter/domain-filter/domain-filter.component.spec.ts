@@ -20,12 +20,13 @@ describe('DomainFilterComponent', () => {
     fixture = TestBed.createComponent(DomainFilterComponent);
     component = fixture.componentInstance;
     // there is no DomainTemplate yet so we create a Domain via a FieldTemplate
-    component.domain = FieldTemplate.text().domain({ one: 'een', two: 'twee', three: 'drie' }).build().domain;
+    fixture.componentRef.setInput('domain', FieldTemplate.text().domain({ one: 'een', two: 'twee', three: 'drie' }).build().domain);
+    fixture.componentRef.setInput('candidate', new FilterCandidate());
     fixture.detectChanges();
   });
 
   it('domain filter with options', () => {
-    const candidate = component.candidate = new FilterCandidate();
+    const candidate = component.candidate();
     // there are two mat-selects, the first is for operator, second is domain values, which is the one we need
     const triggers = fixture.debugElement.queryAll(By.css('.mat-mdc-select-trigger'));
     triggers[1].nativeElement.click();

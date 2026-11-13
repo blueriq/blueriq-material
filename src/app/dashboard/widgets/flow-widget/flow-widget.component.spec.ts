@@ -48,14 +48,14 @@ describe('Flow Widget Component', () => {
 
   it('should return widgetStartType regular when NO shortcut is set', () => {
     const fixture = TestBed.createComponent(FlowWidgetComponent);
-    fixture.componentInstance.widget = {
+    fixture.componentRef.setInput('widget', {
       id: 'TEST-ID',
       type: 'blueriq-flow',
       baseUrl: '/',
       flowName: 'TEST_FLOW',
       projectName: 'TEST_PROJECT',
       versionName: 'TEST_VERSION',
-    };
+    });
     fixture.componentInstance.ngOnInit();
 
     expect(fixture.componentInstance.widgetStartType).toEqual('regular');
@@ -63,12 +63,12 @@ describe('Flow Widget Component', () => {
 
   it('should return widgetStartType shortcut when shortcut is set', () => {
     const fixture = TestBed.createComponent(FlowWidgetComponent);
-    fixture.componentInstance.widget = {
+    fixture.componentRef.setInput('widget', {
       id: 'TEST-ID',
       type: 'blueriq-flow',
       baseUrl: '/',
       shortcutName: 'TEST_SHORTCUT',
-    };
+    });
     fixture.componentInstance.ngOnInit();
 
     expect(fixture.componentInstance.widgetStartType).toEqual('shortcut');
@@ -76,11 +76,11 @@ describe('Flow Widget Component', () => {
 
   it('should return widgetStartType invalid when invalid widget model', () => {
     const fixture = TestBed.createComponent(FlowWidgetComponent);
-    fixture.componentInstance.widget = {
+    fixture.componentRef.setInput('widget', {
       id: 'TEST-ID',
       type: 'blueriq-flow',
       baseUrl: '/',
-    };
+    });
     fixture.componentInstance.ngOnInit();
 
     expect(fixture.componentInstance.widgetStartType).toEqual('invalid');
@@ -88,14 +88,14 @@ describe('Flow Widget Component', () => {
 
   it('should update the notification when a session is expired', () => {
     const fixture = TestBed.createComponent(FlowWidgetComponent);
-    fixture.componentInstance.widget = {
+    fixture.componentRef.setInput('widget', {
       id: 'TEST-ID',
       type: 'blueriq-flow',
       baseUrl: '/',
       flowName: 'TEST_FLOW',
       projectName: 'TEST_PROJECT',
       versionName: 'TEST_VERSION',
-    };
+    });
     fixture.componentInstance.ngOnInit();
 
     fixture.componentInstance.onSessionExpired();
@@ -108,14 +108,14 @@ describe('Flow Widget Component', () => {
 
   it('should update the notification when a flow has ended', () => {
     const fixture = TestBed.createComponent(FlowWidgetComponent);
-    fixture.componentInstance.widget = {
+    fixture.componentRef.setInput('widget', {
       id: 'TEST-ID',
       type: 'blueriq-flow',
       baseUrl: '/',
       flowName: 'TEST_FLOW',
       projectName: 'TEST_PROJECT',
       versionName: 'TEST_VERSION',
-    };
+    });
     fixture.componentInstance.ngOnInit();
 
     fixture.componentInstance.onFlowEnded();
@@ -128,14 +128,14 @@ describe('Flow Widget Component', () => {
 
   it('should display an Blueriq error message', () => {
     const fixture = TestBed.createComponent(FlowWidgetComponent);
-    fixture.componentInstance.widget = {
+    fixture.componentRef.setInput('widget', {
       id: 'TEST-ID',
       type: 'blueriq-flow',
       baseUrl: '/',
       flowName: 'TEST_FLOW',
       projectName: 'TEST_PROJECT',
       versionName: 'TEST_VERSION',
-    };
+    });
     fixture.componentInstance.ngOnInit();
 
     fixture.componentInstance.onError({
@@ -155,14 +155,14 @@ describe('Flow Widget Component', () => {
 
   it('should display a generic error message', () => {
     const fixture = TestBed.createComponent(FlowWidgetComponent);
-    fixture.componentInstance.widget = {
+    fixture.componentRef.setInput('widget', {
       id: 'TEST-ID',
       type: 'blueriq-flow',
       baseUrl: '/',
       flowName: 'TEST_FLOW',
       projectName: 'TEST_PROJECT',
       versionName: 'TEST_VERSION',
-    };
+    });
     fixture.componentInstance.ngOnInit();
 
     fixture.componentInstance.onError({

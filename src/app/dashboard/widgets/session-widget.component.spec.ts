@@ -47,14 +47,14 @@ describe('Session Widget Component', () => {
   it('should initialize the dashboard session on init', () => {
     // Arrange
     const fixture = TestBed.createComponent(SessionWidgetComponent);
-    fixture.componentInstance.widget = {
+    fixture.componentRef.setInput('widget', {
       id: 'TEST-ID',
       type: 'blueriq-flow',
       baseUrl: '/',
       flowName: 'TEST_FLOW',
       projectName: 'TEST_PROJECT',
       versionName: 'TEST_VERSION',
-    };
+    });
 
     // Act
     fixture.componentInstance.ngOnInit();
@@ -66,34 +66,34 @@ describe('Session Widget Component', () => {
   it('should uses the dashboard session to get the id', () => {
     // Arrange
     const fixture = TestBed.createComponent(SessionWidgetComponent);
-    fixture.componentInstance.widget = {
+    fixture.componentRef.setInput('widget', {
       id: 'TEST-ID',
       type: 'blueriq-flow',
       baseUrl: '/',
       flowName: 'TEST_FLOW',
       projectName: 'TEST_PROJECT',
       versionName: 'TEST_VERSION',
-    };
+    });
 
     // Act
     fixture.componentInstance.ngOnInit();
     const id = fixture.componentInstance.id;
 
     // Assert
-    expect(fixture.componentInstance.widget.id).not.toEqual(id);
+    expect(fixture.componentInstance.widget().id).not.toEqual(id);
   });
 
   it('should uses the dashboard session to get the sessionName', () => {
     // Arrange
     const fixture = TestBed.createComponent(SessionWidgetComponent);
-    fixture.componentInstance.widget = {
+    fixture.componentRef.setInput('widget', {
       id: 'TEST-ID',
       type: 'blueriq-flow',
       baseUrl: '/',
       flowName: 'TEST_FLOW',
       projectName: 'TEST_PROJECT',
       versionName: 'TEST_VERSION',
-    };
+    });
 
     // Act
     fixture.componentInstance.ngOnInit();
@@ -107,14 +107,14 @@ describe('Session Widget Component', () => {
   it('should call dispatcher with LoginAction on unauthorized call', () => {
     // Arrange
     const fixture = TestBed.createComponent(SessionWidgetComponent);
-    fixture.componentInstance.widget = {
+    fixture.componentRef.setInput('widget', {
       id: 'TEST-ID',
       type: 'blueriq-flow',
       baseUrl: '/',
       flowName: 'TEST_FLOW',
       projectName: 'TEST_PROJECT',
       versionName: 'TEST_VERSION',
-    };
+    });
     fixture.componentInstance.ngOnInit();
 
     const authService = TestBed.inject(DashboardAuthService);

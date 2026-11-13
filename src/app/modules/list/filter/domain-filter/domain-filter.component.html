@@ -8,14 +8,14 @@
   </div>
   <div class="fx-flex0-0-14em">
     <mat-form-field appearance="fill">
-      <mat-select multiple [value]="values" (selectionChange)="onValueChanged($event.value)">
-        @for (option of domain.options; track option) {
+      <mat-select multiple [value]="values()" (selectionChange)="onValueChanged($event.value)">
+        @for (option of domain().options; track option) {
           <mat-option [value]="option.value">{{option.displayValue}}</mat-option>
         }
       </mat-select>
     </mat-form-field>
   </div>
   <div class="fx-flex0-0-2em">
-    <mat-checkbox [checked]="showUnknown" (change)="onUnknownChanged($event.checked)" color="primary"></mat-checkbox>
+    <mat-checkbox [checked]="showUnknown()" (change)="onUnknownChanged($event.checked)" color="primary"></mat-checkbox>
   </div>
 </div>

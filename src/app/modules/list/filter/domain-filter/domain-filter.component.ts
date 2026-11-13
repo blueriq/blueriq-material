@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, effect, input, linkedSignal, untracked } from '@angular/core';
 import { DomainPredicate } from '@blueriq/angular/lists';
 import { Domain, TechnicalValue } from '@blueriq/core';
 import { FilterCandidate } from '../types';
@@ -13,42 +13,39 @@ import { MatCheckbox } from '@angular/material/checkbox';
     imports: [MatFormField, MatSelect, MatOption, MatCheckbox]
 })
 export class DomainFilterComponent {
-  private _candidate: FilterCandidate;
+  readonly domain = input.required<Domain>();
 
-  values: TechnicalValue[];
-  showUnknown: boolean;
+  readonly candidate = input.required<FilterCandidate>();
 
-  // TODO: Skipped for migration because:
-  //  Your application code writes to the input. This prevents migration.
-  @Input()
-  domain: Domain;
+  readonly values = linkedSignal<TechnicalValue[]>(() => this.predicate()?.values ?? []);
 
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input()
-  set candidate(candidate: FilterCandidate) {
-    const predicate = candidate.predicate as DomainPredicate | undefined;
+  readonly showUnknown = linkedSignal(() => this.predicate()?.showUnknown ?? true);
 
-    this.values = predicate ? predicate.values : [];
-    this.showUnknown = predicate ? predicate.showUnknown : true;
-
-    this._candidate = candidate;
-    this.updateCandidate();
+  constructor() {
+    effect(() => {
+      this.candidate();
+      untracked(() => this.updateCandidate());
+    });
   }
 
   onValueChanged(values: string[]) {
-    this.values = values;
+    this.values.set(values);
     this.updateCandidate();
   }
 
   onUnknownChanged(showUnknown: boolean) {
-    this.showUnknown = showUnknown;
+    this.showUnknown.set(showUnknown);
     this.updateCandidate();
   }
 
+  private predicate(): DomainPredicate | undefined {
+    return this.candidate().predicate as DomainPredicate | undefined;
+  }
+
   private updateCandidate(): void {
-    const { values, showUnknown } = this;
-    this._candidate.update({
+    const values = this.values();
+    const showUnknown = this.showUnknown();
+    this.candidate().update({
       valid: showUnknown || values.length > 0,
       predicate: {
         type: 'domain',

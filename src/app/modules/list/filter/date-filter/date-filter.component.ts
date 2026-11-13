@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, computed, effect, inject, input, linkedSignal, untracked } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BlueriqSession } from '@blueriq/angular';
 import { DateOperator, DatePredicate } from '@blueriq/angular/lists';
@@ -41,38 +41,30 @@ export class DateFilterComponent {
   private readonly session = inject(BlueriqSession);
 
   readonly operations = operations;
-  private _candidate: FilterCandidate;
 
-  pickerType: 'calendar' | 'both';
-  operator: DateOperator;
+  readonly type = input.required<'date' | 'datetime'>();
+
+  readonly candidate = input.required<FilterCandidate>();
+
+  readonly pickerType = computed(() => this.type() === 'date' ? 'calendar' : 'both');
+
+  readonly operator = linkedSignal(() => this.predicate()?.operator ?? DateOperator.On);
+
+  readonly showUnknown = linkedSignal(() => this.predicate()?.showUnknown ?? true);
+
   dateControl = new FormControl<moment.Moment | null>(null);
-  showUnknown: boolean;
-
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input()
-  set type(type: 'date' | 'datetime') {
-    this.pickerType = type === 'date' ? 'calendar' : 'both';
-  }
-
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input()
-  set candidate(candidate: FilterCandidate) {
-    const predicate = candidate.predicate as DatePredicate | undefined;
-
-    this.operator = predicate ? predicate.operator : DateOperator.On;
-    this.dateControl.setValue(predicate && predicate.date ? moment(predicate.date) : null);
-    this.showUnknown = predicate ? predicate.showUnknown : true;
-
-    this._candidate = candidate;
-    this.updateCandidate();
-  }
 
   firstDayOfWeek: number;
 
   constructor() {
     this.firstDayOfWeek = computeFirstDayOfWeek(this.session.localization);
+    effect(() => {
+      this.candidate();
+      untracked(() => {
+        this.dateControl.setValue(this.predicateDate());
+        this.updateCandidate();
+      });
+    });
   }
 
   onDateChanged(event: { value: moment.Moment | undefined; source: { value: unknown } }) {
@@ -81,19 +73,29 @@ export class DateFilterComponent {
   }
 
   onOperatorChanged(operator: DateOperator) {
-    this.operator = operator;
+    this.operator.set(operator);
     this.updateCandidate();
   }
 
   onUnknownChanged(showUnknown: boolean) {
-    this.showUnknown = showUnknown;
+    this.showUnknown.set(showUnknown);
     this.updateCandidate();
   }
 
+  private predicate(): DatePredicate | undefined {
+    return this.candidate().predicate as DatePredicate | undefined;
+  }
+
+  private predicateDate(): moment.Moment | null {
+    const date = this.predicate()?.date;
+    return date ? moment(date) : null;
+  }
+
   private updateCandidate(): void {
-    const { operator, dateControl, showUnknown } = this;
-    const date = dateControl.value;
-    this._candidate.update({
+    const operator = this.operator();
+    const showUnknown = this.showUnknown();
+    const date = this.dateControl.value;
+    this.candidate().update({
       valid: showUnknown || !!date,
       predicate: {
         type: 'date',

@@ -1,14 +1,14 @@
 <div class="fx-flex-row" style="place-content: center flex-end; align-items: center">
   <button mat-icon-button
     (click)="showFilter(filterDialog)"
-    [matBadge]="filter.currentFilters.length"
-    [matBadgeHidden]="filter.currentFilters.length === 0"
+    [matBadge]="filter().currentFilters.length"
+    [matBadgeHidden]="filter().currentFilters.length === 0"
     matTooltip="Filter"
     matBadgePosition="before"
     matBadgeColor="primary">
     <mat-icon aria-label="Filter">filter_list</mat-icon>
   </button>
-  @if (filter.currentFilters.length > 0) {
+  @if (filter().currentFilters.length > 0) {
     <button (click)="clearFilters()" mat-icon-button
       matTooltip="Clear filter" @clearFilters>
       <mat-icon aria-label="Clear filter">clear</mat-icon>
@@ -27,7 +27,7 @@
 
     @for (candidate of filterCandidates; track candidate) {
       <bq-filter-row
-        [currentColumns]="filter.currentColumns"
+        [currentColumns]="filter().currentColumns"
         [candidate]="candidate"
         (removed)="removeFilter(candidate)">
       </bq-filter-row>

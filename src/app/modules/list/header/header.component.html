@@ -1,20 +1,20 @@
 <div class="fx-flex-row" style="place-content: center flex-start; align-items: center;">
 
   <!-- Header name -->
-  <ng-container [bqElement]="column.header"></ng-container>
+  <ng-container [bqElement]="column().header"></ng-container>
 
   <!-- Sorting -->
-  @if (column.ordering !== 'unavailable') {
+  @if (column().ordering !== 'unavailable') {
     <button mat-icon-button
-      [ngClass]="['sort-toggle', column.ordering]" [bqButton]="column.toggleOrdering">
+      [ngClass]="['sort-toggle', column().ordering]" [bqButton]="column().toggleOrdering">
       <mat-icon aria-label="sort button">{{getIconByDirection()}}</mat-icon>
     </button>
   }
 
   <!-- Filtering -->
-  @if (column.filter) {
+  @if (column().filter) {
     <button mat-icon-button disabled style="place-content: center; align-items: center;">
-      @if (column.filter.isActive$ | async) {
+      @if (column().filter.isActive$ | async) {
         <mat-icon>filter_list</mat-icon>
       }
     </button>

@@ -23,7 +23,7 @@ export class DashboardHeaderComponent {
 
   userInfo$: Observable<UserInfo>;
 
-  readonly menuItems = input<DashboardMenuItem[]>(undefined!);
+  readonly menuItems = input.required<DashboardMenuItem[]>();
 
   constructor() {
     this.userInfo$ = this.authService.userInfo();

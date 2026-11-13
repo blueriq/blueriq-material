@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, input } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import {
   BlueriqDashboard,
@@ -25,10 +25,7 @@ export class SessionWidgetComponent implements OnInit {
   baseUrl: string;
   dashboardState: DashboardState;
 
-  // TODO: Skipped for migration because:
-  //  Your application code writes to the input. This prevents migration.
-  @Input()
-  widget: DashboardWidgets;
+  readonly widget = input.required<DashboardWidgets>();
 
   get sessionName(): string {
     return this.widgetSession.name;
@@ -39,8 +36,8 @@ export class SessionWidgetComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.widgetSession.initialize(this.widget.id);
-    this.baseUrl = this.widget.baseUrl + '/' + this.widgetSession.id;
+    this.widgetSession.initialize(this.widget().id);
+    this.baseUrl = this.widget().baseUrl + '/' + this.widgetSession.id;
     this.parameters$ = this.route.queryParams;
     this.dashboard.state.subscribe(state => this.dashboardState = state);
   }

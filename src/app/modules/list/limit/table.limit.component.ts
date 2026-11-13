@@ -10,6 +10,6 @@ import { BlueriqCommonModule } from '@blueriq/angular';
 })
 export class TableLimitComponent {
 
-  public readonly limit = input<Limit>(undefined!);
+  readonly limit = input.required<Limit>();
 
 }

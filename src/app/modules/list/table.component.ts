@@ -31,5 +31,5 @@ import { AsyncPipe } from '@angular/common';
 })
 export class TableComponent {
 
-  public readonly table = input<Table>(undefined!);
+  readonly table = input.required<Table>();
 }

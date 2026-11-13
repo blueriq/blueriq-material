@@ -24,9 +24,11 @@ describe('DateFilterComponent', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(DateFilterComponent);
-    fixture.detectChanges();
     component = fixture.componentInstance;
-    component.candidate = new FilterCandidate();
+    fixture.componentRef.setInput('type', 'date');
+    fixture.componentRef.setInput('candidate', new FilterCandidate());
+    fixture.detectChanges();
+    await fixture.whenStable();
     fixture.detectChanges();
   });
 
@@ -48,7 +50,7 @@ describe('DateFilterComponent', () => {
     fixture.detectChanges();
 
     // Verify
-    expect(component.operator).toBe(DateOperator.After);
+    expect(component.operator()).toBe(DateOperator.After);
   });
 
   function getMatOptionsFromOverlay(): HTMLElement[] {

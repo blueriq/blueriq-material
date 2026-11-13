@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, QueryList, ViewChildren } from '@angular/core';
+import { Component, ElementRef, QueryList, ViewChildren, input } from '@angular/core';
 import { MatMenuItem, MatMenuTrigger, MatMenu } from '@angular/material/menu';
 import { Button, Container, Element } from '@blueriq/core';
 import { MatButton } from '@angular/material/button';
@@ -15,10 +15,7 @@ import { BqIconDirective } from '../../../shared/directive/icon/icon.directive';
 })
 export class MenuItemComponent {
 
-  // TODO: Skipped for migration because:
-  //  This input is used in a control flow expression (e.g. `@if` or `*ngIf`)
-  //  and migrating would break narrowing currently.
-  @Input() child: Element;
+  readonly child = input.required<Element>();
   @ViewChildren('items') inputs: QueryList<ElementRef<MatMenuItem>>;
 
   asButton(element: Element): Button {
@@ -37,7 +34,7 @@ export class MenuItemComponent {
   }
 
   public onMenuKeyDown(event: KeyboardEvent, index: number) {
-    const menuItems = this.asContainer(this.child).children;
+    const menuItems = this.asContainer(this.child()).children;
     const lastIndex = this.inputs.length - 1;
     const previousIndex = index - 1;
     const nextIndex = index + 1;

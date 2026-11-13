@@ -64,14 +64,14 @@ describe('Intake Widget Component', () => {
   it('should set correct notification on session expired call', () => {
     // Arrange
     const fixture = TestBed.createComponent(IntakeWidgetComponent);
-    fixture.componentInstance.widget = {
+    fixture.componentRef.setInput('widget', {
       id: 'TEST-ID',
       type: 'blueriq-flow',
       baseUrl: '/',
       flowName: 'TEST_FLOW',
       projectName: 'TEST_PROJECT',
       versionName: 'TEST_VERSION',
-    };
+    });
     fixture.componentInstance.ngOnInit();
 
     // Act
@@ -87,14 +87,14 @@ describe('Intake Widget Component', () => {
   it('should set correct notification on error call with BlueriqError', () => {
     // Arrange
     const fixture = TestBed.createComponent(IntakeWidgetComponent);
-    fixture.componentInstance.widget = {
+    fixture.componentRef.setInput('widget', {
       id: 'TEST-ID',
       type: 'blueriq-flow',
       baseUrl: '/',
       flowName: 'TEST_FLOW',
       projectName: 'TEST_PROJECT',
       versionName: 'TEST_VERSION',
-    };
+    });
     fixture.componentInstance.ngOnInit();
 
     // Act
@@ -117,14 +117,14 @@ describe('Intake Widget Component', () => {
   it('should set correct notification on error call with generic error', () => {
     // Arrange
     const fixture = TestBed.createComponent(IntakeWidgetComponent);
-    fixture.componentInstance.widget = {
+    fixture.componentRef.setInput('widget', {
       id: 'TEST-ID',
       type: 'blueriq-flow',
       baseUrl: '/',
       flowName: 'TEST_FLOW',
       projectName: 'TEST_PROJECT',
       versionName: 'TEST_VERSION',
-    };
+    });
     fixture.componentInstance.ngOnInit();
 
     // Act
@@ -143,14 +143,14 @@ describe('Intake Widget Component', () => {
   it('should set correct notification on forbidden call', () => {
     // Arrange
     const fixture = TestBed.createComponent(IntakeWidgetComponent);
-    fixture.componentInstance.widget = {
+    fixture.componentRef.setInput('widget', {
       id: 'TEST-ID',
       type: 'blueriq-flow',
       baseUrl: '/',
       flowName: 'TEST_FLOW',
       projectName: 'TEST_PROJECT',
       versionName: 'TEST_VERSION',
-    };
+    });
     fixture.componentInstance.ngOnInit();
 
     // Act
@@ -167,14 +167,14 @@ describe('Intake Widget Component', () => {
   it('should set correct notification on intake completed call', () => {
     // Arrange
     const fixture = TestBed.createComponent(IntakeWidgetComponent);
-    fixture.componentInstance.widget = {
+    fixture.componentRef.setInput('widget', {
       id: 'TEST-ID',
       type: 'blueriq-flow',
       baseUrl: '/',
       flowName: 'TEST_FLOW',
       projectName: 'TEST_PROJECT',
       versionName: 'TEST_VERSION',
-    };
+    });
     fixture.componentInstance.ngOnInit();
 
     // Act
@@ -192,14 +192,14 @@ describe('Intake Widget Component', () => {
   it('should set correct notification on intake aborted call', () => {
     // Arrange
     const fixture = TestBed.createComponent(IntakeWidgetComponent);
-    fixture.componentInstance.widget = {
+    fixture.componentRef.setInput('widget', {
       id: 'TEST-ID',
       type: 'blueriq-flow',
       baseUrl: '/',
       flowName: 'TEST_FLOW',
       projectName: 'TEST_PROJECT',
       versionName: 'TEST_VERSION',
-    };
+    });
     fixture.componentInstance.ngOnInit();
 
     // Act
@@ -216,14 +216,14 @@ describe('Intake Widget Component', () => {
   it('should dispatch on case created call', () => {
     // Arrange
     const fixture = TestBed.createComponent(IntakeWidgetComponent);
-    fixture.componentInstance.widget = {
+    fixture.componentRef.setInput('widget', {
       id: 'TEST-ID',
       type: 'blueriq-flow',
       baseUrl: '/',
       flowName: 'TEST_FLOW',
       projectName: 'TEST_PROJECT',
       versionName: 'TEST_VERSION',
-    };
+    });
     fixture.componentInstance.ngOnInit();
     const dispatcher = TestBed.inject(Dispatcher);
 

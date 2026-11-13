@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostBinding, Input, inject } from '@angular/core';
+import { Directive, ElementRef, HostBinding, effect, inject, input, signal } from '@angular/core';
 import { PresentationStyles } from '@blueriq/core';
 import { BqPresentationStyles } from '../../../modules/BqPresentationStyles';
 
@@ -11,7 +11,9 @@ export class BqIconDirective {
   private readonly elementRef = inject(ElementRef);
 
 
-  private _class: string;
+  readonly bqIcon = input.required<PresentationStyles>();
+
+  private readonly iconClass = signal('');
 
   static hasIcon(presentationStyles: PresentationStyles): boolean {
     return !!(BqIconDirective.getFirstFontAwesomeIcon(presentationStyles) || BqIconDirective.getFirstMaterialIcon(presentationStyles));
@@ -25,29 +27,30 @@ export class BqIconDirective {
     return presentationStyles.get(style => style.startsWith(BqPresentationStyles.ICON_MAT_PREFIX));
   }
 
-  @HostBinding('attr.class')
-  get class(): string {
-    return this._class;
+  constructor() {
+    effect(() => this.showIcon(this.bqIcon()));
   }
 
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input()
-  set bqIcon(presentationStyles: PresentationStyles) {
+  @HostBinding('attr.class')
+  get class(): string {
+    return this.iconClass();
+  }
+
+  private showIcon(presentationStyles: PresentationStyles): void {
     const firstFontAwesomeIcon = BqIconDirective.getFirstFontAwesomeIcon(presentationStyles);
     const firstMaterialIcon = BqIconDirective.getFirstMaterialIcon(presentationStyles);
     if (firstFontAwesomeIcon) {
       let iconName = firstFontAwesomeIcon.replace(new RegExp('^' + BqPresentationStyles.ICON_FA_PREFIX), '');
       iconName = iconName.replace(new RegExp('_', 'g'), '-');
       iconName = this.getMappedFaIcon(iconName);
-      this._class = 'fa fa-' + iconName;
+      this.iconClass.set('fa fa-' + iconName);
     } else if (firstMaterialIcon) {
       let iconName = firstMaterialIcon.replace(new RegExp('^' + BqPresentationStyles.ICON_MAT_PREFIX), '');
       iconName = iconName.toLowerCase();
-      this._class = 'mat-icon material-icons ' + iconName;
+      this.iconClass.set('mat-icon material-icons ' + iconName);
       this.elementRef.nativeElement.innerHTML = iconName;
     } else {
-      this._class = '';
+      this.iconClass.set('');
     }
   }
 

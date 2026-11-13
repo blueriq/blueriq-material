@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, effect, input, linkedSignal, untracked } from '@angular/core';
 import { BooleanPredicate } from '@blueriq/angular/lists';
 import { FilterCandidate } from '../types';
 import { MatFormField } from '@angular/material/form-field';
@@ -12,37 +12,40 @@ import { MatCheckbox } from '@angular/material/checkbox';
     imports: [MatFormField, MatSelect, MatOption, MatCheckbox]
 })
 export class BooleanFilterComponent {
-  private _candidate: FilterCandidate;
+  readonly candidate = input.required<FilterCandidate>();
 
-  operation: 'true' | 'false' | 'both' | 'none';
-  showUnknown: boolean;
+  readonly operation = linkedSignal<'true' | 'false' | 'both' | 'none'>(() => {
+    const predicate = this.predicate();
+    return predicate ? determineOperation(predicate) : 'true';
+  });
 
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input()
-  set candidate(candidate: FilterCandidate) {
-    const predicate = candidate.predicate as BooleanPredicate | undefined;
+  readonly showUnknown = linkedSignal(() => this.predicate()?.showUnknown ?? true);
 
-    this.operation = predicate ? determineOperation(predicate) : 'true';
-    this.showUnknown = predicate ? predicate.showUnknown : true;
-
-    this._candidate = candidate;
-    this.updateCandidate();
+  constructor() {
+    effect(() => {
+      this.candidate();
+      untracked(() => this.updateCandidate());
+    });
   }
 
   onOperationChanged(operation: 'true' | 'false' | 'both' | 'none'): void {
-    this.operation = operation;
+    this.operation.set(operation);
     this.updateCandidate();
   }
 
   onUnknownChanged(showUnknown: boolean) {
-    this.showUnknown = showUnknown;
+    this.showUnknown.set(showUnknown);
     this.updateCandidate();
   }
 
+  private predicate(): BooleanPredicate | undefined {
+    return this.candidate().predicate as BooleanPredicate | undefined;
+  }
+
   private updateCandidate(): void {
-    const { operation, showUnknown } = this;
-    this._candidate.update({
+    const operation = this.operation();
+    const showUnknown = this.showUnknown();
+    this.candidate().update({
       valid: showUnknown || operation !== 'none',
       predicate: {
         type: 'boolean',

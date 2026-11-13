@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { Dispatcher } from '@blueriq/angular';
 import { DashboardMenuItem, NavigatePageAction } from '@blueriq/dashboard';
 import { RefreshAction } from '../../events/actions';
@@ -20,10 +20,7 @@ export class DashboardMenuComponent {
   private readonly dispatcher = inject(Dispatcher);
 
 
-  // TODO: Skipped for migration because:
-  //  Your application code writes to the input. This prevents migration.
-  @Input()
-  menuItems: DashboardMenuItem[];
+  readonly menuItems = input.required<DashboardMenuItem[]>();
 
   navigate(page: string): void {
     this.dispatcher.dispatch(new NavigatePageAction(page));

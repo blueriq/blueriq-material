@@ -23,6 +23,7 @@ describe('Dashboard Header', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(DashboardHeaderComponent);
+    fixture.componentRef.setInput('menuItems', []);
   });
 
   it('should display the name of the logged in user', () => {

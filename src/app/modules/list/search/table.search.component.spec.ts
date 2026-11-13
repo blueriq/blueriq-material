@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Search } from '@blueriq/angular/lists';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { ButtonTemplate, ContainerTemplate, FieldTemplate } from '@blueriq/core/testing';
 import { ListComponent } from '../list.component';
@@ -28,12 +28,7 @@ describe('TableSearchComponent', () => {
     const list = ContainerTemplate.create().children(TableSearchTemplate(), TableTemplate(), PaginationTemplate());
     session = BlueriqSessionTemplate.create().build(list);
     component = session.get(ListComponent);
-
-    let search!: Search;
-    component.componentInstance.list.search$.subscribe(s => search = s!).unsubscribe();
-
-    tableSearchComponent = new TableSearchComponent();
-    tableSearchComponent.search = search;
+    tableSearchComponent = component.debugElement.query(By.directive(TableSearchComponent)).componentInstance;
   });
 
   it('should render', () => {

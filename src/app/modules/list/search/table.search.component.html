@@ -1,4 +1,4 @@
-@if (search.enabled) {
+@if (search().enabled) {
   <div bqKey bqClasses class="search">
     @if (fieldIsVisible()) {
       <mat-form-field
@@ -17,7 +17,7 @@
           }
           <input
             type="text"
-            placeholder="{{search.caption}}"
+            placeholder="{{search().caption}}"
             [matChipInputFor]="chipList"
             [matChipInputSeparatorKeyCodes]="separatorKeyCodes"
             [matChipInputAddOnBlur]="true"

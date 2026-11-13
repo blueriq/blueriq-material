@@ -1,31 +1,31 @@
 <div class="backdrop"></div>
 
 <div class="error-container">
-  <div [class]="'notification notification-' + notification.type">
+  <div [class]="'notification notification-' + notification().type">
 
     <div class="fx-flex" style="flex-direction: column; place-content: center space-around; align-items: center;">
 
       <div class="image">
-        @if (notification.type === 'error') {
+        @if (notification().type === 'error') {
           <span class="img-oops"></span>
         }
-        @if (notification.type === 'expired') {
+        @if (notification().type === 'expired') {
           <span class="img-session-expired"></span>
         }
-        @if (notification.type === 'logged-out') {
+        @if (notification().type === 'logged-out') {
           <span class="img-logged-out"></span>
         }
       </div>
 
-      <p class="title">{{ notification.title }}</p>
-      <p class="message">{{ notification.message }}</p>
-      @if (notification.details) {
-        <p class="details">{{ notification.details }}</p>
+      <p class="title">{{ notification().title }}</p>
+      <p class="message">{{ notification().message }}</p>
+      @if (notification().details) {
+        <p class="details">{{ notification().details }}</p>
       }
 
-      @if (notification.dismiss) {
+      @if (notification().dismiss) {
         <p class="button" style="display: flex; flex-direction: column; place-content: center flex-start; align-items: center;">
-          <button mat-button (click)="notification.dismiss.action()">{{ notification.dismiss.label }}</button>
+          <button mat-button (click)="notification().dismiss.action()">{{ notification().dismiss.label }}</button>
         </p>
       }
     </div>

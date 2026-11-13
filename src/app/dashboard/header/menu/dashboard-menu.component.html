@@ -1,5 +1,5 @@
 <mat-toolbar>
-  @for (menuItem of menuItems; track menuItem) {
+  @for (menuItem of menuItems(); track menuItem) {
     <button name="{{menuItem.displayText}}" mat-button class="mat-menu-item"
       (click)="navigate(menuItem.pageId)">
       {{ menuItem.displayText }}

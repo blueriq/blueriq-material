@@ -19,7 +19,7 @@ export class HorizontalFlexChildDirective implements OnChanges, OnDestroy {
 
   private _subscription: Subscription | undefined;
 
-  readonly bqElement = input<Element>(undefined!);
+  readonly bqElement = input.required<Element>();
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this._subscription) {

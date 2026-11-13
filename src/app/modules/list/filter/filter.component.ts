@@ -1,5 +1,5 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, Input, OnInit, TemplateRef, inject } from '@angular/core';
+import { Component, OnInit, TemplateRef, inject, input } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Filter, FilteredColumn } from '@blueriq/angular/lists';
 import { FilterCandidate } from './types';
@@ -34,19 +34,16 @@ export class FilterComponent implements OnInit {
   dialog = inject(MatDialog);
 
 
-  // TODO: Skipped for migration because:
-  //  Your application code writes to the input. This prevents migration.
-  @Input()
-  filter: Filter;
+  readonly filter = input.required<Filter>();
 
   filterCandidates: FilterCandidate[];
   showUnknownLabel: string;
   private filterDialog: MatDialogRef<unknown, unknown>;
 
   ngOnInit(): void {
-    this.updateCandidates(this.filter.currentFilters.map(filter => new FilterCandidate(filter)));
+    this.updateCandidates(this.filter().currentFilters.map(filter => new FilterCandidate(filter)));
 
-    this.showUnknownLabel = this.filter.currentColumns.map(c => c.labels.showUnknown)[0] || '';
+    this.showUnknownLabel = this.filter().currentColumns.map(c => c.labels.showUnknown)[0] || '';
   }
 
   canAddFilter(): boolean {
@@ -64,13 +61,13 @@ export class FilterComponent implements OnInit {
       .map(candidate => candidate.toFilteredColumn())
       .filter((filter): filter is FilteredColumn => !!filter);
 
-    this.filter.apply(filteredColumns);
+    this.filter().apply(filteredColumns);
 
     this.filterDialog.close();
   }
 
   clearFilters(): void {
-    this.filter.clear();
+    this.filter().clear();
     this.filterCandidates = [new FilterCandidate()];
   }
 

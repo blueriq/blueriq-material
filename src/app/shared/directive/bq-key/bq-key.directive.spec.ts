@@ -1,49 +1,57 @@
+import { Component } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Element } from '@blueriq/core';
 import { ButtonTemplate } from '@blueriq/core/testing';
 import { BqKeyDirective } from '@shared/directive/bq-key/bq-key.directive';
-import { TestBed } from '@angular/core/testing';
-import { Element } from '@blueriq/core';
+
+@Component({
+  template: '<div [bqKey]="key"></div>',
+  imports: [BqKeyDirective],
+})
+class BqKeyHostComponent {
+  key: Element | null | undefined;
+}
 
 describe('BqKeyDirective', () => {
-  let bqKeyDirective: BqKeyDirective;
+  let fixture: ComponentFixture<BqKeyHostComponent>;
 
   beforeEach(() => {
-    const element = ButtonTemplate.create('MyButton').build();
     TestBed.configureTestingModule({
       providers: [
-        BqKeyDirective,
         {
           provide: Element,
-          useValue:element ,
+          useValue: ButtonTemplate.create('MyButton').build(),
         },
       ],
     });
 
-    bqKeyDirective = TestBed.inject(BqKeyDirective);
+    fixture = TestBed.createComponent(BqKeyHostComponent);
   });
 
-  it('should create an instance', () => {
-    expect(bqKeyDirective).toBeTruthy();
-  });
+  function renderedId(): string {
+    fixture.detectChanges();
+    return fixture.nativeElement.querySelector('div').id;
+  }
 
   it('should get correct id', () => {
-    expect(bqKeyDirective.id).toContain('MyButton');
+    expect(renderedId()).toContain('MyButton');
   });
 
   it('should override element used for id creation', () => {
-    bqKeyDirective.bqKey = ButtonTemplate.create('MyButton1').build();
+    fixture.componentInstance.key = ButtonTemplate.create('MyButton1').build();
 
-    expect(bqKeyDirective.id).toContain('MyButton1');
+    expect(renderedId()).toContain('MyButton1');
   });
 
   it('should not override element used for id creation if element is undefined', () => {
-    bqKeyDirective.bqKey = undefined;
+    fixture.componentInstance.key = undefined;
 
-    expect(bqKeyDirective.id).toContain('MyButton');
+    expect(renderedId()).toContain('MyButton');
   });
 
   it('should not override element used for id creation if element is null', () => {
-    bqKeyDirective.bqKey = null;
+    fixture.componentInstance.key = null;
 
-    expect(bqKeyDirective.id).toContain('MyButton');
+    expect(renderedId()).toContain('MyButton');
   });
 });
