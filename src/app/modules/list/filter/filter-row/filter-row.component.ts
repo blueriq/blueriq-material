@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { ColumnFilter } from '@blueriq/angular/lists';
 import { FilterCandidate } from '../types';
 import { MatFormField } from '@angular/material/form-field';
@@ -37,8 +37,7 @@ export class FilterRowComponent {
 
   readonly candidate = input.required<FilterCandidate>();
 
-  @Output()
-  removed = new EventEmitter<void>();
+  readonly removed = output<void>();
 
   getType(): 'empty' | 'domain' | 'boolean' | 'numeric' | 'date' | 'datetime' | 'text' {
     const selectedColumn = this.candidate().selectedColumn;
