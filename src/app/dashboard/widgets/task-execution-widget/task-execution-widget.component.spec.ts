@@ -62,14 +62,14 @@ describe('Task Execution Widget Component', () => {
   it('should set correct notification on session expired call', () => {
     // Arrange
     const fixture = TestBed.createComponent(TaskExecutionWidgetComponent);
-    fixture.componentInstance.widget = {
+    fixture.componentRef.setInput('widget', {
       id: 'TEST-ID',
       type: 'blueriq-flow',
       baseUrl: '/',
       flowName: 'TEST_FLOW',
       projectName: 'TEST_PROJECT',
       versionName: 'TEST_VERSION',
-    };
+    });
     fixture.componentInstance.ngOnInit();
 
     // Act
@@ -86,14 +86,14 @@ describe('Task Execution Widget Component', () => {
   it('should set correct notification on error call with BlueriqError', () => {
     // Arrange
     const fixture = TestBed.createComponent(TaskExecutionWidgetComponent);
-    fixture.componentInstance.widget = {
+    fixture.componentRef.setInput('widget', {
       id: 'TEST-ID',
       type: 'blueriq-flow',
       baseUrl: '/',
       flowName: 'TEST_FLOW',
       projectName: 'TEST_PROJECT',
       versionName: 'TEST_VERSION',
-    };
+    });
     fixture.componentInstance.ngOnInit();
 
     // Act
@@ -116,14 +116,14 @@ describe('Task Execution Widget Component', () => {
   it('should set correct notification on error call with generic error', () => {
     // Arrange
     const fixture = TestBed.createComponent(TaskExecutionWidgetComponent);
-    fixture.componentInstance.widget = {
+    fixture.componentRef.setInput('widget', {
       id: 'TEST-ID',
       type: 'blueriq-flow',
       baseUrl: '/',
       flowName: 'TEST_FLOW',
       projectName: 'TEST_PROJECT',
       versionName: 'TEST_VERSION',
-    };
+    });
     fixture.componentInstance.ngOnInit();
 
     // Act
@@ -142,14 +142,14 @@ describe('Task Execution Widget Component', () => {
   it('should set correct notification on forbidden call', () => {
     // Arrange
     const fixture = TestBed.createComponent(TaskExecutionWidgetComponent);
-    fixture.componentInstance.widget = {
+    fixture.componentRef.setInput('widget', {
       id: 'TEST-ID',
       type: 'blueriq-flow',
       baseUrl: '/',
       flowName: 'TEST_FLOW',
       projectName: 'TEST_PROJECT',
       versionName: 'TEST_VERSION',
-    };
+    });
     fixture.componentInstance.ngOnInit();
 
     // Act
@@ -166,14 +166,14 @@ describe('Task Execution Widget Component', () => {
   it('should show notification and call dispatcher with OpenCaseAction on flow ended call', () => {
     // Arrange
     const fixture = TestBed.createComponent(TaskExecutionWidgetComponent);
-    fixture.componentInstance.widget = {
+    fixture.componentRef.setInput('widget', {
       id: 'TEST-ID',
       type: 'blueriq-flow',
       baseUrl: '/',
       flowName: 'TEST_FLOW',
       projectName: 'TEST_PROJECT',
       versionName: 'TEST_VERSION',
-    };
+    });
     fixture.componentInstance.ngOnInit();
 
     const expectedCaseType = 'test-case';

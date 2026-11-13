@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, effect, input, linkedSignal, untracked } from '@angular/core';
 import { NumericOperator, NumericPredicate } from '@blueriq/angular/lists';
 import { FilterCandidate } from '../types';
 import { MatFormField } from '@angular/material/form-field';
@@ -20,42 +20,46 @@ const operations = {
 })
 export class NumericFilterComponent {
   readonly operations = operations;
-  private _candidate: FilterCandidate;
 
-  value: string;
-  operator: NumericOperator;
-  showUnknown: boolean;
+  readonly candidate = input.required<FilterCandidate>();
 
-  @Input()
-  set candidate(candidate: FilterCandidate) {
-    const predicate = candidate.predicate as NumericPredicate | undefined;
+  readonly value = linkedSignal(() => this.predicate()?.value ?? '');
 
-    this.value = predicate ? predicate.value : '';
-    this.operator = predicate ? predicate.operator : NumericOperator.Equals;
-    this.showUnknown = predicate ? predicate.showUnknown : true;
+  readonly operator = linkedSignal(() => this.predicate()?.operator ?? NumericOperator.Equals);
 
-    this._candidate = candidate;
-    this.updateCandidate();
+  readonly showUnknown = linkedSignal(() => this.predicate()?.showUnknown ?? true);
+
+  constructor() {
+    effect(() => {
+      this.candidate();
+      untracked(() => this.updateCandidate());
+    });
   }
 
   onValueChanged(value: string) {
-    this.value = value;
+    this.value.set(value);
     this.updateCandidate();
   }
 
   onOperatorChanged(operator: NumericOperator) {
-    this.operator = operator;
+    this.operator.set(operator);
     this.updateCandidate();
   }
 
   onUnknownChanged(showUnknown: boolean) {
-    this.showUnknown = showUnknown;
+    this.showUnknown.set(showUnknown);
     this.updateCandidate();
   }
 
+  private predicate(): NumericPredicate | undefined {
+    return this.candidate().predicate as NumericPredicate | undefined;
+  }
+
   private updateCandidate(): void {
-    const { operator, value, showUnknown } = this;
-    this._candidate.update({
+    const operator = this.operator();
+    const value = this.value();
+    const showUnknown = this.showUnknown();
+    this.candidate().update({
       valid: showUnknown || !!value,
       predicate: {
         type: 'numeric',

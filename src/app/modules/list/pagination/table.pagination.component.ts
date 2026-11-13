@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { Pagination } from '@blueriq/angular/lists';
 import { MatIconButton } from '@angular/material/button';
 import { BlueriqCommonModule } from '@blueriq/angular';
@@ -12,7 +12,6 @@ import { MatIcon } from '@angular/material/icon';
 })
 export class TablePaginationComponent {
 
-  @Input()
-  public readonly pagination: Pagination;
+  readonly pagination = input.required<Pagination>();
 
 }

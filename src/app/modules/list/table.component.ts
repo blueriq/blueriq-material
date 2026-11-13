@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { BlueriqComponents, BlueriqCommonModule } from '@blueriq/angular';
 import { Table } from '@blueriq/angular/lists';
 import { TABLE_FORM_CONTROL_COMPONENTS } from './form-controls/table-form-control.components';
@@ -31,6 +31,5 @@ import { AsyncPipe } from '@angular/common';
 })
 export class TableComponent {
 
-  @Input()
-  public readonly table: Table;
+  readonly table = input.required<Table>();
 }

@@ -20,7 +20,7 @@ export class FlowWidgetComponent extends SessionWidgetComponent {
   notification: NotificationModel | undefined;
 
   get flowWidget(): FlowWidget {
-    return this.widget as FlowWidget;
+    return this.widget() as FlowWidget;
   }
 
   get widgetStartType(): WidgetStartType {
@@ -36,7 +36,7 @@ export class FlowWidgetComponent extends SessionWidgetComponent {
     this.notification = new NotificationModel(
       NotificationType.Error,
       'Widget Ended',
-      `The flow for '${this.widget.id}' has ended. Widget flows should never end, please revisit the widget's flowing.`,
+      `The flow for '${this.widget().id}' has ended. Widget flows should never end, please revisit the widget's flowing.`,
     );
   }
 

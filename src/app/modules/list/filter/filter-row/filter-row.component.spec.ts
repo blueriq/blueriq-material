@@ -39,8 +39,8 @@ describe('FilterRowComponent', () => {
       { type: 'text', title: 'text' } as ColumnFilter,
       { type: 'number', title: 'number' } as ColumnFilter,
     ];
-    component.currentColumns = columns;
-    component.candidate = new FilterCandidate();
+    fixture.componentRef.setInput('currentColumns', columns);
+    fixture.componentRef.setInput('candidate', new FilterCandidate());
 
     fixture.detectChanges();
   });
@@ -62,7 +62,7 @@ describe('FilterRowComponent', () => {
     fixture.detectChanges();
 
     const selectOptions = getMatOptionsFromOverlay();
-    const index = component.currentColumns.findIndex(column => column.type === type);
+    const index = component.currentColumns().findIndex(column => column.type === type);
     selectOptions[index].click();
     fixture.detectChanges();
   }
@@ -70,37 +70,37 @@ describe('FilterRowComponent', () => {
   it('select boolean', () => {
     selectColumn('boolean');
     expect(fixture.debugElement.query(By.directive(BooleanFilterComponent))).toBeTruthy();
-    expect(component.candidate.predicate!.type).toBe('boolean');
+    expect(component.candidate().predicate!.type).toBe('boolean');
   });
 
   it('select date', () => {
     selectColumn('date');
     expect(fixture.debugElement.query(By.directive(DateFilterComponent))).toBeTruthy();
-    expect(component.candidate.predicate!.type).toBe('date');
+    expect(component.candidate().predicate!.type).toBe('date');
   });
 
   it('select datetime', () => {
     selectColumn('datetime');
     expect(fixture.debugElement.query(By.directive(DateFilterComponent))).toBeTruthy();
-    expect(component.candidate.predicate!.type).toBe('date');
+    expect(component.candidate().predicate!.type).toBe('date');
   });
 
   it('select domain', () => {
     selectColumn('domain');
     expect(fixture.debugElement.query(By.directive(DomainFilterComponent))).toBeTruthy();
-    expect(component.candidate.predicate!.type).toBe('domain');
+    expect(component.candidate().predicate!.type).toBe('domain');
   });
 
   it('select number', () => {
     selectColumn('number');
     expect(fixture.debugElement.query(By.directive(NumericFilterComponent))).toBeTruthy();
-    expect(component.candidate.predicate!.type).toBe('numeric');
+    expect(component.candidate().predicate!.type).toBe('numeric');
   });
 
   it('select text', () => {
     selectColumn('text');
     expect(fixture.debugElement.query(By.directive(TextFilterComponent))).toBeTruthy();
-    expect(component.candidate.predicate!.type).toBe('text');
+    expect(component.candidate().predicate!.type).toBe('text');
   });
 
   function getMatOptionsFromOverlay(): HTMLElement[] {

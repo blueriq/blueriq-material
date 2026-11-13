@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { BlueriqChild, BlueriqComponent, BqProjectComponent, BlueriqCommonModule } from '@blueriq/angular';
 import { Container, Page, TextItem } from '@blueriq/core';
 import { AuthService } from '../../auth/auth.service';
@@ -18,7 +18,7 @@ import { MatIcon } from '@angular/material/icon';
   type: Container,
   selector: 'dashboard_header',
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   dashboardHeader = inject(Container, { optional: true });
   private readonly authService = inject(AuthService);
   private readonly containingProject = inject(BqProjectComponent);
@@ -30,24 +30,10 @@ export class HeaderComponent implements OnInit {
   @BlueriqChild(TextItem, '.logout_link', { exclude: true, optional: true })
   logoutLink: TextItem;
 
-  @Input()
-  page: Page;
+  readonly page = input<Page>();
 
-  get displayName() {
-    if (this.page) {
-      return this.page.displayName;
-    }
-    return '';
-  }
-
-  ngOnInit() {
-    // If we are a dashboardHeader, look up the parent page
-    if (this.dashboardHeader) {
-      const parent = this.dashboardHeader.parent;
-      if (parent instanceof Page) {
-        this.page = parent;
-      }
-    }
+  get displayName(): string {
+    return this.displayedPage()?.displayName ?? '';
   }
 
   logout() {
@@ -58,6 +44,11 @@ export class HeaderComponent implements OnInit {
     } else {
       this.authService.logoutAndNavigate();
     }
+  }
+
+  private displayedPage(): Page | undefined {
+    const dashboardPage = this.dashboardHeader?.parent;
+    return dashboardPage instanceof Page ? dashboardPage : this.page();
   }
 
 }

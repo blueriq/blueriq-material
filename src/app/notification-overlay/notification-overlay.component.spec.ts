@@ -18,12 +18,12 @@ describe('NotificationOverlayComponent', () => {
   });
 
   it('should display the notification title, message and details', () => {
-    component.notification = new NotificationModel(
+    fixture.componentRef.setInput('notification', new NotificationModel(
       NotificationType.Error,
       'Oops!',
       'An unknown error occurred',
       'Some stack trace',
-    );
+    ));
     fixture.detectChanges();
 
     expect(fixture.nativeElement.querySelector('.title').textContent).toEqual('Oops!');
@@ -33,12 +33,12 @@ describe('NotificationOverlayComponent', () => {
 
   it('should render dismiss button when dismiss action is set', () => {
     let dismissed = false;
-    component.notification = new NotificationModel(
+    fixture.componentRef.setInput('notification', new NotificationModel(
       NotificationType.Error,
       'Not found',
       'Unknown flow: Demo',
-    );
-    component.notification.dismiss = {
+    ));
+    component.notification().dismiss = {
       label: 'Dismiss',
       action(): void {
         dismissed = true;
@@ -55,11 +55,11 @@ describe('NotificationOverlayComponent', () => {
   });
 
   it('should be able to render as session expired', () => {
-    component.notification = new NotificationModel(
+    fixture.componentRef.setInput('notification', new NotificationModel(
       NotificationType.SessionExpired,
       'Session Expired',
       'Your session has expired',
-    );
+    ));
     fixture.detectChanges();
 
     expect(fixture.nativeElement.querySelector('.notification-error')).toBeFalsy();

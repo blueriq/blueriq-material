@@ -36,10 +36,10 @@ describe('Dashboard Menu', () => {
   });
 
   it('should display the menu', () => {
-    fixture.componentInstance.menuItems = [{ pageId: 'main', displayText: 'Main' }, {
+    fixture.componentRef.setInput('menuItems', [{ pageId: 'main', displayText: 'Main' }, {
       pageId: 'side',
       displayText: 'Side',
-    }];
+    }]);
     fixture.detectChanges();
 
     expect(fixture.debugElement.queryAll(By.css('button')).length).toBe(3);

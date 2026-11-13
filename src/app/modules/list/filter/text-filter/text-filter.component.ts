@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, effect, input, linkedSignal, untracked } from '@angular/core';
 import { TextPredicate } from '@blueriq/angular/lists';
 import { FilterCandidate } from '../types';
 import { MatFormField } from '@angular/material/form-field';
@@ -13,35 +13,37 @@ import { MatCheckbox } from '@angular/material/checkbox';
     imports: [MatFormField, MatSelect, MatOption, MatInput, MatCheckbox]
 })
 export class TextFilterComponent {
-  private _candidate: FilterCandidate;
+  readonly candidate = input.required<FilterCandidate>();
 
-  value: string;
-  showUnknown: boolean;
+  readonly value = linkedSignal(() => this.predicate()?.text ?? '');
 
-  @Input()
-  set candidate(candidate: FilterCandidate) {
-    const predicate = candidate.predicate as TextPredicate | undefined;
+  readonly showUnknown = linkedSignal(() => this.predicate()?.showUnknown ?? true);
 
-    this.value = predicate ? predicate.text : '';
-    this.showUnknown = predicate ? predicate.showUnknown : true;
-
-    this._candidate = candidate;
-    this.updateCandidate();
+  constructor() {
+    effect(() => {
+      this.candidate();
+      untracked(() => this.updateCandidate());
+    });
   }
 
   onValueChanged(value: string) {
-    this.value = value;
+    this.value.set(value);
     this.updateCandidate();
   }
 
   onUnknownChanged(showUnknown: boolean) {
-    this.showUnknown = showUnknown;
+    this.showUnknown.set(showUnknown);
     this.updateCandidate();
   }
 
+  private predicate(): TextPredicate | undefined {
+    return this.candidate().predicate as TextPredicate | undefined;
+  }
+
   private updateCandidate(): void {
-    const { value, showUnknown } = this;
-    this._candidate.update({
+    const value = this.value();
+    const showUnknown = this.showUnknown();
+    this.candidate().update({
       valid: showUnknown || !!value,
       predicate: {
         type: 'text',

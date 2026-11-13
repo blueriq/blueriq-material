@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { TableColumn } from '@blueriq/angular/lists';
 import { BlueriqCommonModule } from '@blueriq/angular';
 import { MatIconButton } from '@angular/material/button';
@@ -13,11 +13,10 @@ import { MatIcon } from '@angular/material/icon';
 })
 export class TableHeaderColumnComponent {
 
-  @Input()
-  column: TableColumn;
+  readonly column = input.required<TableColumn>();
 
   getIconByDirection(): string {
-    switch (this.column.ordering) {
+    switch (this.column().ordering) {
       case 'unavailable':
         return '';
       case 'descending':

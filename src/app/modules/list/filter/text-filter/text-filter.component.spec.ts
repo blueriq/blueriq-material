@@ -8,7 +8,6 @@ import { FilterCandidate } from '../types';
 import { TextFilterComponent } from './text-filter.component';
 
 describe('TextFilterComponent', () => {
-  let component: TextFilterComponent;
   let fixture: ComponentFixture<TextFilterComponent>;
   let candidate: FilterCandidate;
 
@@ -19,8 +18,8 @@ describe('TextFilterComponent', () => {
       ],
     }).compileComponents();
     fixture = TestBed.createComponent(TextFilterComponent);
-    component = fixture.componentInstance;
-    candidate = component.candidate = new FilterCandidate();
+    candidate = new FilterCandidate();
+    fixture.componentRef.setInput('candidate', candidate);
     fixture.detectChanges();
   });
 

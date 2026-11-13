@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, OnDestroy, OnInit, Renderer2, inject } from '@angular/core';
+import { Directive, ElementRef, OnDestroy, OnInit, Renderer2, inject, input } from '@angular/core';
 import { BlueriqListeners, BlueriqSession } from '@blueriq/angular';
 import { Container, Page } from '@blueriq/core';
 import { Subscription } from 'rxjs';
@@ -13,23 +13,20 @@ export class BqContainerDirective implements OnInit, OnDestroy {
   private readonly listeners = inject(BlueriqListeners);
 
 
-  private _container: Container;
   private _subscription: Subscription | undefined;
 
   /**
    * Finds presentation styles to determine the look-and-feel of the container
    */
-  @Input('bqContainer')
-  set bqContainer(container: Container) {
-    this._container = container;
-  }
+  readonly bqContainer = input.required<Container>();
 
   ngOnInit(): void {
-    this._subscription = this.listeners.listen(this._container).subscribe(() => {
+    const container = this.bqContainer();
+    this._subscription = this.listeners.listen(container).subscribe(() => {
       this.renderer.removeClass(this.hostElement.nativeElement, 'card');
-      this.determineDisplayStyle(this._container);
+      this.determineDisplayStyle(container);
     });
-    this.determineDisplayStyle(this._container);
+    this.determineDisplayStyle(container);
   }
 
   private determineDisplayStyle(container: Container) {

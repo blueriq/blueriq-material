@@ -1,6 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild, input } from '@angular/core';
 import { MatChipInputEvent, MatChipGrid, MatChipRow, MatChipRemove, MatChipInput } from '@angular/material/chips';
 import { Search } from '@blueriq/angular/lists';
 import { Subscription } from 'rxjs';
@@ -43,8 +43,7 @@ export class TableSearchComponent implements OnInit, OnDestroy {
   @ViewChild('inputField')
   inputField: ElementRef;
 
-  @Input()
-  public search: Search;
+  readonly search = input.required<Search>();
 
   readonly separatorKeyCodes = [ENTER, COMMA];
   opened = false;
@@ -52,13 +51,13 @@ export class TableSearchComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
 
   ngOnInit(): void {
-    this.subscription = this.search.searchTerms$.subscribe((updatedSearchTerms) => {
+    this.subscription = this.search().searchTerms$.subscribe((updatedSearchTerms) => {
       this.searchTerms = updatedSearchTerms;
     });
   }
 
   add(event: MatChipInputEvent): void {
-    const input = event.chipInput;
+    const chipInput = event.chipInput;
     const value = event.value;
 
     const sanitizedValue = (value || '').trim();
@@ -68,8 +67,8 @@ export class TableSearchComponent implements OnInit, OnDestroy {
     }
 
     // Reset the input field value
-    if (input) {
-      input.clear();
+    if (chipInput) {
+      chipInput.clear();
     }
 
     this.doSearch();
@@ -81,7 +80,7 @@ export class TableSearchComponent implements OnInit, OnDestroy {
   }
 
   doSearch(): void {
-    this.search.search(this.searchTerms);
+    this.search().search(this.searchTerms);
   }
 
   fieldIsVisible(): boolean {

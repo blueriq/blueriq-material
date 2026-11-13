@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { BlueriqSession } from '@blueriq/angular';
 import { PresentationStyles } from '@blueriq/core';
 import { MatIcon } from '@angular/material/icon';
@@ -14,11 +14,9 @@ export class HeadingComponent {
   private readonly blueriqSession = inject(BlueriqSession);
 
 
-  @Input()
-  title: string;
+  readonly title = input<string>();
 
-  @Input()
-  styles: PresentationStyles;
+  readonly styles = input.required<PresentationStyles>();
 
   get isWidget(): boolean {
     return this.blueriqSession.isWidget;

@@ -18,11 +18,12 @@ describe('NumericFilterComponent', () => {
     }).compileComponents();
     fixture = TestBed.createComponent(NumericFilterComponent);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('candidate', new FilterCandidate());
     fixture.detectChanges();
   });
 
   it('default filter is equals and show unknown', () => {
-    component.candidate = new FilterCandidate();
+    fixture.componentRef.setInput('candidate', new FilterCandidate());
     fixture.detectChanges();
 
     const operation = fixture.nativeElement.querySelector('.mat-mdc-select-value-text').textContent;
@@ -32,7 +33,7 @@ describe('NumericFilterComponent', () => {
   });
 
   it('select greater than or equals operator', () => {
-    component.candidate = new FilterCandidate();
+    fixture.componentRef.setInput('candidate', new FilterCandidate());
     fixture.detectChanges();
 
     const trigger = fixture.debugElement.query(By.css('.mat-mdc-select-trigger')).nativeElement;
@@ -45,7 +46,7 @@ describe('NumericFilterComponent', () => {
     fixture.detectChanges();
 
     // Verify
-    expect(component.operator).toBe(NumericOperator.GreaterThanEquals);
+    expect(component.operator()).toBe(NumericOperator.GreaterThanEquals);
   });
 
   function getMatOptionsFromOverlay(): HTMLElement[] {

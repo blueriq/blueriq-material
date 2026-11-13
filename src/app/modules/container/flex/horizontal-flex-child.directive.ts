@@ -1,4 +1,4 @@
-import { ComponentRef, Directive, Input, OnChanges, OnDestroy, Renderer2, SimpleChanges, inject } from '@angular/core';
+import { ComponentRef, Directive, OnChanges, OnDestroy, Renderer2, SimpleChanges, inject, input } from '@angular/core';
 import { BlueriqListeners, BqElementDirective } from '@blueriq/angular';
 import { Element } from '@blueriq/core';
 import { combineLatest, Subscription } from 'rxjs';
@@ -19,8 +19,7 @@ export class HorizontalFlexChildDirective implements OnChanges, OnDestroy {
 
   private _subscription: Subscription | undefined;
 
-  @Input()
-  bqElement: Element;
+  readonly bqElement = input.required<Element>();
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this._subscription) {
@@ -29,7 +28,7 @@ export class HorizontalFlexChildDirective implements OnChanges, OnDestroy {
 
     this._subscription = combineLatest([
       this.bqElementDirective.component$,
-      this.listeners.listen(this.bqElement).pipe(startWith(this.bqElement)),
+      this.listeners.listen(this.bqElement()).pipe(startWith(this.bqElement())),
     ]).subscribe(([componentRef, element]) => {
       this.applyStylesIfRequired(componentRef, element);
     });

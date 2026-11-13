@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { NotificationModel } from './notification.model';
 import { MatButton } from '@angular/material/button';
 
@@ -11,7 +11,6 @@ import { MatButton } from '@angular/material/button';
 })
 export class NotificationOverlayComponent {
 
-  @Input()
-  notification: NotificationModel;
+  readonly notification = input.required<NotificationModel>();
 
 }

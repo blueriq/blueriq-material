@@ -1,7 +1,7 @@
 <div class="fx-flex-row fx-gap-1em">
   <div class="fx-flex0-0-14em">
     <mat-form-field appearance="fill">
-      <mat-select [value]="operator" (selectionChange)="onOperatorChanged($event.value)">
+      <mat-select [value]="operator()" (selectionChange)="onOperatorChanged($event.value)">
         <mat-option [value]="operations.before">Before</mat-option>
         <mat-option [value]="operations.on">On</mat-option>
         <mat-option [value]="operations.after">After</mat-option>
@@ -14,11 +14,11 @@
       <button matPrefix class="mat-icon-button" [owlDateTimeTrigger]="dtPicker">
         <mat-icon>today</mat-icon>
       </button>
-      <owl-date-time #dtPicker [pickerType]="pickerType" [firstDayOfWeek]="firstDayOfWeek"
+      <owl-date-time #dtPicker [pickerType]="pickerType()" [firstDayOfWeek]="firstDayOfWeek"
                      showSecondsTimer></owl-date-time>
     </mat-form-field>
   </div>
   <div class="fx-flex0-0-2em">
-    <mat-checkbox [checked]="showUnknown" (change)="onUnknownChanged($event.checked)" color="primary"></mat-checkbox>
+    <mat-checkbox [checked]="showUnknown()" (change)="onUnknownChanged($event.checked)" color="primary"></mat-checkbox>
   </div>
 </div>

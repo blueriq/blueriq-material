@@ -6,7 +6,6 @@ import { FilterCandidate } from '../types';
 import { BooleanFilterComponent } from './boolean-filter.component';
 
 describe('BooleanFilterComponent', () => {
-  let component: BooleanFilterComponent;
   let fixture: ComponentFixture<BooleanFilterComponent>;
   const columnFilter: ColumnFilter = {} as ColumnFilter;
 
@@ -17,12 +16,12 @@ describe('BooleanFilterComponent', () => {
       ],
     }).compileComponents();
     fixture = TestBed.createComponent(BooleanFilterComponent);
-    component = fixture.componentInstance;
+    fixture.componentRef.setInput('candidate', new FilterCandidate());
     fixture.detectChanges();
   });
 
   it('new boolean filter default shows true and unknown', () => {
-    component.candidate = new FilterCandidate();
+    fixture.componentRef.setInput('candidate', new FilterCandidate());
     fixture.detectChanges();
 
     const operation = fixture.nativeElement.querySelector('.mat-mdc-select-value-text').textContent;
@@ -36,7 +35,7 @@ describe('BooleanFilterComponent', () => {
       column: columnFilter,
       predicate: { showFalse: true, showTrue: true, showUnknown: true } as BooleanPredicate,
     });
-    component.candidate = filterCandidate;
+    fixture.componentRef.setInput('candidate', filterCandidate);
     fixture.detectChanges();
 
     const operation = fixture.nativeElement.querySelector('.mat-mdc-select-value-text').textContent;
@@ -50,7 +49,7 @@ describe('BooleanFilterComponent', () => {
       column: columnFilter,
       predicate: { showFalse: true, showTrue: false, showUnknown: false } as BooleanPredicate,
     });
-    component.candidate = filterCandidate;
+    fixture.componentRef.setInput('candidate', filterCandidate);
     fixture.detectChanges();
 
     const operation = fixture.nativeElement.querySelector('.mat-mdc-select-value-text').textContent;
@@ -64,7 +63,7 @@ describe('BooleanFilterComponent', () => {
       column: columnFilter,
       predicate: { showFalse: false, showTrue: false, showUnknown: true } as BooleanPredicate,
     });
-    component.candidate = filterCandidate;
+    fixture.componentRef.setInput('candidate', filterCandidate);
     fixture.detectChanges();
 
     const operation = fixture.nativeElement.querySelector('.mat-mdc-select-value-text').textContent;

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Output, input } from '@angular/core';
 import { ColumnFilter } from '@blueriq/angular/lists';
 import { FilterCandidate } from '../types';
 import { MatFormField } from '@angular/material/form-field';
@@ -33,21 +33,20 @@ import { MatIcon } from '@angular/material/icon';
 })
 export class FilterRowComponent {
 
-  @Input()
-  currentColumns: ColumnFilter[];
+  readonly currentColumns = input.required<ColumnFilter[]>();
 
-  @Input()
-  candidate: FilterCandidate;
+  readonly candidate = input.required<FilterCandidate>();
 
   @Output()
   removed = new EventEmitter<void>();
 
   getType(): 'empty' | 'domain' | 'boolean' | 'numeric' | 'date' | 'datetime' | 'text' {
-    if (!this.candidate.selectedColumn) {
+    const selectedColumn = this.candidate().selectedColumn;
+    if (!selectedColumn) {
       return 'empty';
     }
 
-    const type = this.candidate.selectedColumn.type;
+    const type = selectedColumn.type;
     switch (type) {
       case 'domain':
       case 'boolean':
@@ -65,7 +64,7 @@ export class FilterRowComponent {
   }
 
   onColumnChanged(column: ColumnFilter): void {
-    this.candidate.selectedColumn = column;
-    this.candidate.predicate = undefined;
+    this.candidate().selectedColumn = column;
+    this.candidate().predicate = undefined;
   }
 }

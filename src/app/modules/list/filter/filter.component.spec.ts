@@ -19,7 +19,6 @@ describe('FilterComponent', () => {
 
     TestBed.configureTestingModule({
       providers: [
-        FilterComponent,
         {
           provide: MatDialog,
           useValue: dialogSpy ,
@@ -27,14 +26,15 @@ describe('FilterComponent', () => {
       ],
     });
 
-    tableFilterComponent = TestBed.inject(FilterComponent);
+    const fixture = TestBed.createComponent(FilterComponent);
+    tableFilterComponent = fixture.componentInstance;
     filter = {
       currentFilters: [],
       currentColumns: [],
       clear: vi.fn(),
       apply: vi.fn(),
     } as unknown as Filter;
-    tableFilterComponent.filter = filter;
+    fixture.componentRef.setInput('filter', filter);
     tableFilterComponent.ngOnInit();
   });
 

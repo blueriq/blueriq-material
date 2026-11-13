@@ -1,9 +1,9 @@
 <div class="fx-flex-row fx-gap-1em">
   <div class="fx-flex0-0-14em">
     <mat-form-field appearance="fill">
-      <mat-select placeholder="Column name" [value]="candidate.selectedColumn"
+      <mat-select placeholder="Column name" [value]="candidate().selectedColumn"
         (selectionChange)="onColumnChanged($event.value)">
-        @for (column of currentColumns; track column) {
+        @for (column of currentColumns(); track column) {
           <mat-option [value]="column">{{column.title}}</mat-option>
         }
       </mat-select>
@@ -14,28 +14,28 @@
     @switch (getType()) {
       @case ('domain') {
         <bq-domain-filter
-          [candidate]="candidate"
-        [domain]="candidate.selectedColumn!.domain"></bq-domain-filter>
+          [candidate]="candidate()"
+        [domain]="candidate().selectedColumn!.domain"></bq-domain-filter>
       }
       @case ('boolean') {
         <bq-boolean-filter
-        [candidate]="candidate"></bq-boolean-filter>
+        [candidate]="candidate()"></bq-boolean-filter>
       }
       @case ('numeric') {
         <bq-numeric-filter
-        [candidate]="candidate"></bq-numeric-filter>
+        [candidate]="candidate()"></bq-numeric-filter>
       }
       @case ('date') {
         <bq-date-filter type="date"
-        [candidate]="candidate"></bq-date-filter>
+        [candidate]="candidate()"></bq-date-filter>
       }
       @case ('datetime') {
         <bq-date-filter type="datetime"
-        [candidate]="candidate"></bq-date-filter>
+        [candidate]="candidate()"></bq-date-filter>
       }
       @case ('text') {
         <bq-text-filter
-        [candidate]="candidate"></bq-text-filter>
+        [candidate]="candidate()"></bq-text-filter>
       }
       @default {
         <bq-empty-filter></bq-empty-filter>
