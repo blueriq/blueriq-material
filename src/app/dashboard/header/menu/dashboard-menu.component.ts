@@ -20,6 +20,8 @@ export class DashboardMenuComponent {
   private readonly dispatcher = inject(Dispatcher);
 
 
+  // TODO: Skipped for migration because:
+  //  Your application code writes to the input. This prevents migration.
   @Input()
   menuItems: DashboardMenuItem[];
 

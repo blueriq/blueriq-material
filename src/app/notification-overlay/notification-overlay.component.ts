@@ -11,6 +11,8 @@ import { MatButton } from '@angular/material/button';
 })
 export class NotificationOverlayComponent {
 
+  // TODO: Skipped for migration because:
+  //  Your application code writes to the input. This prevents migration.
   @Input()
   notification: NotificationModel;
 

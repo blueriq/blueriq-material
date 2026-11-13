@@ -18,9 +18,13 @@ export class DomainFilterComponent {
   values: TechnicalValue[];
   showUnknown: boolean;
 
+  // TODO: Skipped for migration because:
+  //  Your application code writes to the input. This prevents migration.
   @Input()
   domain: Domain;
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input()
   set candidate(candidate: FilterCandidate) {
     const predicate = candidate.predicate as DomainPredicate | undefined;

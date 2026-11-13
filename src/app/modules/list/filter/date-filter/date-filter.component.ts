@@ -48,11 +48,15 @@ export class DateFilterComponent {
   dateControl = new FormControl<moment.Moment | null>(null);
   showUnknown: boolean;
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input()
   set type(type: 'date' | 'datetime') {
     this.pickerType = type === 'date' ? 'calendar' : 'both';
   }
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input()
   set candidate(candidate: FilterCandidate) {
     const predicate = candidate.predicate as DatePredicate | undefined;

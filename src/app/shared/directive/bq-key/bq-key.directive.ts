@@ -6,6 +6,8 @@ export class BqKeyDirective {
   private readonly scopedElement = inject(Element);
 
 
+  // TODO: Skipped for migration because:
+  //  Your application code writes to the input. This prevents migration.
   @Input() bqKey: Element | null | undefined;
 
   @HostBinding('attr.id')

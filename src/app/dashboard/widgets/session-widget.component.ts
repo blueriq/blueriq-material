@@ -25,6 +25,8 @@ export class SessionWidgetComponent implements OnInit {
   baseUrl: string;
   dashboardState: DashboardState;
 
+  // TODO: Skipped for migration because:
+  //  Your application code writes to the input. This prevents migration.
   @Input()
   widget: DashboardWidgets;
 

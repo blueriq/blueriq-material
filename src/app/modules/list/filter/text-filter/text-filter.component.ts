@@ -18,6 +18,8 @@ export class TextFilterComponent {
   value: string;
   showUnknown: boolean;
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input()
   set candidate(candidate: FilterCandidate) {
     const predicate = candidate.predicate as TextPredicate | undefined;

@@ -34,6 +34,8 @@ export class FilterComponent implements OnInit {
   dialog = inject(MatDialog);
 
 
+  // TODO: Skipped for migration because:
+  //  Your application code writes to the input. This prevents migration.
   @Input()
   filter: Filter;
 

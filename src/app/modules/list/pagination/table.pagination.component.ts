@@ -12,6 +12,9 @@ import { MatIcon } from '@angular/material/icon';
 })
 export class TablePaginationComponent {
 
+  // TODO: Skipped for migration because:
+  //  This input is used in a control flow expression (e.g. `@if` or `*ngIf`)
+  //  and migrating would break narrowing currently.
   @Input()
   public readonly pagination: Pagination;
 

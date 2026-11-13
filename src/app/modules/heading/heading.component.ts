@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input, inject, input } from '@angular/core';
 import { BlueriqSession } from '@blueriq/angular';
 import { PresentationStyles } from '@blueriq/core';
 import { MatIcon } from '@angular/material/icon';
@@ -14,11 +14,13 @@ export class HeadingComponent {
   private readonly blueriqSession = inject(BlueriqSession);
 
 
+  // TODO: Skipped for migration because:
+  //  This input is used in a control flow expression (e.g. `@if` or `*ngIf`)
+  //  and migrating would break narrowing currently.
   @Input()
   title: string;
 
-  @Input()
-  styles: PresentationStyles;
+  readonly styles = input<PresentationStyles>(undefined!);
 
   get isWidget(): boolean {
     return this.blueriqSession.isWidget;

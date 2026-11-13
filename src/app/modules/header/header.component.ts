@@ -30,6 +30,8 @@ export class HeaderComponent implements OnInit {
   @BlueriqChild(TextItem, '.logout_link', { exclude: true, optional: true })
   logoutLink: TextItem;
 
+  // TODO: Skipped for migration because:
+  //  Your application code writes to the input. This prevents migration.
   @Input()
   page: Page;
 

@@ -15,6 +15,9 @@ import { BqIconDirective } from '../../../shared/directive/icon/icon.directive';
 })
 export class MenuItemComponent {
 
+  // TODO: Skipped for migration because:
+  //  This input is used in a control flow expression (e.g. `@if` or `*ngIf`)
+  //  and migrating would break narrowing currently.
   @Input() child: Element;
   @ViewChildren('items') inputs: QueryList<ElementRef<MatMenuItem>>;
 

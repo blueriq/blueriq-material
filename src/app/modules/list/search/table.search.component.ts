@@ -43,6 +43,8 @@ export class TableSearchComponent implements OnInit, OnDestroy {
   @ViewChild('inputField')
   inputField: ElementRef;
 
+  // TODO: Skipped for migration because:
+  //  Your application code writes to the input. This prevents migration.
   @Input()
   public search: Search;
 

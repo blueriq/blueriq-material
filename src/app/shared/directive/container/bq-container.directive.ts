@@ -19,6 +19,8 @@ export class BqContainerDirective implements OnInit, OnDestroy {
   /**
    * Finds presentation styles to determine the look-and-feel of the container
    */
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input('bqContainer')
   set bqContainer(container: Container) {
     this._container = container;

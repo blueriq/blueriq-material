@@ -30,6 +30,8 @@ export class BqIconDirective {
     return this._class;
   }
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input()
   set bqIcon(presentationStyles: PresentationStyles) {
     const firstFontAwesomeIcon = BqIconDirective.getFirstFontAwesomeIcon(presentationStyles);

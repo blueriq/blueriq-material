@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { Limit } from '@blueriq/angular/lists';
 import { BlueriqCommonModule } from '@blueriq/angular';
 
@@ -10,7 +10,6 @@ import { BlueriqCommonModule } from '@blueriq/angular';
 })
 export class TableLimitComponent {
 
-  @Input()
-  public readonly limit: Limit;
+  public readonly limit = input<Limit>(undefined!);
 
 }

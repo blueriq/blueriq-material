@@ -13,6 +13,8 @@ import { MatIcon } from '@angular/material/icon';
 })
 export class TableHeaderColumnComponent {
 
+  // TODO: Skipped for migration because:
+  //  Your application code writes to the input. This prevents migration.
   @Input()
   column: TableColumn;
 

@@ -33,9 +33,13 @@ import { MatIcon } from '@angular/material/icon';
 })
 export class FilterRowComponent {
 
+  // TODO: Skipped for migration because:
+  //  Your application code writes to the input. This prevents migration.
   @Input()
   currentColumns: ColumnFilter[];
 
+  // TODO: Skipped for migration because:
+  //  Your application code writes to the input. This prevents migration.
   @Input()
   candidate: FilterCandidate;
 
