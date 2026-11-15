@@ -178,7 +178,7 @@ overrides:
   serialize-javascript: 6.0.2
   '@babel/helpers': 7.29.14
   '@babel/runtime': 7.29.14
-  qs: 6.15.4
+  qs: 6.17.1
   lodash: 4.18.1
   diff: 5.2.2
 
@@ -221,13 +221,13 @@ importers:
         version: 21.2.26(@angular/common@21.2.26(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@21.2.26(@angular/animations@21.2.26(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3)))(@angular/common@21.2.26(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3)))(rxjs@7.8.2)
       '@blueriq/angular':
         specifier: 0.23.1
-        version: 0.23.1(0c287330d0e505fa0b5f2429f0cf96d1)
+        version: 0.23.1(2d9c752249d0054b5f490e1345226bca)
       '@blueriq/core':
         specifier: 0.23.1
         version: 0.23.1
       '@blueriq/dashboard':
         specifier: 0.23.1
-        version: 0.23.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@blueriq/angular@0.23.1(0c287330d0e505fa0b5f2429f0cf96d1))(@blueriq/core@0.23.1)(@ngrx/effects@21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@ngrx/store@21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(rxjs@7.8.2))(rxjs@7.8.2)
+        version: 0.23.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@blueriq/angular@0.23.1(2d9c752249d0054b5f490e1345226bca))(@blueriq/core@0.23.1)(@ngrx/effects@21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@ngrx/store@21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(rxjs@7.8.2))(rxjs@7.8.2)
       '@blueriq/devtools':
         specifier: 0.23.1
         version: 0.23.1(rxjs@7.8.2)
@@ -251,10 +251,10 @@ importers:
         version: 21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@ngrx/store@21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(rxjs@7.8.2)
       '@stomp/rx-stomp':
         specifier: 2.4.0
-        version: 2.4.0(@stomp/stompjs@7.3.0)(rxjs@7.8.2)(uuid@14.0.3)
+        version: 2.4.0(@stomp/stompjs@7.5.0)(rxjs@7.8.2)(uuid@14.0.3)
       '@stomp/stompjs':
-        specifier: 7.3.0
-        version: 7.3.0
+        specifier: 7.5.0
+        version: 7.5.0
       chart.js:
         specifier: 2.9.4
         version: 2.9.4
@@ -2433,8 +2433,8 @@ packages:
       rxjs: ^7.2.0
       uuid: '>=9.0.0 <15.0.0'
 
-  '@stomp/stompjs@7.3.0':
-    resolution: {integrity: sha512-nKMLoFfJhrQAqkvvKd1vLq/cVBGCMwPRCD0LqW7UT1fecRx9C3GoKEIR2CYwVuErGeZu8w0kFkl2rlhPlqHVgQ==}
+  '@stomp/stompjs@7.5.0':
+    resolution: {integrity: sha512-xh3sdzEYH8M+krQGBOgj+U0BLBHd7ccTj8YM3mVxaULMTW/wx2QBWf448pilRiWZKjglhDmNILxM3W+j/Ch9uw==}
 
   '@stylistic/eslint-plugin@5.6.1':
     resolution: {integrity: sha512-JCs+MqoXfXrRPGbGmho/zGS/jMcn3ieKl/A8YImqib76C8kjgZwq5uUFzc30lJkMvcchuRn6/v8IApLxli3Jyw==}
@@ -5206,8 +5206,8 @@ packages:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
     engines: {node: '>=6'}
 
-  qs@6.15.4:
-    resolution: {integrity: sha512-d1zNHS+ltAfSgTmYjzXXH9gy9d6pEb33n0ZtUUkukA8UHhFSjv2mSYRiePyjbRiJh0g5sFJbMdAtMIg01Xf5/w==}
+  qs@6.17.1:
+    resolution: {integrity: sha512-jd3COkaKVgGUW+ZHyEHCG9bH7RoaaiWuMgzsIBjUMVjLAaWGWpoUAVwljVvBHxRu/2qEHnadLGZrkutYUBPQJA==}
     engines: {node: '>=0.6'}
 
   queue-microtask@1.2.3:
@@ -7428,7 +7428,7 @@ snapshots:
 
   '@bcoe/v8-coverage@1.0.2': {}
 
-  '@blueriq/angular@0.23.1(0c287330d0e505fa0b5f2429f0cf96d1)':
+  '@blueriq/angular@0.23.1(2d9c752249d0054b5f490e1345226bca)':
     dependencies:
       '@angular/common': 21.2.26(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2)
       '@angular/core': 21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3)
@@ -7436,8 +7436,8 @@ snapshots:
       '@blueriq/core': 0.23.1
       '@ngrx/effects': 21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@ngrx/store@21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(rxjs@7.8.2)
       '@ngrx/store': 21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2)
-      '@stomp/rx-stomp': 2.4.0(@stomp/stompjs@7.3.0)(rxjs@7.8.2)(uuid@14.0.3)
-      '@stomp/stompjs': 7.3.0
+      '@stomp/rx-stomp': 2.4.0(@stomp/stompjs@7.5.0)(rxjs@7.8.2)(uuid@14.0.3)
+      '@stomp/stompjs': 7.5.0
       js-base64: 3.9.6
       rxjs: 7.8.2
       tslib: 2.9.1
@@ -7449,10 +7449,10 @@ snapshots:
       css-selector-parser: 1.3.0
       tslib: 2.9.1
 
-  '@blueriq/dashboard@0.23.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@blueriq/angular@0.23.1(0c287330d0e505fa0b5f2429f0cf96d1))(@blueriq/core@0.23.1)(@ngrx/effects@21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@ngrx/store@21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(rxjs@7.8.2))(rxjs@7.8.2)':
+  '@blueriq/dashboard@0.23.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@blueriq/angular@0.23.1(2d9c752249d0054b5f490e1345226bca))(@blueriq/core@0.23.1)(@ngrx/effects@21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@ngrx/store@21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(rxjs@7.8.2))(rxjs@7.8.2)':
     dependencies:
       '@angular/core': 21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3)
-      '@blueriq/angular': 0.23.1(0c287330d0e505fa0b5f2429f0cf96d1)
+      '@blueriq/angular': 0.23.1(2d9c752249d0054b5f490e1345226bca)
       '@blueriq/core': 0.23.1
       '@ngrx/effects': 21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@ngrx/store@21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(rxjs@7.8.2)
       rxjs: 7.8.2
@@ -7600,7 +7600,7 @@ snapshots:
       json-stringify-safe: 5.0.1
       mime-types: 2.1.35
       performance-now: 2.1.0
-      qs: 6.15.4
+      qs: 6.17.1
       safe-buffer: 5.2.1
       tough-cookie: 5.1.2
       tunnel-agent: 0.6.0
@@ -8455,13 +8455,13 @@ snapshots:
 
   '@standard-schema/spec@1.1.0': {}
 
-  '@stomp/rx-stomp@2.4.0(@stomp/stompjs@7.3.0)(rxjs@7.8.2)(uuid@14.0.3)':
+  '@stomp/rx-stomp@2.4.0(@stomp/stompjs@7.5.0)(rxjs@7.8.2)(uuid@14.0.3)':
     dependencies:
-      '@stomp/stompjs': 7.3.0
+      '@stomp/stompjs': 7.5.0
       rxjs: 7.8.2
       uuid: 14.0.3
 
-  '@stomp/stompjs@7.3.0': {}
+  '@stomp/stompjs@7.5.0': {}
 
   '@stylistic/eslint-plugin@5.6.1(eslint@9.39.1(supports-color@8.1.1))':
     dependencies:
@@ -8996,7 +8996,7 @@ snapshots:
       http-errors: 2.0.1
       iconv-lite: 0.7.3
       on-finished: 2.4.2
-      qs: 6.15.4
+      qs: 6.17.1
       raw-body: 3.0.2
       type-is: 2.1.0
     transitivePeerDependencies:
@@ -10011,7 +10011,7 @@ snapshots:
       once: 1.4.0
       parseurl: 1.3.3
       proxy-addr: 2.0.8
-      qs: 6.15.4
+      qs: 6.17.1
       range-parser: 1.3.0
       router: 2.2.0(supports-color@8.1.1)
       send: 1.2.1(supports-color@8.1.1)
@@ -11741,7 +11741,7 @@ snapshots:
 
   punycode@2.3.1: {}
 
-  qs@6.15.4:
+  qs@6.17.1:
     dependencies:
       es-define-property: 1.0.1
       side-channel: 1.1.1
