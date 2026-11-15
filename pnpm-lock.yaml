@@ -176,9 +176,9 @@ overrides:
   minimatch: 3.1.5
   validator: 13.15.35
   serialize-javascript: 6.0.2
-  '@babel/helpers': 7.29.13
-  '@babel/runtime': 7.29.13
-  qs: 6.15.0
+  '@babel/helpers': 7.29.14
+  '@babel/runtime': 7.29.14
+  qs: 6.15.4
   lodash: 4.18.1
   diff: 5.2.2
 
@@ -221,13 +221,13 @@ importers:
         version: 21.2.26(@angular/common@21.2.26(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@21.2.26(@angular/animations@21.2.26(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3)))(@angular/common@21.2.26(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3)))(rxjs@7.8.2)
       '@blueriq/angular':
         specifier: 0.23.1
-        version: 0.23.1(e93ef5c6b4b8e31aadfa3e7b60e0375d)
+        version: 0.23.1(0c287330d0e505fa0b5f2429f0cf96d1)
       '@blueriq/core':
         specifier: 0.23.1
         version: 0.23.1
       '@blueriq/dashboard':
         specifier: 0.23.1
-        version: 0.23.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@blueriq/angular@0.23.1(e93ef5c6b4b8e31aadfa3e7b60e0375d))(@blueriq/core@0.23.1)(@ngrx/effects@21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@ngrx/store@21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(rxjs@7.8.2))(rxjs@7.8.2)
+        version: 0.23.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@blueriq/angular@0.23.1(0c287330d0e505fa0b5f2429f0cf96d1))(@blueriq/core@0.23.1)(@ngrx/effects@21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@ngrx/store@21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(rxjs@7.8.2))(rxjs@7.8.2)
       '@blueriq/devtools':
         specifier: 0.23.1
         version: 0.23.1(rxjs@7.8.2)
@@ -251,7 +251,7 @@ importers:
         version: 21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@ngrx/store@21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(rxjs@7.8.2)
       '@stomp/rx-stomp':
         specifier: 2.4.0
-        version: 2.4.0(@stomp/stompjs@7.3.0)(rxjs@7.8.2)(uuid@14.0.2)
+        version: 2.4.0(@stomp/stompjs@7.3.0)(rxjs@7.8.2)(uuid@14.0.3)
       '@stomp/stompjs':
         specifier: 7.3.0
         version: 7.3.0
@@ -283,8 +283,8 @@ importers:
         specifier: 2.9.1
         version: 2.9.1
       uuid:
-        specifier: 14.0.2
-        version: 14.0.2
+        specifier: 14.0.3
+        version: 14.0.3
       zone.js:
         specifier: 0.16.3
         version: 0.16.3
@@ -315,7 +315,7 @@ importers:
         version: 21.2.26
       '@compodoc/compodoc':
         specifier: 1.2.1
-        version: 1.2.1(@egjs/hammerjs@2.0.17)(component-emitter@2.0.0)(keycharm@0.4.0)(supports-color@8.1.1)(typescript@5.9.3)(vis-data@8.0.6(uuid@14.0.2)(vis-util@6.0.3(@egjs/hammerjs@2.0.17)(component-emitter@2.0.0)))(vis-util@6.0.3(@egjs/hammerjs@2.0.17)(component-emitter@2.0.0))
+        version: 1.2.1(@egjs/hammerjs@2.0.17)(component-emitter@2.0.0)(keycharm@0.4.0)(supports-color@8.1.1)(typescript@5.9.3)(vis-data@8.0.6(uuid@14.0.3)(vis-util@6.0.3(@egjs/hammerjs@2.0.17)(component-emitter@2.0.0)))(vis-util@6.0.3(@egjs/hammerjs@2.0.17)(component-emitter@2.0.0))
       '@eslint/eslintrc':
         specifier: 3.3.3
         version: 3.3.3(supports-color@8.1.1)
@@ -834,8 +834,8 @@ packages:
     resolution: {integrity: sha512-sBCQEL5D9MYOI5RvWpYtXJBeFLuGGI40hU7wW4WtDvuSZGi0zDV+cn8y9sJWD5rKpjZdsde0+oJniLbU2vdfIg==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/helpers@7.29.13':
-    resolution: {integrity: sha512-laoRpD/kO/iA4CDlgJbixHekg7oPvWALK0PQyK3Ob2I2njZRvVAD77RfWCIImtqWCq6KijoBoZK7bp/HlTWASQ==}
+  '@babel/helpers@7.29.14':
+    resolution: {integrity: sha512-6E3Mi1r0B0umq6vmZa4/78q+64fqO2YY0THUdjDPKUCKhNb0yQy5NQIaPHCSD3ryTgiTss//P4JsWS80AsZ6LQ==}
     engines: {node: '>=6.9.0'}
 
   '@babel/parser@7.29.14':
@@ -1214,8 +1214,8 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0 || ^8.0.0-0 <8.0.0
 
-  '@babel/runtime@7.29.13':
-    resolution: {integrity: sha512-v+oN26xP4YIlQsbQ/CbTH1WG5m/l/DjKKZNy/Kp3f/AFvbgt7Em/D0FeMM3O2hX0YzeN2M16W8lOpyhIkfCBcQ==}
+  '@babel/runtime@7.29.14':
+    resolution: {integrity: sha512-Y5tqevQaUAZhhj82BpYMNC1ssvLQTVAfwKdm8iy8qwmhvC2/CpcAu8OC+QEtjM7pMk7knx83u1Qj8gzkicyelw==}
     engines: {node: '>=6.9.0'}
 
   '@babel/template@7.29.7':
@@ -5206,8 +5206,8 @@ packages:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
     engines: {node: '>=6'}
 
-  qs@6.15.0:
-    resolution: {integrity: sha512-mAZTtNCeetKMH+pSjrb76NAM8V9a05I9aBZOHztWy/UqcJdQYNsf59vrRKWnojAT9Y+GbIvoTBC++CPHqpDBhQ==}
+  qs@6.15.4:
+    resolution: {integrity: sha512-d1zNHS+ltAfSgTmYjzXXH9gy9d6pEb33n0ZtUUkukA8UHhFSjv2mSYRiePyjbRiJh0g5sFJbMdAtMIg01Xf5/w==}
     engines: {node: '>=0.6'}
 
   queue-microtask@1.2.3:
@@ -5980,8 +5980,8 @@ packages:
     resolution: {integrity: sha512-0/A9rDy9P7cJ+8w1c9WD9V//9Wj15Ce2MPz8Ri6032usz+NfePxx5AcN3bN+r6ZL6jEo066/yNYB3tn4pQEx+A==}
     hasBin: true
 
-  uuid@14.0.2:
-    resolution: {integrity: sha512-xZe/16rV4aa+HGSOCiY2YeLT1OybRLrrkL/Rqaq7p7GMVXjFh+6wN4oMYgjFmnSnhY8t6Xpdl2l9qmnHYuMHwQ==}
+  uuid@14.0.3:
+    resolution: {integrity: sha512-Sc5u1VVln93y1Xnz4R+CunOZc7R9LUcTmhj7Rc7Eg3HVcf7rVn2FOoa812fe0W8p3jD7xeoGSYbfqCGGH2B6xw==}
     hasBin: true
 
   uuid@8.3.2:
@@ -6748,7 +6748,7 @@ snapshots:
       '@babel/generator': 7.29.14
       '@babel/helper-compilation-targets': 7.29.13
       '@babel/helper-module-transforms': 7.29.14(@babel/core@7.28.6(supports-color@8.1.1))(supports-color@8.1.1)
-      '@babel/helpers': 7.29.13
+      '@babel/helpers': 7.29.14
       '@babel/parser': 7.29.14
       '@babel/template': 7.29.7
       '@babel/traverse': 7.29.14(supports-color@8.1.1)
@@ -6768,7 +6768,7 @@ snapshots:
       '@babel/generator': 7.29.14
       '@babel/helper-compilation-targets': 7.29.13
       '@babel/helper-module-transforms': 7.29.14(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
-      '@babel/helpers': 7.29.13
+      '@babel/helpers': 7.29.14
       '@babel/parser': 7.29.14
       '@babel/template': 7.29.7
       '@babel/traverse': 7.29.14(supports-color@8.1.1)
@@ -6921,7 +6921,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@babel/helpers@7.29.13':
+  '@babel/helpers@7.29.14':
     dependencies:
       '@babel/template': 7.29.7
       '@babel/types': 7.29.14
@@ -7401,7 +7401,7 @@ snapshots:
       '@babel/types': 7.29.14
       esutils: 2.0.3
 
-  '@babel/runtime@7.29.13': {}
+  '@babel/runtime@7.29.14': {}
 
   '@babel/template@7.29.7':
     dependencies:
@@ -7428,7 +7428,7 @@ snapshots:
 
   '@bcoe/v8-coverage@1.0.2': {}
 
-  '@blueriq/angular@0.23.1(e93ef5c6b4b8e31aadfa3e7b60e0375d)':
+  '@blueriq/angular@0.23.1(0c287330d0e505fa0b5f2429f0cf96d1)':
     dependencies:
       '@angular/common': 21.2.26(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2)
       '@angular/core': 21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3)
@@ -7436,7 +7436,7 @@ snapshots:
       '@blueriq/core': 0.23.1
       '@ngrx/effects': 21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@ngrx/store@21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(rxjs@7.8.2)
       '@ngrx/store': 21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2)
-      '@stomp/rx-stomp': 2.4.0(@stomp/stompjs@7.3.0)(rxjs@7.8.2)(uuid@14.0.2)
+      '@stomp/rx-stomp': 2.4.0(@stomp/stompjs@7.3.0)(rxjs@7.8.2)(uuid@14.0.3)
       '@stomp/stompjs': 7.3.0
       js-base64: 3.9.6
       rxjs: 7.8.2
@@ -7449,15 +7449,15 @@ snapshots:
       css-selector-parser: 1.3.0
       tslib: 2.9.1
 
-  '@blueriq/dashboard@0.23.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@blueriq/angular@0.23.1(e93ef5c6b4b8e31aadfa3e7b60e0375d))(@blueriq/core@0.23.1)(@ngrx/effects@21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@ngrx/store@21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(rxjs@7.8.2))(rxjs@7.8.2)':
+  '@blueriq/dashboard@0.23.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@blueriq/angular@0.23.1(0c287330d0e505fa0b5f2429f0cf96d1))(@blueriq/core@0.23.1)(@ngrx/effects@21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@ngrx/store@21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(rxjs@7.8.2))(rxjs@7.8.2)':
     dependencies:
       '@angular/core': 21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3)
-      '@blueriq/angular': 0.23.1(e93ef5c6b4b8e31aadfa3e7b60e0375d)
+      '@blueriq/angular': 0.23.1(0c287330d0e505fa0b5f2429f0cf96d1)
       '@blueriq/core': 0.23.1
       '@ngrx/effects': 21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@ngrx/store@21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(rxjs@7.8.2)
       rxjs: 7.8.2
       tslib: 2.9.1
-      uuid: 14.0.2
+      uuid: 14.0.3
 
   '@blueriq/devtools@0.23.1(rxjs@7.8.2)':
     dependencies:
@@ -7471,7 +7471,7 @@ snapshots:
   '@colors/colors@1.6.1':
     optional: true
 
-  '@compodoc/compodoc@1.2.1(@egjs/hammerjs@2.0.17)(component-emitter@2.0.0)(keycharm@0.4.0)(supports-color@8.1.1)(typescript@5.9.3)(vis-data@8.0.6(uuid@14.0.2)(vis-util@6.0.3(@egjs/hammerjs@2.0.17)(component-emitter@2.0.0)))(vis-util@6.0.3(@egjs/hammerjs@2.0.17)(component-emitter@2.0.0))':
+  '@compodoc/compodoc@1.2.1(@egjs/hammerjs@2.0.17)(component-emitter@2.0.0)(keycharm@0.4.0)(supports-color@8.1.1)(typescript@5.9.3)(vis-data@8.0.6(uuid@14.0.3)(vis-util@6.0.3(@egjs/hammerjs@2.0.17)(component-emitter@2.0.0)))(vis-util@6.0.3(@egjs/hammerjs@2.0.17)(component-emitter@2.0.0))':
     dependencies:
       '@angular-devkit/schematics': 21.1.0(chokidar@5.0.0)
       '@babel/core': 7.28.6(supports-color@8.1.1)
@@ -7515,7 +7515,7 @@ snapshots:
       tablesort: 5.7.1
       ts-morph: 27.0.2
       uuid: 11.1.0
-      vis-network: 10.1.5(@egjs/hammerjs@2.0.17)(component-emitter@2.0.0)(keycharm@0.4.0)(uuid@11.1.0)(vis-data@8.0.6(uuid@14.0.2)(vis-util@6.0.3(@egjs/hammerjs@2.0.17)(component-emitter@2.0.0)))(vis-util@6.0.3(@egjs/hammerjs@2.0.17)(component-emitter@2.0.0))
+      vis-network: 10.1.5(@egjs/hammerjs@2.0.17)(component-emitter@2.0.0)(keycharm@0.4.0)(uuid@11.1.0)(vis-data@8.0.6(uuid@14.0.3)(vis-util@6.0.3(@egjs/hammerjs@2.0.17)(component-emitter@2.0.0)))(vis-util@6.0.3(@egjs/hammerjs@2.0.17)(component-emitter@2.0.0))
     transitivePeerDependencies:
       - '@egjs/hammerjs'
       - component-emitter
@@ -7600,7 +7600,7 @@ snapshots:
       json-stringify-safe: 5.0.1
       mime-types: 2.1.35
       performance-now: 2.1.0
-      qs: 6.15.0
+      qs: 6.15.4
       safe-buffer: 5.2.1
       tough-cookie: 5.1.2
       tunnel-agent: 0.6.0
@@ -8455,11 +8455,11 @@ snapshots:
 
   '@standard-schema/spec@1.1.0': {}
 
-  '@stomp/rx-stomp@2.4.0(@stomp/stompjs@7.3.0)(rxjs@7.8.2)(uuid@14.0.2)':
+  '@stomp/rx-stomp@2.4.0(@stomp/stompjs@7.3.0)(rxjs@7.8.2)(uuid@14.0.3)':
     dependencies:
       '@stomp/stompjs': 7.3.0
       rxjs: 7.8.2
-      uuid: 14.0.2
+      uuid: 14.0.3
 
   '@stomp/stompjs@7.3.0': {}
 
@@ -8996,7 +8996,7 @@ snapshots:
       http-errors: 2.0.1
       iconv-lite: 0.7.3
       on-finished: 2.4.2
-      qs: 6.15.0
+      qs: 6.15.4
       raw-body: 3.0.2
       type-is: 2.1.0
     transitivePeerDependencies:
@@ -9380,7 +9380,7 @@ snapshots:
 
   cypress-image-diff-js@1.32.0(cypress@15.8.1):
     dependencies:
-      '@babel/runtime': 7.29.13
+      '@babel/runtime': 7.29.14
       '@colors/colors': 1.6.1
       arg: 4.1.3
       cypress: 15.8.1
@@ -10011,7 +10011,7 @@ snapshots:
       once: 1.4.0
       parseurl: 1.3.3
       proxy-addr: 2.0.8
-      qs: 6.15.0
+      qs: 6.15.4
       range-parser: 1.3.0
       router: 2.2.0(supports-color@8.1.1)
       send: 1.2.1(supports-color@8.1.1)
@@ -10481,7 +10481,7 @@ snapshots:
 
   i18next@25.7.4(typescript@5.9.3):
     dependencies:
-      '@babel/runtime': 7.29.13
+      '@babel/runtime': 7.29.14
     optionalDependencies:
       typescript: 5.9.3
 
@@ -11741,8 +11741,9 @@ snapshots:
 
   punycode@2.3.1: {}
 
-  qs@6.15.0:
+  qs@6.15.4:
     dependencies:
+      es-define-property: 1.0.1
       side-channel: 1.1.1
 
   queue-microtask@1.2.3: {}
@@ -12689,7 +12690,7 @@ snapshots:
 
   uuid@11.1.0: {}
 
-  uuid@14.0.2: {}
+  uuid@14.0.3: {}
 
   uuid@8.3.2: {}
 
@@ -12714,18 +12715,18 @@ snapshots:
       extsprintf: 1.3.0
     optional: true
 
-  vis-data@8.0.6(uuid@14.0.2)(vis-util@6.0.3(@egjs/hammerjs@2.0.17)(component-emitter@2.0.0)):
+  vis-data@8.0.6(uuid@14.0.3)(vis-util@6.0.3(@egjs/hammerjs@2.0.17)(component-emitter@2.0.0)):
     dependencies:
-      uuid: 14.0.2
+      uuid: 14.0.3
       vis-util: 6.0.3(@egjs/hammerjs@2.0.17)(component-emitter@2.0.0)
 
-  vis-network@10.1.5(@egjs/hammerjs@2.0.17)(component-emitter@2.0.0)(keycharm@0.4.0)(uuid@11.1.0)(vis-data@8.0.6(uuid@14.0.2)(vis-util@6.0.3(@egjs/hammerjs@2.0.17)(component-emitter@2.0.0)))(vis-util@6.0.3(@egjs/hammerjs@2.0.17)(component-emitter@2.0.0)):
+  vis-network@10.1.5(@egjs/hammerjs@2.0.17)(component-emitter@2.0.0)(keycharm@0.4.0)(uuid@11.1.0)(vis-data@8.0.6(uuid@14.0.3)(vis-util@6.0.3(@egjs/hammerjs@2.0.17)(component-emitter@2.0.0)))(vis-util@6.0.3(@egjs/hammerjs@2.0.17)(component-emitter@2.0.0)):
     dependencies:
       '@egjs/hammerjs': 2.0.17
       component-emitter: 2.0.0
       keycharm: 0.4.0
       uuid: 11.1.0
-      vis-data: 8.0.6(uuid@14.0.2)(vis-util@6.0.3(@egjs/hammerjs@2.0.17)(component-emitter@2.0.0))
+      vis-data: 8.0.6(uuid@14.0.3)(vis-util@6.0.3(@egjs/hammerjs@2.0.17)(component-emitter@2.0.0))
       vis-util: 6.0.3(@egjs/hammerjs@2.0.17)(component-emitter@2.0.0)
 
   vis-util@6.0.3(@egjs/hammerjs@2.0.17)(component-emitter@2.0.0):
