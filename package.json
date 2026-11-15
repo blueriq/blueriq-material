@@ -69,7 +69,7 @@
     "@ngrx/store": "21.1.1",
     "@ngrx/store-devtools": "21.1.1",
     "@stomp/rx-stomp": "2.4.0",
-    "@stomp/stompjs": "7.3.0",
+    "@stomp/stompjs": "7.5.0",
     "chart.js": "2.9.4",
     "font-awesome": "4.7.0",
     "material-icons": "0.7.7",
