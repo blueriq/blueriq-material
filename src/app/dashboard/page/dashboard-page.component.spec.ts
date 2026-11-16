@@ -1,4 +1,3 @@
-import { NgClass } from '@angular/common';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Action } from '@blueriq/angular';
@@ -41,7 +40,7 @@ describe('Dashboard Page', () => {
         { provide: BlueriqDashboard, useValue: { page: page$ } },
         { provide: Actions, useValue: actions$ },
       ],
-    }).overrideComponent(DashboardPageComponent, { set: { imports: [NgClass], schemas: [NO_ERRORS_SCHEMA] } }).compileComponents();
+    }).overrideComponent(DashboardPageComponent, { set: { imports: [], schemas: [NO_ERRORS_SCHEMA] } }).compileComponents();
 
     fixture = TestBed.createComponent(DashboardPageComponent);
   });

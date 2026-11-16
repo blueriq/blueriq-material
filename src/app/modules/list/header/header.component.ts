@@ -2,14 +2,14 @@ import { Component, input } from '@angular/core';
 import { TableColumn } from '@blueriq/angular/lists';
 import { BlueriqCommonModule } from '@blueriq/angular';
 import { MatIconButton } from '@angular/material/button';
-import { NgClass, AsyncPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 
 @Component({
     selector: 'bq-header-column',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss'],
-    imports: [BlueriqCommonModule, MatIconButton, NgClass, MatIcon, AsyncPipe]
+    imports: [BlueriqCommonModule, MatIconButton, MatIcon, AsyncPipe]
 })
 export class TableHeaderColumnComponent {
 

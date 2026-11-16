@@ -6,7 +6,7 @@
   <!-- Sorting -->
   @if (column().ordering !== 'unavailable') {
     <button mat-icon-button
-      [ngClass]="['sort-toggle', column().ordering]" [bqButton]="column().toggleOrdering">
+      class="sort-toggle" [class]="column().ordering" [bqButton]="column().toggleOrdering">
       <mat-icon aria-label="sort button">{{getIconByDirection()}}</mat-icon>
     </button>
   }

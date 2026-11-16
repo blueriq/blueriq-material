@@ -2,7 +2,7 @@
   <div class="header">
     <bq-dashboard-header [menuItems]="page.menuItems"></bq-dashboard-header>
   </div>
-  <div class="page" [ngClass]="page.layout">
+  <div class="page" [class]="page.layout">
     @for (column of page.columns; track column) {
       <div class="bq-dashboard-column">
         @for (widget of column.widgets; track widget) {

@@ -4,7 +4,6 @@ import { Container } from '@blueriq/core';
 import { BqContentStyles } from '../../BqContentStyles';
 import { ExternalFlowPageComponent } from './external-flow-page/external-flow-page.component';
 import { BqKeyDirective } from '../../../shared/directive/bq-key/bq-key.directive';
-import { NgClass } from '@angular/common';
 import { BqContainerDirective } from '../../../shared/directive/container/bq-container.directive';
 import { HeadingComponent } from '../../heading/heading.component';
 import { MatError } from '@angular/material/form-field';
@@ -17,7 +16,7 @@ import { MatIcon } from '@angular/material/icon';
         ExternalFlow,
         BlueriqComponents.scoped([ExternalFlowPageComponent]),
     ],
-    imports: [BqKeyDirective, BlueriqCommonModule, NgClass, BqContainerDirective, HeadingComponent, MatError, MatIcon]
+    imports: [BqKeyDirective, BlueriqCommonModule, BqContainerDirective, HeadingComponent, MatError, MatIcon]
 })
 @BlueriqComponent({
   type: Container,

@@ -1,5 +1,5 @@
 @if (!authenticationFailed) {
-  <div bqKey bqClasses [ngClass]="'external-flow-container'" [bqContainer]="container">
+  <div bqKey bqClasses class="external-flow-container" [bqContainer]="container">
     <bq-heading [title]="container.displayName" [styles]="container.styles"></bq-heading>
     @if (!shouldDisplayError()) {
       <bq-session [sessionName]="externalFlow.sessionName" (flowEnded)="handleFlowEnded()"
