@@ -1,5 +1,4 @@
-<bq-project
-  [sessionName]="sessionName | async"
+<bq-project [sessionName]="sessionName | async"
   [sessionId]="sessionId | async"
   [shortcut]="shortcut | async"
   [project]="project | async"
@@ -11,11 +10,10 @@
   (expired)="onSessionExpired()"
   (error)="onError($event)"
   (unauthorized)="onUnauthorized($event)"
-  (forbidden)="onForbidden($event)">
-</bq-project>
+  (forbidden)="onForbidden($event)" />
 
-<bq-loading></bq-loading>
+<bq-loading />
 
 @if (notification) {
-  <bq-notification-overlay [notification]="notification"></bq-notification-overlay>
+  <bq-notification-overlay [notification]="notification" />
 }

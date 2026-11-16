@@ -3,5 +3,5 @@
   [matTooltip]="getErrors()"
   matTooltipClass="tooltip-error">
   <input matInput [placeholder]="field.placeholder" [formControl]="formControl" [required]="field.required" [owlDateTime]="dtPicker" (dateTimeChange)="formatOnChange($event)" [owlDateTimeTrigger]="dtPicker">
-  <owl-date-time #dtPicker [pickerType]="getPickerType()" [firstDayOfWeek]="firstDayOfWeek" [showSecondsTimer]="true" [disabled]="formControl.disabled"></owl-date-time>
+  <owl-date-time #dtPicker [pickerType]="getPickerType()" [firstDayOfWeek]="firstDayOfWeek" [showSecondsTimer]="true" [disabled]="formControl.disabled" />
 </mat-form-field>

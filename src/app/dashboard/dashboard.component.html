@@ -9,9 +9,9 @@
   (unauthorized)="onUnauthorized()"
   (notFound)="onNotFound()"
   (errors)="onError($event)">
-  <bq-dashboard-page></bq-dashboard-page>
+  <bq-dashboard-page />
 </bq-dashboard>
 
 @if (notification) {
-  <bq-notification-overlay [notification]="notification"></bq-notification-overlay>
+  <bq-notification-overlay [notification]="notification" />
 }

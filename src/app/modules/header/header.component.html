@@ -8,7 +8,7 @@
     <div class="fx-flex">
       @if (dashboardHeader) {
         @for (child of dashboardHeader.children | bqIncluded; track child) {
-          <ng-container [bqElement]="child"></ng-container>
+          <ng-container [bqElement]="child" />
         }
       }
     </div>

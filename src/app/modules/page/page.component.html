@@ -1,12 +1,12 @@
 <div class="header">
   @if (!dashboardHeader) {
-    <bq-header [page]="page"></bq-header>
+    <bq-header [page]="page" />
   }
   @if (dashboardHeader) {
-    <ng-container [bqElement]="dashboardHeader"></ng-container>
+    <ng-container [bqElement]="dashboardHeader" />
   }
   @for (dashboardMenu of dashboardMenus; track dashboardMenu) {
-    <ng-container [bqElement]="dashboardMenu"></ng-container>
+    <ng-container [bqElement]="dashboardMenu" />
   }
 </div>
 
@@ -14,15 +14,15 @@
   @if (navigationMenu) {
     <div style="flex: 1 1 100%; max-width: 25%">
       <div class="sticky-menu">
-        <ng-container [bqElement]="navigationMenu"></ng-container>
+        <ng-container [bqElement]="navigationMenu" />
       </div>
     </div>
   }
   <div class="fx-flex">
     @for (child of page.children | bqIncluded; track child) {
-      <ng-container [bqElement]="child"></ng-container>
+      <ng-container [bqElement]="child" />
     }
   </div>
 </div>
 
-<bq-footer></bq-footer>
+<bq-footer />

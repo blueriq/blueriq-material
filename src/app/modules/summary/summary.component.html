@@ -1,5 +1,5 @@
 <div [bqContainer]="container">
-  <bq-heading [title]="container.displayName" [styles]="container.styles"></bq-heading>
+  <bq-heading [title]="container.displayName" [styles]="container.styles" />
   <div class="summary fx-gap-1em">
 
     <div>
@@ -14,17 +14,17 @@
           <h3>Phases</h3>
           @for (completedPhase of phases.completed; track completedPhase) {
             <div  class="row-item">
-              <mat-icon fontIcon="check" color="primary" class="icon"></mat-icon>
+              <mat-icon fontIcon="check" color="primary" class="icon" />
               <p>{{ completedPhase }}</p>
             </div>
           }
           <div class="row-item">
-            <mat-icon fontIcon="more_horiz" color="primary" class="icon"></mat-icon>
+            <mat-icon fontIcon="more_horiz" color="primary" class="icon" />
             <p>{{ phases.current }}</p>
           </div>
           @for (futurePhase of phases.future; track futurePhase) {
             <div class="row-item">
-              <mat-icon color="primary" class="icon"></mat-icon>
+              <mat-icon color="primary" class="icon" />
               <p>{{ futurePhase }}</p>
             </div>
           }
@@ -37,13 +37,13 @@
             <h3>Results</h3>
             @for (achievedResult of results.achievedResults; track achievedResult) {
               <div class="row-item">
-                <mat-icon fontIcon="check" color="primary" class="icon"></mat-icon>
+                <mat-icon fontIcon="check" color="primary" class="icon" />
                 <p>{{ achievedResult }}</p>
               </div>
             }
             @for (pendingResult of results.pendingResults; track pendingResult) {
               <div class="row-item">
-                <mat-icon color="primary" class="icon"></mat-icon>
+                <mat-icon color="primary" class="icon" />
                 <p>{{ pendingResult }}</p>
               </div>
             }
@@ -60,13 +60,13 @@
             @if (deadline.expirationTimes.length !== 0) {
               <div>
                 <div class="row-item">
-                  <mat-icon fontIcon="calendar_today" color="primary" class="icon"></mat-icon>
+                  <mat-icon fontIcon="calendar_today" color="primary" class="icon" />
                   <p>{{ deadline.name }}</p>
                 </div>
                 <div class="expiration-times">
                   @for (expirationTime of deadline.expirationTimes; track expirationTime) {
                     <div class="row-item">
-                      <mat-icon fontIcon="{{ expirationTimeIcon(expirationTime) }}" color="primary" class="icon"></mat-icon>
+                      <mat-icon fontIcon="{{ expirationTimeIcon(expirationTime) }}" color="primary" class="icon" />
                       <p>{{ dateToExpirationFormat(expirationTime) }}</p>
                     </div>
                   }

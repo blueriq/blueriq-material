@@ -1,13 +1,12 @@
 <div bqKey bqClasses [bqContainer]="widgetContainer">
 
-  <bq-heading [title]="widgetContainer.displayName" [styles]="widgetContainer.styles"></bq-heading>
+  <bq-heading [title]="widgetContainer.displayName" [styles]="widgetContainer.styles" />
 
   @if (!shouldDisplayError()) {
-    <bq-session
-      [sessionName]="flowWidget.sessionName"
+    <bq-session [sessionName]="flowWidget.sessionName"
       (flowEnded)="handleFlowEnded()"
       (expired)="handleSessionExpired()"
-    (error)="handleError($event)"></bq-session>
+    (error)="handleError($event)" />
   }
 
   @if (shouldDisplayError()) {

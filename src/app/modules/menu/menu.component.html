@@ -1,5 +1,5 @@
 <mat-toolbar>
   @for (child of menuBar.children | bqIncluded; track child) {
-    <bq-menu-item [child]="child"></bq-menu-item>
+    <bq-menu-item [child]="child" />
   }
 </mat-toolbar>
