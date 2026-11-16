@@ -2,8 +2,7 @@ import type { Mocked } from 'vitest';
 
 import { Component, DOCUMENT } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { Router } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
+import { Router, RouterModule } from '@angular/router';
 import { JwtAuthService } from '@blueriq/angular';
 import { of, throwError } from 'rxjs';
 import { JwtLoginGuard } from './jwt-login.guard';
@@ -33,7 +32,7 @@ describe('JwtLoginGuard', () => {
 
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule.withRoutes([
+        RouterModule.forRoot([
           { path: 'login', component: TestComponent, canActivate: [JwtLoginGuard] },
           { path: 'success', component: TestComponent },
         ]),

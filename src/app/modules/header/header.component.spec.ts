@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { APP_BASE_HREF } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterTestingModule } from '@angular/router/testing';
+import { RouterModule } from '@angular/router';
 import { BqProjectComponent } from '@blueriq/angular';
 import { BlueriqSessionTemplate, BlueriqTestingModule, BlueriqTestSession } from '@blueriq/angular/testing';
 import { Element } from '@blueriq/core';
@@ -45,7 +45,7 @@ describe('HeaderComponent', () => {
       imports: [
         NoopAnimationsModule,
         BlueriqTestingModule,
-        RouterTestingModule.withRoutes([]),
+        RouterModule.forRoot([]),
       ],
     }).compileComponents();
   });
