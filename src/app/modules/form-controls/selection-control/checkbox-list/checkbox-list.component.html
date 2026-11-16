@@ -3,7 +3,7 @@
     <p>{{field.questionText}}</p>
   }
   <div style="display: flex; box-sizing: border-box; flex-flow: wrap"
-    [ngStyle]="{'flex-direction': direction === 'vertical' ? 'column': 'row'}">
+    [style.flex-direction]="direction === 'vertical' ? 'column': 'row'">
     @for (option of field.getFieldOptions(); track option) {
       <mat-checkbox [value]="option.value" [checked]="isChecked(option)"
         [disabled]="formControl.disabled" (change)="onChange(option, $event)" color="primary">

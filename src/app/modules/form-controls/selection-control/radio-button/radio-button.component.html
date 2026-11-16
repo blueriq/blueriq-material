@@ -5,7 +5,7 @@
   <div>
     <mat-radio-group [required]="field.required" [formControl]="formControl">
       <div style="display: flex; box-sizing: border-box; flex-flow: wrap"
-        [ngStyle]="{'flex-direction': direction === 'vertical' ? 'column': 'row'}">
+        [style.flex-direction]="direction === 'vertical' ? 'column': 'row'">
         @for (option of field.getFieldOptions(); track option) {
           <mat-radio-button [value]="option.value" [disabled]="!option.valid" color="primary">
             {{option.displayValue}}

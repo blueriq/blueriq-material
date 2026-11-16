@@ -7,14 +7,13 @@ import { BqPresentationStyles } from '../../../BqPresentationStyles';
 import { BqKeyDirective } from '../../../../shared/directive/bq-key/bq-key.directive';
 import { MatRadioGroup, MatRadioButton } from '@angular/material/radio';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgStyle } from '@angular/common';
 import { MatHint, MatError } from '@angular/material/form-field';
 
 @Component({
     selector: 'bq-radio-button',
     templateUrl: './radio-button.component.html',
     styleUrls: ['../selection-control.component.scss'],
-    imports: [BqKeyDirective, MatRadioGroup, FormsModule, ReactiveFormsModule, NgStyle, MatRadioButton, MatHint, MatError]
+    imports: [BqKeyDirective, MatRadioGroup, FormsModule, ReactiveFormsModule, MatRadioButton, MatHint, MatError]
 })
 @BlueriqComponent({
   type: Field,

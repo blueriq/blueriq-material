@@ -6,14 +6,13 @@ import { List } from '@blueriq/angular/lists';
 import { Field, FieldMessages, FieldOption, SingleValuedType } from '@blueriq/core';
 import { BqPresentationStyles } from '../../../BqPresentationStyles';
 import { BqKeyDirective } from '../../../../shared/directive/bq-key/bq-key.directive';
-import { NgStyle } from '@angular/common';
 import { MatHint, MatError } from '@angular/material/form-field';
 
 @Component({
     selector: 'bq-checkbox-list',
     templateUrl: './checkbox-list.component.html',
     styleUrls: ['../selection-control.component.scss'],
-    imports: [BqKeyDirective, NgStyle, MatCheckbox, MatHint, MatError]
+    imports: [BqKeyDirective, MatCheckbox, MatHint, MatError]
 })
 @BlueriqComponent({
   type: Field,
