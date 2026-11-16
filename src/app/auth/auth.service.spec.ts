@@ -3,8 +3,8 @@ import { LocationStrategy } from '@angular/common';
 import { MockLocationStrategy } from '@angular/common/testing';
 import { Component, DOCUMENT } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { Router } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
+import { Router, RouterModule } from '@angular/router';
+
 import { AuthService as BqAuthService, LogoutResult } from '@blueriq/angular';
 import { OpenIdConnectAuth } from '@blueriq/angular/openidconnect';
 import { Observable, of } from 'rxjs';
@@ -41,12 +41,12 @@ describe('AuthService', () => {
 
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule.withRoutes([
-          { path: 'login', component: TestComponent },
-          { path: 'logged-out', component: TestComponent },
-        ]),
-        TestComponent,
-      ],
+    TestComponent,
+    RouterModule.forRoot([
+        { path: 'login', component: TestComponent },
+        { path: 'logged-out', component: TestComponent },
+    ])
+],
       providers: [
         { provide: BqAuthService, useFactory: () => blueriqAuth },
         { provide: OpenIdConnectAuth, useFactory: () => openIdConnect },
