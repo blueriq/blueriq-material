@@ -1,4 +1,4 @@
-import { Directive, HostBinding } from '@angular/core';
+import { Directive, HostBinding, inject } from '@angular/core';
 import { OnUpdate } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { Field, FieldMessages } from '@blueriq/core';
@@ -6,6 +6,9 @@ import { BqPresentationStyles } from '../../BqPresentationStyles';
 
 @Directive()
 export class InputFieldComponent implements OnUpdate {
+  field = inject(Field);
+  private readonly form = inject(BlueriqFormBuilder);
+
 
   @HostBinding('class.fx-flex-row')
 
@@ -16,7 +19,7 @@ export class InputFieldComponent implements OnUpdate {
   placeholder: string;
   inputType = 'text';
 
-  constructor(public field: Field, private readonly form: BlueriqFormBuilder) {
+  constructor() {
 
     this.determinePlaceholder();
   }

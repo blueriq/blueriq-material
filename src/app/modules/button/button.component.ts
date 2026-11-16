@@ -1,4 +1,4 @@
-import { Component, Optional, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { BlueriqComponent, BlueriqCommonModule } from '@blueriq/angular';
 import { List } from '@blueriq/angular/lists';
@@ -21,11 +21,10 @@ import { BqIconDirective as BqIconDirective_1 } from '../../shared/directive/ico
   type: Button,
 })
 export class ButtonComponent {
-  private readonly backendBusy = inject(BackendBusyService);
+  button = inject(Button);
+  readonly list = inject(List, { optional: true });
 
-  constructor(public button: Button,
-              @Optional() public readonly list: List | null) {
-  }
+  private readonly backendBusy = inject(BackendBusyService);
 
   isRaisedButton(): boolean {
     return !(this.list || this.button.styles.has(BqPresentationStyles.FLAT_BUTTON));
