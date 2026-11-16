@@ -20,5 +20,12 @@
         "src/app/shared/*"
       ]
     }
+  },
+  "angularCompilerOptions": {
+    "extendedDiagnostics": {
+      "checks": {
+        "unusedStandaloneImports": "error"
+      }
+    }
   }
 }
