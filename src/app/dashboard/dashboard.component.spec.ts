@@ -2,8 +2,7 @@ import type { Mocked } from 'vitest';
 import { AsyncPipe } from '@angular/common';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute, ActivatedRouteSnapshot, convertToParamMap, Params, Router, RouterModule } from '@angular/router';
-
+import { ActivatedRoute, ActivatedRouteSnapshot, convertToParamMap, Params, Router } from '@angular/router';
 import { Dispatcher } from '@blueriq/angular';
 import { TestDispatcher } from '@blueriq/angular/testing';
 import { DashboardAuthService } from '@blueriq/dashboard';
@@ -39,7 +38,7 @@ describe('Dashboard Component', () => {
     } as unknown as Mocked<ActivatedRoute>;
     toastrService = { success: vi.fn(), info: vi.fn(), warning: vi.fn() } as unknown as Mocked<ToastrService>;
     await TestBed.configureTestingModule({
-      imports: [DashboardComponent, RouterModule],
+      imports: [DashboardComponent],
       providers: [
         { provide: DashboardAuthService, useValue: authService },
         { provide: Router, useValue: router },

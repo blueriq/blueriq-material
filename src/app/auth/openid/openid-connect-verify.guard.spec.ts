@@ -2,7 +2,6 @@ import type { Mocked } from 'vitest';
 import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { Router, RouterModule } from '@angular/router';
-
 import { OpenIdConnectAuth } from '@blueriq/angular/openidconnect';
 import { of, throwError } from 'rxjs';
 import { AuthService } from '../auth.service';
@@ -28,12 +27,12 @@ describe('OpenIdConnectVerifyGuard', () => {
 
     TestBed.configureTestingModule({
       imports: [
-    TestComponent,
-    RouterModule.forRoot([
-        { path: 'verify', component: TestComponent, canActivate: [OpenIdConnectVerifyGuard] },
-        { path: 'success', component: TestComponent },
-    ])
-],
+        RouterModule.forRoot([
+          { path: 'verify', component: TestComponent, canActivate: [OpenIdConnectVerifyGuard] },
+          { path: 'success', component: TestComponent },
+        ]),
+        TestComponent,
+      ],
       providers: [
         { provide: AuthService, useFactory: () => auth },
         { provide: OpenIdConnectAuth, useFactory: () => openIdConnect },
