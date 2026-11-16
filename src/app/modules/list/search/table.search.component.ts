@@ -1,6 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild, input } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, input, viewChild } from '@angular/core';
 import { MatChipInputEvent, MatChipGrid, MatChipRow, MatChipRemove, MatChipInput } from '@angular/material/chips';
 import { Search } from '@blueriq/angular/lists';
 import { Subscription } from 'rxjs';
@@ -40,8 +40,7 @@ import { MatIconButton } from '@angular/material/button';
 })
 export class TableSearchComponent implements OnInit, OnDestroy {
 
-  @ViewChild('inputField')
-  inputField: ElementRef;
+  readonly inputField = viewChild.required<ElementRef>('inputField');
 
   readonly search = input.required<Search>();
 
@@ -97,7 +96,7 @@ export class TableSearchComponent implements OnInit, OnDestroy {
 
   focusField() {
     if (this.opened) {
-      this.inputField.nativeElement.focus();
+      this.inputField().nativeElement.focus();
     }
   }
 

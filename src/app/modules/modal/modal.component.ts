@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild, inject } from '@angular/core';
+import { Component, OnInit, TemplateRef, inject, viewChild } from '@angular/core';
 import { BlueriqChild, BlueriqChildren, BlueriqComponent, BlueriqCommonModule } from '@blueriq/angular';
 import { Button, Container } from '@blueriq/core';
 import { BqContentStyles } from '../BqContentStyles';
@@ -26,8 +26,7 @@ export class ModalComponent implements OnInit {
 
   dialogRef: MatDialogRef<Element>;
 
-  @ViewChild('dialog', { static: true, read: TemplateRef })
-  dialogTemplate: TemplateRef<Element>;
+  readonly dialogTemplate = viewChild.required('dialog', { read: TemplateRef });
 
   @BlueriqChildren(Button, `.${BqPresentationStyles.MODAL_ACTION_BUTTON}`, { exclude: true })
   modalActionButtons: Button[];
@@ -36,7 +35,7 @@ export class ModalComponent implements OnInit {
   modalCloseButton: Button;
 
   ngOnInit() {
-    this.dialogRef = this.dialog.open(this.dialogTemplate, { disableClose: true });
+    this.dialogRef = this.dialog.open(this.dialogTemplate(), { disableClose: true });
   }
 
   closeDialog() {
