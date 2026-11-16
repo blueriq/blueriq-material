@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, Renderer2, ViewChild, inject } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, Renderer2, inject, viewChild } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { Statistic, Statistics } from '@blueriq/angular/statistics';
 import { Container, PresentationStyles } from '@blueriq/core';
@@ -66,11 +66,9 @@ export class StatisticComponent implements AfterViewInit, OnDestroy {
 
   chart: Chart | null = null;
 
-  @ViewChild('canvas', { static: true })
-  private readonly canvas: ElementRef;
+  private readonly canvas = viewChild.required<ElementRef>('canvas');
 
-  @ViewChild('chart', { static: true })
-  private readonly chartDiv: ElementRef;
+  private readonly chartDiv = viewChild.required<ElementRef>('chart');
   private hasData = false;
   // These colors are based on the color palette from our theme, but transparent
   private readonly colors: string[] = [
@@ -86,7 +84,7 @@ export class StatisticComponent implements AfterViewInit, OnDestroy {
   private readonly padding = 5;
 
   ngAfterViewInit(): void {
-    this.chart = new Chart(this.canvas.nativeElement.getContext('2d'), {
+    this.chart = new Chart(this.canvas().nativeElement.getContext('2d'), {
       type: this.presentationStylesToChartType(),
       data: this.getData([], []),
       options: this.getOptions(),
@@ -100,8 +98,8 @@ export class StatisticComponent implements AfterViewInit, OnDestroy {
       if (!this.hasData) {
         const div = this.renderer.createElement('div');
         this.renderer.appendChild(div, this.renderer.createText('No data'));
-        this.renderer.appendChild(this.chartDiv.nativeElement, div);
-        this.renderer.removeChild(this.canvas.nativeElement.parentNode, this.canvas.nativeElement);
+        this.renderer.appendChild(this.chartDiv().nativeElement, div);
+        this.renderer.removeChild(this.canvas().nativeElement.parentNode, this.canvas().nativeElement);
       }
       this.chart.update();
     });

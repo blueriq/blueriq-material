@@ -1,5 +1,5 @@
 import { COMMA, ENTER, TAB } from '@angular/cdk/keycodes';
-import { Component, ElementRef, HostBinding, OnInit, ViewChild, inject } from '@angular/core';
+import { Component, ElementRef, HostBinding, OnInit, inject, viewChild } from '@angular/core';
 import { MatChipInputEvent, MatChipGrid, MatChipRow, MatChipRemove, MatChipInput } from '@angular/material/chips';
 import { MatOptionSelectionChange } from '@angular/material/core';
 import { BlueriqComponent, BlueriqSession, bySelector, OnUpdate } from '@blueriq/angular';
@@ -52,13 +52,11 @@ export class ChiplistComponent implements OnInit, OnUpdate {
 
   separatorKeysCodes = [ENTER, TAB, COMMA];
   values: ChiplistValue[];
+  @HostBinding('class.fx-flex-row')
   formControl = this.form.control(this.field, { syncOn: 'blur', disableWhen: BqPresentationStyles.DISABLED });
   filteredDomainOptions: DomainValue[] = [];
 
-  @HostBinding('class.fx-flex-row')
-
-  @ViewChild('input', { static: true })
-  inputField: ElementRef;
+  readonly inputField = viewChild.required<ElementRef>('input');
 
   ngOnInit() {
     this.syncValues();
@@ -125,7 +123,7 @@ export class ChiplistComponent implements OnInit, OnUpdate {
     // Reset the filter after adding a chip
     input.value = '';
     this.filterDomain('');
-    this.inputField.nativeElement.focus();
+    this.inputField().nativeElement.focus();
   }
 
   /**
