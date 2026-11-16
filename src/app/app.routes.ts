@@ -4,7 +4,7 @@ import { AUTH_ROUTES } from './auth/routes';
 export const routes: Routes = [
   {
     path: 'dashboard',
-    loadChildren: () => import('./dashboard/dashboard.module').then(mod => mod.DashboardModule),
+    loadChildren: () => import('./dashboard/routes').then(mod => mod.DASHBOARD_ROUTES),
   },
   { path: 'session/:sessionId', loadComponent: loadProjectComponent },
   { path: 'shortcut/:shortcut', loadComponent: loadProjectComponent },
