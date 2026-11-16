@@ -1,8 +1,7 @@
 import { Component, inject, OnDestroy } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { FileDownload } from '@blueriq/angular/files';
-import { List } from '@blueriq/angular/lists';
-import { Container } from '@blueriq/core';
+import { Button, Container } from '@blueriq/core';
 import { Subscription } from 'rxjs';
 import { ButtonComponent } from '../../button/button.component';
 import { FileDownloadService } from './file-download.service';
@@ -15,7 +14,7 @@ import { BqIconDirective } from '../../../shared/directive/icon/icon.directive';
   selector: 'bq-file-download',
   templateUrl: './file-download.component.html',
   styleUrls: ['./file-download.component.scss'],
-  providers: [FileDownload],
+  providers: [FileDownload, { provide: Button, useFactory: () => inject(FileDownload).downloadButton }],
   imports: [MatButton, BqKeyDirective, MatIcon, BqIconDirective]
 })
 @BlueriqComponent({
@@ -23,20 +22,10 @@ import { BqIconDirective } from '../../../shared/directive/icon/icon.directive';
   selector: 'filedownload',
 })
 export class FileDownloadComponent extends ButtonComponent implements OnDestroy {
-  fileDownload: FileDownload;
+  fileDownload = inject(FileDownload, { self: true });
   fileDownloadService = inject(FileDownloadService);
 
-
   downloadSubscription: Subscription | undefined;
-
-  constructor() {
-    const fileDownload = inject(FileDownload, { self: true });
-    const list = inject(List, { optional: true });
-
-    super(fileDownload.downloadButton, list);
-
-    this.fileDownload = fileDownload;
-  }
 
   onClick(): void {
     this.downloadSubscription = this.fileDownload.getDownloadInfo().subscribe(downloadInfo => {

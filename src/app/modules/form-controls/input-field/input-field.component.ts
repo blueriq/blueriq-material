@@ -9,7 +9,6 @@ export class InputFieldComponent implements OnUpdate {
   field = inject(Field);
   private readonly form = inject(BlueriqFormBuilder);
 
-
   @HostBinding('class.fx-flex-row')
 
   formControl = this.form.control(this.field, { updateOn: 'blur', disableWhen: BqPresentationStyles.DISABLED });
