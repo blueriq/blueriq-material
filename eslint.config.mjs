@@ -156,7 +156,9 @@ export default defineConfig([{
 }, {
     files: ["**/*.html"],
     extends: compat.extends("plugin:@angular-eslint/template/recommended"),
-    rules: {},
+    rules: {
+        "@angular-eslint/template/prefer-self-closing-tags": "error",
+    },
 }, {
     files: ["**/*.spec.ts", "**/*.cy.ts"],
 
