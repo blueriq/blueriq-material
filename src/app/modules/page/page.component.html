@@ -10,7 +10,7 @@
   }
 </div>
 
-<div [ngClass]="['page', pageSize]" class="fx-flex-row">
+<div class="page fx-flex-row" [class]="pageSize">
   @if (navigationMenu) {
     <div style="flex: 1 1 100%; max-width: 25%">
       <div class="sticky-menu">

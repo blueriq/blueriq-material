@@ -4,7 +4,6 @@ import { Container, Page } from '@blueriq/core';
 import { BackendBusyService } from '@shared/loading/backend-busy.service';
 import { BqContentStyles } from '../BqContentStyles';
 import { HeaderComponent } from '../header/header.component';
-import { NgClass } from '@angular/common';
 import { FooterComponent } from '../footer/footer.component';
 
 @Component({
@@ -13,7 +12,7 @@ import { FooterComponent } from '../footer/footer.component';
     styleUrls: [
         './page.component.scss',
     ],
-    imports: [HeaderComponent, BlueriqCommonModule, NgClass, FooterComponent]
+    imports: [HeaderComponent, BlueriqCommonModule, FooterComponent]
 })
 @BlueriqComponent({
   type: Page,
