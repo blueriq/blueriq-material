@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { DomainValue, Field, FieldMessages } from '@blueriq/core';
@@ -15,6 +15,7 @@ import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'bq-autocomplete',
+    host: { class: 'fx-flex-row' },
     templateUrl: './autocomplete.component.html',
     imports: [
       MatFormField,
@@ -39,8 +40,6 @@ export class AutocompleteComponent implements OnInit {
   field = inject(Field);
   private readonly form = inject(BlueriqFormBuilder);
 
-
-  @HostBinding('class.fx-flex-row')
 
   formControl = this.form.control(this.field, {
     syncOn: 'update',

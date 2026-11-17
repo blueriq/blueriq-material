@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { BlueriqComponent } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { Field, FieldMessages } from '@blueriq/core';
@@ -11,6 +11,7 @@ import { MatOption } from '@angular/material/autocomplete';
 
 @Component({
     selector: 'bq-select',
+    host: { class: 'fx-flex-row' },
     templateUrl: './select.component.html',
     styleUrls: ['./select.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -24,8 +25,6 @@ export class SelectComponent {
   field = inject(Field);
   private readonly form = inject(BlueriqFormBuilder);
 
-
-  @HostBinding('class.fx-flex-row')
 
   formControl = this.form.control(this.field, { updateOn: 'blur', disableWhen: BqPresentationStyles.DISABLED });
 

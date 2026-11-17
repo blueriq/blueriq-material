@@ -1,5 +1,5 @@
 import { COMMA, ENTER, TAB } from '@angular/cdk/keycodes';
-import { Component, ElementRef, HostBinding, OnInit, inject, viewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, inject, viewChild } from '@angular/core';
 import { MatChipInputEvent, MatChipGrid, MatChipRow, MatChipRemove, MatChipInput } from '@angular/material/chips';
 import { MatOptionSelectionChange } from '@angular/material/core';
 import { BlueriqComponent, BlueriqSession, bySelector, OnUpdate } from '@blueriq/angular';
@@ -19,6 +19,7 @@ interface ChiplistValue {
 
 @Component({
     selector: 'bq-chiplist',
+    host: { class: 'fx-flex-row' },
     templateUrl: './chiplist.component.html',
     imports: [
       MatFormField,
@@ -52,7 +53,6 @@ export class ChiplistComponent implements OnInit, OnUpdate {
 
   separatorKeysCodes = [ENTER, TAB, COMMA];
   values: ChiplistValue[];
-  @HostBinding('class.fx-flex-row')
   formControl = this.form.control(this.field, { syncOn: 'blur', disableWhen: BqPresentationStyles.DISABLED });
   filteredDomainOptions: DomainValue[] = [];
 

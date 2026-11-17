@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostBinding, effect, inject, input, signal } from '@angular/core';
+import { Directive, ElementRef, effect, inject, input, signal } from '@angular/core';
 import { PresentationStyles } from '@blueriq/core';
 import { BqPresentationStyles } from '../../../modules/BqPresentationStyles';
 
@@ -6,14 +6,17 @@ import { BqPresentationStyles } from '../../../modules/BqPresentationStyles';
  * This directive can be added to <mat-icon> that will pick the correct icon based on the container's presentation styles.
  * It is meant for use in mat-icon only!
  */
-@Directive({ selector: '[bqIcon]' })
+@Directive({
+  selector: '[bqIcon]',
+  host: { '[attr.class]': 'iconClass()' },
+})
 export class BqIconDirective {
   private readonly elementRef = inject(ElementRef);
 
 
   readonly bqIcon = input.required<PresentationStyles>();
 
-  private readonly iconClass = signal('');
+  protected readonly iconClass = signal('');
 
   static hasIcon(presentationStyles: PresentationStyles): boolean {
     return !!(BqIconDirective.getFirstFontAwesomeIcon(presentationStyles) || BqIconDirective.getFirstMaterialIcon(presentationStyles));
@@ -29,11 +32,6 @@ export class BqIconDirective {
 
   constructor() {
     effect(() => this.showIcon(this.bqIcon()));
-  }
-
-  @HostBinding('attr.class')
-  get class(): string {
-    return this.iconClass();
   }
 
   private showIcon(presentationStyles: PresentationStyles): void {

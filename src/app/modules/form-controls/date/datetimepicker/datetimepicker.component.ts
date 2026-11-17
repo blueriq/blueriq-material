@@ -1,4 +1,4 @@
-import { Component, HostBinding, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BlueriqComponent, BlueriqSession } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { Field, FieldMessages } from '@blueriq/core';
@@ -16,6 +16,7 @@ import { MatIcon } from '@angular/material/icon';
 
 @Component({
     selector: 'bq-datetimepicker',
+    host: { class: 'fx-flex-row' },
     templateUrl: './datetimepicker.component.html',
     styleUrls: ['./datetimepicker.component.scss'],
     providers: [dateTimeFormatProvider],
@@ -41,8 +42,6 @@ export class DateTimepickerComponent {
   field = inject(Field);
   private readonly form = inject(BlueriqFormBuilder);
 
-
-  @HostBinding('class.fx-flex-row')
 
   formControl = this.form.control(this.field, {
     updateOn: 'blur',
