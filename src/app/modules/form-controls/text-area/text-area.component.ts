@@ -1,4 +1,4 @@
-import { Component, HostBinding, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BlueriqComponent, bySelector } from '@blueriq/angular';
 import { BlueriqFormBuilder, getFieldMessages } from '@blueriq/angular/forms';
 import { Field, FieldMessages } from '@blueriq/core';
@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
     selector: 'bq-text-area',
+    host: { class: 'fx-flex-row' },
     styleUrls: ['./text-area.component.scss'],
     templateUrl: './text-area.component.html',
     imports: [MatFormField, BqKeyDirective, MatLabel, MatInput, CdkTextareaAutosize, FormsModule, ReactiveFormsModule, MatHint, MatError]
@@ -24,8 +25,6 @@ export class TextAreaComponent {
   field = inject(Field);
   private readonly form = inject(BlueriqFormBuilder);
 
-
-  @HostBinding('class.fx-flex-row')
 
   formControl = this.form.control(this.field, { updateOn: 'blur', disableWhen: BqPresentationStyles.DISABLED });
 

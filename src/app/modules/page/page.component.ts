@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { BlueriqChild, BlueriqChildren, BlueriqComponent, OnUpdate, BlueriqCommonModule } from '@blueriq/angular';
 import { Container, Page } from '@blueriq/core';
 import { BackendBusyService } from '@shared/loading/backend-busy.service';
@@ -8,6 +8,7 @@ import { FooterComponent } from '../footer/footer.component';
 
 @Component({
     selector: 'bq-page',
+    host: { '[attr.inert]': 'inert' },
     templateUrl: './page.component.html',
     styleUrls: [
         './page.component.scss',
@@ -43,7 +44,6 @@ export class PageComponent implements OnInit, OnUpdate {
    * after 400ms. Uses {@link BackendBusyService.blocking}, which excludes field refreshes, so a
    * refresh neither locks the page nor breaks tabbing between fields.
    */
-  @HostBinding('attr.inert')
   get inert(): string | null {
     return this.backendBusy.blocking() ? '' : null;
   }

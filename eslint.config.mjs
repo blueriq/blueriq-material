@@ -57,6 +57,7 @@ export default defineConfig([{
         "@angular-eslint/no-inputs-metadata-property": "off",
         "@angular-eslint/no-output-rename": "error",
         "@angular-eslint/no-outputs-metadata-property": "error",
+        "@angular-eslint/prefer-host-metadata-property": "error",
         "@angular-eslint/use-lifecycle-interface": "error",
         "@angular-eslint/use-pipe-transform-interface": "error",
         "@typescript-eslint/adjacent-overload-signatures": "error",
