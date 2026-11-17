@@ -1,5 +1,5 @@
 <div [bqContainer]="container">
-  <bq-heading [styles]="container.styles" [title]="container.displayName"></bq-heading>
+  <bq-heading [styles]="container.styles" [title]="container.displayName" />
 
   <button (click)="fileInput.value=''; fileInput.click()" [disabled]="bqFileUpload.readonly" color="primary" mat-raised-button style="display: block;">{{bqFileUpload.uploadLabel}}</button>
   <input #fileInput [multiple]="bqFileUpload.multiple" [uploader]="ngFileUploader" [accept]="bqFileUpload.allowedExtensions | dottedFileExtensions" hidden ng2FileSelect type="file">
@@ -31,7 +31,7 @@
   @if (isBusy) {
     <div>
       <div>
-        <mat-progress-bar mode="determinate" value="{{ngFileUploader.progress}}"></mat-progress-bar>
+        <mat-progress-bar mode="determinate" value="{{ngFileUploader.progress}}" />
       </div>
       <button (click)="ngFileUploader.cancelAll()" [disabled]="!ngFileUploader.isUploading" mat-icon-button>
         <mat-icon>cancel</mat-icon>

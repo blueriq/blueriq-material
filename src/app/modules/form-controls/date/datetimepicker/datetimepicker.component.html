@@ -6,7 +6,7 @@
       <mat-icon>today</mat-icon>
     </button>
     <owl-date-time #dtPicker [pickerType]="getPickerType()" [firstDayOfWeek]="firstDayOfWeek"
-    [showSecondsTimer]="true" [disabled]="formControl.disabled"></owl-date-time>
+    [showSecondsTimer]="true" [disabled]="formControl.disabled" />
     <mat-hint>{{field.explainText}}</mat-hint>
     @if (invalidInput()) {
       <mat-error>invalid input</mat-error>

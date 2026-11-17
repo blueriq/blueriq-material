@@ -26,11 +26,9 @@
     </div>
 
     @for (candidate of filterCandidates; track candidate) {
-      <bq-filter-row
-        [currentColumns]="filter().currentColumns"
+      <bq-filter-row [currentColumns]="filter().currentColumns"
         [candidate]="candidate"
-        (removed)="removeFilter(candidate)">
-      </bq-filter-row>
+        (removed)="removeFilter(candidate)" />
     }
 
     @if (canAddFilter()) {

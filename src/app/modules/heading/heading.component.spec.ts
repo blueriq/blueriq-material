@@ -12,7 +12,7 @@ import { HeadingComponent } from './heading.component';
   type: Container,
 })
 @Component({
-    template: '<div><bq-heading [title]="container.displayName" [styles]="container.styles"></bq-heading></div>',
+    template: '<div><bq-heading [title]="container.displayName" [styles]="container.styles" /></div>',
     imports: [HeadingComponent]
 })
 class MockContainerComponent {  container = inject(Container);

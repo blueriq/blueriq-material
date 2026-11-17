@@ -1,9 +1,9 @@
 @if (!authenticationFailed) {
   <div bqKey bqClasses class="external-flow-container" [bqContainer]="container">
-    <bq-heading [title]="container.displayName" [styles]="container.styles"></bq-heading>
+    <bq-heading [title]="container.displayName" [styles]="container.styles" />
     @if (!shouldDisplayError()) {
       <bq-session [sessionName]="externalFlow.sessionName" (flowEnded)="handleFlowEnded()"
-      (expired)="handleSessionExpired()" (error)="handleError($event)"></bq-session>
+      (expired)="handleSessionExpired()" (error)="handleError($event)" />
     }
     @if (shouldDisplayError()) {
       <div>

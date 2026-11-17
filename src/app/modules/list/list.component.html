@@ -1,16 +1,16 @@
 <div bqKey bqClasses [bqContainer]="container">
-  <bq-heading [title]="container.displayName" [styles]="container.styles"></bq-heading>
+  <bq-heading [title]="container.displayName" [styles]="container.styles" />
   @if (shouldShowSearchBox() && list.search$ | async; as search) {
-    <bq-table-search [search]="search"></bq-table-search>
+    <bq-table-search [search]="search" />
   }
   @if (list.filter$ | async; as filter) {
-    <bq-filter [filter]="filter"></bq-filter>
+    <bq-filter [filter]="filter" />
   }
-  <bq-table [table]="list.table$ | async"></bq-table>
+  <bq-table [table]="list.table$ | async" />
   @if (list.pagination$ | async; as pagination) {
-    <bq-table-pagination [pagination]="pagination"></bq-table-pagination>
+    <bq-table-pagination [pagination]="pagination" />
   }
   @if (list.limit$ | async; as limit) {
-    <bq-table-limit [limit]="limit"></bq-table-limit>
+    <bq-table-limit [limit]="limit" />
   }
 </div>

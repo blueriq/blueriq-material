@@ -8,22 +8,20 @@
         class="mat-icon-button"
         (click)="closeDialog()"
         >
-        <mat-icon fontIcon="close"></mat-icon>
+        <mat-icon fontIcon="close" />
       </button>
     </div>
   </div>
   <div mat-dialog-content class="dialog-content">
     @for (child of container.children | bqIncluded; track child) {
-      <ng-container
-      [bqElement]="child"></ng-container>
+      <ng-container [bqElement]="child" />
     }
   </div>
   <div mat-dialog-actions class="dialog-actions">
     @for (button of modalActionButtons; track button) {
       <div (click)="closeDialog()"
         >
-        <ng-container [bqElement]="button">
-        </ng-container>
+        <ng-container [bqElement]="button" />
       </div>
     }
   </div>

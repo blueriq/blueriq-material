@@ -1,16 +1,15 @@
 <div [bqContainer]="container" bqClasses bqKey>
 
   @if (shouldDisplayHeading()) {
-    <bq-heading [styles]="container.styles" [title]="container.displayName"></bq-heading>
+    <bq-heading [styles]="container.styles" [title]="container.displayName" />
   }
 
   <!-- Container has presentation style 'horizontal', direct children should be rendered horizontally -->
   @if (isHorizontal) {
     <div class="bq-row">
       @for (child of container.children | bqIncluded; track child) {
-        <ng-container
-          [bqElement]="child"
-        bqFlexChild></ng-container>
+        <ng-container [bqElement]="child"
+        bqFlexChild />
       }
     </div>
   }
@@ -19,9 +18,8 @@
   @if (!isHorizontal) {
     <div>
       @for (child of container.children | bqIncluded; track child) {
-        <ng-container
-          [bqElement]="child"
-        bqFlexColumn></ng-container>
+        <ng-container [bqElement]="child"
+        bqFlexColumn />
       }
     </div>
   }

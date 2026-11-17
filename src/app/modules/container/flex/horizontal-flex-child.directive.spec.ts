@@ -7,7 +7,7 @@ import { ContainerTemplate } from '@blueriq/core/testing';
 import { HorizontalFlexChildDirective } from './horizontal-flex-child.directive';
 
 @Component({
-    template: '<div><ng-container [bqElement]="container.children[0]" bqFlexChild></ng-container></div>',
+    template: '<div><ng-container [bqElement]="container.children[0]" bqFlexChild /></div>',
     imports: [BlueriqCommonModule, HorizontalFlexChildDirective]
 })
 @BlueriqComponent({

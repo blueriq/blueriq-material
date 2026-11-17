@@ -1,8 +1,8 @@
 <mat-form-field bqKey bqClasses class="fx-flex" appearance="fill">
   <mat-label>{{field.questionText}}</mat-label>
   <input matInput [matDatepicker]="picker" [placeholder]="field.placeholder" [formControl]="formControl" [required]="field.required">
-  <mat-datepicker-toggle matPrefix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker #picker></mat-datepicker>
+  <mat-datepicker-toggle matPrefix [for]="picker" />
+  <mat-datepicker #picker />
   <mat-hint>{{field.explainText}}</mat-hint>
   @if (invalidInput()) {
     <mat-error>invalid input</mat-error>

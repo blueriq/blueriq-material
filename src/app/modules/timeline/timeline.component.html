@@ -1,5 +1,5 @@
 <div [bqContainer]="container">
-  <bq-heading [title]="container.displayName" [styles]="container.styles"></bq-heading>
+  <bq-heading [title]="container.displayName" [styles]="container.styles" />
   <div class="timeline">
     @for (entry of timeline.entries$ | async; track entry; let first = $first) {
       <div class="fx-flex-row">
@@ -25,7 +25,7 @@
               <div class="user">{{ entry.username }}</div>
               <div class="time" >{{ dateToShortTime(entry.occurredAt) }}</div>
             </div>
-            <mat-divider></mat-divider>
+            <mat-divider />
             <p class="action-name">{{ entry.actionName }}</p>
             <p class="entry-name">{{ entry.entryName }}</p>
           </div>

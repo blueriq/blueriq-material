@@ -1,4 +1,4 @@
-<bq-heading [styles]="container.styles" [title]="container.displayName"></bq-heading>
+<bq-heading [styles]="container.styles" [title]="container.displayName" />
 
 <mat-tab-group [bqContainer]="container">
   @for (child of container.children; track child) {
@@ -6,7 +6,7 @@
       <ng-template mat-tab-label>
         {{child.displayName || '[' + child.name + ']'}}
       </ng-template>
-      <ng-container [bqElement]="child"></ng-container>
+      <ng-container [bqElement]="child" />
     </mat-tab>
   }
 </mat-tab-group>

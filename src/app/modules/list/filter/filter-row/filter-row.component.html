@@ -13,32 +13,28 @@
   <div class="fx-flex0-0-32em">
     @switch (getType()) {
       @case ('domain') {
-        <bq-domain-filter
-          [candidate]="candidate()"
-        [domain]="candidate().selectedColumn!.domain"></bq-domain-filter>
+        <bq-domain-filter [candidate]="candidate()"
+        [domain]="candidate().selectedColumn!.domain" />
       }
       @case ('boolean') {
-        <bq-boolean-filter
-        [candidate]="candidate()"></bq-boolean-filter>
+        <bq-boolean-filter [candidate]="candidate()" />
       }
       @case ('numeric') {
-        <bq-numeric-filter
-        [candidate]="candidate()"></bq-numeric-filter>
+        <bq-numeric-filter [candidate]="candidate()" />
       }
       @case ('date') {
         <bq-date-filter type="date"
-        [candidate]="candidate()"></bq-date-filter>
+        [candidate]="candidate()" />
       }
       @case ('datetime') {
         <bq-date-filter type="datetime"
-        [candidate]="candidate()"></bq-date-filter>
+        [candidate]="candidate()" />
       }
       @case ('text') {
-        <bq-text-filter
-        [candidate]="candidate()"></bq-text-filter>
+        <bq-text-filter [candidate]="candidate()" />
       }
       @default {
-        <bq-empty-filter></bq-empty-filter>
+        <bq-empty-filter />
       }
     }
   </div>

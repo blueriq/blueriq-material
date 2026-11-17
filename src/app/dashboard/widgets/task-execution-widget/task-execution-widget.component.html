@@ -1,6 +1,5 @@
 @if (parameters$ | async; as parameters) {
-  <bq-task
-    [sessionName]=sessionName
+  <bq-task [sessionName]=sessionName
     [applicationId]="parameters.applicationId"
     [languageCode]="parameters.languageCode"
     [caseId]="parameters.caseId"
@@ -12,14 +11,13 @@
     (flowEnded)="onFlowEnded(parameters.caseType, parameters.caseId)"
     (taskCancelled)="onTaskCancelled(parameters.caseType, parameters.caseId)"
     (forbidden)="onForbidden(parameters.caseType, parameters.caseId)"
-    (unauthorized)="onUnauthorized()">
-  </bq-task>
+    (unauthorized)="onUnauthorized()" />
 }
 
-<bq-loading></bq-loading>
+<bq-loading />
 
 @if (dashboardState === DashboardState.STABLE) {
   @if (notification) {
-    <bq-notification-overlay [notification]="notification"></bq-notification-overlay>
+    <bq-notification-overlay [notification]="notification" />
   }
 }

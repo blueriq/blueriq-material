@@ -1,6 +1,6 @@
 @if (page) {
   <div class="header">
-    <bq-dashboard-header [menuItems]="page.menuItems"></bq-dashboard-header>
+    <bq-dashboard-header [menuItems]="page.menuItems" />
   </div>
   <div class="page" [class]="page.layout">
     @for (column of page.columns; track column) {
@@ -9,21 +9,21 @@
           @switch (widget.type) {
             @case ('blueriq-flow') {
               @if (!refreshWidget) {
-                <bq-flow-widget [widget]="widget" [id]="widget.id"></bq-flow-widget>
+                <bq-flow-widget [widget]="widget" [id]="widget.id" />
               }
             }
             @case ('blueriq-task') {
               <bq-task-execution-widget [widget]="widget"
-              [id]="widget.id"></bq-task-execution-widget>
+              [id]="widget.id" />
             }
             @case ('blueriq-intake') {
               <bq-intake-widget [widget]="widget"
-              [id]="widget.id"></bq-intake-widget>
+              [id]="widget.id" />
             }
           }
         }
       </div>
     }
   </div>
-  <bq-footer></bq-footer>
+  <bq-footer />
 }

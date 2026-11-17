@@ -15,10 +15,10 @@
         <mat-icon>today</mat-icon>
       </button>
       <owl-date-time #dtPicker [pickerType]="pickerType()" [firstDayOfWeek]="firstDayOfWeek"
-                     showSecondsTimer></owl-date-time>
+                     showSecondsTimer />
     </mat-form-field>
   </div>
   <div class="fx-flex0-0-2em">
-    <mat-checkbox [checked]="showUnknown()" (change)="onUnknownChanged($event.checked)" color="primary"></mat-checkbox>
+    <mat-checkbox [checked]="showUnknown()" (change)="onUnknownChanged($event.checked)" color="primary" />
   </div>
 </div>

@@ -3,10 +3,10 @@
   @for (column of table().columns$ | async; track column) {
     <ng-container [matColumnDef]="column.name">
       <th mat-header-cell *matHeaderCellDef>
-        <bq-header-column [column]="column"></bq-header-column>
+        <bq-header-column [column]="column" />
       </th>
       <td mat-cell *matCellDef="let row">
-        <ng-container [bqElement]="row.cellFor(column).element"></ng-container>
+        <ng-container [bqElement]="row.cellFor(column).element" />
       </td>
     </ng-container>
   }
