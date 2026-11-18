@@ -220,17 +220,17 @@ importers:
         specifier: 21.2.26
         version: 21.2.26(@angular/common@21.2.26(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@21.2.26(@angular/animations@21.2.26(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3)))(@angular/common@21.2.26(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3)))(rxjs@7.8.2)
       '@blueriq/angular':
-        specifier: 0.23.1
-        version: 0.23.1(2d9c752249d0054b5f490e1345226bca)
+        specifier: 0.24.0
+        version: 0.24.0(4702db22fad2fdb357b03d505a8cfa11)
       '@blueriq/core':
-        specifier: 0.23.1
-        version: 0.23.1
+        specifier: 0.24.0
+        version: 0.24.0
       '@blueriq/dashboard':
-        specifier: 0.23.1
-        version: 0.23.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@blueriq/angular@0.23.1(2d9c752249d0054b5f490e1345226bca))(@blueriq/core@0.23.1)(@ngrx/effects@21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@ngrx/store@21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(rxjs@7.8.2))(rxjs@7.8.2)
+        specifier: 0.24.0
+        version: 0.24.0(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@blueriq/angular@0.24.0(4702db22fad2fdb357b03d505a8cfa11))(@blueriq/core@0.24.0)(@ngrx/effects@21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@ngrx/store@21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(rxjs@7.8.2))(rxjs@7.8.2)
       '@blueriq/devtools':
-        specifier: 0.23.1
-        version: 0.23.1(rxjs@7.8.2)
+        specifier: 0.24.0
+        version: 0.24.0(rxjs@7.8.2)
       '@danielmoncada/angular-datetime-picker':
         specifier: 22.0.0
         version: 22.0.0(@angular/cdk@21.2.14(@angular/common@21.2.26(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@21.2.26(@angular/animations@21.2.26(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3)))(@angular/common@21.2.26(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3)))(rxjs@7.8.2))(@angular/common@21.2.26(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))
@@ -1234,14 +1234,14 @@ packages:
     resolution: {integrity: sha512-6zABk/ECA/QYSCQ1NGiVwwbQerUCZ+TQbp64Q3AgmfNvurHH0j8TtXa1qbShXA6qqkpAj4V5W8pP6mLe1mcMqA==}
     engines: {node: '>=18'}
 
-  '@blueriq/angular@0.23.1':
-    resolution: {integrity: sha512-PyI8pvyfVk3oersiieGi7ihv2NKrweCMjF+/SYAwNmnUBJzr16cNKjz1TN5LOcQssUq8lVPKpmJu9iaqHU6gNQ==, tarball: https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/angular/-/@blueriq/angular-0.23.1.tgz}
+  '@blueriq/angular@0.24.0':
+    resolution: {integrity: sha512-uOTRFI5lKMNDmuLNLDj0B5g5w81f0wLtQMr+qCD8TiCLF4sy00UFZ9A5d3Xkv6EqzZ/JDckkMxL+qlE83nDwIQ==, tarball: https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/angular/-/@blueriq/angular-0.24.0.tgz}
     peerDependencies:
       '@angular/common': ^20.3.0 || ^21.0.0 || ^22.0.0
       '@angular/core': ^20.3.0 || ^21.0.0 || ^22.0.0
       '@angular/forms': ^20.3.0 || ^21.0.0 || ^22.0.0
-      '@blueriq/core': 0.23.1
-      '@blueriq/devtools': 0.23.1
+      '@blueriq/core': 0.24.0
+      '@blueriq/devtools': 0.24.0
       '@ngrx/effects': ^20.0.0 || ^21.0.0 || ^22.0.0
       '@ngrx/store': ^20.0.0 || ^21.0.0 || ^22.0.0
       '@stomp/rx-stomp': ^2.0.1
@@ -1251,20 +1251,20 @@ packages:
       '@blueriq/devtools':
         optional: true
 
-  '@blueriq/core@0.23.1':
-    resolution: {integrity: sha512-yPkjw4Yln5l2NkWC9AaTLvGqYwckDF4ahbML2ppyEosf1wiXpNRR7pyx7BQCUPDkTIGEPCQ49n2bARVYILKM5A==, tarball: https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/core/-/@blueriq/core-0.23.1.tgz}
+  '@blueriq/core@0.24.0':
+    resolution: {integrity: sha512-advh0FaDpT+k8Cngkyi5F//khitVOED8czrKvEYzQ7Bf603cECy9TTQWdiXSM1c1X1dReFNiGcGdJOvKLW3ZkA==, tarball: https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/core/-/@blueriq/core-0.24.0.tgz}
 
-  '@blueriq/dashboard@0.23.1':
-    resolution: {integrity: sha512-S767HcvfE/P2y7QxCScOlmKxCu/1H5QAOBBeEGQTWJlugwWhANhJwg1uRCIdzVGoeEBxMiGykcBxDRsPmiItnA==, tarball: https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/dashboard/-/@blueriq/dashboard-0.23.1.tgz}
+  '@blueriq/dashboard@0.24.0':
+    resolution: {integrity: sha512-/5GTzPy5TjREP+Vl5o6S7jWpF9CDjlJDqGB7VujhlQaT4Nok3bb4gb7fs8FRhtGIh7iSEm8hTidcT6NN6V0A3Q==, tarball: https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/dashboard/-/@blueriq/dashboard-0.24.0.tgz}
     peerDependencies:
       '@angular/core': ^20.3.0 || ^21.0.0 || ^22.0.0
-      '@blueriq/angular': 0.23.1
-      '@blueriq/core': 0.23.1
+      '@blueriq/angular': 0.24.0
+      '@blueriq/core': 0.24.0
       '@ngrx/effects': ^20.0.0 || ^21.0.0 || ^22.0.0
       rxjs: ^7.8.1
 
-  '@blueriq/devtools@0.23.1':
-    resolution: {integrity: sha512-tur1u0rl6mG6eqW3WbOmbkJAeWWxXVD7yvqTRmsQf7E4CNRX03JayaIAzLCcRJpWHIbekvwbLsGYXkaW42VACQ==, tarball: https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/devtools/-/@blueriq/devtools-0.23.1.tgz}
+  '@blueriq/devtools@0.24.0':
+    resolution: {integrity: sha512-TfCCRFef5vPO47+wRD5E0MxdNUtO0yFS61jmhe1FCQs4D1Gd9YhX3gkc4MwGr43pUSdXD+EEhCvt5KyYA2XVrQ==, tarball: https://artifactory.blueriq.com/artifactory/api/npm/yarn/@blueriq/devtools/-/@blueriq/devtools-0.24.0.tgz}
     peerDependencies:
       rxjs: ^7.8.0
 
@@ -3194,8 +3194,8 @@ packages:
   css-select@6.0.0:
     resolution: {integrity: sha512-rZZVSLle8v0+EY8QAkDWrKhpgt6SA5OtHsgBnsj6ZaLb5dmDVOWUDtQitd9ydxxvEjhewNudS6eTVU7uOyzvXw==}
 
-  css-selector-parser@1.3.0:
-    resolution: {integrity: sha512-D9/ElD0w1OxJ3ofC+MrUNqHl2uPZ2/lOINRRv7Gj9QyEAISzt/rtkiXfonLo2H5mE+mn2WraSu2D4wBivnLzOA==}
+  css-selector-parser@1.4.1:
+    resolution: {integrity: sha512-HYPSb7y/Z7BNDCOrakL4raGO2zltZkbeXyAd6Tg9obzix6QhzxCotdBl6VT0Dv4vZfJGVz3WL/xaEI9Ly3ul0g==}
 
   css-tree@3.2.1:
     resolution: {integrity: sha512-X7sjQzceUhu1u7Y/ylrRZFU2FS6LRiFVp6rKLPg23y3x3c3DOKAwuXGDp+PAGjh6CSnCjYeAul8pcT8bAl+lSA==}
@@ -7436,12 +7436,12 @@ snapshots:
 
   '@bcoe/v8-coverage@1.0.2': {}
 
-  '@blueriq/angular@0.23.1(2d9c752249d0054b5f490e1345226bca)':
+  '@blueriq/angular@0.24.0(4702db22fad2fdb357b03d505a8cfa11)':
     dependencies:
       '@angular/common': 21.2.26(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2)
       '@angular/core': 21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3)
       '@angular/forms': 21.2.26(@angular/common@21.2.26(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@21.2.26(@angular/animations@21.2.26(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3)))(@angular/common@21.2.26(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3)))(rxjs@7.8.2)
-      '@blueriq/core': 0.23.1
+      '@blueriq/core': 0.24.0
       '@ngrx/effects': 21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@ngrx/store@21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(rxjs@7.8.2)
       '@ngrx/store': 21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2)
       '@stomp/rx-stomp': 2.4.0(@stomp/stompjs@7.5.0)(rxjs@7.8.2)(uuid@14.0.3)
@@ -7450,24 +7450,24 @@ snapshots:
       rxjs: 7.8.2
       tslib: 2.9.1
     optionalDependencies:
-      '@blueriq/devtools': 0.23.1(rxjs@7.8.2)
+      '@blueriq/devtools': 0.24.0(rxjs@7.8.2)
 
-  '@blueriq/core@0.23.1':
+  '@blueriq/core@0.24.0':
     dependencies:
-      css-selector-parser: 1.3.0
+      css-selector-parser: 1.4.1
       tslib: 2.9.1
 
-  '@blueriq/dashboard@0.23.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@blueriq/angular@0.23.1(2d9c752249d0054b5f490e1345226bca))(@blueriq/core@0.23.1)(@ngrx/effects@21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@ngrx/store@21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(rxjs@7.8.2))(rxjs@7.8.2)':
+  '@blueriq/dashboard@0.24.0(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@blueriq/angular@0.24.0(4702db22fad2fdb357b03d505a8cfa11))(@blueriq/core@0.24.0)(@ngrx/effects@21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@ngrx/store@21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(rxjs@7.8.2))(rxjs@7.8.2)':
     dependencies:
       '@angular/core': 21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3)
-      '@blueriq/angular': 0.23.1(2d9c752249d0054b5f490e1345226bca)
-      '@blueriq/core': 0.23.1
+      '@blueriq/angular': 0.24.0(4702db22fad2fdb357b03d505a8cfa11)
+      '@blueriq/core': 0.24.0
       '@ngrx/effects': 21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(@ngrx/store@21.1.1(@angular/core@21.2.26(@angular/compiler@21.2.26)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(rxjs@7.8.2)
       rxjs: 7.8.2
       tslib: 2.9.1
       uuid: 14.0.3
 
-  '@blueriq/devtools@0.23.1(rxjs@7.8.2)':
+  '@blueriq/devtools@0.24.0(rxjs@7.8.2)':
     dependencies:
       rxjs: 7.8.2
       tslib: 2.9.1
@@ -9372,7 +9372,7 @@ snapshots:
       domutils: 3.2.2
       nth-check: 2.1.1
 
-  css-selector-parser@1.3.0: {}
+  css-selector-parser@1.4.1: {}
 
   css-tree@3.2.1:
     dependencies:
