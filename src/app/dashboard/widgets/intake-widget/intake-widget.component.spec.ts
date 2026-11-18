@@ -1,7 +1,7 @@
 import { AsyncPipe } from '@angular/common';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, convertToParamMap, RouterModule } from '@angular/router';
 import {
   BlueriqResponseError,
   CaseCreatedAction,
@@ -19,7 +19,7 @@ import {
   DashboardWidgetSession,
 } from '@blueriq/dashboard';
 import { Actions } from '@ngrx/effects';
-import { Subject } from 'rxjs';
+import { of, Subject } from 'rxjs';
 import { NotificationType } from '../../../notification-overlay/notification.model';
 import { IntakeWidgetComponent } from './intake-widget.component';
 
@@ -59,6 +59,29 @@ describe('Intake Widget Component', () => {
 
   afterEach(() => {
     vi.useRealTimers();
+  });
+
+  it('should take the branch from the version of the dashboard route', () => {
+    // Arrange
+    TestBed.overrideProvider(ActivatedRoute, {
+      useValue: { paramMap: of(convertToParamMap({ version: 'feature' })), queryParams: of({}) },
+    });
+    const fixture = TestBed.createComponent(IntakeWidgetComponent);
+    fixture.componentRef.setInput('widget', {
+      id: 'TEST-ID',
+      type: 'blueriq-intake',
+      baseUrl: '/',
+      caseType: 'Zone',
+      languageCode: 'en-US',
+    });
+    fixture.componentInstance.ngOnInit();
+    let branch: string | undefined;
+
+    // Act
+    fixture.componentInstance.branch$.subscribe(value => branch = value);
+
+    // Assert
+    expect(branch).toBe('feature');
   });
 
   it('should set correct notification on session expired call', () => {

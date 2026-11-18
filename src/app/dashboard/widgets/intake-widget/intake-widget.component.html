@@ -2,6 +2,7 @@
   <bq-intake [sessionName]=sessionName
     [languageCode]="parameters.languageCode"
     [caseType]="parameters.caseType"
+    [branch]="(branch$ | async) ?? undefined"
     [baseUrl]="baseUrl"
     (expired)="onSessionExpired()"
     (error)="onError($event)"
