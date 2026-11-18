@@ -1,4 +1,4 @@
-FROM docker-internal.blueriq.com/tomcat10.1-jdk21:1.0
+FROM docker-internal.blueriq.com/tomcat10.1-jdk21:1.2@sha256:b85949d4845cc20c68a44c79d7042d69a8731be8612743ae2c8eb9d7738f6982
 LABEL maintainer="support@blueriq.com"
 
 RUN rm -rf /usr/local/tomcat/webapps/*
