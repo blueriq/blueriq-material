@@ -67,13 +67,13 @@ describe('Intake Widget Component', () => {
       useValue: { paramMap: of(convertToParamMap({ version: 'feature' })), queryParams: of({}) },
     });
     const fixture = TestBed.createComponent(IntakeWidgetComponent);
-    fixture.componentInstance.widget = {
+    fixture.componentRef.setInput('widget', {
       id: 'TEST-ID',
       type: 'blueriq-intake',
       baseUrl: '/',
       caseType: 'Zone',
       languageCode: 'en-US',
-    };
+    });
     fixture.componentInstance.ngOnInit();
     let branch: string | undefined;
 
