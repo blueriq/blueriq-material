@@ -1,4 +1,4 @@
-# syntax = docker/dockerfile:1.24@sha256:87999aa3d42bdc6bea60565083ee17e86d1f3339802f543c0d03998580f9cb89
+# syntax = docker/dockerfile:1.29@sha256:572cebbc2b15e6f84c077742952674889cb63cd5e9b80abdffcbe587b6f19183
 FROM docker-internal.blueriq.com/nodejs-build:24.22.1-ubi-9.5-1736404036@sha256:f6f2711082f500dfb5eac31cfaeb1549bc433654a7cf20f5302a55e28c3b9c57 as node-base
 
 FROM node-base AS packages
