@@ -1,4 +1,4 @@
-FROM azul/zulu-openjdk-centos:25
+FROM azul-zulu:25.38-25.0.5.1-jdk-debian13@sha256:6e688994387052ff293aee39ff306684134ed868e6167fd957080874d9a0e9f9
 
 LABEL maintainer="support@blueriq.com"
 

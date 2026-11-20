@@ -24,7 +24,7 @@ services:
       context: ../
       dockerfile: dashboards/Dockerfile.GATEWAY
     healthcheck:
-      test: "curl --user blueriq:welcome --fail --silent http://localhost:8080/actuator/health | grep UP || exit 1"
+      test: "bash -c ':> /dev/tcp/127.0.0.1/8080' || exit 1"
       interval: 5s
       timeout: 5s
       start_period: 120s
