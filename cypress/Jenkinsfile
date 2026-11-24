@@ -18,10 +18,10 @@ pipeline {
   }
 
   options {
+    lock(resource: 'material-e2e-docker', extra: [[label: 'bq-docker-lin-memory', quantity: 5]])
     timeout(time: 60, unit: 'MINUTES')
     buildDiscarder logRotator(numToKeepStr: '5')
     disableConcurrentBuilds()
-    lock('material-e2e-docker')
     ansiColor('xterm')
   }
 
